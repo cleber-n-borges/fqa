@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>EQUILÍBRIO QUÍMICO – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Titulacao.html" rel="next">
+<link href="./04_Equilibrio_Quimico.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+// Define a variável com o nome do arquivo do Questionario
+var JSON_Questionario = "./simulador/equilibrio_quimico.dat";
+</script>
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_Equilibrio_Quimico_VersaoTESTE.html"><span class="chapter-title">Prática 4: Equilíbrio Químico - UPDATE</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">EQUILÍBRIO QUÍMICO</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico_VersaoTESTE.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Prática 4: Equilíbrio Químico - UPDATE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Titulação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 5: Padronização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
+  <ul class="collapse">
+  <li><a href="#o-princípio-de-le-chatelier" id="toc-o-princípio-de-le-chatelier" class="nav-link" data-scroll-target="#o-princípio-de-le-chatelier">O Princípio de Le Chatelier</a></li>
+  </ul></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados">Dados</a></li>
+  <li><a href="#segurança-no-laboratório" id="toc-segurança-no-laboratório" class="nav-link" data-scroll-target="#segurança-no-laboratório">Segurança no Laboratório</a></li>
+  <li><a href="#roteiro-experimental" id="toc-roteiro-experimental" class="nav-link" data-scroll-target="#roteiro-experimental">Roteiro Experimental</a>
+  <ul class="collapse">
+  <li><a href="#materiais-e-reagentes" id="toc-materiais-e-reagentes" class="nav-link" data-scroll-target="#materiais-e-reagentes">Materiais e Reagentes</a></li>
+  <li><a href="#parte-1-equilíbrio-cromato-dicromato" id="toc-parte-1-equilíbrio-cromato-dicromato" class="nav-link" data-scroll-target="#parte-1-equilíbrio-cromato-dicromato">Parte 1: Equilíbrio Cromato / Dicromato</a></li>
+  <li><a href="#parte-2-equilíbrio-amônia-amônio" id="toc-parte-2-equilíbrio-amônia-amônio" class="nav-link" data-scroll-target="#parte-2-equilíbrio-amônia-amônio">Parte 2: Equilíbrio Amônia / Amônio</a></li>
+  </ul></li>
+  <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a>
+  <ul class="collapse">
+  <li><a href="#cálculo-do-ph-inicial-da-solução-de-amônia-050-mathrmmolcdot-l-1" id="toc-cálculo-do-ph-inicial-da-solução-de-amônia-050-mathrmmolcdot-l-1" class="nav-link" data-scroll-target="#cálculo-do-ph-inicial-da-solução-de-amônia-050-mathrmmolcdot-l-1">Cálculo do pH Inicial da Solução de Amônia <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}50 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math></a></li>
+  <li><a href="#determinação-da-precipitação-de-textbacro_4-no-tubo-t3" id="toc-determinação-da-precipitação-de-textbacro_4-no-tubo-t3" class="nav-link" data-scroll-target="#determinação-da-precipitação-de-textbacro_4-no-tubo-t3">Determinação da Precipitação de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math> no Tubo T3</a></li>
+  <li><a href="#fluxograma-da-prática-de-equilíbrio-químico" id="toc-fluxograma-da-prática-de-equilíbrio-químico" class="nav-link" data-scroll-target="#fluxograma-da-prática-de-equilíbrio-químico">Fluxograma da Prática de Equilíbrio Químico</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#complemento-com-ia" id="toc-complemento-com-ia" class="nav-link" data-scroll-target="#complemento-com-ia">Complemento com IA</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>Em um sistema químico contendo <a href="https://pt.wikipedia.org/wiki/Rea%C3%A7%C3%A3o_revers%C3%ADvel"><strong>reações reversíveis</strong></a>, o conceito de reagentes e produtos torna-se dinâmico e dependente do sentido considerado na reação química. Em um sistema fechado, sob temperatura e pressão constantes, as reações direta e inversa ocorrem simultaneamente.</p>
+<p>Tomando como exemplo a reação em fase gasosa entre o iodo e o hidrogênio:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mtext mathvariant="normal">I</mtext><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><mn>2</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">HI</mtext><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mspace width="4.762em"></mspace><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">Eq. 1</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{H}_2(g) + \text{I}_2(g) \rightleftharpoons 2\,\text{HI}(g) \hspace{2cm} (\text{Eq. 1})</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">HI</mtext><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mtext mathvariant="normal">I</mtext><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mspace width="4.762em"></mspace><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">Eq. 2</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">2\,\text{HI}(g) \rightleftharpoons \text{H}_2(g) + \text{I}_2(g) \hspace{2cm} (\text{Eq. 2})</annotation></semantics></math></p>
+<p>Na Eq. 1, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{H}_2</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">I</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{I}_2</annotation></semantics></math> atuam como reagentes e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HI</mtext><annotation encoding="application/x-tex">\text{HI}</annotation></semantics></math> como produto; na Eq. 2, as posições se invertem, contudo ambas descrevem microscopicamente o mesmo fenômeno de transformação química.</p>
+<p>O <a href="https://pt.wikipedia.org/wiki/Equilíbrio_químico"><strong>Equilíbrio Químico</strong></a> é atingido quando as velocidades das reações direta (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mtext mathvariant="normal">direta</mtext></msub><annotation encoding="application/x-tex">v_{\text{direta}}</annotation></semantics></math>) e inversa (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mtext mathvariant="normal">inversa</mtext></msub><annotation encoding="application/x-tex">v_{\text{inversa}}</annotation></semantics></math>) se igualam. Nesse estágio, o sistema atinge um estado <strong>dinâmico</strong> em que as concentrações de todas as espécies químicas permanecem constantes ao longo do tempo, embora as transformações moleculares continuem ocorrendo ininterruptamente em nível microscópico.</p>
+<p>Para uma reação genérica representada por:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">A</mtext><mo>+</mo><mi>b</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">B</mtext><mo>⇌</mo><mi>c</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">C</mtext><mo>+</mo><mi>d</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">D</mtext></mrow><annotation encoding="application/x-tex">a\,\text{A} + b\,\text{B} \rightleftharpoons c\,\text{C} + d\,\text{D}</annotation></semantics></math></p>
+<p>A relação quantitativa no equilíbrio é expressa pela <strong>Constante de Equilíbrio (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>c</mi></msub><annotation encoding="application/x-tex">K_c</annotation></semantics></math>):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>c</mi></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">C</mtext><msup><mo stretchy="false" form="postfix">]</mo><mi>c</mi></msup><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">D</mtext><msup><mo stretchy="false" form="postfix">]</mo><mi>d</mi></msup></mrow><mrow><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">A</mtext><msup><mo stretchy="false" form="postfix">]</mo><mi>a</mi></msup><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">B</mtext><msup><mo stretchy="false" form="postfix">]</mo><mi>b</mi></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">K_c = \frac{[\text{C}]^c \, [\text{D}]^d}{[\text{A}]^a \, [\text{B}]^b}</annotation></semantics></math></p>
+<p>O valor numérico de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>c</mi></msub><annotation encoding="application/x-tex">K_c</annotation></semantics></math> é característico de cada reação e depende <strong>exclusivamente da temperatura</strong>. Concentrações iniciais, volume ou pressão do sistema podem se alterar, mas o valor de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>c</mi></msub><annotation encoding="application/x-tex">K_c</annotation></semantics></math> permanecerá constante desde que a temperatura seja mantida invariável.</p>
+<section id="o-princípio-de-le-chatelier" class="level3">
+<h3 class="anchored" data-anchor-id="o-princípio-de-le-chatelier">O Princípio de Le Chatelier</h3>
+<p>O comportamento de um sistema em equilíbrio frente a perturbações externas é regido pelo <a href="https://pt.wikipedia.org/wiki/Princ%C3%ADpio_de_Le_Chatelier"><strong>Princípio de Le Chatelier</strong></a>:</p>
+<blockquote class="blockquote">
+<p><em>“Quando um sistema em equilíbrio químico é submetido a uma perturbação externa (variação de concentração, pressão, volume ou temperatura), ele desloca sua posição de equilíbrio no sentido que minimize ou anule o efeito dessa perturbação.”</em></p>
+</blockquote>
+<ul>
+<li><strong>Alteração de Concentração:</strong> O aumento da concentração de um reagente força o sistema a consumir essa espécie, deslocando o equilíbrio no sentido direto (formação de produtos). De forma análoga, a remoção de um componente faz o equilíbrio se deslocar para o sentido que reponha a espécie retirada.</li>
+<li><strong>Efeito do Íon Comum e pH:</strong> A adição de um íon já existente na mistura em equilíbrio (efeito do íon comum) reprime a ionização ou dissociação do eletrólito e força o deslocamento no sentido oposto ao do íon adicionado. Alterações no pH alteram a concentração de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math>, afetando diretamente equilíbrios de ácidos e bases fracas ou de oxianíons dependentes de meio ácido/básico.</li>
+<li><strong>Efeito da Temperatura:</strong> Diferente das demais perturbações, a alteração da temperatura altera o valor numérico de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>c</mi></msub><annotation encoding="application/x-tex">K_c</annotation></semantics></math>. Para processos endotérmicos (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>H</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta H &gt; 0</annotation></semantics></math>), o aumento da temperatura favorece a formação de produtos (aumenta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>c</mi></msub><annotation encoding="application/x-tex">K_c</annotation></semantics></math>); para processos exotérmicos (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>H</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta H &lt; 0</annotation></semantics></math>), favorece os reagentes (diminui <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>c</mi></msub><annotation encoding="application/x-tex">K_c</annotation></semantics></math>).</li>
+</ul>
+<p>Nesta prática, serão investigados experimentalmente dois sistemas aquosos clássicos: o equilíbrio de interconversão cromato/dicromato e o equilíbrio de ionização do hidróxido de amônio em presença de indicador ácido-base.</p>
+</section>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li>Compreender experimentalmente o conceito de equilíbrio químico dinâmico e reversibilidade de reações.</li>
+<li>Avaliar e aplicar o Princípio de Le Chatelier frente a perturbações provocadas por variação de pH, efeito do íon comum e remoção de componentes do meio.</li>
+<li>Analisar a alteração de cor no equilíbrio de oxianíons cromato (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math>) e dicromato (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Cr}_2\text{O}_7^{2-}</annotation></semantics></math>).</li>
+<li>Observar a interferência do produto de solubilidade na remoção de espécies do equilíbrio por formação de precipitado de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math>.</li>
+<li>Investigar o equilíbrio de ionização da amônia aquosa (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mi>/</mi><msubsup><mtext mathvariant="normal">NH</mtext><mn>4</mn><mo>+</mo></msubsup></mrow><annotation encoding="application/x-tex">\text{NH}_3/\text{NH}_4^+</annotation></semantics></math>) e a volatilidade do reagente gasoso em sistema aberto.</li>
+</ul>
+</section>
+<section id="dados" class="level2">
+<h2 class="anchored" data-anchor-id="dados">Dados</h2>
+<ol type="1">
+<li><strong>Massas Molares — M.M.</strong>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CrO</mtext><mn>4</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>194</mn><mo>,</mo><mn>19</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{K}_2\text{CrO}_4) = 194{,}19 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>7</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>294</mn><mo>,</mo><mn>18</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{K}_2\text{Cr}_2\text{O}_7) = 294{,}18 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>208</mn><mo>,</mo><mn>23</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{BaCl}_2) = 208{,}23 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>17</mn><mo>,</mo><mn>03</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{NH}_3) = 17{,}03 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">HCl</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>36</mn><mo>,</mo><mn>46</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{HCl}) = 36{,}46 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">NaOH</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>40</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{NaOH}) = 40{,}00 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+</ul></li>
+<li><strong>Equilíbrios e Constantes de Referência (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><msup><mspace width="0.222em"></mspace><mo>∘</mo></msup><mtext mathvariant="normal">C</mtext></mrow><annotation encoding="application/x-tex">25 \ ^\circ\text{C}</annotation></semantics></math>)
+<ul>
+<li><strong>Cromato/Dicromato:</strong> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mspace width="0.167em"></mspace><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>2</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo><mspace width="1.0em"></mspace><mo stretchy="false" form="prefix">(</mo><msub><mi>K</mi><mi>c</mi></msub><mo>≈</mo><mn>4</mn><mo>,</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">2\,\text{CrO}_4^{2-}(aq) + 2\,\text{H}^+(aq) \rightleftharpoons \text{Cr}_2\text{O}_7^{2-}(aq) + \text{H}_2\text{O}(l) \quad (K_c \approx 4{,}2 \times 10^{14})</annotation></semantics></math></li>
+<li><strong>Ionização da Amônia:</strong> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msubsup><mtext mathvariant="normal">NH</mtext><mn>4</mn><mo>+</mo></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mspace width="1.0em"></mspace><mo stretchy="false" form="prefix">(</mo><msub><mi>K</mi><mi>b</mi></msub><mo>=</mo><mn>1</mn><mo>,</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{NH}_3(aq) + \text{H}_2\text{O}(l) \rightleftharpoons \text{NH}_4^+(aq) + \text{OH}^-(aq) \quad (K_b = 1{,}8 \times 10^{-5})</annotation></semantics></math></li>
+<li><strong>Produto de Solubilidade do Cromato de Bário:</strong> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mspace width="1.0em"></mspace><mo stretchy="false" form="prefix">(</mo><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>10</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{BaCrO}_4(s) \rightleftharpoons \text{Ba}^{2+}(aq) + \text{CrO}_4^{2-}(aq) \quad (K_{ps} = 1{,}2 \times 10^{-10})</annotation></semantics></math></li>
+</ul></li>
+<li><strong>Coloração das Espécies em Solução</strong>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math> (Cromato): Solução de cor <strong>amarela</strong> intensa.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Cr}_2\text{O}_7^{2-}</annotation></semantics></math> (Dicromato): Solução de cor <strong>alaranjada</strong> intensa.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math>: Precipitado sólido de cor <strong>amarelo-pálida/amarelada</strong>.</li>
+<li><strong>Fenolftaleína:</strong> Incolor em meio ácido/neutro (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pH</mtext><mo>&lt;</mo><mn>8</mn><mo>,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\text{pH} &lt; 8{,}2</annotation></semantics></math>) e <strong>rosa/violeta</strong> em meio básico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pH</mtext><mo>&gt;</mo><mn>10</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\text{pH} &gt; 10{,}0</annotation></semantics></math>).</li>
+</ul></li>
+<li><strong>Observações de Segurança</strong>
+<ul>
+<li>Os sais de crômio hexavalente (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Cr</mtext><mrow><mi>V</mi><mi>I</mi></mrow></msup><annotation encoding="application/x-tex">\text{Cr}^{VI}</annotation></semantics></math>), como o cromato e o dicromato de potássio, são considerados tóxicos, oxidantes e comprovadamente carcinogênicos. Exigem rigor no manuseio e descarte obrigatoriamente separado.</li>
+</ul></li>
+</ol>
+</section>
+<section id="segurança-no-laboratório" class="level2">
+<h2 class="anchored" data-anchor-id="segurança-no-laboratório">Segurança no Laboratório</h2>
+<ul>
+<li><strong>Equipamentos de Proteção Individual (EPIs):</strong> É obrigatório o uso contínuo de jaleco de manga longa, óculos de proteção e luvas nitrílicas durante todo o procedimento experimental.</li>
+<li><strong>Atenção aos Reagentes Perigosos:</strong>
+<ul>
+<li>O ácido clorídrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>) e o hidróxido de sódio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math>) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}00 \, \text{mol·L}^{-1}</annotation></semantics></math> são soluções corrosivas que podem causar severas queimaduras na pele e nos olhos.</li>
+<li>O cloreto de bário (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{BaCl}_2</annotation></semantics></math>) é altamente tóxico por ingestão e absorção.</li>
+<li>A amônia (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mi>/</mi><msub><mtext mathvariant="normal">NH</mtext><mn>4</mn></msub><mtext mathvariant="normal">OH</mtext></mrow><annotation encoding="application/x-tex">\text{NH}_3/\text{NH}_4\text{OH}</annotation></semantics></math>) libera vapores irritantes para as vias respiratórias; deve ser manuseada preferencialmente sob capela de exaustão ou local bem ventilado.</li>
+</ul></li>
+<li><strong>Ação em Caso de Acidentes:</strong> Em caso de contato acidental de soluções com a pele ou olhos, lavar a região afetada com água corrente em abundância por no mínimo 15 minutos.</li>
+<li><strong>Gestão de Resíduos:</strong> <strong>Nunca descartar nenhuma solução na pia.</strong> Todos os resíduos contendo crômio, bário ou fenolftaleína devem ser recolhidos rigorosamente nos frascos de descarte identificados para metais pesados e soluções orgânicas/alcalinas.</li>
+</ul>
+</section>
+<section id="roteiro-experimental" class="level2">
+<h2 class="anchored" data-anchor-id="roteiro-experimental">Roteiro Experimental</h2>
+<section id="materiais-e-reagentes" class="level3">
+<h3 class="anchored" data-anchor-id="materiais-e-reagentes">Materiais e Reagentes</h3>
+<p><strong>Materiais:</strong> - Suporte para tubos de ensaio - 5 tubos de ensaio médios limpos e secos - Pipetas de Pasteur e/ou pipetas graduadas de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">1{,}0 \, \text{mL}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">2{,}0 \, \text{mL}</annotation></semantics></math> com pipetador - Tira de papel branco ou papel de filtro</p>
+<p><strong>Soluções Aquosas:</strong> - Solução de Cromato de Potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CrO</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{K}_2\text{CrO}_4</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}05 \, \text{mol·L}^{-1}</annotation></semantics></math> - Solução de Dicromato de Potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">\text{K}_2\text{Cr}_2\text{O}_7</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}05 \, \text{mol·L}^{-1}</annotation></semantics></math> - Solução de Hidróxido de Amônio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>4</mn></msub><mtext mathvariant="normal">OH</mtext></mrow><annotation encoding="application/x-tex">\text{NH}_4\text{OH}</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}50 \, \text{mol·L}^{-1}</annotation></semantics></math> - Solução de Ácido Clorídrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}00 \, \text{mol·L}^{-1}</annotation></semantics></math> - Solução de Hidróxido de Sódio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}00 \, \text{mol·L}^{-1}</annotation></semantics></math> - Solução de Cloreto de Bário (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{BaCl}_2</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}50 \, \text{mol·L}^{-1}</annotation></semantics></math> - Solução alcoólica de fenolftaleína <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">0{,}1\%</annotation></semantics></math></p>
+<hr>
+</section>
+<section id="parte-1-equilíbrio-cromato-dicromato" class="level3">
+<h3 class="anchored" data-anchor-id="parte-1-equilíbrio-cromato-dicromato">Parte 1: Equilíbrio Cromato / Dicromato</h3>
+<p><strong>Equação Química Fundamental:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mspace width="0.167em"></mspace><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>2</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">2\,\text{CrO}_4^{2-}(aq) + 2\,\text{H}^+(aq) \rightleftharpoons \text{Cr}_2\text{O}_7^{2-}(aq) + \text{H}_2\text{O}(l)</annotation></semantics></math></p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math> (Cromato) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\longrightarrow</annotation></semantics></math> <strong>Amarelo</strong></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Cr}_2\text{O}_7^{2-}</annotation></semantics></math> (Dicromato) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\longrightarrow</annotation></semantics></math> <strong>Alaranjado</strong></li>
+</ul>
+<p>💡 <em>Nota teórica:</em> Mesmo quando uma cor predomina visualmente na solução, pequenas quantidades de equilíbrio da outra espécie permanecem simultaneamente presentes no meio aquoso.</p>
+<section id="procedimento-1" class="level4">
+<h4 class="anchored" data-anchor-id="procedimento-1">Procedimento 1</h4>
+<ol type="1">
+<li><p><strong>Organização dos Tubos:</strong></p>
+<ul>
+<li>Numerar e dispor 3 tubos de ensaio em uma estante.</li>
+<li>Adicionar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">2{,}0 \, \text{mL}</annotation></semantics></math> de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>7</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{K}_2\text{Cr}_2\text{O}_7 \ 0{,}05 \, \text{mol·L}^{-1}</annotation></semantics></math> (alaranjado) aos tubos <strong>T1</strong> e <strong>T2</strong>.</li>
+<li>Adicionar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">2{,}0 \, \text{mL}</annotation></semantics></math> de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CrO</mtext><mn>4</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{K}_2\text{CrO}_4 \ 0{,}05 \, \text{mol·L}^{-1}</annotation></semantics></math> (amarelo) ao tubo <strong>T3</strong>.</li>
+</ul></li>
+<li><p><strong>Execução das Perturbações de Equilíbrio:</strong></p>
+<p><strong>(a)</strong> Ao tubo <strong>T1</strong>, adicionar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">0{,}5 \, \text{mL}</annotation></semantics></math> de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">NaOH</mtext><mspace width="0.222em"></mspace><mn>1</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{NaOH} \ 1{,}00 \, \text{mol·L}^{-1}</annotation></semantics></math>. Agitar suavemente e observar a mudança de cor.</p>
+<p><strong>(b)</strong> Ao mesmo tubo <strong>T1</strong> (após o teste <em>a</em>), adicionar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">1{,}0 \, \text{mL}</annotation></semantics></math> de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">HCl</mtext><mspace width="0.222em"></mspace><mn>1</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{HCl} \ 1{,}00 \, \text{mol·L}^{-1}</annotation></semantics></math>. Agitar e observar a nova alteração de cor.</p>
+<p><strong>(c)</strong> Ao tubo <strong>T3</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CrO</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{K}_2\text{CrO}_4</annotation></semantics></math>), adicionar 2 gotas de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{BaCl}_2 \ 0{,}50 \, \text{mol·L}^{-1}</annotation></semantics></math>. Agitar e observar a formação de precipitado.</p>
+<p><strong>(d)</strong> Ao tubo <strong>T2</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">\text{K}_2\text{Cr}_2\text{O}_7</annotation></semantics></math>), adicionar 2 gotas de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{BaCl}_2 \ 0{,}50 \, \text{mol·L}^{-1}</annotation></semantics></math>. Agitar e verificar se ocorre turvação ou precipitação.</p></li>
+</ol>
+</section>
+<section id="tabela-de-registro-de-resultados-cromato-dicromato" class="level4">
+<h4 class="anchored" data-anchor-id="tabela-de-registro-de-resultados-cromato-dicromato">Tabela de Registro de Resultados — Cromato / Dicromato</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Exp.</th>
+<th style="text-align: center;">Tubo</th>
+<th style="text-align: center;">Reagente Adicionado</th>
+<th style="text-align: center;">Cor Inicial</th>
+<th style="text-align: center;">Cor Final</th>
+<th style="text-align: left;">Fundamento Químico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>(a)</strong></td>
+<td style="text-align: center;">T1</td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math></td>
+<td style="text-align: center;">Alaranjado</td>
+<td style="text-align: center;">Amarelo</td>
+<td style="text-align: left;">Consumo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math> <a href="#note-1"><sup id="ref-1"><strong>[1]</strong></sup></a></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>(b)</strong></td>
+<td style="text-align: center;">T1</td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math></td>
+<td style="text-align: center;">Amarelo</td>
+<td style="text-align: center;">Alaranjado</td>
+<td style="text-align: left;">Aumento de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math> <a href="#note-2"><sup id="ref-2"><strong>[2]</strong></sup></a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>(c)</strong></td>
+<td style="text-align: center;">T3</td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{BaCl}_2</annotation></semantics></math></td>
+<td style="text-align: center;">Amarelo</td>
+<td style="text-align: center;">Amarelo com precipitado</td>
+<td style="text-align: left;">Precipitação <br> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math> <a href="#note-3"><sup id="ref-3"><strong>[3]</strong></sup></a></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>(d)</strong></td>
+<td style="text-align: center;">T2</td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{BaCl}_2</annotation></semantics></math></td>
+<td style="text-align: center;">Alaranjado</td>
+<td style="text-align: center;">Alaranjado com precipitado leve</td>
+<td style="text-align: left;">Equilíbrio de <br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math> residual <a href="#note-4"><sup id="ref-4"><strong>[4]</strong></sup></a></td>
+</tr>
+</tbody>
+</table>
+<!-- Bloco de notas com o retrolink colado ao número -->
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Notas sobre o Mecanismo da Reação:</strong></p>
+<ul>
+<li><span id="note-1"></span> <strong>[1]</strong><span style="text-decoration: none;"><a href="#ref-1">↩︎</a></span> : <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math> consome os íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math>, deslocando o equilíbrio no sentido dos reagentes (formação de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math>).</li>
+<li><span id="note-2"></span> <strong>[2]</strong><span style="text-decoration: none;"><a href="#ref-2">↩︎</a></span> : Aumento da <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[\text{H}^+]</annotation></semantics></math> desloca o equilíbrio no sentido direto (formação de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Cr}_2\text{O}_7^{2-}</annotation></semantics></math>).</li>
+<li><span id="note-3"></span> <strong>[3]</strong><span style="text-decoration: none;"><a href="#ref-3">↩︎</a></span> : <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ba}^{2+}</annotation></semantics></math> reage com o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math> livre, superando o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">K_{ps}</annotation></semantics></math> e formando o sólido insolúvel <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{BaCrO}_4(s)</annotation></semantics></math>.</li>
+<li><span id="note-4"></span> <strong>[4]</strong><span style="text-decoration: none;"><a href="#ref-4">↩︎</a></span> : <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ba}^{2+}</annotation></semantics></math> consome a fração residual de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math> presente no meio, forçando a conversão contínua do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Cr}_2\text{O}_7^{2-}</annotation></semantics></math>.</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="parte-2-equilíbrio-amônia-amônio" class="level3">
+<h3 class="anchored" data-anchor-id="parte-2-equilíbrio-amônia-amônio">Parte 2: Equilíbrio Amônia / Amônio</h3>
+<p><strong>Equação Química Fundamental:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msubsup><mtext mathvariant="normal">NH</mtext><mn>4</mn><mo>+</mo></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mspace width="1.0em"></mspace><mo stretchy="false" form="prefix">(</mo><mi mathvariant="normal">Δ</mi><mi>H</mi><mo>&lt;</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{NH}_3(aq) + \text{H}_2\text{O}(l) \rightleftharpoons \text{NH}_4^+(aq) + \text{OH}^-(aq) \quad (\Delta H &lt; 0)</annotation></semantics></math></p>
+<section id="procedimento-2" class="level4">
+<h4 class="anchored" data-anchor-id="procedimento-2">Procedimento 2</h4>
+<ol type="1">
+<li><p>Em um tubo de ensaio limpo, adicionar:</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">2{,}0 \, \text{mL}</annotation></semantics></math> de água destilada</li>
+<li>3 gotas de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>4</mn></msub><mtext mathvariant="normal">OH</mtext><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{NH}_4\text{OH} \ 0{,}50 \, \text{mol·L}^{-1}</annotation></semantics></math></li>
+<li>1 gota de solução alcoólica de fenolftaleína</li>
+<li>Agitar até obter uma solução de cor rosa/viva bem homogênea.</li>
+</ul></li>
+<li><p>Umedecer levemente uma tira de papel de filtro ou papel branco com pequenas gotas dessa solução rosa.</p></li>
+<li><p>Agitar o papel suavemente no ar (sistema aberto) por alguns minutos e observar o desbotamento contínuo da cor.</p></li>
+</ol>
+</section>
+<section id="tabela-de-registro-de-resultados-amônia-amônio" class="level4">
+<h4 class="anchored" data-anchor-id="tabela-de-registro-de-resultados-amônia-amônio">Tabela de Registro de Resultados — Amônia / Amônio</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Experimento</th>
+<th style="text-align: center;">Observação de Cor Inicial</th>
+<th style="text-align: center;">Mudança de Cor no Papel ao Ar</th>
+<th style="text-align: left;">Interpretação Química</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ionização da Amônia</strong></td>
+<td style="text-align: center;">Rosa intenso</td>
+<td style="text-align: center;">Torna-se incolor</td>
+<td style="text-align: left;">A evaporação do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{NH}_3(g)</annotation></semantics></math> desloca o equilíbrio para a esquerda, reduzindo a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[\text{OH}^-]</annotation></semantics></math> e descolorindo a fenolftaleína.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Análise do Mecanismo do Papel Umedecido:</strong></p>
+<ul>
+<li><strong>1.</strong> A fenolftaleína apresenta cor rosa intensa em meio básico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pH</mtext><mo>&gt;</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">\text{pH} &gt; 10</annotation></semantics></math>), indicando alta concentração de íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math> gerados pela ionização da amônia em solução.</li>
+<li><strong>2.</strong> Como o sistema no papel de filtro é aberto e apresenta elevada área superficial, o gás amônia (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><annotation encoding="application/x-tex">\text{NH}_3</annotation></semantics></math>) volatiliza continuamente para a atmosfera.</li>
+<li><strong>3.</strong> A perda contínua do reagente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{NH}_3(g)</annotation></semantics></math> perturba o sistema. Pelo Princípio de Le Chatelier, o equilíbrio desloca-se para a esquerda para recompor a amônia, consumindo íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">NH</mtext><mn>4</mn><mo>+</mo></msubsup><annotation encoding="application/x-tex">\text{NH}_4^+</annotation></semantics></math>. A redução na concentração de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math> reduz o pH abaixo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">8{,}2</annotation></semantics></math>, tornando o indicador incolor.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="quadro-resumo-dos-deslocamentos-de-equilíbrio" class="level4">
+<h4 class="anchored" data-anchor-id="quadro-resumo-dos-deslocamentos-de-equilíbrio">Quadro-Resumo dos Deslocamentos de Equilíbrio</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sistema</th>
+<th style="text-align: left;">Perturbação Aplicada</th>
+<th style="text-align: center;">Sentido do Deslocamento</th>
+<th style="text-align: left;">Efeito Observável no Sistema</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cromato / Dicromato</strong></td>
+<td style="text-align: left;">Adição de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math> (remoção de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math>)</td>
+<td style="text-align: center;">Esquerda (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>←</mo><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math>)</td>
+<td style="text-align: left;">Transição de cor de alaranjado para amarelo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Cromato / Dicromato</strong></td>
+<td style="text-align: left;">Adição de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> (aumento de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math>)</td>
+<td style="text-align: center;">Direita (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>)</td>
+<td style="text-align: left;">Transição de cor de amarelo para alaranjado.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cromato / Dicromato</strong></td>
+<td style="text-align: left;">Adição de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ba}^{2+}</annotation></semantics></math></td>
+<td style="text-align: center;">Consumo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math></td>
+<td style="text-align: left;">Formação de precipitado amarelo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Amônia / Amônio</strong></td>
+<td style="text-align: left;">Volatilização de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{NH}_3(g)</annotation></semantics></math> no ar</td>
+<td style="text-align: center;">Esquerda (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>←</mo><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math>)</td>
+<td style="text-align: left;">Queda de pH e desbotamento da fenolftaleína (rosa <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> incolor).</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="discussão" class="level2">
+<h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
+<p>Os experimentos realizados demonstram a natureza dinâmico-reversível dos equilíbrios químicos em solução aquosa e confirmam com clareza as previsões do Princípio de Le Chatelier.</p>
+<p>No <strong>Equilíbrio Cromato/Dicromato</strong>, os oxianíons do crômio(VI) coexistem em meio aquoso sob dependência direta da concentração de prótons (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math>). A adição de uma base forte (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math>) introduz íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math>, os quais reagem neutralizando os prótons disponíveis na solução através da reação:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>→</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{H}^+(aq) + \text{OH}^-(aq) \longrightarrow \text{H}_2\text{O}(l)</annotation></semantics></math></p>
+<p>A diminuição acentuada na concentração de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math> atua como uma perturbação por remoção de reagente. O sistema responde deslocando a posição de equilíbrio para a esquerda, consumindo os íons dicromato (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Cr}_2\text{O}_7^{2-}</annotation></semantics></math>, alaranjados) para recompor o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math>, o que resulta na restauração da cor amarela característica dos íons cromato (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math>).</p>
+<p>Quando se adiciona um ácido forte (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>), o excesso de íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><annotation encoding="application/x-tex">\text{H}^+</annotation></semantics></math> eleva vertiginosamente a concentração desse reagente. O sistema alivia essa sobrecarga deslocando-se no sentido direto (para a direita), consumindo os íons cromato com prótons e produzindo mais dicromato, o que é visualmente comprovado pelo retorno imediato da coloração alaranjada.</p>
+<p>A adição de íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ba}^{2+}</annotation></semantics></math> introduz um equilíbrio competitivo de precipitação:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>↓</mo></mrow><annotation encoding="application/x-tex">\text{Ba}^{2+}(aq) + \text{CrO}_4^{2-}(aq) \rightleftharpoons \text{BaCrO}_4(s) \downarrow</annotation></semantics></math></p>
+<p>Como o produto de solubilidade do cromato de bário é extremamente baixo (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>10</mn></mrow></msup></mrow><annotation encoding="application/x-tex">K_{ps} = 1{,}2 \times 10^{-10}</annotation></semantics></math>), a mistura de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ba}^{2+}</annotation></semantics></math> com a solução amarela de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CrO</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{K}_2\text{CrO}_4</annotation></semantics></math> (tubo T3) produz imediatamente um precipitado amarelo denso de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math>.</p>
+<p>No tubo T2, contendo inicialmente a solução alaranjada de dicromato (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">\text{K}_2\text{Cr}_2\text{O}_7</annotation></semantics></math>), a adição de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ba}^{2+}</annotation></semantics></math> também leva à formação de um precipitado amarelado de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math>. Isso ocorre porque, embora a espécie alaranjada (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Cr}_2\text{O}_7^{2-}</annotation></semantics></math>) seja predominante em meio levemente ácido, existe uma quantidade residual contínua de íons cromato (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math>) no equilíbrio aquoso. À medida que o bário precipita o cromato residual, o equilíbrio cromato/dicromato é continuamente forçado a se deslocar para a esquerda para repor o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math> consumido, demonstrando o caráter dinâmico e interconectado de ambos os equilíbrios.</p>
+<p>No <strong>Equilíbrio Amônia/Amônio</strong>, o hidróxido de amônio dissolvido constitui uma base fraca parcialmente ionizada. Na tira de papel exposta ao ar, a amônia molecular dissolvida (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{NH}_3(aq)</annotation></semantics></math>) estabelece um equilíbrio de fase com a fase de vapor ambiente (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{NH}_3(g)</annotation></semantics></math>). Por se tratar de um sistema aberto, o gás volatiliza continuamente para a atmosfera, impedindo que o equilíbrio de fase se restabeleça. Para compensar a perda de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><annotation encoding="application/x-tex">\text{NH}_3</annotation></semantics></math>, o equilíbrio de ionização desloca-se progressivamente no sentido inverso (consumindo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">NH</mtext><mn>4</mn><mo>+</mo></msubsup><annotation encoding="application/x-tex">\text{NH}_4^+</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math>). A brusca queda na concentração de íons hidroxila reduz o pH do meio líquido retido nas fibras do papel para valores abaixo da faixa de transição da fenolftaleína, provocando o desbotamento total do tom rosa.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>📌 Informações diversas</strong></p>
+<ul>
+<li><em>Aplicações Analíticas:</em> O equilíbrio cromato/dicromato é amplamente explorado em titulações redox e na preparação de soluções limpantes no laboratório (como a solução sulfocrômica), onde o dicromato atua como um poderoso agente oxidante em meio fortemente ácido.</li>
+<li><em>Indicadores Ácido-Base:</em> A fenolftaleína é um ácido fraco orgânico cuja estrutura molecular sofre rearranjo quinônico em pH alcalino, alterando sua absorção de luz da região do ultravioleta para o espectro visível (absorção no verde, refletindo a cor rosa/magenta).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="bibliografia" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<ul>
+<li>ATKINS, P.; JONES, L. <strong>Princípios de Química: questionando a vida moderna e o meio ambiente</strong>. 5. ed.&nbsp;Porto Alegre: Bookman, 2012[cite: 3].</li>
+<li>BROWN, T. L. et al.&nbsp;<strong>Química: a ciência central</strong>. 13. ed.&nbsp;São Paulo: Pearson Education do Brasil, 2016[cite: 3].</li>
+<li>SKOOG, D. A. et al.&nbsp;<strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.</li>
+<li>WIKIPÉDIA. <strong>Equilíbrio Químico</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Equil%C3%Bibri_qu%C3%ADmico" class="uri">https://pt.wikipedia.org/wiki/Equil%C3%Bibri_qu%C3%ADmico</a>.</li>
+<li>WIKIPÉDIA. <strong>Princípio de Le Chatelier</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Princ%C3%ADpio_de_Le_Chatelier" class="uri">https://pt.wikipedia.org/wiki/Princ%C3%ADpio_de_Le_Chatelier</a>.</li>
+</ul>
+</section>
+<section id="guia-do-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
+<p>Este guia apresenta o procedimento teórico-quantitativo para a determinação das concentrações de equilíbrio, do pH das soluções e da condição de precipitação do sal insolúvel.</p>
+<p>Organização dos parâmetros da prática[cite: 3]:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grandeza</th>
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: center;">Valor / Unidade</th>
+<th style="text-align: left;">Aplicação Principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Concentração estoque de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CrO</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{K}_2\text{CrO}_4</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}05 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Concentração molar inicial de cromato</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Concentração estoque de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">\text{K}_2\text{Cr}_2\text{O}_7</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}05 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Concentração molar inicial de dicromato</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Concentração de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>4</mn></msub><mtext mathvariant="normal">OH</mtext></mrow><annotation encoding="application/x-tex">\text{NH}_4\text{OH}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>3</mn></msub><annotation encoding="application/x-tex">C_3</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}50 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Base fraca utilizada no procedimento 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Constante de Ionização da Amônia</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>b</mi></msub><annotation encoding="application/x-tex">K_b</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}8 \times 10^{-5}</annotation></semantics></math></td>
+<td style="text-align: left;">Cálculo do pH inicial da amônia aquosa</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Produto de Solubilidade do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">K_{ps}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>10</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}2 \times 10^{-10}</annotation></semantics></math></td>
+<td style="text-align: left;">Previsão de precipitação do cromato de bário</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled" title="Princípios Básicos para os Cálculos de Equilíbrio">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Princípios Básicos para os Cálculos de Equilíbrio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Cálculo da Ionização em Base Fraca:</strong> Para uma base fraca monoprótica em água, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><mo stretchy="false" form="postfix">]</mo><mo>≈</mo><msqrt><mrow><msub><mi>K</mi><mi>b</mi></msub><mo>⋅</mo><msub><mi>C</mi><mn>0</mn></msub></mrow></msqrt></mrow><annotation encoding="application/x-tex">[\text{OH}^-] \approx \sqrt{K_b \cdot C_0}</annotation></semantics></math> (válido para aproximações em que a ionização é reduzida).</li>
+<li><strong>Condição de Precipitação:</strong> Ocorre precipitação quando o produto iônico do sistema (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Q</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">Q_{ps}</annotation></semantics></math>) supera o valor constante do produto de solubilidade (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">K_{ps}</annotation></semantics></math>), ou seja, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><mo>&gt;</mo><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">Q_{ps} &gt; K_{ps}</annotation></semantics></math>.</li>
+</ul>
+</div>
+</div>
+<section id="cálculo-do-ph-inicial-da-solução-de-amônia-050-mathrmmolcdot-l-1" class="level3">
+<h3 class="anchored" data-anchor-id="cálculo-do-ph-inicial-da-solução-de-amônia-050-mathrmmolcdot-l-1">Cálculo do pH Inicial da Solução de Amônia <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}50 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math></h3>
+<p><strong>Passo 1</strong> — Equação de ionização e tabela de equilíbrio de concentração:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msubsup><mtext mathvariant="normal">NH</mtext><mn>4</mn><mo>+</mo></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{NH}_3(aq) + \text{H}_2\text{O}(l) \rightleftharpoons \text{NH}_4^+(aq) + \text{OH}^-(aq)</annotation></semantics></math></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estágio</th>
+<th style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><annotation encoding="application/x-tex">\text{NH}_3</annotation></semantics></math></th>
+<th style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">NH</mtext><mn>4</mn><mo>+</mo></msubsup><annotation encoding="application/x-tex">\text{NH}_4^+</annotation></semantics></math></th>
+<th style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Inicial</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">0{,}50</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\approx 0</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Variação</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">-x</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">+x</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">+x</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Equilíbrio</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">0{,}50 - x</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Passo 2</strong> — Aplicação na expressão da constante de basicidade (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>b</mi></msub><annotation encoding="application/x-tex">K_b</annotation></semantics></math>):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>b</mi></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">[</mo><msubsup><mtext mathvariant="normal">NH</mtext><mn>4</mn><mo>+</mo></msubsup><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="prefix">[</mo><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><mo stretchy="false" form="postfix">]</mo></mrow><mrow><mo stretchy="false" form="prefix">[</mo><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mo stretchy="false" form="postfix">]</mo></mrow></mfrac><mo>⟹</mo><mn>1</mn><mo>,</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>=</mo><mfrac><msup><mi>x</mi><mn>2</mn></msup><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mo>−</mo><mi>x</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">K_b = \frac{[\text{NH}_4^+][\text{OH}^-]}{[\text{NH}_3]} \implies 1{,}8 \times 10^{-5} = \frac{x^2}{0{,}50 - x}</annotation></semantics></math></p>
+<p>Como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>0</mn></msub><mo>≫</mo><msub><mi>K</mi><mi>b</mi></msub></mrow><annotation encoding="application/x-tex">C_0 \gg K_b</annotation></semantics></math>, podemos simplificar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mo>−</mo><mi>x</mi><mo>≈</mo><mn>0</mn><mo>,</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">0{,}50 - x \approx 0{,}50</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mn>1</mn><mo>,</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>×</mo><mn>0</mn><mo>,</mo><mn>50</mn><mo>=</mo><mn>9</mn><mo>,</mo><mn>0</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup></mrow><annotation encoding="application/x-tex">x^2 = 1{,}8 \times 10^{-5} \times 0{,}50 = 9{,}0 \times 10^{-6}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><mo stretchy="false" form="postfix">]</mo><mo>=</mo><msqrt><mrow><mn>9</mn><mo>,</mo><mn>0</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup></mrow></msqrt><mo>=</mo><mn>3</mn><mo>,</mo><mn>0</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">x = [\text{OH}^-] = \sqrt{9{,}0 \times 10^{-6}} = 3{,}0 \times 10^{-3} \ \text{mol·L}^{-1}</annotation></semantics></math></p>
+<p><strong>Passo 3</strong> — Cálculo do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">pOH</mtext><annotation encoding="application/x-tex">\text{pOH}</annotation></semantics></math> e do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">pH</mtext><annotation encoding="application/x-tex">\text{pH}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pOH</mtext><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>,</mo><mn>0</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo><mo>≈</mo><mn>2</mn><mo>,</mo><mn>52</mn></mrow><annotation encoding="application/x-tex">\text{pOH} = -\log_{10}(3{,}0 \times 10^{-3}) \approx 2{,}52</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pH</mtext><mo>=</mo><mn>14</mn><mo>,</mo><mn>00</mn><mo>−</mo><mtext mathvariant="normal">pOH</mtext><mo>=</mo><mn>14</mn><mo>,</mo><mn>00</mn><mo>−</mo><mn>2</mn><mo>,</mo><mn>52</mn><mo>=</mo><mn>11</mn><mo>,</mo><mn>48</mn></mrow><annotation encoding="application/x-tex">\text{pH} = 14{,}00 - \text{pOH} = 14{,}00 - 2{,}52 = 11{,}48</annotation></semantics></math></p>
+<p>👉 <em>Resultado:</em> O pH inicial da solução de amônia é <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>,</mo><mn>48</mn></mrow><annotation encoding="application/x-tex">11{,}48</annotation></semantics></math>, valor significativamente superior ao limite inferior de viragem da fenolftaleína (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pH</mtext><mo>&gt;</mo><mn>10</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\text{pH} &gt; 10{,}0</annotation></semantics></math>), explicando a intensa coloração rosa observada no tubo.</p>
+<hr>
+</section>
+<section id="determinação-da-precipitação-de-textbacro_4-no-tubo-t3" class="level3">
+<h3 class="anchored" data-anchor-id="determinação-da-precipitação-de-textbacro_4-no-tubo-t3">Determinação da Precipitação de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{BaCrO}_4</annotation></semantics></math> no Tubo T3</h3>
+<p>No tubo T3, misturam-se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">2{,}0 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CrO</mtext><mn>4</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{K}_2\text{CrO}_4 \ 0{,}05 \ \text{mol·L}^{-1}</annotation></semantics></math> com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">gotas</mtext></mrow><annotation encoding="application/x-tex">2 \ \text{gotas}</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo><mn>0</mn><mo>,</mo><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">\approx 0{,}10 \ \text{mL}</annotation></semantics></math>) de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{BaCl}_2 \ 0{,}50 \ \text{mol·L}^{-1}</annotation></semantics></math>.</p>
+<p><strong>Passo 1</strong> — Cálculo do volume total e das concentrações diluídas dos íons no momento da mistura:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mtext mathvariant="normal">total</mtext></msub><mo>=</mo><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext><mo>+</mo><mn>0</mn><mo>,</mo><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext><mo>=</mo><mn>2</mn><mo>,</mo><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_{\text{total}} = 2{,}0 \ \text{mL} + 0{,}10 \ \text{mL} = 2{,}10 \ \text{mL}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>×</mo><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><mrow><mn>2</mn><mo>,</mo><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow></mfrac><mo>≈</mo><mn>0</mn><mo>,</mo><mn>0476</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">[\text{CrO}_4^{2-}] = \frac{0{,}05 \ \text{mol·L}^{-1} \times 2{,}0 \ \text{mL}}{2{,}10 \ \text{mL}} \approx 0{,}0476 \ \text{mol·L}^{-1}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>×</mo><mn>0</mn><mo>,</mo><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><mrow><mn>2</mn><mo>,</mo><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow></mfrac><mo>≈</mo><mn>0</mn><mo>,</mo><mn>0238</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">[\text{Ba}^{2+}] = \frac{0{,}50 \ \text{mol·L}^{-1} \times 0{,}10 \ \text{mL}}{2{,}10 \ \text{mL}} \approx 0{,}0238 \ \text{mol·L}^{-1}</annotation></semantics></math></p>
+<p><strong>Passo 2</strong> — Cálculo do Produto Iônico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Q</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">Q_{ps}</annotation></semantics></math>):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">[</mo><msup><mtext mathvariant="normal">Ba</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">]</mo><mo>⋅</mo><mo stretchy="false" form="prefix">[</mo><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0238</mn><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0476</mn><mo stretchy="false" form="postfix">)</mo><mo>≈</mo><mn>1</mn><mo>,</mo><mn>13</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">Q_{ps} = [\text{Ba}^{2+}] \cdot [\text{CrO}_4^{2-}] = (0{,}0238) \times (0{,}0476) \approx 1{,}13 \times 10^{-3}</annotation></semantics></math></p>
+<p><strong>Passo 3</strong> — Comparação com a constante de equilíbrio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">K_{ps}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>13</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo><mo>≫</mo><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>10</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Q_{ps} \ (1{,}13 \times 10^{-3}) \gg K_{ps} \ (1{,}2 \times 10^{-10})</annotation></semantics></math></p>
+<p>👉 <em>Conclusão:</em> Como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Q</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">Q_{ps}</annotation></semantics></math> é mais de sete ordens de grandeza maior que o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">K_{ps}</annotation></semantics></math>, a capacidade de dissolução é amplamente superada, confirmando a precipitação imediata do sólido amarelo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">BaCrO</mtext><mn>4</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{BaCrO}_4(s)</annotation></semantics></math>.</p>
+</section>
+<section id="fluxograma-da-prática-de-equilíbrio-químico" class="level3">
+<h3 class="anchored" data-anchor-id="fluxograma-da-prática-de-equilíbrio-químico">Fluxograma da Prática de Equilíbrio Químico</h3>
+<p>O fluxograma a seguir resume a sequência de operações para a perturbação e observação dos dois sistemas em equilíbrio[cite: 3].</p>
+<div id="fluxograma-EquilibrioQuimico" class="center fluxograma-adaptavel quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fluxograma figure">
+<div aria-describedby="fluxograma-EquilibrioQuimico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg width="100%" style="height: auto;" viewbox="0 0 1280 1250" version="1.1" id="svg_estequiometria" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<style id="style1">
+  .graph-bg       { fill: var(--bg-graph, #ffffff); }
+  .node-bg-root   { fill: var(--bg-node-root, #e5e5e5); }
+  .node-bg        { fill: var(--bg-node, #f0f0f0); }
+  .stroke-color   { stroke: var(--stroke-main, #000000); stroke-width: 2px; }
+  .text-color     { fill: var(--text-main, #000000); }
+  
+  .edge-line      { stroke: var(--stroke-main, #000000); stroke-width: 3px; }
+  .edge-arrow     { fill: var(--stroke-main, #000000); stroke: var(--stroke-main, #000000); }
+
+  .formula-text {
+    font-family: "Latin Modern Math", "Cambria Math", "Helvetica", sans-Serif;
+    font-size: 24px;
+    fill: var(--text-main, #000000);
+    text-anchor: middle;
+  }
+  .subscript { font-size: 16px; }
+</style>
+  <g id="graph0">
+    <title id="title1">Fluxo_Estequiometria</title>
+    <polygon class="graph-bg" stroke="none" points="0,0 1280,0 1280,1250 0,1250" id="polygon1"></polygon>
+
+    <!-- ROOT -->
+    <g id="node1">
+      <polygon class="node-bg-root" stroke="none" points="220,30 1060,30 1060,80 220,80" id="polygon2"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="62" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text2">Estequiometria — Precipitação de PbI₂ em Tubos de Ensaio</text>
+      <polygon fill="none" class="stroke-color" points="220,30 1060,30 1060,80 220,80" id="polygon3"></polygon>
+    </g>
+
+    <!-- SETA ROOT -> P1 -->
+    <path class="edge-line" d="M640,80 L640,120" id="path3"></path>
+    <polygon class="edge-arrow" points="635,120 640,130 645,120" id="polygon4"></polygon>
+
+    <!-- PASSO 1: Quantidade de Matéria dos Reagentes -->
+    <g id="node2">
+      <polygon class="node-bg" stroke="none" points="120,130 1160,130 1160,260 120,260" id="polygon5"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="170" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text5">Passo 1 — Quantidade de Matéria dos Reagentes (n = C × V)</text>
+      <line x1="120" y1="200" x2="1160" y2="200" class="stroke-color" id="line5"></line>
+      <line x1="640" y1="200" x2="640" y2="260" class="stroke-color" id="line6"></line>
+      
+      <!-- Esquerda: Pb(NO3)2 -->
+      <text class="formula-text" x="380" y="238" id="text9">n<tspan class="subscript" dy="6">Pb(NO3)2</tspan><tspan dy="-6"> = 0,5 mol·L</tspan><tspan class="subscript" dy="-6">−1</tspan><tspan dy="6"> × 0,001 L = 0,5 mmol</tspan></text>
+      <!-- Direita: KI -->
+      <text class="formula-text" x="900" y="238" id="text10">n<tspan class="subscript" dy="6">KI</tspan><tspan dy="-6"> = 0,5 mol·L</tspan><tspan class="subscript" dy="-6">−1</tspan><tspan dy="6"> × V</tspan><tspan class="subscript" dy="6">KI</tspan><tspan dy="-6"> (0,25 a 1,50 mmol)</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="120,130 1160,130 1160,260 120,260" id="polygon9"></polygon>
+    </g>
+
+    <!-- SETA P1 -> P2 -->
+    <path class="edge-line" d="M640,260 L640,300" id="path9"></path>
+    <polygon class="edge-arrow" points="635,300 640,310 645,300" id="polygon10"></polygon>
+
+    <!-- PASSO 2: Reagente Limitante (SEM DIVISÃO / LARGURA EXPANDIDA) -->
+    <g id="node3">
+      <polygon class="node-bg" stroke="none" points="100,310 1180,310 1180,440 100,440" id="polygon11"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="350" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text11">Passo 2 — Determinação do Reagente Limitante (1 Pb²⁺ : 2 I⁻)</text>
+      <line x1="100" y1="380" x2="1180" y2="380" class="stroke-color" id="line11"></line>
+      
+      <!-- Mensagem Única em Linha Cheia -->
+      <text class="formula-text" x="640" y="418" id="text16">Comparar n/coeficiente: se n<tspan class="subscript" dy="6">KI</tspan><tspan dy="-6">/2 &lt; n</tspan><tspan class="subscript" dy="6">Pb</tspan><tspan dy="-6"> → KI é Limitante | Se n</tspan><tspan class="subscript" dy="6">KI</tspan><tspan dy="-6">/2 ≥ n</tspan><tspan class="subscript" dy="6">Pb</tspan><tspan dy="-6"> → Pb(NO₃)₂ é Limitante</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="100,310 1180,310 1180,440 100,440" id="polygon20"></polygon>
+    </g>
+
+    <!-- SETA P2 -> P3 -->
+    <path class="edge-line" d="M640,440 L640,480" id="path20"></path>
+    <polygon class="edge-arrow" points="635,480 640,490 645,480" id="polygon21"></polygon>
+
+    <!-- PASSO 3: Massa Teórica do Precipitado -->
+    <g id="node4">
+      <polygon class="node-bg" stroke="none" points="200,490 1080,490 1080,620 200,620" id="polygon22"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="530" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text22">Passo 3 — Cálculo da Massa Teórica de PbI₂ Formado</text>
+      <line x1="200" y1="560" x2="1080" y2="560" class="stroke-color" id="line22"></line>
+      
+      <!-- Equação Geral de Produto -->
+      <text class="formula-text" x="640" y="598" id="text23">m<tspan class="subscript" dy="6">PbI2</tspan><tspan dy="-6"> = n<tspan class="subscript" dy="6">limitante</tspan><tspan dy="-6"> × M.M.(PbI₂) [461,0 g·mol</tspan><tspan class="subscript" dy="-6">−1</tspan><tspan dy="6">] (Máx. = 0,2305 g no Tubo 3)</tspan></tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="200,490 1080,490 1080,620 200,620" id="polygon25"></polygon>
+    </g>
+
+    <!-- SETA P3 -> P4 -->
+    <path class="edge-line" d="M640,620 L640,660" id="path25"></path>
+    <polygon class="edge-arrow" points="635,660 640,670 645,660" id="polygon26"></polygon>
+
+    <!-- PASSO 4: Montagem Experimental (SEM DIVISÃO / LARGURA EXPANDIDA) -->
+    <g id="node5">
+      <polygon class="node-bg" stroke="none" points="40,670 1240,670 1240,800 40,800" id="polygon27"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="710" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text27">Passo 4 — Procedimento Experimental nos Tubos (1 a 5)</text>
+      <line x1="40" y1="740" x2="1240" y2="740" class="stroke-color" id="line27"></line>
+      
+      <!-- Mensagem Única em Linha Cheia -->
+      <text class="formula-text" x="640" y="778" id="text31">Adicionar 1,0 mL de Pb(NO₃)₂ (0,5 mol·L⁻¹) + Adicionar KI (0,5 a 3,0 mL) conforme cada tubo</text>
+      
+      <polygon fill="none" class="stroke-color" points="40,670 1240,670 1240,800 40,800" id="polygon31"></polygon>
+    </g>
+
+    <!-- SETA P4 -> P5 -->
+    <path class="edge-line" d="M640,800 L640,840" id="path31"></path>
+    <polygon class="edge-arrow" points="635,840 640,850 645,840" id="polygon32"></polygon>
+
+    <!-- PASSO 5: Homogeneização, Repouso e Decantação -->
+    <g id="node6">
+      <polygon class="node-bg" stroke="none" points="150,850 1130,850 1130,980 150,980" id="polygon33"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="890" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text33">Passo 5 — Agitação, Repouso e Decantação do Precipitado</text>
+      <line x1="150" y1="920" x2="1130" y2="920" class="stroke-color" id="line33"></line>
+      
+      <text class="formula-text" x="640" y="958" id="text35">Agitar suavemente cada tubo + Aguar 10 min para completa decantação do PbI₂</text>
+      
+      <polygon fill="none" class="stroke-color" points="150,850 1130,850 1130,980 150,980" id="polygon36"></polygon>
+    </g>
+
+    <!-- SETA P5 -> P6 -->
+    <path class="edge-line" d="M640,980 L640,1020" id="path36"></path>
+    <polygon class="edge-arrow" points="635,1020 640,1030 645,1020" id="polygon37"></polygon>
+
+    <!-- PASSO 6: Medição, Registro e Descarte Adequado -->
+    <g id="node7">
+      <polygon class="node-bg" stroke="none" points="100,1030 1180,1030 1180,1210 100,1210" id="polygon50"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="1070" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text50">Passo 6 — Medição da Altura do Precipitado e Descarte</text>
+      <line x1="100" y1="1100" x2="1180" y2="1100" class="stroke-color" id="line50"></line>
+      <line x1="640" y1="1100" x2="640" y2="1210" class="stroke-color" id="line51"></line>
+      
+      <!-- Sub-bloco 1: Régua -->
+      <text class="formula-text" x="370" y="1155" id="text53">Medir a altura h (mm) do sólido com régua</text>
+      <!-- Sub-bloco 2: Descarte -->
+      <text class="formula-text" x="910" y="1155" id="text54">Descartar o resíduo no frasco de Metais Pesados</text>
+      
+      <polygon fill="none" class="stroke-color" points="100,1030 1180,1030 1180,1210 100,1210" id="polygon57"></polygon>
+    </g>
+  </g>
+</svg>
+
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma" id="fluxograma-EquilibrioQuimico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fluxograma&nbsp;7.1: Sequência de adições e teste no ar para o Estudo do Equilíbrio Químico.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
+<ol type="1">
+<li><p>Enuncie o Princípio de Le Chatelier e explique como ele prevê o comportamento de um sistema dinâmico submetido a uma alteração de pressão em reações gasosas.</p></li>
+<li><p>Considere a reação em equilíbrio cromato/dicromato:</p></li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mspace width="0.167em"></mspace><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>2</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>⇌</mo><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">2\,\text{CrO}_4^{2-}(aq) + 2\,\text{H}^+(aq) \rightleftharpoons \text{Cr}_2\text{O}_7^{2-}(aq) + \text{H}_2\text{O}(l)</annotation></semantics></math></p>
+<p>O que ocorre com a coloração da solução ao se adicionar algumas gotas de ácido sulfúrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">SO</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{SO}_4</annotation></semantics></math>) concentrado? Justifique com base no deslocamento do equilíbrio.</p>
+<ol start="3" type="1">
+<li><p>Qual a função do hidróxido de sódio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math>) na alteração do equilíbrio cromato/dicromato no procedimento 1a? Escreva a reação de neutralização envolvida.</p></li>
+<li><p>Ao adicionar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">BaCl</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{BaCl}_2</annotation></semantics></math> ao tubo T2 contendo originalmente dicromato (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Cr</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">O</mtext><mn>7</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Cr}_2\text{O}_7^{2-}</annotation></semantics></math>), observou-se a formação de um precipitado. Explique teoricamente por que isso acontece, considerando que o bário precipita seletivamente com o íon cromato (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">CrO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{CrO}_4^{2-}</annotation></semantics></math>).</p></li>
+<li><p>Escreva a equação de equilíbrio de ionização da amônia em água e explique o papel da fenolftaleína nesse sistema experimental.</p></li>
+<li><p>Por que uma tira de papel umedecida com solução de amônia e fenolftaleína perde sua cor rosa ao ser agitada ao ar livre? O mesmo desbotamento ocorreria se o papel estivesse selado em um frasco fechado? Justifique.</p></li>
+<li><p>Calcule a concentração de íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">OH</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{OH}^-</annotation></semantics></math> e o pH de uma solução aquosa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>3</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>10</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{NH}_3 \ 0{,}10 \, \text{mol·L}^{-1}</annotation></semantics></math>, sabendo que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>b</mi></msub><mo>=</mo><mn>1</mn><mo>,</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">K_b = 1{,}8 \times 10^{-5}</annotation></semantics></math>.</p></li>
+<li><p>Se adicionarmos nitrato de amônio sólido (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">NH</mtext><mn>4</mn></msub><msub><mtext mathvariant="normal">NO</mtext><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\text{NH}_4\text{NO}_3</annotation></semantics></math>) a uma solução de amônia com fenolftaleína, a intensidade da cor rosa aumentará, diminuirá ou permanecerá inalterada? Explique utilizando o conceito de Efeito do Íon Comum.</p></li>
+</ol>
+</section>
+<section id="complemento-com-ia" class="level2">
+<h2 class="anchored" data-anchor-id="complemento-com-ia">Complemento com IA</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Aprofundamento com IA">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Aprofundamento com IA
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div id="complemIA" class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Tópico Extra</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">IA Responde</a></li></ul>
+<div id="complemIA" class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Explique a relação entre a constante de equilíbrio e a energia livre de Gibbs (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>G</mi><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\Delta G^\circ</annotation></semantics></math>), detalhando como a variação da temperatura altera quantitativamente a constante <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>c</mi></msub><annotation encoding="application/x-tex">K_c</annotation></semantics></math> por meio da Equação de van ’t Hoff.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<hr>
+<p><strong>Termodinâmica do Equilíbrio e Equação de van ’t Hoff</strong></p>
+<p>A posição do equilíbrio químico de um sistema é rigorosamente governada pelos parâmetros termodinâmicos do processo. A constante de equilíbrio em condições padrão (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>) relaciona-se diretamente com a <strong>Variação da Energia Livre de Gibbs Padrão (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>G</mi><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\Delta G^\circ</annotation></semantics></math>) através da equação fundamental:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>G</mi><mo>∘</mo></msup><mo>=</mo><mi>−</mi><mi>R</mi><mi>T</mi><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">\Delta G^\circ = -R T \ln K</annotation></semantics></math></p>
+<p>Em que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math> é a constante universal dos gases perfeitos (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>,</mo><mn>314</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">J·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>⋅</mo><msup><mtext mathvariant="normal">K</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">8{,}314 \ \text{J·mol}^{-1}\cdot\text{K}^{-1}</annotation></semantics></math>) e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> é a temperatura absoluta em Kelvin.</p>
+<ol type="1">
+<li><p><strong>Relação com a Enthalpia e Entropia:</strong> Como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>G</mi><mo>∘</mo></msup><mo>=</mo><mi mathvariant="normal">Δ</mi><msup><mi>H</mi><mo>∘</mo></msup><mo>−</mo><mi>T</mi><mi mathvariant="normal">Δ</mi><msup><mi>S</mi><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\Delta G^\circ = \Delta H^\circ - T\Delta S^\circ</annotation></semantics></math>, podemos substituir essa igualdade na relação da constante de equilíbrio: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mi>R</mi><mi>T</mi><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>K</mi><mo>=</mo><mi mathvariant="normal">Δ</mi><msup><mi>H</mi><mo>∘</mo></msup><mo>−</mo><mi>T</mi><mi mathvariant="normal">Δ</mi><msup><mi>S</mi><mo>∘</mo></msup><mo>⟹</mo><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>K</mi><mo>=</mo><mi>−</mi><mfrac><mrow><mi mathvariant="normal">Δ</mi><msup><mi>H</mi><mo>∘</mo></msup></mrow><mrow><mi>R</mi><mi>T</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mi mathvariant="normal">Δ</mi><msup><mi>S</mi><mo>∘</mo></msup></mrow><mi>R</mi></mfrac></mrow><annotation encoding="application/x-tex">-R T \ln K = \Delta H^\circ - T\Delta S^\circ \implies \ln K = -\frac{\Delta H^\circ}{R T} + \frac{\Delta S^\circ}{R}</annotation></semantics></math></p></li>
+<li><p><strong>Equação de van ’t Hoff:</strong> Diferenciando a expressão em relação à temperatura (considerando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>H</mi><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\Delta H^\circ</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>S</mi><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\Delta S^\circ</annotation></semantics></math> aproximadamente constantes em uma faixa estreita de temperatura), obtém-se a <strong>Equação de van ’t Hoff</strong>: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>K</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>d</mi><mi>T</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi mathvariant="normal">Δ</mi><msup><mi>H</mi><mo>∘</mo></msup></mrow><mrow><mi>R</mi><msup><mi>T</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{d(\ln K)}{dT} = \frac{\Delta H^\circ}{R T^2}</annotation></semantics></math></p></li>
+</ol>
+<p>Na forma integrada entre duas temperaturas (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mn>1</mn></msub><annotation encoding="application/x-tex">T_1</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mn>2</mn></msub><annotation encoding="application/x-tex">T_2</annotation></semantics></math>): <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>K</mi><mn>2</mn></msub><msub><mi>K</mi><mn>1</mn></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>−</mi><mfrac><mrow><mi mathvariant="normal">Δ</mi><msup><mi>H</mi><mo>∘</mo></msup></mrow><mi>R</mi></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><msub><mi>T</mi><mn>2</mn></msub></mfrac><mo>−</mo><mfrac><mn>1</mn><msub><mi>T</mi><mn>1</mn></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\ln\left(\frac{K_2}{K_1}\right) = -\frac{\Delta H^\circ}{R} \left( \frac{1}{T_2} - \frac{1}{T_1} \right)</annotation></semantics></math></p>
+<ol start="3" type="1">
+<li><strong>Interpretação do Princípio de Le Chatelier:</strong></li>
+</ol>
+<ul>
+<li>Se a reação for <strong>endotérmica</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>H</mi><mo>∘</mo></msup><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta H^\circ &gt; 0</annotation></semantics></math>), o aumento da temperatura (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mn>2</mn></msub><mo>&gt;</mo><msub><mi>T</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">T_2 &gt; T_1</annotation></semantics></math>) torna o termo entre parênteses negativo, resultando em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>K</mi><mn>2</mn></msub><mi>/</mi><msub><mi>K</mi><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\ln(K_2/K_1) &gt; 0</annotation></semantics></math>, ou seja, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mn>2</mn></msub><mo>&gt;</mo><msub><mi>K</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">K_2 &gt; K_1</annotation></semantics></math>. O aumento de temperatura aumenta o valor da constante de equilíbrio e favorece os produtos.</li>
+<li>Se a reação for <strong>exotérmica</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>H</mi><mo>∘</mo></msup><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta H^\circ &lt; 0</annotation></semantics></math>), o aumento da temperatura provoca uma diminuição na constante de equilíbrio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mn>2</mn></msub><mo>&lt;</mo><msub><mi>K</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">K_2 &lt; K_1</annotation></semantics></math>), favorecendo a formação de reagentes.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Preparo_KOH.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04_Equilibrio_Quimico.html" class="pagination-link" aria-label="Prática 4: Equilíbrio Químico">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Titulacao.html" class="pagination-link" aria-label="&amp;rightarrow; Titulação">
+        <span class="nav-page-text"><span class="chapter-title">→ Titulação</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

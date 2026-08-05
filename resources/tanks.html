@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Tanks 2D</title>
+    <!-- Lib Plotly Mantido em Pasta Local -->
+    <script src="plotly-3.7.0.min.js"></script>
+
+    <style>
+        .tanks-container {
+            background-color: #0f0f1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .tanks-placar {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-height: 24px;
+        }
+        .tanks-canvas {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            background-color: #1a1a2e;
+            border-radius: 6px;
+        }
+        .tanks-info {
+            margin-top: 10px;
+            color: #aaaaaa;
+            font-size: 14px;
+        }
+        .tanks-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .tanks-btn:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+    <div class="tanks-container">
+        <h1 class="anchored">💣 Tanks 2D</h1>
+        <button id="btn-novo-tanks" class="tanks-btn">🔄 Novo Jogo</button>
+        <div id="placar-tanks" class="tanks-placar">Aguardando montagem...</div>
+        <div id="game-plot-tanks" class="tanks-canvas"></div>
+        <div class="tanks-info">
+            Controles: <b>←/→</b> (Ajusta Ângulo) | <b>↑/↓</b> (Ajusta Força) | <b>ESPAÇO</b> (Atirar)
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        // Escopo fechado para evitar colisão de variáveis no documento
+        const t = 20;               
+        const numPontosBase = 500;  
+        const g = 9.8;              
+
+        let mapa = [], xplot = [];
+        let p1_x, p2_x, y1, y2;
+        let v1, v2, ang1, f1, ang2, f2;
+        let iaUltimaForca, iaUltimoAngulo;
+        let jogando = false;
+        let turnoJogador = true;
+        let numPontos = 0;
+
+        function gerarTerreno() {
+            let ruido = [];
+            let opcoes = [0.2, 0.08, 0, -0.08, -0.2];
+            let probs = [1, 5, 20, 5, 1];
+            
+            let pesoTotal = probs.reduce((a, b) => a + b, 0);
+            for (let i = 0; i < numPontosBase + 10; i++) {
+                let r = Math.random() * pesoTotal;
+                let acc = 0;
+                for (let j = 0; j < opcoes.length; j++) {
+                    acc += probs[j];
+                    if (r <= acc) { ruido.push(opcoes[j]); break; }
+                }
+            }
+
+            let cumsum = [ruido[0]];
+            for (let i = 1; i < ruido.length; i++) cumsum.push(cumsum[i - 1] + ruido[i]);
+
+            let janela = 15;
+            mapa = [];
+            for (let i = 0; i <= cumsum.length - janela; i++) {
+                let soma = 0;
+                for (let j = 0; j < janela; j++) soma += cumsum[i + j];
+                mapa.push(soma / janela);
+            }
+
+            let minMapa = Math.min(...mapa);
+            mapa = mapa.map(v => Math.min(v - minMapa + 0.5, 6));
+            numPontos = mapa.length;
+
+            xplot = [];
+            for (let i = 0; i < numPontos; i++) xplot.push((i / (numPontos - 1)) * t);
+
+            p1_x = parseFloat((0.12 + Math.random() * 0.13) * t).toFixed(2);
+            p2_x = parseFloat((0.75 + Math.random() * 0.13) * t).toFixed(2);
+            p1_x = parseFloat(p1_x); p2_x = parseFloat(p2_x);
+
+            let idx_p1 = Math.max(0, Math.min(numPontos - 1, Math.round((p1_x / t) * (numPontos - 1))));
+            let idx_p2 = Math.max(0, Math.min(numPontos - 1, Math.round((p2_x / t) * (numPontos - 1))));
+
+            let raioPlano = 8;
+            for (let i = Math.max(0, idx_p1 - raioPlano); i <= Math.min(numPontos - 1, idx_p1 + raioPlano); i++) mapa[i] = mapa[idx_p1];
+            for (let i = Math.max(0, idx_p2 - raioPlano); i <= Math.min(numPontos - 1, idx_p2 + raioPlano); i++) mapa[i] = mapa[idx_p2];
+
+            y1 = mapa[idx_p1];
+            y2 = mapa[idx_p2];
+        }
+
+        function getAlturaMapa(xVal) {
+            let idx = Math.round((xVal / t) * (numPontos - 1));
+            idx = Math.max(0, Math.min(numPontos - 1, idx));
+            return mapa[idx];
+        }
+
+        function iniciarJogo() {
+            let placarEl = document.getElementById('placar-tanks');
+
+            try {
+                v1 = 100; v2 = 100;
+                ang1 = 45; f1 = 12;
+                ang2 = 45; f2 = 12;
+                iaUltimaForca = 12; iaUltimoAngulo = 45;
+
+                jogando = true;
+                turnoJogador = true;
+
+                gerarTerreno();
+                desenhar();
+                
+                let btn = document.getElementById('btn-novo-tanks');
+                if (btn) btn.blur();
+            } catch (err) {
+                if (placarEl) placarEl.innerHTML = `<span style="color:#ff4a4a">ERRO JS: ${err.message}</span>`;
+            }
+        }
+
+        function desenhar(trajetoria = null) {
+            let placarEl = document.getElementById('placar-tanks');
+            let plotTarget = document.getElementById('game-plot-tanks');
+
+            if (placarEl) {
+                placarEl.innerHTML = 
+                    `<span style="color:#4a9eff">JOGADOR: ${v1} HP (Âng: ${ang1.toFixed(1)}° | Força: ${f1.toFixed(1)})</span> &nbsp;|&nbsp; ` +
+                    `<span style="color:#ff4a4a">IA: ${v2} HP (Âng: ${ang2.toFixed(1)}° | Força: ${f2.toFixed(1)})</span>`;
+            }
+
+            let rad1 = (ang1 * Math.PI) / 180;
+            let rad2 = ((180 - ang2) * Math.PI) / 180;
+
+            let shapes = [
+                {
+                    type: 'path',
+                    path: `M 0,0 L ${xplot.map((x, i) => `${x},${mapa[i]}`).join(' L ')} L ${t},0 Z`,
+                    fillcolor: '#2d5a27',
+                    line: { color: '#3a7d33', width: 2 }
+                },
+                {
+                    type: 'line',
+                    x0: p1_x, y0: y1 + 0.2,
+                    x1: p1_x + Math.cos(rad1) * 0.8, y1: y1 + 0.2 + Math.sin(rad1) * 0.8,
+                    line: { color: 'white', width: 3 }
+                },
+                {
+                    type: 'line',
+                    x0: p2_x, y0: y2 + 0.2,
+                    x1: p2_x + Math.cos(rad2) * 0.8, y1: y2 + 0.2 + Math.sin(rad2) * 0.8,
+                    line: { color: 'white', width: 3 }
+                }
+            ];
+
+            let data = [
+                { x: [p1_x], y: [y1 + 0.2], mode: 'markers', marker: { symbol: 'triangle-up', size: 16, color: '#4a9eff' }, showlegend: false },
+                { x: [p2_x], y: [y2 + 0.2], mode: 'markers', marker: { symbol: 'triangle-up', size: 16, color: '#ff4a4a' }, showlegend: false }
+            ];
+
+            if (trajetoria) {
+                data.push({
+                    x: trajetoria.x,
+                    y: trajetoria.y,
+                    mode: 'lines',
+                    line: { color: '#ffe600', width: 2, dash: 'dot' },
+                    showlegend: false
+                });
+                data.push({
+                    x: [trajetoria.x[trajetoria.x.length - 1]],
+                    y: [trajetoria.y[trajetoria.y.length - 1]],
+                    mode: 'markers',
+                    marker: { symbol: 'star', size: 14, color: '#ff8c00' },
+                    showlegend: false
+                });
+            }
+
+            let annotations = [];
+            if (!jogando) {
+                let msg = v2 <= 0 ? "🏆 VOCÊ GANHOU! 🏆" : "💀 VOCÊ PERDEU! 💀";
+                let cor = v2 <= 0 ? "#4a9eff" : "#ff4a4a";
+                annotations.push({
+                    x: t / 2, y: t / 2.5,
+                    text: msg,
+                    font: { size: 28, color: cor },
+                    showarrow: false
+                });
+            }
+
+            let layout = {
+                xaxis: { range: [0, t], showgrid: false, zeroline: false, showticklabels: false },
+                yaxis: { range: [0, t / 1.3], showgrid: false, zeroline: false, showticklabels: false },
+                plot_bgcolor: '#1a1a2e',
+                paper_bgcolor: '#0f0f1a',
+                margin: { t: 10, b: 10, l: 10, r: 10 },
+                shapes: shapes,
+                annotations: annotations
+            };
+
+            // Passagem direta da referência do elemento DOM
+            if (plotTarget && typeof Plotly !== 'undefined') {
+                Plotly.react(plotTarget, data, layout, { staticPlot: true, responsive: true });
+            }
+        }
+
+        async function simularTiro(pOrigem, anguloDeg, forca) {
+            let isP1 = (pOrigem === 1);
+            let x0 = isP1 ? p1_x : p2_x;
+            let y0 = (isP1 ? y1 : y2) + 0.2;
+            let dirX = isP1 ? 1 : -1;
+            let rad = (anguloDeg * Math.PI) / 180;
+
+            let vx0 = Math.cos(rad) * forca * dirX;
+            let vy0 = Math.sin(rad) * forca;
+
+            let dt = 0.025;
+            let px = x0, py = y0;
+            let trajX = [px], trajY = [py];
+
+            while (true) {
+                px += vx0 * dt;
+                py += vy0 * dt - 0.5 * g * dt * dt;
+                vy0 -= g * dt;
+
+                trajX.push(px);
+                trajY.push(py);
+
+                if (trajX.length % 2 === 0) {
+                    desenhar({ x: trajX, y: trajY });
+                    await new Promise(r => setTimeout(r, 8));
+                }
+
+                if (px < 0 || px > t) break;
+
+                let alturaChao = getAlturaMapa(px);
+                if (py <= alturaChao) break;
+            }
+
+            let xAlvo = isP1 ? p2_x : p1_x;
+            let yAlvo = (isP1 ? y2 : y1) + 0.2;
+            let dist = Math.sqrt(Math.pow(px - xAlvo, 2) + Math.pow(py - yAlvo, 2));
+            let raioExplosao = 1.8;
+
+            if (dist < raioExplosao) {
+                let dano = Math.round((1 - (dist / raioExplosao)) * 45);
+                if (isP1) v2 = Math.max(0, v2 - dano);
+                else v1 = Math.max(0, v1 - dano);
+            }
+
+            if (v1 <= 0 || v2 <= 0) jogando = false;
+
+            return { x: trajX, y: trajY, hitX: px };
+        }
+
+        async function turnoIA() {
+            if (!jogando) return;
+
+            let distAlvo = p2_x - p1_x;
+
+            if (iaUltimaForca === 12 && iaUltimoAngulo === 45) {
+                let rad = (ang2 * Math.PI) / 180;
+                let forcaEstimada = Math.sqrt((distAlvo * g) / Math.sin(2 * rad));
+                f2 = Math.min(28, Math.max(5, forcaEstimada));
+            }
+
+            let erroHumano = (Math.random() - 0.5) * 1.5; 
+            let forcaFinal = Math.min(30, Math.max(3, f2 + erroHumano));
+            let anguloFinal = Math.min(80, Math.max(20, ang2));
+
+            let res = await simularTiro(2, anguloFinal, forcaFinal);
+
+            if (!jogando) return;
+
+            let pontoImpacto = res.hitX;
+            let erroDistancia = pontoImpacto - p1_x;
+
+            let fatorAjuste = 0.45;
+            if (Math.abs(erroDistancia) > 0.5) {
+                if (erroDistancia > 0) {
+                    f2 = Math.max(3, forcaFinal - (erroDistancia * fatorAjuste));
+                } else {
+                    f2 = Math.min(30, forcaFinal + (Math.abs(erroDistancia) * fatorAjuste));
+                }
+            }
+
+            if (f2 > 24 && ang2 > 30) ang2 -= 3;
+            else if (f2 < 8 && ang2 < 65) ang2 += 3;
+
+            iaUltimaForca = f2;
+            iaUltimoAngulo = ang2;
+
+            turnoJogador = true;
+            desenhar();
+        }
+
+        window.addEventListener('keydown', async (e) => {
+            if (!jogando || !turnoJogador) return;
+
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)) {
+                e.preventDefault();
+            }
+
+            if (e.key === "ArrowLeft")  { ang1 = Math.min(90, ang1 + 1.5); desenhar(); }
+            if (e.key === "ArrowRight") { ang1 = Math.max(0, ang1 - 1.5); desenhar(); }
+            if (e.key === "ArrowUp")    { f1 = Math.min(30, f1 + 0.5); desenhar(); }
+            if (e.key === "ArrowDown")  { f1 = Math.max(2, f1 - 0.5); desenhar(); }
+
+            if (e.key === " " || e.code === "Space") {
+                turnoJogador = false;
+                await simularTiro(1, ang1, f1);
+                if (jogando) {
+                    setTimeout(turnoIA, 600);
+                } else {
+                    desenhar();
+                }
+            }
+        });
+
+        // Event listener no botão
+        let btnNovo = document.getElementById('btn-novo-tanks');
+        if (btnNovo) btnNovo.addEventListener('click', iniciarJogo);
+
+        // Inicialização garantida via verificação do Layout e DOM
+        function tentarAtivar() {
+            let elem = document.getElementById('game-plot-tanks');
+            // Garante que o elemento existe no DOM e tem dimensões calculadas
+            if (elem && (elem.offsetWidth > 0 || elem.offsetHeight > 0)) {
+                iniciarJogo();
+            } else {
+                requestAnimationFrame(tentarAtivar);
+            }
+        }
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            tentarAtivar();
+        } else {
+            document.addEventListener('DOMContentLoaded', tentarAtivar);
+        }
+    })();
+    </script>
+</body>
+</html>

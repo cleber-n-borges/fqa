@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ESTEQUIOMETRIA – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04_Equilibrio_Quimico.html" rel="next">
+<link href="./02_Preparo_HCl.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+// Define a variável com o nome do arquivo do Questionario
+var JSON_Questionario = "./simulador/estequiometria.dat";
+</script>
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_Estequiometria.html"><span class="chapter-title">Prática 3: Estequiometria</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">ESTEQUIOMETRIA</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico_VersaoTESTE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico - UPDATE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Titulação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 5: Padronização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados">Dados</a></li>
+  <li><a href="#segurança-no-laboratório" id="toc-segurança-no-laboratório" class="nav-link" data-scroll-target="#segurança-no-laboratório">Segurança no Laboratório</a></li>
+  <li><a href="#roteiro-experimental" id="toc-roteiro-experimental" class="nav-link" data-scroll-target="#roteiro-experimental">Roteiro Experimental</a>
+  <ul class="collapse">
+  <li><a href="#procedimento" id="toc-procedimento" class="nav-link" data-scroll-target="#procedimento">Procedimento</a></li>
+  <li><a href="#simulação" id="toc-simulação" class="nav-link" data-scroll-target="#simulação">Simulação</a></li>
+  </ul></li>
+  <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a>
+  <ul class="collapse">
+  <li><a href="#método-1-uso-das-equações-químicas-formais" id="toc-método-1-uso-das-equações-químicas-formais" class="nav-link" data-scroll-target="#método-1-uso-das-equações-químicas-formais">Método 1: Uso das equações químicas formais</a></li>
+  <li><a href="#método-2-cálculo-alternativo-por-regra-de-três" id="toc-método-2-cálculo-alternativo-por-regra-de-três" class="nav-link" data-scroll-target="#método-2-cálculo-alternativo-por-regra-de-três">Método 2: Cálculo alternativo por regra de três</a></li>
+  <li><a href="#fluxograma-da-prática-de-estequiometria" id="toc-fluxograma-da-prática-de-estequiometria" class="nav-link" data-scroll-target="#fluxograma-da-prática-de-estequiometria">Fluxograma da Prática de Estequiometria</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#complemento-com-ia" id="toc-complemento-com-ia" class="nav-link" data-scroll-target="#complemento-com-ia">Complemento com IA</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>A <a href="https://pt.wikipedia.org/wiki/Estequiometria"><strong>estequiometria</strong></a> (do grego <em>stoicheion</em>, elemento, e <em>metron</em>, medida) é o ramo da Química que trata das proporções quantitativas entre reagentes e produtos em uma reação química. Ela permite calcular massas e quantidades de substâncias consumidas ou formadas, tendo como pilar a equação química devidamente balanceada.</p>
+<p>Um princípio fundamental da estequiometria é a <a href="https://pt.wikipedia.org/wiki/Conserva%C3%A7%C3%A3o_da_massa"><strong>Lei da Conservação da Massa</strong></a> (Lei de Lavoisier), que estabelece que a massa total dos reagentes é igual à massa total dos produtos em um sistema fechado. Isso significa que os átomos envolvidos na reação não são criados nem destruídos, apenas reorganizados.</p>
+<p>A equação química balanceada indica a proporção em <a href="https://pt.wikipedia.org/wiki/Quantidade_de_subst%C3%A2ncia">quantidade de matéria</a> (mols) entre as espécies envolvidas. Como exemplo, na reação entre <a href="https://pt.wikipedia.org/wiki/Nitrato_de_chumbo(II)"><strong>nitrato de chumbo(II)</strong></a> e <a href="https://pt.wikipedia.org/wiki/Iodeto_de_pot%C3%A1ssio"><strong>iodeto de potássio</strong></a>, temos:</p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>2</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">KI</mtext><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>→</mo><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>↓</mo><mi>+</mi><mn>2</mn><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">KNO</mtext><mn>3</mn></msub><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2\,(aq) + 2\,\text{KI}\,(aq) \longrightarrow \text{PbI}_2\,(s) \downarrow + 2\,\text{KNO}_3\,(aq)</annotation></semantics></math></p>
+<p><br></p>
+<p>A proporção estequiométrica ideal entre o nitrato de chumbo(II) e o iodeto de potássio é de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1:2</annotation></semantics></math>. O produto insolúvel formado, <a href="https://pt.wikipedia.org/wiki/Iodeto_de_chumbo(II)"><strong>iodeto de chumbo(II)</strong></a> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math> —, é um sólido de cor amarela intensa que se precipita da solução.</p>
+<p>Se forem utilizadas proporções diferentes das estequiométricas, a reação será limitada pelo <a href="https://pt.wikipedia.org/wiki/Reagente_limitante"><strong>reagente limitante</strong></a> — aquele que é totalmente consumido —, enquanto o outro componente permanecerá parcialmente não reagido como <strong>reagente em excesso</strong>. O reagente limitante determina a quantidade máxima teórica de produto (<a href="https://pt.wikipedia.org/wiki/Rendimento_qu%C3%ADmico">rendimento teórico</a> que pode ser formada.</p>
+<p><a href="https://pt.wikipedia.org/wiki/Precipita%C3%A7%C3%A3o_(qu%C3%ADmica)">Reações de precipitação</a> como essa fornecem um método visual direto de análise, no qual a altura da coluna de precipitado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>) no fundo do tubo de ensaio serve como um indicador indireto e proporcional da massa de produto formado.</p>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li><p>Determinar experimentalmente a relação estequiométrica da reação de precipitação entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math>.</p></li>
+<li><p>Identificar visualmente e analiticamente o reagente limitante e o reagente em excesso.</p></li>
+<li><p>Relacionar a altura do precipitado formado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>) com a proporção em mols dos reagentes.</p></li>
+<li><p>Aplicar os conceitos de quantidade de matéria, proporcionalidade estequiométrica e conservação da massa.</p></li>
+<li><p>Observar as boas práticas laboratoriais no manuseio de soluções contendo metais pesados.</p></li>
+</ul>
+</section>
+<section id="dados" class="level2">
+<h2 class="anchored" data-anchor-id="dados">Dados</h2>
+<ol type="1">
+<li><p><strong>Massas Molares — M.M.</strong></p>
+<ul>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>331</mn><mo>,</mo><mn>2</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{Pb(NO}_3)_2) = 331,2 \, \text{g·mol}^{-1}</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KI</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>166</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{KI}) = 166,0 \, \text{g·mol}^{-1}</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>461</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{PbI}_2) = 461,0 \, \text{g·mol}^{-1}</annotation></semantics></math></p></li>
+</ul></li>
+<li><p><strong>Equação química balanceada (precipitação)</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mrow><mn>2</mn><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mn>2</mn><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">KI</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msub><mtext mathvariant="normal">PbI</mtext><mrow><mn>2</mn><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>↓</mo><mi>+</mi><mn>2</mn><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">KNO</mtext><mrow><mn>3</mn><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_{2\,(aq)} + 2\,\text{KI}_{(aq)} \longrightarrow \text{PbI}_{2\,(s)} \downarrow + 2\,\text{KNO}_{3\,(aq)}</annotation></semantics></math></p>
+<ul>
+<li>Proporção estequiométrica molar:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mol de Pb(NO</mtext></mrow><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub><mo>:</mo><mn>2</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mols de KI</mtext></mrow><mo>→</mo><mn>1</mn><msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mol de PbI</mtext></mrow><mn>2</mn></msub><mo>:</mo><mn>2</mn><msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mols de KNO</mtext></mrow><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">1 \text{ mol de Pb(NO}_3)_2 : 2 \text{ mols de KI} \longrightarrow 1 \text{ mol de PbI}_2 : 2 \text{ mols de KNO}_3</annotation></semantics></math></p></li>
+<li><p><strong>Aspecto Físico do Produto</strong></p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>: Precipitado cristalino amarelo brilhante (“chuva de ouro”).</li>
+</ul></li>
+<li><p><strong>Observação de segurança</strong></p>
+<ul>
+<li><p>Sais de chumbo são compostos tóxicos e cumulativos no organismo;</p></li>
+<li><p>O manuseio exige cuidado e o descarte deve ser feito obrigatoriamente em frasco de resíduos pesados separado.</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="segurança-no-laboratório" class="level2">
+<h2 class="anchored" data-anchor-id="segurança-no-laboratório">Segurança no Laboratório</h2>
+<ul>
+<li><p>A solução de nitrato de chumbo(II) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math> — é tóxica por ingestão e inalação, além de ser nociva ao meio ambiente.</p></li>
+<li><p>O manuseio de soluções deve ser feito obrigatoriamente com pipetador acoplado à pipeta; <strong>nunca</strong> pipete com a boca.</p></li>
+<li><p>Utilizar jaleco, óculos de segurança e luvas de proteção durante toda a manipulação experimental.</p></li>
+<li><p>Evitar contato das soluções com a pele ou mucosas. Em caso de respingos, lavar abundantemente com água corrente.</p></li>
+<li><p><strong>Não descartar os resíduos na pia.</strong> Todo o conteúdo dos tubos de ensaio contendo o precipitado de chumbo deve ser recolhido no frasco de descarte específico de metais pesados.</p></li>
+</ul>
+</section>
+<section id="roteiro-experimental" class="level2">
+<h2 class="anchored" data-anchor-id="roteiro-experimental">Roteiro Experimental</h2>
+<section id="procedimento" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento">Procedimento</h3>
+<ol type="1">
+<li><p><strong>Organização dos Tubos:</strong></p>
+<ul>
+<li>Colocar 5 tubos de ensaio limpos e secos em uma estante, numerando-os de 1 a 5.</li>
+</ul></li>
+<li><p><strong>Adição da Solução de Nitrato de Chumbo(II)</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0,5 \, \text{mol·L}^{-1}</annotation></semantics></math>:</p>
+<ul>
+<li>Adicionar exatamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">1,0 \, \text{mL}</annotation></semantics></math> da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2 \ 0,5 \, \text{mol·L}^{-1}</annotation></semantics></math> em cada um dos 5 tubos de ensaio utilizando uma pipeta graduada e pipetador.</li>
+</ul></li>
+<li><p><strong>Adição da Solução de Iodeto de Potássio</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0,5 \, \text{mol·L}^{-1}</annotation></semantics></math>:</p>
+<ul>
+<li><p>Adicionar os seguintes volumes da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">KI</mtext><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{KI} \ 0,5 \, \text{mol·L}^{-1}</annotation></semantics></math> aos respectivos tubos:</p>
+<ul>
+<li><strong>Tubo 1:</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">0,5 \, \text{mL}</annotation></semantics></math></li>
+<li><strong>Tubo 2:</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">1,0 \, \text{mL}</annotation></semantics></math></li>
+<li><strong>Tubo 3:</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">2,0 \, \text{mL}</annotation></semantics></math></li>
+<li><strong>Tubo 4:</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">2,5 \, \text{mL}</annotation></semantics></math></li>
+<li><strong>Tubo 5:</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">3,0 \, \text{mL}</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Homogeneização e Repouso:</strong></p>
+<ul>
+<li><p>Agitar suavemente cada tubo para garantir a mistura homogênea dos reagentes.</p></li>
+<li><p>Deixar os tubos imóveis na estante por <strong>10 minutos</strong> para assegurar a completa precipitação e decantação do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>.</p></li>
+</ul></li>
+<li><p><strong>Medição e Registro:</strong></p>
+<ul>
+<li><p>Com o auxílio de uma régua milimetrada posicionada verticalmente e sem deslocar o tubo, medir a <strong>altura da coluna do precipitado</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>, em mm) formado no fundo de cada tubo.</p></li>
+<li><p>Anotar as medidas na Tabela de Registro de Dados.</p></li>
+</ul></li>
+</ol>
+<section id="tabela-de-registro-de-dados-experimentais" class="level4">
+<h4 class="anchored" data-anchor-id="tabela-de-registro-de-dados-experimentais">Tabela de Registro de Dados Experimentais</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Tubo nº</strong></th>
+<th style="text-align: center;">Volume de <br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>b</mi><mo stretchy="false" form="prefix">(</mo><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">Pb(NO_{3})_{2}</annotation></semantics></math> <br> (mL)</th>
+<th style="text-align: center;">Volume de <br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">KI</annotation></semantics></math> <br> (mL)</th>
+<th style="text-align: center;">Relação Molar <br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><msup><mi>b</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>:</mo><msup><mi>I</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">Pb^{2+}:I^{-}</annotation></semantics></math></th>
+<th style="text-align: center;">Altura do <br> Precipitado <br> (mm)</th>
+<th style="text-align: center;">Reagente <br> Limitante</th>
+<th style="text-align: center;">Observações</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1,0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">0,5</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>0</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">1 : 0,5</annotation></semantics></math></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1,0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1,0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>1</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1 : 1,0</annotation></semantics></math></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1,0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">2,0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>2</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1 : 2,0</annotation></semantics></math></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1,0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">2,5</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>2</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">1 : 2,5</annotation></semantics></math></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1,0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">3,0</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>3</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1 : 3,0</annotation></semantics></math></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="simulação" class="level3">
+<h3 class="anchored" data-anchor-id="simulação">Simulação</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Simulação Virtual da Precipitação de PbI₂
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Visualize a simulação da Precipitação de PbI₂:</p>
+<iframe src="./resources/Sim_EQ_PbI2.html" width="100%" height="900px" style="border: none; border-radius: 8px;" title="Simulação Virtual da Precipitação de PbI₂">
+</iframe>
+<p style="text-align: center; font-size: 0.85em; color: #666;">
+</p><p><em>Simulação Virtual da Precipitação de PbI₂.</em></p>
+<p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="discussão" class="level2">
+<h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
+<p>A variação da altura da coluna do precipitado amarelo (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>) ao longo dos tubos reflete diretamente a quantidade de massa formada em decorrência da variação do reagente limitante.</p>
+<p>Nos tubos 1 e 2, a quantidade de íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">I</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{I}^-</annotation></semantics></math> (proveniente do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math>) é insuficiente para reagir com todos os íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Pb</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Pb}^{2+}</annotation></semantics></math> disponíveis no tubo, tornando o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math> o reagente limitante. Por isso, ao aumentar o volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math> do tubo 1 para o tubo 3, observa-se um crescimento progressivo da altura do sólido.</p>
+<p>No tubo 3, a proporção molar entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math> atinge exatamente a relação estequiométrica <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1:2</annotation></semantics></math>. A partir deste ponto (tubos 4 e 5), o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math> passa a ser o reagente limitante. A adição de volumes maiores de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math> não causará um aumento na quantidade de precipitado, pois não há mais íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Pb</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Pb}^{2+}</annotation></semantics></math> livres para reagir, estabilizando assim a altura do precipitado formado.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>📌 Informações diversas</strong></p>
+<ul>
+<li><em>Chuva de Ouro:</em> Quando a reação de formação de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math> ocorre a quente e é resfriada lentamente, o precipitado se cristaliza em pequenas lamelas amarelas brilhantes que refletem a luz, produzindo um efeito estético clássico conhecido nos laboratórios como “chuva de ouro”.</li>
+<li><em>Aplicações históricas e atuais:</em> O iodeto de chumbo já foi utilizado como pigmento amarelo em tintas (<em>amarelo de iodeto</em>), mas seu uso declinou drasticamente devido à toxicidade do chumbo. Atualmente, materiais à base de haletos de chumbo e estruturas de perovskita têm grande destaque em pesquisas avançadas de células solares e detectores de radiação.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="bibliografia" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<ul>
+<li>ATKINS, P.; JONES, L. <strong>Princípios de Química: questionando a vida moderna e o meio ambiente</strong>. 5. ed.&nbsp;Porto Alegre: Bookman, 2012.</li>
+<li>BROWN, T. L. et al.&nbsp;<strong>Química: a ciência central</strong>. 13. ed.&nbsp;São Paulo: Pearson Education do Brasil, 2016.</li>
+<li>WIKIPÉDIA. <strong>Estequiometria</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Estequiometria" class="uri">https://pt.wikipedia.org/wiki/Estequiometria</a></li>
+<li>WIKIPÉDIA. <strong>Iodeto de chumbo(II)</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Iodeto_de_chumbo(II)" class="uri">https://pt.wikipedia.org/wiki/Iodeto_de_chumbo(II)</a></li>
+</ul>
+</section>
+<section id="guia-do-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
+<p>Este guia apresenta o procedimento analítico para prever a quantidade teórica de matéria (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>) e massa de precipitado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>) formado para cada tubo de ensaio.</p>
+<p>Organização dos dados e parâmetros da prática:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grandeza</th>
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: center;">Unidade Recomendada</th>
+<th style="text-align: left;">Observação / Aplicação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Concentração do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Concentração da solução estoque<br> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}5 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Concentração do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Concentração da solução estoque<br> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}5 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Volume de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>1</mn></msub><annotation encoding="application/x-tex">V_1</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">L</mi><annotation encoding="application/x-tex">\mathrm{L}</annotation></semantics></math></td>
+<td style="text-align: left;">Volume fixo em todos os tubos<br> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mn>001</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">1{,}0 \ \mathrm{mL} = 0{,}001 \ \mathrm{L}</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Volume de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>2</mn></msub><annotation encoding="application/x-tex">V_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">L</mi><annotation encoding="application/x-tex">\mathrm{L}</annotation></semantics></math></td>
+<td style="text-align: left;">Volume variável por tubo<br> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">0{,}5</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">3{,}0 \ \mathrm{mL}</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Massa molar do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">M.M.</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{g\cdot mol^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Constante do produto insolúvel<br> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>461</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">461{,}0 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled" title="Atenção para a Identificação do Limitante">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção para a Identificação do Limitante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Identificação do Limitante:</strong> Divida o número de mols de cada reagente pelo seu respectivo coeficiente estequiométrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math> para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math>). O menor valor obtido indicará o <strong>reagente limitante</strong>.</li>
+<li><strong>Cálculo da Massa:</strong> A massa teórica de produto (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>) é <strong>sempre</strong> calculada com base na quantidade do reagente limitante.</li>
+</ul>
+</div>
+</div>
+<section id="método-1-uso-das-equações-químicas-formais" class="level3">
+<h3 class="anchored" data-anchor-id="método-1-uso-das-equações-químicas-formais">Método 1: Uso das equações químicas formais</h3>
+<p><strong>Exemplo para o Tubo 1</strong></p>
+<p><strong>Passo 1</strong> — Determinar o número de mols dos reagentes adicionados ao Tubo 1 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_1 = 1{,}0 \ \text{mL}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>2</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_2 = 0{,}5 \ \text{mL}</annotation></semantics></math>):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow></msub><mo>=</mo><msub><mi>C</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>×</mo><mn>0</mn><mo>,</mo><mn>0010</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">L</mtext><mo>=</mo><mn>0</mn><mo>,</mo><mn>0005</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mmol</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">n_{\text{Pb(NO}_3)_2} = C_1 \cdot V_1 = 0,5 \ \text{mol·L}^{-1} \times 0,0010 \ \text{L} = 0,0005 \ \text{mol} \ (0,5 \ \text{mmol})</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mtext mathvariant="normal">KI</mtext></msub><mo>=</mo><msub><mi>C</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>×</mo><mn>0</mn><mo>,</mo><mn>0005</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">L</mtext><mo>=</mo><mn>0</mn><mo>,</mo><mn>00025</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>25</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mmol</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">n_{\text{KI}} = C_2 \cdot V_2 = 0,5 \ \text{mol·L}^{-1} \times 0,0005 \ \text{L} = 0,00025 \ \text{mol} \ (0,25 \ \text{mmol})</annotation></semantics></math></p>
+<p><strong>Passo 2</strong> — Identificar o reagente limitante:</p>
+<p>A reação exige <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mols de KI</mtext></mrow></mrow><annotation encoding="application/x-tex">2 \text{ mols de KI}</annotation></semantics></math> para cada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mol de Pb(NO</mtext></mrow><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">1 \text{ mol de Pb(NO}_3)_2</annotation></semantics></math>. Comparando as razões molares divididas pelos coeficientes: - Para o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math>: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>0</mn><mo>,</mo><mn>0005</mn></mrow><mn>1</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>0005</mn></mrow><annotation encoding="application/x-tex">\frac{0,0005}{1} = 0,0005</annotation></semantics></math> - Para o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math>: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>0</mn><mo>,</mo><mn>00025</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>000125</mn></mrow><annotation encoding="application/x-tex">\frac{0,00025}{2} = 0,000125</annotation></semantics></math></p>
+<p>Como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>000125</mn><mo>&lt;</mo><mn>0</mn><mo>,</mo><mn>0005</mn></mrow><annotation encoding="application/x-tex">0,000125 &lt; 0,0005</annotation></semantics></math>, o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math> é o reagente limitante no Tubo 1.</p>
+<p><strong>Passo 3</strong> — Calcular os mols e a massa teórica do precipitado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub></msub><mo>=</mo><mfrac><msub><mi>n</mi><mtext mathvariant="normal">KI</mtext></msub><mn>2</mn></mfrac><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>00025</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>000125</mn><mspace width="0.222em"></mspace><msub><mtext mathvariant="normal">mols de PbI</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">n_{\text{PbI}_2} = \frac{n_{\text{KI}}}{2} = \frac{0,00025}{2} = 0,000125 \ \text{mols de PbI}_2</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub></msub><mo>=</mo><msub><mi>n</mi><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub></msub><mo>⋅</mo><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0</mn><mo>,</mo><mn>000125</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext><mo>×</mo><mn>461</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>≈</mo><mn>0</mn><mo>,</mo><mn>0576</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>57</mn><mo>,</mo><mn>6</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mg</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">m_{\text{PbI}_2} = n_{\text{PbI}_2} \cdot M.M.(\text{PbI}_2) = 0,000125 \ \text{mol} \times 461,0 \ \text{g·mol}^{-1} \approx 0,0576 \ \text{g} \ (57,6 \ \text{mg})</annotation></semantics></math></p>
+<hr>
+</section>
+<section id="método-2-cálculo-alternativo-por-regra-de-três" class="level3">
+<h3 class="anchored" data-anchor-id="método-2-cálculo-alternativo-por-regra-de-três">Método 2: Cálculo alternativo por regra de três</h3>
+<p><strong>Exemplo para o Tubo 3</strong></p>
+<p>No Tubo 3 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msub><mtext mathvariant="normal">mL de Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">1,0 \ \text{mL de Pb(NO}_3)_2</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL de KI</mtext></mrow><annotation encoding="application/x-tex">2,0 \ \text{mL de KI}</annotation></semantics></math>):</p>
+<ul>
+<li><strong>Passo 1</strong> — Calcular os mols de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math> no Tubo 3:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>500</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols KI</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols KI</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+0{,}500 \ \text{mols KI} &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
+x_1 \ \text{mols KI}     &amp; \text{-------------} &amp; 2{,}0 \ \text{mL}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>500</mn><mo>×</mo><mn>2</mn><mo>,</mo><mn>0</mn></mrow><mn>1000</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>0010</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols de KI</mtext></mrow><annotation encoding="application/x-tex">x_1 = \frac{0{,}500 \times 2{,}0}{1000} = 0{,}0010 \ \text{mols de KI}</annotation></semantics></math></p>
+<ul>
+<li><strong>Passo 2</strong> — Calcular os mols de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math> no Tubo 3:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>500</mn><mspace width="0.222em"></mspace><msub><mtext mathvariant="normal">mols Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><msub><mtext mathvariant="normal">mols Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+0{,}500 \ \text{mols Pb(NO}_3)_2 &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
+x_2 \ \text{mols Pb(NO}_3)_2     &amp; \text{-------------} &amp; 1{,}0 \ \text{mL}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>500</mn><mo>×</mo><mn>1</mn><mo>,</mo><mn>0</mn></mrow><mn>1000</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>0005</mn><mspace width="0.222em"></mspace><msub><mtext mathvariant="normal">mols de Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_2 = \frac{0{,}500 \times 1{,}0}{1000} = 0{,}0005 \ \text{mols de Pb(NO}_3)_2</annotation></semantics></math></p>
+<ul>
+<li><strong>Passo 3</strong> — Relacionar pela proporção estequiométrica da equação química (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>2</mn><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 : 2 \rightarrow 1</annotation></semantics></math>):</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>2</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols de KI</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>461</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msub><mtext mathvariant="normal">g de PbI</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> formado</mtext></mrow></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>0010</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols de KI</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>m</mi><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(g)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+2 \ \text{mols de KI} &amp; \text{-------------} &amp; 461{,}0 \ \text{g de PbI}_2 \text{ formado} \\
+0{,}0010 \ \text{mols de KI} &amp; \text{-------------} &amp; m_{\text{PbI}_2} \ \text{(g)}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>0010</mn><mo>×</mo><mn>461</mn><mo>,</mo><mn>0</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>2305</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>230</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mg</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">m_{\text{PbI}_2} = \frac{0{,}0010 \times 461{,}0}{2} = 0{,}2305 \ \text{g} \ (230{,}5 \ \text{mg})</annotation></semantics></math></p>
+<p>👉 <em>Resultado:</em> No Tubo 3, a relação estequiométrica é atingida exatamente em proporção <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>:</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1:2</annotation></semantics></math>, formando teoricamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>2305</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">0,2305 \ \text{g}</annotation></semantics></math> de precipitado de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>.</p>
+</section>
+<section id="fluxograma-da-prática-de-estequiometria" class="level3">
+<h3 class="anchored" data-anchor-id="fluxograma-da-prática-de-estequiometria">Fluxograma da Prática de Estequiometria</h3>
+<p>O fluxograma resume a sequência das etapas de adição dos reagentes nos tubos de ensaio, repouso e tomada de medidas.</p>
+<div id="fluxograma-Estequiometria" class="center fluxograma-adaptavel quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fluxograma figure">
+<div aria-describedby="fluxograma-Estequiometria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg width="100%" style="height: auto;" viewbox="0 0 1280 1250" version="1.1" id="svg_estequiometria" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<style id="style1">
+  .graph-bg       { fill: var(--bg-graph, #ffffff); }
+  .node-bg-root   { fill: var(--bg-node-root, #e5e5e5); }
+  .node-bg        { fill: var(--bg-node, #f0f0f0); }
+  .stroke-color   { stroke: var(--stroke-main, #000000); stroke-width: 2px; }
+  .text-color     { fill: var(--text-main, #000000); }
+  
+  .edge-line      { stroke: var(--stroke-main, #000000); stroke-width: 3px; }
+  .edge-arrow     { fill: var(--stroke-main, #000000); stroke: var(--stroke-main, #000000); }
+
+  .formula-text {
+    font-family: "Latin Modern Math", "Cambria Math", "Helvetica", sans-Serif;
+    font-size: 24px;
+    fill: var(--text-main, #000000);
+    text-anchor: middle;
+  }
+  .subscript { font-size: 16px; }
+</style>
+  <g id="graph0">
+    <title id="title1">Fluxo_Estequiometria</title>
+    <polygon class="graph-bg" stroke="none" points="0,0 1280,0 1280,1250 0,1250" id="polygon1"></polygon>
+
+    <!-- ROOT -->
+    <g id="node1">
+      <polygon class="node-bg-root" stroke="none" points="220,30 1060,30 1060,80 220,80" id="polygon2"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="62" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text2">Estequiometria — Precipitação de PbI₂ em Tubos de Ensaio</text>
+      <polygon fill="none" class="stroke-color" points="220,30 1060,30 1060,80 220,80" id="polygon3"></polygon>
+    </g>
+
+    <!-- SETA ROOT -> P1 -->
+    <path class="edge-line" d="M640,80 L640,120" id="path3"></path>
+    <polygon class="edge-arrow" points="635,120 640,130 645,120" id="polygon4"></polygon>
+
+    <!-- PASSO 1: Quantidade de Matéria dos Reagentes -->
+    <g id="node2">
+      <polygon class="node-bg" stroke="none" points="120,130 1160,130 1160,260 120,260" id="polygon5"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="170" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text5">Passo 1 — Quantidade de Matéria dos Reagentes (n = C × V)</text>
+      <line x1="120" y1="200" x2="1160" y2="200" class="stroke-color" id="line5"></line>
+      <line x1="640" y1="200" x2="640" y2="260" class="stroke-color" id="line6"></line>
+      
+      <!-- Esquerda: Pb(NO3)2 -->
+      <text class="formula-text" x="380" y="238" id="text9">n<tspan class="subscript" dy="6">Pb(NO3)2</tspan><tspan dy="-6"> = 0,5 mol·L</tspan><tspan class="subscript" dy="-6">−1</tspan><tspan dy="6"> × 0,001 L = 0,5 mmol</tspan></text>
+      <!-- Direita: KI -->
+      <text class="formula-text" x="900" y="238" id="text10">n<tspan class="subscript" dy="6">KI</tspan><tspan dy="-6"> = 0,5 mol·L</tspan><tspan class="subscript" dy="-6">−1</tspan><tspan dy="6"> × V</tspan><tspan class="subscript" dy="6">KI</tspan><tspan dy="-6"> (0,25 a 1,50 mmol)</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="120,130 1160,130 1160,260 120,260" id="polygon9"></polygon>
+    </g>
+
+    <!-- SETA P1 -> P2 -->
+    <path class="edge-line" d="M640,260 L640,300" id="path9"></path>
+    <polygon class="edge-arrow" points="635,300 640,310 645,300" id="polygon10"></polygon>
+
+    <!-- PASSO 2: Reagente Limitante (SEM DIVISÃO / LARGURA EXPANDIDA) -->
+    <g id="node3">
+      <polygon class="node-bg" stroke="none" points="100,310 1180,310 1180,440 100,440" id="polygon11"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="350" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text11">Passo 2 — Determinação do Reagente Limitante (1 Pb²⁺ : 2 I⁻)</text>
+      <line x1="100" y1="380" x2="1180" y2="380" class="stroke-color" id="line11"></line>
+      
+      <!-- Mensagem Única em Linha Cheia -->
+      <text class="formula-text" x="640" y="418" id="text16">Comparar n/coeficiente: se n<tspan class="subscript" dy="6">KI</tspan><tspan dy="-6">/2 &lt; n</tspan><tspan class="subscript" dy="6">Pb</tspan><tspan dy="-6"> → KI é Limitante | Se n</tspan><tspan class="subscript" dy="6">KI</tspan><tspan dy="-6">/2 ≥ n</tspan><tspan class="subscript" dy="6">Pb</tspan><tspan dy="-6"> → Pb(NO₃)₂ é Limitante</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="100,310 1180,310 1180,440 100,440" id="polygon20"></polygon>
+    </g>
+
+    <!-- SETA P2 -> P3 -->
+    <path class="edge-line" d="M640,440 L640,480" id="path20"></path>
+    <polygon class="edge-arrow" points="635,480 640,490 645,480" id="polygon21"></polygon>
+
+    <!-- PASSO 3: Massa Teórica do Precipitado -->
+    <g id="node4">
+      <polygon class="node-bg" stroke="none" points="200,490 1080,490 1080,620 200,620" id="polygon22"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="530" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text22">Passo 3 — Cálculo da Massa Teórica de PbI₂ Formado</text>
+      <line x1="200" y1="560" x2="1080" y2="560" class="stroke-color" id="line22"></line>
+      
+      <!-- Equação Geral de Produto -->
+      <text class="formula-text" x="640" y="598" id="text23">m<tspan class="subscript" dy="6">PbI2</tspan><tspan dy="-6"> = n<tspan class="subscript" dy="6">limitante</tspan><tspan dy="-6"> × M.M.(PbI₂) [461,0 g·mol</tspan><tspan class="subscript" dy="-6">−1</tspan><tspan dy="6">] (Máx. = 0,2305 g no Tubo 3)</tspan></tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="200,490 1080,490 1080,620 200,620" id="polygon25"></polygon>
+    </g>
+
+    <!-- SETA P3 -> P4 -->
+    <path class="edge-line" d="M640,620 L640,660" id="path25"></path>
+    <polygon class="edge-arrow" points="635,660 640,670 645,660" id="polygon26"></polygon>
+
+    <!-- PASSO 4: Montagem Experimental (SEM DIVISÃO / LARGURA EXPANDIDA) -->
+    <g id="node5">
+      <polygon class="node-bg" stroke="none" points="40,670 1240,670 1240,800 40,800" id="polygon27"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="710" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text27">Passo 4 — Procedimento Experimental nos Tubos (1 a 5)</text>
+      <line x1="40" y1="740" x2="1240" y2="740" class="stroke-color" id="line27"></line>
+      
+      <!-- Mensagem Única em Linha Cheia -->
+      <text class="formula-text" x="640" y="778" id="text31">Adicionar 1,0 mL de Pb(NO₃)₂ (0,5 mol·L⁻¹) + Adicionar KI (0,5 a 3,0 mL) conforme cada tubo</text>
+      
+      <polygon fill="none" class="stroke-color" points="40,670 1240,670 1240,800 40,800" id="polygon31"></polygon>
+    </g>
+
+    <!-- SETA P4 -> P5 -->
+    <path class="edge-line" d="M640,800 L640,840" id="path31"></path>
+    <polygon class="edge-arrow" points="635,840 640,850 645,840" id="polygon32"></polygon>
+
+    <!-- PASSO 5: Homogeneização, Repouso e Decantação -->
+    <g id="node6">
+      <polygon class="node-bg" stroke="none" points="150,850 1130,850 1130,980 150,980" id="polygon33"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="890" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text33">Passo 5 — Agitação, Repouso e Decantação do Precipitado</text>
+      <line x1="150" y1="920" x2="1130" y2="920" class="stroke-color" id="line33"></line>
+      
+      <text class="formula-text" x="640" y="958" id="text35">Agitar suavemente cada tubo + Aguar 10 min para completa decantação do PbI₂</text>
+      
+      <polygon fill="none" class="stroke-color" points="150,850 1130,850 1130,980 150,980" id="polygon36"></polygon>
+    </g>
+
+    <!-- SETA P5 -> P6 -->
+    <path class="edge-line" d="M640,980 L640,1020" id="path36"></path>
+    <polygon class="edge-arrow" points="635,1020 640,1030 645,1020" id="polygon37"></polygon>
+
+    <!-- PASSO 6: Medição, Registro e Descarte Adequado -->
+    <g id="node7">
+      <polygon class="node-bg" stroke="none" points="100,1030 1180,1030 1180,1210 100,1210" id="polygon50"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="1070" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text50">Passo 6 — Medição da Altura do Precipitado e Descarte</text>
+      <line x1="100" y1="1100" x2="1180" y2="1100" class="stroke-color" id="line50"></line>
+      <line x1="640" y1="1100" x2="640" y2="1210" class="stroke-color" id="line51"></line>
+      
+      <!-- Sub-bloco 1: Régua -->
+      <text class="formula-text" x="370" y="1155" id="text53">Medir a altura h (mm) do sólido com régua</text>
+      <!-- Sub-bloco 2: Descarte -->
+      <text class="formula-text" x="910" y="1155" id="text54">Descartar o resíduo no frasco de Metais Pesados</text>
+      
+      <polygon fill="none" class="stroke-color" points="100,1030 1180,1030 1180,1210 100,1210" id="polygon57"></polygon>
+    </g>
+  </g>
+</svg>
+
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma" id="fluxograma-Estequiometria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fluxograma&nbsp;5.1: Sequência de adição de reagentes e medição do precipitado de PbI₂.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
+<ol type="1">
+<li><p>Explique o significado de “reagente limitante” e “reagente em excesso” em uma reação química.</p></li>
+<li><p>Calcule a quantidade de matéria (mols) de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2</annotation></semantics></math> presente em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">1,0 \, \text{mL}</annotation></semantics></math> de uma solução de concentração <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0,5 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p></li>
+<li><p>No Tubo 2, foram misturados <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">1,0 \, \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2 \ 0,5 \, \text{mol·L}^{-1}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">1,0 \, \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">KI</mtext><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{KI} \ 0,5 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p></li>
+</ol>
+<ul>
+<li><strong>a)</strong> Qual é o reagente limitante nesse tubo?</li>
+<li><strong>b)</strong> Qual a massa teórica de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math> que deve se formar?</li>
+</ul>
+<ol start="4" type="1">
+<li><p>Explique por que a partir do Tubo 3 até o Tubo 5 a quantidade (altura) de precipitado se mantém aproximadamente constante, mesmo adicionando volumes crescentes de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KI</mtext><annotation encoding="application/x-tex">\text{KI}</annotation></semantics></math>.</p></li>
+<li><p>Se em uma variação desta prática um estudante utilizasse <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">1,0 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Pb(NO</mtext><mn>3</mn></msub><msub><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{Pb(NO}_3)_2 \ 0,5 \ \text{mol·L}^{-1}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">4,0 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">KI</mtext><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{KI} \ 0,5 \ \text{mol·L}^{-1}</annotation></semantics></math>:</p></li>
+</ol>
+<ul>
+<li><strong>a)</strong> Qual seria o reagente em excesso?</li>
+<li><strong>b)</strong> Quantos mols desse reagente ficariam sem reagir na solução?</li>
+</ul>
+<ol start="6" type="1">
+<li><p>Qual seria o rendimento percentual de uma reação se a massa teórica esperada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math> em um tubo fosse de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>230</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">0,230 \ \text{g}</annotation></semantics></math> e a massa isolada e seca obtida fosse de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>207</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">0,207 \ \text{g}</annotation></semantics></math>?</p></li>
+<li><p>Por que a medição da altura do precipitado deve ser realizada somente após o tempo de repouso (10 minutos)?</p></li>
+<li><p>Escreva a equação iônica completa e a equação iônica simplificada para a reação de precipitação entre o nitrato de chumbo(II) e o iodeto de potássio.</p></li>
+</ol>
+</section>
+<section id="complemento-com-ia" class="level2">
+<h2 class="anchored" data-anchor-id="complemento-com-ia">Complemento com IA</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="➘">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>➘
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div id="complemIA" class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Tópico Extra</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">IA Responde</a></li></ul>
+<div id="complemIA" class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Explique o motivo de o produto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math> apresentar baixa solubilidade em água à temperatura ambiente e como a temperatura afeta o equilíbrio de solubilidade desse sal.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<hr>
+<p><strong>Solubilidade e Equilíbrio do Iodeto de Chumbo(II)</strong></p>
+<p>O iodeto de chumbo(II) (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math>) é classificado como um sal pouco solúvel em água à temperatura ambiente, apresentando um constante de produto de solubilidade (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">K_{ps}</annotation></semantics></math>) muito baixo (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><mo>≈</mo><mn>9</mn><mo>,</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>9</mn></mrow></msup></mrow><annotation encoding="application/x-tex">K_{ps} \approx 9,8 \times 10^{-9}</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><msup><mspace width="0.222em"></mspace><mo>∘</mo></msup><mtext mathvariant="normal">C</mtext></mrow><annotation encoding="application/x-tex">25 \ ^\circ\text{C}</annotation></semantics></math>).</p>
+<ol type="1">
+<li><strong>Energia de Rede vs.&nbsp;Solvatação:</strong> A energia de rede cristalina do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math> é elevada devido à forte atração entre os íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Pb</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Pb}^{2+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">I</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{I}^-</annotation></semantics></math>. Como a energia liberada na solvatação desses íons por moléculas de água não é suficiente para superar a energia de rede à temperatura ambiente, a dissolução é desfavorecida, resultando na formação do precipitado amarelado.</li>
+<li><strong>Efeito da Temperatura:</strong> O processo de dissolução do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math> é endotérmico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mi>H</mi><mtext mathvariant="normal">dissolução</mtext></msub><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta H_{\text{dissolução}} &gt; 0</annotation></semantics></math>). De acordo com o Princípio de Le Chatelier, ao aumentar a temperatura da mistura aquosa (próximo a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><msup><mspace width="0.222em"></mspace><mo>∘</mo></msup><mtext mathvariant="normal">C</mtext></mrow><annotation encoding="application/x-tex">100 \ ^\circ\text{C}</annotation></semantics></math>), a solubilidade do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">PbI</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{PbI}_2</annotation></semantics></math> aumenta significativamente, e o sólido se dissolve completamente, tornando a solução incolor. Ao resfriar a solução lentamente de volta à temperatura ambiente, o sal torna a se precipitar sob a forma de finos cristais brilhantes (“chuva de ouro”).</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Estequiometria.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02_Preparo_HCl.html" class="pagination-link" aria-label="Prática 2: Preparo de Solução de HCl">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04_Equilibrio_Quimico.html" class="pagination-link" aria-label="Prática 4: Equilíbrio Químico">
+        <span class="nav-page-text"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

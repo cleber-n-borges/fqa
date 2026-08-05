@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PODER DE NEUTRALIZAÇÃO DO CALCÁRIO – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./000_RegressaoLinear.html" rel="next">
+<link href="./06_Acidez_Alimentos.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+// Define a variável com o nome do arquivo do Questionario
+var JSON_Questionario = "./simulador/pn.dat";
+</script>
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_Neutralização_Calcario.html"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">PODER DE NEUTRALIZAÇÃO DO CALCÁRIO</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico_VersaoTESTE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico - UPDATE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Titulação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 5: Padronização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados">Dados</a></li>
+  <li><a href="#segurança-no-laboratório" id="toc-segurança-no-laboratório" class="nav-link" data-scroll-target="#segurança-no-laboratório">Segurança no Laboratório</a></li>
+  <li><a href="#roteiro-experimental" id="toc-roteiro-experimental" class="nav-link" data-scroll-target="#roteiro-experimental">Roteiro Experimental</a>
+  <ul class="collapse">
+  <li><a href="#procedimento" id="toc-procedimento" class="nav-link" data-scroll-target="#procedimento">Procedimento</a></li>
+  </ul></li>
+  <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a>
+  <ul class="collapse">
+  <li><a href="#poder-de-neutralização-pn" id="toc-poder-de-neutralização-pn" class="nav-link" data-scroll-target="#poder-de-neutralização-pn">Poder de Neutralização (PN)</a></li>
+  <li><a href="#retrotitulação" id="toc-retrotitulação" class="nav-link" data-scroll-target="#retrotitulação">Retrotitulação</a></li>
+  <li><a href="#reações-envolvidas" id="toc-reações-envolvidas" class="nav-link" data-scroll-target="#reações-envolvidas">Reações envolvidas</a></li>
+  <li><a href="#equivalente-em-carbonato-de-cálcio" id="toc-equivalente-em-carbonato-de-cálcio" class="nav-link" data-scroll-target="#equivalente-em-carbonato-de-cálcio">Equivalente em carbonato de cálcio</a></li>
+  <li><a href="#interpretação-do-poder-de-neutralização" id="toc-interpretação-do-poder-de-neutralização" class="nav-link" data-scroll-target="#interpretação-do-poder-de-neutralização">Interpretação do Poder de Neutralização</a></li>
+  </ul></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a>
+  <ul class="collapse">
+  <li><a href="#fluxograma-do-cálculo-do-poder-de-neutralização-pn" id="toc-fluxograma-do-cálculo-do-poder-de-neutralização-pn" class="nav-link" data-scroll-target="#fluxograma-do-cálculo-do-poder-de-neutralização-pn">Fluxograma do Cálculo do Poder de Neutralização (PN)</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#complemento-com-ia" id="toc-complemento-com-ia" class="nav-link" data-scroll-target="#complemento-com-ia">Complemento com IA</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  <li><a href="#simulador-de-testes" id="toc-simulador-de-testes" class="nav-link" data-scroll-target="#simulador-de-testes">Simulador de Testes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>Os <a href="https://pt.wikipedia.org/wiki/Solo">solos</a> brasileiros, especialmente <a href="https://pt.wikipedia.org/wiki/Latossolo">latossolos</a> e <a href="https://pt.wikipedia.org/wiki/Argissolo">argissolos</a> (assim como outros solos de regiões tropicais em grande parte) apresentam acidez elevada, com <a href="https://pt.wikipedia.org/wiki/PH">pH</a> variando entre 4,0 e 5,5. Essa acidez é causada por fatores como <a href="https://pt.wikipedia.org/wiki/Intemperismo">intemperismo</a>, remoção de bases (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><msup><mi mathvariant="normal">a</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Ca^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><msup><mi mathvariant="normal">g</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Mg^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">K</mi><mo mathvariant="normal">+</mo></msup><annotation encoding="application/x-tex">\mathrm{K^{+}}</annotation></semantics></math>) por <a href="https://pt.wikipedia.org/wiki/Lixivia%C3%A7%C3%A3o">lixiviação</a>, hidrólise de íons provenientes de <a href="https://pt.wikipedia.org/wiki/Mineral">minerais</a>, decomposição de <a href="https://pt.wikipedia.org/wiki/Mat%C3%A9ria_org%C3%A2nica">matéria orgânica</a> e uso de <a href="https://pt.wikipedia.org/wiki/Fertilizante">fertilizantes</a> amoniacais. Para corrigir essa acidez, utiliza-se o <a href="https://pt.wikipedia.org/wiki/Calc%C3%A1rio"><em>calcário</em></a> <em>agrícola</em>, um <a href="http://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/42323"><em>corretivo do solo</em></a> capaz de neutralizar íons responsáveis pela <a href="https://www.embrapa.br/busca-de-publicacoes/-/publicacao/1176428/acidez-do-solo-e-calagem">acidez do solo</a>.</p>
+<ul>
+<li><em>Reações químicas típicas dos calcários convencionais:</em></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>o</mi><mi>l</mi><mi>o</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>⇄</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mi mathvariant="normal">C</mi><msup><mi mathvariant="normal">a</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mrow><mi mathvariant="normal">M</mi><msup><mi mathvariant="normal">g</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><munder><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msubsup><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn><mo mathvariant="normal">−</mo></msubsup></mrow><mtext mathvariant="normal">bicarbonato</mtext></munder><mo>+</mo><munder><mrow><mi mathvariant="normal">O</mi><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">−</mo></msup></mrow><mtext mathvariant="normal">hidroxila</mtext></munder><mspace width="2.0em"></mspace><msubsup><mi>k</mi><mi>b</mi><mn>1</mn></msubsup><mo>≈</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\left( \mathrm{CaCO_{3}} || \mathrm{MgCO_{3}} \right) + \mathrm{H_{2}O}_{(solo)} \rightleftarrows
+\left( \mathrm{Ca^{2+}} || \mathrm{Mg^{2+}} \right)
++ \underset{\text{bicarbonato}}{\mathrm{HCO_3^{-}}}
++ \underset{\text{hidroxila}}{\mathrm{OH^{-}}}
+\qquad k_{b}^{1} \approx 2{,}2 \times 10^{-4}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msubsup><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn><mo mathvariant="normal">−</mo></msubsup></mrow><mtext mathvariant="normal">bicarbonato</mtext></munder><mo>+</mo><msub><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>o</mi><mi>l</mi><mi>o</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>⇄</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><mo>+</mo><munder><mrow><mi mathvariant="normal">O</mi><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">−</mo></msup></mrow><mtext mathvariant="normal">hidroxila</mtext></munder><mspace width="2.0em"></mspace><msubsup><mi>k</mi><mi>b</mi><mn>2</mn></msubsup><mo>≈</mo><mn>2</mn><mo>,</mo><mn>4</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>8</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\underset{\text{bicarbonato}}{\mathrm{HCO_{3}^{-}}} + \mathrm{H_{2}O}_{(solo)} \rightleftarrows
+\mathrm{H_{2}CO_{3}} + \underset{\text{hidroxila}}{\mathrm{OH^{-}}}
+\qquad k_{b}^{2} \approx 2{,}4 \times 10^{-8}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mrow><mi mathvariant="normal">O</mi><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">−</mo></msup></mrow><mtext mathvariant="normal">hidroxila</mtext></munder><mo>+</mo><msub><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">+</mo></msup><mtext mathvariant="normal">(solução em solo)</mtext></msub><mo>→</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow></mrow><annotation encoding="application/x-tex">\underset{\text{hidroxila}}{\mathrm{OH^{-}}}
++ \mathrm{H^{+}}_{\text{(solução em solo)}}
+\rightarrow
+\mathrm{H_{2}O}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mrow><mi mathvariant="normal">O</mi><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">−</mo></msup></mrow><mtext mathvariant="normal">hidroxila</mtext></munder><mo>+</mo><msub><mrow><mi mathvariant="normal">A</mi><msup><mi mathvariant="normal">l</mi><mrow><mn mathvariant="normal">3</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><mtext mathvariant="normal">(solução em solo)</mtext></msub><mo>→</mo><msub><mrow><mi mathvariant="normal">A</mi><mi mathvariant="normal">l</mi><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi><msub><mo stretchy="false" form="postfix" mathvariant="normal">)</mo><mn mathvariant="normal">3</mn></msub></mrow><mtext mathvariant="normal">(precipitado)</mtext></msub></mrow><annotation encoding="application/x-tex">\underset{\text{hidroxila}}{\mathrm{OH^{-}}} + \mathrm{Al^{3+}}_{\text{(solução em solo)}}
+\rightarrow \mathrm{Al(OH)_{3}}_\text{(precipitado)}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><mo>→</mo><mrow><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">g</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow></mrow><annotation encoding="application/x-tex">\mathrm{H_{2}CO_{3}} \rightarrow \mathrm{CO_{2(g)}} + \mathrm{H_{2}O}</annotation></semantics></math></p>
+<ul>
+<li><em>Cinética do processo:</em> O tempo médio para a conversão do carbonato em hidroxila no solo pode ser de até 3 meses.</li>
+</ul>
+<p><strong>Poder de Neutralização (PN)</strong></p>
+<p>O <a href="http://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1127245">Poder de Neutralização (PN)</a> é uma medida que expressa a capacidade de um corretivo agrícola de neutralizar a acidez do solo. Ele permite comparar, de forma padronizada, materiais com diferentes composições químicas, como <a href="https://pt.wikipedia.org/wiki/Carbonato">carbonatos</a>, <a href="https://pt.wikipedia.org/wiki/Dolomita">dolomitos</a> e <a href="https://pt.wikipedia.org/wiki/%C3%93xido">óxidos</a>, que apresentam capacidades distintas de neutralização. Quanto maior o PN, maior é a capacidade do corretivo de neutralizar a acidez e elevar o pH do solo.</p>
+<ul>
+<li><em>Conveniência do PN:</em></li>
+</ul>
+<p>Os calcários não são quimicamente iguais. Eles podem conter:</p>
+<ol type="1">
+<li><p><a href="https://pt.wikipedia.org/wiki/Carbonato_de_c%C3%A1lcio">carbonato de cálcio</a> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math>), comumente o componente majoritário;</p></li>
+<li><p><a href="https://pt.wikipedia.org/wiki/Carbonato_de_magn%C3%A9sio">carbonato de magnésio</a> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{MgCO_{3}}</annotation></semantics></math>);</p></li>
+<li><p>misturas entre ambos (dolomitos);</p></li>
+<li><p>pequenas ou moderadas quantidades de óxidos (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math>), especialmente quando resultam de processos térmicos como <a href="https://pt.wikipedia.org/wiki/Calcina%C3%A7%C3%A3o">calcinação</a> parcial.</p></li>
+</ol>
+<p>Cada um desses compostos apresenta diferente capacidade de neutralizar íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">+</mo></msup><annotation encoding="application/x-tex">\mathrm{H^{+}}</annotation></semantics></math>, e isso depende diretamente de suas massas molares e de suas reações químicas. Para padronizar essa comparação, usa-se um referencial único: o carbonato de cálcio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math>) puro, cujo PN é definido como 100%. Assim, o PN de qualquer material indica quanto ele neutraliza em relação ao <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math> puro.</p>
+<ul>
+<li><em>Conversão de</em> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math> para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">E-</mtext><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow></mrow><annotation encoding="application/x-tex">\text{E-}\mathrm{CaCO_3}</annotation></semantics></math> (equivalente em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math> ):</li>
+</ul>
+<p>Os óxidos (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math>), quando presentes no corretivo, possuem poder de neutralização mais alto por unidade de massa do que o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math>. Isso ocorre porque:</p>
+<ol type="1">
+<li><p>Tanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math> quanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> neutralizam 2 prótons (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">+</mo></msup></mrow><annotation encoding="application/x-tex">2 \mathrm{H^{+}}</annotation></semantics></math>) na reação de correção da acidez.</p></li>
+<li><p>Porém, o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> tem massa molar muito menor, portanto uma quantidade menor de massa neutraliza a mesma quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">+</mo></msup><annotation encoding="application/x-tex">\mathrm{H^{+}}</annotation></semantics></math>.</p></li>
+</ol>
+<p>Explicação simples:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Substância</th>
+<th style="text-align: center;">Massa Molar</th>
+<th style="text-align: center;">Neutraliza <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">+</mo></msup><annotation encoding="application/x-tex">\mathrm{H^{+}}</annotation></semantics></math></th>
+<th style="text-align: center;">Eficiência Relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">100 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn mathvariant="normal">2</mn><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">+</mo></msup></mrow><annotation encoding="application/x-tex">\mathrm{2H^{+}}</annotation></semantics></math></td>
+<td style="text-align: center;">100% (padrão)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>56</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">56 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn mathvariant="normal">2</mn><msup><mi mathvariant="normal">H</mi><mo mathvariant="normal">+</mo></msup></mrow><annotation encoding="application/x-tex">\mathrm{2H^{+}}</annotation></semantics></math></td>
+<td style="text-align: center;">178% do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<p>Ou seja:</p>
+<ul>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>56</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">56 \ \mathrm{g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> neutralizam tanto quanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">100 \ \mathrm{g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math>.</p></li>
+<li><p>Isso significa que, em termos de PN, o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> tem equivalência de 178% quando comparado ao <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math>.</p></li>
+</ul>
+<p>Daí a necessidade de converter <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> (e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math>) para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">E-</mtext><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow></mrow><annotation encoding="application/x-tex">\text{E-}\mathrm{CaCO_3}</annotation></semantics></math> (equivalente em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math>), permitindo expressar tudo em uma única escala. Esse procedimento garante que um calcário com mistura de carbonatos e óxidos possa ter sua capacidade de neutralização calculada de forma coerente e comparável.</p>
+<p>Assim, ao analisar um corretivo podemos dizer, por exemplo:</p>
+<ul>
+<li><p>“Este material apresenta <strong>PN =</strong> 92%”</p></li>
+<li><p>→ significa que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">100 \ \mathrm{g}</annotation></semantics></math> dele neutralizam o mesmo que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>92</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">92 \ \mathrm{g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3}}</annotation></semantics></math> puro.</p></li>
+</ul>
+<p>De acordo com a regulamentação brasileira (<strong>Instrução Normativa SDA nº 35, de 4 de julho de 2006</strong>, SDA - Secretaria de Defesa Agropecuária<a href="https://www.gov.br/agricultura/pt-br/assuntos/insumos-agropecuarios/insumos-agricolas/fertilizantes/legislacao/in-35-de-4-7-2006-corretivos.pdf">📄</a>), os calcários agrícolas devem apresentar, no mínimo, <strong>PN</strong> equivalente a 67% (ou 38% na soma de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{CaO}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math>).</p>
+<p><strong>Tipos de calcários agrícolas</strong></p>
+<p>Os calcários agrícolas são classificados de acordo com o teor de óxido de magnésio, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math>, em:</p>
+<ul>
+<li><strong>Calcários calcíticos</strong>, contendo menos de 5% de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math>,</li>
+<li><strong>Calcários magnesianos</strong> contendo entre 5% e 12% de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math> e</li>
+<li><strong>Dolomíticos</strong> contendo mais de 12% de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">O</mi></mrow><annotation encoding="application/x-tex">\mathrm{MgO}</annotation></semantics></math>.</li>
+</ul>
+<p>No Brasil, os três tipos são encontrados comercialmente, porém os calcários dolomíticos predominam em grande parte das principais regiões produtoras, especialmente no Centro-Oeste e Sudeste, em razão da abundância de rochas dolomíticas. Os calcários calcíticos também apresentam ampla utilização, sendo preferidos quando há necessidade de fornecer cálcio ao solo sem elevar significativamente os teores de magnésio. Já os calcários magnesianos apresentam composição intermediária e ocorrem com menor frequência.</p>
+<p><strong>Determinação do PN por retrotitulação</strong></p>
+<p>Para determinar experimentalmente o PN de uma amostra de calcário, pode-se utilizar o método da <a href="https://www.metrohm.com/pt_br/fique-por-dentro/blog/20-21/what-to-consider-during-back-titration.html">retrotitulação</a> (ou titulação de retorno). Nesse método, adiciona-se à amostra uma quantidade conhecida e em excesso de ácido clorídrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math>). O ácido reage com o carbonato presente no calcário, conforme as equações químicas apresentadas:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">3</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">s</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mn>2</mn><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>→</mo><mrow><mi mathvariant="normal">C</mi><msubsup><mi mathvariant="normal">a</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msubsup></mrow><mo>+</mo><mn>2</mn><mrow><mi mathvariant="normal">C</mi><msubsup><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mo mathvariant="normal">−</mo></msubsup></mrow><mo>+</mo><mrow><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">g</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><msub><mi mathvariant="normal">O</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3(s)}} + 2\mathrm{HCl_{(aq.)}} \rightarrow \mathrm{Ca^{2+}_{(aq.)}} + 2\mathrm{Cl^{-}_{(aq.)}} + \mathrm{CO_{2(g)}} + \mathrm{H_{2}O_{(aq.)}}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">3</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">s</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mn>2</mn><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>→</mo><mrow><mi mathvariant="normal">M</mi><msubsup><mi mathvariant="normal">g</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msubsup></mrow><mo>+</mo><mn>2</mn><mrow><mi mathvariant="normal">C</mi><msubsup><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mo mathvariant="normal">−</mo></msubsup></mrow><mo>+</mo><mrow><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">g</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><msub><mi mathvariant="normal">O</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow></mrow><annotation encoding="application/x-tex">\mathrm{MgCO_{3(s)}} + 2\mathrm{HCl_{(aq.)}} \rightarrow \mathrm{Mg^{2+}_{(aq.)}} + 2\mathrm{Cl^{-}_{(aq.)}} + \mathrm{CO_{2(g)}} + \mathrm{H_{2}O_{(aq.)}}</annotation></semantics></math></p>
+<p>Após essa etapa, parte do ácido permanece sem reagir — é o excesso de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math>. Esse ácido residual é então quantificado por titulação com uma solução padronizada de hidróxido de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math>).</p>
+<p>A partir disso, determina-se quanto ácido foi consumido pelo carbonato da amostra pela diferença entre o número de mols de:</p>
+<ul>
+<li><p>ácido <strong>inicialmente adicionado</strong>, e</p></li>
+<li><p>ácido <strong>residual</strong> (isto é, a fração de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> que sobra após reagir com o calcário).</p></li>
+</ul>
+<p>Conhecendo essa quantidade efetivamente consumida, procede-se com os cálculos necessários para a determinação do valor do Poder de Neutralização (PN) da amostra do calcário analisado.</p>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li>Determinar o Poder de Neutralização (PN) de uma amostra de calcário;</li>
+<li>Aplicar a técnica de retrotitulação (titulação de retorno) em uma análise volumétrica;</li>
+<li>Relacionar a estequiometria das reações de neutralização com os cálculos do PN;</li>
+<li>Desenvolver habilidades na execução e interpretação de análises volumétricas indiretas.</li>
+</ul>
+</section>
+<section id="dados" class="level2">
+<h2 class="anchored" data-anchor-id="dados">Dados</h2>
+<ol type="1">
+<li><p><strong>Massas molares — M.M.</strong></p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mo>=</mo><mn>100</mn><mo>,</mo><mn>09</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\mathrm{M.M.(\mathrm{CaCO_3})} = 100,09\ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mo>=</mo><mn>84</mn><mo>,</mo><mn>31</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\mathrm{M.M.(\mathrm{MgCO_3})} = 84,31\ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mo>=</mo><mn>36</mn><mo>,</mo><mn>46</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\mathrm{M.M.(\mathrm{HCl})} = 36,46\ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mo>=</mo><mn>56</mn><mo>,</mo><mn>11</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\mathrm{M.M.(\mathrm{KOH})} = 56,11\ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math></li>
+</ul>
+<p>As massas molares são utilizadas para estabelecer as relações entre massa e quantidade de matéria dos compostos envolvidos, além de servir como referência para a expressão do Poder de Neutralização em equivalente de carbonato de cálcio.</p></li>
+<li><p><strong>Reação entre o carbonato de cálcio e o ácido clorídrico</strong></p></li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">3</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">s</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mn>2</mn><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>→</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">g</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><msub><mi mathvariant="normal">O</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">l</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3(s)}} + 2\mathrm{HCl_{(aq)}} \longrightarrow \mathrm{CaCl_{2(aq)}} + \mathrm{CO_{2(g)}} + \mathrm{H_2O_{(l)}}</annotation></semantics></math></p>
+<p>O carbonato de cálcio consome dois mols de ácido clorídrico para cada mol de carbonato presente.</p>
+<ol start="3" type="1">
+<li><strong>Reação de retrotitulação</strong></li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><msub><mi mathvariant="normal">H</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>→</mo><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><msub><mi mathvariant="normal">O</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">l</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow></mrow><annotation encoding="application/x-tex">\mathrm{HCl_{(aq)}} + \mathrm{KOH_{(aq)}} \longrightarrow \mathrm{KCl_{(aq)}} + \mathrm{H_2O_{(l)}}</annotation></semantics></math></p>
+<p>Após a reação do calcário com um excesso conhecido de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math>, o ácido remanescente é determinado por titulação com solução padronizada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math>. Como a reação ocorre na proporção molar 1:1, a quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> em excesso é numericamente igual à quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> consumida.</p>
+<ol start="4" type="1">
+<li><strong>Expressão do Poder de Neutralização</strong></li>
+</ol>
+<p>O Poder de Neutralização (PN) representa a capacidade de um corretivo em neutralizar a acidez e é expresso em porcentagem de equivalente de carbonato de cálcio:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>N</mi><mo>=</mo><mfrac><mrow><mrow><mtext mathvariant="normal">massa equivalente de </mtext><mspace width="0.333em"></mspace></mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow></mrow><mtext mathvariant="normal">massa da amostra</mtext></mfrac><mo>×</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">PN=\frac{\text{massa equivalente de }\mathrm{CaCO_3}}{\text{massa da amostra}}\times100</annotation></semantics></math></p>
+<p>Por convenção, considera-se o carbonato de cálcio puro como padrão de referência, atribuindo-lhe <strong>PN = 100%</strong>.</p>
+</section>
+<section id="segurança-no-laboratório" class="level2">
+<h2 class="anchored" data-anchor-id="segurança-no-laboratório">Segurança no Laboratório</h2>
+<ul>
+<li><p>Utilizar jaleco durante toda a prática e seguir normas de segurança.</p></li>
+<li><p>A solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> é corrosiva e pode causar queimaduras na pele e nos olhos. Evite contato direto e, em caso de respingos, lave imediatamente a região atingida com água em abundância.</p></li>
+<li><p>A solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> é fortemente cáustica e corrosiva. Manuseie-a cuidadosamente, evitando contato com a pele, olhos e roupas.</p></li>
+<li><p>Durante a reação entre o calcário e o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> ocorre liberação de dióxido de carbono (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">2</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CO_2}</annotation></semantics></math>). Adicione o ácido lentamente e nunca mantenha recipientes fechados durante a reação.</p></li>
+<li><p>O calcário pulverizado pode gerar poeira durante a pesagem. Evite dispersar o material e não inale o pó.</p></li>
+<li><p>Os resíduos da titulação devem ser descartados conforme as orientações do professor e as normas do laboratório.</p></li>
+</ul>
+</section>
+<section id="roteiro-experimental" class="level2">
+<h2 class="anchored" data-anchor-id="roteiro-experimental">Roteiro Experimental</h2>
+<section id="procedimento" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento">Procedimento</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Retrotitulação">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Retrotitulação
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nesta prática, o ácido clorídrico é adicionado ao calcário, deliberadamente em excesso e quantidade bem determinada. Após a reação completa, determina-se por titulação apenas o ácido que não reagiu. Esse procedimento é denominado retrotitulação (ou titulação de retorno).</p>
+</div>
+</div>
+<ol type="1">
+<li><p>Pese aproximadamente 0,500 g de calcário em um béquer de 250 mL.</p></li>
+<li><p>Utilizando uma pipeta volumétrica, adicione 25,00 mL de solução padronizada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\mathrm{HCl} \ 0,50 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math> ao béquer contendo a amostra. Cubra o recipiente com um vidro de relógio.</p></li>
+<li><p>Aqueça a mistura até leve ebulição e mantenha fervura branda durante aproximadamente 5 minutos, evitando perdas por respingos.</p></li>
+<li><p>Deixe a solução resfriar até a temperatura ambiente.</p></li>
+<li><p>Filtre a mistura, recolhendo o filtrado em um balão volumétrico de 100,00 mL. Lave cuidadosamente o béquer e o papel de filtro com pequenas porções de água destilada, transferindo quantitativamente todo o filtrado para o balão.</p></li>
+<li><p>Complete o volume do balão com água destilada até o menisco e homogeneíze a solução por inversão.</p></li>
+<li><p>Utilizando uma pipeta volumétrica, transfira 25,00 mL da solução preparada para um erlenmeyer de 250 mL.</p></li>
+<li><p>Adicione 2 gotas de solução alcoólica de fenolftaleína.</p></li>
+<li><p>Titule com solução padronizada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>100</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\mathrm{KOH} \ 0,100 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>, sob agitação constante, até o aparecimento de uma coloração rosa-clara persistente por aproximadamente 30 segundos.</p></li>
+<li><p>Repita a titulação até obter resultados concordantes.</p></li>
+<li><p>Utilize os volumes obtidos para determinar a quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> que permaneceu em excesso e calcule o Poder de Neutralização (PN) da amostra, expresso como equivalente em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math>.</p></li>
+</ol>
+</section>
+</section>
+<section id="discussão" class="level2">
+<h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
+<section id="poder-de-neutralização-pn" class="level3">
+<h3 class="anchored" data-anchor-id="poder-de-neutralização-pn">Poder de Neutralização (PN)</h3>
+<p>O Poder de Neutralização (PN) é uma medida da capacidade de um corretivo agrícola em neutralizar a acidez do solo. Essa propriedade está diretamente relacionada à quantidade de substâncias básicas (alcalinas) presentes no material, principalmente carbonatos, óxidos e hidróxidos de cálcio e magnésio.</p>
+<p>Por convenção, o Poder de Neutralização é expresso como porcentagem equivalente de carbonato de cálcio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math>). Assim, considera-se que um carbonato de cálcio quimicamente puro apresenta:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">N</mi><mo mathvariant="normal">=</mo><mn mathvariant="normal">100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\mathrm{PN = 100\%}</annotation></semantics></math></p>
+<p>Materiais com menor teor de compostos neutralizantes apresentam valores inferiores a esse limite, enquanto misturas contendo impurezas inertes também reduzem o valor do PN.</p>
+</section>
+<section id="retrotitulação" class="level3">
+<h3 class="anchored" data-anchor-id="retrotitulação">Retrotitulação</h3>
+<p>Nesta prática emprega-se a técnica de <strong>retrotitulação</strong> (ou <strong>titulação de retorno</strong>), um procedimento utilizado quando não é conveniente realizar a titulação direta do analito.</p>
+<p>Inicialmente adiciona-se um excesso conhecido de solução padronizada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> à amostra de calcário. Após a reação completa, determina-se, por titulação com solução padronizada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math>, apenas a quantidade de ácido que permaneceu em excesso.</p>
+<p>A diferença entre a quantidade de ácido inicialmente adicionada e a quantidade remanescente corresponde exatamente ao ácido consumido pelo calcário durante a reação de neutralização.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Princípio da retrotitulação">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Princípio da retrotitulação
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Na retrotitulação determina-se experimentalmente o <strong>excesso de reagente</strong> após sua reação com o analito. A quantidade efetivamente consumida é obtida por diferença.</p>
+</div>
+</div>
+</section>
+<section id="reações-envolvidas" class="level3">
+<h3 class="anchored" data-anchor-id="reações-envolvidas">Reações envolvidas</h3>
+<p>A principal reação responsável pela neutralização ocorre entre o carbonato de cálcio e o ácido clorídrico:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">3</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">s</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mn>2</mn><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>→</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">g</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><msub><mi mathvariant="normal">O</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">l</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3(s)}} + 2\mathrm{HCl_{(aq)}} \longrightarrow \mathrm{CaCl_{2(aq)}} + \mathrm{CO_{2(g)}} + \mathrm{H_2O_{(l)}}</annotation></semantics></math></p>
+<p>Após essa etapa, o ácido que permaneceu em excesso é determinado por titulação com hidróxido de potássio:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><msub><mi mathvariant="normal">H</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>→</mo><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><msub><mi mathvariant="normal">O</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">l</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow></mrow><annotation encoding="application/x-tex">\mathrm{HCl_{(aq)}} + \mathrm{KOH_{(aq)}} \longrightarrow \mathrm{KCl_{(aq)}} + \mathrm{H_2O_{(l)}}</annotation></semantics></math></p>
+<p>Como essa segunda reação ocorre na proporção molar 1:1, a quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> consumida é igual à quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> remanescente na solução.</p>
+</section>
+<section id="equivalente-em-carbonato-de-cálcio" class="level3">
+<h3 class="anchored" data-anchor-id="equivalente-em-carbonato-de-cálcio">Equivalente em carbonato de cálcio</h3>
+<p>Embora o calcário agrícola possa conter diferentes compostos neutralizantes, como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{MgCO_3}</annotation></semantics></math>, o resultado da análise é expresso em equivalente de carbonato de cálcio.</p>
+<p>Essa padronização permite comparar diretamente diferentes corretivos agrícolas utilizando uma única escala de referência.</p>
+</section>
+<section id="interpretação-do-poder-de-neutralização" class="level3">
+<h3 class="anchored" data-anchor-id="interpretação-do-poder-de-neutralização">Interpretação do Poder de Neutralização</h3>
+<p>Quanto maior o valor do PN, maior é a capacidade do corretivo em neutralizar a acidez do solo para uma mesma massa aplicada.</p>
+<p>Na prática, corretivos com elevado Poder de Neutralização necessitam de menor quantidade para produzir o mesmo efeito corretivo quando comparados a materiais com baixo PN.</p>
+<p>Entretanto, a eficiência agronômica de um calcário não depende apenas do Poder de Neutralização. A granulometria do material, expressa pela Reatividade (RE), também influencia a velocidade com que ocorre a neutralização da acidez do solo. A combinação entre PN e RE origina o Poder Relativo de Neutralização Total (PRNT), parâmetro amplamente utilizado para a recomendação de corretivos agrícolas.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>PRNT
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>PRNT — Poder Relativo de Neutralização Total</strong></p>
+<p>PRNT é o índice mais importante para avaliar a <strong>qualidade</strong> e a <strong>eficiência real</strong> de um calcário agrícola no solo a curto prazo (geralmente em um período de até 3 meses).</p>
+<p>Enquanto o <strong>PN (Poder de Neutralização)</strong> diz a capacidade química teórica que o calcário tem de neutralizar a acidez (baseado na sua composição química), o <strong>PRNT</strong> nos diz o quanto desse poder realmente vai funcionar rápido, dependendo de quão finas são as partículas do produto.</p>
+<p>A fórmula oficial para o cálculo é:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>R</mi><mi>N</mi><mi>T</mi><mo>=</mo><mfrac><mrow><mi>P</mi><mi>N</mi><mo>×</mo><mi>E</mi><mi>R</mi></mrow><mn>100</mn></mfrac></mrow><annotation encoding="application/x-tex">PRNT = \frac{PN \times ER}{100}</annotation></semantics></math></p>
+<p>Onde:</p>
+<ul>
+<li><strong>PN:</strong> Poder de Neutralização (obtido via titulação em laboratório).</li>
+<li><strong>ER:</strong> Eficiência Relativa (ou reatividade das partículas baseado na granulometria).</li>
+</ul>
+<hr>
+<p><strong>O que é a Eficiência Relativa (ER)?</strong></p>
+<p>Nem todo calcário jogado no solo reage ao mesmo tempo. Pedras grandes de calcário demoram anos para se dissolver, enquanto o “pó” reage quase imediatamente. Para medir isso, o calcário seco é passado por um conjunto de peneiras com diferentes tamanhos de malha (ABNT de 10, 20 e 50).</p>
+<p>A legislação brasileira determina que a eficiência de cada fração granulométrica é calculada da seguinte forma:</p>
+<ul>
+<li><strong>Partículas que ficam retidas na Peneira 10</strong> (maiores que 2,00 mm): <strong>0% de eficiência</strong> (não reagem a curto prazo).</li>
+<li><strong>Partículas que passam na Peneira 10 e ficam na Peneira 20</strong> (entre 2,00 mm e 0,84 mm): <strong>20% de eficiência</strong>.</li>
+<li><strong>Partículas que passam na Peneira 20 e ficam na Peneira 50</strong> (entre 0,84 mm e 0,30 mm): <strong>60% de eficiência</strong>.</li>
+<li><strong>Partículas que passam direto pela Peneira 50</strong> (menores que 0,30 mm, o “pó fino”): <strong>100% de eficiência</strong> (reagem totalmente e rápido).</li>
+</ul>
+<p>A <strong>ER</strong> total é a soma das porcentagens de massa de calcário que ficaram em cada faixa, multiplicadas pelos seus respectivos valores de eficiência (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">0,20</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>60</mn></mrow><annotation encoding="application/x-tex">0,60</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">1,00</annotation></semantics></math>).</p>
+<hr>
+<p><strong>Por que o PRNT é tão importante na prática?</strong></p>
+<ol type="1">
+<li><strong>Custo-Benefício:</strong> Um calcário com PN alto (ex: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">100\%</annotation></semantics></math>) mas moído de forma grosseira pode ter uma ER de apenas <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">50\%</annotation></semantics></math>. O PRNT dele será de apenas <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">50\%</annotation></semantics></math>. Significa que você estará pagando por um produto que vai demorar muito para fazer efeito.</li>
+<li><strong>Cálculo de Calagem:</strong> Quando o engenheiro agrônomo calcula a quantidade de calcário que o solo precisa (Necessidade de Calagem - NC), a fórmula exige o PRNT do produto que você vai comprar. Se o solo precisa de 2 toneladas de “calcário perfeito” (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>R</mi><mi>N</mi><mi>T</mi><mo>=</mo><mn>100</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">PRNT = 100\%</annotation></semantics></math>) e você compra um produto com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>R</mi><mi>N</mi><mi>T</mi><mo>=</mo><mn>50</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">PRNT = 50\%</annotation></semantics></math>, você precisará aplicar o dobro (4 toneladas) para obter o mesmo resultado prático.</li>
+</ol>
+<hr>
+<p>Pense no <strong>PN</strong> como a força teórica do calcário e na <strong>ER</strong> (granulometria) como a velocidade de liberação dessa força. O <strong>PRNT</strong> é o cruzamento dessas duas variáveis.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bibliografia" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<ol type="1">
+<li><p>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J.; CROUCH, S. R. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2015.</p></li>
+<li><p>HARRIS, D. C. <strong>Análise Química Quantitativa</strong>. 9. ed.&nbsp;Rio de Janeiro: LTC, 2017.</p></li>
+<li><p>TEIXEIRA, P. C.; DONAGEMMA, G. K.; FONTANA, A.; TEIXEIRA, W. G. (Ed.). <strong>Manual de Métodos de Análise de Solo</strong>. 3. ed.&nbsp;rev. e ampl. Brasília, DF: Embrapa, 2017. 574 p.&nbsp;ISBN 978-85-7035-771-7. Disponível em: <a href="http://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1085209" class="uri">http://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1085209</a>. Acesso em: 9 jul. 2026.</p></li>
+<li><p>COSTA, M. M. M. N. <strong>Acidez do Solo e Calagem</strong>. Campina Grande: Embrapa Algodão, 2025. Disponível em: <a href="http://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1176428" class="uri">http://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1176428</a>. Acesso em: 9 jul. 2026.</p></li>
+</ol>
+</section>
+<section id="guia-do-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
+<p>Este guia apresenta o procedimento para determinação do <strong>Poder de Neutralização (PN)</strong> do calcário a partir dos dados experimentais obtidos na retrotitulação.</p>
+<p>Antes de iniciar os cálculos, organize os seguintes dados experimentais:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grandeza</th>
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: center;">Unidade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Massa da amostra</td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi></mrow></msub><annotation encoding="application/x-tex">m_{\mathrm{amostra}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">g</mi><annotation encoding="application/x-tex">\mathrm{g}</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Concentração do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><annotation encoding="application/x-tex">C_{\mathrm{HCl}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> adicionado</td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><annotation encoding="application/x-tex">V_{\mathrm{HCl}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">L</mi><annotation encoding="application/x-tex">\mathrm{L}</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Concentração do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub><annotation encoding="application/x-tex">C_{\mathrm{KOH}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Volume gasto de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub><annotation encoding="application/x-tex">V_{\mathrm{KOH}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">L</mi><annotation encoding="application/x-tex">\mathrm{L}</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled" title="Importante">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Todos os volumes devem ser utilizados em <strong>litros (L)</strong> e as concentrações devem corresponder às soluções <strong>padronizadas</strong>, e não aos valores nominais preparados no laboratório.</p>
+</div>
+</div>
+<hr>
+<p><strong>Passo 1 — Calcular a quantidade de matéria de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> <strong>adicionada</strong></p>
+<p>Determine a quantidade de matéria de ácido inicialmente adicionada à amostra:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mtext mathvariant="normal">,total</mtext></msub><mo>=</mo><msub><mi mathvariant="normal">C</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mo>×</mo><msub><mi mathvariant="normal">V</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{n_{HCl}}_{\text{,total}} = \mathrm{C_{HCl}} \times \mathrm{V_{HCl}}</annotation></semantics></math></p>
+<p><strong>Passo 2 — Calcular a quantidade de matéria de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> <strong>consumida</strong></p>
+<p>A quantidade de matéria de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> utilizada na titulação corresponde exatamente ao excesso de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> presente na alíquota.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="normal">C</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub><mo>×</mo><msub><mi mathvariant="normal">V</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{n_{KOH}} = \mathrm{C_{KOH}} \times \mathrm{V_{KOH}}</annotation></semantics></math></p>
+<p>Como a reação entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> ocorre na proporção molar <strong>1:1</strong>, então:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mtext mathvariant="normal">,alíquota</mtext></msub><mo>=</mo><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{n_{HCl}}_{\text{,alíquota}} = \mathrm{n_{KOH}}</annotation></semantics></math></p>
+<p><strong>Passo 3 — Calcular o excesso total de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math></p>
+<p>A titulação foi realizada utilizando uma alíquota de 25,00 mL retirada de um balão volumétrico de 100,00 mL.</p>
+<p>Logo,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>100</mn><mo>,</mo><mn>00</mn></mrow><mrow><mn>25</mn><mo>,</mo><mn>00</mn></mrow></mfrac><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">\frac{100,00}{25,00}=4</annotation></semantics></math></p>
+<p>Assim,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mtext mathvariant="normal">,excesso</mtext></msub><mo>=</mo><mn>4</mn><mo>×</mo><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{n_{HCl}}_{\text{,excesso}} = 4 \times \mathrm{n_{KOH}}</annotation></semantics></math></p>
+<p><strong>Passo 4 — Calcular a quantidade de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> <strong>consumida pelo calcário</strong></p>
+<p>Subtraia o excesso de ácido da quantidade inicialmente adicionada.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mtext mathvariant="normal">,reagiu</mtext></msub><mo>=</mo><msub><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mtext mathvariant="normal">,total</mtext></msub><mo>−</mo><msub><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mtext mathvariant="normal">,excesso</mtext></msub></mrow><annotation encoding="application/x-tex">\mathrm{n_{HCl}}_{\text{,reagiu}} = \mathrm{n_{HCl}}_{\text{,total}} - \mathrm{n_{HCl}}_{\text{,excesso}}</annotation></semantics></math></p>
+<p><strong>Passo 5 — Calcular a quantidade de matéria equivalente de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math></p>
+<p>A reação química é</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">3</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">s</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mn>2</mn><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>→</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">l</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">q</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mrow><mn mathvariant="normal">2</mn><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">g</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><msub><mi mathvariant="normal">O</mi><mrow><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mi mathvariant="normal">l</mi><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow></msub></mrow></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_{3(s)}}+2\mathrm{HCl_{(aq.)}} \longrightarrow \mathrm{CaCl_{2(aq)}}+\mathrm{CO_{2(g)}}+\mathrm{H_2O_{(l)}}</annotation></semantics></math></p>
+<p>Portanto,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi></mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><mo>↔</mo><mn>2</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi></mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></mrow><annotation encoding="application/x-tex">1 \ \mathrm{mol} \ \mathrm{CaCO_3} \longleftrightarrow 2\ \mathrm{mol} \ \mathrm{HCl}</annotation></semantics></math></p>
+<p>Assim,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow></msub><mo>=</mo><mfrac><msub><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mtext mathvariant="normal">,reagiu</mtext></msub><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\mathrm{n_{CaCO_3}} = \frac{\mathrm{n_{HCl}}_{\text{,reagiu}}}{2}</annotation></semantics></math></p>
+<p><strong>Passo 6 — Calcular a massa equivalente de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math></p>
+<p>Utilizando</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">M</mi><mi mathvariant="normal">.</mi><mo stretchy="false" form="prefix" mathvariant="normal">(</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><mo stretchy="false" form="postfix" mathvariant="normal">)</mo></mrow><mo>=</mo><mn>100</mn><mo>,</mo><mn>09</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\mathrm{M.M.(\mathrm{CaCO_3})} = 100,09 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math></p>
+<p>obtém-se</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">m</mi><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow></msub><mo>=</mo><msub><mi mathvariant="normal">n</mi><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow></msub><mo>×</mo><mn>100</mn><mo>,</mo><mn>09</mn></mrow><annotation encoding="application/x-tex">\mathrm{m_{CaCO_3}} = \mathrm{n_{CaCO_3}} \times 100,09</annotation></semantics></math></p>
+<p><strong>Passo 7 — Calcular o Poder de Neutralização</strong></p>
+<p>O Poder de Neutralização é dado por</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">N</mi></mrow><mo>=</mo><mfrac><msub><mi mathvariant="normal">m</mi><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow></msub><msub><mi mathvariant="normal">m</mi><mtext mathvariant="normal">amostra</mtext></msub></mfrac><mo>×</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\mathrm{PN} = \frac{ \mathrm{m_{CaCO_3}} } { \mathrm{m}_{\text{amostra}} } \times100</annotation></semantics></math></p>
+<p>O resultado é expresso em <strong>porcentagem equivalente de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math>.</p>
+<hr>
+<p><strong>Equação Consolidada</strong></p>
+<p>Substituindo todas as etapas anteriores, obtém-se uma única expressão para o cálculo do Poder de Neutralização.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">N</mi></mrow><mo>=</mo><mfrac><mrow><mo minsize="300%" maxsize="300%" stretchy="true" form="prefix">[</mo><mo minsize="180%" maxsize="180%" stretchy="true" form="prefix">(</mo><msub><mi mathvariant="normal">C</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mo>×</mo><msub><mi mathvariant="normal">V</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow></msub><mo minsize="180%" maxsize="180%" stretchy="true" form="postfix">)</mo><mo>−</mo><mn>4</mn><mo>×</mo><mo minsize="180%" maxsize="180%" stretchy="true" form="prefix">(</mo><msub><mi mathvariant="normal">C</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub><mo>×</mo><msub><mi mathvariant="normal">V</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub><mo minsize="180%" maxsize="180%" stretchy="true" form="postfix">)</mo><mo minsize="300%" maxsize="300%" stretchy="true" form="postfix">]</mo><mo>×</mo><mo minsize="180%" maxsize="180%" stretchy="true" form="prefix">(</mo><mn>100</mn><mo>,</mo><mn>09</mn><mi minsize="180%" maxsize="180%" stretchy="true">/</mi><mn>2</mn><mo minsize="180%" maxsize="180%" stretchy="true" form="postfix">)</mo></mrow><msub><mi mathvariant="normal">m</mi><mtext mathvariant="normal">amostra</mtext></msub></mfrac><mo>×</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\mathrm{PN} = \frac{ \Bigg[
+\Big( \mathrm{C_{HCl}} \times \mathrm{V_{HCl}} \Big) -
+4 \times \Big(\mathrm{C_{KOH}} \times \mathrm{V_{KOH}} \Big)
+ \Bigg] \times \Big( 100,09 \Big/ 2 \Big) } { \mathrm{m_{\text{amostra}}} } \times 100</annotation></semantics></math></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Resumo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Resumo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A lógica da retrotitulação consiste em determinar <strong>quanto ácido permaneceu em excesso</strong>. A quantidade de ácido efetivamente consumida pelo calcário é obtida por diferença, permitindo calcular a massa equivalente de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math> e, consequentemente, o Poder de Neutralização da amostra.</p>
+</div>
+</div>
+<section id="fluxograma-do-cálculo-do-poder-de-neutralização-pn" class="level3">
+<h3 class="anchored" data-anchor-id="fluxograma-do-cálculo-do-poder-de-neutralização-pn">Fluxograma do Cálculo do Poder de Neutralização (PN)</h3>
+<p>O fluxograma resume a sequência lógica de cálculos utilizada para determinar o Poder de Neutralização (PN) da amostra, desde a quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> adicionada até a obtenção do valor final em porcentagem equivalente de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math>.</p>
+<div id="fluxograma-pn" class="center fluxograma-adaptavel quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fluxograma figure">
+<div aria-describedby="fluxograma-pn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg width="100%" style="height: auto;" viewbox="0 0 1280 1350" version="1.1" id="svg65" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<style id="style1">
+  .graph-bg       { fill: var(--bg-graph, #ffffff); }
+  .node-bg-root   { fill: var(--bg-node-root, #e5e5e5); }
+  .node-bg        { fill: var(--bg-node, #f0f0f0); }
+  .stroke-color   { stroke: var(--stroke-main, #000000); stroke-width: 2px; }
+  .text-color     { fill: var(--text-main, #000000); }
+  
+  .edge-line      { stroke: var(--stroke-main, #000000); stroke-width: 3px; }
+  .edge-arrow     { fill: var(--stroke-main, #000000); stroke: var(--stroke-main, #000000); }
+
+  .formula-text {
+    font-family: "Latin Modern Math", "Cambria Math", "Helvetica", sans-Serif;
+    font-size: 24px;
+    fill: var(--text-main, #000000);
+    text-anchor: middle;
+  }
+  .subscript { font-size: 16px; }
+</style>
+  <g id="graph0">
+    <title id="title1">PN</title>
+    <polygon class="graph-bg" stroke="none" points="0,0 1280,0 1280,1350 0,1350" id="polygon1"></polygon>
+    <!-- ROOT -->
+    <g id="node1">
+      <polygon class="node-bg-root" stroke="none" points="354,30 896,30 896,80 354,80" id="polygon2"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="62" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text2">Cálculo do Poder de Neutralização (PN)</text>
+      <polygon fill="none" class="stroke-color" points="354,30 896,30 896,80 354,80" id="polygon3"></polygon>
+    </g>
+    <!-- SETA ROOT -> P1 -->
+    <path fill="none" class="edge-line" d="M625,80 L625,120" id="path3"></path>
+    <polygon class="edge-arrow" points="620,120 625,130 630,120" id="polygon4"></polygon>
+    <!-- P1 -->
+    <g id="node2">
+      <polygon class="node-bg" stroke="none" points="408,130 842,130 842,250 408,250" id="polygon5"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="170" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text5">Passo 1 — HCl total adicionado</text>
+      <line x1="408" y1="200" x2="842" y2="200" class="stroke-color" id="line5"></line>
+      <!-- Formula P1 -->
+      <text class="formula-text" x="625" y="232" id="text9">n<tspan class="subscript" dy="6" id="tspan5">HCl,total</tspan><tspan dy="-6" id="tspan6"> = C</tspan><tspan class="subscript" dy="6" id="tspan7">HCl</tspan><tspan dy="-6" id="tspan8"> × V</tspan><tspan class="subscript" dy="6" id="tspan9">HCl</tspan></text>
+      <polygon fill="none" class="stroke-color" points="408,130 842,130 842,250 408,250" id="polygon9"></polygon>
+    </g>
+    <!-- SETA P1 -> P2 -->
+    <path fill="none" class="edge-line" d="M625,250 L625,290" id="path9"></path>
+    <polygon class="edge-arrow" points="620,290 625,300 630,290" id="polygon10"></polygon>
+    <!-- P2 -->
+    <g id="node3">
+      <polygon class="node-bg" stroke="none" points="275,300 975,300 975,440 275,440" id="polygon11"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="340" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text11">Passo 2 — KOH consumido</text>
+      <line x1="275" y1="370" x2="975" y2="370" class="stroke-color" id="line11"></line>
+      <line x1="625" y1="370" x2="625" y2="440" class="stroke-color" id="line12"></line>
+      <!-- Formula P2 Esquerda -->
+      <text class="formula-text" x="450" y="412" id="text16">n<tspan class="subscript" dy="6" id="tspan12">KOH</tspan><tspan dy="-6" id="tspan13"> = C</tspan><tspan class="subscript" dy="6" id="tspan14">KOH</tspan><tspan dy="-6" id="tspan15"> × V</tspan><tspan class="subscript" dy="6" id="tspan16">KOH</tspan></text>
+      <!-- Formula P2 Direita -->
+      <text class="formula-text" x="800" y="402" id="text19">n<tspan class="subscript" dy="6" id="tspan17">HCl,alíquota</tspan><tspan dy="-6" id="tspan18"> = n</tspan><tspan class="subscript" dy="6" id="tspan19">KOH</tspan></text>
+      <text class="text-color" space="preserve" text-anchor="middle" x="800" y="428" font-family="Helvetica,sans-Serif" font-size="18.00" id="text20">Relação molar 1:1</text>
+      <polygon fill="none" class="stroke-color" points="275,300 975,300 975,440 275,440" id="polygon20"></polygon>
+    </g>
+    <!-- SETA P2 -> P3 -->
+    <path fill="none" class="edge-line" d="M625,440 L625,480" id="path20"></path>
+    <polygon class="edge-arrow" points="620,480 625,490 630,480" id="polygon21"></polygon>
+    <!-- P3 -->
+    <g id="node4">
+      <polygon class="node-bg" stroke="none" points="327,490 924,490 924,610 327,610" id="polygon22"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="530" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text22">Passo 3 — HCl em excesso</text>
+      <line x1="327" y1="560" x2="924" y2="560" class="stroke-color" id="line22"></line>
+      <line x1="572" y1="560" x2="572" y2="610" class="stroke-color" id="line23"></line>
+      <!-- Texto Puro Esquerda -->
+      <text class="formula-text" x="450" y="592" id="text23">100,00 / 25,00 = 4</text>
+      <!-- Formula P3 Direita -->
+      <text class="formula-text" x="748" y="592" id="text25">n<tspan class="subscript" dy="6" id="tspan23">HCl,excesso</tspan><tspan dy="-6" id="tspan24"> = 4 × n</tspan><tspan class="subscript" dy="6" id="tspan25">KOH</tspan></text>
+      <polygon fill="none" class="stroke-color" points="327,490 924,490 924,610 327,610" id="polygon25"></polygon>
+    </g>
+    <!-- SETA P3 -> P4 -->
+    <path fill="none" class="edge-line" d="M625,610 L625,650" id="path25"></path>
+    <polygon class="edge-arrow" points="620,650 625,660 630,650" id="polygon26"></polygon>
+    <!-- P4 -->
+    <g id="node5">
+      <polygon class="node-bg" stroke="none" points="331,660 920,660 920,780 331,780" id="polygon27"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="700" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text27">Passo 4 — HCl consumido</text>
+      <line x1="331" y1="730" x2="920" y2="730" class="stroke-color" id="line27"></line>
+      <!-- Formula P4 -->
+      <text class="formula-text" x="625" y="762" id="text31">n<tspan class="subscript" dy="6" id="tspan27">HCl,reagiu</tspan><tspan dy="-6" id="tspan28"> = n</tspan><tspan class="subscript" dy="6" id="tspan29">HCl,total</tspan><tspan dy="-6" id="tspan30"> − n</tspan><tspan class="subscript" dy="6" id="tspan31">HCl,excesso</tspan></text>
+      <polygon fill="none" class="stroke-color" points="331,660 920,660 920,780 331,780" id="polygon31"></polygon>
+    </g>
+    <!-- SETA P4 -> P5 -->
+    <path fill="none" class="edge-line" d="M625,780 L625,820" id="path31"></path>
+    <polygon class="edge-arrow" points="620,820 625,830 630,820" id="polygon32"></polygon>
+    <!-- P5 (ALTO E TOTALMENTE LIVRE) -->
+    <g id="node6">
+      <polygon class="node-bg" stroke="none" points="10,830 1270,830 1270,1010 10,1010" id="polygon33"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="870" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text33">Passo 5 — CaCO₃ equivalente</text>
+      <line x1="10" y1="900" x2="1270" y2="900" class="stroke-color" id="line33"></line>
+      <line x1="510" y1="900" x2="510" y2="1010" class="stroke-color" id="line34"></line>
+      <line x1="860" y1="900" x2="860" y2="1010" class="stroke-color" id="line35"></line>
+      <!-- Reação Química -->
+      <text class="formula-text" x="260" y="955" id="text42">CaCO<tspan class="subscript" dy="6" id="tspan35">3</tspan><tspan dy="-6" id="tspan36"> + 2 HCl → CaCl</tspan><tspan class="subscript" dy="6" id="tspan37">2</tspan><tspan dy="-6" id="tspan38"> + CO</tspan><tspan class="subscript" dy="6" id="tspan39">2</tspan><tspan dy="-6" id="tspan40"> + H</tspan><tspan class="subscript" dy="6" id="tspan41">2</tspan><tspan dy="-6" id="tspan42">O</tspan></text>
+      <!-- Relação Molar -->
+      <text class="formula-text" x="685" y="955" id="text44">1 mol CaCO<tspan class="subscript" dy="6" id="tspan43">3</tspan><tspan dy="-6" id="tspan44"> ↔ 2 mol HCl</tspan></text>
+      <!-- Fração Nativa Construída Estável -->
+      <text class="formula-text" x="960" y="955" id="text46">n<tspan class="subscript" dy="6" id="tspan45">CaCO3</tspan><tspan dy="-6" id="tspan46"> = </tspan></text>
+      <text class="formula-text" x="1115" y="935" id="text47">n<tspan class="subscript" dy="6" id="tspan47">HCl,reagiu</tspan></text>
+      <line x1="1040" y1="945" x2="1190" y2="945" class="stroke-color" stroke-width="2" id="line47"></line>
+      <text class="formula-text" x="1115" y="980" id="text48">2</text>
+      <polygon fill="none" class="stroke-color" points="10,830 1270,830 1270,1010 10,1010" id="polygon48"></polygon>
+    </g>
+    <!-- SETA P5 -> P6 -->
+    <path fill="none" class="edge-line" d="M625,1010 L625,1050" id="path48"></path>
+    <polygon class="edge-arrow" points="620,1050 625,1060 630,1050" id="polygon49"></polygon>
+    <!-- P6 -->
+    <g id="node7">
+      <polygon class="node-bg" stroke="none" points="206,1060 1045,1060 1045,1180 206,1180" id="polygon50"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="1100" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text50">Passo 6 — Massa equivalente</text>
+      <line x1="206" y1="1130" x2="1045" y2="1130" class="stroke-color" id="line50"></line>
+      <line x1="625" y1="1130" x2="625" y2="1180" class="stroke-color" id="line51"></line>
+      <!-- Massa Molar -->
+      <text class="formula-text" x="415" y="1162" id="text53">M.M.(CaCO<tspan class="subscript" dy="6" id="tspan51">3</tspan><tspan dy="-6" id="tspan52">) = 100,09 g·mol</tspan><tspan class="subscript" dy="-6" id="tspan53">−1</tspan></text>
+      <!-- Massa Calculada -->
+      <text class="formula-text" x="835" y="1162" id="text57">m<tspan class="subscript" dy="6" id="tspan54">CaCO3</tspan><tspan dy="-6" id="tspan55"> = n</tspan><tspan class="subscript" dy="6" id="tspan56">CaCO3</tspan><tspan dy="-6" id="tspan57"> × 100,09</tspan></text>
+      <polygon fill="none" class="stroke-color" points="206,1060 1045,1060 1045,1180 206,1180" id="polygon57"></polygon>
+    </g>
+    <!-- SETA P6 -> P7 -->
+    <path fill="none" class="edge-line" d="M625,1180 L625,1220" id="path57"></path>
+    <polygon class="edge-arrow" points="620,1220 625,1230 630,1220" id="polygon58"></polygon>
+    <!-- P7 -->
+    <g id="node8">
+      <polygon class="node-bg" stroke="none" points="380,1230 870,1230 870,1330 380,1330" id="polygon59"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="1262" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text59">Passo 7 — Poder de Neutralização</text>
+      <line x1="380" y1="1280" x2="870" y2="1280" class="stroke-color" id="line59"></line>
+      <!-- Formula do %PN estruturada com subscritos estáveis -->
+      <text class="formula-text" x="450" y="1310" id="text60">%PN = </text>
+      <text class="formula-text" x="495" y="1310" id="text61">(</text>
+      <text class="formula-text" x="555" y="1298" id="text62">m<tspan class="subscript" dy="5" id="tspan61">CaCO3</tspan></text>
+      <line x1="515" y1="1304" x2="595" y2="1304" class="stroke-color" stroke-width="2" id="line62"></line>
+      <text class="formula-text" x="555" y="1323" style="font-size:20px;" id="text63">m<tspan class="subscript" dy="4" id="tspan62">amostra</tspan></text>
+      <text class="formula-text" x="615" y="1310" dx="15" id="text64">)</text>
+      <text class="formula-text" x="680" y="1310" dx="10" id="text65">× 100</text>
+      <polygon fill="none" class="stroke-color" points="380,1230 870,1230 870,1330 380,1330" id="polygon65"></polygon>
+    </g>
+  </g>
+</svg>
+
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma" id="fluxograma-pn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fluxograma&nbsp;11.1: Sequência de cálculo para determinar o PN do calcário.
+</figcaption>
+</figure>
+</div>
+<!-- Visualizar em: https://dreampuf.github.io/GraphvizOnline/ -->
+<!-- Arquivo: Fluxo_Calculo_do_PN.dot -->
+</section>
+</section>
+<section id="exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
+<ol type="1">
+<li><p>Explique por que a determinação do Poder de Neutralização (PN) é realizada por retrotitulação, em vez de uma titulação direta do calcário.</p></li>
+<li><p>Qual a finalidade de adicionar um excesso conhecido de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> à amostra de calcário?</p></li>
+<li><p>Por que a mistura é aquecida durante alguns minutos antes da filtração?</p></li>
+<li><p>Explique por que é necessário filtrar a suspensão antes da determinação do excesso de ácido.</p></li>
+<li><p>Qual é a função da solução padronizada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> nesta prática?</p></li>
+<li><p>Por que o volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> consumido na titulação permite determinar a quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> que permaneceu em excesso?</p></li>
+<li><p>Considerando duas amostras analisadas nas mesmas condições experimentais, uma consumiu maior volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH}</annotation></semantics></math> durante a retrotitulação. O que isso indica sobre o Poder de Neutralização dessa amostra? Justifique.</p></li>
+<li><p>O que representa um valor de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">N</mi></mrow><mo>=</mo><mn>100</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\mathrm{PN}=100\%</annotation></semantics></math>? É possível obter valores superiores a esse? Explique.</p></li>
+<li><p>Cite pelo menos três fatores experimentais que podem introduzir erros na determinação do Poder de Neutralização.</p></li>
+<li><p>Explique por que o Poder de Neutralização é expresso em equivalente de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math>, independentemente da composição real do corretivo agrícola.</p></li>
+<li><p>Quais seriam as consequências de interromper a reação entre o calcário e o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> antes que ela fosse concluída?</p></li>
+<li><p>De que forma a determinação do Poder de Neutralização auxilia na escolha de um corretivo agrícola para aplicação no solo?</p></li>
+</ol>
+<hr>
+<ol start="13" type="1">
+<li><p>Uma amostra de calcário em pó (que deve ser majoritariamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CaCO_3}</annotation></semantics></math>) contendo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>50</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">0,50 \, \text{g}</annotation></semantics></math> foi solubilizada com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10,0 \, \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mspace width="0.167em"></mspace><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{HCl} \, 1,0 \, \text{mol·L}^{-1}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>c</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>932</mn></mrow><annotation encoding="application/x-tex">fc = 0,932</annotation></semantics></math>.</p>
+<p>O excesso de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><annotation encoding="application/x-tex">\mathrm{HCl}</annotation></semantics></math> foi titulado com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>100</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{KOH} \, 0,100 \, \text{mol·L}^{-1}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>c</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>956</mn></mrow><annotation encoding="application/x-tex">fc = 0,956</annotation></semantics></math>, sendo consumidos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>,</mo><mn>2</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">11,2 \, \text{mL}</annotation></semantics></math>.</p>
+<ol type="a">
+<li><p>Escreva as equações químicas envolvidas no método de análise.</p></li>
+<li><p>Calcule o <strong>PN (Poder de Neutralização)</strong> do calcário.</p></li>
+<li><p>Calcule o teor de cálcio na amostra, em <strong>% (m/m)</strong>, considerando que todo o íon carbonato <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msubsup><mi>O</mi><mn>3</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">CO_3^{2-}</annotation></semantics></math> está associado ao cálcio.</p></li>
+</ol></li>
+</ol>
+<hr>
+<ol start="14" type="1">
+<li><p>Uma amostra de cloreto de amônio, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>H</mi><mn>4</mn></msub><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">NH_4Cl</annotation></semantics></math>, foi submetida à técnica de destilação.</p>
+<p>Para isso, foram pesados <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>250</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">0,250 \, \text{g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>H</mi><mn>4</mn></msub><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">NH_4Cl</annotation></semantics></math>, os quais foram dissolvidos em água destilada. Em seguida, a solução foi aquecida com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>a</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">NaOH</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">30\%</annotation></semantics></math>, promovendo a conversão do íon amônio em amônia (Reação I).</p>
+<p>A amônia desprendida foi recebida em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mo>,</mo><mn>0</mn><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">50,0 \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>100</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{HCl} \, 0,100 \, \text{mol·L}^{-1}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>c</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>963</mn></mrow><annotation encoding="application/x-tex">fc = 0,963</annotation></semantics></math> (Reação II).</p>
+<p>O excesso de ácido foi titulado (Reação III) com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mo>,</mo><mn>0</mn><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">20,0 \text{mL}</annotation></semantics></math> de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>a</mi><mi>O</mi><mi>H</mi><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>100</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">NaOH \, 0,100 \, \text{mol·L}^{-1}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>c</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>992</mn></mrow><annotation encoding="application/x-tex">fc = 0,992</annotation></semantics></math>.</p>
+<ol type="a">
+<li><p>Escreva as três reações químicas envolvidas no procedimento.</p></li>
+<li><p>Determine a porcentagem de nitrogênio na amostra, em <strong>% (m/m)</strong>.</p></li>
+<li><p>Calcule a pureza do sal analisado.</p></li>
+</ol></li>
+</ol>
+<hr>
+<ol start="15" type="1">
+<li><p>Uma amostra de fertilizante contendo cloreto de amônio, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>H</mi><mn>4</mn></msub><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">NH_4Cl</annotation></semantics></math>, foi analisada pelo método de destilação.</p>
+<p>Foram pesados <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>630</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">2,630 \, \text{g}</annotation></semantics></math> da amostra, que foram dissolvidos em pequena quantidade de água e transferidos quantitativamente para um balão volumétrico de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">50,0 \, \text{mL}</annotation></semantics></math>, completando-se o volume com água destilada.</p>
+<p>Uma alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">5,00 \, \text{mL}</annotation></semantics></math> dessa solução foi transferida para um frasco de reação, juntamente com: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><mspace width="0.167em"></mspace><mn>30</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\mathrm{KOH} \, 30\%</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>,</mo><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 , \text{mL}</annotation></semantics></math> de água.</p>
+<p>A amônia liberada, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>H</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">NH_3</annotation></semantics></math>, foi coletada em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mo>,</mo><mn>00</mn><mo>,</mo><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">50,00 , \text{mL}</annotation></semantics></math> de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>1062</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{HCl} \, 0,1062 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p>
+<p>O excesso de ácido foi titulado com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>a</mi><mi>O</mi><mi>H</mi><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>0925</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">NaOH \, 0,0925 \, \text{mol·L}^{-1}</annotation></semantics></math>, sendo consumidos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>,</mo><mn>89</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">11,89 \, \text{mL}</annotation></semantics></math>.</p>
+<p>Com esses dados, determine a concentração de nitrogênio na amostra, expressa em <strong>% (m/m)</strong> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>.</p></li>
+</ol>
+<hr>
+</section>
+<section id="complemento-com-ia" class="level2">
+<h2 class="anchored" data-anchor-id="complemento-com-ia">Complemento com IA</h2>
+<!-- Abriu a TIP da IA -->
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="➘">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>➘
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div id="complemIA" class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Tópico Extra</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">IA Responde</a></li></ul>
+<div id="complemIA" class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Explique de que forma cada um dos fatores abaixo contribui para a acidificação do solo.</p>
+<!-- -->
+<ol type="1">
+<li>intemperismo;</li>
+<li>remoção de bases;</li>
+<li>hidrólise de íons;</li>
+<li>decomposição de matéria orgânica e</li>
+<li>uso de fertilizantes amoniacais</li>
+</ol>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<hr>
+<p><strong>Principais causas da acidez do solo</strong></p>
+<p>A acidez do solo resulta de diversos processos naturais e antrópicos que promovem o aumento da concentração de íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math> na solução do solo ou a ocupação dos sítios de troca por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msup><mi>l</mi><mrow><mn>3</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Al^{3+}</annotation></semantics></math>. A seguir, são apresentados os principais fatores responsáveis pela acidificação dos solos.</p>
+<hr>
+<p><em>1. Intemperismo</em></p>
+<p>O <strong>intemperismo</strong> é o conjunto de processos físicos, químicos e biológicos responsáveis pela alteração e decomposição das rochas, originando o solo.</p>
+<p>Durante o <strong>intemperismo químico</strong>, minerais como <a href="https://pt.wikipedia.org/wiki/Feldspato">feldspatos</a>, <a href="https://pt.wikipedia.org/wiki/Mica">micas</a> e <a href="https://pt.wikipedia.org/wiki/Anfibolito">anfibolitos</a> sofrem reações de <a href="https://pt.wikipedia.org/wiki/Hidr%C3%B3lise">hidrólise</a> e <a href="https://pt.wikipedia.org/wiki/Dissolu%C3%A7%C3%A3o">dissolução</a>, liberando cátions básicos, como: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><msup><mi mathvariant="normal">a</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Ca^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><msup><mi mathvariant="normal">g</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Mg^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">K</mi><mo mathvariant="normal">+</mo></msup><annotation encoding="application/x-tex">\mathrm{K^{+}}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msup><mi>a</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">Na^{+}</annotation></semantics></math>.</p>
+<p>Em regiões de elevada pluviosidade, como grande parte do território brasileiro, esses cátions são gradualmente removidos pela água da chuva (lixiviação). Permanecem no solo principalmente minerais ricos em alumínio e ferro, como <a href="https://pt.wikipedia.org/wiki/Caulinita">caulinita</a>, <a href="https://pt.wikipedia.org/wiki/Gibbsita">gibbsita</a>, <a href="https://pt.wikipedia.org/wiki/Goethita">goethita</a> e <a href="https://pt.wikipedia.org/wiki/Hematita">hematita</a>, que conferem caráter naturalmente mais ácido ao solo.</p>
+<p>Assim, quanto mais antigo e intemperizado for um solo, maior tende a ser sua acidez natural.<br>
+</p>
+<ul>
+<li>📌 Em síntese:
+<ul>
+<li>As rochas sofrem alteração química;</li>
+<li>Os minerais liberam cátions básicos;</li>
+<li>Esses cátions são lixiviados;</li>
+<li>Permanecem minerais ricos em alumínio e ferro;</li>
+<li>O solo torna-se progressivamente mais ácido.</li>
+</ul></li>
+</ul>
+<hr>
+<p><em>2. Remoção de bases</em></p>
+<p>As chamadas <strong>bases trocáveis</strong> correspondem principalmente aos cátions: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><msup><mi mathvariant="normal">a</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Ca^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><msup><mi mathvariant="normal">g</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Mg^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">K</mi><mo mathvariant="normal">+</mo></msup><annotation encoding="application/x-tex">\mathrm{K^{+}}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msup><mi>a</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">Na^{+}</annotation></semantics></math>. Esses íons ocupam os sítios negativos existentes na argila e na matéria orgânica (complexo de troca de cátions). Sempre que essas bases são removidas por <strong>lixiviação</strong>, <strong>colheita das culturas</strong> e <a href="https://pt.wikipedia.org/wiki/Eros%C3%A3o_do_solo"><strong>erosão</strong></a>, os locais anteriormente ocupados por elas passam a ser preenchidos principalmente por: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msup><mi>l</mi><mrow><mi>+</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">Al^{+3}</annotation></semantics></math>. Como consequência, aumenta a acidez do solo.</p>
+<p>Durante o cultivo, uma cultura agrícola absorve grandes quantidades de cálcio para seu desenvolvimento. Quando a colheita é retirada da área, esse cálcio deixa definitivamente o sistema. Caso não seja reposto por meio da calagem ou da adubação, o solo torna-se gradualmente mais ácido.</p>
+<hr>
+<p><em>3. Hidrólise por íons</em></p>
+<p>Este é um dos mecanismos químicos mais importantes da acidez dos solos tropicais. Em solos ácidos, minerais contendo alumínio podem sofrer dissolução, liberando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msup><mi>l</mi><mrow><mn>3</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Al^{3+}</annotation></semantics></math>.</p>
+<p>Esse cátion reage intensamente com a água:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msup><mi>l</mi><mrow><mn>3</mn><mo>+</mo></mrow></msup><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow><mo>⇌</mo><mi>A</mi><mi>l</mi><mi>O</mi><msup><mi>H</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><msup><mi>H</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">Al^{3+}+\mathrm{H_2O}
+\rightleftharpoons
+AlOH^{2+}+H^+</annotation></semantics></math></p>
+<p>A hidrólise continua sucessivamente:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>l</mi><mi>O</mi><msup><mi>H</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow><mo>⇌</mo><mi>A</mi><mi>l</mi><mo stretchy="false" form="prefix">(</mo><mi>O</mi><mi>H</mi><msubsup><mo stretchy="false" form="postfix">)</mo><mn>2</mn><mo>+</mo></msubsup><mo>+</mo><msup><mi>H</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">AlOH^{2+}+\mathrm{H_2O}
+\rightleftharpoons
+Al(OH)_2^{+}+H^+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>l</mi><mo stretchy="false" form="prefix">(</mo><mi>O</mi><mi>H</mi><msubsup><mo stretchy="false" form="postfix">)</mo><mn>2</mn><mo>+</mo></msubsup><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow><mo>⇌</mo><mi>A</mi><mi>l</mi><mo stretchy="false" form="prefix">(</mo><mi>O</mi><mi>H</mi><msub><mo stretchy="false" form="postfix">)</mo><mn>3</mn></msub><mo>+</mo><msup><mi>H</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">Al(OH)_2^{+}+\mathrm{H_2O}
+\rightleftharpoons
+Al(OH)_3+H^+</annotation></semantics></math></p>
+<p>Cada etapa libera novos íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math>, aumentando a acidez da solução do solo.</p>
+<p>Além disso, concentrações elevadas de alumínio são tóxicas para muitas espécies vegetais, prejudicando principalmente o desenvolvimento das raízes.</p>
+<p><br>
+</p>
+<ul>
+<li>📌 O alumínio é, ao mesmo tempo, um dos principais responsáveis pela manutenção da acidez dos solos e um dos maiores limitantes ao desenvolvimento das plantas em solos ácidos.</li>
+</ul>
+<hr>
+<p><em>4. Decomposição da matéria orgânica</em></p>
+<p>A matéria orgânica é continuamente decomposta por bactérias e fungos presentes no solo.</p>
+<p>Durante esse processo são produzidos diversos compostos ácidos, como os ácidos: acético, fórmico, oxálico, húmicos e fúlvicos.</p>
+<p>Esses compostos podem liberar prótons:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>C</mi><mi>O</mi><mi>O</mi><mi>H</mi><mo>⇌</mo><mi>R</mi><mi>C</mi><mi>O</mi><msup><mi>O</mi><mo>−</mo></msup><mo>+</mo><msup><mi>H</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">RCOOH
+\rightleftharpoons
+RCOO^-+H^+</annotation></semantics></math></p>
+<p>Além disso, a respiração dos microrganismos produz dióxido de carbono:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><msub><mi mathvariant="normal">O</mi><mn mathvariant="normal">2</mn></msub></mrow><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow><mo>⇌</mo><msub><mi>H</mi><mn>2</mn></msub><mi>C</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\mathrm{CO_2}+\mathrm{H_2O}
+\rightleftharpoons
+H_2CO_3</annotation></semantics></math></p>
+<p>O ácido carbônico formado sofre dissociação parcial:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>2</mn></msub><mi>C</mi><msub><mi>O</mi><mn>3</mn></msub><mo>⇌</mo><mi>H</mi><mi>C</mi><msubsup><mi>O</mi><mn>3</mn><mo>−</mo></msubsup><mo>+</mo><msup><mi>H</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">H_2CO_3
+\rightleftharpoons
+HCO_3^-+H^+</annotation></semantics></math></p>
+<p>Embora seja um ácido fraco, sua produção contínua contribui para a acidificação natural do solo.</p>
+<hr>
+<p><em>5. Uso de fertilizantes amoniacais</em></p>
+<p>O uso contínuo de fertilizantes contendo nitrogênio amoniacal constitui uma das principais causas da acidificação dos solos agrícolas.</p>
+<p>Entre esses fertilizantes destacam-se: sulfato de amônio, cloreto de amônio, nitrato de amônio e ureia (após sua transformação em amônio).</p>
+<p>No solo, o nitrogênio amoniacal é convertido em nitrato por bactérias nitrificantes.</p>
+<p><br>
+</p>
+<p><em>Primeira etapa (oxidação do amônio)</em></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msubsup><mi>H</mi><mn>4</mn><mo>+</mo></msubsup><mo>+</mo><mfrac><mn>3</mn><mn>2</mn></mfrac><msub><mi>O</mi><mn>2</mn></msub><mo>→</mo><mi>N</mi><msubsup><mi>O</mi><mn>2</mn><mo>−</mo></msubsup><mo>+</mo><mn>2</mn><msup><mi>H</mi><mo>+</mo></msup><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow></mrow><annotation encoding="application/x-tex">NH_4^+
++\frac{3}{2}O_2
+\rightarrow
+NO_2^-+2H^++\mathrm{H_2O}</annotation></semantics></math></p>
+<p><em>Segunda etapa (oxidação do nitrito)</em></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msubsup><mi>O</mi><mn>2</mn><mo>−</mo></msubsup><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>O</mi><mn>2</mn></msub><mo>→</mo><mi>N</mi><msubsup><mi>O</mi><mn>3</mn><mo>−</mo></msubsup></mrow><annotation encoding="application/x-tex">NO_2^-+\frac{1}{2}O_2
+\rightarrow
+NO_3^-</annotation></semantics></math></p>
+<p><em>Equação global</em></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msubsup><mi>H</mi><mn>4</mn><mo>+</mo></msubsup><mo>+</mo><mn>2</mn><msub><mi>O</mi><mn>2</mn></msub><mo>→</mo><mi>N</mi><msubsup><mi>O</mi><mn>3</mn><mo>−</mo></msubsup><mo>+</mo><mn>2</mn><msup><mi>H</mi><mo>+</mo></msup><mo>+</mo><mrow><msub><mi mathvariant="normal">H</mi><mn mathvariant="normal">2</mn></msub><mi mathvariant="normal">O</mi></mrow></mrow><annotation encoding="application/x-tex">NH_4^+
++2O_2
+\rightarrow
+NO_3^-+2H^++\mathrm{H_2O}</annotation></semantics></math></p>
+<p><br>
+</p>
+<p>Observa-se que, para cada mol de amônio convertido em nitrato, são produzidos <strong>dois mols de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math>, reduzindo gradualmente o pH do solo.</p>
+<p>Além disso, o nitrato formado apresenta elevada mobilidade e pode ser lixiviado juntamente com cátions como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><msup><mi mathvariant="normal">a</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Ca^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><msup><mi mathvariant="normal">g</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Mg^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">K</mi><mo mathvariant="normal">+</mo></msup><annotation encoding="application/x-tex">\mathrm{K^{+}}</annotation></semantics></math>, intensificando ainda mais a acidificação.</p>
+<p><br>
+</p>
+<ul>
+<li>📌 A ureia não acidifica diretamente o solo. O efeito acidificante ocorre somente após sua hidrólise, quando o nitrogênio passa à forma de amônio e, posteriormente, é convertido em nitrato durante a nitrificação.</li>
+</ul>
+<hr>
+<p><br>
+</p>
+<p><em>Quadro dos Mecanismos de acidificação</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Fator</th>
+<th style="text-align: left;">Como aumenta a acidez do solo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Intemperismo</strong></td>
+<td style="text-align: left;">Remove lentamente minerais ricos em bases e favorece o acúmulo de minerais ricos em alumínio e ferro.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Remoção de bases</strong></td>
+<td style="text-align: left;">A perda de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><msup><mi mathvariant="normal">a</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Ca^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">M</mi><msup><mi mathvariant="normal">g</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Mg^{2+}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">K</mi><mo mathvariant="normal">+</mo></msup><annotation encoding="application/x-tex">\mathrm{K^{+}}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msup><mi>a</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">Na^{+}</annotation></semantics></math>, deixa os sítios de troca ocupados por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msup><mi>l</mi><mrow><mn>3</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Al^{3+}</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Hidrólise de íons</strong></td>
+<td style="text-align: left;">Principalmente a hidrólise por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msup><mi>l</mi><mrow><mn>3</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Al^{3+}</annotation></semantics></math>, que libera sucessivamente íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Decomposição da matéria orgânica</strong></td>
+<td style="text-align: left;">Produz ácidos orgânicos e ácido carbônico, que liberam <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Fertilizantes amoniacais</strong></td>
+<td style="text-align: left;">A nitrificação do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msubsup><mi>H</mi><mn>4</mn><mo>+</mo></msubsup></mrow><annotation encoding="application/x-tex">NH_4^{+}</annotation></semantics></math> produz diretamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math> e favorece a lixiviação de cátions básicos.</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+</p>
+<p>Na prática, esses mecanismos atuam simultaneamente e frequentemente se reforçam.</p>
+<p>Em um solo tropical cultivado, por exemplo:</p>
+<ul>
+<li>o <strong>intemperismo</strong> remove bases ao longo de milhares de anos;</li>
+<li>a <strong>lixiviação</strong> e a <strong>colheita</strong> aceleram essa perda;</li>
+<li>a <strong>hidrólise do alumínio</strong> mantém baixos valores de pH;</li>
+<li>a <strong>decomposição da matéria orgânica</strong> produz ácidos fracos continuamente;</li>
+<li>a <strong>nitrificação dos fertilizantes amoniacais</strong> gera novos íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math>.</li>
+</ul>
+<p>Como resultado, ocorre uma acidificação progressiva do solo, tornando necessária a aplicação periódica de corretivos agrícolas (calagem), cuja função é neutralizar a acidez, reduzir a atividade do alumínio tóxico e repor cálcio e magnésio ao sistema.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Fechou a TIP da IA -->
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Poder_de_Neutralizacao.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
+</section>
+<section id="simulador-de-testes" class="level2">
+<h2 class="anchored" data-anchor-id="simulador-de-testes">Simulador de Testes</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Questionário
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="qa-simulador" class="qa-simulador">
+    <!-- 1. TELA DE ENTRADA DO CRONÔMETRO -->
+    <div id="start-screen" class="simulador-screen screen-center">
+        <h2 class="start-title anchored">⏱️ Simulado com Tempo Limite</h2>
+
+        <ul class="start-text">
+            <li>Número de questões: <strong id="NumTotalQuest">--</strong></li>
+            <li>Tempo por questão: <strong id="tempo-limite">-- segundos</strong></li>
+            <li>Intervalo pós-questão: <strong id="tempo-intervalo">-- segundos</strong></li>
+            <li>⚠️Tempo esgotado = Questão incorreta</li>
+        </ul>
+
+        <button class="next-btn btn-large" onclick="startQuizWithTimer()">
+            🚀 Iniciar Simulado
+        </button>
+    </div>
+
+    <!-- 2. TELA DO QUIZ -->
+    <div id="quiz-screen" class="simulador-screen" style="display:none;">
+        <div class="config-bar">
+            <label for="qtd-questoes">📝 Número de questões:</label>
+            <div class="select-wrapper">
+                <select id="qtd-questoes" onchange="changeQuestionCount(this.value)">
+                    <option value="3">3 questões</option>
+                    <option value="5">5 questões</option>
+                    <option value="7">7 questões</option>
+                    <option value="10">10 questões</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="timer-container">
+            ⏱️ Tempo restante: <span id="timer-display">15s</span>
+        </div>
+
+        <div class="progress" id="progress-text">Carregando...</div>
+        <div class="question-text" id="question-field">Carregando questão...</div>
+        <div class="options-list" id="options-field"></div>
+        <div class="feedback-box" id="feedback-field"></div>
+        
+        <div class="action-nav">
+            <button class="next-btn" id="next-button" disabled="" onclick="nextQuestion()">
+                Verificar / Próxima
+            </button>
+        </div>
+    </div>
+
+    <!-- 3. TELA DE RESULTADOS -->
+    <div id="results-screen" class="simulador-screen screen-center" style="display:none;">
+        <h2 class="anchored">🎯 Simulado Concluído!</h2>
+        <p>Seu desempenho final foi:</p>
+        <div class="results-score" id="resultado-nota-final">0 / 0</div>
+        <p id="resultado-txt-mensagem" class="results-message"></p>
+        <button class="restart-btn" onclick="restartQuiz()">
+            🔄 Novo Simulado
+        </button>
+    </div>
+</div>
+
+<!-- INJEÇÃO DIRETA DA INICIALIZAÇÃO -->
+<script>
+    // Executa no exato momento em que o HTML termina de ser desenhado
+    (function() {
+        // Valores padrão idênticos aos do seu arquivo JS principal
+        var totalQuestoesPadrao = 5;
+        var tempoLimitePadrao = 45; /* em segundos */
+        var intervaloPadrao = 15; /* em segundos */
+
+        // Se por acaso o arquivo externo simulador_v4.js já tiver carregado e as variáveis globais existirem, ele usa as do arquivo
+        if (typeof totalQuestions !== 'undefined') totalQuestoesPadrao = totalQuestions;
+        if (typeof TEMPO_LIMITE_QUESTAO !== 'undefined') tempoLimitePadrao = TEMPO_LIMITE_QUESTAO;
+        if (typeof INTERVALO_TRANSICAO !== 'undefined') intervaloPadrao = INTERVALO_TRANSICAO;
+
+        // Injeta direto nos IDs da tela inicial
+        var elTotal = document.getElementById("NumTotalQuest");
+        var elLimite = document.getElementById("tempo-limite");
+        var elIntervalo = document.getElementById("tempo-intervalo");
+
+        if (elTotal) elTotal.textContent = totalQuestoesPadrao;
+        if (elLimite) elLimite.textContent = tempoLimitePadrao + " segundos";
+        if (elIntervalo) elIntervalo.textContent = intervaloPadrao + " segundos";
+    })();
+</script>
+
+<script src="simulador/simulador_v4.js"></script>
+
+</div>
+</div>
+</div>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06_Acidez_Alimentos.html" class="pagination-link" aria-label="Prática 6: Acidez em Alimentos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./000_RegressaoLinear.html" class="pagination-link" aria-label="Regressão Linear em fase de TESTE">
+        <span class="nav-page-text"><span class="chapter-title">Regressão Linear em fase de TESTE</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

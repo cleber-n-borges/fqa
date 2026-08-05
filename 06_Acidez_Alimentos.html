@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt_br" xml:lang="pt_br"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>TEOR DE ACIDEZ EM ALIMENTOS – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./10_Neutralização_Calcario.html" rel="next">
+<link href="./05_Padronizacao.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_Acidez_Alimentos.html"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">TEOR DE ACIDEZ EM ALIMENTOS</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico_VersaoTESTE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico - UPDATE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Titulação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 5: Padronização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
+  <ul class="collapse">
+  <li><a href="#concentração-percentual" id="toc-concentração-percentual" class="nav-link" data-scroll-target="#concentração-percentual">Concentração percentual</a></li>
+  </ul></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados">Dados</a></li>
+  <li><a href="#segurança-no-laboratório" id="toc-segurança-no-laboratório" class="nav-link" data-scroll-target="#segurança-no-laboratório">Segurança no Laboratório</a></li>
+  <li><a href="#roteiro-experimental" id="toc-roteiro-experimental" class="nav-link" data-scroll-target="#roteiro-experimental">Roteiro Experimental</a>
+  <ul class="collapse">
+  <li><a href="#parte-1-determinação-da-concentração-de-ácido-acético-no-vinagre" id="toc-parte-1-determinação-da-concentração-de-ácido-acético-no-vinagre" class="nav-link" data-scroll-target="#parte-1-determinação-da-concentração-de-ácido-acético-no-vinagre">Parte 1: Determinação da concentração de ácido acético no vinagre</a></li>
+  <li><a href="#parte-2-determinação-da-concentração-de-ácido-láctico-no-leite" id="toc-parte-2-determinação-da-concentração-de-ácido-láctico-no-leite" class="nav-link" data-scroll-target="#parte-2-determinação-da-concentração-de-ácido-láctico-no-leite">Parte 2: Determinação da concentração de ácido láctico no leite</a></li>
+  <li><a href="#parte-3-determinação-da-concentração-de-ácido-cítrico-no-limão" id="toc-parte-3-determinação-da-concentração-de-ácido-cítrico-no-limão" class="nav-link" data-scroll-target="#parte-3-determinação-da-concentração-de-ácido-cítrico-no-limão">Parte 3: Determinação da concentração de ácido cítrico no limão</a></li>
+  </ul></li>
+  <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>A acidez de certos alimentos é uma característica fundamental, pois está relacionada à concentração de ácidos orgânicos em sua composição. Os compostos ácidos influenciam o sabor, contribuem para a preservação e dificultam o crescimento de micro-organismos patogênicos, impactando diretamente a segurança e a estabilidade do produto.</p>
+<p>Entre os ácidos mais comuns encontrados em alimentos, destacam-se:</p>
+<ul>
+<li><p><a href="https://pt.wikipedia.org/wiki/%C3%81cido_etanoico"><strong>Ácido acético</strong></a> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msub><mi>H</mi><mn>3</mn></msub><mi>C</mi><mi>O</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">CH_3COOH</annotation></semantics></math>, presente no vinagre, que confere a ele o sabor ácido característico. Na indústria alimentícia, é utilizado como conservante e regulador de pH sob o código <a href="https://pt.wikipedia.org/wiki/Sistema_Internacional_de_Numera%C3%A7%C3%A3o">INS</a> E260.</p></li>
+<li><p><a href="https://pt.wikipedia.org/wiki/%C3%81cido_l%C3%A1ctico"><strong>Ácido láctico</strong></a> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msub><mi>H</mi><mn>3</mn></msub><mi>C</mi><mi>H</mi><mi>O</mi><mi>H</mi><mi>C</mi><mi>O</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">CH_3CHOHCOOH</annotation></semantics></math>, é formado pela fermentação bacteriana de açúcares, como a lactose no leite, estando presente em iogurtes e outros alimentos fermentados. Na indústria alimentícia, é empregado como acidulante e conservante, identificado pelo código INS E270.</p></li>
+<li><p><a href="https://pt.wikipedia.org/wiki/%C3%81cido_c%C3%ADtrico"><strong>Ácido cítrico</strong></a> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>6</mn></msub><msub><mi>H</mi><mn>8</mn></msub><msub><mi>O</mi><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">C_6H_8O_7</annotation></semantics></math>, naturalmente encontrado em frutas cítricas como limões, laranjas e acerola, é responsável pela acidez característica desses alimentos. Na indústria alimentícia, é o ácido orgânico mais utilizado em escala mundial, aparecendo em bebidas, doces e produtos processados sob o código INS E330.</p></li>
+</ul>
+<p>A determinação do teor de acidez é um parâmetro essencial no controle de qualidade em diversos processos industriais, como a produção de laticínios, fermentação de bebidas e preparação de conservas.</p>
+<p>O método empregado nesta prática é a <strong>titulação ácido–base</strong>, usando a solução padronizada de hidróxido de potássio como titulante. A amostra do alimento é titulada na presença de fenolftaleína, que atua como indicador. O ponto final é identificado pela mudança de cor da solução, de incolor para rosa pálido, indicando a neutralização completa dos ácidos presentes.</p>
+<p>Assim, trabalharemos com três tipos de amostras:</p>
+<ul>
+<li><p><a href="https://pt.wikipedia.org/wiki/Vinagre"><strong>Vinagre</strong></a> (produto fermentado, padronizado industrialmente, rico em ácido acético),</p></li>
+<li><p><a href="https://pt.wikipedia.org/wiki/Leite"><strong>Leite</strong></a> (alimento natural onde ocorre a formação de ácido láctico por fermentação bacteriana), e</p></li>
+<li><p>Suco de <a href="https://pt.wikipedia.org/wiki/Lim%C3%A3o"><strong>limão</strong></a> fresco (fonte natural de ácido cítrico).</p></li>
+</ul>
+<p>Essas escolhas permitem exemplificar de forma prática a presença dos principais ácidos orgânicos em alimentos cotidianos.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Curiosidade botânica:</strong></p>
+<ol type="1">
+<li>O <a href="https://pt.wikipedia.org/wiki/Citrus_%C3%97_latifolia">limão-taiti</a> não é um “limão verdadeiro”, mas sim uma <a href="https://pt.wikipedia.org/wiki/Lima_(fruto)">lima</a> ácida. Apesar dessa diferença, é popularmente conhecido como limão e é uma das variedades comerciais mais consumidas no Brasil.<br>
+</li>
+<li>Não existem limões silvestres: todo limão é resultado de hibridação natural entre espécies ancestrais de <a href="https://pt.wikipedia.org/wiki/Citrus"><em>Citrus</em></a>, posteriormente mantido e difundido pela seleção humana.</li>
+</ol>
+</div>
+</div>
+<section id="concentração-percentual" class="level3">
+<h3 class="anchored" data-anchor-id="concentração-percentual">Concentração percentual</h3>
+<p><strong>Concentração percentual</strong> é uma medida utilizada para expressar a quantidade de analito (soluto) em solução, em relação a 100 partes da solução.</p>
+<p>Ela pode ser expressa de diferentes formas, dependendo do tipo de solução:</p>
+<ul>
+<li><a href="https://pt.wikipedia.org/wiki/Concentra%C3%A7%C3%A3o#Percentagem_massa-volume_(%25_m/v)">Porcentagem massa—volume: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% \, m/v</annotation></semantics></math></a>,</li>
+<li><a href="https://pt.wikipedia.org/wiki/Concentra%C3%A7%C3%A3o#Percentagem_massa-massa_ou_fra%C3%A7%C3%A3o_m%C3%A1ssica_(%CF%89)">Porcentagem massa—massa: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>m</mi><mi>/</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">\% \, m/m</annotation></semantics></math></a>,</li>
+<li><a href="https://pt.wikipedia.org/wiki/Concentra%C3%A7%C3%A3o#Percentagem_volume-volume_(%CF%86)">Porcentagem volume—volume: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>v</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% \, v/v</annotation></semantics></math></a>.</li>
+</ul>
+<p>O mais comum, especialmente em soluções líquidas, é expressar a massa em gramas e o volume em mililitros (mL). Neste caso, a concentração percentual é calculada pela fórmula:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>m</mi><mi>/</mi><mi>v</mi><mo>=</mo><mfrac><mrow><mtext mathvariant="normal">massa do analito (g) </mtext><mspace width="0.333em"></mspace></mrow><mrow><mtext mathvariant="normal">volume da solução (mL) </mtext><mspace width="0.333em"></mspace></mrow></mfrac><mo>×</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\%\,m/v = \frac{\text{massa do analito (g) }}{\text{volume da solução (mL) }} \times 100</annotation></semantics></math></p>
+<p>O teor (ou concentração percentual) indica a quantidade de ácido presente na amostra. Essa propriedade pode ser determinada via titulação ácido—base, a partir do volume da base necessário para neutralizar o ácido, permitindo inferir e comparar a acidez entre diferentes alimentos de maneira clara e objetiva.</p>
+</section>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li>Apresentar o conceito de concentração percentual ou <strong>teor</strong>;</li>
+<li>Aplicar os fundamentos de titulação ácido–base (volumetria de neutralização);</li>
+<li>Determinar o teor (ou concentração percentual massa—volume, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% \, m/v</annotation></semantics></math>), de ácidos em diferentes amostras:
+<ul>
+<li>Ácido acético (analito) no vinagre (amostra);</li>
+<li>Ácido láctico (analito) no leite (amostra);</li>
+<li>Ácido cítrico (analito) no suco de limão (amostra).</li>
+</ul></li>
+</ul>
+</section>
+<section id="dados" class="level2">
+<h2 class="anchored" data-anchor-id="dados">Dados</h2>
+<ol type="1">
+<li><strong>Massa Molar — M.M.</strong></li>
+</ol>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>C</mi><msub><mi>H</mi><mn>3</mn></msub><mi>C</mi><mi>O</mi><mi>O</mi><mi>H</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>60</mn><mo>,</mo><mn>05</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(CH_3COOH) = 60,05 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>C</mi><msub><mi>H</mi><mn>3</mn></msub><mi>C</mi><mi>H</mi><mi>O</mi><mi>H</mi><mi>C</mi><mi>O</mi><mi>O</mi><mi>H</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>90</mn><mo>,</mo><mn>08</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(CH_3CHOHCOOH) = 90,08 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>C</mi><mn>6</mn></msub><msub><mi>H</mi><mn>8</mn></msub><msub><mi>O</mi><mn>7</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>192</mn><mo>,</mo><mn>12</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(C_6H_8O_7) = 192,12 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+</ul>
+<blockquote class="blockquote">
+<p>As massas molares são necessárias para converter a quantidade de mols de ácido neutralizados em massa do ácido, que será usada para calcular a concentração percentual.</p>
+</blockquote>
+<ol start="2" type="1">
+<li><strong>Equações químicas balanceadas</strong></li>
+</ol>
+<ul>
+<li>Ácido acético:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msub><mi>H</mi><mn>3</mn></msub><mi>C</mi><mi>O</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mi>K</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><mi>C</mi><msub><mi>H</mi><mn>3</mn></msub><mi>C</mi><mi>O</mi><mi>O</mi><msub><mi>K</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><msub><mi>H</mi><mn>2</mn></msub><msub><mi>O</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">CH_3COOH_{(aq)} + KOH_{(aq)} \rightarrow CH_3COOK_{(aq)} + H_2O_{(l)}</annotation></semantics></math></p>
+<ul>
+<li>Ácido láctico:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msub><mi>H</mi><mn>3</mn></msub><mi>C</mi><mi>H</mi><mi>O</mi><mi>H</mi><mi>C</mi><mi>O</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mi>K</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><mi>C</mi><msub><mi>H</mi><mn>3</mn></msub><mi>C</mi><mi>H</mi><mi>O</mi><mi>H</mi><mi>C</mi><mi>O</mi><mi>O</mi><msub><mi>K</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><msub><mi>H</mi><mn>2</mn></msub><msub><mi>O</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">CH_3CHOHCOOH_{(aq)} + KOH_{(aq)} \rightarrow CH_3CHOHCOOK_{(aq)} + H_2O_{(l)}</annotation></semantics></math></p>
+<ul>
+<li>Ácido cítrico (triprótico):</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>6</mn></msub><msub><mi>H</mi><mn>8</mn></msub><msub><mi>O</mi><mrow><mn>7</mn><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mn>3</mn><mi>K</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msub><mi>K</mi><mn>3</mn></msub><msub><mi>C</mi><mn>6</mn></msub><msub><mi>H</mi><mn>5</mn></msub><msub><mi>O</mi><mrow><mn>7</mn><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mn>3</mn><msub><mi>H</mi><mn>2</mn></msub><msub><mi>O</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">C_6H_8O_{7(aq)} + 3KOH_{(aq)} \rightarrow K_3C_6H_5O_{7(aq)} + 3H_2O_{(l)}</annotation></semantics></math></p>
+<blockquote class="blockquote">
+<p>Essas equações mostram quantos mols de base são necessários para neutralizar 1 mol de ácido. Para ácidos monopróticos (acético e láctico), a proporção é 1:1, e para o ácido cítrico, 3:1. Essa informação é essencial para calcular corretamente o teor de acidez.</p>
+</blockquote>
+</section>
+<section id="segurança-no-laboratório" class="level2">
+<h2 class="anchored" data-anchor-id="segurança-no-laboratório">Segurança no Laboratório</h2>
+<ul>
+<li>Utilizar óculos de proteção, luvas e jaleco durante todo o experimento.</li>
+<li>Evitar contato direto com soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> — são cáusticas.</li>
+<li>Descartar resíduos líquidos no coletor indicado pelo professor.</li>
+<li>Lavar imediatamente a pele em caso de contato com reagentes.</li>
+<li>Manter o ambiente limpo e livre de obstruções.</li>
+</ul>
+<hr>
+</section>
+<section id="roteiro-experimental" class="level2">
+<h2 class="anchored" data-anchor-id="roteiro-experimental">Roteiro Experimental</h2>
+<section id="parte-1-determinação-da-concentração-de-ácido-acético-no-vinagre" class="level3">
+<h3 class="anchored" data-anchor-id="parte-1-determinação-da-concentração-de-ácido-acético-no-vinagre">Parte 1: Determinação da concentração de ácido acético no vinagre</h3>
+<section id="procedimento-1" class="level4">
+<h4 class="anchored" data-anchor-id="procedimento-1">Procedimento 1</h4>
+<ol type="1">
+<li>Pipetar 2,00 mL de vinagre e transferir para um erlenmeyer.</li>
+<li>Adicionar mais ou menos 20 mL de água destilada (sem rigor volumétrico).</li>
+<li>Acrescentar 3 gotas de fenolftaleína.</li>
+<li>Titular com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi><mspace width="0.167em"></mspace><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">KOH \,\, 0,1 \, \text{mol·L}^{-1}</annotation></semantics></math> até aparecimento de coloração rósea persistente por 30 segundos.</li>
+<li>Registrar o volume gasto do titulante.</li>
+<li>Calcular a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% m/v</annotation></semantics></math> de ácido acético no vinagre.</li>
+</ol>
+<p><em>Registro do Volume Gasto:</em>____________________</p>
+</section>
+</section>
+<section id="parte-2-determinação-da-concentração-de-ácido-láctico-no-leite" class="level3">
+<h3 class="anchored" data-anchor-id="parte-2-determinação-da-concentração-de-ácido-láctico-no-leite">Parte 2: Determinação da concentração de ácido láctico no leite</h3>
+<section id="procedimento-2" class="level4">
+<h4 class="anchored" data-anchor-id="procedimento-2">Procedimento 2</h4>
+<ol type="1">
+<li>Pipetar 25,00 mL de leite e transferir para um erlenmeyer.</li>
+<li>Adicionar 3 gotas de fenolftaleína.</li>
+<li>Titular com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi><mspace width="0.167em"></mspace><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">KOH \,\, 0,1 \, \text{mol·L}^{-1}</annotation></semantics></math> até aparecimento de coloração rósea persistente por 30 segundos.</li>
+<li>Registrar o volume gasto do titulante.</li>
+<li>Calcular a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% m/v</annotation></semantics></math> de ácido láctico no leite.</li>
+</ol>
+<p><em>Registro do Volume Gasto:</em>____________________</p>
+</section>
+</section>
+<section id="parte-3-determinação-da-concentração-de-ácido-cítrico-no-limão" class="level3">
+<h3 class="anchored" data-anchor-id="parte-3-determinação-da-concentração-de-ácido-cítrico-no-limão">Parte 3: Determinação da concentração de ácido cítrico no limão</h3>
+<section id="procedimento-3" class="level4">
+<h4 class="anchored" data-anchor-id="procedimento-3">Procedimento 3</h4>
+<blockquote class="blockquote">
+<p><strong>3.1) Preparo de solução: suco de limão diluído</strong></p>
+</blockquote>
+<ol type="1">
+<li>Espremer o limão e filtrar o suco do limão com algodão ou papel de filtro de poros grandes.</li>
+<li>Pipetar 10,00 mL do suco do limão filtrado e transferir para um balão volumétrico de 100 mL.</li>
+<li>Completar o volume com água destilada e homogeneizar.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>3.2) Titulação:</strong></p>
+</blockquote>
+<ol type="1">
+<li>Pipetar 20,00 mL da solução diluída e transferir para um erlenmeyer.</li>
+<li>Adicionar 3 gotas de fenolftaleína.</li>
+<li>Titular com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi><mspace width="0.167em"></mspace><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">KOH \,\, 0,1 \, \text{mol·L}^{-1}</annotation></semantics></math> até aparecimento de coloração rósea persistente por 30 segundos.</li>
+<li>Registrar o volume gasto do titulante.</li>
+<li>Calcular a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% m/v</annotation></semantics></math> de ácido cítrico no suco do limão (amostra original — <strong>não</strong> diluído).</li>
+</ol>
+<p><em>Registro do Volume Gasto:</em>____________________</p>
+</section>
+</section>
+</section>
+<section id="discussão" class="level2">
+<h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
+<p>Ao final, será possível:</p>
+<ul>
+<li>Comparar a acidez entre diferentes amostras;</li>
+<li>Verificar a conformidade de produtos alimentícios com padrões de qualidade;</li>
+<li>Observar a influência da estrutura molecular do ácido na <strong>estequiometria da reação</strong>.</li>
+</ul>
+<p>A titulação ácido—base é um método simples, rápido e preciso, amplamente utilizado na indústria e em laboratórios de controle de qualidade.</p>
+<p>De forma aproximada, considerando valores típicos encontrados em análises:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 24%">
+<col style="width: 41%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Produto</th>
+<th>Principal ácido</th>
+<th>Teor médio de ácido (% m/v)</th>
+<th>pH típico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Limão</strong></td>
+<td>Ácido cítrico</td>
+<td><strong>5–8 %</strong></td>
+<td>2,0–2,6</td>
+</tr>
+<tr class="even">
+<td><strong>Vinagre</strong></td>
+<td>Ácido acético</td>
+<td><strong>4–8 %</strong></td>
+<td>2,4–3,4</td>
+</tr>
+<tr class="odd">
+<td><strong>Leite</strong></td>
+<td>Ácido láctico*</td>
+<td><strong>0,13–0,18 %</strong></td>
+<td>6,4–6,8</td>
+</tr>
+</tbody>
+</table>
+<p>*O leite fresco praticamente não é ácido — o ácido láctico surge mais em leite cru ou armazenado por mais tempo, devido à ação bacteriana sobre a lactose.</p>
+</section>
+<section id="bibliografia" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<ul>
+<li>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.<br>
+</li>
+<li>HARRIS, D. C. <strong>Análise Química Quantitativa</strong>. 9. ed.&nbsp;Rio de Janeiro: LTC, 2021.<br>
+</li>
+<li>VOGEL, A. I. <strong>Análise Química Quantitativa</strong>. 6. ed.&nbsp;Rio de Janeiro: LTC, 2012.</li>
+</ul>
+</section>
+<section id="guia-do-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
+<h3 class="anchored">
+Cálculo do Teor de Acidez
+</h3>
+<p>Estratégia passo a passo usando a <strong>regra de três</strong>, aplicável a qualquer titulação ácido-base</p>
+<p><strong>Passo 01 — Determinar o número de mols do titulante (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">n_{KOH}</annotation></semantics></math><strong>)</strong></p>
+<p>A partir da concentração molar da solução de titulante (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">M_{KOH}</annotation></semantics></math>) e do volume gasto na titulação (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">V_{KOH}</annotation></semantics></math>), calculamos a quantidade de matéria de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>V</mi><mtext mathvariant="normal">Titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+0{,}1 \ \text{mol de KOH} &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
+x_1 \ \text{mol de KOH}  &amp; \text{-------------} &amp; V_{\text{Titulante}} \ \text{mL}
+\end{array}</annotation></semantics></math></p>
+<blockquote class="blockquote">
+<p>→ A incógnita <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>1</mn></msub><annotation encoding="application/x-tex">x_1</annotation></semantics></math> representa a quantidade de matéria (da base) efetivamente gasta para neutralizar o ácido da amostra.</p>
+</blockquote>
+<p><strong>Passo 02 — Determinar o número de mols do analito (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mrow><mi>a</mi><mi>n</mi><mi>a</mi><mi>l</mi><mi>i</mi><mi>t</mi><mi>o</mi></mrow></msub><annotation encoding="application/x-tex">n_{analito}</annotation></semantics></math><strong>)</strong></p>
+<p>Nesse passo, é necessário ter sempre a equação química balanceada, para que, com uso da estequiometria, possa se relacionar a quantidade de titulante com a do analito:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>A</mi><mo>+</mo><mi>b</mi><mi>B</mi><mo>→</mo><mi>c</mi><mi>C</mi><mo>+</mo><mi>d</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">aA + bB \rightarrow cC + dD</annotation></semantics></math></p>
+<blockquote class="blockquote">
+<p><em>onde</em>: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> simboliza o composto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> é o coeficiente estequiométrico (igual a 1, neste caso). <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math> simboliza os demais titulados e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> seus respectivos coeficientes estequiométricos.</p>
+</blockquote>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mi>b</mi><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols do analito</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol do analito</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \ \text{mol de KOH} &amp; \text{-------------} &amp; b \ \text{mols do analito} \\
+x_1 \ \text{mol de KOH} &amp; \text{-------------} &amp; x_2 \ \text{mol do analito}
+\end{array}</annotation></semantics></math></p>
+<blockquote class="blockquote">
+<p>→ O valor de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>2</mn></msub><annotation encoding="application/x-tex">x_2</annotation></semantics></math> representa a quantidade de matéria do ácido presente na amostra.</p>
+</blockquote>
+<p><strong>Passo 03 — Converter número de mols do analito em massa</strong></p>
+<p>Para obter a massa do analito, usamos sua massa molar (M.M.):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol do analito</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">M.M. (analito)</mtext><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols do analito</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">g (massa do analito)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \ \text{mol do analito} &amp; \text{-------------} &amp; \text{M.M. (analito)} \ \text{g} \\
+x_2 \ \text{mols do analito} &amp; \text{-------------} &amp; x_3 \ \text{g (massa do analito)}
+\end{array}</annotation></semantics></math></p>
+<blockquote class="blockquote">
+<p>→ A variável aqui, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>3</mn></msub><annotation encoding="application/x-tex">x_3</annotation></semantics></math>, indica a massa de ácido equivalente contida na amostra.</p>
+</blockquote>
+<p><strong>Passo 04 — Determinar o teor (concentração percentual)</strong></p>
+<p>A concentração percentual é calculada como <strong>massa por volume</strong>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">Analito (m/v)</mtext><mo>=</mo><mfrac><msub><mi>x</mi><mn>3</mn></msub><msub><mi>V</mi><mrow><mi>a</mi><mi>m</mi><mi>o</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>a</mi></mrow></msub></mfrac><mo>⋅</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\% \, \text{Analito (m/v)} = \frac{x_3}{V_{amostra}} \cdot 100</annotation></semantics></math></p>
+<blockquote class="blockquote">
+<p>→ O resultado final indica o teor de acidez da amostra.</p>
+</blockquote>
+<p><strong>Observação Final</strong></p>
+<p>Este modelo é praticamente universal para cálculo de teor de qualquer analito titulado. Basta substituir:</p>
+<ul>
+<li><p>O titulante;</p></li>
+<li><p>Os coeficientes estequiométricos;</p></li>
+<li><p>A massa molar do analito.</p></li>
+</ul>
+<p>Dessa forma, qualquer outra titulação (com reação conhecida e definida) pode ser resolvida passo a passo de maneira clara e confiável.</p>
+<hr>
+</section>
+<section id="exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
+<ol type="1">
+<li><p>25 mL de leite foram titulados com uma solução de hidróxido de potássio, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi><mspace width="0.167em"></mspace><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>124</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">KOH \,\, 0,124 \, \text{mol·L}^{-1}</annotation></semantics></math>. Se foram necessários 4,5 mL de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> para atingir o ponto final da titulação, qual é a concentração percentual (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% \, m/v</annotation></semantics></math>) de ácido láctico presente no leite?</p></li>
+<li><p>Em um balão volumétrico de 250 mL foram adicionados 20 mL do suco de limão e adicionado água suficiente para completar o balão. Uma alíquota de 25 mL de solução foi titulada com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi><mspace width="0.167em"></mspace><mspace width="0.167em"></mspace><mn>0</mn><mo>,</mo><mn>11</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">KOH \,\, 0,11 \, \text{mol·L}^{-1}</annotation></semantics></math>, do qual foram gastos 17 mL.</p>
+<ul>
+<li>Qual a concentração percentual (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% \, m/v</annotation></semantics></math>) de ácido cítrico na solução obtida pela diluição do suco?</li>
+<li>Qual a concentração percentual (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% \, m/v</annotation></semantics></math>) de ácido cítrico no suco concentrado?</li>
+</ul></li>
+</ol>
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Acidez_dos_Alimentos.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05_Padronizacao.html" class="pagination-link" aria-label="Prática 5: Padronização">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Prática 5: Padronização</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./10_Neutralização_Calcario.html" class="pagination-link" aria-label="Prática 10: Poder de Neutralização">
+        <span class="nav-page-text"><span class="chapter-title">Prática 10: Poder de Neutralização</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

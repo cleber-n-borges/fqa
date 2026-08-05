@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Space Invaders 1978 - Plotly.js</title>
+    <!-- Script local mantido -->
+    <script src="plotly-3.7.0.min.js"></script>
+
+    <style>
+        .spc-container {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .spc-placar {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-height: 24px;
+            color: #ffffff;
+        }
+        .spc-canvas {
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+            border: 2px solid #00ff00;
+            border-radius: 4px;
+        }
+        .spc-info {
+            margin-top: 10px;
+            color: #888888;
+            font-size: 13px;
+        }
+        .spc-painel {
+            background-color: #111111;
+            border: 1px solid #333333;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .spc-btn {
+            background-color: #000000;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .spc-btn:hover { background-color: #00ff00; color: #000000; }
+        .spc-btn.active { background-color: #00ff00; color: #000000; }
+        .spc-label { font-size: 12px; color: #ffea00; }
+    </style>
+</head>
+<body>
+
+    <div class="spc-container">
+        <h1>👾 SPACE INVADERS (Taito, 1978)</h1>
+
+        <!-- PAINEL DE CONTROLES -->
+        <div class="spc-painel">
+            <button class="spc-btn" onclick="window.reiniciarSpaceInvaders()">🔄 NOVO JOGO</button>
+            
+            <span class="spc-label">⚡ VELOCIDADE:</span>
+            <button class="spc-btn btn-velocidade" data-vel="0.5" onclick="window.setVelocidadeSpace(0.5)">0.5x</button>
+            <button class="spc-btn btn-velocidade active" data-vel="1.0" onclick="window.setVelocidadeSpace(1.0)">1.0x</button>
+            <button class="spc-btn btn-velocidade" data-vel="1.5" onclick="window.setVelocidadeSpace(1.5)">1.5x</button>
+            <button class="spc-btn btn-velocidade" data-vel="2.0" onclick="window.setVelocidadeSpace(2.0)">2.0x 🔥</button>
+
+            <span class="spc-label">🔫 CANHÃO:</span>
+            <button id="btn-tiro" class="spc-btn" onclick="window.toggleModoTiro()">TIRO: CLASSICO</button>
+        </div>
+
+        <div id="spc-placar" class="spc-placar">Preparando canhão...</div>
+        <div id="spc-game-plot" class="spc-canvas"></div>
+        <div class="spc-info">
+            Controles: <b>← / →</b> (Mover Canhão) | <b>ESPAÇO</b> (Atirar)
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const GRID_W = 100;
+        const GRID_H = 100;
+        const FPS = 30;
+        const DT = 1 / FPS;
+
+        // --- PARÂMETROS CONFIGURÁVEIS ---
+        let fatorVelocidade = 1.0;
+        let tiroRapido = false;
+
+        let jogador = { x: 50, y: 6, larg: 8, alt: 3 };
+        let projeteisJogador = [];
+        let projeteisInimigos = [];
+        let inimigos = [];
+        let escudos = [];
+        
+        let dirInimigos = 1; // 1 = Direita, -1 = Esquerda
+        let velInimigosBase = 12;
+        let descidaInimigos = 3.5;
+        let tempoUltimoTiroInimigo = 0;
+
+        let pontuacao = 0;
+        let vidas = 3;
+        let jogando = false;
+        let loopInterval = null;
+        let teclas = {};
+
+        const CORES_INIMIGOS = ['#ff0055', '#a855f7', '#00e5ff'];
+        const PONTOS_INIMIGOS = [30, 20, 10];
+
+        // --- CONTROLES DA INTERFACE ---
+        window.setVelocidadeSpace = function(fator) {
+            fatorVelocidade = fator;
+            let botoes = document.querySelectorAll('.btn-velocidade');
+            botoes.forEach(btn => {
+                let val = parseFloat(btn.getAttribute('data-vel'));
+                if (val === fator) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+                btn.blur();
+            });
+        };
+
+        window.toggleModoTiro = function() {
+            tiroRapido = !tiroRapido;
+            let btn = document.getElementById('btn-tiro');
+            if (btn) {
+                btn.innerHTML = `TIRO: ${tiroRapido ? 'METRALHADORA ⚡' : 'CLASSICO'}`;
+                btn.blur();
+            }
+        };
+
+        function criarInimigos() {
+            inimigos = [];
+            let colunas = 5;
+            let linhas = 3;
+            let larg = 7;
+            let alt = 4;
+
+            for (let l = 0; l < linhas; l++) {
+                for (let c = 0; c < colunas; c++) {
+                    inimigos.push({
+                        x: 15 + c * 15,
+                        y: 85 - l * 8,
+                        larg: larg,
+                        alt: alt,
+                        cor: CORES_INIMIGOS[l],
+                        pontos: PONTOS_INIMIGOS[l],
+                        ativo: true
+                    });
+                }
+            }
+        }
+
+        function criarEscudos() {
+            escudos = [];
+            let posicoesX = [20, 50, 80];
+            posicoesX.forEach(px => {
+                escudos.push({
+                    x: px,
+                    y: 18,
+                    larg: 12,
+                    alt: 4,
+                    vida: 6 // Absorve até 6 impactos
+                });
+            });
+        }
+
+        function iniciarJogo() {
+            if (typeof Plotly === 'undefined') {
+                document.getElementById('spc-placar').innerHTML = "<span style='color:red'>ERRO: Plotly.js não foi carregado!</span>";
+                return;
+            }
+
+            pontuacao = 0;
+            vidas = 3;
+            jogando = true;
+            jogador.x = 50;
+            dirInimigos = 1;
+            projeteisJogador = [];
+            projeteisInimigos = [];
+
+            criarInimigos();
+            criarEscudos();
+
+            if (loopInterval) clearInterval(loopInterval);
+            loopInterval = setInterval(gameLoop, 1000 / FPS);
+
+            let btn = document.getElementById('spc-btn-novo');
+            if (btn) btn.blur();
+        }
+
+        window.reiniciarSpaceInvaders = iniciarJogo;
+
+        function atirarJogador() {
+            if (!jogando) return;
+            // No modo clássico só permite 1 tiro na tela por vez
+            if (!tiroRapido && projeteisJogador.length >= 1) return;
+
+            projeteisJogador.push({
+                x: jogador.x,
+                y: jogador.y + jogador.alt / 2 + 1,
+                vy: 70
+            });
+        }
+
+        function atirarInimigo() {
+            let vivos = inimigos.filter(i => i.ativo);
+            if (vivos.length === 0) return;
+
+            // Escolhe um inimigo vivo aleatório da parte mais baixa para atirar
+            let atirador = vivos[Math.floor(Math.random() * vivos.length)];
+            projeteisInimigos.push({
+                x: atirador.x,
+                y: atirador.y - atirador.alt / 2 - 1,
+                vy: -35
+            });
+        }
+
+        function atualizarFisica() {
+            if (!jogando) return;
+
+            let dtEfetivo = DT * fatorVelocidade;
+
+            // 1. Movimento do Jogador
+            if (teclas["ArrowLeft"])  jogador.x = Math.max(jogador.larg / 2, jogador.x - 40 * dtEfetivo);
+            if (teclas["ArrowRight"]) jogador.x = Math.min(GRID_W - jogador.larg / 2, jogador.x + 40 * dtEfetivo);
+
+            // 2. Movimento dos Projéteis do Jogador
+            for (let i = projeteisJogador.length - 1; i >= 0; i--) {
+                let p = projeteisJogador[i];
+                p.y += p.vy * dtEfetivo;
+
+                if (p.y > GRID_H) {
+                    projeteisJogador.splice(i, 1);
+                    continue;
+                }
+
+                // Colisão Projétil vs Inimigo
+                let acertou = false;
+                for (let inim of inimigos) {
+                    if (inim.ativo &&
+                        Math.abs(p.x - inim.x) <= inim.larg / 2 &&
+                        Math.abs(p.y - inim.y) <= inim.alt / 2) {
+                        
+                        inim.ativo = false;
+                        pontuacao += inim.pontos;
+                        projeteisJogador.splice(i, 1);
+                        acertou = true;
+                        break;
+                    }
+                }
+
+                if (acertou) continue;
+
+                // Colisão Projétil vs Escudos
+                for (let esc of escudos) {
+                    if (esc.vida > 0 &&
+                        Math.abs(p.x - esc.x) <= esc.larg / 2 &&
+                        Math.abs(p.y - esc.y) <= esc.alt / 2) {
+                        
+                        esc.vida--;
+                        projeteisJogador.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            // 3. Movimento dos Inimigos
+            let vivos = inimigos.filter(i => i.ativo);
+            if (vivos.length === 0) {
+                // Vitória! Avança de fase
+                pontuacao += 500;
+                criarInimigos();
+                return;
+            }
+
+            // Acelera os inimigos conforme vão morrendo
+            let fatorAceleracao = 1 + (15 - vivos.length) * 0.08;
+            let velAtualInimigos = velInimigosBase * fatorAceleracao * dirInimigos;
+
+            let mudarDirecao = false;
+            vivos.forEach(inim => {
+                inim.x += velAtualInimigos * dtEfetivo;
+                if ((inim.x + inim.larg / 2 >= GRID_W - 2 && dirInimigos > 0) ||
+                    (inim.x - inim.larg / 2 <= 2 && dirInimigos < 0)) {
+                    mudarDirecao = true;
+                }
+            });
+
+            if (mudarDirecao) {
+                dirInimigos *= -1;
+                vivos.forEach(inim => {
+                    inim.y -= descidaInimigos;
+                    // Derrota se os invasores chegarem na base
+                    if (inim.y - inim.alt / 2 <= jogador.y + jogador.alt) {
+                        vidas = 0;
+                        jogando = false;
+                    }
+                });
+            }
+
+            // 4. Disparos Inimigos
+            tempoUltimoTiroInimigo += dtEfetivo;
+            if (tempoUltimoTiroInimigo > 1.2 / fatorAceleracao) {
+                atirarInimigo();
+                tempoUltimoTiroInimigo = 0;
+            }
+
+            // 5. Movimento dos Projéteis Inimigos
+            for (let i = projeteisInimigos.length - 1; i >= 0; i--) {
+                let p = projeteisInimigos[i];
+                p.y += p.vy * dtEfetivo;
+
+                if (p.y < 0) {
+                    projeteisInimigos.splice(i, 1);
+                    continue;
+                }
+
+                // Colisão Projétil Inimigo vs Jogador
+                if (Math.abs(p.x - jogador.x) <= jogador.larg / 2 &&
+                    Math.abs(p.y - jogador.y) <= jogador.alt / 2) {
+                    
+                    projeteisInimigos.splice(i, 1);
+                    vidas--;
+                    if (vidas <= 0) jogando = false;
+                    continue;
+                }
+
+                // Colisão Projétil Inimigo vs Escudos
+                for (let esc of escudos) {
+                    if (esc.vida > 0 &&
+                        Math.abs(p.x - esc.x) <= esc.larg / 2 &&
+                        Math.abs(p.y - esc.y) <= esc.alt / 2) {
+                        
+                        esc.vida--;
+                        projeteisInimigos.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
+
+        function renderizar() {
+            let placarEl = document.getElementById('spc-placar');
+            let plotTarget = document.getElementById('spc-game-plot');
+
+            if (placarEl) {
+                placarEl.innerHTML = `PONTOS: ${pontuacao} &nbsp;&nbsp;|&nbsp;&nbsp; VIDAS: ${"🚀 ".repeat(Math.max(0, vidas))}`;
+            }
+
+            let shapes = [];
+
+            // A) Desenho do Jogador (Canhão Verde)
+            if (jogando) {
+                shapes.push({
+                    type: 'rect',
+                    x0: jogador.x - jogador.larg / 2,
+                    y0: jogador.y - jogador.alt / 2,
+                    x1: jogador.x + jogador.larg / 2,
+                    y1: jogador.y + jogador.alt / 2,
+                    fillcolor: '#39ff14',
+                    line: { color: '#ffffff', width: 1 }
+                });
+                // Ponta do canhão
+                shapes.push({
+                    type: 'rect',
+                    x0: jogador.x - 1,
+                    y0: jogador.y + jogador.alt / 2,
+                    x1: jogador.x + 1,
+                    y1: jogador.y + jogador.alt / 2 + 1.5,
+                    fillcolor: '#39ff14',
+                    line: { width: 0 }
+                });
+            }
+
+            // B) Desenho dos Inimigos
+            inimigos.forEach(inim => {
+                if (inim.ativo) {
+                    shapes.push({
+                        type: 'rect',
+                        x0: inim.x - inim.larg / 2,
+                        y0: inim.y - inim.alt / 2,
+                        x1: inim.x + inim.larg / 2,
+                        y1: inim.y + inim.alt / 2,
+                        fillcolor: inim.cor,
+                        line: { color: '#ffffff', width: 0.5 }
+                    });
+                }
+            });
+
+            // C) Desenho dos Escudos/Barreiras
+            escudos.forEach(esc => {
+                if (esc.vida > 0) {
+                    // A opacidade diminui conforme o escudo toma dano
+                    let alfa = (esc.vida / 6).toFixed(2);
+                    shapes.push({
+                        type: 'rect',
+                        x0: esc.x - esc.larg / 2,
+                        y0: esc.y - esc.alt / 2,
+                        x1: esc.x + esc.larg / 2,
+                        y1: esc.y + esc.alt / 2,
+                        fillcolor: '#00ff88',
+                        opacity: alfa,
+                        line: { color: '#ffffff', width: 0.5 }
+                    });
+                }
+            });
+
+            // D) Projéteis do Jogador
+            projeteisJogador.forEach(p => {
+                shapes.push({
+                    type: 'rect',
+                    x0: p.x - 0.6, y0: p.y - 1.5,
+                    x1: p.x + 0.6, y1: p.y + 1.5,
+                    fillcolor: '#ffea00',
+                    line: { width: 0 }
+                });
+            });
+
+            // E) Projéteis dos Inimigos
+            projeteisInimigos.forEach(p => {
+                shapes.push({
+                    type: 'rect',
+                    x0: p.x - 0.8, y0: p.y - 1.5,
+                    x1: p.x + 0.8, y1: p.y + 1.5,
+                    fillcolor: '#ff0055',
+                    line: { width: 0 }
+                });
+            });
+
+            let annotations = [];
+            if (!jogando) {
+                annotations.push({
+                    x: GRID_W / 2, y: GRID_H / 2,
+                    text: vidas <= 0 ? "GAME OVER" : "CLIQUE EM NOVO JOGO",
+                    font: { size: 32, color: '#ff0055', family: 'Courier New' },
+                    showarrow: false
+                });
+            }
+
+            let layout = {
+                xaxis: { range: [0, GRID_W], showgrid: false, zeroline: false, showticklabels: false },
+                yaxis: { range: [0, GRID_H], showgrid: false, zeroline: false, showticklabels: false },
+                plot_bgcolor: '#000000',
+                paper_bgcolor: '#000000',
+                margin: { t: 10, b: 10, l: 10, r: 10 },
+                shapes: shapes,
+                annotations: annotations
+            };
+
+            if (plotTarget && typeof Plotly !== 'undefined') {
+                Plotly.react(plotTarget, [], layout, { staticPlot: true, responsive: true });
+            }
+        }
+
+        function gameLoop() {
+            atualizarFisica();
+            renderizar();
+        }
+
+        // --- TECLADO ---
+        window.addEventListener('keydown', (e) => {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)) {
+                e.preventDefault();
+            }
+            
+            if (!teclas[e.key] && (e.key === " " || e.code === "Space")) {
+                atirarJogador();
+            }
+
+            teclas[e.key] = true;
+        });
+
+        window.addEventListener('keyup', (e) => {
+            teclas[e.key] = false;
+        });
+
+        function checarELancar() {
+            if (typeof Plotly !== 'undefined') {
+                iniciarJogo();
+            } else {
+                setTimeout(checarELancar, 200);
+            }
+        }
+
+        checarELancar();
+    })();
+    </script>
+</body>
+</html>

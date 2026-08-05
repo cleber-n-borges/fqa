@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Q*bert (1982) - Foco e Botão Corrigidos</title>
+    <!-- Script do Plotly.js -->
+    <script src="plotly-3.7.0.min.js"></script>
+
+    <style>
+        .qbert-container {
+            background-color: #000000;
+            color: #00ffcc;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+            user-select: none; /* Impede seleção de texto ao clicar rápido */
+        }
+        .qbert-placar {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            min-height: 24px;
+            color: #ffee00;
+        }
+        .qbert-canvas {
+            width: 100%;
+            max-width: 520px;
+            height: 560px;
+            margin: 0 auto;
+            background-color: #000000;
+            border: 2px solid #ff00aa;
+            border-radius: 4px;
+            /* Importante para foco de teclado: */
+            outline: none; 
+            cursor: pointer;
+        }
+        /* Destaque visual quando a área do jogo está focada (opcional) */
+        .qbert-canvas:focus {
+            border: 2px solid #ffee00;
+        }
+
+        .qbert-info {
+            margin-top: 10px;
+            color: #aaaaaa;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+        .qbert-rodape {
+            font-size: 11px;
+            background: #111;
+            border: 1px solid #222;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            color: #ccc;
+        }
+        .qbert-painel {
+            background-color: #111111;
+            border: 1px solid #333333;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        /* Estilo padrão do botão (Reiniciar) */
+        .qbert-btn {
+            background-color: #000000;
+            color: #00ffcc;
+            border: 1px solid #00ffcc;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .qbert-btn:hover { background-color: #00ffcc; color: #000000; }
+        
+        /* Estilo do botão durante o jogo (Jogando...) */
+        .qbert-btn:disabled {
+            background-color: #333 !important;
+            color: #888 !important;
+            border: 1px solid #555 !important;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .qbert-btn.active { background-color: #00ffcc; color: #000000; }
+        .qbert-label { font-size: 12px; color: #ffea00; }
+    </style>
+</head>
+<body>
+
+    <div class="qbert-container">
+        <h1>🕹️ Q*BERT (Foco Ativo)</h1>
+
+        <!-- PAINEL DE CONTROLES -->
+        <div class="qbert-painel">
+            <!-- ID adicionado para manipulação via JS -->
+            <button id="btn-reiniciar-qbert" class="qbert-btn" onclick="window.reiniciarQbert()">🔄 REINICIAR</button>
+            
+            <span class="qbert-label">⚡ VELOCIDADE COBRA:</span>
+            <button class="qbert-btn btn-velocidade-qbert" data-vel="0.5" onclick="window.setVelocidadeQbert(0.5)">0.5x</button>
+            <button class="qbert-btn btn-velocidade-qbert active" data-vel="1.0" onclick="window.setVelocidadeQbert(1.0)">1.0x</button>
+            <button class="qbert-btn btn-velocidade-qbert" data-vel="1.5" onclick="window.setVelocidadeQbert(1.5)">1.5x</button>
+        </div>
+
+        <div id="qbert-placar" class="qbert-placar">Inicializando...</div>
+        
+        <!-- tabindex="0" permite que este elemento receba foco de teclado -->
+        <div id="qbert-game-plot" class="qbert-canvas" tabindex="0"></div>
+        
+        <div class="qbert-info">
+            <b>COMO JOGAR (Diagonais da Pirâmide):</b><br>
+            Se o teclado não funcionar, clique na pirâmide.<br>
+            <b>[Q] / [↑] / [W]</b> = Subir-Esq ($\nwarrow$) &nbsp;|&nbsp; <b>[E] / [→]</b> = Subir-Dir ($\nearrow$)<br>
+            <b>[A] / [←]</b> = Descer-Esq ($\swarrow$) &nbsp;|&nbsp; <b>[D] / [↓] / [S]</b> = Descer-Dir ($\searrow$)
+        </div>
+
+        <!-- LEGENDA COMO RODAPÉ -->
+        <div class="qbert-rodape">
+            <span>🔴 <b>Q*BERT</b> (Você)</span>
+            <span>🟢 <b>COILY</b> (Inimigo)</span>
+            <span>🟧 Cubo Normal</span>
+            <span>🔷 Cubo Conquistado</span>
+            <span>💖 Disco de Fuga</span>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const FPS = 30;
+        const LEVELS = 7;
+        const TOTAL_CUBOS = 28;
+
+        let fatorVelocidade = 1.0;
+        let score = 0;
+        let lives = 3;
+        let gameFrame = 0;
+        let jogando = false;
+        let loopInterval = null;
+        let plotInicializado = false;
+
+        let cubes = {};
+        let qbert = { row: 0, col: 0, fala: "" };
+        let coily = { active: false, row: 0, col: 0, tempoAparecer: 0 };
+
+        let discs = [
+            { id: 'left', row: 3, col: -1, active: true },
+            { id: 'right', row: 4, col: 5, active: true }
+        ];
+
+        // Referências a elementos DOM
+        const gameCanvas = document.getElementById('qbert-game-plot');
+        const reiniciarBtn = document.getElementById('btn-reiniciar-qbert');
+
+        window.setVelocidadeQbert = function(fator) {
+            fatorVelocidade = fator;
+            document.querySelectorAll('.btn-velocidade-qbert').forEach(btn => {
+                let val = parseFloat(btn.getAttribute('data-vel'));
+                if (val === fator) btn.classList.add('active');
+                else btn.classList.remove('active');
+                btn.blur();
+            });
+        };
+
+        function getIsoCoords(row, col) {
+            const side = 10;
+            const x = (col - row / 2) * (side * 1.732);
+            const y = (LEVELS - row) * (side * 1.5);
+            return { x, y };
+        }
+
+        function inicializarPiramide() {
+            cubes = {};
+            for (let r = 0; r < LEVELS; r++) {
+                for (let c = 0; c <= r; c++) {
+                    let key = `${r}_${c}`;
+                    cubes[key] = { row: r, col: c, visited: false };
+                }
+            }
+        }
+
+        function resetarPosicoes() {
+            qbert.row = 0;
+            qbert.col = 0;
+            qbert.fala = "";
+            coily.active = false;
+            coily.tempoAparecer = gameFrame + 150; 
+            coily.row = 1;
+            coily.col = Math.random() < 0.5 ? 0 : 1;
+        }
+
+        function iniciarJogo() {
+            if (typeof Plotly === 'undefined') {
+                document.getElementById('qbert-placar').innerHTML = "<span style='color:red'>ERRO: Plotly.js não carregado!</span>";
+                return;
+            }
+
+            score = 0;
+            lives = 3;
+            gameFrame = 0;
+            jogando = true;
+            plotInicializado = false;
+
+            // --- CORREÇÃO DE FOCO ---
+            // Força o navegador a focar na área do jogo instantaneamente
+            gameCanvas.focus();
+
+            // --- MUDANÇA DINÂMICA DO BOTÃO (JOGANDO...) ---
+            reiniciarBtn.innerHTML = "🎮 JOGANDO...";
+            reiniciarBtn.disabled = true; // Desativa para não clicar sem querer
+
+            discs = [
+                { id: 'left', row: 3, col: -1, active: true },
+                { id: 'right', row: 4, col: 5, active: true }
+            ];
+
+            inicializarPiramide();
+            resetarPosicoes();
+            marcarCubo(0, 0);
+
+            if (loopInterval) clearInterval(loopInterval);
+            loopInterval = setInterval(gameLoop, 1000 / FPS);
+        }
+
+        function finalizarJogoVisualmente(vitoria = false) {
+            jogando = false;
+            // --- MUDANÇA DINÂMICA DO BOTÃO (VOLTA A REINICIAR) ---
+            reiniciarBtn.innerHTML = "🔄 REINICIAR";
+            reiniciarBtn.disabled = false; // Reativa o botão
+            reiniciarBtn.classList.remove('active');
+        }
+
+        window.reiniciarQbert = iniciarJogo;
+
+        function marcarCubo(r, c) {
+            let key = `${r}_${c}`;
+            if (cubes[key] && !cubes[key].visited) {
+                cubes[key].visited = true;
+                score += 25;
+                checarVitoria();
+            }
+        }
+
+        function getProgressoJogo() {
+            let conquistados = Object.values(cubes).filter(cb => cb.visited).length;
+            return conquistados / TOTAL_CUBOS;
+        }
+
+        function checarVitoria() {
+            let conquistados = Object.values(cubes).filter(cb => cb.visited).length;
+
+            if (conquistados === TOTAL_CUBOS) {
+                score += 1000;
+                finalizarJogoVisualmente(true);
+                // Pequena pausa antes de reiniciar automaticamente a fase
+                setTimeout(() => { 
+                    inicializarPiramide();
+                    iniciarJogo(); 
+                }, 1000);
+            }
+        }
+
+        function moverQbert(dRow, dCol) {
+            if (!jogando) return;
+
+            let targetRow = qbert.row + dRow;
+            let targetCol = qbert.col + dCol;
+
+            let discoTocado = discs.find(d => d.active && d.row === targetRow && d.col === targetCol);
+            if (discoTocado) {
+                discoTocado.active = false;
+                score += 500;
+                coily.active = false;
+                coily.tempoAparecer = gameFrame + 180;
+                qbert.row = 0;
+                qbert.col = 0;
+                marcarCubo(0, 0);
+                return;
+            }
+
+            if (targetRow < 0 || targetRow >= LEVELS || targetCol < 0 || targetCol > targetRow) {
+                abaterJogador("@!#?@!");
+                return;
+            }
+
+            qbert.row = targetRow;
+            qbert.col = targetCol;
+            marcarCubo(qbert.row, qbert.col);
+
+            checarColisao();
+        }
+
+        function moverCoilyProgressiva() {
+            if (!jogando) return;
+
+            if (!coily.active) {
+                if (gameFrame >= coily.tempoAparecer) {
+                    coily.active = true;
+                    coily.row = 1;
+                    coily.col = Math.random() < 0.5 ? 0 : 1;
+                } else {
+                    return;
+                }
+            }
+
+            const opcoes = [
+                { r: coily.row - 1, c: coily.col - 1 },
+                { r: coily.row - 1, c: coily.col },
+                { r: coily.row + 1, c: coily.col },
+                { r: coily.row + 1, c: coily.col + 1 }
+            ];
+
+            let progresso = getProgressoJogo(); 
+            let chanceFicarEsperta = 0.20 + (progresso * 0.55);
+
+            if (Math.random() > chanceFicarEsperta) {
+                let puloDoido = opcoes[Math.floor(Math.random() * opcoes.length)];
+                coily.row = puloDoido.r;
+                coily.col = puloDoido.c;
+            } else {
+                let validos = opcoes.filter(op => op.r >= 0 && op.r < LEVELS && op.c >= 0 && op.c <= op.r);
+
+                if (validos.length > 0) {
+                    validos.sort((a, b) => {
+                        let distA = Math.abs(a.r - qbert.row) + Math.abs(a.c - qbert.col);
+                        let distB = Math.abs(b.r - qbert.row) + Math.abs(b.c - qbert.col);
+                        return distA - distB;
+                    });
+                    coily.row = validos[0].r;
+                    coily.col = validos[0].c;
+                }
+            }
+
+            if (coily.row < 0 || coily.row >= LEVELS || coily.col < 0 || coily.col > coily.row) {
+                coily.active = false;
+                score += 500;
+                coily.tempoAparecer = gameFrame + 150;
+            }
+
+            checarColisao();
+        }
+
+        function checarColisao() {
+            if (coily.active && coily.row === qbert.row && coily.col === qbert.col) {
+                abaterJogador("@!#?@!");
+            }
+        }
+
+        function abaterJogador(fala) {
+            qbert.fala = fala;
+            lives--;
+            if (lives <= 0) {
+                finalizarJogoVisualmente(false);
+            } else {
+                setTimeout(() => { resetarPosicoes(); }, 800);
+            }
+        }
+
+        function atualizarFisica() {
+            if (!jogando) return;
+
+            gameFrame++;
+            let progresso = getProgressoJogo();
+            let baseIntervalo = 45 - (progresso * 15);
+            let intervaloCobra = Math.max(12, Math.floor(baseIntervalo / fatorVelocidade));
+
+            if (gameFrame % intervaloCobra === 0) {
+                moverCoilyProgressiva();
+            }
+        }
+
+        function desenharCuboIso(shapes, x, y, visited) {
+            const w = 15;
+            const h = 8;
+            const depth = 12;
+
+            const topColor = visited ? '#00e5ff' : '#ff9900';
+            shapes.push({
+                type: 'path',
+                path: `M ${x} ${y} L ${x + w} ${y + h} L ${x} ${y + 2 * h} L ${x - w} ${y + h} Z`,
+                fillcolor: topColor,
+                line: { color: '#ffffff', width: 1 }
+            });
+
+            shapes.push({
+                type: 'path',
+                path: `M ${x - w} ${y + h} L ${x} ${y} L ${x} ${y - depth} L ${x - w} ${y + h - depth} Z`,
+                fillcolor: '#aa00aa',
+                line: { color: '#330033', width: 1 }
+            });
+
+            shapes.push({
+                type: 'path',
+                path: `M ${x} ${y} L ${x + w} ${y + h} L ${x + w} ${y + h - depth} L ${x} ${y - depth} Z`,
+                fillcolor: '#550088',
+                line: { color: '#220044', width: 1 }
+            });
+        }
+
+        function renderizar() {
+            let placarEl = document.getElementById('qbert-placar');
+            let plotTarget = gameCanvas;
+
+            if (placarEl) {
+                placarEl.innerHTML = `PONTOS: ${score} &nbsp;&nbsp;|&nbsp;&nbsp; VIDAS: ${"🧡 ".repeat(Math.max(0, lives))}`;
+            }
+
+            let shapes = [];
+
+            // 1. Cubos
+            for (let r = 0; r < LEVELS; r++) {
+                for (let c = 0; c <= r; c++) {
+                    let key = `${r}_${c}`;
+                    let cb = cubes[key];
+                    let pos = getIsoCoords(r, c);
+                    desenharCuboIso(shapes, pos.x, pos.y, cb ? cb.visited : false);
+                }
+            }
+
+            // 2. Discos de Fuga (Rosa)
+            discs.forEach(d => {
+                if (d.active) {
+                    let pos = getIsoCoords(d.row, d.col);
+                    shapes.push({
+                        type: 'circle',
+                        x0: pos.x - 8, y0: pos.y,
+                        x1: pos.x + 8, y1: pos.y + 10,
+                        fillcolor: '#ff00aa',
+                        line: { color: '#ffffff', width: 2 }
+                    });
+                }
+            });
+
+            let annotations = [];
+
+            // 3. Renderizar Q*bert (Vermelho)
+            let qPos = getIsoCoords(qbert.row, qbert.col);
+            shapes.push({
+                type: 'circle',
+                x0: qPos.x - 7, y0: qPos.y + 6,
+                x1: qPos.x + 7, y1: qPos.y + 20,
+                fillcolor: '#ff3300',
+                line: { color: '#ffffff', width: 2 }
+            });
+
+            if (qbert.fala) {
+                annotations.push({
+                    x: qPos.x, y: qPos.y + 28,
+                    text: `<b>${qbert.fala}</b>`,
+                    font: { size: 14, color: '#ffff00', family: 'Courier New' },
+                    showarrow: false
+                });
+            }
+
+            // 4. Renderizar Coily (Cobra Verde)
+            if (coily.active) {
+                let cPos = getIsoCoords(coily.row, coily.col);
+                if (coily.row >= 0 && coily.row < LEVELS && coily.col >= 0 && coily.col <= coily.row) {
+                    shapes.push({
+                        type: 'circle',
+                        x0: cPos.x - 8, y0: cPos.y + 6,
+                        x1: cPos.x + 8, y1: cPos.y + 22,
+                        fillcolor: '#00ff66',
+                        line: { color: '#003311', width: 2 }
+                    });
+                    annotations.push({
+                        x: cPos.x, y: cPos.y + 14,
+                        text: '<b>🐍</b>',
+                        font: { size: 12 },
+                        showarrow: false
+                    });
+                }
+            }
+
+            if (!jogando) {
+                annotations.push({
+                    x: 0, y: 50,
+                    text: lives <= 0 ? "GAME OVER" : "CLIQUE EM REINICIAR",
+                    font: { size: 24, color: '#ff0055', family: 'Courier New' },
+                    showarrow: false
+                });
+            }
+
+            let layout = {
+                xaxis: { range: [-80, 80], showgrid: false, zeroline: false, showticklabels: false },
+                yaxis: { range: [0, 120], showgrid: false, zeroline: false, showticklabels: false },
+                plot_bgcolor: '#000000',
+                paper_bgcolor: '#000000',
+                margin: { t: 5, b: 5, l: 5, r: 5 },
+                shapes: shapes,
+                annotations: annotations
+            };
+
+            if (plotTarget && typeof Plotly !== 'undefined') {
+                if (!plotInicializado) {
+                    Plotly.newPlot(plotTarget, [], layout, { staticPlot: true, responsive: true });
+                    plotInicializado = true;
+                } else {
+                    Plotly.relayout(plotTarget, layout);
+                }
+            }
+        }
+
+        function gameLoop() {
+            atualizarFisica();
+            renderizar();
+        }
+
+        // --- CORREÇÃO DE TECLADO: Escuta no documento global ---
+        document.addEventListener('keydown', function(e) {
+            if (!jogando) return; // Só move se estiver jogando
+
+            // Impede rolagem da página com setas/espaço
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(e.code)) {
+                e.preventDefault();
+            }
+
+            const code = e.code;
+            const key = e.key.toLowerCase();
+
+            // Mapeamento unificado (QWERTY + WASD + Setas)
+            // NW ($\nwarrow$)
+            if (code === 'KeyQ' || code === 'KeyW' || code === 'ArrowUp') {
+                moverQbert(-1, -1);
+            }
+            // NE ($\nearrow$)
+            else if (code === 'KeyE' || code === 'ArrowRight') {
+                moverQbert(-1, 0);
+            }
+            // SW ($\swarrow$)
+            else if (code === 'KeyA' || code === 'ArrowLeft') {
+                moverQbert(1, 0);
+            }
+            // SE ($\searrow$)
+            else if (code === 'KeyD' || code === 'KeyS' || code === 'ArrowDown') {
+                moverQbert(1, 1);
+            }
+        });
+
+        // --- CORREÇÃO DE FOCO PERDIDO ---
+        // Se clicar no canvas, garante que o foco volte para capturar teclado
+        gameCanvas.addEventListener('click', function() {
+            gameCanvas.focus();
+        });
+
+        function checarELancar() {
+            if (typeof Plotly !== 'undefined') {
+                plotTarget = gameCanvas; // Define a referência global
+                inicializarPiramide();
+                iniciarJogo(); // Começa direto para testar o foco
+            } else {
+                setTimeout(checarELancar, 200);
+            }
+        }
+
+        checarELancar();
+    })();
+    </script>
+</body>
+</html>

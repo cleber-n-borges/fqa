@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador Virtual: Estequiometria (PbI2)</title>
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --primary: #1e3d59;
+      --accent: #ff6e40;
+      --pbi2-yellow: #f1c40f;
+      --pbi2-dark: #f39c12;
+      --glass: #2c3e50;
+      --liquid-bg: rgba(220, 235, 252, 0.5);
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: #333;
+      margin: 0;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sim-container {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      padding: 20px;
+      width: 100%;
+      max-width: 900px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 4px 0;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    p.subtitle {
+      color: #555;
+      margin: 0 0 15px 0;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* Tela Gráfica SVG */
+    .canvas-container {
+      width: 100%;
+      height: 380px;
+      background: linear-gradient(180deg, #fafafa 0%, #f0f4f8 100%);
+      border: 1px solid #dcdfe6;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Vidraria e Líquidos */
+    .glass-tube {
+      fill: none;
+      stroke: var(--glass);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .liquid {
+      fill: var(--liquid-bg);
+      transition: height 0.8s ease, y 0.8s ease;
+    }
+
+    .precipitate {
+      fill: url(#yellowGradient);
+      transition: height 1s ease, y 1s ease;
+    }
+
+    .ruler-line {
+      stroke: #7f8c8d;
+      stroke-width: 1;
+    }
+
+    .ruler-text {
+      font-size: 8px;
+      fill: #7f8c8d;
+      font-family: monospace;
+    }
+
+    /* Animação de Gotas e Névoa */
+    .droplet {
+      fill: #3498db;
+      opacity: 0;
+    }
+
+    .drop-animate {
+      animation: dropFall 0.8s linear infinite;
+    }
+
+    @keyframes dropFall {
+      0% { transform: translateY(0); opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(120px); opacity: 0; }
+    }
+
+    .cloud {
+      fill: var(--pbi2-yellow);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Painel Inferior de Dados e Interação */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 650px) {
+      .dashboard { grid-template-columns: 1fr; }
+    }
+
+    .status-box {
+      background: #eef4f8;
+      border-left: 4px solid #3498db;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .data-table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    th, td {
+      border: 1px solid #dcdfe6;
+      padding: 6px 4px;
+    }
+
+    th {
+      background-color: #f8fafc;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr.selected {
+      background-color: #e3f2fd;
+      font-weight: bold;
+    }
+
+    /* Botões de Controle */
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #3498db;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #2980b9;
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .reset-btn {
+      background-color: #7f8c8d;
+      flex: 0.4;
+    }
+
+    .reset-btn:hover:not(:disabled) {
+      background-color: #6c7a89;
+    }
+
+    .tag-limit {
+      color: #c0392b;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sim-container">
+  <h1>Simulação Virtual de Estequiometria</h1>
+  <p class="subtitle">Precipitação do Iodeto de Chumbo(II) — Pb(NO₃)₂ + 2 KI → PbI₂↓ + 2 KNO₃</p>
+
+  <!-- Área do Laboratório (SVG) -->
+  <div class="canvas-container">
+    <svg viewBox="0 0 500 260" id="labSvg">
+      <defs>
+        <!-- Gradiente Amarelo do Precipitado PbI2 -->
+        <linearGradient id="yellowGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f1c40f" />
+          <stop offset="100%" stop-color="#d35400" />
+        </linearGradient>
+
+        <!-- Filtro de Sombra Suave -->
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+          <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+        </filter>
+      </defs>
+
+      <!-- Estante dos Tubos -->
+      <rect x="20" y="215" width="460" height="12" fill="#8d6e63" rx="2" />
+      <rect x="30" y="227" width="15" height="25" fill="#6d4c41" />
+      <rect x="455" y="227" width="15" height="25" fill="#6d4c41" />
+      <rect x="20" y="145" width="460" height="8" fill="#a1887f" opacity="0.4" />
+
+      <!-- Pipeta Animada -->
+      <g id="pipetteGroup" transform="translate(-50, -50)" style="transition: transform 0.6s ease;">
+        <path d="M 0,0 L 6,0 L 4,80 L 1,95 L 0,95 L -3,80 Z" fill="#e0e0e0" stroke="#757575" stroke-width="1"/>
+        <path d="M -2,0 L 4,0 L 4,10 L -2,10 Z" fill="#e74c3c" /> <!-- Bulbo -->
+        <circle id="pipetteDrop" cx="0.5" cy="100" r="3" class="droplet" />
+      </g>
+
+      <!-- Grupo do Pipetador/Pipeta acima do tubo ativo -->
+      <g id="tubesContainer"></g>
+
+      <!-- Régua Lateral Dinâmica -->
+      <g id="rulerGroup" transform="translate(440, 60)">
+        <line x1="0" y1="0" x2="0" y2="140" stroke="#333" stroke-width="1.5" />
+        <!-- Graduações da régua geradas via JS -->
+      </g>
+    </svg>
+  </div>
+
+  <!-- Painel de Controles e Tabela -->
+  <div class="controls">
+    <button id="btnStep" onclick="executeNextStep()">Passo 1: Preparar Tubos e Adicionar Pb(NO₃)₂</button>
+    <button id="btnReset" class="reset-btn" onclick="resetSim()" disabled>Reiniciar</button>
+  </div>
+
+  <div class="dashboard">
+    <!-- Status descritivo -->
+    <div class="status-box" id="statusBox">
+      <strong>Início:</strong> Clique no botão acima para iniciar a organização dos 5 tubos de ensaio e a adição de 1,0 mL de Pb(NO₃)₂ (0,5 mol/L) em cada um deles.
+    </div>
+
+    <!-- Tabela de dados experimentais -->
+    <div class="data-table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Tubo</th>
+            <th>Pb(NO₃)₂<br>(mL)</th>
+            <th>KI<br>(mL)</th>
+            <th>Razão<br>Pb²⁺:I⁻</th>
+            <th>Massa Teor.<br>PbI₂ (mg)</th>
+            <th>Altura<br>Exp. (mm)</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr id="row-1"><td>1</td><td>1,0</td><td>0,5</td><td>1 : 0,5</td><td>57,6</td><td>-</td></tr>
+          <tr id="row-2"><td>2</td><td>1,0</td><td>1,0</td><td>1 : 1,0</td><td>115,3</td><td>-</td></tr>
+          <tr id="row-3"><td>3</td><td>1,0</td><td>2,0</td><td>1 : 2,0</td><td>230,5</td><td>-</td></tr>
+          <tr id="row-4"><td>4</td><td>1,0</td><td>2,5</td><td>1 : 2,5</td><td>230,5</td><td>-</td></tr>
+          <tr id="row-5"><td>5</td><td>1,0</td><td>3,0</td><td>1 : 3,0</td><td>230,5</td><td>-</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Dados do Roteiro / Experimento
+  const tubeData = [
+    { id: 1, vPb: 1.0, vKI: 0.5, ratio: '1 : 0,5', limit: 'KI', mass: 57.6, heightMM: 5 },
+    { id: 2, vPb: 1.0, vKI: 1.0, ratio: '1 : 1,0', limit: 'KI', mass: 115.3, heightMM: 10 },
+    { id: 3, vPb: 1.0, vKI: 2.0, ratio: '1 : 2,0', limit: 'Estequiométrico', mass: 230.5, heightMM: 20 },
+    { id: 4, vPb: 1.0, vKI: 2.5, ratio: '1 : 2,5', limit: 'Pb(NO₃)₂', mass: 230.5, heightMM: 20 },
+    { id: 5, vPb: 1.0, vKI: 3.0, ratio: '1 : 3,0', limit: 'Pb(NO₃)₂', mass: 230.5, heightMM: 20 }
+  ];
+
+  let currentStep = 0;
+  const totalTubes = 5;
+  const tubeXCoords = [60, 135, 210, 285, 360]; // Posições X no SVG
+
+  // Elementos DOM
+  const tubesContainer = document.getElementById('tubesContainer');
+  const pipetteGroup = document.getElementById('pipetteGroup');
+  const pipetteDrop = document.getElementById('pipetteDrop');
+  const btnStep = document.getElementById('btnStep');
+  const btnReset = document.getElementById('btnReset');
+  const statusBox = document.getElementById('statusBox');
+
+  // Inicialização do SVG
+  function initSVG() {
+    tubesContainer.innerHTML = '';
+    
+    // Renderiza a Régua
+    const rulerGroup = document.getElementById('rulerGroup');
+    rulerGroup.innerHTML = '<line x1="0" y1="0" x2="0" y2="150" stroke="#555" stroke-width="1.5"/>';
+    for (let h = 0; h <= 25; h += 5) {
+      let y = 140 - (h * 5); // escala 1mm = 5px
+      rulerGroup.innerHTML += `
+        <line x1="0" y1="${y}" x2="${h % 10 === 0 ? 10 : 5}" y2="${y}" stroke="#555" stroke-width="1"/>
+        ${h % 10 === 0 ? `<text x="14" y="${y + 3}" class="ruler-text">${h}mm</text>` : ''}
+      `;
+    }
+
+    // Desenha os 5 Tubos de Ensaio
+    tubeXCoords.forEach((x, index) => {
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.setAttribute("id", `tube-group-${index + 1}`);
+
+      g.innerHTML = `
+        <!-- Marcador do número do tubo -->
+        <text x="${x + 15}" y="${240}" font-size="12" font-weight="bold" fill="#1e3d59" text-anchor="middle">Tubo ${index + 1}</text>
+        
+        <!-- Clippings para manter o líquido contido no contorno do tubo -->
+        <clipPath id="clip-tube-${index + 1}">
+          <path d="M ${x},70 L ${x},200 A 15,15 0 0,0 ${x + 30},200 L ${x + 30},70 Z" />
+        </clipPath>
+
+        <!-- Conteúdo do Líquido e Precipitado -->
+        <g clip-path="url(#clip-tube-${index + 1})">
+          <rect id="liquid-${index + 1}" x="${x}" y="215" width="30" height="0" class="liquid" />
+          <rect id="precipitate-${index + 1}" x="${x}" y="215" width="30" height="0" class="precipitate" />
+          <circle id="cloud-${index + 1}" cx="${x + 15}" cy="180" r="12" class="cloud" />
+        </g>
+
+        <!-- Contorno de Vidro do Tubo -->
+        <path d="M ${x - 2},65 L ${x + 32},65 M ${x},65 L ${x},200 A 15,15 0 0,0 ${x + 30},200 L ${x + 30},65" class="glass-tube" filter="url(#shadow)" />
+      `;
+      tubesContainer.appendChild(g);
+    });
+  }
+
+  // Executado a cada clique do botão principal
+  function executeNextStep() {
+    currentStep++;
+
+    if (currentStep === 1) {
+      // Adição de Pb(NO3)2 (1,0 mL fixo)
+      btnStep.disabled = true;
+      btnReset.disabled = false;
+      statusBox.innerHTML = "<strong>Etapa 1:</strong> Pipetando 1,0 mL de solução de Pb(NO₃)₂ (0,5 mol/L) para cada um dos 5 tubos de ensaio...";
+
+      animatePipetteSequence(1.0, false, () => {
+        statusBox.innerHTML = "<strong>Etapa 1 Concluída:</strong> Todos os 5 tubos contêm 1,0 mL de Pb(NO₃)₂ (solução incolor, fonte de íons Pb²⁺).<br><em>Próximo passo:</em> Adicionar volumes crescentes de KI (0,5 mol/L).";
+        btnStep.innerText = "Passo 2: Adicionar KI (0,5 a 3,0 mL)";
+        btnStep.disabled = false;
+      });
+    } 
+    else if (currentStep === 2) {
+      // Adição de KI e Reação Química
+      btnStep.disabled = true;
+      statusBox.innerHTML = "<strong>Etapa 2:</strong> Adicionando solução de KI (0,5 mol/L) em volumes variáveis aos tubos (0,5 mL no Tubo 1 até 3,0 mL no Tubo 5)...";
+
+      animatePipetteSequence(null, true, () => {
+        statusBox.innerHTML = "<strong>Etapa 2 Concluída:</strong> A reação de precipitação imediata forma o sólido amarelo (PbI₂).<br><em>Próximo passo:</em> Deixar os tubos em repouso por 10 minutos para decantação completa.";
+        btnStep.innerText = "Passo 3: Aguardar 10 min de Repouso (Decantação)";
+        btnStep.disabled = false;
+      });
+    }
+    else if (currentStep === 3) {
+      // Repouso e Sedimentação (10 min simulados)
+      btnStep.disabled = true;
+      statusBox.innerHTML = "<strong>Etapa 3:</strong> Aguardando 10 minutos de repouso... O precipitado em suspensão está decantando totalmente para o fundo dos tubos.";
+
+      // Oculta a névoa e ajusta a coluna sólida final
+      for (let i = 1; i <= totalTubes; i++) {
+        const cloud = document.getElementById(`cloud-${i}`);
+        cloud.style.opacity = '0';
+
+        const data = tubeData[i - 1];
+        const precip = document.getElementById(`precipitate-${i}`);
+        
+        // 1mm = 5px no SVG de escala
+        const pHeight = data.heightMM * 5; 
+        const liquidElem = document.getElementById(`liquid-${i}`);
+        const liquidY = parseFloat(liquidElem.getAttribute('y'));
+        const liquidH = parseFloat(liquidElem.getAttribute('height'));
+
+        precip.setAttribute('y', (liquidY + liquidH - pHeight).toString());
+        precip.setAttribute('height', pHeight.toString());
+      }
+
+      setTimeout(() => {
+        statusBox.innerHTML = "<strong>Etapa 3 Concluída:</strong> Decantação finalizada! Os precipitados formaram colunas compactas e bem definidas no fundo de cada tubo.<br><em>Próximo passo:</em> Medir as alturas com a régua milimetrada.";
+        btnStep.innerText = "Passo 4: Medir Altura do Precipitado (mm)";
+        btnStep.disabled = false;
+      }, 1200);
+    }
+    else if (currentStep === 4) {
+      // Preenchimento da tabela e Análise Analítica
+      btnStep.disabled = true;
+      
+      tubeData.forEach(d => {
+        const row = document.getElementById(`row-${d.id}`);
+        row.cells[5].innerText = `${d.heightMM},0 mm`;
+        row.cells[5].style.color = '#d35400';
+        row.cells[5].style.fontWeight = 'bold';
+      });
+
+      statusBox.innerHTML = `
+        <strong>Análise Estequiométrica Final:</strong><br>
+        • <strong>Tubos 1 e 2:</strong> O <span class="tag-limit">KI é o reagente limitante</span> (altura cresce com adição de KI).<br>
+        • <strong>Tubo 3:</strong> Proporção exata <strong>1 : 2</strong> (ponto estequiométrico ideal).<br>
+        • <strong>Tubos 4 e 5:</strong> O <span class="tag-limit">Pb(NO₃)₂ torna-se o limitante</span>. O excesso de KI não gera mais produto, estabilizando a altura em 20 mm.
+      `;
+      btnStep.innerText = "Simulação Finalizada ✓";
+    }
+  }
+
+  // Animação sequencial da pipeta sobre os tubos
+  function animatePipetteSequence(fixedVol, isKI, callback) {
+    let tubeIdx = 0;
+
+    function stepPipette() {
+      if (tubeIdx >= totalTubes) {
+        pipetteGroup.setAttribute('transform', 'translate(-50, -50)');
+        callback();
+        return;
+      }
+
+      const tNum = tubeIdx + 1;
+      const xTarget = tubeXCoords[tubeIdx] + 15;
+      const data = tubeData[tubeIdx];
+      const addedVol = isKI ? data.vKI : fixedVol;
+
+      // Destaca a linha da tabela correspondente
+      document.querySelectorAll('tr').forEach(r => r.classList.remove('selected'));
+      document.getElementById(`row-${tNum}`).classList.add('selected');
+
+      // Move pipeta para cima do tubo
+      pipetteGroup.setAttribute('transform', `translate(${xTarget}, 40)`);
+
+      setTimeout(() => {
+        // Gota caindo
+        pipetteDrop.classList.add('drop-animate');
+
+        setTimeout(() => {
+          pipetteDrop.classList.remove('drop-animate');
+
+          // Atualiza o nível do líquido no tubo (1 mL = 25px no SVG)
+          const liquid = document.getElementById(`liquid-${tNum}`);
+          let currentH = parseFloat(liquid.getAttribute('height')) || 0;
+          let newH = currentH + (addedVol * 25);
+          let newY = 215 - newH;
+
+          liquid.setAttribute('y', newY.toString());
+          liquid.setAttribute('height', newH.toString());
+
+          if (isKI) {
+            // Efeito visual imediato da reação (névoa amarela)
+            const cloud = document.getElementById(`cloud-${tNum}`);
+            cloud.setAttribute('cy', (newY + newH - 15).toString());
+            cloud.style.opacity = '0.85';
+
+            // Eleva uma altura parcial turbulenta do precipitado
+            const precip = document.getElementById(`precipitate-${tNum}`);
+            const partialHeight = (data.heightMM * 5) * 0.7; 
+            precip.setAttribute('y', (newY + newH - partialHeight).toString());
+            precip.setAttribute('height', partialHeight.toString());
+          }
+
+          tubeIdx++;
+          setTimeout(stepPipette, 400);
+        }, 600);
+      }, 500);
+    }
+
+    stepPipette();
+  }
+
+  // Reiniciar a Simulação
+  function resetSim() {
+    currentStep = 0;
+    initSVG();
+
+    document.querySelectorAll('tr').forEach(r => r.classList.remove('selected'));
+    tubeData.forEach(d => {
+      document.getElementById(`row-${d.id}`).cells[5].innerText = '-';
+    });
+
+    statusBox.innerHTML = "<strong>Início:</strong> Clique no botão acima para iniciar a organização dos 5 tubos de ensaio e a adição de 1,0 mL de Pb(NO₃)₂ (0,5 mol/L) em cada um deles.";
+    btnStep.innerText = "Passo 1: Preparar Tubos e Adicionar Pb(NO₃)₂";
+    btnStep.disabled = false;
+    btnReset.disabled = true;
+  }
+
+  // Inicializa o ambiente gráfico ao carregar
+  window.onload = initSVG;
+</script>
+
+</body>
+</html>

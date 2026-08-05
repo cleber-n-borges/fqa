@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PREPARO DE SOLUÇÃO DE HCl – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03_Estequiometria.html" rel="next">
+<link href="./01_Preparo_KOH.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+// Define a variável com o nome do arquivo do Questionario
+var JSON_Questionario = "./simulador/preparo_koh.dat";
+</script>
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_Preparo_HCl.html"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">PREPARO DE SOLUÇÃO DE HCl</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico_VersaoTESTE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico - UPDATE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Titulação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 5: Padronização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados">Dados</a></li>
+  <li><a href="#segurança-no-laboratório" id="toc-segurança-no-laboratório" class="nav-link" data-scroll-target="#segurança-no-laboratório">Segurança no Laboratório</a></li>
+  <li><a href="#roteiro-experimental" id="toc-roteiro-experimental" class="nav-link" data-scroll-target="#roteiro-experimental">Roteiro Experimental</a>
+  <ul class="collapse">
+  <li><a href="#procedimento-1" id="toc-procedimento-1" class="nav-link" data-scroll-target="#procedimento-1">Procedimento 1</a></li>
+  <li><a href="#procedimento-2" id="toc-procedimento-2" class="nav-link" data-scroll-target="#procedimento-2">Procedimento 2</a></li>
+  <li><a href="#simulação" id="toc-simulação" class="nav-link" data-scroll-target="#simulação">Simulação</a></li>
+  </ul></li>
+  <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a>
+  <ul class="collapse">
+  <li><a href="#método-1-uso-das-equações-químicas-formais" id="toc-método-1-uso-das-equações-químicas-formais" class="nav-link" data-scroll-target="#método-1-uso-das-equações-químicas-formais">Método 1: Uso das equações químicas formais</a></li>
+  <li><a href="#método-2-cálculo-alternativo-por-regra-de-três" id="toc-método-2-cálculo-alternativo-por-regra-de-três" class="nav-link" data-scroll-target="#método-2-cálculo-alternativo-por-regra-de-três">Método 2: Cálculo alternativo por regra de três</a></li>
+  <li><a href="#fluxograma-do-preparo-da-solução-de-hcl" id="toc-fluxograma-do-preparo-da-solução-de-hcl" class="nav-link" data-scroll-target="#fluxograma-do-preparo-da-solução-de-hcl">Fluxograma do Preparo da Solução de HCl</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#complemento-com-ia" id="toc-complemento-com-ia" class="nav-link" data-scroll-target="#complemento-com-ia">Complemento com IA</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>O preparo de <a href="https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o">solução</a> com concentração conhecida frequentemente envolve a <a href="https://pt.wikipedia.org/wiki/Dilui%C3%A7%C3%A3o"><strong>diluição</strong></a> de reagentes concentrados, etapa essencial para obtenção de soluções em concentrações adequadas às análises químicas, especialmente nas titulações.</p>
+<p>O <a href="https://pt.wikipedia.org/wiki/%C3%81cido_clor%C3%ADdrico"><strong>ácido clorídrico</strong></a> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> — é uma solução aquosa resultante da dissolução do gás cloreto de hidrogênio em água. Trata-se de um <a href="https://pt.wikipedia.org/wiki/%C3%81cido_forte">ácido forte</a>, amplamente utilizado em laboratórios de Química Analítica devido à sua completa dissociação em meio aquoso. Entretanto, apresenta riscos significativos à saúde e segurança, uma vez que é altamente corrosivo, volátil e tóxico.</p>
+<p>Nesta prática, será preparada uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> com concentração de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1 \, \text{mol·L}^{-1}</annotation></semantics></math> a partir da diluição do ácido clorídrico comercial (saturado, ~37% m/m), grau <em>p.a.</em> (<em>pro analysi</em>), cuja pureza assegura confiabilidade nos cálculos e reprodutibilidade dos resultados.</p>
+<p>Os conceitos de concentração percentual, <a href="https://pt.wikipedia.org/wiki/Densidade">densidade</a> e molaridade serão empregados em conjunto nessa primeira etapa. A solução resultante será empregada como solução estoque para a preparação de uma solução mais diluída, de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0,1 \, \text{mol·L}^{-1}</annotation></semantics></math>, na segunda etapa.</p>
+<p>Além da aplicação dos cálculos necessários, os alunos terão a oportunidade de reforçar procedimentos seguros para o manuseio de <a href="https://pt.wikipedia.org/wiki/%C3%81cido">ácidos</a> concentrados e o uso correto de vidrarias tal como <a href="https://pt.wikipedia.org/wiki/Pipeta">pipetas volumétricas e graduadas</a>.</p>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li><p>Preparar soluções diluídas a partir de soluções estoque mais concentradas.</p></li>
+<li><p>Converter concentração percentual para molaridade utilizando densidade e massa molar.</p></li>
+<li><p>Executar cálculos de diluição usando a relação <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><msub><mi>C</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">C_1 \cdot V_1 = C_2 \cdot V_2</annotation></semantics></math>.</p></li>
+<li><p>Utilizar corretamente pipetas volumétricas e graduadas.</p></li>
+<li><p>Reforçar procedimentos de segurança no manuseio de ácidos.</p></li>
+</ul>
+</section>
+<section id="dados" class="level2">
+<h2 class="anchored" data-anchor-id="dados">Dados</h2>
+<ol type="1">
+<li><p><strong>Propriedades Físico-Químicas do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> Comercial:</p>
+<ul>
+<li><p>Massa molar: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>H</mi><mi>C</mi><mi>l</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>36</mn><mo>,</mo><mn>46</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(HCl) = 36{,}46 \, \text{g·mol}^{-1}</annotation></semantics></math></p></li>
+<li><p>Densidade: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>18</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mL</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">d = 1{,}18 \, \text{g·mL}^{-1}</annotation></semantics></math></p></li>
+<li><p>Título: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mn>36</mn><mo>,</mo><mn>46</mn><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">m/m</mtext></mrow><annotation encoding="application/x-tex">\tau = 36{,}46\% \, \text{m/m}</annotation></semantics></math> (concentração percentual em massa)</p></li>
+</ul></li>
+<li><p><strong>Equação Química (Representação Esquemática)</strong></p></li>
+</ol>
+<p><strong>Nota:</strong> A preparação de soluções diluídas de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> a partir de uma solução concentrada <strong>não envolve reação química</strong>, mas sim <strong>diluição</strong>. Portanto, não há uma transformação química de espécies, apenas uma mudança na concentração dos íons presentes na solução aquosa.</p>
+<p>Para efeito de representação esquemática, podemos expressar:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><mi>C</mi><msubsup><mi>l</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>−</mo></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><mtext mathvariant="normal">concentrado</mtext></msub><mover><mo>→</mo><mrow><msub><mtext mathvariant="normal">adição de H</mtext><mn>2</mn></msub><mi>O</mi></mrow></mover><msub><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><mi>C</mi><msubsup><mi>l</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>−</mo></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><mtext mathvariant="normal">diluído</mtext></msub></mrow><annotation encoding="application/x-tex">\left( H^{+}_{(aq)} + Cl^{-}_{(aq)} \right)_{\text{concentrado}} \xrightarrow{\text{adição de H}_2O} \left( H^{+}_{(aq)} + Cl^{-}_{(aq)} \right)_{\text{diluído}}</annotation></semantics></math></p>
+<ol start="3" type="1">
+<li><p><strong>Entalpia de diluição</strong> <strong>—</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mi>H</mi><mtext mathvariant="normal">diluição</mtext></msub></mrow><annotation encoding="application/x-tex">\Delta H_{\text{diluição}}</annotation></semantics></math></p>
+<ul>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">\Delta H</annotation></semantics></math> da diluição (variação de entalpia): Embora não haja reação química, a diluição de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> concentrado em água libera calor devido ao processo de <a href="https://pt.wikipedia.org/wiki/Solvata%C3%A7%C3%A3o">solvatação</a> dos íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>H</mi><mo>+</mo></msup><annotation encoding="application/x-tex">H^{+}</annotation></semantics></math> (hidrônio) e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>l</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">Cl^{-}</annotation></semantics></math> (cloreto) ser exotérmico.</p></li>
+<li><p>Valor aproximado: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mi>H</mi><mtext mathvariant="normal">diluição</mtext></msub><mo>≈</mo><mi>−</mi><mn>75</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">kJ·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\Delta H_{\text{diluição}} \approx -75\ \text{kJ·mol}^{-1}</annotation></semantics></math> para 1 mol de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> diluído em grande volume de água.</p></li>
+<li><p>Sinal: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>H</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta H &lt; 0</annotation></semantics></math> → processo exotérmico.</p></li>
+</ul></li>
+<li><p><strong>Observação de segurança</strong></p>
+<ul>
+<li>Sempre adicionar o ácido à água e nunca o inverso, para evitar aquecimento violento e respingos.</li>
+</ul></li>
+</ol>
+</section>
+<section id="segurança-no-laboratório" class="level2">
+<h2 class="anchored" data-anchor-id="segurança-no-laboratório">Segurança no Laboratório</h2>
+<ul>
+<li>O <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> concentrado é altamente corrosivo e volátil: use jaleco, óculos de segurança e luvas sempre.</li>
+<li>Trabalhar preferencialmente sob capela de exaustão.</li>
+<li><strong>Nunca</strong> adicionar água ao ácido concentrado! Sempre adicionar o ácido à água lentamente, sob agitação.</li>
+<li>Em caso de contato com a pele ou olhos, lavar imediatamente com água abundante e comunicar o professor.</li>
+<li>Descartar resíduos conforme as normas da instituição.</li>
+</ul>
+</section>
+<section id="roteiro-experimental" class="level2">
+<h2 class="anchored" data-anchor-id="roteiro-experimental">Roteiro Experimental</h2>
+<section id="procedimento-1" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento-1">Procedimento 1</h3>
+<p><strong>Preparo de 100 mL de Solução de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi><mspace width="0.222em"></mspace><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">HCl \ 1{,}0 \, \text{mol·L}^{-1}</annotation></semantics></math></p>
+<p><strong>a) Cálculo do volume necessário:</strong></p>
+<p>Utilizar o volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>≈</mo><mn>8</mn><mo>,</mo><mn>47</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_1 \approx 8{,}47 \, \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> concentrado (conforme determinado no Guia do Cálculo).</p>
+<p><strong>b) Preparo da solução:</strong></p>
+<ol type="1">
+<li><p>Adicionar cerca de 40 mL de água destilada a um balão volumétrico de 100 mL.</p></li>
+<li><p>Medir 8,5 mL de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> concentrado com pipeta graduada e adicionar lentamente ao balão.</p></li>
+<li><p>Completar o volume com água destilada até a marca de aferição, ajustando o <a href="https://pt.wikipedia.org/wiki/Menisco_(l%C3%ADquido)">menisco</a> corretamente: alinhar a parte inferior do menisco com a marca, mantendo a marca à altura dos olhos para evitar <a href="https://pt.wikipedia.org/wiki/Erro_de_paralaxe">erro de paralaxe</a>.</p></li>
+<li><p>Tampar e homogeneizar.</p></li>
+</ol>
+<p><strong>c) Armazenamento:</strong></p>
+<ul>
+<li>Transferir a solução estoque (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}0 \, \text{mol·L}^{-1}</annotation></semantics></math>) para frasco rotulado com:</li>
+</ul>
+<pre><code>  - Nome da solução
+  - Concentração aproximada
+  - Data de preparo
+  - Nome do responsável</code></pre>
+<hr>
+</section>
+<section id="procedimento-2" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento-2">Procedimento 2</h3>
+<p><strong>Preparo de 100 mL de Solução de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">HCl \ 0,1 \, \text{mol·L}^{-1}</annotation></semantics></math></p>
+<p><strong>a) Cálculo do volume da solução estoque necessário:</strong></p>
+<p>Aqui, o cálculo é feito pela aplicação direta da relação de diluição: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><msub><mi>C</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">C_1 \cdot V_1 = C_2 \cdot V_2</annotation></semantics></math>.</p>
+<p>Então temos que:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><msub><mi>C</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><msub><mi>C</mi><mn>1</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">V_1 = \frac{ C_2 \cdot V_2 }{C_1}</annotation></semantics></math></p>
+<p>onde:</p>
+<ul>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math> é a concentração da solução diluída que se deseja preparar, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>2</mn></msub><annotation encoding="application/x-tex">V_2</annotation></semantics></math> é o volume desejado da solução diluída, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100{,}0 \, \text{mL}</annotation></semantics></math>.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math> é a concentração da solução estoque (concentrada) a ser diluída, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}0 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>1</mn></msub><annotation encoding="application/x-tex">V_1</annotation></semantics></math> é o volume que deverá ser usado da solução estoque (concentrada).</p></li>
+</ul>
+<p>O que resulta em:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mo>⋅</mo><mn>100</mn></mrow><mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow></mfrac><mo>=</mo><mn>10</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_1 = \frac{0{,}1 \cdot 100}{1{,}0} = 10 \, \text{mL}</annotation></semantics></math></p>
+<p>Portanto, utilize o volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_1  = 10{,}0 \, \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">HCl 1{,}0 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p>
+<p><strong>b) Preparo:</strong></p>
+<ol type="1">
+<li><p>Adicionar cerca de 40 mL de água destilada a um balão volumétrico de 100 mL.</p></li>
+<li><p>Adicionar 10 mL da solução estoque <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p></li>
+<li><p>Completar o volume com água destilada.</p></li>
+<li><p>Tampar e homogeneizar.</p></li>
+</ol>
+<p><strong>c) Armazenamento:</strong> - Transferir para frasco devidamente identificado com:</p>
+<pre><code>  - Nome da solução
+  - Concentração aproximada
+  - Data de preparo
+  - Nome do responsável</code></pre>
+</section>
+<section id="simulação" class="level3">
+<h3 class="anchored" data-anchor-id="simulação">Simulação</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Simulação Virtual do Preparo da Solução
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Visualize a simulação para reproduzir os passos do preparo da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>:</p>
+<iframe src="./resources/Sim_Preparo_HCl.html" width="100%" height="770px" style="border: none; border-radius: 8px;" title="Simulação Virtual do preparo da solução de HCl">
+</iframe>
+<p style="text-align: center; font-size: 0.85em; color: #666;">
+</p><p><em>Simulação Virtual do Preparo da Solução de HCl.</em></p>
+<p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="discussão" class="level2">
+<h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
+<p>Nesta prática, o conceito de concentração percentual — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">\%m/m</annotation></semantics></math> — é aplicado para determinar a molaridade do ácido saturado, evidenciando a importância da densidade como fator de conversão entre massa e volume.</p>
+<p>Em sequência, o cálculo de diluições usando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><msub><mi>M</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">M_1 \cdot V_1 = M_2 \cdot V_2</annotation></semantics></math> mostra-se direto, mas exige atenção na manipulação de unidades e volumes para evitar erros.</p>
+<p>O procedimento reforça a necessidade de boas práticas de segurança no manuseio de ácidos fortes.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>📌 Informações diversas</strong></p>
+<ul>
+<li><p>O ácido clorídrico está presente no suco gástrico humano em concentração variando de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> a </mtext><mspace width="0.333em"></mspace></mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0,1 \text{ a } 0,5 \, \text{mol·L}^{-1}</annotation></semantics></math>;</p></li>
+<li><p>Também é chamado de “ácido muriático” (do latim <em>muria</em>, salmoura). Já no século VIII, alquimistas o produziam a partir da mistura de sal (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>a</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">NaCl</annotation></semantics></math>) e ácido sulfúrico;</p></li>
+<li><p>Até o século XIX, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> era liberado como resíduo gasoso, na produção de soda cáustica, o que causava sérios problemas ambientais;</p></li>
+<li><p>Atualmente, é um dos produtos químicos mais fabricados no mundo (milhões de toneladas por ano). É usado na produção de cloretos, PVC, purificação de metais, na indústria alimentícia (ajuste de pH em bebidas, condimentos e xaropes), usado para ajustar a acidez em cosméticos e produtos de higiene, e na remoção de ferrugem (<em>pickling</em> do aço).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="bibliografia" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<ul>
+<li>ATKINS, P.; JONES, L. <strong>Princípios de Química</strong>. Bookman, 2012.</li>
+<li>VOGEL, A. I. <strong>Análise Química Quantitativa</strong>. LTC, 2008.</li>
+<li>WIKIPÉDIA. <strong>Ácido Clorídrico</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/%C3%81cido_clor%C3%ADdrico" class="uri">https://pt.wikipedia.org/wiki/%C3%81cido_clor%C3%ADdrico</a></li>
+</ul>
+</section>
+<section id="guia-do-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
+<p>Este guia apresenta o procedimento para determinação do volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> concentrado necessário para o preparo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> de solução na concentração de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}0 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p>
+<p>Antes de iniciar os cálculos, organize os dados e parâmetros da prática:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grandeza</th>
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: center;">Unidade Recomendada</th>
+<th style="text-align: left;">Observação / Aplicação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Massa molar do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">M.M.</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{g\cdot mol^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Constante do composto (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>36</mn><mo>,</mo><mn>46</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">36{,}46 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Densidade da solução concentrada</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{g\cdot mL^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Propriedade da solução comercial (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>18</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">1{,}18 \ \mathrm{g\cdot mL^{-1}}</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Título (Teor percentual)</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>%</mi><annotation encoding="application/x-tex">\%</annotation></semantics></math> m/m</td>
+<td style="text-align: left;">Porcentagem em massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo><mn>36</mn><mo>,</mo><mn>46</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\approx 36{,}46\%</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Concentração desejada (Estoque)</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mn>2</mn></msub><annotation encoding="application/x-tex">M_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Molaridade alvo da Parte 1 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">1{,}0 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Volume de solução desejado</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>2</mn></msub><annotation encoding="application/x-tex">V_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">L</mi><annotation encoding="application/x-tex">\mathrm{L}</annotation></semantics></math></td>
+<td style="text-align: left;">Volume a preparar (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">100 \ \mathrm{mL}</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled" title="Atenção para o Manejo de Ácidos Concentrados">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção para o Manejo de Ácidos Concentrados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Relação Físico-Química:</strong> Ácidos concentrados comerciais são vendidos em porcentagem em massa (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">\%m/m</annotation></semantics></math>). Por isso, o uso da densidade (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>) é indispensável para converter massa em volume pipetável.</li>
+<li><strong>Ordem de Adição:</strong> Devido à alta entalpia de diluição (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>H</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta H &lt; 0</annotation></semantics></math>), <strong>nunca adicione água ao ácido</strong>. Adicione sempre o ácido sobre a água destilada.</li>
+</ul>
+</div>
+</div>
+<hr>
+<section id="método-1-uso-das-equações-químicas-formais" class="level3">
+<h3 class="anchored" data-anchor-id="método-1-uso-das-equações-químicas-formais">Método 1: Uso das equações químicas formais</h3>
+<p><strong>Cálculo para o Procedimento 1</strong></p>
+<p><strong>Passo 1</strong> — Determinar a molaridade (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mn>1</mn></msub><annotation encoding="application/x-tex">M_1</annotation></semantics></math>) do ácido concentrado (saturado, ~37% m/m):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mn>10</mn><mo>⋅</mo><mi>d</mi><mo>⋅</mo><mi>τ</mi></mrow><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">M_1 = \frac{10 \cdot d \cdot \tau}{M.M.}</annotation></semantics></math></p>
+<ul>
+<li>Onde o fator <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>10</mn><annotation encoding="application/x-tex">10</annotation></semantics></math> converte <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">g·mL</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{g·mL}^{-1}</annotation></semantics></math> e porcentagem para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">g·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{g·L}^{-1}</annotation></semantics></math>.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mn>10</mn><mo>⋅</mo><mn>1</mn><mo>,</mo><mn>18</mn><mo>⋅</mo><mn>36</mn><mo>,</mo><mn>46</mn></mrow><mrow><mn>36</mn><mo>,</mo><mn>46</mn></mrow></mfrac><mo>=</mo><mn>11</mn><mo>,</mo><mn>8</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M_1 = \frac{10 \cdot 1{,}18 \cdot 36{,}46}{36{,}46} = 11{,}8 \, \text{mol·L}^{-1}</annotation></semantics></math></p>
+<p><strong>Passo 2</strong> — Calcular o volume necessário do ácido concentrado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>1</mn></msub><annotation encoding="application/x-tex">V_1</annotation></semantics></math>):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><msub><mi>M</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub><mo>⟹</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><msub><mi>M</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><msub><mi>M</mi><mn>1</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">M_1 \cdot V_1 = M_2 \cdot V_2 \implies V_1 = \frac{M_2 \cdot V_2}{M_1}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mo>⋅</mo><mn>100</mn></mrow><mrow><mn>11</mn><mo>,</mo><mn>8</mn></mrow></mfrac><mo>≈</mo><mn>8</mn><mo>,</mo><mn>47</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_1 = \frac{1{,}0 \cdot 100}{11{,}8} \approx 8{,}47 \, \text{mL}</annotation></semantics></math></p>
+<hr>
+</section>
+<section id="método-2-cálculo-alternativo-por-regra-de-três" class="level3">
+<h3 class="anchored" data-anchor-id="método-2-cálculo-alternativo-por-regra-de-três">Método 2: Cálculo alternativo por regra de três</h3>
+<p><strong>Cálculo para o Procedimento 1</strong></p>
+<ul>
+<li><strong>Passo 1</strong> — Determinar o número de mols (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>) de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> necessários:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mol HCl</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.167em"></mspace><mtext mathvariant="normal">mol HCl</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>100</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \, \text{mol HCl}   &amp; \text{-------------} &amp; 1000 \, \text{mL} \\
+x_1 \, \text{mol HCl} &amp; \text{-------------} &amp; 100 \, \text{mL}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn><mo>×</mo><mfrac><mn>100</mn><mn>1000</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">x_1 = 1 \times \frac{100}{1000} = 0{,}100 \ \text{mol}</annotation></semantics></math></p>
+<ul>
+<li><strong>Passo 2</strong> — Converter o número de mols em massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow></msub><annotation encoding="application/x-tex">m_{HCl}</annotation></semantics></math>):</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mol HCl</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>36</mn><mo>,</mo><mn>46</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>100</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mol HCl</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.167em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \, \text{mol HCl}     &amp; \text{-------------} &amp; 36{,}46 \, \text{g} \\
+0{,}100 \, \text{mol HCl} &amp; \text{-------------} &amp; x_2 \, \text{g}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>100</mn><mo>×</mo><mn>36</mn><mo>,</mo><mn>46</mn><mo>=</mo><mn>3</mn><mo>,</mo><mn>646</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">x_2 = 0{,}100 \times 36{,}46 = 3{,}646 \ \text{g}</annotation></semantics></math></p>
+<ul>
+<li><strong>Passo 3</strong> — Determinar a massa da solução concentrada necessária (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mtext mathvariant="normal">solução</mtext></msub><annotation encoding="application/x-tex">m_{\text{solução}}</annotation></semantics></math>):</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>36</mn><mo>,</mo><mn>46</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g HCl</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g solução</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>3</mn><mo>,</mo><mn>646</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g HCl</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">g solução</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+36{,}46 \ \text{g HCl} &amp; \text{-------------} &amp; 100 \ \text{g solução} \\
+3{,}646 \ \text{g HCl} &amp; \text{-------------} &amp; x_3 \ \text{g solução}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>3</mn></msub><mo>=</mo><mfrac><mrow><mn>3</mn><mo>,</mo><mn>646</mn><mo>×</mo><mn>100</mn></mrow><mrow><mn>36</mn><mo>,</mo><mn>46</mn></mrow></mfrac><mo>=</mo><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g solução</mtext></mrow><annotation encoding="application/x-tex">x_3 = \frac{3{,}646 \times 100}{36{,}46} = 10{,}0 \ \text{g solução}</annotation></semantics></math></p>
+<ul>
+<li><strong>Passo 4</strong> — Determinar o volume da solução concentrada (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">sat</mtext></msub><annotation encoding="application/x-tex">V_{\text{sat}}</annotation></semantics></math>) a ser pipetado:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mo>,</mo><mn>18</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g solução</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL solução</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g solução</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>4</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL solução</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1{,}18 \ \text{g solução} &amp; \text{-------------} &amp; 1 \ \text{mL solução} \\
+10{,}0 \ \text{g solução} &amp; \text{-------------} &amp; x_4 \ \text{mL solução}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>4</mn></msub><mo>=</mo><mfrac><mrow><mn>10</mn><mo>,</mo><mn>0</mn></mrow><mrow><mn>1</mn><mo>,</mo><mn>18</mn></mrow></mfrac><mo>≈</mo><mn>8</mn><mo>,</mo><mn>47</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">x_4 = \frac{10{,}0}{1{,}18} \approx 8{,}47 \ \text{mL}</annotation></semantics></math></p>
+<p>👉 <em>Resultado:</em> Deve-se pipetar aproximadamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>,</mo><mn>47</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">8{,}47 \ \text{mL}</annotation></semantics></math> da solução concentrada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> para preparar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> da solução <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p>
+</section>
+<section id="fluxograma-do-preparo-da-solução-de-hcl" class="level3">
+<h3 class="anchored" data-anchor-id="fluxograma-do-preparo-da-solução-de-hcl">Fluxograma do Preparo da Solução de HCl</h3>
+<p>O fluxograma resume a sequência lógica de cálculos e etapas experimentais para a diluição do ácido clorídrico concentrado e preparo das soluções estoque e diluída.</p>
+<div id="fluxograma-HCl" class="center fluxograma-adaptavel quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fluxograma figure">
+<div aria-describedby="fluxograma-HCl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg width="100%" style="height: auto;" viewbox="0 0 1280 1850" version="1.1" id="svg_hcl_preparo" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<style id="style1">
+  .graph-bg       { fill: var(--bg-graph, #ffffff); }
+  .node-bg-root   { fill: var(--bg-node-root, #e5e5e5); }
+  .node-bg        { fill: var(--bg-node, #f0f0f0); }
+  .stroke-color   { stroke: var(--stroke-main, #000000); stroke-width: 2px; }
+  .text-color     { fill: var(--text-main, #000000); }
+  
+  .edge-line      { stroke: var(--stroke-main, #000000); stroke-width: 3px; }
+  .edge-arrow     { fill: var(--stroke-main, #000000); stroke: var(--stroke-main, #000000); }
+
+  .formula-text {
+    font-family: "Latin Modern Math", "Cambria Math", "Helvetica", sans-Serif;
+    font-size: 24px;
+    fill: var(--text-main, #000000);
+    text-anchor: middle;
+  }
+  .subscript { font-size: 16px; }
+</style>
+  <g id="graph0">
+    <title id="title1">Preparo_HCl</title>
+    <polygon class="graph-bg" stroke="none" points="0,0 1280,1850 1280,1850 0,1850" id="polygon1"></polygon>
+
+    <!-- ROOT -->
+    <g id="node1">
+      <polygon class="node-bg-root" stroke="none" points="220,30 1030,30 1030,80 220,80" id="polygon2"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="62" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text2">Preparo e Diluição de Solução de HCl (Parte 1 e 2)</text>
+      <polygon fill="none" class="stroke-color" points="220,30 1030,30 1030,80 220,80" id="polygon3"></polygon>
+    </g>
+
+    <!-- SETA ROOT -> P1 -->
+    <path class="edge-line" d="M625,80 L625,120" id="path3"></path>
+    <polygon class="edge-arrow" points="620,120 625,130 630,120" id="polygon4"></polygon>
+
+    <!-- PASSO 1: Molaridade do Comercial -->
+    <g id="node2">
+      <polygon class="node-bg" stroke="none" points="200,130 1050,130 1050,250 200,250" id="polygon5"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="170" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text5">Passo 1 — Molaridade do HCl Comercial (~37% m/m)</text>
+      <line x1="200" y1="200" x2="1050" y2="200" class="stroke-color" id="line5"></line>
+      
+      <!-- Formula P1 -->
+      <text class="formula-text" x="625" y="232" id="text9">M<tspan class="subscript" dy="6">1</tspan><tspan dy="-6"> = (10 × d × τ) / M.M. = (10 × 1,18 × 36,46) / 36,46 = 11,8 mol·L</tspan><tspan class="subscript" dy="-6">−1</tspan></text>
+      <polygon fill="none" class="stroke-color" points="200,130 1050,130 1050,250 200,250" id="polygon9"></polygon>
+    </g>
+
+    <!-- SETA P1 -> P2 -->
+    <path class="edge-line" d="M625,250 L625,290" id="path9"></path>
+    <polygon class="edge-arrow" points="620,290 625,300 630,290" id="polygon10"></polygon>
+
+    <!-- PASSO 2: Volume Estoque (1,0 M) -->
+    <g id="node3">
+      <polygon class="node-bg" stroke="none" points="200,300 1050,300 1050,440 200,440" id="polygon11"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="340" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text11">Passo 2 — Volume para 100 mL de HCl 1,0 mol·L⁻¹ (Estoque)</text>
+      <line x1="200" y1="370" x2="1050" y2="370" class="stroke-color" id="line11"></line>
+      <line x1="560" y1="370" x2="560" y2="440" class="stroke-color" id="line12"></line>
+      
+      <!-- Esquerda: Equação de Diluição -->
+      <text class="formula-text" x="380" y="412" id="text16">M<tspan class="subscript" dy="6">1</tspan><tspan dy="-6"> × V</tspan><tspan class="subscript" dy="6">1</tspan><tspan dy="-6"> = M</tspan><tspan class="subscript" dy="6">2</tspan><tspan dy="-6"> × V</tspan><tspan class="subscript" dy="6">2</tspan></text>
+      <!-- Direita: Cálculo amplo -->
+      <text class="formula-text" x="805" y="412" id="text19">V<tspan class="subscript" dy="6">1</tspan><tspan dy="-6"> = (1,0 × 100) / 11,8 ≈ 8,5 mL</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="200,300 1050,300 1050,440 200,440" id="polygon20"></polygon>
+    </g>
+
+    <!-- SETA P2 -> P3 -->
+    <path class="edge-line" d="M625,440 L625,480" id="path20"></path>
+    <polygon class="edge-arrow" points="620,480 625,490 630,480" id="polygon21"></polygon>
+
+    <!-- PASSO 3: Pipetagem e Segurança -->
+    <g id="node4">
+      <polygon class="node-bg" stroke="none" points="180,490 1070,490 1070,620 180,620" id="polygon22"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="530" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text22">Passo 3 — Pipetagem sob Capela (Parte 1)</text>
+      <line x1="180" y1="560" x2="1070" y2="560" class="stroke-color" id="line22"></line>
+      
+      <text class="formula-text" x="625" y="592" id="text23">Adicionar ~40 mL H<tspan class="subscript" dy="6">2</tspan><tspan dy="-6">O no balão + Pipetar 8,5 mL de HCl concentrado sobre a água</tspan></text>
+      <polygon fill="none" class="stroke-color" points="180,490 1070,490 1070,620 180,620" id="polygon25"></polygon>
+    </g>
+
+    <!-- SETA P3 -> P4 -->
+    <path class="edge-line" d="M625,620 L625,660" id="path25"></path>
+    <polygon class="edge-arrow" points="620,660 625,670 630,660" id="polygon26"></polygon>
+
+    <!-- PASSO 4: Volumetria e Estocagem da Solução 1,0 M -->
+    <g id="node5">
+      <polygon class="node-bg" stroke="none" points="10,670 1270,670 1270,850 10,850" id="polygon27"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="710" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text27">Passo 4 — Aferição do Balão e Rotulagem da Solução Estoque (1,0 M)</text>
+      <line x1="10" y1="740" x2="1270" y2="740" class="stroke-color" id="line27"></line>
+      <line x1="640" y1="740" x2="640" y2="850" class="stroke-color" id="line28"></line>
+      
+      <!-- Sub-bloco 1 -->
+      <text class="formula-text" x="325" y="795" id="text31">Completar com H<tspan class="subscript" dy="6">2</tspan><tspan dy="-6">O até 100 mL e homogeneizar</tspan></text>
+      <!-- Sub-bloco 2 -->
+      <text class="formula-text" x="955" y="795" id="text32">Armazenar em frasco rotulado: HCl 1,0 mol·L<tspan class="subscript" dy="-6">−1</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="10,670 1270,670 1270,850 10,850" id="polygon31"></polygon>
+    </g>
+
+    <!-- SETA P4 -> P5 -->
+    <path class="edge-line" d="M625,850 L625,890" id="path31"></path>
+    <polygon class="edge-arrow" points="620,890 625,900 630,890" id="polygon32"></polygon>
+
+    <!-- PASSO 5: Cálculo da Solução Diluída (0,1 M) -->
+    <g id="node6">
+      <polygon class="node-bg" stroke="none" points="200,900 1050,900 1050,1020 200,1020" id="polygon33"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="940" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text33">Passo 5 — Alíquota para 100 mL de HCl 0,1 mol·L⁻¹ (Parte 2)</text>
+      <line x1="200" y1="970" x2="1050" y2="970" class="stroke-color" id="line33"></line>
+      
+      <text class="formula-text" x="625" y="1002" id="text42">V<tspan class="subscript" dy="6">1</tspan><tspan dy="-6"> = (M</tspan><tspan class="subscript" dy="6">2</tspan><tspan dy="-6"> × V</tspan><tspan class="subscript" dy="6">2</tspan><tspan dy="-6">) / M</tspan><tspan class="subscript" dy="6">1</tspan><tspan dy="-6"> = (0,1 × 100) / 1,0 = 10,0 mL da solução estoque</tspan></text>
+      <polygon fill="none" class="stroke-color" points="200,900 1050,900 1050,1020 200,1020" id="polygon48"></polygon>
+    </g>
+
+    <!-- SETA P5 -> P6 -->
+    <path class="edge-line" d="M625,1020 L625,1060" id="path48"></path>
+    <polygon class="edge-arrow" points="620,1060 625,1070 630,1060" id="polygon49"></polygon>
+
+    <!-- PASSO 6: Diluição Prática (0,1 M) -->
+    <g id="node7">
+      <polygon class="node-bg" stroke="none" points="180,1070 1070,1070 1070,1200 180,1200" id="polygon50"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="1110" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text50">Passo 6 — Diluição no Novo Balão Volumétrico</text>
+      <line x1="180" y1="1140" x2="1070" y2="1140" class="stroke-color" id="line50"></line>
+      
+      <text class="formula-text" x="625" y="1172" id="text53">Adicionar ~40 mL H<tspan class="subscript" dy="6">2</tspan><tspan dy="-6">O em novo balão de 100 mL + Pipetar 10,0 mL de HCl 1,0 M</tspan></text>
+      <polygon fill="none" class="stroke-color" points="180,1070 1070,1070 1070,1200 180,1200" id="polygon57"></polygon>
+    </g>
+
+    <!-- SETA P6 -> P7 -->
+    <path class="edge-line" d="M625,1200 L625,1240" id="path57"></path>
+    <polygon class="edge-arrow" points="620,1240 625,1250 630,1240" id="polygon58"></polygon>
+
+    <!-- PASSO 7: Transferência e Volumetria Final -->
+    <g id="node8">
+      <polygon class="node-bg" stroke="none" points="10,1250 1270,1250 1270,1430 10,1430" id="polygon59"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="1290" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text59">Passo 7 — Transferência Quantitativa e Aferição Final</text>
+      <line x1="10" y1="1320" x2="1270" y2="1320" class="stroke-color" id="line59"></line>
+      <line x1="430" y1="1320" x2="430" y2="1430" class="stroke-color" id="line60"></line>
+      <line x1="850" y1="1320" x2="850" y2="1430" class="stroke-color" id="line61"></line>
+      
+      <!-- Sub-bloco 1 -->
+      <text class="formula-text" x="220" y="1375" id="text62">Balão Volumétrico 100 mL</text>
+      <!-- Sub-bloco 2 -->
+      <text class="formula-text" x="640" y="1375" id="text64">Aferir o menisco com H<tspan class="subscript" dy="6">2</tspan><tspan dy="-6">O destilada</tspan></text>
+      <!-- Sub-bloco 3 -->
+      <text class="formula-text" x="1060" y="1375" id="text66">Homogeneizar sem erro de paralaxe</text>
+      
+      <polygon fill="none" class="stroke-color" points="10,1250 1270,1250 1270,1430 10,1430" id="polygon65"></polygon>
+    </g>
+
+    <!-- SETA P7 -> P8 -->
+    <path class="edge-line" d="M625,1430 L625,1470" id="path66"></path>
+    <polygon class="edge-arrow" points="620,1470 625,1480 630,1470" id="polygon67"></polygon>
+
+    <!-- PASSO 8: Escolha do Frasco -->
+    <g id="node9">
+      <polygon class="node-bg" stroke="none" points="180,1480 1070,1480 1070,1620 180,1620" id="polygon68"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="1520" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text68">Passo 8 — Escolha do Frasco de Armazenamento</text>
+      <line x1="180" y1="1550" x2="1070" y2="1550" class="stroke-color" id="line68"></line>
+      
+      <text class="formula-text" x="625" y="1592" id="text70">Frasco de Vidro / Polietileno — Adequado para estocagem de ácidos diluídos</text>
+      
+      <polygon fill="none" class="stroke-color" points="180,1480 1070,1480 1070,1620 180,1620" id="polygon72"></polygon>
+    </g>
+
+    <!-- SETA P8 -> P9 -->
+    <path class="edge-line" d="M625,1620 L625,1660" id="path72"></path>
+    <polygon class="edge-arrow" points="620,1660 625,1670 630,1660" id="polygon73"></polygon>
+
+    <!-- PASSO 9: Rotulagem Final -->
+    <g id="node10">
+      <polygon class="node-bg" stroke="none" points="220,1670 1030,1670 1030,1820 220,1820" id="polygon74"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="1710" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text74">Passo 9 — Rotulagem e Identificação Final</text>
+      <line x1="220" y1="1740" x2="1030" y2="1740" class="stroke-color" id="line74"></line>
+      
+      <!-- Informações do Rótulo -->
+      <text class="formula-text" x="625" y="1775" id="text75">Nome da Solução (HCl) | Concentração (~0,1 mol·L⁻¹)</text>
+      <text class="formula-text" x="625" y="1805" id="text76">Data de Preparo | Nome do Responsável</text>
+      
+      <polygon fill="none" class="stroke-color" points="220,1670 1030,1670 1030,1820 220,1820" id="polygon78"></polygon>
+    </g>
+  </g>
+</svg>
+
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma" id="fluxograma-HCl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fluxograma&nbsp;4.1: Sequência de cálculo e etapas de diluição para o preparo de soluções de HCl.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
+<ol type="1">
+<li>2,00 g de oxalato de sódio foram dissolvidos em um béquer e a solução resultante foi transferida para um balão de 50 mL. 2 mL da solução do balão foram transferidos para um balão de 250 mL, o qual foi completado com água. Desse segundo balão, 10 mL foram transferidos para um erlenmeyer para proceder à titulação. Responda qual o valor da massa do composto contida:</li>
+</ol>
+<ul>
+<li><p><strong>a)</strong> No primeiro balão?</p></li>
+<li><p><strong>b)</strong> Na pipeta de 2 mL?</p></li>
+<li><p><strong>c)</strong> No segundo balão?</p></li>
+<li><p><strong>d)</strong> Na pipeta de 10 mL?</p></li>
+<li><p><strong>e)</strong> No erlenmeyer?</p></li>
+<li><p><strong>f)</strong> Qual a concentração, em %m/v, da solução de cada balão?</p></li>
+</ul>
+<ol start="2" type="1">
+<li>Deseja-se preparar 50 mL de diversas soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> a partir de uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2 \, \text{mol·L}^{-1}</annotation></semantics></math>. Qual o volume da solução estoque que deve ser pipetado e qual o fator de diluição para preparar as seguintes soluções:</li>
+</ol>
+<ul>
+<li><p><strong>a)</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>0125</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}0125 \, \text{mol·L}^{-1}</annotation></semantics></math></p></li>
+<li><p><strong>b)</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>35</mn><mi>%</mi><mspace width="0.222em"></mspace><mtext mathvariant="normal">m/v</mtext></mrow><annotation encoding="application/x-tex">0{,}35\% \ \text{m/v}</annotation></semantics></math></p></li>
+<li><p><strong>c)</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>70</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mg·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">70 \, \text{mg·L}^{-1}</annotation></semantics></math></p></li>
+<li><p><strong>d)</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>4</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}4 \, \text{mol·L}^{-1}</annotation></semantics></math></p></li>
+</ul>
+<ol start="3" type="1">
+<li><p>Descreva o preparo de 50 mL de uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">HNO_3 \ 0{,}1 \, \text{mol·L}^{-1}</annotation></semantics></math> a partir da solução concentrada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">HNO_3</annotation></semantics></math>, de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mn>68</mn><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">m/m</mtext></mrow><annotation encoding="application/x-tex">\tau = 68\% \, \text{m/m}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>49</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mL</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">d = 1{,}49 \, \text{g·mL}^{-1}</annotation></semantics></math>.</p></li>
+<li><p>Com base nos dados do frasco comercial de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> citado no texto (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>18</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mL</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">d = 1{,}18 \ \text{g·mL}^{-1}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mn>36</mn><mo>,</mo><mn>46</mn><mi>%</mi><mspace width="0.222em"></mspace><mtext mathvariant="normal">m/m</mtext></mrow><annotation encoding="application/x-tex">\tau = 36{,}46\% \ \text{m/m}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo>=</mo><mn>36</mn><mo>,</mo><mn>46</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M. = 36{,}46 \ \text{g·mol}^{-1}</annotation></semantics></math>), demonstre detalhadamente por que a concentração molar da solução saturada resulta em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>,</mo><mn>8</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">11{,}8 \ \text{mol·L}^{-1}</annotation></semantics></math>.</p></li>
+<li><p>Na <strong>Parte 1</strong> do procedimento experimental, são adicionados previamente cerca de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">40 \ \text{mL}</annotation></semantics></math> de água destilada ao balão de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> antes do ácido. Tendo em vista o valor de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mi>H</mi><mtext mathvariant="normal">diluição</mtext></msub><mo>≈</mo><mi>−</mi><mn>75</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">kJ·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\Delta H_{\text{diluição}} \approx -75 \ \text{kJ·mol}^{-1}</annotation></semantics></math> e a segurança laboratorial, explique qual a função térmica e de segurança dessa adição prévia de água.</p></li>
+<li><p>O texto menciona que o suco gástrico humano possui <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> em concentrações de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> a </mtext><mspace width="0.333em"></mspace></mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \text{ a } 0{,}5 \ \text{mol·L}^{-1}</annotation></semantics></math>. Qual volume da solução estoque de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">HCl</mtext><mspace width="0.222em"></mspace><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{HCl} \ 1{,}0 \ \text{mol·L}^{-1}</annotation></semantics></math> (preparada na Parte 1) seria necessário para preparar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>250</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">250 \ \text{mL}</annotation></semantics></math> de um simulado de suco gástrico na concentração máxima de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}5 \ \text{mol·L}^{-1}</annotation></semantics></math>?</p></li>
+<li><p>Para o preparo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">HCl</mtext><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{HCl} \ 0{,}1 \ \text{mol·L}^{-1}</annotation></semantics></math> na <strong>Parte 2</strong>, utilizou-se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10 \ \text{mL}</annotation></semantics></math> da solução estoque de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}0 \ \text{mol·L}^{-1}</annotation></semantics></math>. Se um estudante pipetasse por engano <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10 \ \text{mL}</annotation></semantics></math> diretamente da solução comercial concentrada (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>,</mo><mn>8</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">11{,}8 \ \text{mol·L}^{-1}</annotation></semantics></math>) e completasse o balão para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math>, qual seria a molaridade real da solução obtida?</p></li>
+<li><p>Quantos gramas de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> puro existem contidos no volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>,</mo><mn>47</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">8{,}47 \ \text{mL}</annotation></semantics></math> do ácido concentrado comercial medido para o preparo da solução estoque de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}0 \ \text{mol·L}^{-1}</annotation></semantics></math>)? Assuma <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>18</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mL</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">d = 1{,}18 \ \text{g·mL}^{-1}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mn>36</mn><mo>,</mo><mn>46</mn><mi>%</mi><mspace width="0.222em"></mspace><mtext mathvariant="normal">m/m</mtext></mrow><annotation encoding="application/x-tex">\tau = 36{,}46\% \ \text{m/m}</annotation></semantics></math>.</p></li>
+<li><p>Durante a etapa de aferição do menisco no balão volumétrico de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> (Parte 1), um estudante observou o menisco de um ponto focal acima do nível dos olhos. Esse erro de paralaxe faz com que se adicione <strong>mais</strong> ou <strong>menos</strong> água do que o volume nominal do balão? O que ocorre com a concentração real em relação ao valor esperado de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}0 \ \text{mol·L}^{-1}</annotation></semantics></math>?</p></li>
+<li><p>Considere a diluição descrita no texto em que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">1 \ \text{mol}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> libera cerca de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>75</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">kJ</mtext></mrow><annotation encoding="application/x-tex">75 \ \text{kJ}</annotation></semantics></math> de calor ao ser diluído em grande volume de água. Ao pipetar os <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>,</mo><mn>47</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">8{,}47 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> concentrado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>,</mo><mn>8</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">11{,}8 \ \text{mol·L}^{-1}</annotation></semantics></math>) para preparar a solução estoque, calcule a quantidade total de calor (em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">kJ</mtext><annotation encoding="application/x-tex">\text{kJ}</annotation></semantics></math>) liberada nessa etapa experimental.</p></li>
+<li><p>Um técnico de laboratório necessita preparar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>500</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">500 \ \text{mL}</annotation></semantics></math> de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">HCl</mtext><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{HCl} \ 0{,}1 \ \text{mol·L}^{-1}</annotation></semantics></math> utilizando como partida a solução estoque de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">HCl</mtext><mspace width="0.222em"></mspace><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{HCl} \ 1{,}0 \ \text{mol·L}^{-1}</annotation></semantics></math> (Parte 1). Determine o volume da solução estoque a ser pipetado e calcule o <strong>fator de diluição</strong> envolvido no processo.</p></li>
+<li><p>Na rotulagem de soluções preparadas no laboratório, exige-se indicar a concentração aproximada. Explique por que a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> preparada na <strong>Parte 2</strong> não pode ser rotulada como “padrão primário de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1000</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1000 \ \text{mol·L}^{-1}</annotation></semantics></math>”, baseando-se no complemento sobre a volatilidade e padronização do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>.</p></li>
+<li><p>Um grupo de alunos precisava preparar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">HCl</mtext><mspace width="0.222em"></mspace><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{HCl} \ 1{,}0 \ \text{mol·L}^{-1}</annotation></semantics></math> (Parte 1), mas o frasco comercial de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> disponível no laboratório apresentava um título de apenas <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>32</mn><mi>%</mi><mspace width="0.222em"></mspace><mtext mathvariant="normal">m/m</mtext></mrow><annotation encoding="application/x-tex">32\% \ \text{m/m}</annotation></semantics></math> (e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>15</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mL</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">d = 1{,}15 \ \text{g·mL}^{-1}</annotation></semantics></math>) devido à volatilização do gás <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>. Qual o novo volume do ácido concentrado que deveria ser pipetado para obter a mesma molaridade alvo?</p></li>
+<li><p>Sabendo que o volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>,</mo><mn>47</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">8{,}47 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> concentrado contém <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">0{,}100 \ \text{mol}</annotation></semantics></math> do ácido e é diluído inicialmente para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1{,}0 \ \text{mol·L}^{-1}</annotation></semantics></math>) e posteriormente uma alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10 \ \text{mL}</annotation></semantics></math> é diluída novamente para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \ \text{mol·L}^{-1}</annotation></semantics></math>), calcule a <strong>massa final</strong> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> presente no balão da Parte 2.</p></li>
+<li><p>Suponha que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">8{,}5 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> concentrado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>18</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mL</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">d = 1{,}18 \ \text{g·mL}^{-1}</annotation></semantics></math>) sejam adicionados a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">40{,}0 \ \text{mL}</annotation></semantics></math> de água destilada a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><msup><mspace width="0.222em"></mspace><mo>∘</mo></msup><mtext mathvariant="normal">C</mtext></mrow><annotation encoding="application/x-tex">25 \ ^\circ\text{C}</annotation></semantics></math> no balão volumétrico. Sabendo que são liberados cerca de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">kJ</mtext></mrow><annotation encoding="application/x-tex">7{,}5 \ \text{kJ}</annotation></semantics></math> por cada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">0{,}10 \ \text{mol}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math> diluído e admitindo calor específico do meio como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>,</mo><mn>18</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">J·g</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><msup><mtext mathvariant="normal">K</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">4{,}18 \ \text{J·g}^{-1}\text{K}^{-1}</annotation></semantics></math>, estime o aumento aproximado de temperatura (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\Delta T</annotation></semantics></math>) sofrido pela mistura aquosa antes de completar o volume final do balão.</p></li>
+</ol>
+</section>
+<section id="complemento-com-ia" class="level2">
+<h2 class="anchored" data-anchor-id="complemento-com-ia">Complemento com IA</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="➘">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>➘
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div id="complemIA" class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Tópico Extra</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">IA Responde</a></li></ul>
+<div id="complemIA" class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Explique o motivo de o ácido clorídrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>) concentrado comercial não ser considerado um padrão primário e por que é fundamental realizar a sua padronização posterior antes de utilizá-lo em análises quantitativas.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<hr>
+<p><strong>Volatilidade do HCl e Necessidade de Padronização</strong></p>
+<p>O ácido clorídrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>) comercial não pode ser considerado um padrão primário por razões intrínsecas às suas propriedades físico-químicas:</p>
+<ol type="1">
+<li><strong>Natureza Volátil:</strong> O <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> concentrado é uma solução aquosa de um gás (cloreto de hidrogênio). Por ser altamente volátil, o gás <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> desprende-se continuamente da solução concentrada, alterando sua concentração ao longo do tempo e durante a estocagem.</li>
+<li><strong>Título Aproximado:</strong> A concentração indicada nos frascos comerciais (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∼</mo><mn>37</mn><mi>%</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m/m</mtext></mrow></mrow><annotation encoding="application/x-tex">\sim 37\% \text{ m/m}</annotation></semantics></math>) é apenas nominal e aproximada, variando entre lotes e conforme a abertura do frasco.</li>
+</ol>
+<p><strong>Consequência prática:</strong></p>
+<p>Qualquer solução preparada por diluição direta do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> concentrado possui concentração apenas <strong>aproximada</strong> (solução secundária). Para uso em titulações de precisão, essa solução precisa obrigatoriamente ser <strong>padronizada</strong> contra um padrão primário básico, como o carbonato de sódio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>a</mi><mn>2</mn></msub><mi>C</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">Na_2CO_3</annotation></semantics></math>).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Preparo_HCl.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01_Preparo_KOH.html" class="pagination-link" aria-label="Prática 1: Preparo de Solução de KOH">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03_Estequiometria.html" class="pagination-link" aria-label="Prática 3: Estequiometria">
+        <span class="nav-page-text"><span class="chapter-title">Prática 3: Estequiometria</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

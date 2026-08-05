@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Donkey Kong (1981) - Rolagem Corrigida</title>
+    <!-- Script do Plotly.js -->
+    <script src="plotly-3.7.0.min.js"></script>
+
+    <style>
+        .dk-container {
+            background-color: #000000;
+            color: #00ffcc;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .dk-placar {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-height: 24px;
+            color: #ffee00;
+        }
+        .dk-canvas {
+            width: 100%;
+            max-width: 500px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+            border: 2px solid #ff0055;
+            border-radius: 4px;
+        }
+        .dk-info {
+            margin-top: 10px;
+            color: #888888;
+            font-size: 13px;
+        }
+        .dk-painel {
+            background-color: #111111;
+            border: 1px solid #333333;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .dk-btn {
+            background-color: #000000;
+            color: #00ffcc;
+            border: 1px solid #00ffcc;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .dk-btn:hover { background-color: #00ffcc; color: #000000; }
+        .dk-btn.active { background-color: #00ffcc; color: #000000; }
+        .dk-label { font-size: 12px; color: #ffea00; }
+    </style>
+</head>
+<body>
+
+    <div class="dk-container">
+        <h1>🦍 DONKEY KONG (Física Zigue-Zague)</h1>
+
+        <!-- PAINEL DE CONTROLES -->
+        <div class="dk-painel">
+            <button class="dk-btn" onclick="window.reiniciarDonkeyKong()">🔄 NOVO JOGO</button>
+            
+            <span class="dk-label">⚡ VELOCIDADE:</span>
+            <button class="dk-btn btn-velocidade-dk" data-vel="0.5" onclick="window.setVelocidadeDK(0.5)">0.5x</button>
+            <button class="dk-btn btn-velocidade-dk active" data-vel="1.0" onclick="window.setVelocidadeDK(1.0)">1.0x</button>
+            <button class="dk-btn btn-velocidade-dk" data-vel="1.5" onclick="window.setVelocidadeDK(1.5)">1.5x</button>
+            <button class="dk-btn btn-velocidade-dk" data-vel="2.0" onclick="window.setVelocidadeDK(2.0)">2.0x 🔥</button>
+        </div>
+
+        <div id="dk-placar" class="dk-placar">Carregando barris...</div>
+        <div id="dk-game-plot" class="dk-canvas"></div>
+        <div class="dk-info">
+            Controles: <b>← / →</b> (Mover) | <b>↑ / ↓</b> (Escadas) | <b>Espaço</b> (Pular)
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const GRID_W = 100;
+        const GRID_H = 120;
+        const FPS = 30;
+        const DT = 1 / FPS;
+
+        let fatorVelocidade = 1.0;
+        let score = 0;
+        let lives = 3;
+        let jogando = false;
+        let gameFrame = 0;
+        let loopInterval = null;
+        let plotInicializado = false;
+
+        let mario = {
+            x: 10,
+            y: 10,
+            vx: 0,
+            vy: 0,
+            width: 4,
+            height: 6,
+            isGrounded: false,
+            isClimbing: false
+        };
+
+        const dkBoss = { x: 5, y: 100, width: 14, height: 12 };
+        const pauline = { x: 45, y: 112, width: 4, height: 6 };
+
+        // PLATAFORMAS COM ABERTURAS ALTERNADAS (Gaps nas pontas)
+        const platforms = [
+            { id: 0, x1: 40, y1: 112, x2: 60, y2: 112 }, // Topo Pauline
+            { id: 1, x1: 0,  y1: 100, x2: 88, y2: 97  }, // Nível DK (Rola p/ Direita -> Aberto à direita)
+            { id: 2, x1: 12, y1: 77,  x2: 100, y2: 81 }, // Nível 4 (Rola p/ Esquerda -> Aberto à esquerda)
+            { id: 3, x1: 0,  y1: 64,  x2: 88, y2: 60  }, // Nível 3 (Rola p/ Direita -> Aberto à direita)
+            { id: 4, x1: 12, y1: 41,  x2: 100, y2: 45 }, // Nível 2 (Rola p/ Esquerda -> Aberto à esquerda)
+            { id: 5, x1: 0,  y1: 28,  x2: 88, y2: 24  }, // Nível 1 (Rola p/ Direita -> Aberto à direita)
+            { id: 6, x1: 0,  y1: 10,  x2: 100, y2: 10 }  // Chão Base
+        ];
+
+        // Escadas [x, yMin, yMax]
+        const ladders = [
+            { x: 82, y1: 10, y2: 25 },
+            { x: 18, y1: 27, y2: 42 },
+            { x: 82, y1: 44, y2: 61 },
+            { x: 18, y1: 63, y2: 78 },
+            { x: 50, y1: 80, y2: 98 },
+            { x: 48, y1: 98, y2: 112 }
+        ];
+
+        let barrels = [];
+        const keysPressed = {};
+
+        window.setVelocidadeDK = function(fator) {
+            fatorVelocidade = fator;
+            document.querySelectorAll('.btn-velocidade-dk').forEach(btn => {
+                let val = parseFloat(btn.getAttribute('data-vel'));
+                if (val === fator) btn.classList.add('active');
+                else btn.classList.remove('active');
+                btn.blur();
+            });
+        };
+
+        function resetarMario() {
+            mario.x = 8;
+            mario.y = 10;
+            mario.vx = 0;
+            mario.vy = 0;
+            mario.isGrounded = true;
+            mario.isClimbing = false;
+        }
+
+        function iniciarJogo() {
+            if (typeof Plotly === 'undefined') {
+                document.getElementById('dk-placar').innerHTML = "<span style='color:red'>ERRO: Plotly.js não carregado!</span>";
+                return;
+            }
+
+            score = 0;
+            lives = 3;
+            jogando = true;
+            gameFrame = 0;
+            barrels = [];
+            plotInicializado = false;
+
+            resetarMario();
+
+            if (loopInterval) clearInterval(loopInterval);
+            loopInterval = setInterval(gameLoop, 1000 / FPS);
+        }
+
+        window.reiniciarDonkeyKong = iniciarJogo;
+
+        function getPlataformaY(x, yAtual) {
+            let cx = x + mario.width / 2;
+            for (let p of platforms) {
+                let minX = Math.min(p.x1, p.x2);
+                let maxX = Math.max(p.x1, p.x2);
+                if (cx >= minX && cx <= maxX) {
+                    let ratio = (cx - p.x1) / (p.x2 - p.x1);
+                    let platY = p.y1 + ratio * (p.y2 - p.y1);
+                    if (yAtual >= platY - 3 && yAtual <= platY + 3) {
+                        return platY;
+                    }
+                }
+            }
+            return null;
+        }
+
+        function checarEscada(x, y) {
+            let cx = x + mario.width / 2;
+            for (let l of ladders) {
+                if (Math.abs(cx - l.x) < 4 && y >= l.y1 - 1 && y <= l.y2) {
+                    return l;
+                }
+            }
+            return null;
+        }
+
+        function spawnBarril() {
+            barrels.push({
+                x: dkBoss.x + dkBoss.width,
+                y: dkBoss.y + 2,
+                vx: 1, // Começa rolando para a direita
+                vy: 0,
+                radius: 2.2,
+                emViga: true,
+                vigaAtualId: 1
+            });
+        }
+
+        function atualizarFisica() {
+            if (!jogando) return;
+
+            gameFrame++;
+            let stepDT = DT * fatorVelocidade;
+
+            // Criar barris periodicamente
+            if (gameFrame % Math.max(35, Math.floor(110 / fatorVelocidade)) === 0) {
+                spawnBarril();
+            }
+
+            // --- MOVIMENTO DO MARIO ---
+            let moveSpeed = 30 * stepDT;
+            mario.vx = 0;
+
+            let escadaAtual = checarEscada(mario.x, mario.y);
+
+            if (escadaAtual && (keysPressed['ArrowUp'] || keysPressed['ArrowDown'])) {
+                mario.isClimbing = true;
+                mario.x = escadaAtual.x - mario.width / 2;
+            }
+
+            if (mario.isClimbing) {
+                mario.vy = 0;
+                if (keysPressed['ArrowUp']) mario.y += moveSpeed * 0.7;
+                if (keysPressed['ArrowDown']) mario.y -= moveSpeed * 0.7;
+
+                if (!escadaAtual || mario.y < escadaAtual.y1 || mario.y > escadaAtual.y2) {
+                    mario.isClimbing = false;
+                }
+            } else {
+                if (keysPressed['ArrowLeft']) mario.vx = -moveSpeed;
+                if (keysPressed['ArrowRight']) mario.vx = moveSpeed;
+
+                if (keysPressed['Space'] && mario.isGrounded) {
+                    mario.vy = 45;
+                    mario.isGrounded = false;
+                }
+
+                mario.vy -= 110 * stepDT;
+                mario.x += mario.vx;
+                mario.y += mario.vy * stepDT;
+
+                if (mario.x < 0) mario.x = 0;
+                if (mario.x + mario.width > GRID_W) mario.x = GRID_W - mario.width;
+
+                let platY = getPlataformaY(mario.x, mario.y);
+                if (platY !== null && mario.vy <= 0) {
+                    mario.y = platY;
+                    mario.vy = 0;
+                    mario.isGrounded = true;
+                } else {
+                    mario.isGrounded = false;
+                }
+            }
+
+            // --- BARRIS (Física Zigue-Zague Robusta) ---
+            for (let i = barrels.length - 1; i >= 0; i--) {
+                let b = barrels[i];
+                let tocouPlataforma = false;
+
+                // Testar se o barril está sobre QUALQUER plataforma
+                for (let p of platforms) {
+                    let minX = Math.min(p.x1, p.x2);
+                    let maxX = Math.max(p.x1, p.x2);
+
+                    if (b.x >= minX && b.x <= maxX) {
+                        let ratio = (b.x - p.x1) / (p.x2 - p.x1);
+                        let platY = p.y1 + ratio * (p.y2 - p.y1);
+
+                        // Se o barril está na altura da plataforma e caindo/rolando
+                        if (Math.abs(b.y - platY) <= 3.0 && b.vy <= 0) {
+                            b.y = platY;
+                            b.vy = 0;
+                            tocouPlataforma = true;
+
+                            // Se acabou de cair numa nova rampa, inverte a direção!
+                            if (b.vigaAtualId !== p.id) {
+                                b.vigaAtualId = p.id;
+                                // Inverter direção de rolagem
+                                if (p.y1 > p.y2) b.vx = 1;      // Desce p/ Direita
+                                else if (p.y1 < p.y2) b.vx = -1; // Desce p/ Esquerda
+                                else b.vx = (b.x > 50) ? 1 : -1;  // Chão
+                            }
+
+                            // Rolagem contínua na rampa
+                            let speedBase = 25 * stepDT;
+                            b.x += speedBase * b.vx;
+                            break;
+                        }
+                    }
+                }
+
+                // Se passou do limite da rampa (chegou no gap/abertura), cai livremente
+                if (!tocouPlataforma) {
+                    b.vigaAtualId = -1; // Está no ar
+                    b.vy -= 90 * stepDT;
+                    b.y += b.vy * stepDT;
+                }
+
+                // Colisão com Mario
+                let dx = (mario.x + mario.width / 2) - b.x;
+                let dy = (mario.y + mario.height / 2) - b.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < b.radius + mario.width / 2) {
+                    abaterJogador();
+                    return;
+                }
+
+                // Remover barris que saírem da tela
+                if (b.y < -5 || b.x < -10 || b.x > 110) {
+                    barrels.splice(i, 1);
+                }
+            }
+
+            // --- VITÓRIA ---
+            if (mario.x + mario.width > pauline.x && mario.x < pauline.x + pauline.width &&
+                mario.y + mario.height > pauline.y) {
+                score += 500;
+                barrels = [];
+                resetarMario();
+            }
+        }
+
+        function abaterJogador() {
+            lives--;
+            if (lives <= 0) {
+                jogando = false;
+            } else {
+                barrels = [];
+                resetarMario();
+            }
+        }
+
+        function renderizar() {
+            let placarEl = document.getElementById('dk-placar');
+            let plotTarget = document.getElementById('dk-game-plot');
+
+            if (placarEl) {
+                placarEl.innerHTML = `PONTOS: ${score} &nbsp;&nbsp;|&nbsp;&nbsp; VIDAS: ${"🔴 ".repeat(Math.max(0, lives))}`;
+            }
+
+            let shapes = [];
+
+            // Vigas
+            platforms.forEach(p => {
+                shapes.push({
+                    type: 'line',
+                    x0: p.x1, y0: p.y1, x1: p.x2, y1: p.y2,
+                    line: { color: '#ff0055', width: 6 }
+                });
+            });
+
+            // Escadas
+            ladders.forEach(l => {
+                shapes.push({
+                    type: 'line',
+                    x0: l.x, y0: l.y1, x1: l.x, y1: l.y2,
+                    line: { color: '#00ccff', width: 4, dash: 'dot' }
+                });
+            });
+
+            // Barris (Laranja)
+            barrels.forEach(b => {
+                shapes.push({
+                    type: 'circle',
+                    x0: b.x - b.radius, y0: b.y - b.radius,
+                    x1: b.x + b.radius, y1: b.y + b.radius,
+                    fillcolor: '#ff8800', line: { color: '#ffffff', width: 1 }
+                });
+            });
+
+            // Donkey Kong
+            shapes.push({
+                type: 'rect',
+                x0: dkBoss.x, y0: dkBoss.y, x1: dkBoss.x + dkBoss.width, y1: dkBoss.y + dkBoss.height,
+                fillcolor: '#8b4513', line: { color: '#ffaa00', width: 1 }
+            });
+
+            // Pauline
+            shapes.push({
+                type: 'rect',
+                x0: pauline.x, y0: pauline.y, x1: pauline.x + pauline.width, y1: pauline.y + pauline.height,
+                fillcolor: '#ff00aa', line: { color: '#ffffff', width: 1 }
+            });
+
+            // Mario
+            if (jogando) {
+                shapes.push({
+                    type: 'rect',
+                    x0: mario.x, y0: mario.y, x1: mario.x + mario.width, y1: mario.y + mario.height,
+                    fillcolor: '#ff0000', line: { color: '#0055ff', width: 2 }
+                });
+            }
+
+            let annotations = [
+                { x: dkBoss.x + 7, y: dkBoss.y + 6, text: '<b>DK</b>', font: { size: 10, color: '#ffffff' }, showarrow: false },
+                { x: pauline.x + 2, y: pauline.y + 8, text: '<b>HELP!</b>', font: { size: 9, color: '#ffea00' }, showarrow: false }
+            ];
+
+            if (!jogando) {
+                annotations.push({
+                    x: GRID_W / 2, y: GRID_H / 2,
+                    text: lives <= 0 ? "GAME OVER" : "CLIQUE EM NOVO JOGO",
+                    font: { size: 24, color: '#ff0055', family: 'Courier New' },
+                    showarrow: false
+                });
+            }
+
+            let layout = {
+                xaxis: { range: [0, GRID_W], showgrid: false, zeroline: false, showticklabels: false },
+                yaxis: { range: [0, GRID_H], showgrid: false, zeroline: false, showticklabels: false },
+                plot_bgcolor: '#000000',
+                paper_bgcolor: '#000000',
+                margin: { t: 5, b: 5, l: 5, r: 5 },
+                shapes: shapes,
+                annotations: annotations
+            };
+
+            if (plotTarget && typeof Plotly !== 'undefined') {
+                if (!plotInicializado) {
+                    Plotly.newPlot(plotTarget, [], layout, { staticPlot: true, responsive: true });
+                    plotInicializado = true;
+                } else {
+                    Plotly.relayout(plotTarget, layout);
+                }
+            }
+        }
+
+        function gameLoop() {
+            atualizarFisica();
+            renderizar();
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(e.code) || e.key === " ") {
+                e.preventDefault();
+            }
+            keysPressed[e.code] = true;
+            if (e.key === " ") keysPressed['Space'] = true;
+        });
+
+        window.addEventListener('keyup', (e) => {
+            keysPressed[e.code] = false;
+            if (e.key === " ") keysPressed['Space'] = false;
+        });
+
+        function checarELancar() {
+            if (typeof Plotly !== 'undefined') {
+                iniciarJogo();
+            } else {
+                setTimeout(checarELancar, 200);
+            }
+        }
+
+        checarELancar();
+    })();
+    </script>
+</body>
+</html>

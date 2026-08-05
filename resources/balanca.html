@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador: Balança Analítica e Pesagem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #e9eef5;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 550px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h2 { margin-top: 0; color: #1a1a1a; font-size: 1.3rem; margin-bottom: 6px; }
+    p { color: #555; margin: 3px 0; text-align: center; font-size: 0.9rem; }
+    
+    /* Caixa Informativa de Tolerância */
+    .target-badge {
+      background-color: #e0f2fe;
+      border: 1px solid #7dd3fc;
+      color: #0369a1;
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin-top: 6px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    /* Área de Visualização SVG */
+    .lab-stage {
+      width: 100%;
+      height: 310px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      margin: 10px 0 15px 0;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Painel de Controle */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    button {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-action { background-color: #0288d1; color: white; }
+    .btn-action:hover { background-color: #01579b; }
+    .btn-action:disabled { background-color: #b0bec5; cursor: not-allowed; }
+
+    .btn-secondary { background-color: #eceff1; color: #37474f; border: 1px solid #cfd8dc; }
+    .btn-secondary:hover { background-color: #cfd8dc; }
+
+    .btn-add-big { background-color: #1565c0; color: white; padding: 11px; font-size: 0.88rem; }
+    .btn-add-big:hover { background-color: #0d47a1; }
+    .btn-add-big:disabled { background-color: #90caf9; cursor: not-allowed; }
+
+    .btn-add-small { background-color: #2e7d32; color: white; padding: 11px; font-size: 0.88rem; }
+    .btn-add-small:hover { background-color: #1b5e20; }
+    .btn-add-small:disabled { background-color: #a5d6a7; cursor: not-allowed; }
+
+    #status {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 12px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: #334155;
+      background-color: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #status.success { color: #155724; background-color: #d4edda; border-color: #c3e6cb; }
+    #status.warning { color: #856404; background-color: #fff3cd; border-color: #ffeeba; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Pesagem em Balança Analítica</h2>
+    <p>Reagente: <b>Sulfato de Cobre (CuSO₄·5H₂O)</b></p>
+    
+    <!-- Informativo Explícito da Tolerância -->
+    <div class="target-badge">
+      🎯 Meta: 0,2500 g &nbsp;|&nbsp; Tolerância: 0,2495 g a 0,2505 g
+    </div>
+
+    <div class="lab-stage">
+      <svg id="svg-lab" viewBox="0 0 400 300">
+        <!-- Bancada -->
+        <rect x="0" y="260" width="400" height="40" fill="#94a3b8" />
+        <rect x="0" y="260" width="400" height="4" fill="#64748b" />
+
+        <!-- Corpo da Balança -->
+        <rect x="100" y="110" width="200" height="150" rx="8" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2" />
+        <!-- Base da Balança -->
+        <rect x="90" y="245" width="220" height="15" rx="3" fill="#475569" />
+
+        <!-- Capela de Vidro (Interior) -->
+        <rect x="115" y="120" width="170" height="90" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" />
+
+        <!-- Prato da Balança -->
+        <rect x="170" y="195" width="60" height="5" rx="2" fill="#94a3b8" />
+        <path d="M195 200 L195 210" stroke="#64748b" stroke-width="4" />
+
+        <!-- Recipiente (Pesa-Filtro) -->
+        <g id="recipiente" opacity="0">
+          <path d="M 175 175 L 180 195 L 220 195 L 225 175 Z" fill="rgba(255, 255, 255, 0.7)" stroke="#64748b" stroke-width="1.5" />
+          
+          <!-- Sólido (Sulfato de Cobre - Azul Vibrante) -->
+          <ellipse id="solido-massa" cx="200" cy="192" rx="0" ry="0" fill="#0288d1" stroke="#01579b" stroke-width="0.8" />
+          <ellipse id="solido-brilho" cx="198" cy="191" rx="0" ry="0" fill="#29b6f6" />
+        </g>
+
+        <!-- Porta de Vidro Deslizante -->
+        <rect id="porta-vidro" x="115" y="120" width="170" height="90" fill="rgba(203, 213, 225, 0.35)" stroke="#0288d1" stroke-width="2" />
+        <line id="trilho-porta" x1="280" y1="125" x2="280" y2="205" stroke="#01579b" stroke-width="3" stroke-linecap="round" />
+
+        <!-- Indicador de Vento/Corrente de Ar -->
+        <g id="vento-icon" opacity="0">
+          <path d="M 125 135 Q 135 130 145 135" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2,2" />
+          <path d="M 120 150 Q 135 145 150 150" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2,2" />
+        </g>
+
+        <!-- Display Digital -->
+        <rect x="135" y="218" width="130" height="24" rx="4" fill="#0f172a" />
+        <text id="display-val" x="255" y="235" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#38bdf8" text-anchor="end">0.0000</text>
+        <text x="260" y="235" font-family="Arial" font-size="11" fill="#38bdf8">g</text>
+
+        <!-- Indicador de Estabilidade (*) -->
+        <text id="display-stab" x="142" y="234" font-family="Arial" font-size="12" fill="#38bdf8">*</text>
+
+        <!-- Espátula animada -->
+        <g id="espatula" opacity="0" transform="translate(0, 0)">
+          <path d="M 230 130 L 280 100 L 285 103 L 233 134 Z" fill="#94a3b8" />
+          <ellipse cx="231" cy="132" rx="4" ry="2" fill="#0288d1" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Controles -->
+    <div class="controls-grid">
+      <button id="btn-recipiente" class="btn-secondary">Colocar Pesa-Filtro</button>
+      <button id="btn-porta" class="btn-secondary">Abrir Porta</button>
+      <button id="btn-tare" class="btn-action" disabled>TARE (Zerar)</button>
+      <button id="btn-reset" class="btn-secondary">Reiniciar</button>
+      
+      <button id="btn-add-big" class="btn-add-big" disabled>🥄 Espátula Cheia (~0,05g)</button>
+      <button id="btn-add-small" class="btn-add-small" disabled>🤏 Pitada / Ajuste (~0,008g)</button>
+    </div>
+
+    <div id="status">Coloque o pesa-filtro sobre o prato da balança para iniciar.</div>
+  </div>
+
+  <script>
+    // Parâmetros de Tolerância e Meta
+    const TARGET = 0.2500;
+    const TOLERANCIA = 0.0005; 
+    const MIN_ACEITAVEL = TARGET - TOLERANCIA; // 0.2495 g
+    const MAX_ACEITAVEL = TARGET + TOLERANCIA; // 0.2505 g
+
+    // Estado da Simulação
+    let temRecipiente = false;
+    let portaAberta = false;
+    let tarado = false;
+    
+    const MASSA_RECIPIENTE = 14.3285; // Gramas
+    let massaSolido = 0.0000;
+
+    // Elementos do DOM / SVG
+    const elDisplayVal = document.getElementById('display-val');
+    const elDisplayStab = document.getElementById('display-stab');
+    const elRecipiente = document.getElementById('recipiente');
+    const elSolido = document.getElementById('solido-massa');
+    const elSolidoBrilho = document.getElementById('solido-brilho');
+    const elPorta = document.getElementById('porta-vidro');
+    const elVento = document.getElementById('vento-icon');
+    const elEspatula = document.getElementById('espatula');
+    const elStatus = document.getElementById('status');
+
+    const btnRecipiente = document.getElementById('btn-recipiente');
+    const btnPorta = document.getElementById('btn-porta');
+    const btnTare = document.getElementById('btn-tare');
+    const btnAddBig = document.getElementById('btn-add-big');
+    const btnAddSmall = document.getElementById('btn-add-small');
+    const btnReset = document.getElementById('btn-reset');
+
+    // Intervalo de Oscilação por Corrente de Ar
+    setInterval(() => {
+      atualizarDisplay();
+    }, 200);
+
+    function atualizarDisplay() {
+      let massaBruta = (temRecipiente ? MASSA_RECIPIENTE : 0) + massaSolido;
+      let massaFinal = tarado ? (massaBruta - (temRecipiente ? MASSA_RECIPIENTE : 0)) : massaBruta;
+
+      if (portaAberta && (temRecipiente || massaSolido > 0)) {
+        const ruído = (Math.random() - 0.5) * 0.0008;
+        massaFinal += ruído;
+        elDisplayStab.style.opacity = Math.random() > 0.4 ? "1" : "0";
+        elVento.setAttribute('opacity', Math.random() > 0.5 ? "0.8" : "0.3");
+      } else {
+        elDisplayStab.style.opacity = "1";
+        elVento.setAttribute('opacity', "0");
+      }
+
+      if (massaFinal < 0 && Math.abs(massaFinal) < 0.0001) massaFinal = 0;
+      elDisplayVal.textContent = massaFinal.toFixed(4);
+    }
+
+    // Ações de Interface
+    btnRecipiente.addEventListener('click', () => {
+      if (!portaAberta) {
+        elStatus.textContent = '⚠️ Abra a porta de vidro antes de colocar ou retirar objetos!';
+        elStatus.className = 'warning';
+        return;
+      }
+
+      temRecipiente = !temRecipiente;
+      if (temRecipiente) {
+        elRecipiente.setAttribute('opacity', '1');
+        btnRecipiente.textContent = 'Remover Pesa-Filtro';
+        elStatus.textContent = 'Pesa-filtro posicionado. Feche a porta e aperte TARE para zerar a balança.';
+        elStatus.className = '';
+      } else {
+        elRecipiente.setAttribute('opacity', '0');
+        btnRecipiente.textContent = 'Colocar Pesa-Filtro';
+        tarado = false;
+        massaSolido = 0;
+        atualizarVisualSolido();
+        elStatus.textContent = 'Pesa-filtro removido.';
+        elStatus.className = '';
+      }
+      
+      btnTare.disabled = !temRecipiente;
+      atualizarBotoes();
+    });
+
+    btnPorta.addEventListener('click', () => {
+      portaAberta = !portaAberta;
+      if (portaAberta) {
+        elPorta.setAttribute('transform', 'translate(-120, 0)');
+        btnPorta.textContent = 'Fechar Porta';
+        elStatus.textContent = 'Porta aberta. A leitura oscila devido às correntes de ar do ambiente.';
+      } else {
+        elPorta.setAttribute('transform', 'translate(0, 0)');
+        btnPorta.textContent = 'Abrir Porta';
+        elStatus.textContent = 'Porta fechada. Leitura estabilizada.';
+      }
+      atualizarBotoes();
+    });
+
+    btnTare.addEventListener('click', () => {
+      if (portaAberta) {
+        elStatus.textContent = '💡 Recomendado fechar a porta antes de apertar TARE para estabilizar a leitura.';
+        elStatus.className = 'warning';
+      } else {
+        elStatus.className = '';
+      }
+      tarado = true;
+      elStatus.textContent = 'Balança zerada (Tarada). Abra a porta para adicionar o Sulfato de Cobre.';
+      atualizarBotoes();
+    });
+
+    function adicionarReagente(quantidadeMedia) {
+      if (!portaAberta) {
+        elStatus.textContent = '⚠️ Abra a porta de vidro para acessar o pesa-filtro com a espátula!';
+        elStatus.className = 'warning';
+        return;
+      }
+
+      elEspatula.setAttribute('opacity', '1');
+      setTimeout(() => elEspatula.setAttribute('opacity', '0'), 350);
+
+      const variacao = (Math.random() - 0.5) * (quantidadeMedia * 0.3);
+      massaSolido += Math.max(0.0005, quantidadeMedia + variacao);
+      
+      atualizarVisualSolido();
+      verificarMeta();
+    }
+
+    btnAddBig.addEventListener('click', () => adicionarReagente(0.045));
+    btnAddSmall.addEventListener('click', () => adicionarReagente(0.008));
+
+    function atualizarVisualSolido() {
+      const rx = Math.min(18, massaSolido * 65);
+      const ry = Math.min(6, massaSolido * 22);
+      
+      elSolido.setAttribute('rx', rx);
+      elSolido.setAttribute('ry', ry);
+      elSolidoBrilho.setAttribute('rx', rx * 0.5);
+      elSolidoBrilho.setAttribute('ry', ry * 0.5);
+    }
+
+    function verificarMeta() {
+      if (!tarado) {
+        elStatus.textContent = '⚠️ Lembre-se de zerar (TARE) o recipiente antes de considerar a massa!';
+        elStatus.className = 'warning';
+        return;
+      }
+
+      // Validação de Acerto / Tolerância
+      if (massaSolido >= MIN_ACEITAVEL && massaSolido <= MAX_ACEITAVEL) {
+        elStatus.textContent = `🎯 Excelente! Massa pesada: ${massaSolido.toFixed(4)} g (Atingiu a faixa de aceitação!). Feche a porta para concluir.`;
+        elStatus.className = 'success';
+      } else if (massaSolido > MAX_ACEITAVEL) {
+        elStatus.textContent = `🚨 Ultrapassou a tolerância! Massa: ${massaSolido.toFixed(4)} g (Máximo permitido: ${MAX_ACEITAVEL.toFixed(4)} g). Reinicie para tentar de novo.`;
+        elStatus.className = 'warning';
+      } else {
+        const restante = (MIN_ACEITAVEL - massaSolido).toFixed(4);
+        elStatus.textContent = `Massa atual: ${massaSolido.toFixed(4)} g. Faltam aproximadamente ${restante} g para a faixa aceitável.`;
+        elStatus.className = '';
+      }
+    }
+
+    function atualizarBotoes() {
+      const habilitarAdicao = temRecipiente && tarado;
+      btnAddBig.disabled = !habilitarAdicao;
+      btnAddSmall.disabled = !habilitarAdicao;
+    }
+
+    btnReset.addEventListener('click', () => {
+      temRecipiente = false;
+      portaAberta = false;
+      tarado = false;
+      massaSolido = 0;
+      
+      elRecipiente.setAttribute('opacity', '0');
+      elPorta.setAttribute('transform', 'translate(0, 0)');
+      btnPorta.textContent = 'Abrir Porta';
+      btnRecipiente.textContent = 'Colocar Pesa-Filtro';
+      btnTare.disabled = true;
+      btnAddBig.disabled = true;
+      btnAddSmall.disabled = true;
+      
+      atualizarVisualSolido();
+      elStatus.textContent = 'Simulador reiniciado. Coloque o pesa-filtro sobre a balança.';
+      elStatus.className = '';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake - Plotly.js</title>
+    <!-- Script local mantido -->
+    <script src="plotly-3.7.0.min.js"></script>
+
+    <style>
+        .snk-container {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .snk-placar {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-height: 24px;
+            color: #ffffff;
+        }
+        .snk-canvas {
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+            border: 2px solid #00ff00;
+            border-radius: 4px;
+        }
+        .snk-info {
+            margin-top: 10px;
+            color: #888888;
+            font-size: 13px;
+        }
+        .snk-btn {
+            background-color: #000000;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .snk-btn:hover { background-color: #00ff00; color: #000000; }
+    </style>
+</head>
+<body>
+
+    <div class="snk-container">
+        <h1>🐍 SNAKE (Nokia / Arcade)</h1>
+        <button id="snk-btn-novo" class="snk-btn" onclick="window.reiniciarSnake()">🔄 NOVO JOGO</button>
+        <div id="snk-placar" class="snk-placar">Preparando arena...</div>
+        <div id="snk-game-plot" class="snk-canvas"></div>
+        <div class="snk-info">
+            Controles: <b>← / ↑ / → / ↓</b> (Mudar Direção)
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        // --- CONSTANTES DO JOGO ---
+        const GRID_SIZE = 20; // Grade de 20x20
+        const TICK_SPEED = 120; // Velocidade em ms por passo (menor = mais rápido)
+
+        // --- ESTADO DO JOGO ---
+        let cobra = [];
+        let dir = { x: 1, y: 0 };
+        let proximaDir = { x: 1, y: 0 };
+        let fruta = { x: 0, y: 0 };
+        let pontuacao = 0;
+        let jogando = false;
+        let loopInterval = null;
+
+        function gerarFruta() {
+            let posicaoValida = false;
+            while (!posicaoValida) {
+                let fx = Math.floor(Math.random() * GRID_SIZE);
+                let fy = Math.floor(Math.random() * GRID_SIZE);
+
+                // Garante que a fruta não nasça em cima da cobra
+                let colidiu = cobra.some(seg => seg.x === fx && seg.y === fy);
+                if (!colidiu) {
+                    fruta = { x: fx, y: fy };
+                    posicaoValida = true;
+                }
+            }
+        }
+
+        function iniciarJogo() {
+            if (typeof Plotly === 'undefined') {
+                document.getElementById('snk-placar').innerHTML = "<span style='color:red'>ERRO: Plotly.js não foi carregado!</span>";
+                return;
+            }
+
+            pontuacao = 0;
+            jogando = true;
+
+            // Cobra começa no centro com tamanho 3
+            let centro = Math.floor(GRID_SIZE / 2);
+            cobra = [
+                { x: centro, y: centro },
+                { x: centro - 1, y: centro },
+                { x: centro - 2, y: centro }
+            ];
+
+            dir = { x: 1, y: 0 };
+            proximaDir = { x: 1, y: 0 };
+
+            gerarFruta();
+
+            if (loopInterval) clearInterval(loopInterval);
+            loopInterval = setInterval(gameLoop, TICK_SPEED);
+
+            let btn = document.getElementById('snk-btn-novo');
+            if (btn) btn.blur();
+        }
+
+        window.reiniciarSnake = iniciarJogo;
+
+        function atualizarLógica() {
+            if (!jogando) return;
+
+            // Aplica a próxima direção (evita que a cobra dê 180° instantâneo em si mesma)
+            dir = { ...proximaDir };
+
+            // Calcula nova posição da cabeça
+            let cabeca = { ...cobra[0] };
+            cabeca.x += dir.x;
+            cabeca.y += dir.y;
+
+            // 1. Colisão com as Paredes
+            if (cabeca.x < 0 || cabeca.x >= GRID_SIZE || cabeca.y < 0 || cabeca.y >= GRID_SIZE) {
+                jogando = false;
+                return;
+            }
+
+            // 2. Colisão com o Próprio Corpo
+            for (let i = 0; i < cobra.length; i++) {
+                if (cobra[i].x === cabeca.x && cobra[i].y === cabeca.y) {
+                    jogando = false;
+                    return;
+                }
+            }
+
+            // Adiciona a nova cabeça na frente
+            cobra.unshift(cabeca);
+
+            // 3. Colisão com a Fruta
+            if (cabeca.x === fruta.x && cabeca.y === fruta.y) {
+                pontuacao += 10;
+                gerarFruta();
+            } else {
+                // Se não comeu, remove a cauda (mantém o tamanho atual)
+                cobra.pop();
+            }
+        }
+
+        function renderizar() {
+            let placarEl = document.getElementById('snk-placar');
+            let plotTarget = document.getElementById('snk-game-plot');
+
+            if (placarEl) {
+                placarEl.innerHTML = `PONTOS: ${pontuacao} &nbsp;&nbsp;|&nbsp;&nbsp; TAMANHO: ${cobra.length}`;
+            }
+
+            let cobraX = cobra.map(p => p.x + 0.5);
+            let cobraY = cobra.map(p => p.y + 0.5);
+
+            let data = [
+                // A) Corpo da Cobra (Linha espessa + Marcadores de articulação)
+                {
+                    x: cobraX,
+                    y: cobraY,
+                    mode: 'lines+markers',
+                    line: { color: '#00ff00', width: 18 },
+                    marker: { symbol: 'square', size: 16, color: '#00ff00' },
+                    showlegend: false
+                },
+                // B) Cabeça da Cobra (Destaque visual)
+                {
+                    x: [cobraX[0]],
+                    y: [cobraY[0]],
+                    mode: 'markers',
+                    marker: { symbol: 'square', size: 20, color: '#ffffff' },
+                    showlegend: false
+                },
+                // C) Fruta (Maçã Brilhante)
+                {
+                    x: [fruta.x + 0.5],
+                    y: [fruta.y + 0.5],
+                    mode: 'markers',
+                    marker: { symbol: 'diamond', size: 18, color: '#ff0055' },
+                    showlegend: false
+                }
+            ];
+
+            let annotations = [];
+            if (!jogando) {
+                annotations.push({
+                    x: GRID_SIZE / 2,
+                    y: GRID_SIZE / 2,
+                    text: "GAME OVER",
+                    font: { size: 36, color: '#ff0055', family: 'Courier New' },
+                    showarrow: false
+                });
+            }
+
+            let layout = {
+                xaxis: { range: [0, GRID_SIZE], showgrid: true, gridcolor: '#111111', zeroline: false, showticklabels: false },
+                yaxis: { range: [0, GRID_SIZE], showgrid: true, gridcolor: '#111111', zeroline: false, showticklabels: false },
+                plot_bgcolor: '#000000',
+                paper_bgcolor: '#000000',
+                margin: { t: 10, b: 10, l: 10, r: 10 },
+                annotations: annotations
+            };
+
+            if (plotTarget && typeof Plotly !== 'undefined') {
+                Plotly.react(plotTarget, data, layout, { staticPlot: true, responsive: true });
+            }
+        }
+
+        function gameLoop() {
+            atualizarLógica();
+            renderizar();
+        }
+
+        // --- CAPTURA DE TECLADO ---
+        window.addEventListener('keydown', (e) => {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+                e.preventDefault();
+            }
+
+            if (!jogando) return;
+
+            // Bloqueia rotação inversa de 180 graus
+            if ((e.key === "ArrowUp" || e.key === "w") && dir.y === 0) {
+                proximaDir = { x: 0, y: 1 };
+            } else if ((e.key === "ArrowDown" || e.key === "s") && dir.y === 0) {
+                proximaDir = { x: 0, y: -1 };
+            } else if ((e.key === "ArrowLeft" || e.key === "a") && dir.x === 0) {
+                proximaDir = { x: -1, y: 0 };
+            } else if ((e.key === "ArrowRight" || e.key === "d") && dir.x === 0) {
+                proximaDir = { x: 1, y: 0 };
+            }
+        });
+
+        function checarELancar() {
+            if (typeof Plotly !== 'undefined') {
+                iniciarJogo();
+            } else {
+                setTimeout(checarELancar, 200);
+            }
+        }
+
+        checarELancar();
+    })();
+    </script>
+</body>
+</html>

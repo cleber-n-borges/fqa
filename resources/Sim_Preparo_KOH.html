@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulação Laboratorial: Preparo de Solução de KOH (0,1 mol/L)</title>
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --primary: #1e3d59;
+      --accent: #ff6e40;
+      --liquid: rgba(52, 152, 219, 0.45);
+      --wash-liquid: rgba(52, 152, 219, 0.25);
+      --glass: #2c3e50;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      color: var(--primary);
+      margin-bottom: 4px;
+      font-size: 1.6rem;
+      text-align: center;
+    }
+
+    p.subtitle {
+      color: #555;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 650px;
+      box-sizing: border-box;
+    }
+
+    /* Tela da Animação SVG */
+    .canvas-container {
+      width: 100%;
+      height: 340px;
+      background: linear-gradient(180deg, #fafafa 0%, #f0f4f8 100%);
+      border: 1px solid #dcdfe6;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Estilos das vidrarias */
+    .glass-outline {
+      fill: none;
+      stroke: var(--glass);
+      stroke-width: 3;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .meniscus-line {
+      stroke: #e74c3c;
+      stroke-width: 2;
+      stroke-dasharray: 4 3;
+    }
+
+    .liquid-fill {
+      fill: var(--liquid);
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pellet {
+      fill: #ffffff;
+      stroke: #b0bec5;
+      stroke-width: 1.5;
+      transition: opacity 0.8s ease, transform 0.5s ease;
+    }
+
+    /* Pisseta / Jacto de água */
+    .water-stream {
+      stroke: #3498db;
+      stroke-width: 3;
+      stroke-dasharray: 6 4;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .stream-active {
+      opacity: 0.85;
+      animation: streamFlow 0.5s linear infinite;
+    }
+
+    @keyframes streamFlow {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -10; }
+    }
+
+    /* Painel de status e controles */
+    .status-box {
+      margin-top: 18px;
+      width: 100%;
+      background: #eef4f8;
+      border-left: 5px solid #3498db;
+      padding: 12px 16px;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 0.93rem;
+      line-height: 1.5;
+      min-height: 75px;
+    }
+
+    .status-box strong {
+      color: var(--primary);
+    }
+
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+
+    button {
+      flex: 2;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3498db;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #2980b9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+    }
+
+    button:disabled {
+      background-color: #bdc3c7;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .reset-btn {
+      flex: 1;
+      background-color: #7f8c8d;
+      box-shadow: 0 2px 6px rgba(127, 140, 141, 0.3);
+    }
+    
+    .reset-btn:hover:not(:disabled) {
+      background-color: #6c7a89;
+      box-shadow: 0 4px 10px rgba(108, 122, 137, 0.4);
+    }
+
+    /* Indicador Térmico */
+    .temp-indicator {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: #e8edf2;
+      color: #4a5568;
+      border: 1px solid #cbd5e0;
+      transition: all 0.5s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .temp-hot {
+      background: #fff5f5;
+      color: #c53030;
+      border: 1px solid #feb2b2;
+      animation: pulseHeat 1.5s infinite;
+    }
+
+    @keyframes pulseHeat {
+      0% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4); }
+      70% { box-shadow: 0 0 0 8px rgba(229, 62, 62, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
+    }
+
+    /* Indicador de Lavagem do Béquer */
+    .wash-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 14px;
+      background: #e1f5fe;
+      color: #0288d1;
+      border: 1px solid #81d4fa;
+      display: none;
+    }
+
+    .label-text {
+      font-size: 11px;
+      font-weight: bold;
+      fill: #4a5568;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Preparo de Solução de KOH (0,1 mol/L)</h1>
+  <p class="subtitle">Simulação Interativa de Procedimento Analítico Quantitativo</p>
+
+  <div class="container">
+    <div class="canvas-container">
+      <div id="tempTag" class="temp-indicator">🌡️ Temp: 25°C (Ambiente)</div>
+      <div id="washTag" class="wash-badge">💧 Enxágue: 0 / 3</div>
+      
+      <svg viewBox="0 0 450 280">
+        <defs>
+          <!-- Clip do Béquer (Esquerda) -->
+          <clipPath id="beaker-clip">
+            <rect x="75" y="140" width="100" height="100" rx="4" />
+          </clipPath>
+
+          <!-- Clip do Balão Volumétrico (Direita) -->
+          <clipPath id="flask-clip">
+            <path d="M 270,70 L 290,70 L 290,140 L 330,210 A 25,25 0 0,1 315,240 L 245,240 A 25,25 0 0,1 230,210 L 270,140 Z" />
+          </clipPath>
+
+          <!-- Gradiente suave do líquido -->
+          <linearGradient id="liquidGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4fc3f7" stop-opacity="0.65"/>
+            <stop offset="100%" stop-color="#0288d1" stop-opacity="0.75"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ================= BÉQUER (ESQUERDA) ================= -->
+        <!-- Líquido no Béquer -->
+        <rect id="beakerLiquid" x="75" y="240" width="100" height="0" fill="url(#liquidGrad)" clip-path="url(#beaker-clip)" class="liquid-fill" />
+        
+        <!-- Pelotas de KOH Sólido -->
+        <g id="pelletsGroup">
+          <circle id="p1" cx="110" cy="233" r="5" class="pellet" style="opacity: 0;" />
+          <circle id="p2" cx="125" cy="235" r="4.5" class="pellet" style="opacity: 0;" />
+          <circle id="p3" cx="140" cy="232" r="5.5" class="pellet" style="opacity: 0;" />
+          <circle id="p4" cx="118" cy="227" r="4" class="pellet" style="opacity: 0;" />
+        </g>
+
+        <!-- Contorno do Béquer -->
+        <path d="M 70,135 L 75,140 L 75,240 A 5,5 0 0,0 80,245 L 170,245 A 5,5 0 0,0 175,240 L 175,140 L 180,135" class="glass-outline" />
+        <!-- Graduações do Béquer -->
+        <line x1="75" y1="215" x2="90" y2="215" stroke="#94a3b8" stroke-width="1.5" />
+        <text x="94" y="218" font-size="9" fill="#64748b">25 mL</text>
+        <line x1="75" y1="190" x2="95" y2="190" stroke="#94a3b8" stroke-width="1.5" />
+        <text x="99" y="193" font-size="9" fill="#64748b">50 mL</text>
+        <line x1="75" y1="165" x2="90" y2="165" stroke="#94a3b8" stroke-width="1.5" />
+        <text x="94" y="168" font-size="9" fill="#64748b">75 mL</text>
+
+        <text x="125" y="265" class="label-text" text-anchor="middle">Béquer (100 mL)</text>
+
+        <!-- ================= PISSETA / JACTO DE ÁGUA ================= -->
+        <!-- Jacto para o Béquer -->
+        <path id="streamBeaker" d="M 125,70 Q 125,120 125,180" class="water-stream" />
+        <!-- Jacto para o Balão Volumétrico -->
+        <path id="streamFlask" d="M 280,30 Q 280,50 280,110" class="water-stream" />
+
+        <!-- ================= BALÃO VOLUMÉTRICO (DIREITA) ================= -->
+        <!-- Líquido no Balão Volumétrico -->
+        <rect id="flaskLiquid" x="200" y="240" width="160" height="0" fill="url(#liquidGrad)" clip-path="url(#flask-clip)" class="liquid-fill" />
+
+        <!-- Contorno do Balão Volumétrico -->
+        <path d="M 270,70 L 290,70 L 290,140 L 330,210 A 25,25 0 0,1 315,240 L 245,240 A 25,25 0 0,1 230,210 L 270,140 Z" class="glass-outline" />
+        <!-- Gargalo / Boca -->
+        <ellipse cx="280" cy="70" rx="10" ry="3" class="glass-outline" />
+        
+        <!-- Marca de Aferição do Menisco (100 mL) -->
+        <line x1="265" y1="115" x2="295" y2="115" class="meniscus-line" />
+        <text x="302" y="118" font-size="9" fill="#e74c3c" font-weight="bold">Marca 100 mL</text>
+
+        <text x="280" y="265" class="label-text" text-anchor="middle">Balão Volumétrico (100 mL)</text>
+
+        <!-- Transferência Seta visual (Animada quando ativa) -->
+        <g id="transferArrow" style="opacity: 0; transition: opacity 0.5s ease;">
+          <path d="M 185,180 Q 220,130 255,160" fill="none" stroke="#ff6e40" stroke-width="2.5" stroke-dasharray="5 3" />
+          <polygon points="255,160 246,153 248,164" fill="#ff6e40" />
+          <text x="220" y="135" font-size="10" fill="#ff6e40" font-weight="bold" text-anchor="middle">Transferência</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="status-box" id="statusBox">
+      <strong>Passo 1:</strong> Adição de KOH comercial. Clique no botão para pesar e adicionar 0,62 g de KOH no béquer seco.
+    </div>
+
+    <div class="controls">
+      <button id="actionBtn" onclick="nextStep()">Passo 1: Pesar e Adicionar KOH no Béquer</button>
+      <button id="resetBtn" class="reset-btn" onclick="resetSim()" disabled>Reiniciar</button>
+    </div>
+  </div>
+
+  <script>
+    let step = 0;
+    let washCount = 0;
+
+    const beakerLiquid = document.getElementById('beakerLiquid');
+    const flaskLiquid = document.getElementById('flaskLiquid');
+    const statusBox = document.getElementById('statusBox');
+    const actionBtn = document.getElementById('actionBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const tempTag = document.getElementById('tempTag');
+    const washTag = document.getElementById('washTag');
+    const streamBeaker = document.getElementById('streamBeaker');
+    const streamFlask = document.getElementById('streamFlask');
+    const transferArrow = document.getElementById('transferArrow');
+    const pellets = [
+      document.getElementById('p1'),
+      document.getElementById('p2'),
+      document.getElementById('p3'),
+      document.getElementById('p4')
+    ];
+
+    function nextStep() {
+      step++;
+
+      if (step === 1) {
+        // Passo 1: Adicionar KOH no Béquer
+        pellets.forEach(p => p.style.opacity = '1');
+        
+        statusBox.innerHTML = "<strong>Passo 1 Concluído:</strong> Pesa-se 0,62 g de KOH comercial (pureza ~90%, para obter 0,5611 g de KOH puro) em um béquer pequeno, limpo e seco.";
+        actionBtn.innerText = "Passo 2: Adicionar H₂O Destilada e Dissolver";
+        resetBtn.disabled = false;
+      } 
+      else if (step === 2) {
+        // Passo 2: Dissolução prévia com água destilada (pisseta) no béquer
+        streamBeaker.classList.add('stream-active');
+
+        setTimeout(() => {
+          streamBeaker.classList.remove('stream-active');
+          // Encher béquer até aproximadamente 50 mL (y=190 -> height=50)
+          beakerLiquid.setAttribute('y', '190');
+          beakerLiquid.setAttribute('height', '50');
+
+          // Dissolução das pelotas
+          setTimeout(() => {
+            pellets.forEach(p => p.style.opacity = '0');
+          }, 400);
+
+          // Informe térmico: Liberação de calor (Processo Exotérmico ΔH < 0), sem mudar a cor do líquido!
+          tempTag.innerText = "🔥 Temp: > 25°C (Processo Exotérmico: Liberação de Calor ΔH < 0)";
+          tempTag.classList.add('temp-hot');
+
+          statusBox.innerHTML = "<strong>Passo 2 Concluído:</strong> Adicionou-se ~50 mL de água destilada com pisseta e agitou-se até dissolução completa.<br><em>Observação:</em> A dissolução do KOH é exotérmica (libera calor), aquecendo a solução.";
+          actionBtn.innerText = "Passo 3: Transferir Solução para o Balão Volumétrico";
+        }, 800);
+      } 
+      else if (step === 3) {
+        // Passo 3: Transferência para o balão volumétrico
+        transferArrow.style.opacity = '1';
+
+        setTimeout(() => {
+          // Esvazia o béquer
+          beakerLiquid.setAttribute('y', '240');
+          beakerLiquid.setAttribute('height', '0');
+
+          // Enche o balão até ~50 mL (y=180 -> height=60)
+          flaskLiquid.setAttribute('y', '180');
+          flaskLiquid.setAttribute('height', '60');
+
+          setTimeout(() => {
+            transferArrow.style.opacity = '0';
+          }, 600);
+
+          statusBox.innerHTML = "<strong>Passo 3 Concluído:</strong> A solução pré-dissolvida no béquer foi transferida para o balão volumétrico de 100 mL com auxílio de funil.";
+          actionBtn.innerText = "Passo 4: Realizar 3 Enxágues do Béquer (Transferência Quantitativa)";
+        }, 500);
+      } 
+      else if (step === 4) {
+        // Passo 4: Três lavagens do béquer
+        washTag.style.display = 'block';
+        performWashSequence();
+      }
+      else if (step === 5) {
+        // Passo 5: Preenchimento com aferição de menisco do balão volumétrico
+        streamFlask.classList.add('stream-active');
+
+        setTimeout(() => {
+          streamFlask.classList.remove('stream-active');
+
+          // Preenche balão até exatamente o menisco (100 mL -> y=115 -> height=125)
+          flaskLiquid.setAttribute('y', '115');
+          flaskLiquid.setAttribute('height', '125');
+
+          // Solução resfria ao atingir volume final
+          setTimeout(() => {
+            tempTag.innerText = "🌡️ Temp: 25°C (Solução Resfriada)";
+            tempTag.classList.remove('temp-hot');
+          }, 800);
+
+          statusBox.innerHTML = "<strong>Passo 5 Concluído (Procedimento Finalizado!):</strong> O volume do balão volumétrico foi completado com água destilada até a marca de aferição, alinhando a parte inferior do menisco com a linha vermelha à altura dos olhos (evitando erro de paralaxe). Solução 0,1 mol/L pronta para padronização!";
+          actionBtn.innerText = "Procedimento Concluído ✓";
+          actionBtn.disabled = true;
+        }, 1000);
+      }
+    }
+
+    function performWashSequence() {
+      washCount++;
+      washTag.innerText = `💧 Enxágue: ${washCount} / 3`;
+
+      actionBtn.disabled = true;
+      streamBeaker.classList.add('stream-active');
+
+      // Coloca pequena porção de água no béquer (enxágue)
+      setTimeout(() => {
+        streamBeaker.classList.remove('stream-active');
+        beakerLiquid.setAttribute('y', '225');
+        beakerLiquid.setAttribute('height', '15');
+
+        statusBox.innerHTML = `<strong>Passo 4 (Enxágue ${washCount}/3):</strong> Adicionando pequena porção de água destilada para enxaguar as paredes do béquer...`;
+
+        // Transferência do enxágue para o balão
+        setTimeout(() => {
+          transferArrow.style.opacity = '1';
+          beakerLiquid.setAttribute('y', '240');
+          beakerLiquid.setAttribute('height', '0');
+
+          // Eleva o nível do balão gradualmente (de 60 -> 72 -> 84 -> 96)
+          let currentFlaskHeight = 60 + (washCount * 12);
+          let currentFlaskY = 180 - (washCount * 12);
+          flaskLiquid.setAttribute('y', currentFlaskY.toString());
+          flaskLiquid.setAttribute('height', currentFlaskHeight.toString());
+
+          setTimeout(() => {
+            transferArrow.style.opacity = '0';
+
+            if (washCount < 3) {
+              setTimeout(performWashSequence, 400);
+            } else {
+              statusBox.innerHTML = "<strong>Passo 4 Concluído:</strong> Realizados 3 enxágues sucessivos do béquer com água destilada e transferidos para o balão. Isso garante a <em>transferência quantitativa</em> de todo o KOH.";
+              actionBtn.innerText = "Passo 5: Aferição do Menisco (100 mL)";
+              actionBtn.disabled = false;
+            }
+          }, 500);
+        }, 700);
+      }, 600);
+    }
+
+    function resetSim() {
+      step = 0;
+      washCount = 0;
+      
+      beakerLiquid.setAttribute('y', '240');
+      beakerLiquid.setAttribute('height', '0');
+      flaskLiquid.setAttribute('y', '240');
+      flaskLiquid.setAttribute('height', '0');
+      
+      pellets.forEach(p => p.style.opacity = '0');
+      
+      streamBeaker.classList.remove('stream-active');
+      streamFlask.classList.remove('stream-active');
+      transferArrow.style.opacity = '0';
+
+      tempTag.innerText = "🌡️ Temp: 25°C (Ambiente)";
+      tempTag.classList.remove('temp-hot');
+
+      washTag.style.display = 'none';
+      washTag.innerText = "💧 Enxágue: 0 / 3";
+
+      statusBox.innerHTML = "<strong>Passo 1:</strong> Adição de KOH comercial. Clique no botão para pesar e adicionar 0,62 g de KOH no béquer seco.";
+      actionBtn.innerText = "Passo 1: Pesar e Adicionar KOH no Béquer";
+      actionBtn.disabled = false;
+      resetBtn.disabled = true;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt_br" xml:lang="pt_br"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PADRONIZAÇÃO DE SOLUÇÕES – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./06_Acidez_Alimentos.html" rel="next">
+<link href="./Titulacao.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05_Padronizacao.html"><span class="chapter-title">Prática 5: Padronização</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">PADRONIZAÇÃO DE SOLUÇÕES</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico_VersaoTESTE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico - UPDATE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Titulação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Prática 5: Padronização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
+  <ul class="collapse">
+  <li><a href="#padrão-primário" id="toc-padrão-primário" class="nav-link" data-scroll-target="#padrão-primário">Padrão primário</a></li>
+  <li><a href="#fator-de-correção-f_c" id="toc-fator-de-correção-f_c" class="nav-link" data-scroll-target="#fator-de-correção-f_c">Fator de Correção — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math></a></li>
+  </ul></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados">Dados</a></li>
+  <li><a href="#segurança-no-laboratório" id="toc-segurança-no-laboratório" class="nav-link" data-scroll-target="#segurança-no-laboratório">Segurança no Laboratório</a></li>
+  <li><a href="#roteiro-experimental" id="toc-roteiro-experimental" class="nav-link" data-scroll-target="#roteiro-experimental">Roteiro Experimental</a>
+  <ul class="collapse">
+  <li><a href="#parte-1-padronização-da-solução-de-koh-01-textmoll-1" id="toc-parte-1-padronização-da-solução-de-koh-01-textmoll-1" class="nav-link" data-scroll-target="#parte-1-padronização-da-solução-de-koh-01-textmoll-1">Parte 1: Padronização da Solução de KOH ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></a></li>
+  <li><a href="#parte-2-padronização-da-solução-de-hcl-01-textmoll-1" id="toc-parte-2-padronização-da-solução-de-hcl-01-textmoll-1" class="nav-link" data-scroll-target="#parte-2-padronização-da-solução-de-hcl-01-textmoll-1">Parte 2: Padronização da Solução de HCl ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></a></li>
+  </ul></li>
+  <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  <li><a href="#anexo" id="toc-anexo" class="nav-link" data-scroll-target="#anexo">Anexo</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>Uma <a href="https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o_padr%C3%A3o"><strong>solução padrão</strong></a> é uma <a href="https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o">solução</a> de concentração exatamente conhecida e que é utilizada em análises titulométricas (ou volumétricas).</p>
+<p>As soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> preparadas anteriormente possuem apenas <strong>concentração aparente</strong>, isto é, valores estimados que não correspondem a uma <em>veracidade</em>||<em>exatidão</em> analítica. Por esse motivo, não podem ser consideradas soluções padrão, que são aquelas de concentração rigorosamente conhecida.</p>
+<p>Dessa forma, torna-se necessário realizar a <strong>padronização</strong> dessas soluções, ou seja, determinar a <strong>concentração exata</strong> para possibilitar o uso confiável em análises posteriores. Para tal procedimento, emprega-se uma substância <a href="https://pt.wikipedia.org/wiki/Subst%C3%A2ncia_prim%C3%A1ria"><strong>padrão primário</strong></a> ou uma solução padrão previamente padronizada.</p>
+<p>A padronização é conduzida por meio de uma <a href="https://pt.wikipedia.org/wiki/Titula%C3%A7%C3%A3o"><strong>titulação</strong></a>, que consiste na adição controlada de uma solução padrão (usualmente com o auxílio de uma bureta) a uma solução que contém o analito de interesse (normalmente em um erlenmeyer), até que a reação seja considerada completa — etapa geralmente identificada com o uso de um <strong>indicador</strong> apropriado.</p>
+<p>Com as concentrações exata e aparente de cada solução, procede-se ao cálculo do <strong>fator de correção</strong>.</p>
+<p><strong>Rotina interna de laboratório:</strong> Nos laboratórios analíticos, é prática consolidada que os frascos de soluções titulantes sejam rotulados com:</p>
+<ul>
+<li>a concentração aparente (obtida no preparo), e</li>
+<li>o respectivo fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>) (obtido na padronização).</li>
+</ul>
+<p>Esse procedimento garante que qualquer analista, ao utilizar a solução, possa aplicar o fator de correção em seus cálculos, assegurando uniformidade, rastreabilidade e confiabilidade metrológica nos resultados analíticos ao longo do tempo.</p>
+<section id="padrão-primário" class="level3">
+<h3 class="anchored" data-anchor-id="padrão-primário">Padrão primário</h3>
+<p>Um padrão primário é um composto altamente purificado que serve como material de referência em métodos titulométricos, seja volumétricos ou gravimétricos. Para que um composto seja adequado como padrão primário, alguns requisitos devem ser atendidos:</p>
+<ol type="1">
+<li>Alta pureza.</li>
+<li>Estabilidade química, não reagindo nem absorvendo substâncias da atmosfera.</li>
+<li>Ausência de água de hidratação, de modo que sua composição não se altere com as variações na umidade.</li>
+<li>Baixo custo e disponibilidade.</li>
+<li>Boa solubilidade no meio em que será realizada a titulação.</li>
+<li>Massa molar relativamente alta, para reduzir o erro relativo associado à pesagem.</li>
+</ol>
+<p>O composto padrão primário utilizado nesta prática será o <a href="https://pt.wikipedia.org/wiki/Hidrogenoftalato_de_pot%C3%A1ssio">biftalato de potássio</a>. O nome é comumente abreviado para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> — <em>Potassium Hydrogen Phthalate</em>.</p>
+<p>O <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> é amplamente utilizado em análises volumétricas porque atende de forma exemplar aos requisitos acima: apresenta elevada pureza, é estável ao ar, possui massa molar suficientemente alta, além de ser solúvel em água. Por essas características, tornou-se um dos padrões primários mais empregados em titulações ácido–base.</p>
+</section>
+<section id="fator-de-correção-f_c" class="level3">
+<h3 class="anchored" data-anchor-id="fator-de-correção-f_c">Fator de Correção — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math></h3>
+<p>A relação entre concentração exata e aparente é expressa pelo fator de correção — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msup><mi>C</mi><mrow><mi>E</mi><mi>x</mi></mrow></msup><msup><mi>C</mi><mrow><mi>A</mi><mi>p</mi></mrow></msup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{C^{Ex}}{C^{Ap}}</annotation></semantics></math></p>
+<p>Onde:</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math> = fator de correção (adimensional)</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>C</mi><mrow><mi>E</mi><mi>x</mi></mrow></msup><annotation encoding="application/x-tex">C^{Ex}</annotation></semantics></math> = concentração exata da solução (determinada por padronização)</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>C</mi><mrow><mi>A</mi><mi>p</mi></mrow></msup><annotation encoding="application/x-tex">C^{Ap}</annotation></semantics></math> = concentração aparente da solução (valor estimado no preparo)</li>
+</ul>
+<p>O fator de correção é utilizado para ajustar cálculos analíticos:</p>
+<ul>
+<li>Se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">F_C &gt; 1</annotation></semantics></math>, a solução está mais concentrada do que o valor aparente.</li>
+<li>Se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">F_C &lt; 1</annotation></semantics></math>, a solução está menos concentrada do que o valor aparente.</li>
+</ul>
+</section>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li>Padronizar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> utilizando o padrão primário <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>.</li>
+<li>Padronizar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> empregando a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> já padronizada.</li>
+<li>Determinar as <strong>concentrações exatas</strong> das soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>.</li>
+<li>Calcular o fator de correção — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math> para cada uma das soluções.</li>
+</ul>
+</section>
+<section id="dados" class="level2">
+<h2 class="anchored" data-anchor-id="dados">Dados</h2>
+<ol type="1">
+<li><strong>Padrão primário utilizado:</strong></li>
+</ol>
+<ul>
+<li><p>biftalato de potássio (nome abreviado como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><msub><mi>C</mi><mn>8</mn></msub><msub><mi>H</mi><mn>4</mn></msub><msub><mi>O</mi><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">KHC_8H_4O_4</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mi>H</mi><mi>P</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>204</mn><mo>,</mo><mn>22</mn><mspace width="0.167em"></mspace><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g·mol</mtext></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(KHP) = 204,22 \, \text{ g·mol}^{-1}</annotation></semantics></math></p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Reação de neutralização entre KOH e KHP:</strong></li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mi>K</mi><mi>H</mi><msub><mi>C</mi><mn>8</mn></msub><msub><mi>H</mi><mn>4</mn></msub><mi>O</mi><msub><mn>4</mn><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msubsup><mi>K</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><msub><mi>C</mi><mn>8</mn></msub><msub><mi>H</mi><mn>4</mn></msub><msubsup><mi>O</mi><mrow><mn>4</mn><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo>+</mo><msub><mi>H</mi><mn>2</mn></msub><msub><mi>O</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">KOH_{(aq)} + KHC_8H_4O4_{(aq)} \rightarrow K^{+}_{(aq)} + C_8H_4O_{4(aq)}^{2-} + H_2O_{(l)}</annotation></semantics></math></p>
+<blockquote class="blockquote">
+<p>Observa-se que a reação ocorre em proporção molar 1:1 entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>. Isso significa que 1 mol de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> neutraliza exatamente 1 mol de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>, permitindo o cálculo direto da concentração exata da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> a partir da massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> pesada.</p>
+</blockquote>
+<ol start="3" type="1">
+<li><strong>Reação de neutralização entre KOH e HCl:</strong></li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><msub><mi>l</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mi>K</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msub><mi>H</mi><mn>2</mn></msub><msub><mi>O</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><msubsup><mi>K</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><mi>C</mi><msubsup><mi>l</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>−</mo></msubsup></mrow><annotation encoding="application/x-tex">HCl_{(aq)} + KOH_{(aq)} \rightarrow H_2O_{(l)} + K^{+}_{(aq)} + Cl^{-}_{(aq)}</annotation></semantics></math></p>
+<blockquote class="blockquote">
+<p>Observa-se que a reação ocorre em proporção molar 1:1 entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>. Assim, 1 mol de ácido clorídrico neutraliza exatamente 1 mol de hidróxido de potássio, o que permite determinar a concentração exata do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> a partir do volume gasto de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> previamente padronizada.</p>
+</blockquote>
+</section>
+<section id="segurança-no-laboratório" class="level2">
+<h2 class="anchored" data-anchor-id="segurança-no-laboratório">Segurança no Laboratório</h2>
+<ul>
+<li>Utilizar óculos de proteção, luvas e jaleco durante toda a prática.</li>
+<li>O hidróxido de potássio e o ácido clorídrico são substâncias cáusticas e corrosivas: evite contato direto com pele, olhos e roupas.</li>
+<li>O biftalato de potássio deve ser manipulado cuidadosamente, evitando inalação do pó sólido.</li>
+<li>Mantenha a bancada organizada e realize o descarte das soluções conforme orientação do laboratório.</li>
+</ul>
+</section>
+<section id="roteiro-experimental" class="level2">
+<h2 class="anchored" data-anchor-id="roteiro-experimental">Roteiro Experimental</h2>
+<section id="parte-1-padronização-da-solução-de-koh-01-textmoll-1" class="level3">
+<h3 class="anchored" data-anchor-id="parte-1-padronização-da-solução-de-koh-01-textmoll-1">Parte 1: Padronização da Solução de KOH ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></h3>
+<section id="procedimento-1" class="level4">
+<h4 class="anchored" data-anchor-id="procedimento-1">Procedimento 1</h4>
+<p><strong>a) Cálculo da massa</strong> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> (padrão primário) necessária para reagir com 25,0 mL de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup><mo>⋅</mo><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mi>H</mi><mi>P</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">m_{KHP} = \left( M^{Ap}_{KOH} \cdot V_{KOH} \right) \cdot M.M.(KHP)</annotation></semantics></math></p>
+<p>onde:</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><annotation encoding="application/x-tex">m_{KHP}</annotation></semantics></math> é a massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> a ser pesada.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mtext mathvariant="normal">Ap</mtext></msubsup><annotation encoding="application/x-tex">M^{\text{Ap}}_{KOH}</annotation></semantics></math> = molaridade aparente da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">V_{KOH}</annotation></semantics></math> = volume da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mi>H</mi><mi>P</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">M.M.(KHP)</annotation></semantics></math> = massa molar do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>.</li>
+</ul>
+<p><strong>b) Pesar uma massa próxima à massa calculada</strong> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> e transferir para um erlenmeyer de 250 mL.</p>
+<p><strong>Registro da massa pesada:</strong>____________________</p>
+<p><strong>c) Adicionar</strong> aproximadamente (sem necessidade de rigor volumétrico) 75 mL de água destilada e agitar até dissolução completa.</p>
+<p><strong>d) Adicionar</strong> 3 gotas de fenolftaleína.</p>
+<p><strong>e) Titular</strong> com a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math> preparada anteriormente, até coloração rósea persistente por 30 segundos.</p>
+<p><strong>Registro do volume gasto:</strong>____________________</p>
+<p><strong>f) Calcular</strong> a molaridade exata da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><annotation encoding="application/x-tex">M^{Ex}_{KOH}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mi>H</mi><mi>P</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mfrac><mn>1</mn><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub></mfrac></mrow><annotation encoding="application/x-tex">M^{Ex}_{KOH} = \left( \frac{m_{KHP}}{M.M.(KHP)} \right) \cdot \frac{1}{V_{KOH}}</annotation></semantics></math></p>
+<p><strong>g) Calcular</strong> o fator de correção, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{M^{Ex}_{KOH}}{M^{Ap}_{KOH}}</annotation></semantics></math></p>
+<p><strong>Registro do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:____________________</p>
+<blockquote class="blockquote">
+<p><strong>ATENÇÃO</strong>: A maneira adotada acima para a realização dos cálculos é válida apenas para reações com estequiometria 1:1, como é o caso entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>.</p>
+</blockquote>
+</section>
+</section>
+<section id="parte-2-padronização-da-solução-de-hcl-01-textmoll-1" class="level3">
+<h3 class="anchored" data-anchor-id="parte-2-padronização-da-solução-de-hcl-01-textmoll-1">Parte 2: Padronização da Solução de HCl ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></h3>
+<section id="procedimento-2" class="level4">
+<h4 class="anchored" data-anchor-id="procedimento-2">Procedimento 2</h4>
+<p><strong>a) Pipetar</strong> 20 mL, usando pipeta volumétrica, da solução de HCl ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math> para um erlenmeyer de 250 mL.</p>
+<p><strong>b) Adicionar</strong> 3 gotas de fenolftaleína.</p>
+<p><strong>c) Titular</strong> com a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> já padronizada, até coloração rósea persistente por 30 segundos.</p>
+<p><strong>Registro do volume gasto:</strong>____________________</p>
+<p><strong>d) Calcular</strong> a molaridade exata da solução de HCl — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><annotation encoding="application/x-tex">M^{Ex}_{HCl}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>M</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><mo>⋅</mo><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mfrac><mn>1</mn><msub><mi>V</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow></msub></mfrac></mrow><annotation encoding="application/x-tex">M^{Ex}_{HCl} = \left( M^{Ex}_{KOH} \cdot V_{KOH} \right) \cdot \frac{1}{V_{HCl}}</annotation></semantics></math></p>
+<p><strong>e) Calcular</strong> fator de correção, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msubsup><mi>M</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><msubsup><mi>M</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{M^{Ex}_{HCl}}{M^{Ap}_{HCl}}</annotation></semantics></math></p>
+<p><strong>Registro do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:____________________</p>
+<blockquote class="blockquote">
+<p><strong>ATENÇÃO</strong>: A maneira adotada acima para a realização dos cálculos é válida apenas para reações com estequiometria 1:1, como é o caso entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>.</p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="discussão" class="level2">
+<h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
+<p>A padronização de soluções garante concentrações exatas e confiáveis, já que tanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> quanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> preparados inicialmente apresentam apenas valores aparentes. Para corrigir isso, emprega-se o biftalato de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>), padrão primário de alta pureza, estabilidade e solubilidade, que permite determinar a concentração do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> com <em>boa veracidade</em>. Em seguida, essa solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> padronizada é utilizada para padronizar o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>, estabelecendo a sequência KHP → KOH → HCl.</p>
+<p>Esse processo baseia-se em reações ácido-base de estequiometria 1:1, possibilitando o cálculo direto das concentrações exatas e dos respectivos fatores de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>). O registro desses fatores nos frascos assegura que qualquer analista possa aplicar as correções em cálculos futuros. Dessa forma, a padronização reduz a influência de erros sistemáticos e garante consistência nas análises laboratoriais.</p>
+</section>
+<section id="bibliografia" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<ul>
+<li>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.<br>
+</li>
+<li>HARRIS, D. C. <strong>Análise Química Quantitativa</strong>. 9. ed.&nbsp;Rio de Janeiro: LTC, 2021.<br>
+</li>
+<li>VOGEL, A. I. <strong>Análise Química Quantitativa</strong>. 6. ed.&nbsp;Rio de Janeiro: LTC, 2012.</li>
+</ul>
+<hr>
+</section>
+<section id="anexo" class="level2">
+<h2 class="anchored" data-anchor-id="anexo">Anexo</h2>
+<p><strong>Cálculo da massa de KHP para padronizar KOH</strong></p>
+<p><em>i) Passo a passo usando “regra de três”</em></p>
+<p><strong>Passo 01 — Determinar o número de mols de KOH</strong></p>
+<p>A partir da <strong>concentração molar</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup><annotation encoding="application/x-tex">M^{Ap}_{KOH}</annotation></semantics></math> e do <strong>volume da alíquota</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">V_{KOH}</annotation></semantics></math> (em mL):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><msubsup><mi>M</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><mtext mathvariant="normal">Ap</mtext></msubsup><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mols</mtext><mi>K</mi><mi>O</mi><mi>H</mi><mtext mathvariant="normal">)</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mols KOH)</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>V</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+M^{\text{Ap}}_{\mathrm{KOH}} \ \text{(mols} KOH\text{)} &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
+x_1 \ \text{(mols KOH)}                                 &amp; \text{-------------} &amp; V_{\mathrm{KOH}} \ \text{mL}
+\end{array}</annotation></semantics></math></p>
+<p><strong>Passo 02 — Determinar o número de mols do KHP (1:1)</strong></p>
+<p>Usando a estequiometria da reação:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol KHP</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols KHP</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \ \text{mol KOH} &amp; \text{-------------} &amp; 1 \ \text{mol KHP} \\
+x_1 \ \text{mols KOH} &amp; \text{-------------} &amp; x_2 \ \text{mols KHP}
+\end{array}</annotation></semantics></math></p>
+<p><strong>Passo 03 — Converter mols de KHP em massa (g)</strong></p>
+<p>Usando o conceito de massa molar:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol KHP</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">M.M.(KHP) (g)</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols KHP</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(g)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \ \text{mol KHP} &amp; \text{-------------} &amp; \text{M.M.(KHP) (g)} \\
+x_2 \ \text{mols KHP} &amp; \text{-------------} &amp; x_3 \ \text{(g)}
+\end{array}</annotation></semantics></math></p>
+<p><strong>Passo 04 — Resultado</strong></p>
+<p><strong>Pesar</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">P</mi></mrow></msub><mo>=</mo><msub><mi>x</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">m_{\mathrm{KHP}} = x_3 \ \text{g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">P</mi></mrow><annotation encoding="application/x-tex">\mathrm{KHP}</annotation></semantics></math> seco e proceder à titulação.</p>
+<hr>
+<p><em>ii) Passo a passo usando fórmulas</em></p>
+<p><strong>Passo 01 — Cálculo do número de mols de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo>=</mo><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup><mo>⋅</mo><mfrac><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mn>1000</mn></mfrac></mrow><annotation encoding="application/x-tex">n_{KOH} = M^{Ap}_{KOH} \cdot \frac{V_{KOH}}{1000}</annotation></semantics></math></p>
+<p>onde <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">M_{KOH}</annotation></semantics></math> está em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>o</mi><mi>l</mi><mo>⋅</mo><msup><mi>L</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">mol \cdot L^{-1}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">V_{KOH}</annotation></semantics></math> em mL.</p>
+<p><strong>Passo 02 — Relação estequiométrica (1:1):</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>=</mo><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo>⋅</mo><mfrac><mi>b</mi><mi>a</mi></mfrac><mo>=</mo><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mspace width="1.0em"></mspace><mo stretchy="false" form="prefix">(</mo><mrow><mtext mathvariant="normal">com </mtext><mspace width="0.333em"></mspace></mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">n_{KHP} = n_{KOH} \cdot \frac{b}{a} = n_{KOH} \quad (\text{com } a=b=1)</annotation></semantics></math></p>
+<p><strong>Passo 03 — Conversão para massa de KHP:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>=</mo><msub><mi>n</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>⋅</mo><mtext mathvariant="normal">M.M.(KHP)</mtext></mrow><annotation encoding="application/x-tex">m_{KHP} = n_{KHP} \cdot \text{M.M.(KHP)}</annotation></semantics></math></p>
+<p><strong>Exemplo numérico:</strong></p>
+<p>Para 25 mL de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>⋅</mo><mn>0</mn><mo>,</mo><mn>025</mn><mo>=</mo><mn>2</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mtext mathvariant="normal">mols de</mtext><mspace width="0.167em"></mspace><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">n_{KOH} = 0,1 \cdot 0,025 = 2,50×10^{−3}  \text{mols de} \, KOH</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>=</mo><mn>2</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mo>⋅</mo><mn>204</mn><mo>,</mo><mn>22</mn><mo>≈</mo><mn>0</mn><mo>,</mo><mn>511</mn><mtext mathvariant="normal">g de</mtext><mspace width="0.167em"></mspace><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">m_{KHP} = 2,50×10^{−3}  \cdot 204,22 \approx 0,511 \text{g de} \, KHP</annotation></semantics></math></p>
+<p>➡ Portanto, deve-se pesar uma massa próxima de <strong>0,51 g</strong> do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> previamente seco (se necessário, guardar em dessecador após processo de secagem adequada).</p>
+</section>
+<section id="exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
+<ol type="1">
+<li><p>Cite os erros que foram cometidos no preparo das soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e porque elas devem ser padronizadas.</p></li>
+<li><p>O que é padrão primário? O que significa padronizar uma solução?</p></li>
+<li><p>O que é indicador? Qual indicador você utilizou nesta prática e como ele funcionou?</p></li>
+<li><p>Defina: 1-Ponto de Equivalência (Ponto Estequiométrico) e 2-Ponto Final da Titulação.</p></li>
+<li><p>Como se constatou o Ponto Final da Titulação?</p></li>
+<li><p>Qual a diferença entre molaridade aparente e molaridade exata? O que é fator de correção? Em que situação deve-se usar esses conceitos?</p></li>
+<li><p>Dissolveu-se em água 0,250 gramas de carbonato de sódio. Na titulação, utilizando alaranjado de metila como indicador, foram gastos 9 ml de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> 0,5 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>.</p></li>
+</ol>
+<blockquote class="blockquote">
+<ol type="a">
+<li>Escreva a equação que representa a reação química.</li>
+<li>Calcule a concentração exata, em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>, da solução ácida.</li>
+<li>Calcule o fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>).</li>
+</ol>
+</blockquote>
+<ol start="8" type="1">
+<li>Uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">HNO_{3}</annotation></semantics></math> 0,25 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math> foi padronizada com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>a</mi><mn>2</mn></msub><mi>C</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">Na_{2}CO_{3}</annotation></semantics></math> 0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>. Na titulação de 20 mL de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>a</mi><mn>2</mn></msub><mi>C</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">Na_{2}CO_{3}</annotation></semantics></math> gastou-se 26,5 ml de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">HNO_{3}</annotation></semantics></math>.</li>
+</ol>
+<blockquote class="blockquote">
+<ol type="a">
+<li>Calcule a concentração molar da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">HNO_{3}</annotation></semantics></math>.</li>
+<li>Calcule o fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>).</li>
+</ol>
+</blockquote>
+<ol start="9" type="1">
+<li>5,100 g de ftalato ácido de potássio [<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>O</mi><mi>O</mi><mi>C</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>C</mi><mn>6</mn></msub><msub><mi>H</mi><mn>4</mn></msub><mo stretchy="false" form="postfix">)</mo><mi>C</mi><mi>O</mi><mi>O</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">HOOC(C_6H_4)COOK</annotation></semantics></math>] foram dissolvidos em água e transferido para um balão volumétrico de 250 mL, completando-se o volume com água destilada. Do balão retirou-se um volume de 25 mL para a titulação com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>, gastando-se nesta operação, 24,5 mL da base.</li>
+</ol>
+<blockquote class="blockquote">
+<ol type="a">
+<li>Escreva a equação da reação que ocorre.</li>
+<li>Calcule a concentração molar exata da solução básica.</li>
+<li>Calcule o fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>).</li>
+</ol>
+</blockquote>
+<ol start="10" type="1">
+<li>Ao longo de uma titulação com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> na bureta, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> no erlenmeyer e fenolftaleína como indicador, no momento que uma gota do titulante entra em contato com a solução contida no erlenmeyer visualiza-se uma coloração rósea apenas naquele ponto, que desaparece posteriormente.</li>
+</ol>
+<blockquote class="blockquote">
+<ol type="a">
+<li>Explique por que apenas uma parte da solução torna-se rosa, e não toda a solução.</li>
+<li>Explique por que a coloração rósea desaparece rapidamente no início da titulação e, próximo do ponto de equivalência, a cor demora muito mais para desaparecer.</li>
+</ol>
+</blockquote>
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Padronização.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Titulacao.html" class="pagination-link" aria-label="&amp;rightarrow; Titulação">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">→ Titulação</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./06_Acidez_Alimentos.html" class="pagination-link" aria-label="Prática 6: Acidez em Alimentos">
+        <span class="nav-page-text"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

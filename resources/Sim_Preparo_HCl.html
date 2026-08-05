@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulação: Preparo de Solução de HCl</title>
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --primary: #1e3d59;
+      --accent: #ff6e40;
+      --hcl-color: rgba(230, 126, 34, 0.4);
+      --water-color: rgba(52, 152, 219, 0.35);
+      --glass: #2c3e50;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: #333;
+      margin: 0;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sim-container {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      padding: 20px;
+      width: 100%;
+      max-width: 900px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 4px 0;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    p.subtitle {
+      color: #555;
+      margin: 0 0 15px 0;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* Tela Gráfica SVG */
+    .canvas-container {
+      width: 100%;
+      height: 380px;
+      background: linear-gradient(180deg, #fafafa 0%, #f0f4f8 100%);
+      border: 1px solid #dcdfe6;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Estilos das Vidrarias e Conteúdos */
+    .glass-line {
+      fill: none;
+      stroke: var(--glass);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .liquid-water {
+      fill: var(--water-color);
+      transition: all 0.8s ease;
+    }
+
+    .liquid-hcl {
+      fill: var(--hcl-color);
+      transition: all 0.8s ease;
+    }
+
+    .fumes {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .fume-bubble {
+      fill: #e67e22;
+      animation: floatUp 2s infinite ease-in;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0.8; }
+      100% { transform: translateY(-40px); opacity: 0; }
+    }
+
+    .droplet {
+      fill: #e67e22;
+      opacity: 0;
+    }
+
+    .drop-animate {
+      animation: dropFall 0.7s linear infinite;
+    }
+
+    @keyframes dropFall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(110px); opacity: 0; }
+    }
+
+    /* Painel de Dados e Alertas */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 650px) {
+      .dashboard { grid-template-columns: 1fr; }
+    }
+
+    .status-box {
+      background: #eef4f8;
+      border-left: 4px solid #3498db;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .alert-box {
+      background: #fdf2e9;
+      border-left: 4px solid #e67e22;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: #7e5109;
+    }
+
+    /* Botões */
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #3498db;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #2980b9;
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .reset-btn {
+      background-color: #7f8c8d;
+      flex: 0.3;
+    }
+
+    .reset-btn:hover:not(:disabled) {
+      background-color: #6c7a89;
+    }
+
+    .param-badge {
+      display: inline-block;
+      background: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sim-container">
+  <h1>Simulação: Preparo de Solução de HCl</h1>
+  <p class="subtitle">Diluição Sequencial: HCl Comercial (37% m/m) → HCl 1,0 mol/L → HCl 0,1 mol/L</p>
+
+  <!-- Área Gráfica da Capela (SVG) -->
+  <div class="canvas-container">
+    <svg viewBox="0 0 600 260" id="labSvg">
+      <defs>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+          <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+        </filter>
+      </defs>
+
+      <!-- Indicador da Capela de Exaustão -->
+      <rect x="10" y="10" width="580" height="240" fill="none" stroke="#bdc3c7" stroke-width="2" stroke-dasharray="6,6" rx="5" />
+      <text x="25" y="30" font-size="11" font-weight="bold" fill="#7f8c8d">CAPELA DE EXAUSTÃO (LIGADA)</text>
+
+      <!-- BANCADA -->
+      <rect x="20" y="220" width="560" height="10" fill="#8d6e63" rx="2"/>
+
+      <!-- VIDRARIA 1: Frasco de HCl Concentrado Comercial (Esquerda) -->
+      <g id="frascoHCl" transform="translate(60, 90)">
+        <!-- Rótulo -->
+        <rect x="5" y="55" width="40" height="40" fill="#fff" stroke="#ccc" rx="2"/>
+        <text x="25" y="70" font-size="9" font-weight="bold" fill="#c0392b" text-anchor="middle">HCl</text>
+        <text x="25" y="82" font-size="7" fill="#333" text-anchor="middle">37% m/m</text>
+        <text x="25" y="90" font-size="6" fill="#666" text-anchor="middle">d=1,18 g/mL</text>
+        
+        <!-- Líquido -->
+        <path d="M 3,45 L 47,45 L 47,118 A 2,2 0 0,1 45,120 L 5,120 A 2,2 0 0,1 3,118 Z" fill="rgba(230, 126, 34, 0.5)"/>
+        
+        <!-- Garrafa -->
+        <path d="M 18,10 L 32,10 L 32,30 L 47,40 L 47,118 A 2,2 0 0,1 45,120 L 5,120 A 2,2 0 0,1 3,118 L 3,40 L 18,30 Z" class="glass-line" filter="url(#shadow)"/>
+        <rect x="16" y="2" width="18" height="8" fill="#c0392b" rx="1"/> <!-- Tampa -->
+        <text x="25" y="138" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">HCl Comercial</text>
+        <text x="25" y="150" font-size="9" fill="#666" text-anchor="middle">(11,8 mol/L)</text>
+      </g>
+
+      <!-- VIDRARIA 2: Balão Volumétrico Parte 1 (Centro) -->
+      <g id="balao1" transform="translate(230, 70)">
+        <clipPath id="clipBalao1">
+          <path d="M 22,0 L 28,0 L 28,60 L 48,110 A 22,22 0 0,1 2,110 L 22,60 Z"/>
+        </clipPath>
+
+        <!-- Líquido do Balão 1 -->
+        <g clip-path="url(#clipBalao1)">
+          <rect id="liqWater1" x="0" y="100" width="50" height="40" class="liquid-water"/>
+          <rect id="liqHCl1" x="0" y="100" width="50" height="0" class="liquid-hcl"/>
+        </g>
+
+        <!-- Vidro do Balão 1 -->
+        <path d="M 18,0 L 32,0 M 22,0 L 28,0 L 28,60 L 48,110 A 22,22 0 0,1 2,110 L 22,60 Z" class="glass-line" filter="url(#shadow)"/>
+        <!-- Traço de Aferição (Menisco) -->
+        <line x1="22" y1="35" x2="28" y2="35" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="25" y="158" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">Parte 1: Balão 100 mL</text>
+        <text x="25" y="170" font-size="9" id="labelBalao1" fill="#666" text-anchor="middle">Alvo: 1,0 mol/L</text>
+      </g>
+
+      <!-- VIDRARIA 3: Balão Volumétrico Parte 2 (Direita) -->
+      <g id="balao2" transform="translate(420, 70)">
+        <clipPath id="clipBalao2">
+          <path d="M 22,0 L 28,0 L 28,60 L 48,110 A 22,22 0 0,1 2,110 L 22,60 Z"/>
+        </clipPath>
+
+        <!-- Líquido do Balão 2 -->
+        <g clip-path="url(#clipBalao2)">
+          <rect id="liqWater2" x="0" y="100" width="50" height="40" class="liquid-water"/>
+          <rect id="liqHCl2" x="0" y="100" width="50" height="0" class="liquid-hcl"/>
+        </g>
+
+        <!-- Vidro do Balão 2 -->
+        <path d="M 18,0 L 32,0 M 22,0 L 28,0 L 28,60 L 48,110 A 22,22 0 0,1 2,110 L 22,60 Z" class="glass-line" filter="url(#shadow)"/>
+        <line x1="22" y1="35" x2="28" y2="35" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="25" y="158" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">Parte 2: Balão 100 mL</text>
+        <text x="25" y="170" font-size="9" id="labelBalao2" fill="#666" text-anchor="middle">Alvo: 0,1 mol/L</text>
+      </g>
+
+      <!-- Pipeta Animada -->
+      <g id="pipetteGroup" transform="translate(-50, -50)" style="transition: transform 0.6s ease;">
+        <path d="M 0,0 L 6,0 L 4,90 L 1,105 L 0,105 L -3,90 Z" fill="#e0e0e0" stroke="#757575" stroke-width="1"/>
+        <circle id="pipetteDrop" cx="0.5" cy="110" r="3" class="droplet" />
+      </g>
+    </svg>
+  </div>
+
+  <!-- Controles Principais -->
+  <div class="controls">
+    <button id="btnStep" onclick="executeNextStep()">Iniciar Procedimento 1</button>
+    <button id="btnReset" class="reset-btn" onclick="resetSim()" disabled>Reiniciar</button>
+  </div>
+
+  <!-- Painel Informativo -->
+  <div class="dashboard">
+    <div class="status-box" id="statusBox">
+      <strong>Início:</strong> Clique no botão para iniciar a preparação de 100 mL de HCl 1,0 mol/L a partir do ácido comercial concentrado sob capela.
+    </div>
+    <div class="alert-box" id="alertBox">
+      <strong> Regra Ouro de Segurança:</strong><br>
+      <em>"Nunca adicione água ao ácido!"</em><br>
+      A diluição é fortemente exotérmica (ΔH ≈ -75 kJ/mol). A adição prévia de água absorve o calor e previne projeções violentas do líquido.
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentStep = 0;
+
+  // Elementos DOM
+  const btnStep = document.getElementById('btnStep');
+  const btnReset = document.getElementById('btnReset');
+  const statusBox = document.getElementById('statusBox');
+  const alertBox = document.getElementById('alertBox');
+  const pipetteGroup = document.getElementById('pipetteGroup');
+  const pipetteDrop = document.getElementById('pipetteDrop');
+
+  // Elementos de Líquidos dos Balões
+  const liqWater1 = document.getElementById('liqWater1');
+  const liqHCl1 = document.getElementById('liqHCl1');
+  const labelBalao1 = document.getElementById('labelBalao1');
+
+  const liqWater2 = document.getElementById('liqWater2');
+  const liqHCl2 = document.getElementById('liqHCl2');
+  const labelBalao2 = document.getElementById('labelBalao2');
+
+  function executeNextStep() {
+    currentStep++;
+
+    if (currentStep === 1) {
+      // Passo 1: Adicionar ~40 mL de Água no Balão 1
+      btnStep.disabled = true;
+      btnReset.disabled = false;
+      statusBox.innerHTML = "<strong>Parte 1 - Passo 1:</strong> Adicionando ~40 mL de água destilada ao Balão Volumétrico de 100 mL...";
+
+      setTimeout(() => {
+        // Eleva o nível inicial da água (y: 100 -> 75, height: 40 -> 65)
+        liqWater1.setAttribute('y', '75');
+        liqWater1.setAttribute('height', '65');
+        
+        setTimeout(() => {
+          statusBox.innerHTML = "<strong>Parte 1 - Passo 1 Concluído:</strong> O balão já contém água para dissipar o calor da diluição.<br><em>Próximo passo:</em> Pipetar 8,47 mL (~8,5 mL) de HCl concentrado comercial.";
+          btnStep.innerText = "Passo 2: Pipetar 8,5 mL de HCl 11,8 mol/L";
+          btnStep.disabled = false;
+        }, 800);
+      }, 300);
+    }
+    else if (currentStep === 2) {
+      // Passo 2: Pipetar 8,47 mL de HCl Concentrado para o Balão 1
+      btnStep.disabled = true;
+      statusBox.innerHTML = "<strong>Parte 1 - Passo 2:</strong> Pipetando 8,47 mL de HCl comercial (11,8 mol/L) e transferindo lentamente ao Balão 1...";
+
+      // Animação da Pipeta do Frasco de HCl para Balão 1
+      pipetteGroup.setAttribute('transform', 'translate(85, 50)');
+      
+      setTimeout(() => {
+        pipetteGroup.setAttribute('transform', 'translate(255, 30)');
+        
+        setTimeout(() => {
+          pipetteDrop.classList.add('drop-animate');
+
+          setTimeout(() => {
+            pipetteDrop.classList.remove('drop-animate');
+            pipetteGroup.setAttribute('transform', 'translate(-50, -50)');
+
+            // Mistura de HCl no Balão 1
+            liqHCl1.setAttribute('y', '65');
+            liqHCl1.setAttribute('height', '12');
+
+            statusBox.innerHTML = "<strong>Parte 1 - Passo 2 Concluído:</strong> 8,47 mL de HCl concentrado adicionados com sucesso ao fundo do balão.<br><em>Próximo passo:</em> Aferir o menisco em 100 mL com água destilada.";
+            btnStep.innerText = "Passo 3: Aferir Menisco (100 mL)";
+            btnStep.disabled = false;
+          }, 800);
+        }, 600);
+      }, 600);
+    }
+    else if (currentStep === 3) {
+      // Passo 3: Aferição do Balão 1
+      btnStep.disabled = true;
+      statusBox.innerHTML = "<strong>Parte 1 - Passo 3:</strong> Aferindo o volume do Balão 1 com água destilada até a marca de 100 mL (alinhando o menisco)...";
+
+      setTimeout(() => {
+        // Preenche até o traço vermelho de aferição (y: 35)
+        liqWater1.setAttribute('y', '35');
+        liqWater1.setAttribute('height', '105');
+        liqHCl1.setAttribute('y', '35');
+        liqHCl1.setAttribute('height', '105');
+
+        setTimeout(() => {
+          labelBalao1.textContent = "HCl 1,0 mol/L (Estoque)";
+          labelBalao1.setAttribute('fill', '#27ae60');
+          labelBalao1.setAttribute('font-weight', 'bold');
+
+          statusBox.innerHTML = "<strong>Parte 1 Concluída!</strong> Solução Estoque de <span class='param-badge'>HCl 1,0 mol/L</span> preparada e homogeneizada.<br><em>Início da Parte 2:</em> Preparar 100 mL de HCl 0,1 mol/L a partir desta solução estoque.";
+          btnStep.innerText = "Iniciar Parte 2: Preparar HCl 0,1 mol/L";
+          btnStep.disabled = false;
+        }, 800);
+      }, 300);
+    }
+    else if (currentStep === 4) {
+      // Parte 2 - Passo 1: Adicionar ~40 mL de Água no Balão 2
+      btnStep.disabled = true;
+      statusBox.innerHTML = "<strong>Parte 2 - Passo 1:</strong> Adicionando ~40 mL de água destilada ao segundo Balão Volumétrico de 100 mL...";
+
+      setTimeout(() => {
+        liqWater2.setAttribute('y', '75');
+        liqWater2.setAttribute('height', '65');
+
+        setTimeout(() => {
+          statusBox.innerHTML = "<strong>Parte 2 - Passo 1 Concluído:</strong> Água adicionada ao Balão 2.<br><em>Próximo passo:</em> Pipetar alíquota de 10,0 mL da solução estoque de HCl 1,0 mol/L.";
+          btnStep.innerText = "Passo 2: Pipetar 10 mL de HCl 1,0 mol/L";
+          btnStep.disabled = false;
+        }, 800);
+      }, 300);
+    }
+    else if (currentStep === 5) {
+      // Parte 2 - Passo 2: Pipetar 10 mL do Balão 1 para o Balão 2
+      btnStep.disabled = true;
+      statusBox.innerHTML = "<strong>Parte 2 - Passo 2:</strong> Pipetando alíquota de 10,0 mL de HCl 1,0 mol/L do Balão 1 para o Balão 2 (C₁ × V₁ = C₂ × V₂)...";
+
+      pipetteGroup.setAttribute('transform', 'translate(255, 30)');
+
+      setTimeout(() => {
+        pipetteGroup.setAttribute('transform', 'translate(445, 30)');
+
+        setTimeout(() => {
+          pipetteDrop.classList.add('drop-animate');
+
+          setTimeout(() => {
+            pipetteDrop.classList.remove('drop-animate');
+            pipetteGroup.setAttribute('transform', 'translate(-50, -50)');
+
+            liqHCl2.setAttribute('y', '65');
+            liqHCl2.setAttribute('height', '12');
+
+            statusBox.innerHTML = "<strong>Parte 2 - Passo 2 Concluído:</strong> 10,0 mL da solução estoque transferidos com precisão.<br><em>Próximo passo:</em> Aferir o menisco do Balão 2 para completar 100 mL.";
+            btnStep.innerText = "Passo 3: Aferir Menisco (100 mL)";
+            btnStep.disabled = false;
+          }, 800);
+        }, 600);
+      }, 600);
+    }
+    else if (currentStep === 6) {
+      // Parte 2 - Passo 3: Aferição Final do Balão 2
+      btnStep.disabled = true;
+      statusBox.innerHTML = "<strong>Parte 2 - Passo 3:</strong> Completando o volume do Balão 2 com água destilada até a marca de aferição (100 mL)...";
+
+      setTimeout(() => {
+        liqWater2.setAttribute('y', '35');
+        liqWater2.setAttribute('height', '105');
+        liqHCl2.setAttribute('y', '35');
+        liqHCl2.setAttribute('height', '105');
+
+        setTimeout(() => {
+          labelBalao2.textContent = "HCl 0,1 mol/L (Diluído)";
+          labelBalao2.setAttribute('fill', '#27ae60');
+          labelBalao2.setAttribute('font-weight', 'bold');
+
+          statusBox.innerHTML = `
+            <strong>Procedimento Concluído com Sucesso! ✓</strong><br>
+            • <strong>Solução Estoque (Parte 1):</strong> 100 mL de <span class='param-badge'>HCl 1,0 mol/L</span><br>
+            • <strong>Solução Diluída (Parte 2):</strong> 100 mL de <span class='param-badge'>HCl 0,1 mol/L</span><br>
+            <em>Rotulagem:</em> Ambas as soluções devem ser transferidas para frascos limpos e identificados com nome, concentração aproximada, data e responsável.
+          `;
+          btnStep.innerText = "Simulação Finalizada ✓";
+        }, 800);
+      }, 300);
+    }
+  }
+
+  function resetSim() {
+    currentStep = 0;
+    btnStep.disabled = false;
+    btnReset.disabled = true;
+
+    btnStep.innerText = "Iniciar Procedimento 1";
+    statusBox.innerHTML = "<strong>Início:</strong> Clique no botão para iniciar a preparação de 100 mL de HCl 1,0 mol/L a partir do ácido comercial concentrado sob capela.";
+
+    // Reseta Balão 1
+    liqWater1.setAttribute('y', '100');
+    liqWater1.setAttribute('height', '40');
+    liqHCl1.setAttribute('y', '100');
+    liqHCl1.setAttribute('height', '0');
+    labelBalao1.textContent = "Alvo: 1,0 mol/L";
+    labelBalao1.setAttribute('fill', '#666');
+    labelBalao1.setAttribute('font-weight', 'normal');
+
+    // Reseta Balão 2
+    liqWater2.setAttribute('y', '100');
+    liqWater2.setAttribute('height', '40');
+    liqHCl2.setAttribute('y', '100');
+    liqHCl2.setAttribute('height', '0');
+    labelBalao2.textContent = "Alvo: 0,1 mol/L";
+    labelBalao2.setAttribute('fill', '#666');
+    labelBalao2.setAttribute('font-weight', 'normal');
+
+    pipetteGroup.setAttribute('transform', 'translate(-50, -50)');
+  }
+</script>
+
+</body>
+</html>

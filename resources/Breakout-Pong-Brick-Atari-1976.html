@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Breakout 1976 - Plotly.js</title>
+    <!-- Script local mantido -->
+    <script src="plotly-3.7.0.min.js"></script>
+
+    <style>
+        .brk-container {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .brk-placar {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-height: 24px;
+            color: #ffffff;
+        }
+        .brk-canvas {
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+            border: 2px solid #00ff00;
+            border-radius: 4px;
+        }
+        .brk-info {
+            margin-top: 10px;
+            color: #888888;
+            font-size: 13px;
+        }
+        .brk-painel {
+            background-color: #111111;
+            border: 1px solid #333333;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .brk-btn {
+            background-color: #000000;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .brk-btn:hover { background-color: #00ff00; color: #000000; }
+        .brk-btn.active { background-color: #00ff00; color: #000000; }
+        .brk-label { font-size: 12px; color: #ffea00; }
+    </style>
+</head>
+<body>
+
+    <div class="brk-container">
+        <h1>🧱 BREAKOUT (Atari, 1976)</h1>
+
+        <!-- PAINEL DE CONTROLES -->
+        <div class="brk-painel">
+            <button class="brk-btn" onclick="window.reiniciarBreakout()">🔄 NOVO JOGO</button>
+            
+            <span class="brk-label">⚡ VELOCIDADE:</span>
+            <button class="brk-btn btn-velocidade" data-vel="0.5" onclick="window.setVelocidadeBreakout(0.5)">0.5x</button>
+            <button class="brk-btn btn-velocidade active" data-vel="1.0" onclick="window.setVelocidadeBreakout(1.0)">1.0x</button>
+            <button class="brk-btn btn-velocidade" data-vel="1.5" onclick="window.setVelocidadeBreakout(1.5)">1.5x</button>
+            <button class="brk-btn btn-velocidade" data-vel="2.0" onclick="window.setVelocidadeBreakout(2.0)">2.0x 🔥</button>
+
+            <span class="brk-label">🏓 RAQUETE:</span>
+            <button id="btn-raquete" class="brk-btn" onclick="window.toggleTamanhoRaquete()">LARGURA: NORMAL</button>
+        </div>
+
+        <div id="brk-placar" class="brk-placar">Iniciando partida...</div>
+        <div id="brk-game-plot" class="brk-canvas"></div>
+        <div class="brk-info">
+            Controles: <b>← / →</b> (Mover Raquete) | <b>ESPAÇO</b> (Lançar Bola)
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const GRID_W = 100;
+        const GRID_H = 100;
+        const FPS = 30;
+        const DT = 1 / FPS;
+
+        // --- PARÂMETROS DE AJUSTE DO JOGO ---
+        let fatorVelocidade = 1.0;
+        let tamRaqueteMultiplicador = 1.0;
+
+        let raquete = { x: 50, y: 6, larguraBase: 16, altura: 2.5 };
+        let bola = { x: 50, y: 10, vx: 0, vy: 0, raio: 1.5, presa: true };
+        let tijolos = [];
+        let pontuacao = 0;
+        let vidas = 3;
+        let jogando = false;
+        let loopInterval = null;
+        let teclas = {};
+
+        // Cores clássicas do arcade por fileira
+        const CORES_TIJOLOS = ['#ff0055', '#ff7700', '#ffea00', '#00ff88', '#00e5ff'];
+        const PONTOS_TIJOLOS = [7, 5, 3, 2, 1];
+
+        // --- CONTROLES DOS BOTÕES DE UI ---
+        window.setVelocidadeBreakout = function(fator) {
+            fatorVelocidade = fator;
+            let botoes = document.querySelectorAll('.btn-velocidade');
+            botoes.forEach(btn => {
+                let val = parseFloat(btn.getAttribute('data-vel'));
+                if (val === fator) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+                btn.blur();
+            });
+        };
+
+        window.toggleTamanhoRaquete = function() {
+            tamRaqueteMultiplicador = tamRaqueteMultiplicador === 1.0 ? 1.6 : 1.0;
+            let btn = document.getElementById('btn-raquete');
+            if (btn) {
+                btn.innerHTML = `LARGURA: ${tamRaqueteMultiplicador === 1.6 ? 'GIGANTE 🏓' : 'NORMAL'}`;
+                btn.blur();
+            }
+        };
+
+        function resetarBola() {
+            bola.presa = true;
+            bola.x = raquete.x;
+            bola.y = raquete.y + 3.5;
+            bola.vx = 0;
+            bola.vy = 0;
+        }
+
+        function criarTijolos() {
+            tijolos = [];
+            let colunas = 10;
+            let linhas = 5;
+            let largTijolo = 9.2;
+            let altTijolo = 3.5;
+            let margemX = 4.0;
+            let topoY = 92;
+
+            for (let l = 0; l < linhas; l++) {
+                for (let c = 0; c < colunas; c++) {
+                    tijolos.push({
+                        x0: margemX + (c * 9.3),
+                        y0: topoY - (l * 4.2),
+                        x1: margemX + (c * 9.3) + largTijolo,
+                        y1: topoY - (l * 4.2) + altTijolo,
+                        cor: CORES_TIJOLOS[l],
+                        pontos: PONTOS_TIJOLOS[l],
+                        ativo: true
+                    });
+                }
+            }
+        }
+
+        function iniciarJogo() {
+            if (typeof Plotly === 'undefined') {
+                document.getElementById('brk-placar').innerHTML = "<span style='color:red'>ERRO: Plotly.js não foi carregado!</span>";
+                return;
+            }
+
+            pontuacao = 0;
+            vidas = 3;
+            jogando = true;
+            raquete.x = 50;
+
+            criarTijolos();
+            resetarBola();
+
+            if (loopInterval) clearInterval(loopInterval);
+            loopInterval = setInterval(gameLoop, 1000 / FPS);
+
+            let btn = document.getElementById('brk-btn-novo');
+            if (btn) btn.blur();
+        }
+
+        window.reiniciarBreakout = iniciarJogo;
+
+        function lancarBola() {
+            if (bola.presa) {
+                bola.presa = false;
+                let anguloAleatorio = (Math.random() - 0.5) * 0.8;
+                let velBase = 55;
+                bola.vx = velBase * Math.sin(anguloAleatorio);
+                bola.vy = velBase;
+            }
+        }
+
+        function atualizarFisica() {
+            if (!jogando) return;
+
+            let largEfetiva = raquete.larguraBase * tamRaqueteMultiplicador;
+
+            // 1. Movimento da Raquete
+            if (teclas["ArrowLeft"])  raquete.x = Math.max(largEfetiva / 2, raquete.x - 45 * DT);
+            if (teclas["ArrowRight"]) raquete.x = Math.min(GRID_W - largEfetiva / 2, raquete.x + 45 * DT);
+
+            // 2. Se a bola estiver presa na raquete
+            if (bola.presa) {
+                bola.x = raquete.x;
+                bola.y = raquete.y + 3.5;
+                return;
+            }
+
+            // 3. Movimento da Bola aplicando a velocidade
+            let dtEfetivo = DT * fatorVelocidade;
+            bola.x += bola.vx * dtEfetivo;
+            bola.y += bola.vy * dtEfetivo;
+
+            // 4. Colisão com as Paredes Laterais
+            if (bola.x - bola.raio <= 0) {
+                bola.x = bola.raio;
+                bola.vx *= -1;
+            } else if (bola.x + bola.raio >= GRID_W) {
+                bola.x = GRID_W - bola.raio;
+                bola.vx *= -1;
+            }
+
+            // 5. Colisão com o Teto
+            if (bola.y + bola.raio >= GRID_H) {
+                bola.y = GRID_H - bola.raio;
+                bola.vy *= -1;
+            }
+
+            // 6. Colisão com o Chão (Perde Vida)
+            if (bola.y - bola.raio <= 0) {
+                vidas--;
+                if (vidas <= 0) {
+                    jogando = false;
+                } else {
+                    resetarBola();
+                }
+                return;
+            }
+
+            // 7. Colisão Bola vs Raquete (Com física de impacto angular)
+            if (bola.vy < 0 && 
+                bola.y - bola.raio <= raquete.y + raquete.altura / 2 &&
+                bola.y + bola.raio >= raquete.y - raquete.altura / 2 &&
+                Math.abs(bola.x - raquete.x) <= (largEfetiva / 2 + bola.raio)) {
+                
+                bola.y = raquete.y + raquete.altura / 2 + bola.raio;
+                bola.vy = Math.abs(bola.vy); // Rebate para cima
+
+                // Altera o ângulo horizontal com base em onde a bola bateu na raquete
+                let pontoImpacto = (bola.x - raquete.x) / (largEfetiva / 2); // de -1 até 1
+                let velTotal = Math.hypot(bola.vx, bola.vy);
+                bola.vx = pontoImpacto * velTotal * 0.85;
+                
+                // Reconstrói Vy mantendo a velocidade escalar consistente
+                let novoVyQuad = (velTotal * velTotal) - (bola.vx * bola.vx);
+                bola.vy = Math.sqrt(Math.max(400, novoVyQuad));
+            }
+
+            // 8. Colisão Bola vs Tijolos
+            for (let t of tijolos) {
+                if (!t.ativo) continue;
+
+                if (bola.x + bola.raio >= t.x0 && bola.x - bola.raio <= t.x1 &&
+                    bola.y + bola.raio >= t.y0 && bola.y - bola.raio <= t.y1) {
+
+                    t.ativo = false;
+                    pontuacao += t.pontos;
+
+                    // Determina de onde veio a colisão para rebater corretamente
+                    let overlapLeft = (bola.x + bola.raio) - t.x0;
+                    let overlapRight = t.x1 - (bola.x - bola.raio);
+                    let overlapTop = t.y1 - (bola.y - bola.raio);
+                    let overlapBottom = (bola.y + bola.raio) - t.y0;
+
+                    let minOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
+
+                    if (minOverlap === overlapLeft || minOverlap === overlapRight) {
+                        bola.vx *= -1;
+                    } else {
+                        bola.vy *= -1;
+                    }
+                    break;
+                }
+            }
+
+            // Vitória: Todos os tijolos destruídos!
+            if (tijolos.every(t => !t.ativo)) {
+                pontuacao += 500;
+                criarTijolos();
+                resetarBola();
+            }
+        }
+
+        function renderizar() {
+            let placarEl = document.getElementById('brk-placar');
+            let plotTarget = document.getElementById('brk-game-plot');
+
+            if (placarEl) {
+                placarEl.innerHTML = `PONTOS: ${pontuacao} &nbsp;&nbsp;|&nbsp;&nbsp; VIDAS: ${"🧱 ".repeat(Math.max(0, vidas))}`;
+            }
+
+            let shapes = [];
+            let largEfetiva = raquete.larguraBase * tamRaqueteMultiplicador;
+
+            // A) Desenho da Raquete
+            if (jogando) {
+                shapes.push({
+                    type: 'rect',
+                    x0: raquete.x - largEfetiva / 2,
+                    y0: raquete.y - raquete.altura / 2,
+                    x1: raquete.x + largEfetiva / 2,
+                    y1: raquete.y + raquete.altura / 2,
+                    fillcolor: '#ffffff',
+                    line: { color: '#00ff00', width: 1.5 }
+                });
+            }
+
+            // B) Desenho dos Tijolos Ativos
+            tijolos.forEach(t => {
+                if (t.ativo) {
+                    shapes.push({
+                        type: 'rect',
+                        x0: t.x0, y0: t.y0,
+                        x1: t.x1, y1: t.y1,
+                        fillcolor: t.cor,
+                        line: { color: '#000000', width: 1.5 }
+                    });
+                }
+            });
+
+            // C) Desenho da Bola
+            if (jogando) {
+                shapes.push({
+                    type: 'circle',
+                    x0: bola.x - bola.raio,
+                    y0: bola.y - bola.raio,
+                    x1: bola.x + bola.raio,
+                    y1: bola.y + bola.raio,
+                    fillcolor: '#ffea00',
+                    line: { color: '#ffffff', width: 1 }
+                });
+            }
+
+            let annotations = [];
+            if (!jogando) {
+                annotations.push({
+                    x: GRID_W / 2, y: GRID_H / 2,
+                    text: vidas <= 0 ? "GAME OVER" : "CLIQUE EM NOVO JOGO",
+                    font: { size: 32, color: '#ff0055', family: 'Courier New' },
+                    showarrow: false
+                });
+            }
+
+            let layout = {
+                xaxis: { range: [0, GRID_W], showgrid: false, zeroline: false, showticklabels: false },
+                yaxis: { range: [0, GRID_H], showgrid: false, zeroline: false, showticklabels: false },
+                plot_bgcolor: '#000000',
+                paper_bgcolor: '#000000',
+                margin: { t: 10, b: 10, l: 10, r: 10 },
+                shapes: shapes,
+                annotations: annotations
+            };
+
+            if (plotTarget && typeof Plotly !== 'undefined') {
+                Plotly.react(plotTarget, [], layout, { staticPlot: true, responsive: true });
+            }
+        }
+
+        function gameLoop() {
+            atualizarFisica();
+            renderizar();
+        }
+
+        // --- TECLADO ---
+        window.addEventListener('keydown', (e) => {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)) {
+                e.preventDefault();
+            }
+            teclas[e.key] = true;
+
+            if ((e.key === " " || e.code === "Space") && jogando) {
+                lancarBola();
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            teclas[e.key] = false;
+        });
+
+        function checarELancar() {
+            if (typeof Plotly !== 'undefined') {
+                iniciarJogo();
+            } else {
+                setTimeout(checarELancar, 200);
+            }
+        }
+
+        checarELancar();
+    })();
+    </script>
+</body>
+</html>

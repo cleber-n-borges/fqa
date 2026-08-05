@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador Didático: Espectro da Luz Visível</title>
+  
+  <!-- Plotly.js CDN -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+  <!-- MathJax v3 CDN -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      background-color: #111111;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px 0;
+      box-sizing: border-box;
+    }
+    #plot-container {
+      width: 90%;
+      max-width: 900px;
+      height: 480px;
+    }
+
+    /* Painel de Controles */
+    .controls-panel {
+      width: 90%;
+      max-width: 860px;
+      background-color: #1a1a1c;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .control-group label {
+      font-weight: 600;
+      color: #e1e1e6;
+    }
+
+    input[type=range] {
+      accent-color: #00d2ff;
+      cursor: pointer;
+      width: 130px;
+    }
+
+    /* Botões Informativos / Teoria */
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .theory-btn {
+      background-color: #222;
+      color: #00d2ff;
+      border: 1px solid #00d2ff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .theory-btn:hover {
+      background-color: #00d2ff;
+      color: #111;
+    }
+
+    /* Cards Teóricos Extensos */
+    .theory-card {
+      display: none;
+      width: 90%;
+      max-width: 860px;
+      background-color: #18181a;
+      border: 1px solid #333;
+      border-left: 4px solid #00d2ff;
+      border-radius: 6px;
+      padding: 20px 25px;
+      margin-top: 15px;
+      line-height: 1.6;
+      font-size: 14px;
+      color: #d1d1d6;
+    }
+    .theory-card h3 { margin-top: 0; color: #00d2ff; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 8px; }
+    .theory-card h4 { color: #ffffff; margin-top: 15px; margin-bottom: 5px; }
+
+    /* Estilos dos Gráficos de Espectro Real */
+    .spectrum-section {
+      background: #111113;
+      border: 1px solid #2d2d30;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 25px;
+    }
+    .spectrum-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #222;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .spectrum-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    .spectrum-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      background: #1a1a1c;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid #333;
+    }
+    .color-preview {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid #ffffff44;
+    }
+    .spectrum-plot {
+      width: 100%;
+      height: 260px;
+      margin-top: 10px;
+    }
+
+    #theory-plot-container {
+      width: 100%;
+      height: 380px;
+      margin-top: 15px;
+      border: 1px solid #333;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Gráfico Principal -->
+  <div id="plot-container"></div>
+
+  <!-- Painel de Controles -->
+  <div class="controls-panel">
+    <div class="control-group">
+      <label for="range-factor">Fator de Atenuação ($F$):</label>
+      <input type="range" id="range-factor" min="0.0" max="1.0" step="0.05" value="0.8" oninput="updateParameters()">
+      <span id="factor-val" style="font-weight: bold; color: #00d2ff;">0.80</span>
+    </div>
+
+    <div class="control-group">
+      <label for="range-gamma">Correção Gamma ($\gamma$):</label>
+      <input type="range" id="range-gamma" min="0.1" max="1.0" step="0.05" value="0.8" oninput="updateParameters()">
+      <span id="gamma-val" style="font-weight: bold; color: #00d2ff;">0.80</span>
+    </div>
+
+    <div class="btn-group">
+      <button class="theory-btn" onclick="toggleCard('card-algorithm')">📘 Equações Intervaladas</button>
+      <button class="theory-btn" onclick="toggleCard('card-variables')">📐 baseFactor & Atenuação</button>
+      <button class="theory-btn" onclick="toggleCard('card-gamma')">⚡ Correção Gamma ($\gamma$)</button>
+      <button class="theory-btn" style="border-color: #2ECC40; color: #2ECC40;" onclick="toggleCard('card-examples')">🌌 3 Espectros Reais (380-780nm)</button>
+    </div>
+  </div>
+
+  <!-- CARD 1 -->
+  <div id="card-algorithm" class="theory-card">
+    <h3>1. O Algoritmo de Dan Bruton e suas Equações Por Partes</h3>
+    <p>O método de Dan Bruton converte o comprimento de onda ($\lambda \in [380, 780]\text{ nm}$) nas três variáveis de cor primária brutas ($R_{\text{bruto}}, G_{\text{bruto}}, B_{\text{bruto}}$) através de <b>6 equações lineares intervaladas</b>:</p>
+    
+    $$\begin{aligned}
+    380 \le \lambda < 440 \text{ nm:} & \quad R_{\text{bruto}} = -\frac{\lambda - 440}{60}, & G_{\text{bruto}} = 0, & \quad B_{\text{bruto}} = 1.0 \\
+    440 \le \lambda < 490 \text{ nm:} & \quad R_{\text{bruto}} = 0, & G_{\text{bruto}} = \frac{\lambda - 440}{50}, & \quad B_{\text{bruto}} = 1.0 \\
+    490 \le \lambda < 510 \text{ nm:} & \quad R_{\text{bruto}} = 0, & G_{\text{bruto}} = 1.0, & \quad B_{\text{bruto}} = -\frac{\lambda - 510}{20} \\
+    510 \le \lambda < 580 \text{ nm:} & \quad R_{\text{bruto}} = \frac{\lambda - 510}{70}, & G_{\text{bruto}} = 1.0, & \quad B_{\text{bruto}} = 0 \\
+    580 \le \lambda < 645 \text{ nm:} & \quad R_{\text{bruto}} = 1.0, & G_{\text{bruto}} = -\frac{\lambda - 645}{65}, & \quad B_{\text{bruto}} = 0 \\
+    645 \le \lambda \le 780 \text{ nm:} & \quad R_{\text{bruto}} = 1.0, & G_{\text{bruto}} = 0, & \quad B_{\text{bruto}} = 0
+    \end{aligned}$$
+
+    <h4>Gráfico das Funções do Algoritmo:</h4>
+    <div id="theory-plot-container"></div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div id="card-variables" class="theory-card">
+    <h3>2. A Curva Biológica: <code>baseFactor</code></h3>
+    <p>A retina humana perde sensibilidade gradualmente nas extremidades do espectro. O fator escalar <code>baseFactor</code> ($F_{\text{base}}$) diminui a intensidade nos limites do Ultravioleta e do Infravermelho:</p>
+
+    $$F_{\text{base}}(\lambda) = \begin{cases} 
+    0.3 + 0.7 \cdot \frac{\lambda - 380}{420 - 380}, & 380 \le \lambda < 420 \text{ nm (Violeta Extremo)} \\
+    1.0, & 420 \le \lambda \le 700 \text{ nm (Alta Sensibilidade)} \\
+    0.3 + 0.7 \cdot \frac{780 - \lambda}{780 - 700}, & 701 \le \lambda \le 780 \text{ nm (Vermelho Extremo)}
+    \end{cases}$$
+  </div>
+
+  <!-- CARD 3 -->
+  <div id="card-gamma" class="theory-card">
+    <h3>3. Correção Gamma ($\gamma$) e a Variável Generica $C_{\text{bruto}}$</h3>
+    <p>A expressão $C_{\text{bruto}}$ denota o componente de cor bruta de cada canal ($R, G$ ou $B$) no intervalo contínuo de $[0.0, 1.0]$. A fórmula final de 8 bits é executada separadamente para cada um:</p>
+
+    $$\begin{aligned}
+    R_{8\text{bit}} &= \text{round}\left(255 \cdot (R_{\text{bruto}} \cdot F_{\text{base}})^\gamma\right) \\
+    G_{8\text{bit}} &= \text{round}\left(255 \cdot (G_{\text{bruto}} \cdot F_{\text{base}})^\gamma\right) \\
+    B_{8\text{bit}} &= \text{round}\left(255 \cdot (B_{\text{bruto}} \cdot F_{\text{base}})^\gamma\right)
+    \end{aligned}$$
+  </div>
+
+  <!-- CARD 4: 3 ESPECTROS REAIS COMPLETO -->
+  <div id="card-examples" class="theory-card">
+    <h3>4. Aplicação em Espectros de Emissão Reais ($380\text{ a }780\text{ nm}$)</h3>
+    <p>Fontes reais não emitem uma única linha. Para achar a cor RGB de um espectro contínuo $I(\lambda)$, **integramos** a intensidade espectral ponderada pelas respostas $R(\lambda), G(\lambda), B(\lambda)$ do algoritmo de Bruton:</p>
+
+    $$C_{\text{bruto}} = \frac{\int_{380}^{780} I(\lambda) \cdot C(\lambda) \, d\lambda}{\int_{380}^{780} I(\lambda) \, d\lambda}, \quad C \in \{R, G, B\}$$
+
+    <!-- ESPECTRO 1: SOL -->
+    <div class="spectrum-section">
+      <div class="spectrum-header">
+        <span class="spectrum-title">1. Luz Solar (Espectro de Corpo Negro - 5778 K)</span>
+        <div class="spectrum-badge">
+          <span class="color-preview" id="preview-sun"></span>
+          <span id="rgb-text-sun" style="font-weight:bold; color:#00d2ff;">Calculando...</span>
+        </div>
+      </div>
+      <p>O Sol possui emissão contínua em todo o visível, com pico em torno de $500\text{ nm}$. Como excita os três canais de forma equilibrada, a visão humana a percebe como **Branco Neutro/Ligeiramente Amarelado**.</p>
+      <div id="plot-spectrum-sun" class="spectrum-plot"></div>
+    </div>
+
+    <!-- ESPECTRO 2: INCANDESCENTE -->
+    <div class="spectrum-section">
+      <div class="spectrum-header">
+        <span class="spectrum-title">2. Lâmpada Incandescente de Tungstênio (~2850 K)</span>
+        <div class="spectrum-badge">
+          <span class="color-preview" id="preview-incandescent"></span>
+          <span id="rgb-text-incandescent" style="font-weight:bold; color:#00d2ff;">Calculando...</span>
+        </div>
+      </div>
+      <p>Lâmpadas térmicas emitem pouca energia na faixa azul/violeta ($380-450\text{ nm}$) e muita energia no vermelho/infravermelho ($600-780\text{ nm}$), resultando em uma **luz amarelada/alaranjada quente**.</p>
+      <div id="plot-spectrum-incandescent" class="spectrum-plot"></div>
+    </div>
+
+    <!-- ESPECTRO 3: LED BRANCO -->
+    <div class="spectrum-section">
+      <div class="spectrum-header">
+        <span class="spectrum-title">3. LED Branco Comercial (Chip Azul 450nm + Fósforo)</span>
+        <div class="spectrum-badge">
+          <span class="color-preview" id="preview-led"></span>
+          <span id="rgb-text-led" style="font-weight:bold; color:#00d2ff;">Calculando...</span>
+        </div>
+      </div>
+      <p>Possui um pico estreito e intenso no azul ($450\text{ nm}$) do diodo de Nitreto de Gálio, e uma banda larga centrada no verde/amarelo ($560\text{ nm}$) gerada pelo fósforo. A mistura resulta em um **Branco Frio/Brilhante**.</p>
+      <div id="plot-spectrum-led" class="spectrum-plot"></div>
+    </div>
+  </div>
+
+  <script>
+    const C_SPEED = 299792458; 
+    const PLANCK = 6.62607015e-34; 
+    const EV_CONV = 6.242e18; 
+
+    let currentWl = 532;
+    let theoryPlotRendered = false;
+    let spectrumPlotsRendered = false;
+
+    const wavelengths = Array.from({length: 401}, (_, i) => 380 + i);
+
+    function getBrutonRawComponents(wl) {
+      let R = 0, G = 0, B = 0;
+      if (wl >= 380 && wl < 440) { R = -(wl - 440) / 60; G = 0; B = 1; }
+      else if (wl >= 440 && wl < 490) { R = 0; G = (wl - 440) / 50; B = 1; }
+      else if (wl >= 490 && wl < 510) { R = 0; G = 1; B = -(wl - 510) / 20; }
+      else if (wl >= 510 && wl < 580) { R = (wl - 510) / 70; G = 1; B = 0; }
+      else if (wl >= 580 && wl < 645) { R = 1; G = -(wl - 645) / 65; B = 0; }
+      else if (wl >= 645 && wl <= 780) { R = 1; G = 0; B = 0; }
+
+      let baseFactor = 1.0;
+      if (wl >= 380 && wl < 420) {
+        baseFactor = 0.3 + 0.7 * (wl - 380) / 40;
+      } else if (wl >= 420 && wl <= 700) {
+        baseFactor = 1.0;
+      } else if (wl >= 701 && wl <= 780) {
+        baseFactor = 0.3 + 0.7 * (780 - wl) / 80;
+      }
+
+      return { R, G, B, baseFactor };
+    }
+
+    function wlToRGB(wl, userFactor = 0.8, userGamma = 0.8) {
+      const raw = getBrutonRawComponents(wl);
+      const finalIntensity = Math.min(1.0, Math.max(0.0, raw.baseFactor * (userFactor / 0.8)));
+
+      const rVal = Math.round(255 * Math.pow(raw.R * finalIntensity, userGamma));
+      const gVal = Math.round(255 * Math.pow(raw.G * finalIntensity, userGamma));
+      const bVal = Math.round(255 * Math.pow(raw.B * finalIntensity, userGamma));
+
+      const hex = `#${rVal.toString(16).padStart(2, '0')}${gVal.toString(16).padStart(2, '0')}${bVal.toString(16).padStart(2, '0')}`;
+      return { r: rVal, g: gVal, b: bVal, hex: hex };
+    }
+
+    // --- MODELOS DE BANCO DE DADOS DE ESPECTROS REAIS ---
+    function planckLaw(wlNm, tempK) {
+      const wlM = wlNm * 1e-9;
+      const c1 = 3.741771e-16;
+      const c2 = 0.014388;
+      return c1 / (Math.pow(wlM, 5) * (Math.exp(c2 / (wlM * tempK)) - 1));
+    }
+
+    function getRealSpectrumData(type) {
+      return wavelengths.map(wl => {
+        if (type === 'sun') {
+          return planckLaw(wl, 5778);
+        } else if (type === 'incandescent') {
+          return planckLaw(wl, 2850);
+        } else if (type === 'led') {
+          // LED: GaN azul (450nm) + Fósforo amarelo (560nm)
+          const bluePeak = Math.exp(-Math.pow((wl - 450) / 15, 2));
+          const yellowPhosphor = 0.6 * Math.exp(-Math.pow((wl - 560) / 60, 2));
+          return bluePeak + yellowPhosphor;
+        }
+      });
+    }
+
+    // Integração do Espectro Contínuo para RGB
+    function integrateSpectrumToRGB(intensityArray) {
+      const userFactor = parseFloat(document.getElementById('range-factor').value);
+      const userGamma = parseFloat(document.getElementById('range-gamma').value);
+
+      let rSum = 0, gSum = 0, bSum = 0, totalIntensity = 0;
+
+      for (let i = 0; i < wavelengths.length; i++) {
+        const wl = wavelengths[i];
+        const I = intensityArray[i];
+        const raw = getBrutonRawComponents(wl);
+
+        rSum += I * raw.R * raw.baseFactor;
+        gSum += I * raw.G * raw.baseFactor;
+        bSum += I * raw.B * raw.baseFactor;
+        totalIntensity += I;
+      }
+
+      // Normaliza
+      let rNorm = (rSum / totalIntensity) * (userFactor / 0.8);
+      let gNorm = (gSum / totalIntensity) * (userFactor / 0.8);
+      let bNorm = (bSum / totalIntensity) * (userFactor / 0.8);
+
+      // Encontra o máximo para escalar dentro do brilho [0, 1]
+      const maxVal = Math.max(rNorm, gNorm, bNorm);
+      if (maxVal > 0) {
+        rNorm = rNorm / maxVal;
+        gNorm = gNorm / maxVal;
+        bNorm = bNorm / maxVal;
+      }
+
+      const rVal = Math.round(255 * Math.pow(rNorm, userGamma));
+      const gVal = Math.round(255 * Math.pow(gNorm, userGamma));
+      const bVal = Math.round(255 * Math.pow(bNorm, userGamma));
+
+      const hex = `#${rVal.toString(16).padStart(2, '0')}${gVal.toString(16).padStart(2, '0')}${bVal.toString(16).padStart(2, '0')}`;
+      return { r: rVal, g: gVal, b: bVal, hex };
+    }
+
+    // Renderiza cada seção de espectro real
+    function renderSpectrumPlots() {
+      const spectra = [
+        { id: 'sun', type: 'sun', title: 'Sol (5778 K)' },
+        { id: 'incandescent', type: 'incandescent', title: 'Incandescente (2850 K)' },
+        { id: 'led', type: 'led', title: 'LED Branco' }
+      ];
+
+      spectra.forEach(spec => {
+        const intensities = getRealSpectrumData(spec.type);
+        
+        // Normaliza a intensidade para o gráfico ficar bonito entre 0 e 1
+        const maxI = Math.max(...intensities);
+        const normIntensities = intensities.map(v => v / maxI);
+
+        const colorRes = integrateSpectrumToRGB(intensities);
+
+        // Atualiza Badge
+        document.getElementById(`preview-${spec.id}`).style.backgroundColor = colorRes.hex;
+        document.getElementById(`rgb-text-${spec.id}`).innerText = `RGB(${colorRes.r}, ${colorRes.g}, ${colorRes.b}) | ${colorRes.hex.toUpperCase()}`;
+
+        const trace = {
+          x: wavelengths,
+          y: normIntensities,
+          type: 'scatter',
+          mode: 'lines',
+          fill: 'tozeroy',
+          line: { color: '#00d2ff', width: 2 },
+          fillcolor: 'rgba(0, 210, 255, 0.15)'
+        };
+
+        const layout = {
+          paper_bgcolor: '#111113', plot_bgcolor: '#111113',
+          xaxis: { title: { text: 'Comprimento de Onda λ (nm)', font: { color: '#888', size: 12 } }, tickfont: { color: '#888' }, range: [380, 780], gridcolor: '#222' },
+          yaxis: { title: { text: 'Intensidade Relativa', font: { color: '#888', size: 12 } }, tickfont: { color: '#888' }, range: [0, 1.05], gridcolor: '#222' },
+          margin: { t: 10, b: 40, l: 40, r: 20 }
+        };
+
+        Plotly.newPlot(`plot-spectrum-${spec.id}`, [trace], layout, { displayModeBar: true });
+      });
+
+      spectrumPlotsRendered = true;
+    }
+
+    function getPhysicsData(wl) {
+      const factorVal = parseFloat(document.getElementById('range-factor').value);
+      const gammaVal = parseFloat(document.getElementById('range-gamma').value);
+
+      const freq = ((C_SPEED / (wl * 1e-9)) / 1e12).toFixed(1);
+      const energy = (((PLANCK * C_SPEED) / (wl * 1e-9)) * EV_CONV).toFixed(2);
+      const colorObj = wlToRGB(wl, factorVal, gammaVal);
+      return { wl, freq, energy, color: colorObj };
+    }
+
+    function generateColorscale() {
+      const factorVal = parseFloat(document.getElementById('range-factor').value);
+      const gammaVal = parseFloat(document.getElementById('range-gamma').value);
+      const scale = [];
+
+      for (let w = 380; w <= 780; w += 2) {
+        const pct = (w - 380) / (780 - 380);
+        scale.push([pct, wlToRGB(w, factorVal, gammaVal).hex]);
+      }
+      return scale;
+    }
+
+    // --- GRÁFICO PRINCIPAL ---
+    const initialData = getPhysicsData(currentWl);
+
+    const traceSpectrum = {
+      x: wavelengths, y: Array(401).fill(0.5),
+      mode: 'markers',
+      marker: { symbol: 'square', size: 80, color: wavelengths, colorscale: generateColorscale(), showscale: false },
+      hoverinfo: 'none', showlegend: false
+    };
+
+    const traceColorBox = {
+      x: [380, 780, 780, 380], y: [1.3, 1.3, 2.0, 2.0],
+      fill: 'toself', fillcolor: initialData.color.hex,
+      mode: 'lines', line: { width: 0 },
+      hoverinfo: 'none', showlegend: false
+    };
+
+    const traceIndicator = {
+      x: [currentWl, currentWl], y: [0, 2.0],
+      mode: 'lines', line: { color: '#FFFFFF', width: 3, dash: 'dot' },
+      hoverinfo: 'none', showlegend: false
+    };
+
+    const sliderSteps = [];
+    for (let w = 380; w <= 780; w++) {
+      sliderSteps.push({ label: w.toString(), method: 'skip', value: w });
+    }
+
+    const layoutMain = {
+      title: { text: '<b>Simulador Didático: Espectro da Luz Visível</b>', font: { color: '#FFFFFF', size: 18 } },
+      paper_bgcolor: '#111111', plot_bgcolor: '#111111',
+      xaxis: { title: { text: 'Comprimento de Onda (nm)', font: { color: '#FFFFFF' } }, tickfont: { color: '#FFFFFF' }, range: [380, 780], showgrid: false, fixedrange: true },
+      yaxis: { range: [0, 2.2], showgrid: false, showticklabels: false, fixedrange: true },
+      margin: { t: 50, b: 80, l: 50, r: 50 },
+      shapes: [
+        { type: 'rect', x0: 380, x1: 780, y0: 0, y1: 1, line: { color: '#444444', width: 2 } },
+        { type: 'rect', x0: 380, x1: 780, y0: 1.3, y1: 2.0, line: { color: '#444444', width: 2 } }
+      ],
+      annotations: [{
+        id: 'info-text', x: 580, y: 1.65,
+        text: renderAnnotationText(initialData),
+        font: { size: 14, color: '#FFFFFF' }, showarrow: false, align: 'left'
+      }],
+      sliders: [{
+        active: currentWl - 380,
+        currentvalue: { prefix: 'λ Selecionado: ', suffix: ' nm', font: { color: '#FFFFFF', size: 14 } },
+        pad: { t: 30 }, steps: sliderSteps
+      }]
+    };
+
+    function renderAnnotationText(data) {
+      return `<b>PAINEL DA COR SELECIONADA</b><br>` +
+             `Comprimento de Onda (λ): <b>${data.wl} nm</b><br>` +
+             `Frequência (f): <b>${data.freq} THz</b> | Energia (E): <b>${data.energy} eV</b><br>` +
+             `Código RGB: <b>RGB(${data.color.r}, ${data.color.g}, ${data.color.b}) | ${data.color.hex.toUpperCase()}</b>`;
+    }
+
+    const containerMain = document.getElementById('plot-container');
+    Plotly.newPlot(containerMain, [traceSpectrum, traceColorBox, traceIndicator], layoutMain, { displayModeBar: false });
+
+    // --- GRÁFICO TEÓRICO DENTRO DO CARD 1 ---
+    function renderTheoryPlot() {
+      const rCurve = [], gCurve = [], bCurve = [], factorCurve = [];
+      wavelengths.forEach(w => {
+        const res = getBrutonRawComponents(w);
+        rCurve.push(res.R); gCurve.push(res.G); bCurve.push(res.B);
+        factorCurve.push(res.baseFactor);
+      });
+
+      const traceR = { x: wavelengths, y: rCurve, name: 'Canal R', line: { color: '#FF4136', width: 2.5 } };
+      const traceG = { x: wavelengths, y: gCurve, name: 'Canal G', line: { color: '#2ECC40', width: 2.5 } };
+      const traceB = { x: wavelengths, y: bCurve, name: 'Canal B', line: { color: '#0074D9', width: 2.5 } };
+      const traceF = { x: wavelengths, y: factorCurve, name: 'baseFactor', line: { color: '#FFDC00', width: 2, dash: 'dash' } };
+      const traceInd = { x: [currentWl, currentWl], y: [0, 1.1], mode: 'lines', line: { color: '#FFFFFF', width: 2 }, hoverinfo: 'none', showlegend: false };
+
+      const layoutTheory = {
+        paper_bgcolor: '#18181a', plot_bgcolor: '#18181a',
+        xaxis: { title: { text: 'Comprimento de Onda λ (nm)', font: { color: '#FFFFFF' } }, tickfont: { color: '#FFFFFF' }, range: [380, 780], gridcolor: '#333' },
+        yaxis: { title: { text: 'Intensidade [0, 1]', font: { color: '#FFFFFF' } }, tickfont: { color: '#FFFFFF' }, range: [0, 1.1], gridcolor: '#333' },
+        legend: { font: { color: '#FFFFFF' }, orientation: 'h', x: 0, y: 1.15 },
+        margin: { t: 30, b: 50, l: 50, r: 30 }
+      };
+
+      Plotly.newPlot('theory-plot-container', [traceR, traceG, traceB, traceF, traceInd], layoutTheory, { displayModeBar: true });
+      theoryPlotRendered = true;
+    }
+
+    // Eventos
+    containerMain.on('plotly_sliderchange', function(e) {
+      currentWl = parseInt(e.step.value);
+      refreshPlots();
+    });
+
+    function updateParameters() {
+      const factorVal = parseFloat(document.getElementById('range-factor').value);
+      const gammaVal = parseFloat(document.getElementById('range-gamma').value);
+
+      document.getElementById('factor-val').innerText = factorVal.toFixed(2);
+      document.getElementById('gamma-val').innerText = gammaVal.toFixed(2);
+
+      Plotly.restyle(containerMain, { 'marker.colorscale': [generateColorscale()] }, [0]);
+      refreshPlots();
+
+      if (spectrumPlotsRendered && document.getElementById('card-examples').style.display === 'block') {
+        renderSpectrumPlots();
+      }
+    }
+
+    function refreshPlots() {
+      const data = getPhysicsData(currentWl);
+
+      Plotly.restyle(containerMain, { 'x': [[currentWl, currentWl]] }, [2]);
+      Plotly.restyle(containerMain, { 'fillcolor': [data.color.hex] }, [1]);
+      Plotly.relayout(containerMain, { 'annotations[0].text': renderAnnotationText(data) });
+
+      if (theoryPlotRendered && document.getElementById('card-algorithm').style.display === 'block') {
+        Plotly.restyle('theory-plot-container', { 'x': [[currentWl, currentWl]] }, [4]);
+      }
+    }
+
+    function toggleCard(cardId) {
+      const card = document.getElementById(cardId);
+      const isVisible = card.style.display === 'block';
+
+      document.querySelectorAll('.theory-card').forEach(c => c.style.display = 'none');
+
+      if (!isVisible) {
+        card.style.display = 'block';
+
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([card]);
+        }
+
+        if (cardId === 'card-algorithm') {
+          if (!theoryPlotRendered) {
+            renderTheoryPlot();
+          } else {
+            Plotly.Plots.resize('theory-plot-container');
+            refreshPlots();
+          }
+        } else if (cardId === 'card-examples') {
+          if (!spectrumPlotsRendered) {
+            renderSpectrumPlots();
+          } else {
+            ['sun', 'incandescent', 'led'].forEach(id => Plotly.Plots.resize(`plot-spectrum-${id}`));
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

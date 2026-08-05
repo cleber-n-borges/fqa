@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Asteroids 1979 - Plotly.js</title>
+    <!-- Script local mantido -->
+    <script src="plotly-3.7.0.min.js"></script>
+
+    <style>
+        .ast-container {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .ast-placar {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-height: 24px;
+            color: #ffffff;
+        }
+        .ast-canvas {
+            width: 100%;
+            max-width: 800px;
+            height: 550px;
+            margin: 0 auto;
+            background-color: #000000;
+            border: 2px solid #333333;
+            border-radius: 4px;
+        }
+        .ast-info {
+            margin-top: 10px;
+            color: #888888;
+            font-size: 13px;
+        }
+        .ast-btn {
+            background-color: #222222;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .ast-btn:hover { background-color: #00ff00; color: #000000; }
+    </style>
+</head>
+<body>
+
+    <div class="ast-container">
+        <h1>🚀 ASTEROIDS (Atari, 1979)</h1>
+        <button id="ast-btn-novo" class="ast-btn" onclick="window.reiniciarAsteroids()">🔄 NOVO JOGO</button>
+        <div id="ast-placar" class="ast-placar">Iniciando motor...</div>
+        <div id="ast-game-plot" class="ast-canvas"></div>
+        <div class="ast-info">
+            Controles: <b>←/→</b> (Girar Nave) | <b>↑</b> (Propulsão) | <b>ESPAÇO</b> (Atirar)
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const WORLD_SIZE = 100;
+        const FPS = 30;
+        const DT = 1 / FPS;
+
+        let nave = {};
+        let tiros = [];
+        let asteroides = [];
+        let pontuacao = 0;
+        let vidas = 3;
+        let jogando = false;
+        let loopInterval = null;
+        let teclas = {};
+
+        // Vértices da nave em coordenadas locais
+        // (0, 2.5 é a ponta / 0,0 é o centro)
+        const NAVE_SHAPE = [
+            { x: 0, y: 2.5 },
+            { x: -1.5, y: -2.0 },
+            { x: 0, y: -1.2 },
+            { x: 1.5, y: -2.0 }
+        ];
+
+        // Rotação matemática alinhada com o topo (90 graus como referência zero de offset)
+        function rotacionarETransladar(pontos, cx, cy, anguloDeg) {
+            // Subtrai 90 para alinhar o vetor 0 radiano com o topo do desenho
+            let rad = ((anguloDeg - 90) * Math.PI) / 180;
+            let cos = Math.cos(rad);
+            let sin = Math.sin(rad);
+
+            return pontos.map(p => {
+                let rx = p.x * cos - p.y * sin;
+                let ry = p.x * sin + p.y * cos;
+                return { x: rx + cx, y: ry + cy };
+            });
+        }
+
+        // Aplica tela infinita APENAS na nave e asteroides
+        function aplicarWrap(obj) {
+            if (obj.x < 0) obj.x += WORLD_SIZE;
+            if (obj.x > WORLD_SIZE) obj.x -= WORLD_SIZE;
+            if (obj.y < 0) obj.y += WORLD_SIZE;
+            if (obj.y > WORLD_SIZE) obj.y -= WORLD_SIZE;
+        }
+
+        function criarFormaAsteroide(raio) {
+            let pontos = [];
+            let numVertices = 8 + Math.floor(Math.random() * 5);
+            for (let i = 0; i < numVertices; i++) {
+                let ang = (i / numVertices) * Math.PI * 2;
+                let r = raio * (0.75 + Math.random() * 0.5);
+                pontos.push({ x: Math.cos(ang) * r, y: Math.sin(ang) * r });
+            }
+            return pontos;
+        }
+
+        function resetarNave() {
+            nave = {
+                x: WORLD_SIZE / 2,
+                y: WORLD_SIZE / 2,
+                vx: 0,
+                vy: 0,
+                angulo: 90, // Apontado perfeitamente para cima
+                invulneravel: 60
+            };
+        }
+
+        function criarAsteroide(x, y, tamanho) {
+            let raio = tamanho === 3 ? 6.0 : (tamanho === 2 ? 3.5 : 1.8);
+            let velBase = (4 - tamanho) * 3.5;
+            let anguloVel = Math.random() * Math.PI * 2;
+
+            asteroides.push({
+                x: x,
+                y: y,
+                vx: Math.cos(anguloVel) * velBase,
+                vy: Math.sin(anguloVel) * velBase,
+                tamanho: tamanho,
+                raio: raio,
+                rotacao: Math.random() * 360,
+                vRotacao: (Math.random() - 0.5) * 60,
+                formaLocal: criarFormaAsteroide(raio)
+            });
+        }
+
+        function iniciarJogo() {
+            if (typeof Plotly === 'undefined') {
+                document.getElementById('ast-placar').innerHTML = "<span style='color:red'>ERRO: Plotly.js não foi carregado!</span>";
+                return;
+            }
+
+            pontuacao = 0;
+            vidas = 3;
+            tiros = [];
+            asteroides = [];
+            jogando = true;
+
+            resetarNave();
+
+            for (let i = 0; i < 5; i++) {
+                let ax, ay;
+                do {
+                    ax = Math.random() * WORLD_SIZE;
+                    ay = Math.random() * WORLD_SIZE;
+                } while (Math.hypot(ax - nave.x, ay - nave.y) < 25);
+
+                criarAsteroide(ax, ay, 3);
+            }
+
+            if (loopInterval) clearInterval(loopInterval);
+            loopInterval = setInterval(gameLoop, 1000 / FPS);
+            
+            let btn = document.getElementById('ast-btn-novo');
+            if (btn) btn.blur();
+        }
+
+        window.reiniciarAsteroids = iniciarJogo;
+
+        function atualizarFisica() {
+            if (!jogando) return;
+
+            // Rotação
+            if (teclas["ArrowLeft"])  nave.angulo += 7;
+            if (teclas["ArrowRight"]) nave.angulo -= 7;
+            
+            // Empuxo/Propulsão perfeitamente alinhado com a ponta visual da nave
+            if (teclas["ArrowUp"]) {
+                let rad = (nave.angulo * Math.PI) / 180;
+                nave.vx += Math.cos(rad) * 22 * DT;
+                nave.vy += Math.sin(rad) * 22 * DT;
+            }
+
+            // Fricção no vácuo
+            nave.vx *= 0.982;
+            nave.vy *= 0.982;
+
+            nave.x += nave.vx * DT;
+            nave.y += nave.vy * DT;
+            aplicarWrap(nave);
+
+            if (nave.invulneravel > 0) nave.invulneravel--;
+
+            // Atualização de Tiros com destruição nas bordas da tela (Sem Wrap!)
+            for (let i = tiros.length - 1; i >= 0; i--) {
+                let t = tiros[i];
+                t.x += t.vx * DT;
+                t.y += t.vy * DT;
+                t.vida--;
+
+                // Se o tiro tocar/sair da borda ou expirar o tempo, é removido!
+                if (t.x < 0 || t.x > WORLD_SIZE || t.y < 0 || t.y > WORLD_SIZE || t.vida <= 0) {
+                    tiros.splice(i, 1);
+                }
+            }
+
+            // Atualizar Asteroides (Com Wrap!)
+            asteroides.forEach(ast => {
+                ast.x += ast.vx * DT;
+                ast.y += ast.vy * DT;
+                ast.rotacao += ast.vRotacao * DT;
+                aplicarWrap(ast);
+            });
+
+            // Colisão Tiro vs Asteroide
+            for (let i = tiros.length - 1; i >= 0; i--) {
+                let t = tiros[i];
+                for (let j = asteroides.length - 1; j >= 0; j--) {
+                    let ast = asteroides[j];
+                    let dist = Math.hypot(t.x - ast.x, t.y - ast.y);
+
+                    if (dist < ast.raio) {
+                        pontuacao += (4 - ast.tamanho) * 100;
+
+                        if (ast.tamanho > 1) {
+                            criarAsteroide(ast.x, ast.y, ast.tamanho - 1);
+                            criarAsteroide(ast.x, ast.y, ast.tamanho - 1);
+                        }
+
+                        asteroides.splice(j, 1);
+                        tiros.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            if (asteroides.length === 0) {
+                for (let i = 0; i < 6; i++) {
+                    criarAsteroide(Math.random() * WORLD_SIZE, Math.random() * WORLD_SIZE, 3);
+                }
+            }
+
+            // Colisão Nave vs Asteroide
+            if (nave.invulneravel === 0) {
+                for (let ast of asteroides) {
+                    let dist = Math.hypot(nave.x - ast.x, nave.y - ast.y);
+                    if (dist < ast.raio + 1.5) {
+                        vidas--;
+                        if (vidas <= 0) {
+                            jogando = false;
+                        } else {
+                            resetarNave();
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        function renderizar() {
+            let placarEl = document.getElementById('ast-placar');
+            let plotTarget = document.getElementById('ast-game-plot');
+
+            if (placarEl) {
+                placarEl.innerHTML = `PONTOS: ${pontuacao} &nbsp;&nbsp;|&nbsp;&nbsp; VIDAS: ${"🚀 ".repeat(Math.max(0, vidas))}`;
+            }
+
+            let shapes = [];
+
+            if (jogando && (nave.invulneravel % 4 < 2)) {
+                let ptsNave = rotacionarETransladar(NAVE_SHAPE, nave.x, nave.y, nave.angulo);
+                let pathStr = `M ${ptsNave[0].x},${ptsNave[0].y} ` + 
+                              ptsNave.slice(1).map(p => `L ${p.x},${p.y}`).join(' ') + ' Z';
+                
+                shapes.push({
+                    type: 'path',
+                    path: pathStr,
+                    line: { color: '#ffffff', width: 2 },
+                    fillcolor: 'rgba(0,0,0,0)'
+                });
+            }
+
+            asteroides.forEach(ast => {
+                let ptsAst = rotacionarETransladar(ast.formaLocal, ast.x, ast.y, ast.rotacao);
+                let pathStr = `M ${ptsAst[0].x},${ptsAst[0].y} ` + 
+                              ptsAst.slice(1).map(p => `L ${p.x},${p.y}`).join(' ') + ' Z';
+
+                shapes.push({
+                    type: 'path',
+                    path: pathStr,
+                    line: { color: '#ffffff', width: 1.5 },
+                    fillcolor: 'rgba(0,0,0,0)'
+                });
+            });
+
+            let tirosX = tiros.map(t => t.x);
+            let tirosY = tiros.map(t => t.y);
+
+            let data = [{
+                x: tirosX,
+                y: tirosY,
+                mode: 'markers',
+                marker: { symbol: 'circle', size: 4, color: '#ffea00' },
+                showlegend: false
+            }];
+
+            let annotations = [];
+            if (!jogando) {
+                annotations.push({
+                    x: WORLD_SIZE / 2,
+                    y: WORLD_SIZE / 2,
+                    text: vidas <= 0 ? "GAME OVER" : "CLIQUE EM NOVO JOGO",
+                    font: { size: 32, color: '#ff0055', family: 'Courier New' },
+                    showarrow: false
+                });
+            }
+
+            let layout = {
+                xaxis: { range: [0, WORLD_SIZE], showgrid: false, zeroline: false, showticklabels: false },
+                yaxis: { range: [0, WORLD_SIZE], showgrid: false, zeroline: false, showticklabels: false },
+                plot_bgcolor: '#000000',
+                paper_bgcolor: '#000000',
+                margin: { t: 10, b: 10, l: 10, r: 10 },
+                shapes: shapes,
+                annotations: annotations
+            };
+
+            if (plotTarget && typeof Plotly !== 'undefined') {
+                Plotly.react(plotTarget, data, layout, { staticPlot: true, responsive: true });
+            }
+        }
+
+        function gameLoop() {
+            atualizarFisica();
+            renderizar();
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)) {
+                e.preventDefault();
+            }
+            teclas[e.key] = true;
+
+            if ((e.key === " " || e.code === "Space") && jogando && !e.repeat) {
+                let rad = (nave.angulo * Math.PI) / 180;
+                let velTiro = 90;
+                
+                // Tiro nasce exatamente na ponta da nave na direção atual
+                tiros.push({
+                    x: nave.x + Math.cos(rad) * 2.5,
+                    y: nave.y + Math.sin(rad) * 2.5,
+                    vx: nave.vx + Math.cos(rad) * velTiro,
+                    vy: nave.vy + Math.sin(rad) * velTiro,
+                    vida: 24
+                });
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            teclas[e.key] = false;
+        });
+
+        function checarELancar() {
+            if (typeof Plotly !== 'undefined') {
+                iniciarJogo();
+            } else {
+                setTimeout(checarELancar, 200);
+            }
+        }
+
+        checarELancar();
+    })();
+    </script>
+</body>
+</html>

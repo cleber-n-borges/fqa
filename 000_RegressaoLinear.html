@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Em fase de Testes – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./001_Espectro.html" rel="next">
+<link href="./10_Neutralização_Calcario.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./000_RegressaoLinear.html"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">Em fase de Testes</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico_VersaoTESTE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico - UPDATE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Titulação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 5: Padronização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#regressão-linear---modelo-linear" id="toc-regressão-linear---modelo-linear" class="nav-link active" data-scroll-target="#regressão-linear---modelo-linear">Regressão Linear - Modelo Linear</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p>Interface Para Cálculo da Regressão Linear</p>
+<section id="regressão-linear---modelo-linear" class="level2">
+<h2 class="anchored" data-anchor-id="regressão-linear---modelo-linear">Regressão Linear - Modelo Linear</h2>
+<!-- Plotly (por pasta Local) -->
+<script src="./resources/plotly-3.7.0.min.js"></script>
+
+<div id="regressao-linear">
+    
+    <!-- ============================================================
+         CONTROLES DE VISIBILIDADE
+         ============================================================ -->
+    
+    <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap">
+        <h5 class="mb-0 anchored">📊 Controles de Visualização</h5>
+        <div class="toggle-container">
+            <button class="btn-toggle-div" data-target="div-regressao" id="toggle-regressao">
+                📈 Regressão <span class="badge bg-secondary">visível</span>
+            </button>
+            <button class="btn-toggle-div" data-target="div-grafico" id="toggle-grafico">
+                📊 Gráfico <span class="badge bg-secondary">visível</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- ============================================================
+         DIV: REGRESSÃO (CARD PRINCIPAL)
+         ============================================================ -->
+    
+    <div id="div-regressao" class="fade-transition">
+        <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0 anchored">
+                    <strong>📈 Regressão Linear</strong>
+                </h5>
+                <button class="btn-toggle" onclick="regLin_toggleDiv('div-regressao')">
+                    <span id="toggle-icon-regressao">−</span> Ocultar
+                </button>
+            </div>
+            
+            <div class="card-body">
+                
+                <!-- Dicas de entrada -->
+                <div class="input-dicas">
+                    <div class="dica-item">
+                        <span class="dica-icone">📝</span>
+                        <span class="dica-texto">Informe os pares de dados experimentais.</span>
+                    </div>
+                    <div class="dica-item">
+                        <span class="dica-icone">🔹</span>
+                        <span class="dica-texto">Separe os valores por <strong>vírgulas</strong>, <strong>espaços</strong> ou <strong>quebras de linha</strong>.</span>
+                    </div>
+                    <div class="dica-item">
+                        <span class="dica-icone">🔹</span>
+                        <span class="dica-texto">Use <span class="dica-destaque">.</span> (ponto) como separador decimal <span class="text-secondary">(ex: <span class="dica-destaque">3.14</span>)</span>.</span>
+                    </div>
+                </div>
+                
+                <div class="row g-3">
+                    <!-- Coluna X -->
+                    <div class="col-md-6">
+                        <label for="dados-x" class="form-label small fw-bold">
+                            Valores de X
+                        </label>
+                        <textarea id="dados-x" class="form-control font-monospace" rows="4" style="font-size: 0.9rem;">0, 2.0060, 4.0130,
+6.0060,
+12.0080,
+20.0210</textarea>
+                        
+                        <!-- Label de X -->
+                        <div class="mt-2">
+                            <label for="label-x" class="form-label small">
+                                <span class="text-muted">Rótulo do eixo X:</span>
+                            </label>
+                            <input type="text" id="label-x" class="form-control form-control-sm" placeholder="Ex: Concentração" value="Concentração (mg·kg⁻¹)" style="font-size: 0.9rem;">
+                        </div>
+                    </div>
+                    
+                    <!-- Coluna Y -->
+                    <div class="col-md-6">
+                        <label for="dados-y" class="form-label small fw-bold">
+                            Valores de Y
+                        </label>
+                        <textarea id="dados-y" class="form-control font-monospace" rows="4" style="font-size: 0.9rem;">0, 0.060, 0.119,
+0.173
+0.306
+0.442</textarea>
+                        
+                        <!-- Label de Y -->
+                        <div class="mt-2">
+                            <label for="label-y" class="form-label small">
+                                <span class="text-muted">Rótulo do eixo Y:</span>
+                            </label>
+                            <input type="text" id="label-y" class="form-control form-control-sm" placeholder="Ex: Absorbância" value="Absorbância (u.a.)" style="font-size: 0.9rem;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controles de Bandas -->
+                <div class="row g-2 mt-3">
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="toggle-banda-confianca" checked="">
+                            <label class="form-check-label small" for="toggle-banda-confianca">
+                                📊 Banda de Confiança (95%)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="toggle-banda-predicao">
+                            <label class="form-check-label small" for="toggle-banda-predicao">
+                                📈 Banda de Predição (95%)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-3">
+                    <button id="btn-calcular" class="btn btn-outline-primary rounded-3 border-2 px-4 py-2">
+                        🔢 Calcular Regressão
+                    </button>
+                </div>
+
+                <!-- Mensagem de erro -->
+                <div id="regLin-mensagem" class="mt-3"></div>
+
+                <hr class="my-3">
+
+                <!-- Substitua os botões Demo por este código mais sutil -->
+                <div class="row g-1 mt-2">
+                    <div class="col-md-12">
+                        <div class="d-flex flex-wrap align-items-center gap-2" style="font-size: 0.75rem;">
+                            <span class="text-muted" style="font-size: 0.7rem;">📋 Conjuntos de Dados para Demonstração:</span>
+                            <select id="demo-select" class="form-select form-select-sm" style="width: auto; font-size: 0.75rem; padding: 0.2rem 1.5rem 0.2rem 0.5rem; background-color: var(--bs-light); border-color: var(--bs-border-color);">
+                                <option value="">— Selecione —</option>
+                                <option value="default">➡ Default</option>
+                                <option value="ideal">✅ Ideal</option>
+                                <option value="alta">⚠️ Alta Incerteza</option>
+                                <option value="extremos">🔶 Extremos</option>
+                                <option value="misc01">🟡Misc01</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-3">
+                
+                <!-- Resultados Principais -->
+                <div id="resultado" class="resultado-principal">
+                    <div class="row g-2 w-100">
+                        <div class="col-md-4 item">
+                            <span class="label">Equação</span>
+                            <span id="resultado-equacao" class="valor equacao">
+                                Y = a·X + b
+                            </span>
+                        </div>
+                        
+                        <div class="col-md-4 item">
+                            <span class="label">Coeficiente R²</span>
+                            <span id="resultado-r2" class="valor r2">
+                                —
+                            </span>
+                        </div>
+                        
+                        <div class="col-md-4 item">
+                            <span class="label">Nº de Pontos</span>
+                            <span id="resultado-n" class="valor n">
+                                —
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informações Adicionais -->
+                <div id="info-adicional" class="info-adicional" style="display: block;">
+                    <div class="titulo">📋 Informações Estatísticas</div>
+                    <dl>
+                        <dt class="text-secondary">Coeficiente Angular (a)</dt>
+                        <dd id="resultado-slope">—</dd>
+                        
+                        <dt class="text-secondary">Coeficiente Linear (b)</dt>
+                        <dd id="resultado-intercept">—</dd>
+                        
+                        <div class="divisor"></div>
+                        
+                        <dt class="text-secondary">Soma Quadrática Total (SST)</dt>
+                        <dd id="resultado-sstot">—</dd>
+                        
+                        <dt class="text-secondary">Soma Quadrática Residual (SSR)</dt>
+                        <dd id="resultado-ssres">—</dd>
+                        
+                        <div class="divisor"></div>
+                        
+                        <dt class="text-secondary">Média de Y</dt>
+                        <dd id="resultado-media-y">—</dd>
+                        
+                        <dt class="text-secondary">∑X</dt>
+                        <dd id="resultado-somax">—</dd>
+                        
+                        <dt class="text-secondary">∑Y</dt>
+                        <dd id="resultado-somay">—</dd>
+
+                        <!-- Novas Informações de Incertezas -->
+                        <div class="divisor"></div>
+                        <dt class="text-secondary">Erro do Slope (±)</dt>
+                        <dd id="resultado-erro-slope">—</dd>
+
+                        <dt class="text-secondary">Erro do Intercept (±)</dt>
+                        <dd id="resultado-erro-intercept">—</dd>
+
+                        <dt class="text-secondary">IC 95% Slope</dt>
+                        <dd id="resultado-ci-slope">—</dd>
+
+                        <dt class="text-secondary">IC 95% Intercept</dt>
+                        <dd id="resultado-ci-intercept">—</dd>
+
+                        <dt class="text-secondary">Variância Residual</dt>
+                        <dd id="resultado-var-residual">—</dd>
+                    </dl>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================================================
+         DIV: GRÁFICO
+         ============================================================ -->
+    
+    <div id="div-grafico" class="fade-transition mt-4">
+        <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0 anchored">
+                    <strong>📊 Visualização Gráfica</strong>
+                </h5>
+                <button class="btn-toggle" onclick="regLin_toggleDiv('div-grafico')">
+                    <span id="toggle-icon-grafico">−</span> Ocultar
+                </button>
+            </div>
+            
+            <div class="card-body">
+                <div id="grafico-regressao" style="display: none; height: 550px;"></div>
+                <p id="grafico-placeholder" class="text-muted text-center my-5">
+                    <span style="font-size: 3rem;">📊</span><br>
+                    Clique em "Calcular Regressão" para gerar o gráfico.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- ============================================================
+   SCRIPTS COMPLETOS
+   ============================================================ -->
+
+<script>
+
+/* ============================================================
+   regLin_main.js - Ponto de entrada
+   ============================================================ */
+
+function regLin_init() {
+    regLin_registrarEventos();
+    regLin_inicializarToggles();
+    regLin_inicializarTogglesBandas();
+}
+
+document.addEventListener("DOMContentLoaded", regLin_init);
+
+
+/* ============================================================
+   regLin_eventos.js - Coordenação dos eventos da interface
+   ============================================================ */
+
+function regLin_registrarEventos() {
+    const botao = document.getElementById("btn-calcular");
+    if (botao) {
+        botao.addEventListener("click", regLin_calcularEvento);
+    }
+}
+
+function regLin_calcularEvento() {
+    // 1. Ler os dados da interface
+    const entrada = regLin_lerEntradas();
+    
+    // 2. Validar
+    const erro = regLin_validarEntradas(entrada.x, entrada.y);
+    
+    if (erro) {
+        regLin_mostrarErro(erro);
+        return;
+    }
+    
+    regLin_limparErro();
+    
+    // 3. Calcular a regressão
+    const resultado = regLin_calcular(entrada.x, entrada.y);
+    
+    // 4. Calcular incertezas
+    const incertezas = regLin_calcularIncertezas(resultado);
+    
+    // 5. Calcular bandas
+    const bandas = regLin_calcularBandas(resultado, incertezas);
+    
+    // 6. Atualizar a interface
+    regLin_atualizarResultados(resultado);
+    regLin_atualizarIncertezas(incertezas);
+    
+    // 7. Atualizar o gráfico com bandas
+    regLin_atualizarGrafico(resultado, bandas);
+}
+
+
+/* ============================================================
+   regLin_parser.js - Parser das entradas do usuário
+   ============================================================ */
+
+function regLin_lerEntradas() {
+    const textoX = document.getElementById("dados-x").value;
+    const textoY = document.getElementById("dados-y").value;
+    
+    const x = regLin_parseLista(textoX);
+    const y = regLin_parseLista(textoY);
+    
+    // Ler os labels
+    const labelX = document.getElementById("label-x").value || "X";
+    const labelY = document.getElementById("label-y").value || "Y";
+    
+    return { x, y, labelX, labelY };
+}
+
+
+function regLin_parseLista(texto) {
+    return texto
+        .replace(/,/g, " ")
+        .split(/\s+/)
+        .filter(item => item.length > 0)
+        .map(Number);
+}
+
+function regLin_validarEntradas(x, y) {
+    if (x.length !== y.length) {
+        return "Os vetores X e Y possuem quantidades diferentes.";
+    }
+    
+    if (x.length < 2) {
+        return "Informe pelo menos dois pares de dados.";
+    }
+    
+    if (x.some(isNaN)) {
+        return "Existem valores inválidos em X.";
+    }
+    
+    if (y.some(isNaN)) {
+        return "Existem valores inválidos em Y.";
+    }
+    
+    return null;
+}
+
+
+/* ============================================================
+   regLin_demo.js - Conjuntos Demonstrativos
+   ============================================================ */
+
+const DEMOS = {
+    default: {
+        x: [0, 2.0060, 4.0130, 6.0060, 12.0080, 20.0210],
+        y: [0, 0.060, 0.119, 0.173, 0.306, 0.442],
+        labelX: "Concentração (mg/L)",
+        labelY: "Absorbância (u.a.)"
+    },
+    ideal: {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        y: [2.1, 4.0, 6.2, 7.9, 10.1, 12.0, 14.2, 15.9, 18.1, 20.0],
+        labelX: "Concentração (mg/L)",
+        labelY: "Absorbância (u.a.)"
+    },
+    alta: {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        y: [5.2, 8.5, 4.1, 12.3, 7.8, 15.2, 11.4, 18.9, 13.7, 22.1],
+        labelX: "Tempo (min)",
+        labelY: "Produto (mg/L)"
+    },
+    extremos: {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        y: [2.1, 4.2, 6.0, 7.5, 11.2, 13.0, 14.5, 19.8, 21.5, 28.3],
+        labelX: "Concentração (mg/L)",
+        labelY: "Sinal (mV)"
+    },
+misc01: {
+    x: [28.75775, 78.83051, 40.89769, 88.30174, 94.04673, 4.55565, 52.81055, 89.2419, 55.1435, 45.66147, 95.68333, 45.33342, 67.75706, 57.26334, 10.29247, 89.9825, 24.60877, 4.205953, 32.79207, 95.45036, 88.95393, 69.28034, 64.05068, 99.42698, 65.57058, 70.85305, 54.4066, 59.4142, 28.91597, 14.71136, 96.30242, 90.2299, 69.07053, 79.54674, 2.461368, 47.7796, 75.84595, 21.64079, 31.8181, 23.16258, 14.28, 41.45463, 41.37243, 36.88455, 15.24447, 13.88061, 23.30341, 46.59625, 26.59726, 85.78277, 4.583117, 44.22001, 79.89248, 12.18993, 56.0948, 20.65314, 12.75317, 75.33079, 89.50454, 37.44628, 66.51152, 9.484066, 38.39696, 27.43836, 81.464, 44.85163, 81.00644, 81.23895, 79.43423, 43.98317, 75.44752, 62.92211, 71.01824, 0.06247733, 47.53166, 22.01189, 37.98165, 61.2771, 35.17979, 11.11354, 24.36195, 66.80556, 41.76468, 78.81958, 10.28646, 43.48927, 98.4957, 89.30511, 88.64691, 17.50527, 13.06957, 65.31019, 34.35165, 65.67581, 32.03732, 18.76911, 78.22943, 9.359499, 46.6779, 51.15055],
+    y: [17837.98, 42994.19, 22255.41, 78978.45, 46617.44, 4432.735, 8798.18, 62326.06, 32236.36, 27778.86, 61907.13, 19440.37, 31822.1, 17113.08, 3103.013, 56518.44, 16492.3, 2569.008, 25796.4, 101618, 38204.87, -1690.814, 51532.43, 37256.42, 24985.54, 57335.39, 26250.25, 14745.82, 17414.43, 7780.43, 53305.11, 58517.4, 31788.37, 56765.22, 1418.078, 30441.88, 62712.97, 14456.85, 15107.32, 19591.75, 11600.81, 28683.45, 25424.07, 14696.49, 13770.07, 5751.342, 25759.95, 43681.41, 13261.25, 25368.22, 1906.745, 27360.85, 39213.66, 5845.33, 17706.93, 11326.74, 4711.737, 10220.09, 40919.5, 29398.7, 27214.54, 6857.73, 5787.884, 14909.97, 55583.45, 28245.2, 46893.65, 31868.85, 27014.92, 13129.64, 43915.17, 19902.89, 30550.4, 230.3625, 48252.87, 8718.877, 23325, 35096.71, 11089.41, 6114.327, 22397.09, 44483.8, 23601.09, 35225.51, 577.3918, 36419.36, 18405.94, 65838.09, 91264.83, 3508.963, 9681.268, 31839.56, 5591.971, 11452.44, 4993.295, 8031.851, 14638.11, 6957.363, 50380.02, 11874.72],
+    labelX: "X1 (u.a.)",
+    labelY: "Y1 (u.a.)"
+}
+};
+
+/* ============================================================
+   regLin_regressao.js - Motor da regressão linear
+   ============================================================ */
+
+function regLin_carregarDemo(tipo) {
+    const demo = DEMOS[tipo];
+    if (!demo) return;
+    
+    // Formatar os dados para o textarea
+    const textX = demo.x.join('\n');
+    const textY = demo.y.join('\n');
+    
+    // Preencher os campos
+    document.getElementById("dados-x").value = textX;
+    document.getElementById("dados-y").value = textY;
+    document.getElementById("label-x").value = demo.labelX;
+    document.getElementById("label-y").value = demo.labelY;
+    
+    // Auto-calcular
+    document.getElementById("btn-calcular").click();
+}
+
+/* ============================================================
+   regLin_regressao.js - Motor da regressão linear
+   ============================================================ */
+
+function regLin_calcular(x, y) {
+    const n = x.length;
+    
+    let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0, sumYY = 0;
+    
+    for (let i = 0; i < n; i++) {
+        sumX  += x[i];
+        sumY  += y[i];
+        sumXY += x[i] * y[i];
+        sumXX += x[i] * x[i];
+        sumYY += y[i] * y[i];
+    }
+    
+    const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+    const intercept = (sumY - slope * sumX) / n;
+    
+    const mediaY = sumY / n;
+    let ssTot = 0;
+    let ssRes = 0;
+    const yPred = [];
+    const residuos = [];
+    
+    for (let i = 0; i < n; i++) {
+        const pred = slope * x[i] + intercept;
+        yPred.push(pred);
+        residuos.push(y[i] - pred);
+        ssTot += Math.pow(y[i] - mediaY, 2);
+        ssRes += Math.pow(y[i] - pred, 2);
+    }
+    
+    const r2 = (ssTot === 0) ? 1 : 1 - (ssRes / ssTot);
+    
+    return {
+        n: n,
+        x: x,
+        y: y,
+        slope: slope,
+        intercept: intercept,
+        r2: r2,
+        yPred: yPred,
+        residuos: residuos,
+        somaX: sumX,
+        somaY: sumY,
+        somaXY: sumXY,
+        somaXX: sumXX,
+        somaYY: sumYY,
+        ssTot: ssTot,
+        ssRes: ssRes,
+        mediaY: mediaY
+    };
+}
+
+
+/* ============================================================
+   regLin_incertezas.js - Propagação de Incertezas
+   ============================================================ */
+
+function regLin_calcularIncertezas(resultado) {
+    const { n, x, ssRes } = resultado;
+    
+    // Graus de liberdade
+    const df = n - 2;
+    
+    // Variância residual
+    const varianciaResidual = ssRes / df;
+    
+    // Média de X
+    const mediaX = resultado.somaX / n;
+    
+    // Soma dos quadrados dos desvios de X
+    let ssX = 0;
+    for (let i = 0; i < n; i++) {
+        ssX += Math.pow(x[i] - mediaX, 2);
+    }
+    
+    // Erros padrão
+    const erroPadraoSlope = Math.sqrt(varianciaResidual / ssX);
+    const erroPadraoIntercept = Math.sqrt(varianciaResidual * (1/n + Math.pow(mediaX, 2) / ssX));
+    
+    // Valor t de Student para 95% de confiança
+    let tStudent;
+    if (df > 30) {
+        tStudent = 1.96;
+    } else {
+        const tTabela = {
+            1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571,
+            6: 2.447, 7: 2.365, 8: 2.306, 9: 2.262, 10: 2.228,
+            11: 2.201, 12: 2.179, 13: 2.160, 14: 2.145, 15: 2.131,
+            16: 2.120, 17: 2.110, 18: 2.101, 19: 2.093, 20: 2.086,
+            21: 2.080, 22: 2.074, 23: 2.069, 24: 2.064, 25: 2.060,
+            26: 2.056, 27: 2.052, 28: 2.048, 29: 2.045, 30: 2.042
+        };
+        tStudent = tTabela[df] || 2.0;
+    }
+    
+    // Intervalos de confiança (95%)
+    const slopeCI = [
+        resultado.slope - tStudent * erroPadraoSlope,
+        resultado.slope + tStudent * erroPadraoSlope
+    ];
+    
+    const interceptCI = [
+        resultado.intercept - tStudent * erroPadraoIntercept,
+        resultado.intercept + tStudent * erroPadraoIntercept
+    ];
+    
+    return {
+        erroSlope: erroPadraoSlope,
+        erroIntercept: erroPadraoIntercept,
+        slopeCI: slopeCI,
+        interceptCI: interceptCI,
+        varianciaResidual: varianciaResidual,
+        desvioPadraoResidual: Math.sqrt(varianciaResidual),
+        grausLiberdade: df,
+        tStudent: tStudent,
+        mediaX: mediaX,
+        ssX: ssX
+    };
+}
+
+function regLin_calcularBandas(resultado, incertezas) {
+    const { x, slope, intercept, n } = resultado;
+    const { mediaX, ssX, varianciaResidual, tStudent } = incertezas;
+    
+    const xMin = Math.min(...x);
+    const xMax = Math.max(...x);
+    const padding = (xMax - xMin) * 0.15 || 0.5;
+    
+    const xInicio = xMin - padding;
+    const xFim = xMax + padding;
+    const steps = 200;
+    
+    const xBandas = [];
+    const confiancaSuperior = [];
+    const confiancaInferior = [];
+    const predicaoSuperior = [];
+    const predicaoInferior = [];
+    const yPredBandas = [];
+    
+    for (let i = 0; i <= steps; i++) {
+        const xi = xInicio + (i / steps) * (xFim - xInicio);
+        xBandas.push(xi);
+        
+        const yPred = slope * xi + intercept;
+        yPredBandas.push(yPred);
+        
+        const fatorConfianca = 1/n + Math.pow(xi - mediaX, 2) / ssX;
+        const erroConfianca = tStudent * Math.sqrt(varianciaResidual * fatorConfianca);
+        
+        const fatorPredicao = 1 + 1/n + Math.pow(xi - mediaX, 2) / ssX;
+        const erroPredicao = tStudent * Math.sqrt(varianciaResidual * fatorPredicao);
+        
+        confiancaSuperior.push(yPred + erroConfianca);
+        confiancaInferior.push(yPred - erroConfianca);
+        predicaoSuperior.push(yPred + erroPredicao);
+        predicaoInferior.push(yPred - erroPredicao);
+    }
+    
+    return {
+        x: xBandas,
+        yPred: yPredBandas,
+        confianca: {
+            superior: confiancaSuperior,
+            inferior: confiancaInferior
+        },
+        predicao: {
+            superior: predicaoSuperior,
+            inferior: predicaoInferior
+        }
+    };
+}
+
+
+/* ============================================================
+   regLin_ui.js - Atualização da interface
+   ============================================================ */
+
+function regLin_mostrarErro(mensagem) {
+    const div = document.getElementById("regLin-mensagem");
+    if (div) {
+        div.className = "alert alert-danger mt-3";
+        div.textContent = mensagem;
+        div.style.display = "block";
+    }
+}
+
+function regLin_limparErro() {
+    const div = document.getElementById("regLin-mensagem");
+    if (div) {
+        div.style.display = "none";
+        div.textContent = "";
+        div.className = "mt-3";
+    }
+}
+
+function regLin_atualizarResultados(resultado) {
+    // Equação da reta
+    const eqElement = document.getElementById("resultado-equacao");
+    if (eqElement) {
+        const sinal = resultado.intercept >= 0 ? "+" : "−";
+        eqElement.textContent = 
+            `Y = ${resultado.slope.toFixed(4)}·X ${sinal} ${Math.abs(resultado.intercept).toFixed(4)}`;
+    }
+    
+    // R²
+    const r2Element = document.getElementById("resultado-r2");
+    if (r2Element) {
+        r2Element.textContent = resultado.r2.toFixed(4);
+    }
+    
+    // Número de pontos
+    const nElement = document.getElementById("resultado-n");
+    if (nElement) {
+        nElement.textContent = resultado.n;
+    }
+    
+    // Coeficiente Angular
+    const slopeElement = document.getElementById("resultado-slope");
+    if (slopeElement) {
+        slopeElement.textContent = resultado.slope.toFixed(6);
+    }
+    
+    // Coeficiente Linear
+    const interceptElement = document.getElementById("resultado-intercept");
+    if (interceptElement) {
+        interceptElement.textContent = resultado.intercept.toFixed(6);
+    }
+    
+    // SST
+    const ssTotElement = document.getElementById("resultado-sstot");
+    if (ssTotElement) {
+        ssTotElement.textContent = resultado.ssTot.toFixed(4);
+    }
+    
+    // SSR
+    const ssResElement = document.getElementById("resultado-ssres");
+    if (ssResElement) {
+        ssResElement.textContent = resultado.ssRes.toFixed(4);
+    }
+    
+    // Média de Y
+    const mediaYElement = document.getElementById("resultado-media-y");
+    if (mediaYElement) {
+        mediaYElement.textContent = resultado.mediaY.toFixed(4);
+    }
+    
+    // Soma de X
+    const somaXElement = document.getElementById("resultado-somax");
+    if (somaXElement) {
+        somaXElement.textContent = resultado.somaX.toFixed(2);
+    }
+    
+    // Soma de Y
+    const somaYElement = document.getElementById("resultado-somay");
+    if (somaYElement) {
+        somaYElement.textContent = resultado.somaY.toFixed(2);
+    }
+}
+
+function regLin_atualizarIncertezas(incertezas) {
+    const erroSlopeEl = document.getElementById("resultado-erro-slope");
+    if (erroSlopeEl) {
+        erroSlopeEl.textContent = incertezas.erroSlope.toFixed(6);
+    }
+    
+    const erroInterceptEl = document.getElementById("resultado-erro-intercept");
+    if (erroInterceptEl) {
+        erroInterceptEl.textContent = incertezas.erroIntercept.toFixed(6);
+    }
+    
+    const ciSlopeEl = document.getElementById("resultado-ci-slope");
+    if (ciSlopeEl) {
+        ciSlopeEl.textContent = `[${incertezas.slopeCI[0].toFixed(6)}, ${incertezas.slopeCI[1].toFixed(6)}]`;
+    }
+    
+    const ciInterceptEl = document.getElementById("resultado-ci-intercept");
+    if (ciInterceptEl) {
+        ciInterceptEl.textContent = `[${incertezas.interceptCI[0].toFixed(6)}, ${incertezas.interceptCI[1].toFixed(6)}]`;
+    }
+    
+    const varResidualEl = document.getElementById("resultado-var-residual");
+    if (varResidualEl) {
+        varResidualEl.textContent = incertezas.varianciaResidual.toFixed(8);
+    }
+}
+
+
+/* ============================================================
+   regLin_plot.js - Gráfico com Plotly
+   ============================================================ */
+
+function regLin_atualizarGrafico(resultado, bandas) {
+
+    const container = document.getElementById("grafico-regressao");
+    if (!container) return;
+    
+    // Verificar toggles
+    const mostrarConfianca = document.getElementById("toggle-banda-confianca").checked;
+    const mostrarPredicao = document.getElementById("toggle-banda-predicao").checked;
+    
+    // Ler os labels
+    const labelX = document.getElementById("label-x").value || "X";
+    const labelY = document.getElementById("label-y").value || "Y";
+    
+    // Mostrar o container
+    container.style.display = "block";
+    const placeholder = document.getElementById("grafico-placeholder");
+    if (placeholder) {
+        placeholder.style.display = "none";
+    }
+    
+    // ============================================
+    // 1. Traços Básicos (Dados + Reta)
+    // ============================================
+    
+    const traceDados = {
+        x: resultado.x,
+        y: resultado.y,
+        mode: 'markers',
+        type: 'scatter',
+        name: 'Dados Experimentais',
+        marker: {
+            color: '#0d6efd',
+            size: 12,
+            symbol: 'circle',
+            line: { color: '#0a58ca', width: 1 }
+        },
+        hovertemplate: 
+            '<b>Ponto</b><br>' +
+            `${labelX}: %{x:.4f}<br>` +
+            `${labelY}: %{y:.4f}<br>` +
+            '<extra></extra>'
+    };
+    
+    // Reta de regressão
+    const traceRegressao = {
+        x: bandas.x,
+        y: bandas.yPred,
+        mode: 'lines',
+        type: 'scatter',
+        name: 'Reta de Regressão',
+        line: {
+            color: '#dc3545',
+            width: 3,
+            dash: 'solid'
+        },
+        hovertemplate: 
+            '<b>Reta</b><br>' +
+            `${labelX}: %{x:.4f}<br>` +
+            `${labelY}: %{y:.4f}<br>` +
+            '<extra></extra>'
+    };
+    
+    // ============================================
+    // 2. Bandas
+    // ============================================
+    
+    const traces = [traceDados, traceRegressao];
+    
+    // Banda de Confiança (95%)
+    if (mostrarConfianca) {
+        const traceConfianca = {
+            x: bandas.x.concat(bandas.x.slice().reverse()),
+            y: bandas.confianca.superior.concat(bandas.confianca.inferior.slice().reverse()),
+            legendgroup: 'confianca',
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Banda de Confiança (95%)',
+            fill: 'toself',
+            fillcolor: 'rgba(220, 53, 69, 0.15)',
+            line: {
+                color: 'rgba(220, 53, 69, 0.3)',
+                width: 0.5,
+                dash: 'dash'
+            },
+            hoverinfo: 'skip',
+            showlegend: true
+        };
+        traces.push(traceConfianca);
+
+        // Linhas das bordas
+        traces.push({ // borda confiança superior
+            x: bandas.x,
+            y: bandas.confianca.superior,
+            legendgroup: 'confianca',
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Confiança Superior',
+            line: {
+                color: 'rgba(220, 53, 69, 0.5)',
+                width: 1,
+                dash: 'dash'
+            },
+            hoverinfo: 'skip',
+            showlegend: false
+        });
+        
+        traces.push({ // borda confiança inferior
+            x: bandas.x,
+            y: bandas.confianca.inferior,
+            legendgroup: 'confianca',
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Confiança Inferior',
+            line: {
+                color: 'rgba(220, 53, 69, 0.5)',
+                width: 1,
+                dash: 'dash'
+            },
+            hoverinfo: 'skip',
+            showlegend: false
+        });
+    }
+    
+    // Banda de Predição (95%)
+    if (mostrarPredicao) {
+        const tracePredicao = {
+            x: bandas.x.concat(bandas.x.slice().reverse()),
+            y: bandas.predicao.superior.concat(bandas.predicao.inferior.slice().reverse()),
+            legendgroup: 'predicao',
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Banda de Predição (95%)',
+            fill: 'toself',
+            fillcolor: 'rgba(13, 110, 253, 0.10)',
+            line: {
+                color: 'rgba(13, 110, 253, 0.3)',
+                width: 0.5,
+                dash: 'dash'
+            },
+            hoverinfo: 'skip',
+            showlegend: true
+        };
+        traces.push(tracePredicao);
+        
+        traces.push({
+            x: bandas.x,
+            y: bandas.predicao.superior,
+            legendgroup: 'predicao',
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Predição Superior',
+            line: {
+                color: 'rgba(13, 110, 253, 0.4)',
+                width: 1,
+                dash: 'dot'
+            },
+            hoverinfo: 'skip',
+            showlegend: false
+        });
+        
+        traces.push({
+            x: bandas.x,
+            y: bandas.predicao.inferior,
+            legendgroup: 'predicao',
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Predição Inferior',
+            line: {
+                color: 'rgba(13, 110, 253, 0.4)',
+                width: 1,
+                dash: 'dot'
+            },
+            hoverinfo: 'skip',
+            showlegend: false
+        });
+    }
+    
+    // ============================================
+    // 3. Layout
+    // ============================================
+    
+    const sinal = resultado.intercept >= 0 ? "+" : "−";
+    // const equacaoStr = `${labelY} = ${resultado.slope.toFixed(4)}·${labelX} ${sinal} ${Math.abs(resultado.intercept).toFixed(4)}`;
+    const equacaoStr = `Y = ${resultado.slope.toFixed(3)}·X ${sinal} ${Math.abs(resultado.intercept).toFixed(3)}`;
+    
+    const ehCelular = window.matchMedia("(max-width: 768px)").matches;
+
+    const layout = {
+        // template: meuTema,//<-Tema aplicado aqui // Desisti por enquanto
+        dragmode: ehCelular ? false : 'zoom',
+        title: {
+            text: `📈 ${equacaoStr}`,
+            font: {
+                size: ehCelular ? 11 : 14,
+                family: 'Courier New, Arial, sans-serif',
+                color: '#212529'
+            },
+            tickfont: {
+                size: ehCelular ? 10 : 12
+            },
+            x: 0.05,
+            xanchor: 'left',
+            y: 0.91,
+            yanchor: 'top'
+        },
+        xaxis: {
+            title: {
+                text: labelX,
+                font: {
+                    size: 14,
+                    family: 'Arial, sans-serif',
+                    color: '#495057'
+                },
+                standoff: 15
+            },
+            gridcolor: '#e9ecef',
+            zerolinecolor: '#dee2e6',
+            zerolinewidth: 1,
+            showgrid: true,
+            tickfont: {
+                size: 12
+            },
+            automargin: true
+        },
+        yaxis: {
+            title: {
+                text: labelY,
+                font: {
+                    size: 14,
+                    family: 'Arial, sans-serif',
+                    color: '#495057'
+                },
+                standoff: 15
+            },
+            gridcolor: '#e9ecef',
+            zerolinecolor: '#dee2e6',
+            zerolinewidth: 1,
+            showgrid: true,
+            tickfont: {
+                size: 12
+            },
+            automargin: true
+        },
+        legend: {
+            x: 0.03, //0.02,
+            y: 0.92, //0.98,
+            xanchor: 'left',
+            yanchor: 'top',
+
+            groupclick: 'togglegroup', // Deveria agrupar componentes das bandas
+
+            bgcolor: 'rgba(255, 255, 255, 0.9)',
+            bordercolor: '#dee2e6',
+            borderwidth: 1, // 1
+            font: {
+                size: ehCelular ? 10 : 10,
+                family: 'Arial, sans-serif'
+            },
+            orientation: ehCelular ? "v" : "h" //orientation: 'h'
+        },
+        margin: {
+            l: window.innerWidth < 600 ? 45 : 70,
+            r: window.innerWidth < 600 ? 20 : 50,
+            t: window.innerWidth < 600 ? 60 : 100,
+            b: window.innerWidth < 600 ? 50 : 75
+        },
+        hovermode: 'closest',
+        annotations: [
+            {
+                text: `R² = ${resultado.r2.toFixed(4)}  |  n = ${resultado.n}`,
+                x: 0.98,
+                y: 0.02,
+                xref: 'paper',
+                yref: 'paper',
+                showarrow: false,
+                font: {
+                    size: 12,
+                    color: '#6c757d'
+                },
+                align: 'right'
+            }
+        ]
+    };
+    
+    // ============================================
+    // 4. Configurações
+    // ============================================
+    
+    const config = {
+        responsive: true,
+        //displayModeBar: true,
+        displayModeBar: !ehCelular,
+        scrollZoom: !ehCelular,
+        doubleClick: !ehCelular ? 'reset+autosize' : false,
+        //staticPlot: ehCelular,  // congela todo gráfico incluindo tooltips
+        modeBarButtonsToRemove: ['sendDataToCloud'],
+        displaylogo: true,
+        modeBarButtonsToAdd: [
+            'drawline',
+            'drawopenpath',
+            'drawclosedpath',
+            'toImage',
+            'zoom2d',
+            'pan2d',
+            'select2d',
+            'lasso2d'
+        ],
+        toImageButtonOptions: {
+            format: 'png',
+            filename: 'regressao_linear',
+            width: 900,
+            height: 600,
+            scale: 5
+        },
+        edits: {
+            shapePosition: true,
+            annotationText: true,
+            axisTitleText: true
+        }
+    };
+    
+    // ============================================
+    // 5. Renderizar
+    // ============================================
+    
+    ////////////////////////////// Trocado pelo Plotly.react abaixo
+    //    Plotly.purge(container);
+    //    //Plotly.newPlot(container, traces, layout, config);
+    //
+    //    requestAnimationFrame(() => {
+    //        Plotly.newPlot(container, traces, layout, config)
+    //            .then(() => Plotly.Plots.resize(container));
+    //    });
+
+    Plotly.react(container, traces, layout, config);
+
+}
+
+
+/* ============================================================
+   TOGGLES
+   ============================================================ */
+
+function regLin_inicializarToggles() {
+    const toggleBtns = document.querySelectorAll('.btn-toggle-div');
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.dataset.target;
+            regLin_toggleDiv(targetId);
+            
+            const badge = this.querySelector('.badge');
+            const isVisible = document.getElementById(targetId).style.display !== 'none';
+            if (badge) {
+                badge.textContent = isVisible ? 'visível' : 'oculto';
+                badge.className = `badge ${isVisible ? 'bg-secondary' : 'bg-danger'}`;
+            }
+        });
+    });
+}
+
+function regLin_toggleDiv(divId) {
+    const div = document.getElementById(divId);
+    if (!div) return;
+    
+    if (div.style.display === 'none') {
+        div.style.display = 'block';
+        const icon = document.getElementById(`toggle-icon-${divId.replace('div-', '')}`);
+        if (icon) icon.textContent = '−';
+    } else {
+        div.style.display = 'none';
+        const icon = document.getElementById(`toggle-icon-${divId.replace('div-', '')}`);
+        if (icon) icon.textContent = '+';
+    }
+}
+
+function regLin_inicializarTogglesBandas() {
+    const toggleConfianca = document.getElementById("toggle-banda-confianca");
+    const togglePredicao = document.getElementById("toggle-banda-predicao");
+    
+    if (toggleConfianca) {
+        toggleConfianca.addEventListener('change', function() {
+            const container = document.getElementById("grafico-regressao");
+            if (container && container.style.display !== 'none') {
+                const entrada = regLin_lerEntradas();
+                const resultado = regLin_calcular(entrada.x, entrada.y);
+                const incertezas = regLin_calcularIncertezas(resultado);
+                const bandas = regLin_calcularBandas(resultado, incertezas);
+                regLin_atualizarGrafico(resultado, bandas);
+            }
+        });
+    }
+    
+    if (togglePredicao) {
+        togglePredicao.addEventListener('change', function() {
+            const container = document.getElementById("grafico-regressao");
+            if (container && container.style.display !== 'none') {
+                const entrada = regLin_lerEntradas();
+                const resultado = regLin_calcular(entrada.x, entrada.y);
+                const incertezas = regLin_calcularIncertezas(resultado);
+                const bandas = regLin_calcularBandas(resultado, incertezas);
+                regLin_atualizarGrafico(resultado, bandas);
+            }
+        });
+    }
+}
+
+
+// Inicializar estado dos toggles
+document.addEventListener("DOMContentLoaded", function() {
+
+    const toggleBtns = document.querySelectorAll('.btn-toggle-div');
+
+    toggleBtns.forEach(btn => {
+        const targetId = btn.dataset.target;
+        const div = document.getElementById(targetId);
+        const badge = btn.querySelector('.badge');
+        if (div && badge) {
+            const isVisible = div.style.display !== 'none';
+            badge.textContent = isVisible ? 'visível' : 'oculto';
+            badge.className = `badge ${isVisible ? 'bg-secondary' : 'bg-danger'}`;
+        }
+    });
+
+    // Demo Select
+    const demoSelect = document.getElementById("demo-select");
+    if (demoSelect) {
+        demoSelect.addEventListener("change", function() {
+            const tipo = this.value;
+            if (tipo) {
+                regLin_carregarDemo(tipo);
+                //this.value = "";
+            }
+        });
+    }
+
+});
+
+</script>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./10_Neutralização_Calcario.html" class="pagination-link" aria-label="Prática 10: Poder de Neutralização">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Prática 10: Poder de Neutralização</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./001_Espectro.html" class="pagination-link" aria-label="Espectro em fase de TESTE">
+        <span class="nav-page-text"><span class="chapter-title">Espectro em fase de TESTE</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
