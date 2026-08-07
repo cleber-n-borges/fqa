@@ -450,6 +450,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#para-soluções-concentradas-exemplo-hcl-37" id="toc-para-soluções-concentradas-exemplo-hcl-37" class="nav-link" data-scroll-target="#para-soluções-concentradas-exemplo-hcl-37">Para Soluções Concentradas (exemplo: HCl 37%)</a></li>
   </ul></li>
   <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais">Considerações Finais</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
   </ul>
 </nav>
     </div>
@@ -1018,6 +1019,40 @@ Validade: 30/07/2026</code></pre>
 <p>A pesagem precisa (ou pipetagem correta), a transferência quantitativa do soluto, a dissolução completa, o ajuste correto do menisco, a homogeneização adequada e a identificação da solução são operações igualmente importantes.</p>
 <p>Negligenciar qualquer uma delas pode comprometer a exatidão da concentração obtida e, consequentemente, a confiabilidade das análises realizadas.</p>
 <p>A prática cuidadosa e sistemática desses procedimentos é um dos pilares do trabalho em laboratórios analíticos.</p>
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Preparo_Solucao.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
 
 
 </section>
