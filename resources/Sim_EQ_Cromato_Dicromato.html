@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulação de Equilíbrio Químico - Cromato / Dicromato</title>
+
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --accent-yellow: #facc15;
+      --accent-orange: #f97316;
+      --accent-blue: #3b82f6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .equation {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .yellow-txt { color: var(--accent-yellow); font-weight: bold; }
+    .orange-txt { color: var(--accent-orange); font-weight: bold; }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      max-width: 1150px;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 320px;
+    }
+
+    /* Estilo do Terceiro Quadro (Branco) */
+    .card-white {
+      background: #ffffff;
+      color: #0f172a;
+      border: 2px solid #cbd5e1;
+    }
+
+    .card-white h3 {
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .tube-wrapper {
+      position: relative;
+      width: 120px;
+      height: 240px;
+      margin: 10px 0;
+    }
+
+    .test-tube {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      border: 4px solid rgba(255, 255, 255, 0.4);
+      border-top: none;
+      border-bottom-left-radius: 60px 60px;
+      border-bottom-right-radius: 60px 60px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .liquid {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 80%;
+      background-color: rgb(250, 204, 21);
+      transition: background-color 0.2s ease;
+    }
+
+    canvas#particle-canvas {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80%;
+    }
+
+    /* Slider de pH */
+    .slider-container {
+      width: 100%;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    input[type=range] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right, #ef4444, #eab308, #3b82f6);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .metrics { width: 100%; margin-bottom: 15px; }
+    .metric-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
+
+    .bar-container {
+      width: 100%;
+      height: 12px;
+      background: #334155;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      transition: width 0.2s ease, background-color 0.2s ease;
+    }
+
+    .status-box {
+      background: #0f172a;
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-yellow);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      width: 100%;
+      min-height: 70px;
+    }
+
+    /* Conteúdo do Quadro da Constante Kc */
+    .kc-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      gap: 15px;
+      padding: 10px 0;
+    }
+
+    .fraction {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      text-align: center;
+      padding: 0 4px;
+    }
+
+    .numerator {
+      border-bottom: 1.5px solid #0f172a;
+      padding-bottom: 2px;
+    }
+
+    .denominator {
+      padding-top: 2px;
+    }
+
+    .kc-formula {
+      font-size: 1.15rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+    }
+
+    .kc-calc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 15px;
+      width: 100%;
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: #334155;
+    }
+
+    .kc-calc-box div {
+      margin-bottom: 6px;
+    }
+
+    .kc-constant-note {
+      font-size: 0.8rem;
+      color: #64748b;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Seção de Botão e Caixa de Explicação */
+    .explanation-wrapper {
+      max-width: 1150px;
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    .toggle-btn {
+      width: 100%;
+      padding: 14px 20px;
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #475569;
+    }
+
+    .explanation-content {
+      display: none;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 25px;
+      margin-top: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      line-height: 1.6;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .explanation-content.active {
+      display: block;
+    }
+
+    .explanation-content h2 {
+      color: var(--accent-yellow);
+      font-size: 1.25rem;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+    }
+
+    .explanation-content h3 {
+      color: #f8fafc;
+      font-size: 1.05rem;
+      margin: 18px 0 8px 0;
+    }
+
+    .explanation-content ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .explanation-content li {
+      margin-bottom: 6px;
+    }
+
+    .explanation-content code {
+      background: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #38bdf8;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Explicação do Equilíbrio Cromato/Dicromato</h1>
+  <div class="equation">
+    2<span class="yellow-txt">CrO₄²⁻</span> (aq) + 2H⁺ (aq) ⇌ <span class="orange-txt">Cr₂O₇²⁻</span> (aq) + H₂O (l)
+  </div>
+
+  <div class="container">
+    <!-- Quadro 1: Visualização Microscópica e Controle -->
+    <div class="card">
+      <h3>Visualização Microscópica</h3>
+      <div class="tube-wrapper">
+        <div class="test-tube">
+          <div class="liquid" id="liquid"></div>
+          <canvas id="particle-canvas"></canvas>
+        </div>
+      </div>
+      
+      <!-- Controle por Slider de pH -->
+      <div class="slider-container">
+        <div class="slider-label">
+          <span>Ajuste o pH:</span>
+          <span id="ph-slider-val" style="color: #facc15;">7.0</span>
+        </div>
+        <input type="range" id="ph-slider" min="1.0" max="13.0" step="0.1" value="7.0" oninput="onPHSliderChange(this.value)">
+      </div>
+    </div>
+
+    <!-- Quadro 2: Estado do Equilíbrio (Gráficos) -->
+    <div class="card">
+      <h3>Estado do Equilíbrio</h3>
+      <div class="metrics">
+        <div class="metric-row">
+          <span>pH da Solução:</span>
+          <strong id="ph-val">7.0</strong>
+        </div>
+
+        <div class="metric-row">
+          <span class="yellow-txt">[CrO₄²⁻] (Cromato):</span>
+          <span id="cromato-pct">82%</span>
+        </div>
+        <div class="bar-container">
+          <div class="bar-fill" id="cromato-bar" style="width: 82%; background: #facc15;"></div>
+        </div>
+
+        <div class="metric-row">
+          <span class="orange-txt">[Cr₂O₇²⁻] (Dicromato):</span>
+          <span id="dicromato-pct">18%</span>
+        </div>
+        <div class="bar-container">
+          <div class="bar-fill" id="dicromato-bar" style="width: 18%; background: #f97316;"></div>
+        </div>
+      </div>
+
+      <div class="status-box" id="status-text">
+        Em pH 7.0 o cromato (amarelo) já é a espécie predominante. O ponto equimolar (50%/50%) ocorre em pH ≈ 6.6.
+      </div>
+    </div>
+
+    <!-- Quadro 3: Expressão Dinâmica em Unicode (Fundo Branco) -->
+    <div class="card card-white">
+      <h3>Constante de Equilíbrio (K꜀)</h3>
+      <div class="kc-container">
+        <div class="kc-formula">
+          K꜀ = 
+          <div class="fraction">
+            <span class="numerator">[Cr₂O₇²⁻]</span>
+            <span class="denominator">[CrO₄²⁻]² · [H⁺]²</span>
+          </div>
+          = 4,2 × 10¹⁴
+        </div>
+
+        <div class="kc-calc-box">
+          <div><strong>Concentrações no Equilíbrio:</strong></div>
+          <div>• [H⁺] = 10⁻ᵖᴴ = <span id="val-hplus">1.00 × 10⁻⁷</span> mol/L</div>
+          <div>• [CrO₄²⁻] = <span id="val-cromato">0.0410</span> mol/L</div>
+          <div>• [Cr₂O₇²⁻] = <span id="val-dicromato">0.0045</span> mol/L</div>
+          <hr style="margin: 8px 0; border: 0; border-top: 1px solid #cbd5e1;">
+          <div><strong>Razão Calculada (Q꜀):</strong></div>
+          <div style="display: flex; align-items: center; gap: 4px; margin-top: 4px;">
+            <div class="fraction" style="font-size: 0.85rem;">
+              <span class="numerator">[Cr₂O₇²⁻]</span>
+              <span class="denominator">[CrO₄²⁻]² · [H⁺]²</span>
+            </div>
+            = <span id="val-kc-calc" style="font-weight: bold; color: #0284c7;">4.2 × 10¹⁴</span>
+          </div>
+        </div>
+
+        <div class="kc-constant-note">
+          A razão Q꜀ é calculada dinamicamente com base nas concentrações de cada espécie no instante ajustado.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Caixa Retrátil de Explicação Detalhada -->
+  <div class="explanation-wrapper">
+    <button class="toggle-btn" onclick="toggleExplanation()">
+      <span>📘 Entenda como o pH controla as concentrações (Explicação Teórica)</span>
+      <span id="arrow-icon">▼</span>
+    </button>
+
+    <div class="explanation-content" id="explanation-box">
+      <h2>Entendendo a Dinâmica do Equilíbrio Química</h2>
+      <p>
+        O <strong>pH não é apenas um indicador visual</strong>, ele representa diretamente a concentração de um dos reagentes essenciais do sistema: os íons <code>H⁺</code> (já que <code>[H⁺] = 10⁻ᵖᴴ</code>).
+      </p>
+
+      <h3>1. Como alterar o pH desloca o equilíbrio?</h3>
+      <p>
+        Pelo <strong>Princípio de Le Chatelier</strong>, se alterarmos a concentração de um participante de uma reação em equilíbrio, o sistema se desloca para compensar essa alteração:
+      </p>
+      <ul>
+        <li>
+          <strong>Ao DIMINUIR o pH (Adicionar Ácido / Aumentar [H⁺]):</strong>
+          Aumenta-se a quantidade de reagente. Para consumir o excesso de <code>H⁺</code>, os íons reagem com o cromato (<code>CrO₄²⁻</code>), consumindo-o e formando dicromato (<code>Cr₂O₇²⁻</code>). A solução fica <strong class="orange-txt">alaranjada</strong>.
+        </li>
+        <li>
+          <strong>Ao AUMENTAR o pH (Adicionar Base / Diminuir [H⁺]):</strong>
+          Os íons <code>OH⁻</code> adicionados reagem com o <code>H⁺</code> e o removem da solução. Para repor os íons <code>H⁺</code> consumidos, o dicromato (<code>Cr₂O₇²⁻</code>) reage com a água e se decompõe em cromato (<code>CrO₄²⁻</code>). A solução fica <strong class="yellow-txt">amarela</strong>.
+        </li>
+      </ul>
+
+      <h3>2. A otimização das duas espécies é possível?</h3>
+      <p>
+        <strong>Não no sentido de maximizar ambas simultaneamente</strong>, pois a quantidade total de átomos de cromo na solução é constante (Lei de Conservação de Massa). Para formar 1 mol de dicromato, é necessário consumir 2 mols de cromato.
+      </p>
+      <p>Entretanto, é possível <em>otimizar o estado desejado</em> controlando o pH:</p>
+      <ul>
+        <li><strong>Maximizar Cromato (100% Amarelo):</strong> pH ≥ 8,0.</li>
+        <li><strong>Maximizar Dicromato (100% Alaranjado):</strong> pH ≤ 4,0.</li>
+        <li><strong>Maximizar Coexistência (Ponto Equimolar ~50%/50%):</strong> pH ≈ 6,5 a 6,7.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    let currentPH = 7.0;
+    const C_TOTAL_CR = 0.05; // Concentração analítica de Cr(VI) em mol/L
+
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = 120;
+    canvas.height = 192;
+
+    let particles = [];
+    const TOTAL_PARTICLES = 35;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 1.2;
+        this.vy = (Math.random() - 0.5) * 1.2;
+        this.radius = 4;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < this.radius || this.x > canvas.width - this.radius) this.vx *= -1;
+        if (this.y < this.radius || this.y > canvas.height - this.radius) this.vy *= -1;
+      }
+
+      draw(isDicromate) {
+        ctx.beginPath();
+        ctx.fillStyle = isDicromate ? '#f97316' : '#facc15';
+        ctx.arc(this.x, this.y, isDicromate ? 5.5 : 3.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+        ctx.stroke();
+      }
+    }
+
+    for (let i = 0; i < TOTAL_PARTICLES; i++) {
+      particles.push(new Particle());
+    }
+
+    function calculateEquilibriumRatio(ph) {
+      const ph_viragem = 6.6;
+      return 1 / (1 + Math.exp((ph - ph_viragem) * 2.5));
+    }
+
+    function toUnicodeSuperscript(exponent) {
+      const superscripts = {
+        '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+        '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+        '-': '⁻', '+': '⁺'
+      };
+      return String(exponent).split('').map(char => superscripts[char] || char).join('');
+    }
+
+    function formatScientificUnicode(num, precision = 2) {
+      if (isNaN(num) || !isFinite(num) || num === 0) return "0";
+      const exp = Math.floor(Math.log10(Math.abs(num)));
+      const mantissa = (num / Math.pow(10, exp)).toFixed(precision);
+      return `${mantissa} × 10${toUnicodeSuperscript(exp)}`;
+    }
+
+    function updateSimulation() {
+      const ratioDicromato = calculateEquilibriumRatio(currentPH);
+      const ratioCromato = 1 - ratioDicromato;
+
+      const pctDicromato = Math.round(ratioDicromato * 100);
+      const pctCromato = 100 - pctDicromato;
+
+      // Concentrações Reais
+      const h_plus = Math.pow(10, -currentPH);
+      const conc_cromato = Math.max(C_TOTAL_CR * ratioCromato, 1e-6);
+      const conc_dicromato = Math.max((C_TOTAL_CR / 2) * ratioDicromato, 1e-6);
+
+      // CÁLCULO DINÂMICO DE Qc: Qc = [Cr2O7^2-] / ([CrO4^2-]^2 * [H+]^2)
+      const qc_calculated = conc_dicromato / (Math.pow(conc_cromato, 2) * Math.pow(h_plus, 2));
+
+      // Atualiza Quadro 1 & Slider
+      document.getElementById('ph-slider-val').innerText = currentPH.toFixed(1);
+
+      // Atualiza Quadro 2
+      document.getElementById('ph-val').innerText = currentPH.toFixed(1);
+      document.getElementById('cromato-pct').innerText = `${pctCromato}%`;
+      document.getElementById('dicromato-pct').innerText = `${pctDicromato}%`;
+      document.getElementById('cromato-bar').style.width = `${pctCromato}%`;
+      document.getElementById('dicromato-bar').style.width = `${pctDicromato}%`;
+
+      const r = Math.round(250 + (249 - 250) * ratioDicromato);
+      const g = Math.round(204 + (115 - 204) * ratioDicromato);
+      const b = Math.round(21 + (22 - 21) * ratioDicromato);
+      document.getElementById('liquid').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+      // Atualiza Quadro 3 (com Qc realmente calculado dinamicamente)
+      document.getElementById('val-hplus').innerText = formatScientificUnicode(h_plus, 2);
+      document.getElementById('val-cromato').innerText = conc_cromato.toFixed(4);
+      document.getElementById('val-dicromato').innerText = conc_dicromato.toFixed(4);
+      document.getElementById('val-kc-calc').innerText = formatScientificUnicode(qc_calculated, 1);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const dicromateParticleCount = Math.round(TOTAL_PARTICLES * ratioDicromato);
+      
+      particles.forEach((p, idx) => {
+        p.update();
+        p.draw(idx < dicromateParticleCount);
+      });
+
+      requestAnimationFrame(updateSimulation);
+    }
+
+    function onPHSliderChange(val) {
+      currentPH = parseFloat(val);
+      const status = document.getElementById('status-text');
+
+      if (currentPH >= 8.0) {
+        status.innerHTML = `<strong>pH = ${currentPH.toFixed(1)} (Básico):</strong> A baixíssima [H⁺] desloca o equilíbrio para a <strong>ESQUERDA</strong>. O meio contém predominantemente <strong>Cromato</strong> (<span class="yellow-txt">Amarelo</span>).`;
+      } else if (currentPH <= 5.0) {
+        status.innerHTML = `<strong>pH = ${currentPH.toFixed(1)} (Ácido):</strong> O excesso de H⁺ desloca o equilíbrio fortemente para a <strong>DIREITA</strong>. O meio contém predominantemente <strong>Dicromato</strong> (<span class="orange-txt">Alaranjado</span>).`;
+      } else {
+        status.innerHTML = `<strong>pH = ${currentPH.toFixed(1)} (Zona de Transição):</strong> Próximo ao ponto equimolar (pH ≈ 6.6), ambas as espécies coexistem em proporções significativas.`;
+      }
+    }
+
+    function toggleExplanation() {
+      const box = document.getElementById('explanation-box');
+      const arrow = document.getElementById('arrow-icon');
+      if (box.classList.contains('active')) {
+        box.classList.remove('active');
+        arrow.innerText = '▼';
+      } else {
+        box.classList.add('active');
+        arrow.innerText = '▲';
+      }
+    }
+
+    updateSimulation();
+  </script>
+</body>
+</html>
