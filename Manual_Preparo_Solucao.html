@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Preparo de Soluções – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01_Preparo_KOH.html" rel="next">
+<link href="./00_Normas_Laboratorio.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Manual_Preparo_Solucao.html"><span class="chapter-title">→ Preparo de Soluções</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">Preparo de Soluções</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Manual_Preparo_Solucao.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">→ Preparo de Soluções</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">→ Titulação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 5: Padronização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#parte-i-conceitos-fundamentais" id="toc-parte-i-conceitos-fundamentais" class="nav-link" data-scroll-target="#parte-i-conceitos-fundamentais">Parte I: Conceitos Fundamentais</a>
+  <ul class="collapse">
+  <li><a href="#por-que-não-se-prepara-uma-solução-diretamente-no-balão" id="toc-por-que-não-se-prepara-uma-solução-diretamente-no-balão" class="nav-link" data-scroll-target="#por-que-não-se-prepara-uma-solução-diretamente-no-balão">Por que não se prepara uma solução diretamente no balão?</a></li>
+  </ul></li>
+  <li><a href="#parte-ii-materiais-necessários-geral" id="toc-parte-ii-materiais-necessários-geral" class="nav-link" data-scroll-target="#parte-ii-materiais-necessários-geral">Parte II: Materiais Necessários (Geral)</a>
+  <ul class="collapse">
+  <li><a href="#equipamentos-de-proteção-individual-epis" id="toc-equipamentos-de-proteção-individual-epis" class="nav-link" data-scroll-target="#equipamentos-de-proteção-individual-epis">Equipamentos de Proteção Individual (EPIs)</a></li>
+  </ul></li>
+  <li><a href="#parte-iii-preparação-do-ambiente" id="toc-parte-iii-preparação-do-ambiente" class="nav-link" data-scroll-target="#parte-iii-preparação-do-ambiente">Parte III: Preparação do Ambiente</a></li>
+  <li><a href="#parte-iv-cuidados-com-a-balança-analítica" id="toc-parte-iv-cuidados-com-a-balança-analítica" class="nav-link" data-scroll-target="#parte-iv-cuidados-com-a-balança-analítica">Parte IV: Cuidados com a Balança Analítica</a>
+  <ul class="collapse">
+  <li><a href="#antes-de-usar" id="toc-antes-de-usar" class="nav-link" data-scroll-target="#antes-de-usar">Antes de usar:</a></li>
+  </ul></li>
+  <li><a href="#parte-v-técnica-correta-de-pesagem-para-sólidos" id="toc-parte-v-técnica-correta-de-pesagem-para-sólidos" class="nav-link" data-scroll-target="#parte-v-técnica-correta-de-pesagem-para-sólidos">Parte V: Técnica Correta de Pesagem (para Sólidos)</a>
+  <ul class="collapse">
+  <li><a href="#passo-1-taragem" id="toc-passo-1-taragem" class="nav-link" data-scroll-target="#passo-1-taragem">Passo 1: Taragem</a></li>
+  <li><a href="#passo-2-adição-do-sólido" id="toc-passo-2-adição-do-sólido" class="nav-link" data-scroll-target="#passo-2-adição-do-sólido">Passo 2: Adição do Sólido</a></li>
+  <li><a href="#passo-3-adição-cuidadosa" id="toc-passo-3-adição-cuidadosa" class="nav-link" data-scroll-target="#passo-3-adição-cuidadosa">Passo 3: Adição Cuidadosa</a></li>
+  <li><a href="#técnica-para-não-ultrapassar-o-peso" id="toc-técnica-para-não-ultrapassar-o-peso" class="nav-link" data-scroll-target="#técnica-para-não-ultrapassar-o-peso">Técnica para não ultrapassar o peso</a></li>
+  <li><a href="#caso-ultrapasse-o-peso" id="toc-caso-ultrapasse-o-peso" class="nav-link" data-scroll-target="#caso-ultrapasse-o-peso">Caso ultrapasse o peso</a></li>
+  </ul></li>
+  <li><a href="#parte-vi-cálculo-da-massa-de-sólido-a-ser-pesada" id="toc-parte-vi-cálculo-da-massa-de-sólido-a-ser-pesada" class="nav-link" data-scroll-target="#parte-vi-cálculo-da-massa-de-sólido-a-ser-pesada">Parte VI: Cálculo da Massa de Sólido a Ser Pesada</a>
+  <ul class="collapse">
+  <li><a href="#exemplo-prático-koh" id="toc-exemplo-prático-koh" class="nav-link" data-scroll-target="#exemplo-prático-koh">Exemplo prático: KOH</a></li>
+  <li><a href="#cuidados-específicos-com-o-koh" id="toc-cuidados-específicos-com-o-koh" class="nav-link" data-scroll-target="#cuidados-específicos-com-o-koh">Cuidados específicos com o KOH</a></li>
+  </ul></li>
+  <li><a href="#parte-vii-preparo-a-partir-de-solução-concentrada" id="toc-parte-vii-preparo-a-partir-de-solução-concentrada" class="nav-link" data-scroll-target="#parte-vii-preparo-a-partir-de-solução-concentrada">Parte VII: Preparo a Partir de Solução Concentrada</a>
+  <ul class="collapse">
+  <li><a href="#cálculo-para-solução-concentrada" id="toc-cálculo-para-solução-concentrada" class="nav-link" data-scroll-target="#cálculo-para-solução-concentrada">Cálculo para Solução Concentrada</a></li>
+  <li><a href="#cálculo-da-concentração-da-solução-concentrada-de-hcl" id="toc-cálculo-da-concentração-da-solução-concentrada-de-hcl" class="nav-link" data-scroll-target="#cálculo-da-concentração-da-solução-concentrada-de-hcl">Cálculo da Concentração da Solução Concentrada de HCl</a></li>
+  <li><a href="#exemplo-prático-preparar-100-ml-de-hcl-01000-mol-l¹" id="toc-exemplo-prático-preparar-100-ml-de-hcl-01000-mol-l¹" class="nav-link" data-scroll-target="#exemplo-prático-preparar-100-ml-de-hcl-01000-mol-l¹">Exemplo prático: Preparar 100 mL de HCl 0,1000 mol L⁻¹</a></li>
+  <li><a href="#cuidados-específicos-com-o-hcl-concentrado" id="toc-cuidados-específicos-com-o-hcl-concentrado" class="nav-link" data-scroll-target="#cuidados-específicos-com-o-hcl-concentrado">Cuidados específicos com o HCl concentrado</a></li>
+  </ul></li>
+  <li><a href="#parte-viii-transferência-do-soluto-para-o-béquer" id="toc-parte-viii-transferência-do-soluto-para-o-béquer" class="nav-link" data-scroll-target="#parte-viii-transferência-do-soluto-para-o-béquer">Parte VIII: Transferência do Soluto para o Béquer</a>
+  <ul class="collapse">
+  <li><a href="#para-sólidos-exemplo-koh" id="toc-para-sólidos-exemplo-koh" class="nav-link" data-scroll-target="#para-sólidos-exemplo-koh">Para Sólidos (exemplo: KOH)</a></li>
+  <li><a href="#para-soluções-concentradas-exemplo-hcl" id="toc-para-soluções-concentradas-exemplo-hcl" class="nav-link" data-scroll-target="#para-soluções-concentradas-exemplo-hcl">Para Soluções Concentradas (exemplo: HCl)</a></li>
+  </ul></li>
+  <li><a href="#parte-ix-dissolução-do-soluto" id="toc-parte-ix-dissolução-do-soluto" class="nav-link" data-scroll-target="#parte-ix-dissolução-do-soluto">Parte IX: Dissolução do Soluto</a>
+  <ul class="collapse">
+  <li><a href="#para-sólidos-koh" id="toc-para-sólidos-koh" class="nav-link" data-scroll-target="#para-sólidos-koh">Para Sólidos (KOH)</a></li>
+  <li><a href="#para-soluções-hcl" id="toc-para-soluções-hcl" class="nav-link" data-scroll-target="#para-soluções-hcl">Para Soluções (HCl)</a></li>
+  </ul></li>
+  <li><a href="#parte-x-por-que-dissolver-primeiro-no-béquer" id="toc-parte-x-por-que-dissolver-primeiro-no-béquer" class="nav-link" data-scroll-target="#parte-x-por-que-dissolver-primeiro-no-béquer">Parte X: Por que dissolver primeiro no béquer?</a></li>
+  <li><a href="#parte-xi-transferência-para-o-balão-volumétrico" id="toc-parte-xi-transferência-para-o-balão-volumétrico" class="nav-link" data-scroll-target="#parte-xi-transferência-para-o-balão-volumétrico">Parte XI: Transferência para o Balão Volumétrico</a></li>
+  <li><a href="#parte-xii-lavagem-quantitativa-do-béquer" id="toc-parte-xii-lavagem-quantitativa-do-béquer" class="nav-link" data-scroll-target="#parte-xii-lavagem-quantitativa-do-béquer">Parte XII: Lavagem Quantitativa do Béquer</a>
+  <ul class="collapse">
+  <li><a href="#procedimento" id="toc-procedimento" class="nav-link" data-scroll-target="#procedimento">Procedimento:</a></li>
+  </ul></li>
+  <li><a href="#parte-xiii-completar-o-volume" id="toc-parte-xiii-completar-o-volume" class="nav-link" data-scroll-target="#parte-xiii-completar-o-volume">Parte XIII: Completar o Volume</a></li>
+  <li><a href="#parte-xiv-ajuste-do-menisco" id="toc-parte-xiv-ajuste-do-menisco" class="nav-link" data-scroll-target="#parte-xiv-ajuste-do-menisco">Parte XIV: Ajuste do Menisco</a></li>
+  <li><a href="#parte-xv-conferência-do-menisco" id="toc-parte-xv-conferência-do-menisco" class="nav-link" data-scroll-target="#parte-xv-conferência-do-menisco">Parte XV: Conferência do Menisco</a></li>
+  <li><a href="#parte-xvi-homogeneização" id="toc-parte-xvi-homogeneização" class="nav-link" data-scroll-target="#parte-xvi-homogeneização">Parte XVI: Homogeneização</a></li>
+  <li><a href="#parte-xvii-transferência-para-o-frasco-de-estoque" id="toc-parte-xvii-transferência-para-o-frasco-de-estoque" class="nav-link" data-scroll-target="#parte-xvii-transferência-para-o-frasco-de-estoque">Parte XVII: Transferência para o Frasco de Estoque</a></li>
+  <li><a href="#parte-xviii-identificação-da-solução" id="toc-parte-xviii-identificação-da-solução" class="nav-link" data-scroll-target="#parte-xviii-identificação-da-solução">Parte XVIII: Identificação da Solução</a>
+  <ul class="collapse">
+  <li><a href="#exemplo-1-solução-de-koh" id="toc-exemplo-1-solução-de-koh" class="nav-link" data-scroll-target="#exemplo-1-solução-de-koh">Exemplo 1: Solução de KOH</a></li>
+  <li><a href="#exemplo-2-solução-de-hcl" id="toc-exemplo-2-solução-de-hcl" class="nav-link" data-scroll-target="#exemplo-2-solução-de-hcl">Exemplo 2: Solução de HCl</a></li>
+  </ul></li>
+  <li><a href="#parte-xix-limpeza-final" id="toc-parte-xix-limpeza-final" class="nav-link" data-scroll-target="#parte-xix-limpeza-final">Parte XIX: Limpeza Final</a></li>
+  <li><a href="#parte-xx-erros-mais-comuns" id="toc-parte-xx-erros-mais-comuns" class="nav-link" data-scroll-target="#parte-xx-erros-mais-comuns">Parte XX: Erros Mais Comuns</a>
+  <ul class="collapse">
+  <li><a href="#para-preparo-a-partir-de-sólidos" id="toc-para-preparo-a-partir-de-sólidos" class="nav-link" data-scroll-target="#para-preparo-a-partir-de-sólidos">Para Preparo a Partir de Sólidos</a></li>
+  <li><a href="#para-preparo-a-partir-de-soluções-concentradas-hcl" id="toc-para-preparo-a-partir-de-soluções-concentradas-hcl" class="nav-link" data-scroll-target="#para-preparo-a-partir-de-soluções-concentradas-hcl">Para Preparo a Partir de Soluções Concentradas (HCl)</a></li>
+  </ul></li>
+  <li><a href="#parte-xxi-resumo-do-procedimento" id="toc-parte-xxi-resumo-do-procedimento" class="nav-link" data-scroll-target="#parte-xxi-resumo-do-procedimento">Parte XXI: Resumo do Procedimento</a>
+  <ul class="collapse">
+  <li><a href="#para-sólidos-exemplo-koh-1" id="toc-para-sólidos-exemplo-koh-1" class="nav-link" data-scroll-target="#para-sólidos-exemplo-koh-1">Para Sólidos (exemplo: KOH)</a></li>
+  <li><a href="#para-soluções-concentradas-exemplo-hcl-37" id="toc-para-soluções-concentradas-exemplo-hcl-37" class="nav-link" data-scroll-target="#para-soluções-concentradas-exemplo-hcl-37">Para Soluções Concentradas (exemplo: HCl 37%)</a></li>
+  </ul></li>
+  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais">Considerações Finais</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>O preparo correto de soluções é uma habilidade fundamental em qualquer laboratório químico, pois a exatidão da concentração de uma solução impacta diretamente a confiabilidade de todos os resultados experimentais subsequentes.</p>
+<p>Uma solução mal preparada — seja por erro na pesagem, volume incorreto, homogeneização inadequada ou contaminação — compromete desde titulações e análises instrumentais até reações de síntese e ensaios biológicos.</p>
+<p>Dominar o procedimento padronizado não apenas garante reprodutibilidade e precisão aos dados gerados, mas também assegura a segurança do operador, especialmente ao manipular reagentes corrosivos ou voláteis.</p>
+<p>Por isso, conhecer e seguir rigorosamente cada etapa do preparo é tão essencial quanto interpretar corretamente os resultados obtidos.</p>
+<hr>
+</section>
+<section id="objetivo" class="level2">
+<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>Este manual descreve, em detalhes, como preparar corretamente uma solução em um balão volumétrico de 100 mL em um laboratório de Química Analítica, abordando dois casos fundamentais:</p>
+<ul>
+<li><p><strong>preparo a partir de um sólido</strong> (exemplo: KOH) e</p></li>
+<li><p><strong>preparo a partir de uma solução concentrada</strong> (exemplo: HCl 37% <span style="white-space: nowrap;">m/m</span>).</p></li>
+</ul>
+<p>O procedimento foi elaborado para alguém que nunca realizou essa atividade anteriormente.</p>
+<hr>
+</section>
+<section id="parte-i-conceitos-fundamentais" class="level2">
+<h2 class="anchored" data-anchor-id="parte-i-conceitos-fundamentais">Parte I: Conceitos Fundamentais</h2>
+<p>Antes de iniciar, é importante compreender alguns princípios.</p>
+<p>Uma solução é uma mistura homogênea formada por:</p>
+<ul>
+<li><p><strong>Soluto</strong>: substância que será dissolvida.</p></li>
+<li><p><strong>Solvente</strong>: líquido que dissolve o soluto (na maioria dos casos, água deionizada ou destilada).</p></li>
+</ul>
+<p>O objetivo do preparo é obter exatamente a concentração desejada.</p>
+<p>Na Química Analítica, o volume final deve ser extremamente preciso. Por isso utiliza-se um <strong>balão volumétrico</strong>, que é calibrado para conter um volume exato em determinada temperatura (geralmente 20 °C).</p>
+<section id="por-que-não-se-prepara-uma-solução-diretamente-no-balão" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-não-se-prepara-uma-solução-diretamente-no-balão">Por que não se prepara uma solução diretamente no balão?</h3>
+<p>Nunca se prepara uma solução diretamente no balão adicionando soluto e completando imediatamente até a marca. Há diversas razões para isso:</p>
+<ul>
+<li><p>o soluto pode não dissolver completamente;</p></li>
+<li><p>a dissolução pode absorver ou liberar calor (entalpia de dissolução);</p></li>
+<li><p>a temperatura da solução pode variar, alterando seu volume;</p></li>
+<li><p>partículas podem aderir às paredes do recipiente;</p></li>
+<li><p>torna-se difícil misturar adequadamente.</p></li>
+</ul>
+<p>Por esse motivo, a dissolução inicial é realizada em um <strong>béquer</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="parte-ii-materiais-necessários-geral" class="level2">
+<h2 class="anchored" data-anchor-id="parte-ii-materiais-necessários-geral">Parte II: Materiais Necessários (Geral)</h2>
+<ul>
+<li><p>Balança analítica</p></li>
+<li><p>Espátula apropriada</p></li>
+<li><p>Papel de pesagem, cápsula de pesagem ou vidro-relógio</p></li>
+<li><p>Béquer (100 ou 150 mL)</p></li>
+<li><p>Bastão de vidro ou agitador magnético</p></li>
+<li><p>Funil de haste longa</p></li>
+<li><p>Balão volumétrico de 100 mL</p></li>
+<li><p>Pisseta contendo água deionizada</p></li>
+<li><p>Pipeta Pasteur ou conta-gotas (para ajuste fino do volume)</p></li>
+<li><p>Pipeta volumétrica ou pipeta graduada (para preparo a partir de solução concentrada)</p></li>
+<li><p>Pera de sucção ou pipetador automático</p></li>
+<li><p>Frasco de armazenamento da solução</p></li>
+<li><p>Etiqueta de identificação</p></li>
+<li><p>Papel absorvente</p></li>
+<li><p>Capela de exaustão (obrigatória para preparo com HCl concentrado)</p></li>
+</ul>
+<section id="equipamentos-de-proteção-individual-epis" class="level3">
+<h3 class="anchored" data-anchor-id="equipamentos-de-proteção-individual-epis">Equipamentos de Proteção Individual (EPIs)</h3>
+<ul>
+<li><p>Jaleco</p></li>
+<li><p>Óculos de segurança</p></li>
+<li><p>Calçado fechado</p></li>
+<li><p>Luvas de nitrila ou PVC (obrigatórias para KOH e HCl)</p></li>
+<li><p>Máscara facial (recomendada para HCl concentrado)</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="parte-iii-preparação-do-ambiente" class="level2">
+<h2 class="anchored" data-anchor-id="parte-iii-preparação-do-ambiente">Parte III: Preparação do Ambiente</h2>
+<p>Antes de começar:</p>
+<ul>
+<li><p>Limpe completamente a bancada.</p></li>
+<li><p>Separe todos os materiais.</p></li>
+<li><p>Leia todo o procedimento antes de executar.</p></li>
+<li><p>Confira a massa ou o volume que deverá ser utilizado.</p></li>
+<li><p>Certifique-se de que todas as vidrarias estejam limpas e secas.</p></li>
+</ul>
+<p><strong>Nunca utilize vidrarias com resíduos.</strong></p>
+<hr>
+</section>
+<section id="parte-iv-cuidados-com-a-balança-analítica" class="level2">
+<h2 class="anchored" data-anchor-id="parte-iv-cuidados-com-a-balança-analítica">Parte IV: Cuidados com a Balança Analítica</h2>
+<p>A balança analítica é um dos equipamentos mais sensíveis do laboratório. Ela pode medir massas com precisão de 0,0001 g.</p>
+<p>Pequenos erros comprometem toda a solução.</p>
+<section id="antes-de-usar" class="level3">
+<h3 class="anchored" data-anchor-id="antes-de-usar">Antes de usar:</h3>
+<ul>
+<li><p>verificar se está nivelada;</p></li>
+<li><p>verificar se está limpa;</p></li>
+<li><p>fechar todas as portas durante a pesagem;</p></li>
+<li><p>evitar correntes de ar;</p></li>
+<li><p>evitar apoiar objetos sobre a mesa da balança.</p></li>
+</ul>
+<p><strong>Nunca pese diretamente sobre o prato da balança.</strong></p>
+<p>Sempre utilize:</p>
+<ul>
+<li><p>papel de pesagem;</p></li>
+<li><p>cápsula de pesagem;</p></li>
+<li><p>vidro-relógio;</p></li>
+<li><p>ou recipiente adequado.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="parte-v-técnica-correta-de-pesagem-para-sólidos" class="level2">
+<h2 class="anchored" data-anchor-id="parte-v-técnica-correta-de-pesagem-para-sólidos">Parte V: Técnica Correta de Pesagem (para Sólidos)</h2>
+<section id="passo-1-taragem" class="level3">
+<h3 class="anchored" data-anchor-id="passo-1-taragem">Passo 1: Taragem</h3>
+<p>Coloque o recipiente de pesagem (vidro-relógio ou cápsula) sobre a balança.</p>
+<p>Feche as portas.</p>
+<p>Espere a leitura estabilizar.</p>
+<p>Pressione o botão <strong>“Tara”</strong> para zerar a massa.</p>
+<p>Agora a balança mostrará apenas a massa do reagente que será adicionado.</p>
+<hr>
+</section>
+<section id="passo-2-adição-do-sólido" class="level3">
+<h3 class="anchored" data-anchor-id="passo-2-adição-do-sólido">Passo 2: Adição do Sólido</h3>
+<p>Pegue pequena quantidade do sólido utilizando uma espátula limpa e seca.</p>
+<p><strong>Nunca introduza a espátula úmida no frasco do reagente.</strong></p>
+<hr>
+</section>
+<section id="passo-3-adição-cuidadosa" class="level3">
+<h3 class="anchored" data-anchor-id="passo-3-adição-cuidadosa">Passo 3: Adição Cuidadosa</h3>
+<p>Adicione o sólido aos poucos.</p>
+<p><strong>Muito aos poucos.</strong></p>
+<p>Nunca despeje grande quantidade de uma única vez.</p>
+<p>A balança responde lentamente.</p>
+<p>Se adicionar rapidamente, provavelmente ultrapassará a massa desejada.</p>
+<hr>
+</section>
+<section id="técnica-para-não-ultrapassar-o-peso" class="level3">
+<h3 class="anchored" data-anchor-id="técnica-para-não-ultrapassar-o-peso">Técnica para não ultrapassar o peso</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Massa restante</th>
+<th>Procedimento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>~0,100 g</td>
+<td>Reduza bastante a quantidade adicionada.</td>
+</tr>
+<tr class="even">
+<td>~0,020 g</td>
+<td>Adicione apenas pequenos cristais.</td>
+</tr>
+<tr class="odd">
+<td>~0,005 g</td>
+<td>Encoste delicadamente a ponta da espátula.</td>
+</tr>
+<tr class="even">
+<td>&lt; 0,001 g</td>
+<td>Utilize apenas um cristal por vez.</td>
+</tr>
+</tbody>
+</table>
+<p>O segredo é <strong>aproximar-se lentamente</strong>.</p>
+<p>Nunca tentar acertar “de uma vez”.</p>
+<hr>
+</section>
+<section id="caso-ultrapasse-o-peso" class="level3">
+<h3 class="anchored" data-anchor-id="caso-ultrapasse-o-peso">Caso ultrapasse o peso</h3>
+<p><strong>Nunca devolva o excesso ao frasco original.</strong></p>
+<p>Esse material pode estar contaminado.</p>
+<p>Existem duas opções:</p>
+<ul>
+<li><p>descartar o excesso corretamente (em recipiente apropriado para resíduos);</p></li>
+<li><p>reiniciar a pesagem.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="parte-vi-cálculo-da-massa-de-sólido-a-ser-pesada" class="level2">
+<h2 class="anchored" data-anchor-id="parte-vi-cálculo-da-massa-de-sólido-a-ser-pesada">Parte VI: Cálculo da Massa de Sólido a Ser Pesada</h2>
+<p>Para preparar uma solução a partir de um sólido, utiliza-se a fórmula:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mi>C</mi><mo>×</mo><mi>V</mi><mo>×</mo><mi>M</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">m = C \times V \times MM</annotation></semantics></math></p>
+<p>Onde:</p>
+<ul>
+<li><p><strong>m</strong> = massa do soluto (em gramas)</p></li>
+<li><p><strong>C</strong> = concentração desejada (em mol L⁻¹)</p></li>
+<li><p><strong>V</strong> = volume final da solução (em litros)</p></li>
+<li><p><strong>MM</strong> = massa molar do soluto (em g mol⁻¹)</p></li>
+</ul>
+<section id="exemplo-prático-koh" class="level3">
+<h3 class="anchored" data-anchor-id="exemplo-prático-koh">Exemplo prático: KOH</h3>
+<p><strong>Dados:</strong></p>
+<ul>
+<li><p>Concentração desejada: 0,1000 mol L⁻¹</p></li>
+<li><p>Volume final: 100 mL = 0,100 L</p></li>
+<li><p>Massa molar do KOH = 56,11 g mol⁻¹</p></li>
+</ul>
+<p><strong>Cálculo:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>1000</mn><mo>×</mo><mn>0</mn><mo>,</mo><mn>100</mn><mo>×</mo><mn>56</mn><mo>,</mo><mn>11</mn><mo>=</mo><mn>0</mn><mo>,</mo><mn>5611</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow></mrow><annotation encoding="application/x-tex">m = 0,1000 \times 0,100 \times 56,11 = 0,5611 \text{ g}</annotation></semantics></math></p>
+<p><strong>Portanto, devem ser pesados exatamente 0,5611 g de KOH.</strong></p>
+</section>
+<section id="cuidados-específicos-com-o-koh" class="level3">
+<h3 class="anchored" data-anchor-id="cuidados-específicos-com-o-koh">Cuidados específicos com o KOH</h3>
+<p>O KOH (hidróxido de potássio) é uma base forte e <strong>extremamente higroscópica</strong> (absorve umidade do ar). Por isso:</p>
+<ul>
+<li><p>trabalhe rapidamente;</p></li>
+<li><p>mantenha o frasco fechado;</p></li>
+<li><p>pese em ambiente com baixa umidade, se possível;</p></li>
+<li><p>utilize luvas e óculos — o KOH é corrosivo;</p></li>
+<li><p>a dissolução do KOH é <strong>altamente exotérmica</strong> — a solução aquece consideravelmente. <strong>Nunca complete o volume imediatamente</strong>; aguarde o resfriamento até a temperatura ambiente.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="parte-vii-preparo-a-partir-de-solução-concentrada" class="level2">
+<h2 class="anchored" data-anchor-id="parte-vii-preparo-a-partir-de-solução-concentrada">Parte VII: Preparo a Partir de Solução Concentrada</h2>
+<p>Muitos reagentes estão disponíveis comercialmente como soluções concentradas. O caso mais comum é o <strong>ácido clorídrico (HCl)</strong>, vendido como solução ~37% <span style="white-space: nowrap;">m/m</span> (massa por massa) com densidade aproximada de 1,18 g mL⁻¹.</p>
+<section id="cálculo-para-solução-concentrada" class="level3">
+<h3 class="anchored" data-anchor-id="cálculo-para-solução-concentrada">Cálculo para Solução Concentrada</h3>
+<p>Para preparar uma solução diluída a partir de uma solução concentrada, utiliza-se a relação:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>×</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><msub><mi>C</mi><mn>2</mn></msub><mo>×</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">C_1 \times V_1 = C_2 \times V_2</annotation></semantics></math></p>
+<p>Onde:</p>
+<ul>
+<li><p><strong>C₁</strong> = concentração da solução concentrada (em mol L⁻¹)</p></li>
+<li><p><strong>V₁</strong> = volume da solução concentrada a ser pipetado (em L ou mL)</p></li>
+<li><p><strong>C₂</strong> = concentração da solução desejada (em mol L⁻¹)</p></li>
+<li><p><strong>V₂</strong> = volume final desejado (em L ou mL)</p></li>
+</ul>
+</section>
+<section id="cálculo-da-concentração-da-solução-concentrada-de-hcl" class="level3">
+<h3 class="anchored" data-anchor-id="cálculo-da-concentração-da-solução-concentrada-de-hcl">Cálculo da Concentração da Solução Concentrada de HCl</h3>
+<p><strong>Dados do HCl 37% m/m:</strong> - Percentual m/m = 37% → 0,37 g de HCl por grama de solução - Densidade (ρ) ≈ 1,18 g mL⁻¹</p>
+<ul>
+<li>Massa molar do HCl = 36,46 g mol⁻¹</li>
+</ul>
+<p><strong>Passo 1: Calcular a massa de HCl em 1 L de solução</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow></msub><mo>=</mo><mn>1000</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow><mo>×</mo><mn>1</mn><mo>,</mo><mn>18</mn><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g mL</mtext></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>×</mo><mn>0</mn><mo>,</mo><mn>37</mn><mo>=</mo><mn>436</mn><mo>,</mo><mn>6</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow></mrow><annotation encoding="application/x-tex">m_{HCl} = 1000 \text{ mL} \times 1,18 \text{ g mL}^{-1} \times 0,37 = 436,6 \text{ g}</annotation></semantics></math></p>
+<p><strong>Passo 2: Calcular a concentração molar</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mn>436</mn><mo>,</mo><mn>6</mn></mrow><mrow><mn>36</mn><mo>,</mo><mn>46</mn></mrow></mfrac><mo>≈</mo><mn>11</mn><mo>,</mo><mn>97</mn><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mol L</mtext></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">C_1 = \frac{436,6}{36,46} \approx 11,97 \text{ mol L}^{-1}</annotation></semantics></math></p>
+<p><strong>Portanto, a solução concentrada de HCl ~37% tem aproximadamente 12 mol L⁻¹.</strong></p>
+</section>
+<section id="exemplo-prático-preparar-100-ml-de-hcl-01000-mol-l¹" class="level3">
+<h3 class="anchored" data-anchor-id="exemplo-prático-preparar-100-ml-de-hcl-01000-mol-l¹">Exemplo prático: Preparar 100 mL de HCl 0,1000 mol L⁻¹</h3>
+<p><strong>Dados:</strong> - C₁ = 12 mol L⁻¹ (solução concentrada) - C₂ = 0,1000 mol L⁻¹ (solução desejada) - V₂ = 100 mL = 0,100 L</p>
+<p><strong>Cálculo:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><msub><mi>C</mi><mn>2</mn></msub><mo>×</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><msub><mi>C</mi><mn>1</mn></msub></mfrac><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>1000</mn><mo>×</mo><mn>100</mn></mrow><mn>12</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>833</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow><annotation encoding="application/x-tex">V_1 = \frac{C_2 \times V_2}{C_1} = \frac{0,1000 \times 100}{12} = 0,833 \text{ mL}</annotation></semantics></math></p>
+<p><strong>Portanto, devem ser pipetados exatamente 0,833 mL da solução concentrada de HCl.</strong></p>
+</section>
+<section id="cuidados-específicos-com-o-hcl-concentrado" class="level3">
+<h3 class="anchored" data-anchor-id="cuidados-específicos-com-o-hcl-concentrado">Cuidados específicos com o HCl concentrado</h3>
+<p>O HCl concentrado é <strong>corrosivo, volátil e libera vapores tóxicos e irritantes</strong> (ácido clorídrico gasoso).</p>
+<ul>
+<li><p><strong>Trabalhe obrigatoriamente em capela de exaustão.</strong></p></li>
+<li><p>Utilize luvas, óculos e máscara facial.</p></li>
+<li><p>A diluição do HCl concentrado é <strong>exotérmica</strong> — adicione o ácido <strong>sobre a água</strong> (nunca o contrário) para evitar projeções violentas.</p></li>
+<li><p>Adicione lentamente, com agitação constante.</p></li>
+<li><p>Aguarde o resfriamento antes de completar o volume.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="parte-viii-transferência-do-soluto-para-o-béquer" class="level2">
+<h2 class="anchored" data-anchor-id="parte-viii-transferência-do-soluto-para-o-béquer">Parte VIII: Transferência do Soluto para o Béquer</h2>
+<p>Após a pesagem do sólido ou a pipetagem do volume calculado:</p>
+<section id="para-sólidos-exemplo-koh" class="level3">
+<h3 class="anchored" data-anchor-id="para-sólidos-exemplo-koh">Para Sólidos (exemplo: KOH)</h3>
+<p>Leve cuidadosamente o recipiente com o sólido ao béquer.</p>
+<p>Transfira todo o sólido.</p>
+<p>Caso partículas permaneçam aderidas ao vidro-relógio:</p>
+<p>lave o recipiente com pequenas porções de água deionizada usando a pisseta.</p>
+<p>Essas lavagens também devem ser transferidas ao béquer.</p>
+<p>O objetivo é garantir <strong>transferência quantitativa</strong>.</p>
+<p>Nenhuma quantidade apreciável de material deve permanecer no recipiente de pesagem.</p>
+</section>
+<section id="para-soluções-concentradas-exemplo-hcl" class="level3">
+<h3 class="anchored" data-anchor-id="para-soluções-concentradas-exemplo-hcl">Para Soluções Concentradas (exemplo: HCl)</h3>
+<p><strong>Ordem de adição é fundamental:</strong></p>
+<ol type="1">
+<li><p>Adicione <strong>primeiro</strong> aproximadamente 40-50 mL de água deionizada no béquer.</p></li>
+<li><p>Com o béquer em repouso sobre a bancada (ou com agitação magnética), adicione <strong>lentamente</strong> o volume pipetado de HCl concentrado.</p></li>
+<li><p>Agite suavemente com o bastão de vidro durante a adição.</p></li>
+<li><p><strong>Nunca adicione água sobre o ácido concentrado</strong> — isso pode causar projeção violenta da solução.</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="parte-ix-dissolução-do-soluto" class="level2">
+<h2 class="anchored" data-anchor-id="parte-ix-dissolução-do-soluto">Parte IX: Dissolução do Soluto</h2>
+<section id="para-sólidos-koh" class="level3">
+<h3 class="anchored" data-anchor-id="para-sólidos-koh">Para Sólidos (KOH)</h3>
+<p>Adicione aproximadamente <strong>40–60 mL de água deionizada</strong> ao béquer contendo o sólido.</p>
+<p><strong>Nunca adicione diretamente 100 mL.</strong></p>
+<p>Misture utilizando:</p>
+<ul>
+<li><p>bastão de vidro;</p></li>
+<li><p>ou agitador magnético.</p></li>
+</ul>
+<p>Continue misturando até desaparecerem completamente os cristais.</p>
+<p><strong>Atenção:</strong> A dissolução do KOH é <strong>fortemente exotérmica</strong>. O béquer ficará quente. Aguarde a solução esfriar até a temperatura ambiente antes de transferir para o balão volumétrico.</p>
+</section>
+<section id="para-soluções-hcl" class="level3">
+<h3 class="anchored" data-anchor-id="para-soluções-hcl">Para Soluções (HCl)</h3>
+<p>A solução já está dissolvida. Após a adição cuidadosa do ácido sobre a água, agite com o bastão de vidro para homogeneizar.</p>
+<p>Aguarde o resfriamento até a temperatura ambiente.</p>
+<hr>
+</section>
+</section>
+<section id="parte-x-por-que-dissolver-primeiro-no-béquer" class="level2">
+<h2 class="anchored" data-anchor-id="parte-x-por-que-dissolver-primeiro-no-béquer">Parte X: Por que dissolver primeiro no béquer?</h2>
+<p>Quando um sólido dissolve ou quando um ácido concentrado é diluído, ocorre uma <strong>entalpia de dissolução/diluição</strong>.</p>
+<p>Essa dissolução pode ser:</p>
+<ul>
+<li><p><strong>exotérmica</strong> (libera calor — caso do KOH e do HCl);</p></li>
+<li><p><strong>endotérmica</strong> (absorve calor).</p></li>
+</ul>
+<p>Consequentemente:</p>
+<p>a temperatura da solução muda.</p>
+<p>Quando a temperatura muda, o volume também muda.</p>
+<p>Se o balão fosse completado imediatamente até a marca, após o retorno à temperatura ambiente o volume deixaria de ser exatamente 100 mL.</p>
+<p><strong>Por isso:</strong></p>
+<p>a solução deve estar totalmente dissolvida e <strong>próxima da temperatura ambiente</strong> antes da aferição do volume.</p>
+<hr>
+</section>
+<section id="parte-xi-transferência-para-o-balão-volumétrico" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xi-transferência-para-o-balão-volumétrico">Parte XI: Transferência para o Balão Volumétrico</h2>
+<p>Coloque um funil limpo sobre o balão volumétrico.</p>
+<p>Transfira toda a solução.</p>
+<p>Faça <strong>lentamente</strong>.</p>
+<p>Evite respingos.</p>
+<hr>
+</section>
+<section id="parte-xii-lavagem-quantitativa-do-béquer" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xii-lavagem-quantitativa-do-béquer">Parte XII: Lavagem Quantitativa do Béquer</h2>
+<p>Essa etapa é <strong>extremamente importante</strong>.</p>
+<p>Sempre permanecem pequenas quantidades de soluto aderidas:</p>
+<ul>
+<li><p>às paredes do béquer;</p></li>
+<li><p>ao bastão de vidro;</p></li>
+<li><p>ao fundo do béquer.</p></li>
+</ul>
+<p>Se essas quantidades forem perdidas, a concentração preparada será menor que a desejada.</p>
+<section id="procedimento" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento">Procedimento:</h3>
+<ol type="1">
+<li><p>Adicione pequena quantidade de água deionizada ao béquer.</p></li>
+<li><p>Misture com o bastão de vidro.</p></li>
+<li><p>Despeje essa lavagem no balão através do funil.</p></li>
+<li><p>Repita esse procedimento <strong>3 a 5 vezes</strong>.</p></li>
+<li><p>Lave também o bastão de vidro sobre o funil.</p></li>
+<li><p>Lave o funil com a pisseta, recolhendo no balão.</p></li>
+</ol>
+<p>Todo líquido de lavagem deve ser recolhido no balão.</p>
+<p>Esse processo recebe o nome de <strong>transferência quantitativa</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="parte-xiii-completar-o-volume" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xiii-completar-o-volume">Parte XIII: Completar o Volume</h2>
+<p>Agora o balão contém:</p>
+<ul>
+<li><p>todo o soluto;</p></li>
+<li><p>toda a água de lavagem.</p></li>
+</ul>
+<p>Ainda falta completar o volume.</p>
+<p>Adicione água utilizando a pisseta até aproximadamente:</p>
+<p><strong>1 cm abaixo da marca de aferição.</strong></p>
+<p>Neste momento:</p>
+<p><strong>não utilize mais a pisseta.</strong></p>
+<hr>
+</section>
+<section id="parte-xiv-ajuste-do-menisco" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xiv-ajuste-do-menisco">Parte XIV: Ajuste do Menisco</h2>
+<p>Utilize uma <strong>pipeta Pasteur</strong> ou <strong>conta-gotas</strong>.</p>
+<p>Adicione água <strong>gota a gota</strong>.</p>
+<p><strong>Posicionamento correto:</strong></p>
+<p>Segure o balão na posição vertical.</p>
+<p>Os olhos devem ficar <strong>exatamente na altura da marca</strong>.</p>
+<p><strong>Nunca observe:</strong></p>
+<ul>
+<li><p>de cima;</p></li>
+<li><p>de baixo.</p></li>
+</ul>
+<p>Isso produz <strong>erro de paralaxe</strong>.</p>
+<p>A parte <strong>inferior do menisco</strong> deve coincidir exatamente com o traço de aferição.</p>
+<p>Não deve ficar:</p>
+<ul>
+<li><p>acima;</p></li>
+<li><p>nem abaixo.</p></li>
+</ul>
+<p><strong>Exatamente sobre a marca.</strong></p>
+<hr>
+</section>
+<section id="parte-xv-conferência-do-menisco" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xv-conferência-do-menisco">Parte XV: Conferência do Menisco</h2>
+<p>Após ajustar, espere alguns segundos.</p>
+<p>Verifique novamente.</p>
+<p>Às vezes, uma gota escorre lentamente pela parede interna do balão.</p>
+<p>Isso altera o nível.</p>
+<p><strong>Somente após a estabilização</strong> considere o volume correto.</p>
+<hr>
+</section>
+<section id="parte-xvi-homogeneização" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xvi-homogeneização">Parte XVI: Homogeneização</h2>
+<p>Coloque cuidadosamente a rolha.</p>
+<p>Segure:</p>
+<ul>
+<li><p>a rolha com uma mão;</p></li>
+<li><p>o gargalo com a outra.</p></li>
+</ul>
+<p>Inverta completamente o balão.</p>
+<p>Retorne à posição inicial.</p>
+<p>Repita entre:</p>
+<p><strong>15 e 20 inversões completas.</strong></p>
+<p>Não basta agitar superficialmente.</p>
+<p>As inversões promovem mistura uniforme.</p>
+<p>Após a homogeneização, a concentração será igual em qualquer ponto da solução.</p>
+<hr>
+</section>
+<section id="parte-xvii-transferência-para-o-frasco-de-estoque" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xvii-transferência-para-o-frasco-de-estoque">Parte XVII: Transferência para o Frasco de Estoque</h2>
+<p>Caso a solução seja armazenada:</p>
+<ul>
+<li><p>Utilize um frasco limpo e seco.</p></li>
+<li><p>Transfira cuidadosamente.</p></li>
+<li><p>Se necessário, utilize funil limpo.</p></li>
+<li><p>Feche imediatamente.</p></li>
+<li><p>Evite evaporação e contaminação.</p></li>
+</ul>
+<hr>
+</section>
+<section id="parte-xviii-identificação-da-solução" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xviii-identificação-da-solução">Parte XVIII: Identificação da Solução</h2>
+<p><strong>Nunca armazene uma solução sem identificação.</strong></p>
+<p>A etiqueta deve conter:</p>
+<ul>
+<li><p>nome do soluto (fórmula química e nome completo);</p></li>
+<li><p>concentração (em mol L⁻¹ ou outra unidade);</p></li>
+<li><p>solvente utilizado;</p></li>
+<li><p>data de preparo;</p></li>
+<li><p>nome ou iniciais do responsável;</p></li>
+<li><p>validade, quando aplicável.</p></li>
+</ul>
+<section id="exemplo-1-solução-de-koh" class="level3">
+<h3 class="anchored" data-anchor-id="exemplo-1-solução-de-koh">Exemplo 1: Solução de KOH</h3>
+<pre><code>Hidróxido de Potássio (KOH)
+0,1000 mol L⁻¹
+Solvente: Água deionizada
+Preparado em: 15/07/2026
+Responsável: A.B.
+Validade: 30/07/2026</code></pre>
+</section>
+<section id="exemplo-2-solução-de-hcl" class="level3">
+<h3 class="anchored" data-anchor-id="exemplo-2-solução-de-hcl">Exemplo 2: Solução de HCl</h3>
+<pre><code>Ácido Clorídrico (HCl)
+0,1000 mol L⁻¹
+Solvente: Água deionizada
+Preparado em: 15/07/2026
+Responsável: A.B.
+Validade: 30/07/2026</code></pre>
+<hr>
+</section>
+</section>
+<section id="parte-xix-limpeza-final" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xix-limpeza-final">Parte XIX: Limpeza Final</h2>
+<p>Após concluir:</p>
+<ul>
+<li><p>descarte resíduos conforme as normas do laboratório;</p></li>
+<li><p>lave imediatamente as vidrarias;</p></li>
+<li><p>enxágue com água corrente quando apropriado;</p></li>
+<li><p>faça o enxágue final com água deionizada, quando exigido;</p></li>
+<li><p>deixe secar adequadamente ou guarde conforme o procedimento do laboratório;</p></li>
+<li><p>limpe a bancada.</p></li>
+</ul>
+<hr>
+</section>
+<section id="parte-xx-erros-mais-comuns" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xx-erros-mais-comuns">Parte XX: Erros Mais Comuns</h2>
+<section id="para-preparo-a-partir-de-sólidos" class="level3">
+<h3 class="anchored" data-anchor-id="para-preparo-a-partir-de-sólidos">Para Preparo a Partir de Sólidos</h3>
+<ul>
+<li><p>ultrapassar a massa durante a pesagem;</p></li>
+<li><p>pesar diretamente sobre o prato da balança;</p></li>
+<li><p>utilizar espátula úmida;</p></li>
+<li><p>não dissolver completamente o sólido;</p></li>
+<li><p>completar o volume antes da solução retornar à temperatura ambiente;</p></li>
+<li><p>não realizar a lavagem quantitativa do béquer;</p></li>
+<li><p>ajustar o menisco olhando de cima ou de baixo;</p></li>
+<li><p>ultrapassar a marca do balão;</p></li>
+<li><p>homogeneizar insuficientemente;</p></li>
+<li><p>esquecer de identificar a solução.</p></li>
+</ul>
+</section>
+<section id="para-preparo-a-partir-de-soluções-concentradas-hcl" class="level3">
+<h3 class="anchored" data-anchor-id="para-preparo-a-partir-de-soluções-concentradas-hcl">Para Preparo a Partir de Soluções Concentradas (HCl)</h3>
+<ul>
+<li><p>não trabalhar em capela de exaustão;</p></li>
+<li><p>não utilizar EPIs adequados;</p></li>
+<li><p>adicionar água sobre o ácido concentrado (em vez de adicionar ácido sobre a água);</p></li>
+<li><p>adicionar o ácido muito rapidamente;</p></li>
+<li><p>não aguardar o resfriamento antes da aferição;</p></li>
+<li><p>pipetar volume incorreto (erro de leitura da pipeta);</p></li>
+<li><p>utilizar pipeta inadequada para o volume necessário.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="parte-xxi-resumo-do-procedimento" class="level2">
+<h2 class="anchored" data-anchor-id="parte-xxi-resumo-do-procedimento">Parte XXI: Resumo do Procedimento</h2>
+<section id="para-sólidos-exemplo-koh-1" class="level3">
+<h3 class="anchored" data-anchor-id="para-sólidos-exemplo-koh-1">Para Sólidos (exemplo: KOH)</h3>
+<ol type="1">
+<li><p>Organizar materiais e vestir os EPIs.</p></li>
+<li><p>Verificar a limpeza das vidrarias.</p></li>
+<li><p>Preparar e zerar a balança analítica.</p></li>
+<li><p>Pesar cuidadosamente a massa calculada de KOH.</p></li>
+<li><p>Transferir quantitativamente o sólido para um béquer.</p></li>
+<li><p>Adicionar parte do solvente e dissolver completamente (aguardar resfriamento).</p></li>
+<li><p>Transferir quantitativamente para o balão volumétrico.</p></li>
+<li><p>Lavar béquer, bastão e funil, recolhendo todas as lavagens no balão.</p></li>
+<li><p>Completar o volume até próximo da marca.</p></li>
+<li><p>Ajustar cuidadosamente o menisco gota a gota.</p></li>
+<li><p>Tampar e homogeneizar por 15–20 inversões.</p></li>
+<li><p>Transferir para o frasco de armazenamento, quando necessário.</p></li>
+<li><p>Identificar corretamente a solução.</p></li>
+<li><p>Limpar os materiais e a bancada.</p></li>
+</ol>
+</section>
+<section id="para-soluções-concentradas-exemplo-hcl-37" class="level3">
+<h3 class="anchored" data-anchor-id="para-soluções-concentradas-exemplo-hcl-37">Para Soluções Concentradas (exemplo: HCl 37%)</h3>
+<ol type="1">
+<li><p>Organizar materiais e vestir os EPIs (obrigatório trabalhar em capela).</p></li>
+<li><p>Verificar a limpeza das vidrarias.</p></li>
+<li><p>Calcular o volume da solução concentrada necessário.</p></li>
+<li><p>Adicionar aproximadamente 40-50 mL de água deionizada no béquer.</p></li>
+<li><p>Pipetar o volume calculado de HCl concentrado.</p></li>
+<li><p>Adicionar lentamente o ácido sobre a água, com agitação (nunca o inverso).</p></li>
+<li><p>Aguardar o resfriamento até a temperatura ambiente.</p></li>
+<li><p>Transferir quantitativamente para o balão volumétrico.</p></li>
+<li><p>Lavar béquer, bastão e funil, recolhendo todas as lavagens no balão.</p></li>
+<li><p>Completar o volume até próximo da marca.</p></li>
+<li><p>Ajustar cuidadosamente o menisco gota a gota.</p></li>
+<li><p>Tampar e homogeneizar por 15–20 inversões.</p></li>
+<li><p>Transferir para o frasco de armazenamento, quando necessário.</p></li>
+<li><p>Identificar corretamente a solução.</p></li>
+<li><p>Limpar os materiais e a bancada.</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="considerações-finais" class="level2">
+<h2 class="anchored" data-anchor-id="considerações-finais">Considerações Finais</h2>
+<p>O preparo de soluções em Química Analítica baseia-se em um princípio essencial: <strong>toda etapa que possa introduzir erro deve ser controlada</strong>.</p>
+<p>A pesagem precisa (ou pipetagem correta), a transferência quantitativa do soluto, a dissolução completa, o ajuste correto do menisco, a homogeneização adequada e a identificação da solução são operações igualmente importantes.</p>
+<p>Negligenciar qualquer uma delas pode comprometer a exatidão da concentração obtida e, consequentemente, a confiabilidade das análises realizadas.</p>
+<p>A prática cuidadosa e sistemática desses procedimentos é um dos pilares do trabalho em laboratórios analíticos.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./00_Normas_Laboratorio.html" class="pagination-link" aria-label="&amp;rightarrow; Normas de Laboratório">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">→ Normas de Laboratório</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./01_Preparo_KOH.html" class="pagination-link" aria-label="Prática 1: Preparo de Solução de KOH">
+        <span class="nav-page-text"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

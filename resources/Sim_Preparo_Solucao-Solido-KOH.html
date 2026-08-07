@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador Realista - Preparo de Solução</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #0284c7;
+      --bg: #f1f5f9;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: #0f172a;
+      margin: 0;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    #canvas-container {
+      width: 100%;
+      background-color: #0b0f19;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    canvas {
+      display: block;
+      background: #0b0f19;
+      width: 100%;
+      height: auto;
+    }
+
+    .ui-panel {
+      padding: 20px;
+      background: white;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .step-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .step-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #334155;
+      min-height: 65px;
+    }
+
+    .step-desc strong {
+      color: #0f172a;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    button:active { transform: scale(0.97); }
+
+    .btn-next {
+      background-color: #16a34a;
+      color: white;
+    }
+    .btn-next:hover { background-color: #15803d; }
+    .btn-next:disabled { background-color: #94a3b8; cursor: not-allowed; }
+
+    .btn-reset {
+      background-color: #64748b;
+      color: white;
+    }
+    .btn-reset:hover { background-color: #475569; }
+
+    .progress-indicator {
+      display: flex;
+      gap: 6px;
+      margin-top: 12px;
+      justify-content: center;
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      transition: background 0.3s;
+    }
+
+    .progress-dot.active {
+      background: var(--accent);
+    }
+
+    .progress-dot.completed {
+      background: #16a34a;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🧪 Laboratório Analítico: Preparo de Solução</h1>
+  </div>
+
+  <div id="canvas-container">
+    <canvas id="labCanvas" width="900" height="480"></canvas>
+  </div>
+
+  <div class="ui-panel">
+    <span class="step-badge" id="step-badge">Início</span>
+    <div class="step-desc" id="step-desc">
+      Bem-vindo ao simulador! Clique em <strong>"Avançar Etapa"</strong> para iniciar o procedimento de preparo de solução em balão volumétrico de 100 mL.
+    </div>
+    
+    <div class="controls">
+      <button class="btn-reset" onclick="resetGame()">🔄 Reiniciar</button>
+      <button class="btn-next" id="btn-next" onclick="advanceStep()">▶ Avançar Etapa</button>
+    </div>
+
+    <div class="progress-indicator" id="progress-indicator">
+      <span class="progress-dot active"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('labCanvas');
+const ctx = canvas.getContext('2d');
+
+const stepData = [
+  { badge: "Início", desc: "A precisão no preparo requer vidrarias calibradas e controle estrito de pesagem. Clique em <strong>'Avançar Etapa'</strong> para começar." },
+  { badge: "1. Taragem", desc: "O vidro de relógio é posicionado sobre a balança analítica e aciona-se a <strong>Tara</strong> para descontar a sua massa." },
+  { badge: "2. Pesagem do Soluto", desc: "Adiciona-se o reagente sólido com a espátula metálica até atingir a massa analítica desejada (~0,62 g)." },
+  { badge: "3. Transferência", desc: "O sólido é cuidadosamente transferido para o béquer. A pisseta lava o vidro de relógio para evitar perdas quantitativas." },
+  { badge: "4. Dissolução", desc: "Adiciona-se água destilada e agita-se com o bastão de vidro até a dissolução completa do reagente." },
+  { badge: "5. Transferência para o Balão", desc: "A solução solubilizada é vertida no balão volumétrico com auxílio de um funil analítico de haste longa." },
+  { badge: "6. Lavagem Quantitativa", desc: "Béquer, bastão e funil são lavados repetidamente com água destilada da pisseta para dentro do balão." },
+  { badge: "7. Ajuste do Menisco", desc: "Ajusta-se o volume do balão. A finalização é feita gota a gota com pipeta Pasteur até a curva inferior do menisco tangenciar o traço de aferição." },
+  { badge: "8. Homogeneização", desc: "Insere-se a rolha esmerilhada e inverte-se o balão repetidamente para garantir a homogeneidade da concentração." }
+];
+
+let step = 0;
+let animTimer = null;
+let isAnimating = false;
+
+// Estado do simulador com posições bem separadas na bancada
+let state = {
+  balanceDisplay: "0.0000 g",
+  crystalsCount: 0,
+  watchGlassX: 200,
+  watchGlassY: 285,
+  watchGlassRot: 0,
+  washX: 830,
+  washY: 260,
+  beakerHasSolid: false,
+  beakerLiquidLevel: 0,
+  beakerLiquidColor: 'rgba(56, 189, 248, 0.4)',
+  beakerX: 430,
+  beakerY: 280,
+  beakerRot: 0,
+  rodVisible: false,
+  rodAngle: 0,
+  funnelVisible: false,
+  flaskLiquidPercent: 0,
+  pipetteVisible: false,
+  pipetteY: -20,
+  flaskRotation: 0,
+  flaskY: 250,
+  stopperVisible: false,
+  spatulaVisible: false,
+  spatulaX: 0,
+  spatulaY: 0,
+  spatulaRot: 0
+};
+
+// Estrutura fixa de partículas para os cristais
+const crystalParticles = Array.from({length: 25}, (_, i) => ({
+  dx: (Math.sin(i * 99) * 16),
+  dy: Math.abs(Math.cos(i * 33)) * 5,
+  size: 1.5 + (i % 3) * 0.7,
+  rot: (i * 47) % 360,
+  color: ['#ffffff', '#f8fafc', '#e2e8f0', '#cbd5e1'][i % 4]
+}));
+
+function drawBackground() {
+  ctx.fillStyle = '#0b0f19';
+  ctx.fillRect(0, 0, 900, 480);
+
+  // Azulejos do laboratório
+  ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+  ctx.lineWidth = 1;
+  for(let x = 0; x <= 900; x += 45) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, 380);
+    ctx.stroke();
+  }
+  for(let y = 0; y <= 380; y += 45) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(900, y);
+    ctx.stroke();
+  }
+
+  // Bancada de granito
+  const grad = ctx.createLinearGradient(0, 380, 0, 480);
+  grad.addColorStop(0, '#334155');
+  grad.addColorStop(0.15, '#1e293b');
+  grad.addColorStop(1, '#0f172a');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 380, 900, 100);
+  
+  // Borda da bancada
+  ctx.fillStyle = '#64748b';
+  ctx.fillRect(0, 378, 900, 3);
+  ctx.fillStyle = 'rgba(255,255,255,0.08)';
+  ctx.fillRect(0, 381, 900, 2);
+}
+
+// ==================== BALANÇA ANALÍTICA ====================
+function drawBalance() {
+  ctx.save();
+  ctx.translate(200, 270);
+
+  // Base
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(-70, 68, 14, 6);
+  ctx.fillRect(56, 68, 14, 6);
+
+  // Corpo
+  const baseGrad = ctx.createLinearGradient(-80, 0, 80, 0);
+  baseGrad.addColorStop(0, '#1e293b');
+  baseGrad.addColorStop(0.5, '#334155');
+  baseGrad.addColorStop(1, '#1e293b');
+  ctx.fillStyle = baseGrad;
+  ctx.beginPath();
+  ctx.roundRect(-80, 25, 160, 45, 6);
+  ctx.fill();
+
+  // Prato metálico
+  ctx.fillStyle = '#94a3b8';
+  ctx.beginPath();
+  ctx.ellipse(0, 22, 52, 9, 0, 0, Math.PI * 2);
+  ctx.fill();
+  
+  ctx.strokeStyle = '#f8fafc';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.ellipse(0, 22, 50, 8, 0, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Visor Digital LCD
+  ctx.fillStyle = '#022c22';
+  ctx.strokeStyle = '#059669';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(-48, 38, 96, 22, 4);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#34d399';
+  ctx.font = '700 13px "Courier New", monospace';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(state.balanceDisplay, 38, 49);
+
+  // Capela de vidro protetora
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(-72, -55, 144, 80, 4);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(-72, -55, 144, 80);
+
+  ctx.restore();
+}
+
+// ==================== VIDRO DE RELÓGIO ====================
+function drawWatchGlass() {
+  ctx.save();
+  ctx.translate(state.watchGlassX, state.watchGlassY);
+  ctx.rotate(state.watchGlassRot * Math.PI / 180);
+
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+  ctx.beginPath();
+  ctx.ellipse(0, 6, 42, 6, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(186, 230, 253, 0.7)';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+  ctx.lineWidth = 2.5;
+
+  ctx.beginPath();
+  ctx.arc(0, -35, 45, Math.PI * 0.32, Math.PI * 0.68, false);
+  ctx.quadraticCurveTo(0, 2, -32, -8);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.arc(0, -33, 40, Math.PI * 0.38, Math.PI * 0.62, false);
+  ctx.stroke();
+
+  // Cristais do Soluto
+  if (state.crystalsCount > 0) {
+    const activeCrystals = Math.min(state.crystalsCount, crystalParticles.length);
+    for (let i = 0; i < activeCrystals; i++) {
+      const p = crystalParticles[i];
+      ctx.save();
+      ctx.translate(p.dx * 1.3, -2 + p.dy);
+      ctx.rotate(p.rot);
+      
+      ctx.fillStyle = p.color;
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 0.5;
+      
+      ctx.beginPath();
+      ctx.moveTo(-p.size, -p.size);
+      ctx.lineTo(p.size * 0.8, -p.size * 1.2);
+      ctx.lineTo(p.size * 1.3, p.size * 0.7);
+      ctx.lineTo(-p.size * 0.5, p.size * 1.1);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  ctx.restore();
+}
+
+// ==================== BÉQUER ====================
+function drawBeaker() {
+  ctx.save();
+  ctx.translate(state.beakerX, state.beakerY);
+  ctx.rotate(state.beakerRot * Math.PI / 180);
+
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+  ctx.beginPath();
+  ctx.ellipse(0, 56, 34, 6, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  if (state.beakerLiquidLevel > 0) {
+    const h = Math.min(state.beakerLiquidLevel, 65);
+    ctx.fillStyle = state.beakerLiquidColor;
+    ctx.beginPath();
+    ctx.fillRect(-28, 52 - h, 56, h);
+
+    ctx.fillStyle = 'rgba(224, 242, 254, 0.3)';
+    ctx.beginPath();
+    ctx.ellipse(0, 52 - h, 28, 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  if (state.beakerHasSolid) {
+    for (let i = 0; i < 20; i++) {
+      const p = crystalParticles[i];
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.ellipse(p.dx * 1.1, 48 - (i % 3) * 2, p.size, p.size * 0.6, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  ctx.strokeStyle = 'rgba(224, 242, 254, 0.8)';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+  ctx.lineWidth = 2.5;
+
+  ctx.beginPath();
+  ctx.moveTo(-36, -42);
+  ctx.lineTo(-30, -35);
+  ctx.lineTo(-30, 48);
+  ctx.quadraticCurveTo(-30, 54, -22, 54);
+  ctx.lineTo(22, 54);
+  ctx.quadraticCurveTo(30, 54, 30, 48);
+  ctx.lineTo(30, -35);
+  ctx.lineTo(32, -42);
+  ctx.stroke();
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+  ctx.font = '8px sans-serif';
+  ctx.lineWidth = 1;
+
+  const labels = ['100ml', '80', '60', '40', '20'];
+  for (let i = 0; i < 5; i++) {
+    const y = -15 + i * 13;
+    ctx.beginPath();
+    ctx.moveTo(18, y);
+    ctx.lineTo(28, y);
+    ctx.stroke();
+    if (i % 2 === 0) {
+      ctx.fillText(labels[i], 0, y + 3);
+    }
+  }
+
+  ctx.restore();
+}
+
+// ==================== BALÃO VOLUMÉTRICO ====================
+function drawFlask() {
+  ctx.save();
+  ctx.translate(650, state.flaskY);
+  ctx.rotate(state.flaskRotation * Math.PI / 180);
+
+  ctx.fillStyle = 'rgba(0,0,0,0.25)';
+  ctx.beginPath();
+  ctx.ellipse(0, 58, 28, 6, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  const p = state.flaskLiquidPercent;
+
+  if (p > 0) {
+    ctx.save();
+    
+    ctx.beginPath();
+    ctx.moveTo(-10, -85);
+    ctx.lineTo(10, -85);
+    ctx.lineTo(8, -25);
+    ctx.bezierCurveTo(8, -5, 38, 5, 38, 25);
+    ctx.bezierCurveTo(38, 50, 22, 55, 18, 55);
+    ctx.lineTo(-18, 55);
+    ctx.bezierCurveTo(-22, 55, -38, 50, -38, 25);
+    ctx.bezierCurveTo(-38, 5, -8, -5, -8, -25);
+    ctx.closePath();
+    ctx.clip();
+
+    let fillY = 55 - (p / 100) * 91;
+
+    ctx.fillStyle = 'rgba(56, 189, 248, 0.55)';
+    ctx.fillRect(-45, fillY, 90, 110);
+
+    ctx.fillStyle = 'rgba(2, 132, 199, 0.8)';
+    ctx.strokeStyle = '#0284c7';
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    let liquidRadius = (fillY > -25) ? 35 : 8;
+    ctx.ellipse(0, fillY, liquidRadius, (fillY > -25) ? 8 : 3, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  ctx.strokeStyle = '#38bdf8';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+  ctx.lineWidth = 2.2;
+
+  ctx.beginPath();
+  ctx.moveTo(-10, -85);
+  ctx.lineTo(10, -85);
+  ctx.lineTo(8, -75);
+  ctx.lineTo(8, -25);
+
+  ctx.bezierCurveTo(8, -5, 38, 5, 38, 25);
+  ctx.bezierCurveTo(38, 50, 22, 55, 18, 55);
+  ctx.lineTo(-18, 55);
+  ctx.bezierCurveTo(-22, 55, -38, 50, -38, 25);
+  ctx.bezierCurveTo(-38, 5, -8, -5, -8, -25);
+  ctx.lineTo(-8, -75);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.fill();
+
+  // Traço de Aferição
+  ctx.strokeStyle = '#ef4444';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(-9, -36);
+  ctx.lineTo(9, -36);
+  ctx.stroke();
+
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  ctx.font = '700 9px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('100 mL', 0, 5);
+  ctx.font = '6px sans-serif';
+  ctx.fillText('IN20°C', 0, 13);
+
+  // Rolha
+  if (state.stopperVisible) {
+    ctx.fillStyle = '#64748b';
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(-9, -98, 18, 15, 3);
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+// ==================== PISSETA ====================
+function drawWashBottle() {
+  ctx.save();
+  ctx.translate(state.washX, state.washY);
+
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+  ctx.strokeStyle = 'rgba(226, 232, 240, 0.8)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(-18, -35, 36, 70, 6);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = 'rgba(56, 189, 248, 0.25)';
+  ctx.beginPath();
+  ctx.roundRect(-16, -5, 32, 38, 4);
+  ctx.fill();
+
+  ctx.fillStyle = '#0284c7';
+  ctx.beginPath();
+  ctx.roundRect(-11, -43, 22, 9, 2);
+  ctx.fill();
+
+  ctx.strokeStyle = '#0284c7';
+  ctx.lineWidth = 3.5;
+  ctx.beginPath();
+  ctx.moveTo(0, -43);
+  ctx.lineTo(0, -62);
+  ctx.arc(-10, -62, 10, 0, Math.PI, true);
+  ctx.lineTo(-20, -40);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+// ==================== FERRAMENTAS E ACESSÓRIOS ====================
+function drawTools() {
+  // Bastão de Vidro
+  if (state.rodVisible) {
+    ctx.save();
+    const rodX = 430 + Math.sin(state.rodAngle) * 12;
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(rodX, 200);
+    ctx.lineTo(rodX - 18, 305);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Funil Analítico
+  if (state.funnelVisible) {
+    ctx.save();
+    ctx.translate(650, 130);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+    ctx.strokeStyle = 'rgba(226, 232, 240, 0.85)';
+    ctx.lineWidth = 2;
+    
+    ctx.beginPath();
+    ctx.moveTo(-28, -25);
+    ctx.lineTo(28, -25);
+    ctx.lineTo(5, 10);
+    ctx.lineTo(5, 55);
+    ctx.lineTo(-5, 55);
+    ctx.lineTo(-5, 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Pipeta Pasteur
+  if (state.pipetteVisible) {
+    ctx.save();
+    ctx.translate(650, state.pipetteY);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+    ctx.lineWidth = 1.5;
+    
+    ctx.beginPath();
+    ctx.moveTo(-4, -15);
+    ctx.lineTo(4, -15);
+    ctx.lineTo(2, 35);
+    ctx.lineTo(1, 80);
+    ctx.lineTo(-1, 80);
+    ctx.lineTo(-2, 35);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = '#d97706';
+    ctx.beginPath();
+    ctx.ellipse(0, -28, 8, 13, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Espátula Metálica
+  if (state.spatulaVisible) {
+    ctx.save();
+    ctx.translate(state.spatulaX, state.spatulaY);
+    ctx.rotate(state.spatulaRot * Math.PI / 180);
+
+    ctx.fillStyle = '#64748b';
+    ctx.fillRect(-60, -2, 70, 4);
+
+    ctx.fillStyle = '#cbd5e1';
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(10, -4);
+    ctx.lineTo(35, -2);
+    ctx.lineTo(40, 2);
+    ctx.lineTo(10, 4);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    if (state.crystalsCount < 20) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(25, -3, 8, 3);
+    }
+
+    ctx.restore();
+  }
+}
+
+function render() {
+  ctx.clearRect(0, 0, 900, 480);
+  drawBackground();
+  drawBalance();
+  drawWatchGlass();
+  drawBeaker();
+  drawFlask();
+  drawWashBottle();
+  drawTools();
+}
+
+// ==================== CONTROLE DE ETAPAS E SEM SOBREPOSIÇÕES ====================
+function advanceStep() {
+  if (isAnimating) return;
+  const btn = document.getElementById('btn-next');
+  btn.disabled = true;
+  
+  step++;
+  if (step >= stepData.length) {
+    step = stepData.length - 1;
+    btn.textContent = "✅ Concluído";
+    updateProgress();
+    return;
+  }
+
+  document.getElementById('step-badge').textContent = stepData[step].badge;
+  document.getElementById('step-desc').innerHTML = stepData[step].desc;
+  updateProgress();
+
+  runStepAnimation(step, () => {
+    if (step < stepData.length - 1) {
+      btn.disabled = false;
+    } else {
+      btn.textContent = "✅ Concluído";
+    }
+    isAnimating = false;
+  });
+}
+
+function runStepAnimation(s, onComplete) {
+  isAnimating = true;
+  let progress = 0;
+  if (animTimer) clearInterval(animTimer);
+
+  switch(s) {
+    case 1: // Taragem
+      state.balanceDisplay = "0.0000 g";
+      render();
+      setTimeout(onComplete, 500);
+      break;
+
+    case 2: // Pesagem do Soluto até ~0,62 g
+      state.spatulaVisible = true;
+      state.spatulaX = 200;
+      state.spatulaY = 180;
+      state.spatulaRot = 20;
+
+      animTimer = setInterval(() => {
+        progress++;
+        state.crystalsCount = progress;
+        // Incrementa até atingir exatamente ~0,62 g (0.6208 g)
+        state.balanceDisplay = (progress * 0.02483).toFixed(4) + " g";
+        
+        state.spatulaX = 200 + Math.sin(progress * 0.4) * 10;
+        state.spatulaY = 180 + Math.cos(progress * 0.4) * 5;
+
+        render();
+        if (progress >= 25) {
+          clearInterval(animTimer);
+          state.balanceDisplay = "0.6208 g"; // Massa final ~0,62 g
+          state.spatulaVisible = false;
+          render();
+          setTimeout(onComplete, 400);
+        }
+      }, 70);
+      break;
+
+    case 3: // Transferência para o Béquer Sem Colisão
+      // Movimento do vidro subindo antes de ir para o béquer
+      state.watchGlassX = 390;
+      state.watchGlassY = 210;
+      state.watchGlassRot = -35;
+      state.crystalsCount = 0;
+      state.beakerHasSolid = true;
+      render();
+
+      setTimeout(() => {
+        // Retorna o vidro de relógio para sua posição de origem
+        state.watchGlassX = 200;
+        state.watchGlassY = 285;
+        state.watchGlassRot = 0;
+        render();
+        setTimeout(onComplete, 500);
+      }, 1200);
+      break;
+
+    case 4: // Dissolução com Água e Bastão
+      state.washX = 490;
+      state.washY = 200;
+      state.beakerLiquidLevel = 40;
+      render();
+
+      setTimeout(() => {
+        state.washX = 830;
+        state.washY = 260;
+        state.rodVisible = true;
+        let count = 0;
+
+        animTimer = setInterval(() => {
+          count++;
+          state.rodAngle = count * 0.35;
+          render();
+
+          if (count > 14) {
+            clearInterval(animTimer);
+            state.rodVisible = false;
+            state.beakerHasSolid = false;
+            state.beakerLiquidColor = 'rgba(2, 132, 199, 0.55)';
+            render();
+            setTimeout(onComplete, 300);
+          }
+        }, 100);
+      }, 700);
+      break;
+
+    case 5: // Transferência Béquer -> Funil Sem Sobrepor Vidros
+      state.funnelVisible = true;
+      // Posiciona o béquer no topo e à esquerda do funil sem colar nele
+      state.beakerX = 600;
+      state.beakerY = 120;
+      state.beakerRot = -40;
+      state.beakerLiquidLevel = 0;
+      state.flaskLiquidPercent = 45;
+      render();
+
+      setTimeout(() => {
+        state.beakerX = 430;
+        state.beakerY = 280;
+        state.beakerRot = 0;
+        render();
+        setTimeout(onComplete, 400);
+      }, 1300);
+      break;
+
+    case 6: // Lavagem do Funil Sem Sobreposição
+      // Pisseta se posiciona logo acima do funil
+      state.washX = 675;
+      state.washY = 80;
+      state.flaskLiquidPercent = 80;
+      render();
+
+      setTimeout(() => {
+        state.washX = 830;
+        state.washY = 260;
+        state.funnelVisible = false;
+        render();
+        setTimeout(onComplete, 500);
+      }, 1200);
+      break;
+
+    case 7: // Enchimento Fino com Pipeta Pasteur sem tocar no balão
+      state.washX = 700;
+      state.washY = 130;
+      state.flaskLiquidPercent = 94;
+      render();
+
+      setTimeout(() => {
+        state.washX = 830;
+        state.washY = 260;
+        state.pipetteVisible = true;
+        let count = 0;
+
+        animTimer = setInterval(() => {
+          count++;
+          // A pipeta desce perfeitamente pelo gargalo
+          state.pipetteY = 30 + count * 5;
+          state.flaskLiquidPercent = 94 + (count * 0.5);
+          render();
+
+          if (count >= 12) {
+            clearInterval(animTimer);
+            state.pipetteVisible = false;
+            state.flaskLiquidPercent = 100;
+            render();
+            setTimeout(onComplete, 400);
+          }
+        }, 90);
+      }, 800);
+      break;
+
+    case 8: // Homogeneização por Inversão
+      state.stopperVisible = true;
+      let inv = 0;
+
+      animTimer = setInterval(() => {
+        inv++;
+        state.flaskRotation = (inv % 2 === 1) ? 180 : 0;
+        state.flaskY = (inv % 2 === 1) ? 180 : 250;
+        render();
+
+        if (inv >= 6) {
+          clearInterval(animTimer);
+          state.flaskRotation = 0;
+          state.flaskY = 250;
+          render();
+          setTimeout(onComplete, 300);
+        }
+      }, 650);
+      break;
+
+    default:
+      onComplete();
+  }
+}
+
+function updateProgress() {
+  const dots = document.querySelectorAll('.progress-dot');
+  dots.forEach((dot, i) => {
+    dot.className = 'progress-dot';
+    if (i < step) dot.classList.add('completed');
+    else if (i === step) dot.classList.add('active');
+  });
+}
+
+function resetGame() {
+  if (animTimer) clearInterval(animTimer);
+  isAnimating = false;
+  step = 0;
+  
+  state = {
+    balanceDisplay: "0.0000 g",
+    crystalsCount: 0,
+    watchGlassX: 200,
+    watchGlassY: 285,
+    watchGlassRot: 0,
+    washX: 830,
+    washY: 260,
+    beakerHasSolid: false,
+    beakerLiquidLevel: 0,
+    beakerLiquidColor: 'rgba(56, 189, 248, 0.4)',
+    beakerX: 430,
+    beakerY: 280,
+    beakerRot: 0,
+    rodVisible: false,
+    rodAngle: 0,
+    funnelVisible: false,
+    flaskLiquidPercent: 0,
+    pipetteVisible: false,
+    pipetteY: -20,
+    flaskRotation: 0,
+    flaskY: 250,
+    stopperVisible: false,
+    spatulaVisible: false,
+    spatulaX: 0,
+    spatulaY: 0,
+    spatulaRot: 0
+  };
+
+  const btn = document.getElementById('btn-next');
+  btn.disabled = false;
+  btn.textContent = "▶ Avançar Etapa";
+
+  document.getElementById('step-badge').textContent = stepData[0].badge;
+  document.getElementById('step-desc').innerHTML = stepData[0].desc;
+  updateProgress();
+  render();
+}
+
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, radii) {
+    const r = typeof radii === 'number' ? radii : (radii || 0);
+    this.moveTo(x + r, y);
+    this.lineTo(x + w - r, y);
+    this.quadraticCurveTo(x + w, y, x + w, y + r);
+    this.lineTo(x + w, y + h - r);
+    this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    this.lineTo(x + r, y + h);
+    this.quadraticCurveTo(x, y + h, x, y + h - r);
+    this.lineTo(x, y + r);
+    this.quadraticCurveTo(x, y, x + r, y);
+    return this;
+  };
+}
+
+window.onload = () => {
+  render();
+  updateProgress();
+};
+</script>
+
+</body>
+</html>
