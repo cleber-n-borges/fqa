@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt_br" xml:lang="pt_br"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -49,6 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -63,17 +66,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
@@ -104,6 +107,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+// Define a variável com o nome do arquivo do Questionario
+var JSON_Questionario = "./simulador/05-Padronizacao.dat";
+</script>
 
 
 <link rel="stylesheet" href="custom.css">
@@ -277,13 +284,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05_Padronizacao.html"><span class="chapter-title">Prática 5: Padronização</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05_Padronizacao.html"><span class="chapter-title">• Padronização de Solução</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -314,13 +321,13 @@ ul.task-list li input[type="checkbox"] {
       <a href="./">Apostila de Química Analítica</a> 
         <div class="sidebar-tools-main">
     <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
 </div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Procurar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -342,22 +349,22 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Preparo de Solução de KOH</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Preparo de Solução de HCl</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Estequiometria</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Equilíbrio Químico</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -367,27 +374,27 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Prática 5: Padronização</span></a>
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">• Padronização de Solução</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Acidez em Alimentos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Poder de Neutralização</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">‣ Regressão Linear Teste</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">‣ Espectro Teste</span></a>
   </div>
 </li>
     </ul>
@@ -402,7 +409,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
   <ul class="collapse">
-  <li><a href="#padrão-primário" id="toc-padrão-primário" class="nav-link" data-scroll-target="#padrão-primário">Padrão primário</a></li>
+  <li><a href="#padrão-primário" id="toc-padrão-primário" class="nav-link" data-scroll-target="#padrão-primário">Padrão Primário</a></li>
   <li><a href="#fator-de-correção-f_c" id="toc-fator-de-correção-f_c" class="nav-link" data-scroll-target="#fator-de-correção-f_c">Fator de Correção — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math></a></li>
   </ul></li>
   <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
@@ -410,14 +417,22 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#segurança-no-laboratório" id="toc-segurança-no-laboratório" class="nav-link" data-scroll-target="#segurança-no-laboratório">Segurança no Laboratório</a></li>
   <li><a href="#roteiro-experimental" id="toc-roteiro-experimental" class="nav-link" data-scroll-target="#roteiro-experimental">Roteiro Experimental</a>
   <ul class="collapse">
-  <li><a href="#parte-1-padronização-da-solução-de-koh-01-textmoll-1" id="toc-parte-1-padronização-da-solução-de-koh-01-textmoll-1" class="nav-link" data-scroll-target="#parte-1-padronização-da-solução-de-koh-01-textmoll-1">Parte 1: Padronização da Solução de KOH ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></a></li>
-  <li><a href="#parte-2-padronização-da-solução-de-hcl-01-textmoll-1" id="toc-parte-2-padronização-da-solução-de-hcl-01-textmoll-1" class="nav-link" data-scroll-target="#parte-2-padronização-da-solução-de-hcl-01-textmoll-1">Parte 2: Padronização da Solução de HCl ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></a></li>
+  <li><a href="#procedimento-1-padronização-da-solução-de-koh-01-textmoll-1" id="toc-procedimento-1-padronização-da-solução-de-koh-01-textmoll-1" class="nav-link" data-scroll-target="#procedimento-1-padronização-da-solução-de-koh-01-textmoll-1">Procedimento 1: Padronização da Solução de KOH ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></a></li>
+  <li><a href="#procedimento-2-padronização-da-solução-de-hcl-01-textmoll-1" id="toc-procedimento-2-padronização-da-solução-de-hcl-01-textmoll-1" class="nav-link" data-scroll-target="#procedimento-2-padronização-da-solução-de-hcl-01-textmoll-1">Procedimento 2: Padronização da Solução de HCl ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></a></li>
+  <li><a href="#simulação" id="toc-simulação" class="nav-link" data-scroll-target="#simulação">Simulação</a></li>
   </ul></li>
   <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a></li>
   <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
-  <li><a href="#anexo" id="toc-anexo" class="nav-link" data-scroll-target="#anexo">Anexo</a></li>
+  <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a>
+  <ul class="collapse">
+  <li><a href="#método-1-uso-das-equações-químicas-formais" id="toc-método-1-uso-das-equações-químicas-formais" class="nav-link" data-scroll-target="#método-1-uso-das-equações-químicas-formais">Método 1: Uso das equações químicas formais</a></li>
+  <li><a href="#método-2-cálculo-alternativo-por-regra-de-três" id="toc-método-2-cálculo-alternativo-por-regra-de-três" class="nav-link" data-scroll-target="#método-2-cálculo-alternativo-por-regra-de-três">Método 2: Cálculo alternativo por regra de três</a></li>
+  <li><a href="#fluxograma-do-processo-de-padronização" id="toc-fluxograma-do-processo-de-padronização" class="nav-link" data-scroll-target="#fluxograma-do-processo-de-padronização">Fluxograma do Processo de Padronização</a></li>
+  </ul></li>
   <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#complemento-com-ia" id="toc-complemento-com-ia" class="nav-link" data-scroll-target="#complemento-com-ia">Complemento com IA</a></li>
   <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  <li><a href="#resumo-visual" id="toc-resumo-visual" class="nav-link" data-scroll-target="#resumo-visual">Resumo Visual</a></li>
   </ul>
 </nav>
     </div>
@@ -432,240 +447,557 @@ ul.task-list li input[type="checkbox"] {
 <section id="introdução" class="level2">
 <h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
 <p>Uma <a href="https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o_padr%C3%A3o"><strong>solução padrão</strong></a> é uma <a href="https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o">solução</a> de concentração exatamente conhecida e que é utilizada em análises titulométricas (ou volumétricas).</p>
-<p>As soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> preparadas anteriormente possuem apenas <strong>concentração aparente</strong>, isto é, valores estimados que não correspondem a uma <em>veracidade</em>||<em>exatidão</em> analítica. Por esse motivo, não podem ser consideradas soluções padrão, que são aquelas de concentração rigorosamente conhecida.</p>
+<p>As soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> preparadas anteriormente possuem apenas <strong>concentração aparente</strong>, isto é, valores estimados que não correspondem a uma veracidade ou exatidão analítica rigorosa. Por esse motivo, não podem ser consideradas soluções padrão.</p>
 <p>Dessa forma, torna-se necessário realizar a <strong>padronização</strong> dessas soluções, ou seja, determinar a <strong>concentração exata</strong> para possibilitar o uso confiável em análises posteriores. Para tal procedimento, emprega-se uma substância <a href="https://pt.wikipedia.org/wiki/Subst%C3%A2ncia_prim%C3%A1ria"><strong>padrão primário</strong></a> ou uma solução padrão previamente padronizada.</p>
 <p>A padronização é conduzida por meio de uma <a href="https://pt.wikipedia.org/wiki/Titula%C3%A7%C3%A3o"><strong>titulação</strong></a>, que consiste na adição controlada de uma solução padrão (usualmente com o auxílio de uma bureta) a uma solução que contém o analito de interesse (normalmente em um erlenmeyer), até que a reação seja considerada completa — etapa geralmente identificada com o uso de um <strong>indicador</strong> apropriado.</p>
-<p>Com as concentrações exata e aparente de cada solução, procede-se ao cálculo do <strong>fator de correção</strong>.</p>
+<p>Com as concentrações exata e aparente de cada solução, procede-se ao cálculo do <strong>fator de correção</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>).</p>
 <p><strong>Rotina interna de laboratório:</strong> Nos laboratórios analíticos, é prática consolidada que os frascos de soluções titulantes sejam rotulados com:</p>
 <ul>
-<li>a concentração aparente (obtida no preparo), e</li>
-<li>o respectivo fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>) (obtido na padronização).</li>
+<li><p>A concentração aparente (obtida no preparo);</p></li>
+<li><p>O respectivo fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>) (obtido na padronização).</p></li>
 </ul>
 <p>Esse procedimento garante que qualquer analista, ao utilizar a solução, possa aplicar o fator de correção em seus cálculos, assegurando uniformidade, rastreabilidade e confiabilidade metrológica nos resultados analíticos ao longo do tempo.</p>
 <section id="padrão-primário" class="level3">
-<h3 class="anchored" data-anchor-id="padrão-primário">Padrão primário</h3>
+<h3 class="anchored" data-anchor-id="padrão-primário">Padrão Primário</h3>
 <p>Um padrão primário é um composto altamente purificado que serve como material de referência em métodos titulométricos, seja volumétricos ou gravimétricos. Para que um composto seja adequado como padrão primário, alguns requisitos devem ser atendidos:</p>
 <ol type="1">
-<li>Alta pureza.</li>
-<li>Estabilidade química, não reagindo nem absorvendo substâncias da atmosfera.</li>
-<li>Ausência de água de hidratação, de modo que sua composição não se altere com as variações na umidade.</li>
-<li>Baixo custo e disponibilidade.</li>
-<li>Boa solubilidade no meio em que será realizada a titulação.</li>
-<li>Massa molar relativamente alta, para reduzir o erro relativo associado à pesagem.</li>
+<li><p>Alta pureza.</p></li>
+<li><p>Estabilidade química, não reagindo nem absorvendo substâncias da atmosfera.</p></li>
+<li><p>Ausência de água de hidratação, de modo que sua composição não se altere com as variações na umidade.</p></li>
+<li><p>Baixo custo e disponibilidade.</p></li>
+<li><p>Boa solubilidade no meio em que será realizada a titulação.</p></li>
+<li><p>Massa molar relativamente alta, para reduzir o erro relativo associado à pesagem.</p></li>
 </ol>
-<p>O composto padrão primário utilizado nesta prática será o <a href="https://pt.wikipedia.org/wiki/Hidrogenoftalato_de_pot%C3%A1ssio">biftalato de potássio</a>. O nome é comumente abreviado para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> — <em>Potassium Hydrogen Phthalate</em>.</p>
+<p>O composto padrão primário utilizado nesta prática será o <a href="https://pt.wikipedia.org/wiki/Hidrogenoftalato_de_pot%C3%A1ssio">biftalato de potássio</a>. O nome é comumente abreviado para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> (<em>Potassium Hydrogen Phthalate</em>).</p>
 <p>O <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> é amplamente utilizado em análises volumétricas porque atende de forma exemplar aos requisitos acima: apresenta elevada pureza, é estável ao ar, possui massa molar suficientemente alta, além de ser solúvel em água. Por essas características, tornou-se um dos padrões primários mais empregados em titulações ácido–base.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Estrutura 3D do Biftalato de Potássio
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Visualização interativa da molécula:</p>
+<iframe src="./resources/KHP.html" width="100%" height="1220px" style="border: none; border-radius: 12px; overflow: hidden;"></iframe>
+</div>
+</div>
+</div>
 </section>
 <section id="fator-de-correção-f_c" class="level3">
 <h3 class="anchored" data-anchor-id="fator-de-correção-f_c">Fator de Correção — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math></h3>
 <p>A relação entre concentração exata e aparente é expressa pelo fator de correção — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msup><mi>C</mi><mrow><mi>E</mi><mi>x</mi></mrow></msup><msup><mi>C</mi><mrow><mi>A</mi><mi>p</mi></mrow></msup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{C^{Ex}}{C^{Ap}}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msup><mi>C</mi><mtext mathvariant="normal">Ex</mtext></msup><msup><mi>C</mi><mtext mathvariant="normal">Ap</mtext></msup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{C^{\text{Ex}}}{C^{\text{Ap}}}</annotation></semantics></math></p>
 <p>Onde:</p>
 <ul>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math> = fator de correção (adimensional)</li>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>C</mi><mrow><mi>E</mi><mi>x</mi></mrow></msup><annotation encoding="application/x-tex">C^{Ex}</annotation></semantics></math> = concentração exata da solução (determinada por padronização)</li>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>C</mi><mrow><mi>A</mi><mi>p</mi></mrow></msup><annotation encoding="application/x-tex">C^{Ap}</annotation></semantics></math> = concentração aparente da solução (valor estimado no preparo)</li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math> = fator de correção (adimensional)</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>C</mi><mtext mathvariant="normal">Ex</mtext></msup><annotation encoding="application/x-tex">C^{\text{Ex}}</annotation></semantics></math> = concentração exata da solução (determinada por padronização)</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>C</mi><mtext mathvariant="normal">Ap</mtext></msup><annotation encoding="application/x-tex">C^{\text{Ap}}</annotation></semantics></math> = concentração aparente da solução (valor estimado no preparo)</p></li>
 </ul>
 <p>O fator de correção é utilizado para ajustar cálculos analíticos:</p>
 <ul>
-<li>Se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">F_C &gt; 1</annotation></semantics></math>, a solução está mais concentrada do que o valor aparente.</li>
-<li>Se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">F_C &lt; 1</annotation></semantics></math>, a solução está menos concentrada do que o valor aparente.</li>
+<li><p>Se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">F_C &gt; 1</annotation></semantics></math>, a solução está mais concentrada do que o valor aparente.</p></li>
+<li><p>Se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">F_C &lt; 1</annotation></semantics></math>, a solução está menos concentrada do que o valor aparente.</p></li>
 </ul>
+<hr>
 </section>
 </section>
 <section id="objetivos" class="level2">
 <h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
 <ul>
-<li>Padronizar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> utilizando o padrão primário <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>.</li>
-<li>Padronizar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> empregando a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> já padronizada.</li>
-<li>Determinar as <strong>concentrações exatas</strong> das soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>.</li>
-<li>Calcular o fator de correção — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math> para cada uma das soluções.</li>
+<li><p>Padronizar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> utilizando o padrão primário <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>.</p></li>
+<li><p>Padronizar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> empregando a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> já padronizada.</p></li>
+<li><p>Determinar as <strong>concentrações exatas</strong> das soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>.</p></li>
+<li><p>Calcular o fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>) para cada uma das soluções.</p></li>
 </ul>
+<hr>
 </section>
 <section id="dados" class="level2">
 <h2 class="anchored" data-anchor-id="dados">Dados</h2>
 <ol type="1">
-<li><strong>Padrão primário utilizado:</strong></li>
-</ol>
+<li><p><strong>Padrão primário utilizado:</strong></p>
 <ul>
-<li><p>biftalato de potássio (nome abreviado como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><msub><mi>C</mi><mn>8</mn></msub><msub><mi>H</mi><mn>4</mn></msub><msub><mi>O</mi><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">KHC_8H_4O_4</annotation></semantics></math></p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mi>H</mi><mi>P</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>204</mn><mo>,</mo><mn>22</mn><mspace width="0.167em"></mspace><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g·mol</mtext></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(KHP) = 204,22 \, \text{ g·mol}^{-1}</annotation></semantics></math></p></li>
-</ul>
-<ol start="2" type="1">
-<li><strong>Reação de neutralização entre KOH e KHP:</strong></li>
+<li><p>Biftalato de potássio (nome abreviado como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">KHC</mtext><mn>8</mn></msub><msub><mtext mathvariant="normal">H</mtext><mn>4</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{KHC}_8\text{H}_4\text{O}_4</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KHP</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>204</mn><mo>,</mo><mn>22</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{KHP}) = 204{,}22 \ \text{g·mol}^{-1}</annotation></semantics></math></p></li>
+</ul></li>
+<li><p><strong>Reação de neutralização entre KOH e KHP:</strong></p></li>
 </ol>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mi>K</mi><mi>H</mi><msub><mi>C</mi><mn>8</mn></msub><msub><mi>H</mi><mn>4</mn></msub><mi>O</mi><msub><mn>4</mn><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msubsup><mi>K</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><msub><mi>C</mi><mn>8</mn></msub><msub><mi>H</mi><mn>4</mn></msub><msubsup><mi>O</mi><mrow><mn>4</mn><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo>+</mo><msub><mi>H</mi><mn>2</mn></msub><msub><mi>O</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">KOH_{(aq)} + KHC_8H_4O4_{(aq)} \rightarrow K^{+}_{(aq)} + C_8H_4O_{4(aq)}^{2-} + H_2O_{(l)}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mi>K</mi><mi>H</mi><msub><mi>C</mi><mn>8</mn></msub><msub><mi>H</mi><mn>4</mn></msub><msub><mi>O</mi><mrow><mn>4</mn><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msubsup><mi>K</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><msub><mi>C</mi><mn>8</mn></msub><msub><mi>H</mi><mn>4</mn></msub><msubsup><mi>O</mi><mrow><mn>4</mn><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo>+</mo><msub><mi>H</mi><mn>2</mn></msub><msub><mi>O</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">KOH_{(aq)} + KHC_8H_4O_{4(aq)} \rightarrow K^{+}_{(aq)} + C_8H_4O_{4(aq)}^{2-} + H_2O_{(l)}</annotation></semantics></math></p>
 <blockquote class="blockquote">
-<p>Observa-se que a reação ocorre em proporção molar 1:1 entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>. Isso significa que 1 mol de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> neutraliza exatamente 1 mol de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>, permitindo o cálculo direto da concentração exata da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> a partir da massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> pesada.</p>
+<p>Observa-se que a reação ocorre em proporção molar 1:1 entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>. Isso significa que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">1 \ \text{mol}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> neutraliza exatamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">1 \ \text{mol}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>, permitindo o cálculo direto da concentração exata da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> a partir da massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> pesada.</p>
 </blockquote>
 <ol start="3" type="1">
 <li><strong>Reação de neutralização entre KOH e HCl:</strong></li>
 </ol>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><msub><mi>l</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mi>K</mi><mi>O</mi><msub><mi>H</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msub><mi>H</mi><mn>2</mn></msub><msub><mi>O</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><msubsup><mi>K</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><mi>C</mi><msubsup><mi>l</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>−</mo></msubsup></mrow><annotation encoding="application/x-tex">HCl_{(aq)} + KOH_{(aq)} \rightarrow H_2O_{(l)} + K^{+}_{(aq)} + Cl^{-}_{(aq)}</annotation></semantics></math></p>
 <blockquote class="blockquote">
-<p>Observa-se que a reação ocorre em proporção molar 1:1 entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>. Assim, 1 mol de ácido clorídrico neutraliza exatamente 1 mol de hidróxido de potássio, o que permite determinar a concentração exata do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> a partir do volume gasto de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> previamente padronizada.</p>
+<p>Observa-se que a reação ocorre em proporção molar 1:1 entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>. Assim, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">1 \ \text{mol}</annotation></semantics></math> de ácido clorídrico neutraliza exatamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">1 \ \text{mol}</annotation></semantics></math> de hidróxido de potássio, o que permite determinar a concentração exata do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> a partir do volume gasto de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> previamente padronizada.</p>
 </blockquote>
+<hr>
 </section>
 <section id="segurança-no-laboratório" class="level2">
 <h2 class="anchored" data-anchor-id="segurança-no-laboratório">Segurança no Laboratório</h2>
 <ul>
-<li>Utilizar óculos de proteção, luvas e jaleco durante toda a prática.</li>
-<li>O hidróxido de potássio e o ácido clorídrico são substâncias cáusticas e corrosivas: evite contato direto com pele, olhos e roupas.</li>
-<li>O biftalato de potássio deve ser manipulado cuidadosamente, evitando inalação do pó sólido.</li>
-<li>Mantenha a bancada organizada e realize o descarte das soluções conforme orientação do laboratório.</li>
+<li><p>Utilizar óculos de proteção, luvas e jaleco durante toda a prática.</p></li>
+<li><p>O hidróxido de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>) e o ácido clorídrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>) são substâncias cáusticas e corrosivas: evite contato direto com pele, olhos e roupas.</p></li>
+<li><p>O biftalato de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>) deve ser manipulado cuidadosamente, evitando inalação do pó sólido.</p></li>
+<li><p>Mantenha a bancada organizada e realize o descarte das soluções conforme orientação do laboratório.</p></li>
 </ul>
+<hr>
 </section>
 <section id="roteiro-experimental" class="level2">
 <h2 class="anchored" data-anchor-id="roteiro-experimental">Roteiro Experimental</h2>
-<section id="parte-1-padronização-da-solução-de-koh-01-textmoll-1" class="level3">
-<h3 class="anchored" data-anchor-id="parte-1-padronização-da-solução-de-koh-01-textmoll-1">Parte 1: Padronização da Solução de KOH ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></h3>
-<section id="procedimento-1" class="level4">
-<h4 class="anchored" data-anchor-id="procedimento-1">Procedimento 1</h4>
-<p><strong>a) Cálculo da massa</strong> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> (padrão primário) necessária para reagir com 25,0 mL de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup><mo>⋅</mo><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mi>H</mi><mi>P</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">m_{KHP} = \left( M^{Ap}_{KOH} \cdot V_{KOH} \right) \cdot M.M.(KHP)</annotation></semantics></math></p>
+<section id="procedimento-1-padronização-da-solução-de-koh-01-textmoll-1" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento-1-padronização-da-solução-de-koh-01-textmoll-1">Procedimento 1: Padronização da Solução de KOH ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></h3>
+<p><strong>a)</strong> <strong>Cálculo da massa</strong> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> (padrão primário) necessária para reagir com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">25{,}0 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \ \text{mol·L}^{-1}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mtext mathvariant="normal">KHP</mtext></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>M</mi><mtext mathvariant="normal">KOH</mtext><mtext mathvariant="normal">Ap</mtext></msubsup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">KOH</mtext></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KHP</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">m_{\text{KHP}} = \left( M^{\text{Ap}}_{\text{KOH}} \cdot V_{\text{KOH}} \right) \cdot M.M.(\text{KHP})</annotation></semantics></math></p>
 <p>onde:</p>
 <ul>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><annotation encoding="application/x-tex">m_{KHP}</annotation></semantics></math> é a massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> a ser pesada.</li>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mtext mathvariant="normal">Ap</mtext></msubsup><annotation encoding="application/x-tex">M^{\text{Ap}}_{KOH}</annotation></semantics></math> = molaridade aparente da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>.</li>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">V_{KOH}</annotation></semantics></math> = volume da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>.</li>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mi>H</mi><mi>P</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">M.M.(KHP)</annotation></semantics></math> = massa molar do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>.</li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mtext mathvariant="normal">KHP</mtext></msub><annotation encoding="application/x-tex">m_{\text{KHP}}</annotation></semantics></math> é a massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> a ser pesada (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">g</mtext><annotation encoding="application/x-tex">\text{g}</annotation></semantics></math>).</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mtext mathvariant="normal">KOH</mtext><mtext mathvariant="normal">Ap</mtext></msubsup><annotation encoding="application/x-tex">M^{\text{Ap}}_{\text{KOH}}</annotation></semantics></math> = molaridade aparente da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>).</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">KOH</mtext></msub><annotation encoding="application/x-tex">V_{\text{KOH}}</annotation></semantics></math> = volume da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">L</mtext><annotation encoding="application/x-tex">\text{L}</annotation></semantics></math>).</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KHP</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">M.M.(\text{KHP})</annotation></semantics></math> = massa molar do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{g·mol}^{-1}</annotation></semantics></math>).</p></li>
 </ul>
-<p><strong>b) Pesar uma massa próxima à massa calculada</strong> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> e transferir para um erlenmeyer de 250 mL.</p>
-<p><strong>Registro da massa pesada:</strong>____________________</p>
-<p><strong>c) Adicionar</strong> aproximadamente (sem necessidade de rigor volumétrico) 75 mL de água destilada e agitar até dissolução completa.</p>
-<p><strong>d) Adicionar</strong> 3 gotas de fenolftaleína.</p>
-<p><strong>e) Titular</strong> com a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math> preparada anteriormente, até coloração rósea persistente por 30 segundos.</p>
-<p><strong>Registro do volume gasto:</strong>____________________</p>
-<p><strong>f) Calcular</strong> a molaridade exata da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><annotation encoding="application/x-tex">M^{Ex}_{KOH}</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mi>H</mi><mi>P</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mfrac><mn>1</mn><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub></mfrac></mrow><annotation encoding="application/x-tex">M^{Ex}_{KOH} = \left( \frac{m_{KHP}}{M.M.(KHP)} \right) \cdot \frac{1}{V_{KOH}}</annotation></semantics></math></p>
-<p><strong>g) Calcular</strong> o fator de correção, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{M^{Ex}_{KOH}}{M^{Ap}_{KOH}}</annotation></semantics></math></p>
-<p><strong>Registro do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:____________________</p>
+<p><strong>b)</strong> <strong>Pesar uma massa próxima à massa calculada</strong> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> e transferir para um erlenmeyer de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>250</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">250 \ \text{mL}</annotation></semantics></math>.</p>
+<p><strong>Registro da massa pesada:</strong> ____________________ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">g</mtext><annotation encoding="application/x-tex">\text{g}</annotation></semantics></math></p>
+<p><strong>c)</strong> <strong>Adicionar</strong> aproximadamente (sem necessidade de rigor volumétrico) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>75</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">75 \ \text{mL}</annotation></semantics></math> de água destilada e agitar até dissolução completa.</p>
+<p><strong>d)</strong> <strong>Adicionar</strong> 3 gotas de fenolftaleína.</p>
+<p><strong>e)</strong> <strong>Titular</strong> com a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \ \text{mol·L}^{-1}</annotation></semantics></math> preparada anteriormente, até coloração rósea persistente por 30 segundos.</p>
+<p><strong>Registro do volume gasto:</strong> ____________________ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">mL</mtext><annotation encoding="application/x-tex">\text{mL}</annotation></semantics></math></p>
+<p><strong>f)</strong> <strong>Calcular</strong> a molaridade exata da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mtext mathvariant="normal">KOH</mtext><mtext mathvariant="normal">Ex</mtext></msubsup><annotation encoding="application/x-tex">M^{\text{Ex}}_{\text{KOH}}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>M</mi><mtext mathvariant="normal">KOH</mtext><mtext mathvariant="normal">Ex</mtext></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>m</mi><mtext mathvariant="normal">KHP</mtext></msub><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KHP</mtext><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mfrac><mn>1</mn><msub><mi>V</mi><mtext mathvariant="normal">KOH</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">M^{\text{Ex}}_{\text{KOH}} = \left( \frac{m_{\text{KHP}}}{M.M.(\text{KHP})} \right) \cdot \frac{1}{V_{\text{KOH}}}</annotation></semantics></math></p>
+<p><strong>g)</strong> <strong>Calcular</strong> o fator de correção, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msubsup><mi>M</mi><mtext mathvariant="normal">KOH</mtext><mtext mathvariant="normal">Ex</mtext></msubsup><msubsup><mi>M</mi><mtext mathvariant="normal">KOH</mtext><mtext mathvariant="normal">Ap</mtext></msubsup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{M^{\text{Ex}}_{\text{KOH}}}{M^{\text{Ap}}_{\text{KOH}}}</annotation></semantics></math></p>
+<p><strong>Registro do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>: ____________________</p>
 <blockquote class="blockquote">
 <p><strong>ATENÇÃO</strong>: A maneira adotada acima para a realização dos cálculos é válida apenas para reações com estequiometria 1:1, como é o caso entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>.</p>
 </blockquote>
 </section>
-</section>
-<section id="parte-2-padronização-da-solução-de-hcl-01-textmoll-1" class="level3">
-<h3 class="anchored" data-anchor-id="parte-2-padronização-da-solução-de-hcl-01-textmoll-1">Parte 2: Padronização da Solução de HCl ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></h3>
-<section id="procedimento-2" class="level4">
-<h4 class="anchored" data-anchor-id="procedimento-2">Procedimento 2</h4>
-<p><strong>a) Pipetar</strong> 20 mL, usando pipeta volumétrica, da solução de HCl ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math> para um erlenmeyer de 250 mL.</p>
-<p><strong>b) Adicionar</strong> 3 gotas de fenolftaleína.</p>
-<p><strong>c) Titular</strong> com a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> já padronizada, até coloração rósea persistente por 30 segundos.</p>
-<p><strong>Registro do volume gasto:</strong>____________________</p>
-<p><strong>d) Calcular</strong> a molaridade exata da solução de HCl — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><annotation encoding="application/x-tex">M^{Ex}_{HCl}</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>M</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><mo>⋅</mo><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mfrac><mn>1</mn><msub><mi>V</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow></msub></mfrac></mrow><annotation encoding="application/x-tex">M^{Ex}_{HCl} = \left( M^{Ex}_{KOH} \cdot V_{KOH} \right) \cdot \frac{1}{V_{HCl}}</annotation></semantics></math></p>
-<p><strong>e) Calcular</strong> fator de correção, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msubsup><mi>M</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><mrow><mi>E</mi><mi>x</mi></mrow></msubsup><msubsup><mi>M</mi><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{M^{Ex}_{HCl}}{M^{Ap}_{HCl}}</annotation></semantics></math></p>
-<p><strong>Registro do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:____________________</p>
+<section id="procedimento-2-padronização-da-solução-de-hcl-01-textmoll-1" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento-2-padronização-da-solução-de-hcl-01-textmoll-1">Procedimento 2: Padronização da Solução de HCl ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></h3>
+<p><strong>a)</strong> <strong>Pipetar</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">20 \ \text{mL}</annotation></semantics></math>, usando pipeta volumétrica, da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> ~<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \ \text{mol·L}^{-1}</annotation></semantics></math> para um erlenmeyer de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>250</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">250 \ \text{mL}</annotation></semantics></math>.</p>
+<p><strong>b)</strong> <strong>Adicionar</strong> 3 gotas de fenolftaleína.</p>
+<p><strong>c)</strong> <strong>Titular</strong> com a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> já padronizada, até coloração rósea persistente por 30 segundos.</p>
+<p><strong>Registro do volume gasto:</strong> ____________________ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">mL</mtext><annotation encoding="application/x-tex">\text{mL}</annotation></semantics></math></p>
+<p><strong>d)</strong> <strong>Calcular</strong> a molaridade exata da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mtext mathvariant="normal">HCl</mtext><mtext mathvariant="normal">Ex</mtext></msubsup><annotation encoding="application/x-tex">M^{\text{Ex}}_{\text{HCl}}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>M</mi><mtext mathvariant="normal">HCl</mtext><mtext mathvariant="normal">Ex</mtext></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>M</mi><mtext mathvariant="normal">KOH</mtext><mtext mathvariant="normal">Ex</mtext></msubsup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">KOH</mtext></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mfrac><mn>1</mn><msub><mi>V</mi><mtext mathvariant="normal">HCl</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">M^{\text{Ex}}_{\text{HCl}} = \left( M^{\text{Ex}}_{\text{KOH}} \cdot V_{\text{KOH}} \right) \cdot \frac{1}{V_{\text{HCl}}}</annotation></semantics></math></p>
+<p><strong>e)</strong> <strong>Calcular</strong> o fator de correção, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>C</mi></msub><mo>=</mo><mfrac><msubsup><mi>M</mi><mtext mathvariant="normal">HCl</mtext><mtext mathvariant="normal">Ex</mtext></msubsup><msubsup><mi>M</mi><mtext mathvariant="normal">HCl</mtext><mtext mathvariant="normal">Ap</mtext></msubsup></mfrac></mrow><annotation encoding="application/x-tex">F_C = \frac{M^{\text{Ex}}_{\text{HCl}}}{M^{\text{Ap}}_{\text{HCl}}}</annotation></semantics></math></p>
+<p><strong>Registro do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>: ____________________</p>
 <blockquote class="blockquote">
 <p><strong>ATENÇÃO</strong>: A maneira adotada acima para a realização dos cálculos é válida apenas para reações com estequiometria 1:1, como é o caso entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>.</p>
 </blockquote>
 </section>
+<section id="simulação" class="level3">
+<h3 class="anchored" data-anchor-id="simulação">Simulação</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Simulação Virtual de Padronização de Soluções">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Simulação Virtual de Padronização de Soluções
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<iframe src="./resources/Sim_Pradronizacao.html" width="100%" height="1500px" style="border: none; border-radius: 8px;" title="Simulação Virtual da Padronização de KOH e HCl">
+</iframe>
+</div>
+</div>
+</div>
+<hr>
 </section>
 </section>
 <section id="discussão" class="level2">
 <h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
-<p>A padronização de soluções garante concentrações exatas e confiáveis, já que tanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> quanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> preparados inicialmente apresentam apenas valores aparentes. Para corrigir isso, emprega-se o biftalato de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>), padrão primário de alta pureza, estabilidade e solubilidade, que permite determinar a concentração do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> com <em>boa veracidade</em>. Em seguida, essa solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> padronizada é utilizada para padronizar o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>, estabelecendo a sequência KHP → KOH → HCl.</p>
+<p>A padronização de soluções garante concentrações exatas e confiáveis, já que tanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> quanto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> preparados inicialmente apresentam apenas valores aparentes. Para corrigir isso, emprega-se o biftalato de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>), padrão primário de alta pureza, estabilidade e solubilidade, que permite determinar a concentração do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> com elevada veracidade. Em seguida, essa solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> padronizada é utilizada para padronizar o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>, estabelecendo a sequência estequiométrica:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">KHP</mtext><mover><mo>→</mo><mrow></mrow></mover><mtext mathvariant="normal">KOH</mtext><mover><mo>→</mo><mrow></mrow></mover><mtext mathvariant="normal">HCl</mtext></mrow><annotation encoding="application/x-tex">\text{KHP} \xrightarrow{} \text{KOH} \xrightarrow{} \text{HCl}</annotation></semantics></math></p>
 <p>Esse processo baseia-se em reações ácido-base de estequiometria 1:1, possibilitando o cálculo direto das concentrações exatas e dos respectivos fatores de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>). O registro desses fatores nos frascos assegura que qualquer analista possa aplicar as correções em cálculos futuros. Dessa forma, a padronização reduz a influência de erros sistemáticos e garante consistência nas análises laboratoriais.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Curiosidade &amp; Contexto Metrológico:</strong> O biftalato de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">KHC</mtext><mn>8</mn></msub><msub><mtext mathvariant="normal">H</mtext><mn>4</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{KHC}_8\text{H}_4\text{O}_4</annotation></semantics></math>) também desempenha um papel fundamental na calibração de medidores de pH (pHmetros). Devido à sua estabilidade e capacidade tampão extremamente bem definida em solução aquosa, a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>05</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·kg</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}05 \ \text{mol·kg}^{-1}</annotation></semantics></math> é padronizada internacionalmente como um padrão de pH primário, possuindo pH exatamente igual a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>,</mo><mn>005</mn></mrow><annotation encoding="application/x-tex">4{,}005</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><msup><mspace width="0.222em"></mspace><mo>∘</mo></msup><mtext mathvariant="normal">C</mtext></mrow><annotation encoding="application/x-tex">25 \ ^\circ\text{C}</annotation></semantics></math>.</p>
+</div>
+</div>
+</div>
+<hr>
 </section>
 <section id="bibliografia" class="level2">
 <h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
 <ul>
-<li>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.<br>
-</li>
-<li>HARRIS, D. C. <strong>Análise Química Quantitativa</strong>. 9. ed.&nbsp;Rio de Janeiro: LTC, 2021.<br>
-</li>
+<li>HARRIS, D. C. <strong>Análise Química Quantitativa</strong>. 9. ed.&nbsp;Rio de Janeiro: LTC, 2021.</li>
+<li>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J.; CROUCH, S. R. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.</li>
 <li>VOGEL, A. I. <strong>Análise Química Quantitativa</strong>. 6. ed.&nbsp;Rio de Janeiro: LTC, 2012.</li>
+<li>WIKIPÉDIA. <strong>Hidrogenoftalato de potássio</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Hidrogenoftalato_de_pot%C3%A1ssio" class="uri">https://pt.wikipedia.org/wiki/Hidrogenoftalato_de_pot%C3%A1ssio</a>. Acesso em: 2026.</li>
+<li>WIKIPÉDIA. <strong>Solução padrão</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o_padr%C3%A3o" class="uri">https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o_padr%C3%A3o</a>. Acesso em: 2026.</li>
+<li>WIKIPÉDIA. <strong>Titulação</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Titula%C3%A7%C3%A3o" class="uri">https://pt.wikipedia.org/wiki/Titula%C3%A7%C3%A3o</a>. Acesso em: 2026.</li>
 </ul>
 <hr>
 </section>
-<section id="anexo" class="level2">
-<h2 class="anchored" data-anchor-id="anexo">Anexo</h2>
-<p><strong>Cálculo da massa de KHP para padronizar KOH</strong></p>
-<p><em>i) Passo a passo usando “regra de três”</em></p>
-<p><strong>Passo 01 — Determinar o número de mols de KOH</strong></p>
-<p>A partir da <strong>concentração molar</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup><annotation encoding="application/x-tex">M^{Ap}_{KOH}</annotation></semantics></math> e do <strong>volume da alíquota</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">V_{KOH}</annotation></semantics></math> (em mL):</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><msubsup><mi>M</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><mtext mathvariant="normal">Ap</mtext></msubsup><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mols</mtext><mi>K</mi><mi>O</mi><mi>H</mi><mtext mathvariant="normal">)</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mols KOH)</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>V</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
-M^{\text{Ap}}_{\mathrm{KOH}} \ \text{(mols} KOH\text{)} &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
-x_1 \ \text{(mols KOH)}                                 &amp; \text{-------------} &amp; V_{\mathrm{KOH}} \ \text{mL}
-\end{array}</annotation></semantics></math></p>
-<p><strong>Passo 02 — Determinar o número de mols do KHP (1:1)</strong></p>
-<p>Usando a estequiometria da reação:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol KHP</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols KHP</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
-1 \ \text{mol KOH} &amp; \text{-------------} &amp; 1 \ \text{mol KHP} \\
-x_1 \ \text{mols KOH} &amp; \text{-------------} &amp; x_2 \ \text{mols KHP}
-\end{array}</annotation></semantics></math></p>
-<p><strong>Passo 03 — Converter mols de KHP em massa (g)</strong></p>
-<p>Usando o conceito de massa molar:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol KHP</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">M.M.(KHP) (g)</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols KHP</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(g)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
-1 \ \text{mol KHP} &amp; \text{-------------} &amp; \text{M.M.(KHP) (g)} \\
-x_2 \ \text{mols KHP} &amp; \text{-------------} &amp; x_3 \ \text{(g)}
-\end{array}</annotation></semantics></math></p>
-<p><strong>Passo 04 — Resultado</strong></p>
-<p><strong>Pesar</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">P</mi></mrow></msub><mo>=</mo><msub><mi>x</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">m_{\mathrm{KHP}} = x_3 \ \text{g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">P</mi></mrow><annotation encoding="application/x-tex">\mathrm{KHP}</annotation></semantics></math> seco e proceder à titulação.</p>
+<section id="guia-do-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
+<p>Para guiar os procedimentos numéricos das etapas de padronização, a tabela abaixo sumariza as principais grandezas envolvidas:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grandeza</th>
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: center;">Unidade Padrão</th>
+<th style="text-align: left;">Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Massa de Padrão Primário</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mtext mathvariant="normal">KHP</mtext></msub><annotation encoding="application/x-tex">m_{\text{KHP}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">g</mtext><annotation encoding="application/x-tex">\text{g}</annotation></semantics></math></td>
+<td style="text-align: left;">Obtida em balança analítica</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Massa Molar do KHP</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KHP</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">M.M.(\text{KHP})</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{g·mol}^{-1}</annotation></semantics></math></td>
+<td style="text-align: left;">Constante <br> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>204</mn><mo>,</mo><mn>22</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">204{,}22 \ \text{g·mol}^{-1}</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Volume do Titulante Gasto</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">KOH</mtext></msub><annotation encoding="application/x-tex">V_{\text{KOH}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">mL</mtext><annotation encoding="application/x-tex">\text{mL}</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">L</mtext><annotation encoding="application/x-tex">\text{L}</annotation></semantics></math></td>
+<td style="text-align: left;">Leitura direta na bureta</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Molaridade Aparente</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mtext mathvariant="normal">Ap</mtext></msup><annotation encoding="application/x-tex">M^{\text{Ap}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></td>
+<td style="text-align: left;">Valor estimado no preparo <br> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \text{mol·L}^{-1}</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Molaridade Exata</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mtext mathvariant="normal">Ex</mtext></msup><annotation encoding="application/x-tex">M^{\text{Ex}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math></td>
+<td style="text-align: left;">Valor real determinado</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Fator de Correção</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math></td>
+<td style="text-align: center;">Adimensional</td>
+<td style="text-align: left;">Razão entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mtext mathvariant="normal">Ex</mtext></msup><annotation encoding="application/x-tex">M^{\text{Ex}}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mtext mathvariant="normal">Ap</mtext></msup><annotation encoding="application/x-tex">M^{\text{Ap}}</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled" title="ATENÇÃO ESTEQUIOMÉTRICA">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>ATENÇÃO ESTEQUIOMÉTRICA
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A maneira simplificada adotada nestes cálculos é estritamente válida para reações com estequiometria 1:1, como ocorre entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>, ou entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>. Caso a relação molar fosse diferente (ex.: 1:2 ou 2:1), os coeficientes estequiométricos deveriam ser incorporados explicitamente na equação.</p>
+</div>
+</div>
+<section id="método-1-uso-das-equações-químicas-formais" class="level3">
+<h3 class="anchored" data-anchor-id="método-1-uso-das-equações-químicas-formais">Método 1: Uso das equações químicas formais</h3>
+<section id="a-cálculo-da-massa-teórica-de-khp-para-reagir-com-250-ml-de-koh-01-moll¹" class="level4">
+<h4 class="anchored" data-anchor-id="a-cálculo-da-massa-teórica-de-khp-para-reagir-com-250-ml-de-koh-01-moll¹">A) Cálculo da massa teórica de KHP para reagir com 25,0 mL de KOH ~0,1 mol·L⁻¹</h4>
+<ol type="1">
+<li><strong>Cálculo da quantidade de matéria (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mtext mathvariant="normal">KOH</mtext></msub><annotation encoding="application/x-tex">n_{\text{KOH}}</annotation></semantics></math>):</li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mtext mathvariant="normal">KOH</mtext></msub><mo>=</mo><msubsup><mi>M</mi><mtext mathvariant="normal">KOH</mtext><mtext mathvariant="normal">Ap</mtext></msubsup><mo>⋅</mo><mfrac><msub><mi>V</mi><mtext mathvariant="normal">KOH</mtext></msub><mn>1000</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>⋅</mo><mfrac><mrow><mn>25</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><mrow><mn>1000</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mL·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow></mfrac><mo>=</mo><mn>2</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">n_{\text{KOH}} = M^{\text{Ap}}_{\text{KOH}} \cdot \frac{V_{\text{KOH}}}{1000} = 0{,}1 \ \text{mol·L}^{-1} \cdot \frac{25{,}0 \ \text{mL}}{1000 \ \text{mL·L}^{-1}} = 2{,}50 \times 10^{-3} \ \text{mol}</annotation></semantics></math></p>
+<ol start="2" type="1">
+<li><strong>Relacionamento estequiométrico (1:1):</strong></li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mtext mathvariant="normal">KHP</mtext></msub><mo>=</mo><msub><mi>n</mi><mtext mathvariant="normal">KOH</mtext></msub><mo>=</mo><mn>2</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mrow><annotation encoding="application/x-tex">n_{\text{KHP}} = n_{\text{KOH}} = 2{,}50 \times 10^{-3} \ \text{mol}</annotation></semantics></math></p>
+<ol start="3" type="1">
+<li><strong>Conversão para massa de KHP:</strong></li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mtext mathvariant="normal">KHP</mtext></msub><mo>=</mo><msub><mi>n</mi><mtext mathvariant="normal">KHP</mtext></msub><mo>⋅</mo><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KHP</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext><mo>⋅</mo><mn>204</mn><mo>,</mo><mn>22</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>≈</mo><mn>0</mn><mo>,</mo><mn>5106</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">m_{\text{KHP}} = n_{\text{KHP}} \cdot M.M.(\text{KHP}) = 2{,}50 \times 10^{-3} \ \text{mol} \cdot 204{,}22 \ \text{g·mol}^{-1} \approx 0{,}5106 \ \text{g}</annotation></semantics></math></p>
+<p>➡ <strong>Conclusão:</strong> Deve-se pesar uma massa próxima de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>51</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">0{,}51 \ \text{g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> seco.</p>
 <hr>
-<p><em>ii) Passo a passo usando fórmulas</em></p>
-<p><strong>Passo 01 — Cálculo do número de mols de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo>=</mo><msubsup><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><mrow><mi>A</mi><mi>p</mi></mrow></msubsup><mo>⋅</mo><mfrac><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mn>1000</mn></mfrac></mrow><annotation encoding="application/x-tex">n_{KOH} = M^{Ap}_{KOH} \cdot \frac{V_{KOH}}{1000}</annotation></semantics></math></p>
-<p>onde <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">M_{KOH}</annotation></semantics></math> está em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>o</mi><mi>l</mi><mo>⋅</mo><msup><mi>L</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">mol \cdot L^{-1}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><annotation encoding="application/x-tex">V_{KOH}</annotation></semantics></math> em mL.</p>
-<p><strong>Passo 02 — Relação estequiométrica (1:1):</strong></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>=</mo><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo>⋅</mo><mfrac><mi>b</mi><mi>a</mi></mfrac><mo>=</mo><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mspace width="1.0em"></mspace><mo stretchy="false" form="prefix">(</mo><mrow><mtext mathvariant="normal">com </mtext><mspace width="0.333em"></mspace></mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">n_{KHP} = n_{KOH} \cdot \frac{b}{a} = n_{KOH} \quad (\text{com } a=b=1)</annotation></semantics></math></p>
-<p><strong>Passo 03 — Conversão para massa de KHP:</strong></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>=</mo><msub><mi>n</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>⋅</mo><mtext mathvariant="normal">M.M.(KHP)</mtext></mrow><annotation encoding="application/x-tex">m_{KHP} = n_{KHP} \cdot \text{M.M.(KHP)}</annotation></semantics></math></p>
-<p><strong>Exemplo numérico:</strong></p>
-<p>Para 25 mL de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>⋅</mo><mn>0</mn><mo>,</mo><mn>025</mn><mo>=</mo><mn>2</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mtext mathvariant="normal">mols de</mtext><mspace width="0.167em"></mspace><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">n_{KOH} = 0,1 \cdot 0,025 = 2,50×10^{−3}  \text{mols de} \, KOH</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow></msub><mo>=</mo><mn>2</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mo>⋅</mo><mn>204</mn><mo>,</mo><mn>22</mn><mo>≈</mo><mn>0</mn><mo>,</mo><mn>511</mn><mtext mathvariant="normal">g de</mtext><mspace width="0.167em"></mspace><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">m_{KHP} = 2,50×10^{−3}  \cdot 204,22 \approx 0,511 \text{g de} \, KHP</annotation></semantics></math></p>
-<p>➡ Portanto, deve-se pesar uma massa próxima de <strong>0,51 g</strong> do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> previamente seco (se necessário, guardar em dessecador após processo de secagem adequada).</p>
+</section>
+</section>
+<section id="método-2-cálculo-alternativo-por-regra-de-três" class="level3">
+<h3 class="anchored" data-anchor-id="método-2-cálculo-alternativo-por-regra-de-três">Método 2: Cálculo alternativo por regra de três</h3>
+<p><strong>Passo 01 — Determinar o número de mols de KOH:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols de KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>25</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+0{,}1 \ \text{mol de KOH} &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
+x_1 \ \text{mols de KOH} &amp; \text{-------------} &amp; 25{,}0 \ \text{mL}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mo>⋅</mo><mn>25</mn><mo>,</mo><mn>0</mn></mrow><mn>1000</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>0025</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KOH</mtext></mrow><annotation encoding="application/x-tex">x_1 = \frac{0{,}1 \cdot 25{,}0}{1000} = 0{,}0025 \ \text{mol de KOH}</annotation></semantics></math></p>
+<p><strong>Passo 02 — Determinar o número de mols do KHP (proporção 1:1):</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KHP</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>0025</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KOH</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KHP</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \ \text{mol de KOH} &amp; \text{-------------} &amp; 1 \ \text{mol de KHP} \\
+0{,}0025 \ \text{mol de KOH} &amp; \text{-------------} &amp; x_2 \ \text{mol de KHP}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>0025</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KHP</mtext></mrow><annotation encoding="application/x-tex">x_2 = 0{,}0025 \ \text{mol de KHP}</annotation></semantics></math></p>
+<p><strong>Passo 03 — Converter mols de KHP em massa (g):</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KHP</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>204</mn><mo>,</mo><mn>22</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>0025</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol de KHP</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">g de KHP</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \ \text{mol de KHP} &amp; \text{-------------} &amp; 204{,}22 \ \text{g} \\
+0{,}0025 \ \text{mol de KHP} &amp; \text{-------------} &amp; x_3 \ \text{g de KHP}
+\end{array}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>3</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>0025</mn><mo>⋅</mo><mn>204</mn><mo>,</mo><mn>22</mn><mo>=</mo><mn>0</mn><mo>,</mo><mn>51055</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g de KHP</mtext></mrow><annotation encoding="application/x-tex">x_3 = 0{,}0025 \cdot 204{,}22 = 0{,}51055 \ \text{g de KHP}</annotation></semantics></math></p>
+</section>
+<section id="fluxograma-do-processo-de-padronização" class="level3">
+<h3 class="anchored" data-anchor-id="fluxograma-do-processo-de-padronização">Fluxograma do Processo de Padronização</h3>
+<p>O fluxograma resume a sequência lógica de cálculos e etapas experimentais para a execução do processo de padronização das soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>.</p>
+<div id="fluxograma-Padronizacao" class="center fluxograma-adaptavel quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fluxograma figure">
+<div aria-describedby="fluxograma-Padronizacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg width="100%" style="height: auto;" viewbox="0 0 1280 1420" version="1.1" id="svg_padronizacao" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<style id="style_padronizacao">
+  .graph-bg       { fill: var(--bg-graph, #ffffff); }
+  .node-bg-root   { fill: var(--bg-node-root, #e5e5e5); }
+  .node-bg        { fill: var(--bg-node, #f0f0f0); }
+  .stroke-color   { stroke: var(--stroke-main, #000000); stroke-width: 2px; }
+  .text-color     { fill: var(--text-main, #000000); }
+  
+  .edge-line      { stroke: var(--stroke-main, #000000); stroke-width: 3px; }
+  .edge-arrow     { fill: var(--stroke-main, #000000); stroke: var(--stroke-main, #000000); }
+
+  .formula-text {
+    font-family: "Latin Modern Math", "Cambria Math", "Helvetica", sans-Serif;
+    font-size: 24px;
+    fill: var(--text-main, #000000);
+    text-anchor: middle;
+  }
+  .subscript { font-size: 16px; }
+</style>
+  <g id="graph0">
+    <title id="title1">Fluxo_Padronizacao_Solucoes</title>
+    <polygon class="graph-bg" stroke="none" points="0,0 1280,0 1280,1420 0,1420" id="polygon_bg"></polygon>
+
+    <!-- ROOT -->
+    <g id="node_root">
+      <polygon class="node-bg-root" stroke="none" points="220,30 1060,30 1060,80 220,80" id="polygon_root_bg"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="62" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text_root">Padronização de Soluções — Sequência KOH e HCl</text>
+      <polygon fill="none" class="stroke-color" points="220,30 1060,30 1060,80 220,80" id="polygon_root_stroke"></polygon>
+    </g>
+
+    <!-- SETA ROOT -> P1 -->
+    <path class="edge-line" d="M640,80 L640,120" id="path_r_1"></path>
+    <polygon class="edge-arrow" points="635,120 640,130 645,120" id="arrow_r_1"></polygon>
+
+    <!-- PASSO 1: Massa Teórica do Padrão Primário KHP -->
+    <g id="node1">
+      <polygon class="node-bg" stroke="none" points="120,130 1160,130 1160,260 120,260" id="polygon_p1_bg"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="170" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text_p1_title">Passo 1 — Massa Teórica de KHP para KOH (~0,1 mol·L⁻¹)</text>
+      <line x1="120" y1="200" x2="1160" y2="200" class="stroke-color" id="line_p1_div1"></line>
+      <line x1="640" y1="200" x2="640" y2="260" class="stroke-color" id="line_p1_div2"></line>
+      
+      <!-- Esquerda: Equação Generalizada -->
+      <text class="formula-text" x="380" y="238" id="text_p1_eq1">m<tspan class="subscript" dy="6">KHP</tspan><tspan dy="-6"> = M</tspan><tspan class="subscript" dy="-6">KOH</tspan><tspan class="subscript" dy="12">Ap</tspan><tspan dy="-6"> × V</tspan><tspan class="subscript" dy="6">KOH</tspan><tspan dy="-6"> × M.M.(KHP)</tspan></text>
+      <!-- Direita: Cálculo Numérico (0,51 g) -->
+      <text class="formula-text" x="900" y="238" id="text_p1_eq2">m<tspan class="subscript" dy="6">KHP</tspan><tspan dy="-6"> = 0,1 × 0,025 × 204,22 ≈ </tspan><tspan font-weight="bold">0,51 g</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="120,130 1160,130 1160,260 120,260" id="polygon_p1_stroke"></polygon>
+    </g>
+
+    <!-- SETA P1 -> P2 -->
+    <path class="edge-line" d="M640,260 L640,300" id="path_1_2"></path>
+    <polygon class="edge-arrow" points="635,300 640,310 645,300" id="arrow_1_2"></polygon>
+
+    <!-- PASSO 2: Preparo do Erlenmeyer com KHP -->
+    <g id="node2">
+      <polygon class="node-bg" stroke="none" points="40,310 1240,310 1240,440 40,440" id="polygon_p2_bg"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="350" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text_p2_title">Passo 2 — Preparo da Amostra do Padrão Primário</text>
+      <line x1="40" y1="380" x2="1240" y2="380" class="stroke-color" id="line_p2_div"></line>
+      
+      <text class="formula-text" x="640" y="418" id="text_p2_msg">Pesar m<tspan class="subscript" dy="6">KHP</tspan><tspan dy="-6"> (~0,51 g em balança analítica) → Erlenmeyer (250 mL) + 75 mL H₂O + 3 gotas de Fenolftaleína</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="40,310 1240,310 1240,440 40,440" id="polygon_p2_stroke"></polygon>
+    </g>
+
+    <!-- SETA P2 -> P3 -->
+    <path class="edge-line" d="M640,440 L640,480" id="path_2_3"></path>
+    <polygon class="edge-arrow" points="635,480 640,490 645,480" id="arrow_2_3"></polygon>
+
+    <!-- PASSO 3: Titulação do KHP com KOH -->
+    <g id="node3">
+      <polygon class="node-bg" stroke="none" points="150,490 1130,490 1130,620 150,620" id="polygon_p3_bg"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="530" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text_p3_title">Passo 3 — Titulação de Padronização do KOH</text>
+      <line x1="150" y1="560" x2="1130" y2="560" class="stroke-color" id="line_p3_div"></line>
+      
+      <text class="formula-text" x="640" y="598" id="text_p3_msg">Titular com KOH (~0,1 mol·L⁻¹) até cor rósea persistente por 30s → Registrar V<tspan class="subscript" dy="6">KOH</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="150,490 1130,490 1130,620 150,620" id="polygon_p3_stroke"></polygon>
+    </g>
+
+    <!-- SETA P3 -> P4 -->
+    <path class="edge-line" d="M640,620 L640,660" id="path_3_4"></path>
+    <polygon class="edge-arrow" points="635,660 640,670 645,660" id="arrow_3_4"></polygon>
+
+    <!-- PASSO 4: Cálculos de Molaridade Exata e Fc do KOH -->
+    <g id="node4">
+      <polygon class="node-bg" stroke="none" points="80,670 1200,670 1200,800 80,800" id="polygon_p4_bg"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="710" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text_p4_title">Passo 4 — Cálculo da Molaridade Exata e Fator de Correção (F<tspan class="subscript" dy="6">C</tspan><tspan dy="-6">) do KOH</tspan></text>
+      <line x1="80" y1="740" x2="1200" y2="740" class="stroke-color" id="line_p4_div1"></line>
+      <line x1="640" y1="740" x2="640" y2="800" class="stroke-color" id="line_p4_div2"></line>
+      
+      <!-- Esquerda: Molaridade Exata -->
+      <text class="formula-text" x="360" y="778" id="text_p4_eq1">M<tspan class="subscript" dy="-6">KOH</tspan><tspan class="subscript" dy="12">Ex</tspan><tspan dy="-6"> = [m</tspan><tspan class="subscript" dy="6">KHP</tspan><tspan dy="-6"> / M.M.(KHP)] × (1 / V</tspan><tspan class="subscript" dy="6">KOH</tspan><tspan dy="-6">)</tspan></text>
+      <!-- Direita: Fator de Correção -->
+      <text class="formula-text" x="920" y="778" id="text_p4_eq2">F<tspan class="subscript" dy="6">C(KOH)</tspan><tspan dy="-6"> = M</tspan><tspan class="subscript" dy="-6">KOH</tspan><tspan class="subscript" dy="12">Ex</tspan><tspan dy="-6"> / M</tspan><tspan class="subscript" dy="-6">KOH</tspan><tspan class="subscript" dy="12">Ap</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="80,670 1200,670 1200,800 80,800" id="polygon_p4_stroke"></polygon>
+    </g>
+
+    <!-- SETA P4 -> P5 -->
+    <path class="edge-line" d="M640,800 L640,840" id="path_4_5"></path>
+    <polygon class="edge-arrow" points="635,840 640,850 645,840" id="arrow_4_5"></polygon>
+
+    <!-- PASSO 5: Alíquota e Preparo do HCl -->
+    <g id="node5">
+      <polygon class="node-bg" stroke="none" points="100,850 1180,850 1180,980 100,980" id="polygon_p5_bg"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="890" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text_p5_title">Passo 5 — Preparo da Alíquota de HCl (~0,1 mol·L⁻¹)</text>
+      <line x1="100" y1="920" x2="1180" y2="920" class="stroke-color" id="line_p5_div"></line>
+      
+      <text class="formula-text" x="640" y="958" id="text_p5_msg">Pipetar V<tspan class="subscript" dy="6">HCl</tspan><tspan dy="-6"> = 20,0 mL (pipeta volumétrica) → Erlenmeyer (250 mL) + 3 gotas de Fenolftaleína</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="100,850 1180,850 1180,980 100,980" id="polygon_p5_stroke"></polygon>
+    </g>
+
+    <!-- SETA P5 -> P6 -->
+    <path class="edge-line" d="M640,980 L640,1020" id="path_5_6"></path>
+    <polygon class="edge-arrow" points="635,1020 640,1030 645,1020" id="arrow_5_6"></polygon>
+
+    <!-- PASSO 6: Titulação do HCl com KOH Padronizado -->
+    <g id="node6">
+      <polygon class="node-bg" stroke="none" points="120,1020 1160,1020 1160,1150 120,1150" id="polygon_p6_bg"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="1060" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text_p6_title">Passo 6 — Titulação de Padronização do HCl</text>
+      <line x1="120" y1="1090" x2="1160" y2="1090" class="stroke-color" id="line_p6_div"></line>
+      
+      <text class="formula-text" x="640" y="1128" id="text_p6_msg">Titular com KOH JÁ PADRONIZADO até cor rósea persistente por 30s → Registrar V<tspan class="subscript" dy="6">KOH</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="120,1020 1160,1020 1160,1150 120,1150" id="polygon_p6_stroke"></polygon>
+    </g>
+
+    <!-- SETA P6 -> P7 -->
+    <path class="edge-line" d="M640,1150 L640,1190" id="path_6_7"></path>
+    <polygon class="edge-arrow" points="635,1190 640,1200 645,1190" id="arrow_6_7"></polygon>
+
+    <!-- PASSO 7: Cálculos do HCl e Rotulagem Metrológica -->
+    <g id="node7">
+      <polygon class="node-bg" stroke="none" points="40,1200 1240,1200 1240,1380 40,1380" id="polygon_p7_bg"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="1240" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text_p7_title">Passo 7 — Determinação da Molaridade Exata de HCl e Rotulagem</text>
+      <line x1="40" y1="1270" x2="1240" y2="1270" class="stroke-color" id="line_p7_div1"></line>
+      <line x1="640" y1="1270" x2="640" y2="1380" class="stroke-color" id="line_p7_div2"></line>
+      
+      <!-- Sub-bloco 1: Equações do HCl -->
+      <text class="formula-text" x="340" y="1310" id="text_p7_eq1">M<tspan class="subscript" dy="-6">HCl</tspan><tspan class="subscript" dy="12">Ex</tspan><tspan dy="-6"> = (M</tspan><tspan class="subscript" dy="-6">KOH</tspan><tspan class="subscript" dy="12">Ex</tspan><tspan dy="-6"> × V</tspan><tspan class="subscript" dy="6">KOH</tspan><tspan dy="-6">) / V</tspan><tspan class="subscript" dy="6">HCl</tspan></text>
+      <text class="formula-text" x="340" y="1350" id="text_p7_eq2">F<tspan class="subscript" dy="6">C(HCl)</tspan><tspan dy="-6"> = M</tspan><tspan class="subscript" dy="-6">HCl</tspan><tspan class="subscript" dy="12">Ex</tspan><tspan dy="-6"> / M</tspan><tspan class="subscript" dy="-6">HCl</tspan><tspan class="subscript" dy="12">Ap</tspan></text>
+      
+      <!-- Sub-bloco 2: Rotulagem do Frasco (COM QUEBRA DE LINHA AJUSTADA) -->
+      <text class="formula-text" x="940" y="1310" id="text_p7_rotulo">
+        <tspan x="940" dy="0">Rotular Frascos:</tspan>
+        <tspan x="940" dy="32">Concentração Aparente + Fator de Correção (F<tspan class="subscript" dy="6">C</tspan><tspan dy="-6">)</tspan></tspan>
+      </text>
+      
+      <polygon fill="none" class="stroke-color" points="40,1200 1240,1200 1240,1380 40,1380" id="polygon_p7_stroke"></polygon>
+    </g>
+  </g>
+</svg>
+
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma" id="fluxograma-Padronizacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fluxograma&nbsp;9.1: Sequência de cálculo e etapas para padronização das soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>.
+</figcaption>
+</figure>
+</div>
+<hr>
+</section>
 </section>
 <section id="exercícios" class="level2">
 <h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
 <ol type="1">
-<li><p>Cite os erros que foram cometidos no preparo das soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e porque elas devem ser padronizadas.</p></li>
-<li><p>O que é padrão primário? O que significa padronizar uma solução?</p></li>
-<li><p>O que é indicador? Qual indicador você utilizou nesta prática e como ele funcionou?</p></li>
-<li><p>Defina: 1-Ponto de Equivalência (Ponto Estequiométrico) e 2-Ponto Final da Titulação.</p></li>
-<li><p>Como se constatou o Ponto Final da Titulação?</p></li>
-<li><p>Qual a diferença entre molaridade aparente e molaridade exata? O que é fator de correção? Em que situação deve-se usar esses conceitos?</p></li>
-<li><p>Dissolveu-se em água 0,250 gramas de carbonato de sódio. Na titulação, utilizando alaranjado de metila como indicador, foram gastos 9 ml de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> 0,5 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>.</p></li>
-</ol>
-<blockquote class="blockquote">
+<li><p>Cite os erros que foram cometidos no preparo das soluções de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e por que elas devem ser padronizadas.</p></li>
+<li><p>O que é um padrão primário? O que significa padronizar uma solução?</p></li>
+<li><p>O que é um indicador ácido-base? Qual indicador você utilizou nesta prática e como ele funcionou?</p></li>
+<li><p>Defina:</p>
 <ol type="a">
-<li>Escreva a equação que representa a reação química.</li>
+<li>Ponto de Equivalência (Ponto Estequiométrico).</li>
+<li>Ponto Final da Titulação.</li>
+</ol></li>
+<li><p>Como se constatou o Ponto Final da Titulação no procedimento experimental?</p></li>
+<li><p>Qual é a diferença entre molaridade aparente e molaridade exata? O que é fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>)? Em que situação deve-se usar esses conceitos?</p></li>
+<li><p>Dissolveu-se em água <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>250</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">0{,}250 \ \text{g}</annotation></semantics></math> de carbonato de sódio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Na</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CO</mtext><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\text{Na}_2\text{CO}_3</annotation></semantics></math>). Na titulação, utilizando alaranjado de metila como indicador, foram gastos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">9{,}0 \ \text{mL}</annotation></semantics></math> de uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}5 \ \text{mol·L}^{-1}</annotation></semantics></math>.</p>
+<ol type="a">
+<li>Escreva a equação química balanceada que representa a reação.</li>
 <li>Calcule a concentração exata, em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>, da solução ácida.</li>
 <li>Calcule o fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>).</li>
-</ol>
-</blockquote>
-<ol start="8" type="1">
-<li>Uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">HNO_{3}</annotation></semantics></math> 0,25 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math> foi padronizada com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>a</mi><mn>2</mn></msub><mi>C</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">Na_{2}CO_{3}</annotation></semantics></math> 0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>. Na titulação de 20 mL de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>a</mi><mn>2</mn></msub><mi>C</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">Na_{2}CO_{3}</annotation></semantics></math> gastou-se 26,5 ml de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">HNO_{3}</annotation></semantics></math>.</li>
-</ol>
-<blockquote class="blockquote">
+</ol></li>
+<li><p>Uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">HNO</mtext><mn>3</mn></msub><annotation encoding="application/x-tex">\text{HNO}_3</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>25</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}25 \ \text{mol·L}^{-1}</annotation></semantics></math> foi padronizada com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Na</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CO</mtext><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\text{Na}_2\text{CO}_3</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \ \text{mol·L}^{-1}</annotation></semantics></math>. Na titulação de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">20 \ \text{mL}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Na</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">CO</mtext><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\text{Na}_2\text{CO}_3</annotation></semantics></math>, gastou-se <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>26</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">26{,}5 \ \text{mL}</annotation></semantics></math> da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">HNO</mtext><mn>3</mn></msub><annotation encoding="application/x-tex">\text{HNO}_3</annotation></semantics></math>.</p>
 <ol type="a">
-<li>Calcule a concentração molar da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>N</mi><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">HNO_{3}</annotation></semantics></math>.</li>
+<li>Calcule a concentração molar exata da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">HNO</mtext><mn>3</mn></msub><annotation encoding="application/x-tex">\text{HNO}_3</annotation></semantics></math>.</li>
 <li>Calcule o fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>).</li>
-</ol>
-</blockquote>
-<ol start="9" type="1">
-<li>5,100 g de ftalato ácido de potássio [<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>O</mi><mi>O</mi><mi>C</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>C</mi><mn>6</mn></msub><msub><mi>H</mi><mn>4</mn></msub><mo stretchy="false" form="postfix">)</mo><mi>C</mi><mi>O</mi><mi>O</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">HOOC(C_6H_4)COOK</annotation></semantics></math>] foram dissolvidos em água e transferido para um balão volumétrico de 250 mL, completando-se o volume com água destilada. Do balão retirou-se um volume de 25 mL para a titulação com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~0,1 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>, gastando-se nesta operação, 24,5 mL da base.</li>
-</ol>
-<blockquote class="blockquote">
+</ol></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>,</mo><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">5{,}100 \ \text{g}</annotation></semantics></math> de ftalato ácido de potássio [<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">HOOC(C</mtext><mn>6</mn></msub><msub><mtext mathvariant="normal">H</mtext><mn>4</mn></msub><mtext mathvariant="normal">)COOK</mtext></mrow><annotation encoding="application/x-tex">\text{HOOC(C}_6\text{H}_4\text{)COOK}</annotation></semantics></math>] foram dissolvidos em água e transferidos para um balão volumétrico de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>250</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">250 \ \text{mL}</annotation></semantics></math>, completando-se o volume com água destilada. Do balão retirou-se uma alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">25 \ \text{mL}</annotation></semantics></math> para a titulação com solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> ~<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}1 \ \text{mol·L}^{-1}</annotation></semantics></math>, gastando-se nesta operação <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>24</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">24{,}5 \ \text{mL}</annotation></semantics></math> da base.</p>
 <ol type="a">
 <li>Escreva a equação da reação que ocorre.</li>
 <li>Calcule a concentração molar exata da solução básica.</li>
 <li>Calcule o fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>).</li>
-</ol>
-</blockquote>
-<ol start="10" type="1">
-<li>Ao longo de uma titulação com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> na bureta, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> no erlenmeyer e fenolftaleína como indicador, no momento que uma gota do titulante entra em contato com a solução contida no erlenmeyer visualiza-se uma coloração rósea apenas naquele ponto, que desaparece posteriormente.</li>
-</ol>
-<blockquote class="blockquote">
+</ol></li>
+<li><p>Ao longo de uma titulação com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> na bureta, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> no erlenmeyer e fenolftaleína como indicador, no momento em que uma gota do titulante entra em contato com a solução contida no erlenmeyer, visualiza-se uma coloração rósea apenas naquele ponto, a qual desaparece rapidamente após agitação.</p>
 <ol type="a">
-<li>Explique por que apenas uma parte da solução torna-se rosa, e não toda a solução.</li>
+<li>Explique por que apenas uma parte da solução torna-se rosa momentaneamente, e não toda a solução.</li>
 <li>Explique por que a coloração rósea desaparece rapidamente no início da titulação e, próximo do ponto de equivalência, a cor demora muito mais para desaparecer.</li>
+</ol></li>
 </ol>
-</blockquote>
+<hr>
+</section>
+<section id="complemento-com-ia" class="level2">
+<h2 class="anchored" data-anchor-id="complemento-com-ia">Complemento com IA</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="➘">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>➘
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div id="complemIA" class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Tópico Extra</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">IA Responde</a></li></ul>
+<div id="complemIA" class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><strong>Incerteza Expansível e Rastreabilidade Metrológica na Titulação</strong></p>
+<p>A determinação do <strong>fator de correção (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>) não serve apenas para ajustar a estequiometria em cálculos de rotina, mas representa um elo fundamental na <strong>rastreabilidade metrológica</strong> dos resultados analíticos.</p>
+<p>Ao utilizar um padrão primário como o biftalato de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>), a incerteza da medição final da concentração da solução padronizada depende de uma combinação de fatores:</p>
+<ol type="1">
+<li><p><strong>Incerteza da balança analítica</strong> (pesagem do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math>);</p></li>
+<li><p><strong>Incerteza da massa molar</strong> dos elementos (obtida das tabelas da IUPAC);</p></li>
+<li><p><strong>Incerteza volumétrica da bureta</strong> e das pipetas volumétricas (tolerâncias de calibração do fabricante e variação de temperatura);</p></li>
+<li><p><strong>Incerteza na detecção do ponto final</strong> (erro visual do indicador).</p></li>
+</ol>
+<p>A propagação de erros sistemáticos e aleatórios na equação do cálculo da molaridade exata determina a <em>Incerteza Expandida</em> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>), que garante que o resultado reportado possa ser comparado globalmente com dados de outros laboratórios de referência.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><strong>Como utilizar a Inteligência Artificial para interpretar desvios no</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>C</mi></msub><annotation encoding="application/x-tex">F_C</annotation></semantics></math>?</p>
+<p>Você pode utilizar prompts estruturados para solicitar que modelos de linguagem analitem erros experimentais de titulação.</p>
+<p><strong>Exemplo de Prompt:</strong> &gt; <em>“Atuei na padronização de uma solução de KOH ~0,1 mol/L usando KHP. O fator de correção obtido foi Fc = 0,85. Quais são as causas experimentais mais prováveis para um Fc tão abaixo de 1,00? Como posso investigar se o problema esteve na pesagem do KHP ou na leitura da bureta?”</em></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
 </section>
 <section id="áudio" class="level2">
 <h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
@@ -687,7 +1019,7 @@ x_2 \ \text{mols KHP} &amp; \text{-------------} &amp; x_3 \ \text{(g)}
 
 <!-- 2. Sua tag de áudio normal com uma classe -->
 <audio id="meu-audio" controls="">
-    <source src="mp3/Padronização.mp3" type="audio/mp3">
+    <source src="mp3/Padronizacao.mp3" type="audio/mp3">
 </audio>
 
 <!-- 3. O script que padroniza o Firefox e o Chrome -->
@@ -699,6 +1031,35 @@ x_2 \ \text{mols KHP} &amp; \text{-------------} &amp; x_3 \ \text{(g)}
         speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
     });
 </script>
+<hr>
+</section>
+<section id="resumo-visual" class="level2">
+<h2 class="anchored" data-anchor-id="resumo-visual">Resumo Visual</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Infográfico
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./resources/Prancha Colorida/Padronizacao.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Padronização das Soluções de KOH e HCl"><img src="./resources/Prancha Colorida/Padronizacao.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Padronização das Soluções de KOH e HCl"></a></p>
+</figure>
+</div>
+<figcaption>Padronização das Soluções de KOH e HCl</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <hr>
 
 
@@ -743,12 +1104,12 @@ x_2 \ \text{mols KHP} &amp; \text{-------------} &amp; x_3 \ \text{(g)}
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiada");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiada");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -1132,8 +1493,8 @@ x_2 \ \text{mols KHP} &amp; \text{-------------} &amp; x_3 \ \text{(g)}
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06_Acidez_Alimentos.html" class="pagination-link" aria-label="Prática 6: Acidez em Alimentos">
-        <span class="nav-page-text"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./06_Acidez_Alimentos.html" class="pagination-link" aria-label="&amp;bull; Acidez em Alimentos">
+        <span class="nav-page-text"><span class="chapter-title">• Acidez em Alimentos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1151,6 +1512,38 @@ x_2 \ \text{mols KHP} &amp; \text{-------------} &amp; x_3 \ \text{(g)}
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

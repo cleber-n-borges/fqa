@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizador 3D - Biftalato de Potássio (KHP)</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- 3Dmol.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.4/3Dmol-min.js"></script>
+
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .card-dark {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+    }
+    .viewer-container {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      background-color: #010409;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #30363d;
+    }
+    .btn-element {
+      border-width: 2px;
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-elem-K { border-color: #9c27b0; color: #d8b4fe; }
+    .btn-elem-K.active, .btn-elem-K:hover { background-color: #9c27b0; color: #fff; }
+    
+    .btn-elem-C { border-color: #6e7681; color: #8b949e; }
+    .btn-elem-C.active, .btn-elem-C:hover { background-color: #6e7681; color: #fff; }
+    
+    .btn-elem-O { border-color: #f85149; color: #ff7b72; }
+    .btn-elem-O.active, .btn-elem-O:hover { background-color: #f85149; color: #fff; }
+    
+    .btn-elem-H { border-color: #388bfd; color: #79c0ff; }
+    .btn-elem-H.active, .btn-elem-H:hover { background-color: #388bfd; color: #fff; }
+
+    #click-info {
+      background-color: rgba(22, 27, 34, 0.95);
+      border: 1px solid #58a6ff;
+      color: #58a6ff;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .controls-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #8b949e;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .btn-style-custom {
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body class="py-4">
+
+<div class="container-fluid px-4">
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-8">
+      <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-cubes-stacked text-primary me-2"></i>Visualizador Interativo 3D: Biftalato de Potássio (KHP)</h3>
+      <p class="text-secondary mb-0">Fórmula: <code>C₈H₅KO₄</code> | Padrão Primário Acidimétrico (Isômero Orto: 1,2)</p>
+    </div>
+    <div class="col-md-4 text-md-end mt-2 mt-md-0">
+      <button class="btn btn-outline-light btn-sm me-2" onclick="resetZoom()"><i class="fa-solid fa-compress-arrows-alt me-1"></i>Resetar Zoom</button>
+      <button class="btn btn-success btn-sm" onclick="downloadPNG()"><i class="fa-solid fa-download me-1"></i>Baixar PNG</button>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <!-- Visualizador 3D -->
+    <div class="col-lg-8">
+      <div class="card card-dark p-3">
+        <div id="khp-3d-viewer" class="viewer-container"></div>
+        <div id="click-info" class="mt-3"></div>
+      </div>
+    </div>
+
+    <!-- Painel de Controles -->
+    <div class="col-lg-4">
+      <div class="card card-dark p-3 h-100">
+        
+        <!-- Estilo de Representação -->
+        <div class="mb-4">
+          <div class="controls-label"><i class="fa-solid fa-palette me-1"></i> Estilo de Representação</div>
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-sm btn-outline-primary btn-style-custom active" id="btn-stick" onclick="toggleStyleMode('stick')"><i class="fa-solid fa-grip-lines me-1"></i>Bastões (Padrão)</button>
+            <button class="btn btn-sm btn-outline-primary btn-style-custom" id="btn-ballAndStick" onclick="toggleStyleMode('ballAndStick')"><i class="fa-solid fa-circle-nodes me-1"></i>Bolas e Bastões</button>
+            <button class="btn btn-sm btn-outline-primary btn-style-custom" id="btn-sphere" onclick="toggleStyleMode('sphere')"><i class="fa-solid fa-globe me-1"></i>Esferas (CPK)</button>
+            <button class="btn btn-sm btn-outline-primary btn-style-custom" id="btn-line" onclick="toggleStyleMode('line')"><i class="fa-solid fa-hashtag me-1"></i>Linhas</button>
+            <button class="btn btn-sm btn-outline-primary btn-style-custom" id="btn-cross" onclick="toggleStyleMode('cross')"><i class="fa-solid fa-xmark me-1"></i>Cruzes</button>
+          </div>
+        </div>
+
+        <!-- Superfície VDW -->
+        <div class="mb-4">
+          <div class="controls-label"><i class="fa-solid fa-layer-group me-1"></i> Superfície Eletrônica</div>
+          <div>
+            <button class="btn btn-sm btn-outline-warning w-100" id="btn-surface" onclick="toggleSurface()">
+              <i class="fa-solid fa-cloud me-1"></i>Superfície VDW: <strong id="surface-status">DESATIVADA</strong>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filtro por Elemento -->
+        <div class="mb-4">
+          <div class="controls-label"><i class="fa-solid fa-filter me-1"></i> Exibir / Ocultar Elementos</div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-sm btn-element btn-elem-K active" id="btn-elem-K" onclick="toggleElement('K')">
+              <i class="fa-solid fa-check me-1" id="icon-K"></i>Potássio (K) - Cátion
+            </button>
+            <button class="btn btn-sm btn-element btn-elem-C active" id="btn-elem-C" onclick="toggleElement('C')">
+              <i class="fa-solid fa-check me-1" id="icon-C"></i>Carbono (C) - Anel
+            </button>
+            <button class="btn btn-sm btn-element btn-elem-O active" id="btn-elem-O" onclick="toggleElement('O')">
+              <i class="fa-solid fa-check me-1" id="icon-O"></i>Oxigênio (O) - Carboxila
+            </button>
+            <button class="btn btn-sm btn-element btn-elem-H active" id="btn-elem-H" onclick="toggleElement('H')">
+              <i class="fa-solid fa-check me-1" id="icon-H"></i>Hidrogênio (H) - (5 átomos visíveis)
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-auto pt-2 border-top border-secondary">
+          <button class="btn btn-sm btn-outline-secondary w-100" onclick="resetAllFilters()"><i class="fa-solid fa-rotate me-1"></i>Restaurar Tudo</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dados Estruturais MOL do KHP (Orto: 1,2) -->
+<script type="text/plain" id="khp-data">KHP Molecule - Potassium Hydrogen Phthalate (Ortho 1,2)
+Generated for 3Dmol Viewer
+V2000 Format Data
+ 18 18  0  0  0  0  0  0  0  0999 V2000
+    1.2100    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2100   -0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2100   -0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2100    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4200    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4200   -1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5000    0.8000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4200    2.7000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5000   -2.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4000   -2.3000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0000    4.2000    0.0000 K   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -2.4800    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1500   -1.2500    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1500    1.2500    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    2.4800    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4000   -3.2500    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  6  1  1  0  0  0  0
+  1  7  1  0  0  0  0
+  2  8  1  0  0  0  0
+  7  9  2  0  0  0  0
+  7 10  1  0  0  0  0
+  8 11  2  0  0  0  0
+  8 12  1  0  0  0  0
+  3 14  1  0  0  0  0
+  4 15  1  0  0  0  0
+  5 16  1  0  0  0  0
+  6 17  1  0  0  0  0
+ 12 18  1  0  0  0  0
+ 10 13  1  0  0  0  0
+M  END</script>
+
+<script>
+  let viewer = null;
+  const DEFAULT_STYLE = 'stick';
+  let currentStyleMode = DEFAULT_STYLE;
+  let showSurface = false;
+
+  const ELEMENT_COLORS = {
+    'K': '#9c27b0',
+    'C': '#6e7681',
+    'O': '#f85149',
+    'H': '#e6edf3'
+  };
+
+  const visibleElements = {
+    K: true,
+    C: true,
+    O: true,
+    H: true
+  };
+
+  window.addEventListener("load", function () {
+    const container = document.getElementById("khp-3d-viewer");
+    if (!container) return;
+
+    if (typeof $3Dmol === 'undefined') {
+      container.innerHTML = '<div class="p-4 text-center text-danger"><i class="fa-solid fa-triangle-exclamation fa-2x mb-2"></i><br>Erro: Não foi possível carregar a biblioteca 3Dmol.js. Verifique sua conexão com a internet.</div>';
+      return;
+    }
+
+    try {
+      viewer = $3Dmol.createViewer(container, { backgroundColor: "#010409" });
+
+      const molElement = document.getElementById("khp-data");
+      if (molElement) {
+        let molData = molElement.textContent.trim();
+        viewer.addModel(molData, "mol");
+      }
+
+      viewer.resize();
+      updateVisualization();
+      viewer.zoomTo();
+
+      viewer.setClickable({}, true, function (atom) {
+        if (!atom) return;
+        const elem = (atom.elem || '').trim().toUpperCase();
+        if (!visibleElements[elem]) return;
+
+        const infoDiv = document.getElementById("click-info");
+        if (infoDiv) {
+          infoDiv.style.display = "block";
+          infoDiv.innerHTML = `<i class="fa-solid fa-atom text-info me-2"></i><strong>Átomo Inspecionado:</strong> Elemento <strong>${elem}</strong> (Índice #${atom.serial || (atom.index + 1)}) | <strong>Coordenadas 3D:</strong> X: ${atom.x.toFixed(2)}, Y: ${atom.y.toFixed(2)}, Z: ${atom.z.toFixed(2)}`;
+        }
+      });
+    } catch (err) {
+      console.error("Erro ao inicializar 3Dmol:", err);
+      container.innerHTML = `<div class="p-4 text-center text-warning"><i class="fa-solid fa-bug fa-2x mb-2"></i><br>Erro ao inicializar o visualizador 3D: ${err.message}</div>`;
+    }
+  });
+
+  function safeRender() {
+    if (viewer) {
+      try {
+        viewer.render();
+      } catch (e) {
+        console.error("Erro ao renderizar cena:", e);
+      }
+    }
+  }
+
+  function toggleStyleMode(selectedMode) {
+    if (currentStyleMode === selectedMode) {
+      currentStyleMode = DEFAULT_STYLE;
+    } else {
+      currentStyleMode = selectedMode;
+    }
+
+    ['stick', 'ballAndStick', 'sphere', 'line', 'cross'].forEach(m => {
+      const btn = document.getElementById(`btn-${m}`);
+      if (btn) btn.classList.toggle('active', m === currentStyleMode);
+    });
+
+    updateVisualization();
+  }
+
+  function toggleSurface() {
+    showSurface = !showSurface;
+    const btn = document.getElementById('btn-surface');
+    const statusText = document.getElementById('surface-status');
+
+    if (btn && statusText) {
+      if (showSurface) {
+        btn.classList.remove('btn-outline-warning');
+        btn.classList.add('btn-warning', 'active');
+        statusText.textContent = 'ATIVADA';
+      } else {
+        btn.classList.remove('btn-warning', 'active');
+        btn.classList.add('btn-outline-warning');
+        statusText.textContent = 'DESATIVADA';
+      }
+    }
+
+    renderSurface();
+    safeRender();
+  }
+
+  function toggleElement(elem) {
+    visibleElements[elem] = !visibleElements[elem];
+    const btn = document.getElementById(`btn-elem-${elem}`);
+    const icon = document.getElementById(`icon-${elem}`);
+
+    if (btn) btn.classList.toggle('active', visibleElements[elem]);
+    if (icon) {
+      icon.className = visibleElements[elem] ? 'fa-solid fa-check me-1' : 'fa-solid fa-xmark me-1';
+    }
+
+    updateVisualization();
+  }
+
+  function resetAllFilters() {
+    currentStyleMode = DEFAULT_STYLE;
+    showSurface = false;
+    ['K', 'C', 'O', 'H'].forEach(e => visibleElements[e] = true);
+
+    ['stick', 'ballAndStick', 'sphere', 'line', 'cross'].forEach(m => {
+      const btn = document.getElementById(`btn-${m}`);
+      if (btn) btn.classList.toggle('active', m === DEFAULT_STYLE);
+    });
+
+    const surfBtn = document.getElementById('btn-surface');
+    const statusText = document.getElementById('surface-status');
+    if (surfBtn && statusText) {
+      surfBtn.classList.remove('active', 'btn-warning');
+      surfBtn.classList.add('btn-outline-warning');
+      statusText.textContent = 'DESATIVADA';
+    }
+
+    ['K', 'C', 'O', 'H'].forEach(elem => {
+      const btn = document.getElementById(`btn-elem-${elem}`);
+      const icon = document.getElementById(`icon-${elem}`);
+      if (btn) btn.classList.add('active');
+      if (icon) icon.className = 'fa-solid fa-check me-1';
+    });
+
+    const infoDiv = document.getElementById("click-info");
+    if (infoDiv) infoDiv.style.display = "none";
+
+    updateVisualization();
+    resetZoom();
+  }
+
+  function renderSurface() {
+    if (!viewer) return;
+    try {
+      viewer.removeAllSurfaces();
+      if (!showSurface) return;
+
+      viewer.addSurface($3Dmol.SurfaceType.VDW, {
+        opacity: 0.65,
+        colorscheme: 'Jmol'
+      }, {}, {});
+    } catch (err) {
+      console.error("Erro ao renderizar superfície:", err);
+    }
+  }
+
+  function updateVisualization() {
+    if (!viewer) return;
+    try {
+      viewer.setStyle({}, {});
+
+      ['K', 'C', 'O', 'H'].forEach(elem => {
+        if (!visibleElements[elem]) return;
+
+        const color = ELEMENT_COLORS[elem];
+        let style = {};
+
+        if (currentStyleMode === 'stick') {
+          if (elem === 'H') {
+            style = { stick: { radius: 0.12, color: color }, sphere: { scale: 0.20, color: color } };
+          } else if (elem === 'K') {
+            style = { stick: { radius: 0.15, color: color }, sphere: { scale: 0.35, color: color } };
+          } else {
+            style = { stick: { radius: 0.15, color: color } };
+          }
+        } else if (currentStyleMode === 'ballAndStick') {
+          const scale = (elem === 'H') ? 0.20 : ((elem === 'K') ? 0.35 : 0.25);
+          style = { stick: { radius: 0.12, color: color }, sphere: { scale: scale, color: color } };
+        } else if (currentStyleMode === 'sphere') {
+          const scale = (elem === 'K') ? 0.45 : (elem === 'H' ? 0.22 : 0.35);
+          style = { sphere: { scale: scale, color: color } };
+        } else if (currentStyleMode === 'line') {
+          style = { line: { linewidth: 2, color: color } };
+        } else if (currentStyleMode === 'cross') {
+          style = { cross: { linewidth: 2, radius: 0.5, color: color } };
+        }
+
+        viewer.setStyle({ elem: elem }, style);
+      });
+
+      renderSurface();
+      safeRender();
+    } catch (err) {
+      console.error("Erro em updateVisualization:", err);
+    }
+  }
+
+  function resetZoom() {
+    if (viewer) {
+      viewer.zoomTo();
+      safeRender();
+    }
+  }
+
+  function downloadPNG() {
+    if (!viewer) return;
+    try {
+      const imgData = viewer.pngURI();
+      const link = document.createElement('a');
+      link.href = imgData;
+      link.download = 'KHP_Estrutura_3D.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (e) {
+      alert("Não foi possível gerar a imagem PNG.");
+    }
+  }
+</script>
+
+</body>
+</html>

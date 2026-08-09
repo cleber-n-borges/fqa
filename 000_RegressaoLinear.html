@@ -280,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./000_RegressaoLinear.html"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./000_RegressaoLinear.html"><span class="chapter-title">‣ Regressão Linear Teste</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -342,22 +342,22 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 1: Preparo de Solução de KOH</span></a>
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Preparo de Solução de KOH</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 2: Preparo de Solução de HCl</span></a>
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Preparo de Solução de HCl</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 3: Estequiometria</span></a>
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Estequiometria</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 4: Equilíbrio Químico</span></a>
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Equilíbrio Químico</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -367,27 +367,27 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 5: Padronização</span></a>
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Padronização de Solução</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 6: Acidez em Alimentos</span></a>
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Acidez em Alimentos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prática 10: Poder de Neutralização</span></a>
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• Poder de Neutralização</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Regressão Linear em fase de TESTE</span></a>
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">‣ Regressão Linear Teste</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Espectro em fase de TESTE</span></a>
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">‣ Espectro Teste</span></a>
   </div>
 </li>
     </ul>
@@ -1426,14 +1426,17 @@ function regLin_atualizarGrafico(resultado, bandas) {
         modeBarButtonsToRemove: ['sendDataToCloud'],
         displaylogo: true,
         modeBarButtonsToAdd: [
-            'drawline',
-            'drawopenpath',
-            'drawclosedpath',
-            'toImage',
-            'zoom2d',
-            'pan2d',
-            'select2d',
-            'lasso2d'
+        'toImage',          // --- Ações
+        'resetScale2d', 
+        'zoom2d',           // --- Navegação
+        'pan2d',
+        'select2d',         // --- Seleção de Dados
+        'lasso2d',
+        'drawline',         // --- Ferramentas de Desenho
+        'drawrect',
+        'drawopenpath',
+        'drawclosedpath',
+        'eraseshape'        // 👈 Borracha no final, perto dos desenhos
         ],
         toImageButtonOptions: {
             format: 'png',
@@ -1443,9 +1446,10 @@ function regLin_atualizarGrafico(resultado, bandas) {
             scale: 5
         },
         edits: {
-            shapePosition: true,
+            shapePosition: false,//Deixe FALSE para permitir que a borracha selecione a forma!
             annotationText: true,
-            axisTitleText: true
+            axisTitleText: true,
+            titleText: true // Libera edição do título principal!
         }
     };
     
@@ -1994,13 +1998,13 @@ document.addEventListener("DOMContentLoaded", function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./10_Neutralização_Calcario.html" class="pagination-link" aria-label="Prática 10: Poder de Neutralização">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Prática 10: Poder de Neutralização</span></span>
+      <a href="./10_Neutralização_Calcario.html" class="pagination-link" aria-label="&amp;bull; Poder de Neutralização">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">• Poder de Neutralização</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./001_Espectro.html" class="pagination-link" aria-label="Espectro em fase de TESTE">
-        <span class="nav-page-text"><span class="chapter-title">Espectro em fase de TESTE</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./001_Espectro.html" class="pagination-link" aria-label="&amp;#x2023; Espectro Teste">
+        <span class="nav-page-text"><span class="chapter-title">‣ Espectro Teste</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
