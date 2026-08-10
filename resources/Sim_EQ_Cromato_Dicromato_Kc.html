@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador de Equilíbrio Químico (Qc vs Kc) - Cromato / Dicromato</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 720px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #334155;
+    }
+
+    h2 { margin-top: 0; color: #f8fafc; font-size: 1.4rem; text-align: center; }
+    p.subtitle { color: #94a3b8; margin: 0 0 16px 0; text-align: center; font-size: 0.88rem; }
+
+    .equation-display {
+      background-color: #020617;
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      font-size: 1.25rem;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-anchor: middle;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .box {
+      background-color: #0f172a;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .box h4 { margin: 0; color: #cbd5e1; font-size: 0.95rem; }
+
+    .input-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    input[type=number], input[type=text] {
+      width: 105px;
+      padding: 4px 8px;
+      background-color: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      border-radius: 4px;
+      text-align: right;
+    }
+
+    input:disabled {
+      background-color: #0f172a;
+      color: #64748b;
+      border-color: #334155;
+    }
+
+    /* Medidor de Balanço Qc / Kc */
+    .gauge-container {
+      width: 100%;
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .comparison-badge {
+      font-size: 1.05rem;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .shift-direta { background-color: #065f46; color: #a7f3d0; border: 1px solid #10b981; }
+    .shift-inversa { background-color: #991b1b; color: #fecaca; border: 1px solid #ef4444; }
+    .shift-equilibrio { background-color: #075985; color: #bae6fd; border: 1px solid #38bdf8; }
+
+    /* Barras Discretas de Proporção Dinâmica */
+    .species-bars-wrapper {
+      width: 100%;
+      max-width: 520px;
+      margin: 10px 0 6px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .species-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .combined-bar-container {
+      width: 100%;
+      height: 10px;
+      background-color: #020617;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      border: 1px solid #334155;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .bar-fill-yellow {
+      height: 100%;
+      background-color: #facc15;
+      transition: width 0.3s ease;
+    }
+
+    .bar-fill-orange {
+      height: 100%;
+      background-color: #f97316;
+      transition: width 0.3s ease;
+    }
+
+    .yellow-txt { color: #facc15; }
+    .orange-txt { color: #f97316; }
+
+    .summary-card {
+      margin-top: 12px;
+      padding: 12px;
+      background-color: #020617;
+      border-radius: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      color: #e2e8f0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      border: 1px solid #334155;
+    }
+
+    button {
+      margin-top: 14px;
+      padding: 10px 16px;
+      background-color: #0284c7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    button:hover { background-color: #0369a1; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Simulador de Equilíbrio Químico</h2>
+    <p class="subtitle">Quociente de Reação (Q<sub>c</sub>) vs Constante de Equilíbrio (K<sub>c</sub>) — Cromato / Dicromato</p>
+
+    <!-- Equação -->
+    <div class="equation-display">
+      2 CrO₄²⁻ (aq) + 2 H⁺ (aq) ⇌ Cr₂O₇²⁻ (aq) + H₂O (l)
+    </div>
+
+    <div class="grid-container">
+      <!-- Constante Kc e Reagentes -->
+      <div class="box">
+        <h4>Reagentes & Constante</h4>
+        <div class="input-row">
+          <label><b>Constante K<sub>c</sub>:</b></label>
+          <input type="number" id="kc" value="4.2e14" step="any" min="0" disabled>
+        </div>
+        <hr style="border-color: #334155; width: 100%;">
+        <div class="input-row">
+          <label>[CrO₄²⁻] inicial (mol/L):</label>
+          <input type="number" id="conc-a" value="0.05" step="0.001" min="0">
+        </div>
+        <div class="input-row">
+          <label>[H⁺] inicial (mol/L):</label>
+          <input type="number" id="conc-b" value="0.001" step="0.0001" min="0">
+        </div>
+        <div class="input-row">
+          <label><b>pH inicial:</b></label>
+          <input type="number" id="ph" value="3.00" step="0.01" min="0" max="14">
+        </div>
+      </div>
+
+      <!-- Produtos -->
+      <div class="box">
+        <h4>Produtos & Solvente</h4>
+        <div class="input-row">
+          <label>[Cr₂O₇²⁻] inicial (mol/L):</label>
+          <input type="number" id="conc-c" value="0.05" step="0.001" min="0">
+        </div>
+        <div class="input-row">
+          <label>[H₂O] (solvente):</label>
+          <input type="text" value="1.0 (Atividade)" disabled>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicador de Qc vs Kc -->
+    <div class="gauge-container">
+      <!-- Indicador de Sentido da Reação -->
+      <div id="badge-status" class="comparison-badge shift-direta">
+        Q<sub>c</sub> &lt; K<sub>c</sub> (Reação Desloca para a Direita ➔)
+      </div>
+
+      <!-- Barrinhas Discretas (Proporção Dinâmica dos Íons Presentes) -->
+      <div class="species-bars-wrapper">
+        <div class="species-bar-label">
+          <span class="yellow-txt">CrO₄²⁻ (Cromato): <span id="cromato-pct">33%</span></span>
+          <span class="orange-txt">Cr₂O₇²⁻ (Dicromato): <span id="dicromato-pct">67%</span></span>
+        </div>
+        <div class="combined-bar-container">
+          <div class="bar-fill-yellow" id="cromato-bar" style="width: 33%;"></div>
+          <div class="bar-fill-orange" id="dicromato-bar" style="width: 67%;"></div>
+        </div>
+      </div>
+
+      <div class="summary-card" id="details">
+        <!-- Detalhes do cálculo gerados dinamicamente -->
+      </div>
+    </div>
+
+    <button id="btn-equilibrar">🧪 Simular Avanço até o Equilíbrio</button>
+  </div>
+
+  <script>
+    const badgeStatus = document.getElementById('badge-status');
+    const details = document.getElementById('details');
+    const btnEquilibrar = document.getElementById('btn-equilibrar');
+
+    const kcInput = document.getElementById('kc');
+    const concAInput = document.getElementById('conc-a');
+    const concBInput = document.getElementById('conc-b');
+    const phInput = document.getElementById('ph');
+    const concCInput = document.getElementById('conc-c');
+
+    const barCromato = document.getElementById('cromato-bar');
+    const barDicromato = document.getElementById('dicromato-bar');
+    const pctCromatoLbl = document.getElementById('cromato-pct');
+    const pctDicromatoLbl = document.getElementById('dicromato-pct');
+
+    // Notação científica amigável
+    function toUnicodeExp(val) {
+      if (isNaN(val) || !isFinite(val)) return "Indefinido";
+      if (val === 0) return "0";
+      if (Math.abs(val) >= 0.001 && Math.abs(val) < 10000) {
+        return val.toLocaleString('pt-BR', { maximumFractionDigits: 5 });
+      }
+      let str = val.toExponential(2);
+      let parts = str.split('e');
+      let base = parseFloat(parts[0]).toLocaleString('pt-BR', { maximumFractionDigits: 2 });
+      let exp = parseInt(parts[1], 10);
+      const superscripts = {'-':'⁻', '0':'⁰', '1':'¹', '2':'²', '3':'³', '4':'⁴', '5':'⁵', '6':'⁶', '7':'⁷', '8':'⁸', '9':'⁹'};
+      let expStr = exp.toString().split('').map(char => superscripts[char] || char).join('');
+      return `${base} × 10${expStr}`;
+    }
+
+    // Atualização dinâmica da largura das barras baseada nas concentrações atuais
+    function atualizarBarrasProporcao(A, C) {
+      const safeA = Math.max(0, A);
+      const safeC = Math.max(0, C);
+      const totalCr = safeA + (2 * safeC);
+      
+      let pctA = 50;
+      let pctC = 50;
+
+      if (totalCr > 0) {
+        pctA = (safeA / totalCr) * 100;
+        pctC = 100 - pctA;
+      }
+
+      const displayA = Math.round(pctA);
+      const displayC = 100 - displayA;
+
+      barCromato.style.width = `${pctA.toFixed(1)}%`;
+      barDicromato.style.width = `${pctC.toFixed(1)}%`;
+      pctCromatoLbl.innerText = `${displayA}%`;
+      pctDicromatoLbl.innerText = `${displayC}%`;
+    }
+
+    // --- VÍNCULO DIRETO pH <---> [H⁺] (Sem alterar outras concentrações) ---
+    phInput.addEventListener('input', () => {
+      const phVal = parseFloat(phInput.value);
+      if (!isNaN(phVal)) {
+        const hVal = Math.pow(10, -phVal);
+        concBInput.value = hVal < 0.001 ? hVal.toExponential(4) : hVal.toFixed(5);
+      } else {
+        concBInput.value = '';
+      }
+      calcularEquilibrio();
+    });
+
+    concBInput.addEventListener('input', () => {
+      const hVal = parseFloat(concBInput.value);
+      if (!isNaN(hVal) && hVal > 0) {
+        const phVal = -Math.log10(hVal);
+        phInput.value = phVal.toFixed(2);
+      } else {
+        phInput.value = '';
+      }
+      calcularEquilibrio();
+    });
+
+    // Escutadores para edições em qualquer input
+    [kcInput, concAInput, concCInput].forEach(input => {
+      input.addEventListener('input', calcularEquilibrio);
+    });
+
+    function calcularEquilibrio() {
+      const Kc = parseFloat(kcInput.value) || 4.2e14;
+      let A = parseFloat(concAInput.value) || 0; // [CrO4²⁻]
+      let B = parseFloat(concBInput.value) || 0; // [H⁺]
+      let C = parseFloat(concCInput.value) || 0; // [Cr2O7²⁻]
+
+      // Atualiza as barras de proporções com os valores atuais informados
+      atualizarBarrasProporcao(A, C);
+
+      const safeA = Math.max(A, 1e-15);
+      const safeB = Math.max(B, 1e-15);
+
+      // Cálculo livre do Quociente de Reação: Qc = [Cr2O7²⁻] / ([CrO4²⁻]² * [H⁺]²)
+      const Qc = C / (safeA * safeA * safeB * safeB);
+
+      let textoStatus = '';
+      let classeBadge = '';
+      let explicacao = '';
+
+      const ratio = Qc / Kc;
+
+      if (Math.abs(ratio - 1) < 0.01 || Math.abs(Qc - Kc) < 1e-10) {
+        classeBadge = 'shift-equilibrio';
+        textoStatus = `Q<sub>c</sub> ≈ K<sub>c</sub> (${toUnicodeExp(Qc)}) — O Sistema Já Está em Equilíbrio! ⚖️`;
+        explicacao = `A velocidade da reação direta é igual à velocidade da reação inversa. As concentrações dos íons cromato (amarelo) e dicromato (alaranjado) permanecem constantes.`;
+      } else if (Qc < Kc) {
+        classeBadge = 'shift-direta';
+        textoStatus = `Q<sub>c</sub> (${toUnicodeExp(Qc)}) &lt; K<sub>c</sub> (${toUnicodeExp(Kc)}) — Sentido Direto ➔`;
+        explicacao = `Há mais íons cromato e prótons do que o esperado para o equilíbrio. O sistema consumirá <b>CrO₄²⁻ e H⁺</b> para formar mais <b>Cr₂O₇²⁻</b> (predomínio da cor <b>alaranjada</b>) até atingir K<sub>c</sub>.`;
+      } else {
+        classeBadge = 'shift-inversa';
+        textoStatus = `Q<sub>c</sub> (${toUnicodeExp(Qc)}) &gt; K<sub>c</sub> (${toUnicodeExp(Kc)}) — Sentido Inverso ⬅️`;
+        explicacao = `Há mais dicromato do que o esperado para o equilíbrio. O sistema consumirá <b>Cr₂O₇²⁻</b> para regenerar <b>CrO₄²⁻ e H⁺</b> (predomínio da cor <b>amarela</b>) até atingir K<sub>c</sub>.`;
+      }
+
+      badgeStatus.className = `comparison-badge ${classeBadge}`;
+      badgeStatus.innerHTML = textoStatus;
+
+      details.innerHTML = `
+        <b>Cálculo Atual do Quociente de Reação:</b><br>
+        Q<sub>c</sub> = [Cr₂O₇²⁻] / ([CrO₄²⁻]² · [H⁺]²) = ${toUnicodeExp(C)} / ((${toUnicodeExp(A)})² · (${toUnicodeExp(B)})²) = <b>${toUnicodeExp(Qc)}</b><br><br>
+        <b>Diagnóstico:</b> ${explicacao}
+      `;
+    }
+
+    // Função para simular o avanço exato até o equilíbrio ao clicar no botão
+    btnEquilibrar.addEventListener('click', () => {
+      const Kc = parseFloat(kcInput.value) || 4.2e14;
+      let A = parseFloat(concAInput.value) || 1e-12; // [CrO4²⁻]
+      let B = parseFloat(concBInput.value) || 1e-12; // [H⁺]
+      let C = parseFloat(concCInput.value) || 0;     // [Cr2O7²⁻]
+
+      let low = -C;
+      let high = Math.min(A / 2, B / 2) - 1e-15;
+
+      if (high > low) {
+        for (let iter = 0; iter < 120; iter++) {
+          let mid = (low + high) / 2;
+          let a_eq = A - 2 * mid;
+          let b_eq = B - 2 * mid;
+          let c_eq = C + mid;
+
+          if (a_eq <= 0 || b_eq <= 0 || c_eq < 0) {
+            if (mid > 0) high = mid;
+            else low = mid;
+            continue;
+          }
+
+          let Qc_mid = c_eq / (a_eq * a_eq * b_eq * b_eq);
+          if (Qc_mid < Kc) {
+            low = mid;
+          } else {
+            high = mid;
+          }
+        }
+
+        let x = (low + high) / 2;
+        let newA = Math.max(1e-15, A - 2 * x);
+        let newB = Math.max(1e-15, B - 2 * x);
+        let newC = Math.max(0, C + x);
+
+        concAInput.value = newA < 0.001 ? newA.toExponential(4) : newA.toFixed(5);
+        concBInput.value = newB < 0.001 ? newB.toExponential(4) : newB.toFixed(5);
+        concCInput.value = newC < 0.001 ? newC.toExponential(4) : newC.toFixed(5);
+
+        // Atualiza o pH correspondente às novas condições de equilíbrio
+        phInput.value = (-Math.log10(newB)).toFixed(2);
+      }
+
+      calcularEquilibrio();
+    });
+
+    calcularEquilibrio();
+  </script>
+</body>
+</html>

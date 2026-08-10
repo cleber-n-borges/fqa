@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt_br" xml:lang="pt_br"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Titulometria – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05_Padronizacao.html" rel="next">
+<link href="./04_Equilibrio_Quimico.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+
+
+
+<!-- Google tag (gtag.js) -->
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZVQ51X2MW"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'G-5ZVQ51X2MW');
+
+</script>
+
+
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Titulometria.html"><span class="chapter-title">🕮 &nbsp; Titulometria</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">Titulometria</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">️→  🏠︎   Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">🕮 &nbsp; Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Manual_Preparo_Solucao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">️🕮 &nbsp; Preparo de Soluções</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• &nbsp;  Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• &nbsp;  Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• &nbsp; Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• &nbsp; Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulometria.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">🕮 &nbsp; Titulometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• &nbsp;Padronização de Solução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• &nbsp; Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">• &nbsp;Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">‣ &nbsp;Regressão Linear Teste</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">‣ &nbsp;Espectro Teste</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução-à-titulação" id="toc-introdução-à-titulação" class="nav-link active" data-scroll-target="#introdução-à-titulação">Introdução à Titulação</a>
+  <ul class="collapse">
+  <li><a href="#comparador-entre-ponto-de-equivalência-e-ponto-final" id="toc-comparador-entre-ponto-de-equivalência-e-ponto-final" class="nav-link" data-scroll-target="#comparador-entre-ponto-de-equivalência-e-ponto-final">Comparador entre Ponto de Equivalência e Ponto Final</a></li>
+  </ul></li>
+  <li><a href="#requisitos-para-uma-titulação-volumétrica" id="toc-requisitos-para-uma-titulação-volumétrica" class="nav-link" data-scroll-target="#requisitos-para-uma-titulação-volumétrica">Requisitos para uma titulação volumétrica</a>
+  <ul class="collapse">
+  <li><a href="#a-reação-deve-possuir-estequiometria-conhecida-e-bem-definida" id="toc-a-reação-deve-possuir-estequiometria-conhecida-e-bem-definida" class="nav-link" data-scroll-target="#a-reação-deve-possuir-estequiometria-conhecida-e-bem-definida">1. A reação deve possuir estequiometria conhecida e bem definida</a></li>
+  <li><a href="#a-reação-deve-ocorrer-de-forma-rápida" id="toc-a-reação-deve-ocorrer-de-forma-rápida" class="nav-link" data-scroll-target="#a-reação-deve-ocorrer-de-forma-rápida">2. A reação deve ocorrer de forma rápida</a></li>
+  <li><a href="#a-reação-deve-ser-completa-quantitativa" id="toc-a-reação-deve-ser-completa-quantitativa" class="nav-link" data-scroll-target="#a-reação-deve-ser-completa-quantitativa">3. A reação deve ser completa (quantitativa)</a></li>
+  <li><a href="#a-reação-deve-ser-seletiva" id="toc-a-reação-deve-ser-seletiva" class="nav-link" data-scroll-target="#a-reação-deve-ser-seletiva">4. A reação deve ser seletiva</a></li>
+  <li><a href="#deve-existir-um-meio-confiável-para-detectar-o-ponto-de-equivalência" id="toc-deve-existir-um-meio-confiável-para-detectar-o-ponto-de-equivalência" class="nav-link" data-scroll-target="#deve-existir-um-meio-confiável-para-detectar-o-ponto-de-equivalência">5. Deve existir um meio confiável para detectar o ponto de equivalência</a></li>
+  <li><a href="#deve-haver-diferença-significativa-nas-propriedades-do-sistema-próximo-ao-ponto-de-equivalência" id="toc-deve-haver-diferença-significativa-nas-propriedades-do-sistema-próximo-ao-ponto-de-equivalência" class="nav-link" data-scroll-target="#deve-haver-diferença-significativa-nas-propriedades-do-sistema-próximo-ao-ponto-de-equivalência">6. Deve haver diferença significativa nas propriedades do sistema próximo ao ponto de equivalência</a></li>
+  <li><a href="#o-titulante-deve-possuir-concentração-conhecida" id="toc-o-titulante-deve-possuir-concentração-conhecida" class="nav-link" data-scroll-target="#o-titulante-deve-possuir-concentração-conhecida">7. O titulante deve possuir concentração conhecida</a></li>
+  <li><a href="#as-medições-volumétricas-devem-ser-precisas" id="toc-as-medições-volumétricas-devem-ser-precisas" class="nav-link" data-scroll-target="#as-medições-volumétricas-devem-ser-precisas">8. As medições volumétricas devem ser precisas</a></li>
+  <li><a href="#a-amostra-deve-estar-completamente-dissolvida" id="toc-a-amostra-deve-estar-completamente-dissolvida" class="nav-link" data-scroll-target="#a-amostra-deve-estar-completamente-dissolvida">9. A amostra deve estar completamente dissolvida</a></li>
+  <li><a href="#resumo-dos-requisitos-segundo-skoog-e-autores-correlatos" id="toc-resumo-dos-requisitos-segundo-skoog-e-autores-correlatos" class="nav-link" data-scroll-target="#resumo-dos-requisitos-segundo-skoog-e-autores-correlatos">Resumo dos requisitos segundo Skoog e autores correlatos</a></li>
+  </ul></li>
+  <li><a href="#limitações-do-uso-da-técnica" id="toc-limitações-do-uso-da-técnica" class="nav-link" data-scroll-target="#limitações-do-uso-da-técnica">Limitações do uso da técnica</a>
+  <ul class="collapse">
+  <li><a href="#existe-uma-faixa-prática-de-trabalho" id="toc-existe-uma-faixa-prática-de-trabalho" class="nav-link" data-scroll-target="#existe-uma-faixa-prática-de-trabalho">1. Existe uma faixa prática de trabalho</a></li>
+  <li><a href="#quantidades-muito-pequenas" id="toc-quantidades-muito-pequenas" class="nav-link" data-scroll-target="#quantidades-muito-pequenas">2. Quantidades muito pequenas</a></li>
+  <li><a href="#quantidades-muito-grandes" id="toc-quantidades-muito-grandes" class="nav-link" data-scroll-target="#quantidades-muito-grandes">3. Quantidades muito grandes</a></li>
+  <li><a href="#existe-um-limite-inferior-teórico" id="toc-existe-um-limite-inferior-teórico" class="nav-link" data-scroll-target="#existe-um-limite-inferior-teórico">4. Existe um limite inferior teórico</a></li>
+  <li><a href="#limitação-pela-constante-de-equilíbrio" id="toc-limitação-pela-constante-de-equilíbrio" class="nav-link" data-scroll-target="#limitação-pela-constante-de-equilíbrio">5. Limitação pela constante de equilíbrio</a></li>
+  <li><a href="#faixas-típicas-de-concentração" id="toc-faixas-típicas-de-concentração" class="nav-link" data-scroll-target="#faixas-típicas-de-concentração">6. Faixas típicas de concentração</a></li>
+  <li><a href="#microtitulação-e-ultramicrotitulação" id="toc-microtitulação-e-ultramicrotitulação" class="nav-link" data-scroll-target="#microtitulação-e-ultramicrotitulação">7. Microtitulação e ultramicrotitulação</a></li>
+  <li><a href="#resumindo" id="toc-resumindo" class="nav-link" data-scroll-target="#resumindo">Resumindo…</a></li>
+  <li><a href="#cálculo-interativo-do-erro-relativo" id="toc-cálculo-interativo-do-erro-relativo" class="nav-link" data-scroll-target="#cálculo-interativo-do-erro-relativo">Cálculo Interativo do Erro Relativo</a></li>
+  </ul></li>
+  <li><a href="#materiais-utilizados-na-titulação" id="toc-materiais-utilizados-na-titulação" class="nav-link" data-scroll-target="#materiais-utilizados-na-titulação">Materiais Utilizados na Titulação</a>
+  <ul class="collapse">
+  <li><a href="#bureta" id="toc-bureta" class="nav-link" data-scroll-target="#bureta">Bureta</a></li>
+  <li><a href="#erlenmeyer" id="toc-erlenmeyer" class="nav-link" data-scroll-target="#erlenmeyer">Erlenmeyer</a></li>
+  <li><a href="#pipeta" id="toc-pipeta" class="nav-link" data-scroll-target="#pipeta">Pipeta</a></li>
+  <li><a href="#suporte-universal-e-garra" id="toc-suporte-universal-e-garra" class="nav-link" data-scroll-target="#suporte-universal-e-garra">Suporte universal e garra</a></li>
+  <li><a href="#béquer-e-frascos-auxiliares" id="toc-béquer-e-frascos-auxiliares" class="nav-link" data-scroll-target="#béquer-e-frascos-auxiliares">Béquer e frascos auxiliares</a></li>
+  </ul></li>
+  <li><a href="#etapas-do-processo-de-titulação" id="toc-etapas-do-processo-de-titulação" class="nav-link" data-scroll-target="#etapas-do-processo-de-titulação">Etapas do Processo de Titulação</a>
+  <ul class="collapse">
+  <li><a href="#preparação-das-soluções" id="toc-preparação-das-soluções" class="nav-link" data-scroll-target="#preparação-das-soluções">Preparação das soluções</a></li>
+  <li><a href="#enchimento-da-bureta" id="toc-enchimento-da-bureta" class="nav-link" data-scroll-target="#enchimento-da-bureta">Enchimento da bureta</a></li>
+  <li><a href="#transferência-da-amostra-para-o-erlenmeyer" id="toc-transferência-da-amostra-para-o-erlenmeyer" class="nav-link" data-scroll-target="#transferência-da-amostra-para-o-erlenmeyer">Transferência da amostra para o erlenmeyer</a></li>
+  <li><a href="#realização-da-titulação" id="toc-realização-da-titulação" class="nav-link" data-scroll-target="#realização-da-titulação">Realização da titulação</a></li>
+  <li><a href="#registro-do-volume-final" id="toc-registro-do-volume-final" class="nav-link" data-scroll-target="#registro-do-volume-final">Registro do volume final</a></li>
+  <li><a href="#simulação-interativa-da-titulação-bureta-e-erlenmeyer" id="toc-simulação-interativa-da-titulação-bureta-e-erlenmeyer" class="nav-link" data-scroll-target="#simulação-interativa-da-titulação-bureta-e-erlenmeyer">Simulação Interativa da Titulação (Bureta e Erlenmeyer)</a></li>
+  </ul></li>
+  <li><a href="#interpretação-dos-resultados" id="toc-interpretação-dos-resultados" class="nav-link" data-scroll-target="#interpretação-dos-resultados">Interpretação dos Resultados</a></li>
+  <li><a href="#tipos-de-titulação" id="toc-tipos-de-titulação" class="nav-link" data-scroll-target="#tipos-de-titulação">Tipos de Titulação</a></li>
+  <li><a href="#cuidados-e-fontes-de-erro" id="toc-cuidados-e-fontes-de-erro" class="nav-link" data-scroll-target="#cuidados-e-fontes-de-erro">Cuidados e Fontes de Erro</a></li>
+  <li><a href="#nota-histórica" id="toc-nota-histórica" class="nav-link" data-scroll-target="#nota-histórica">Nota Histórica</a></li>
+  <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão">Conclusão</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução-à-titulação" class="level2">
+<h2 class="anchored" data-anchor-id="introdução-à-titulação">Introdução à Titulação</h2>
+<p>A titulação (ou volumetria) é uma técnica de química analítica amplamente empregada em laboratórios para determinar a concentração de uma substância em solução. O procedimento consiste na adição controlada de uma solução de concentração conhecida (<strong>titulante</strong>) sobre outra de concentração desconhecida (<strong>titulado</strong>), até que se atinja o <strong>ponto final da titulação</strong>.</p>
+<p>O princípio da titulação baseia-se em uma <strong>reação química completa</strong> entre o analito (titulado) e o titulante. Essa reação deve ser expressa por uma <strong>equação química balanceada</strong>, na qual a <strong>estequiometria</strong> esteja claramente definida. É essa proporção molar que possibilita relacionar o volume de titulante consumido com a quantidade de substância presente no analito, garantindo resultados quantitativos corretos e confiáveis.</p>
+<p>Para um entendimento completo do processo, alguns conceitos fundamentais devem ser destacados:</p>
+<ul>
+<li><p><strong>Titulado (analito):</strong> espécie química de concentração desconhecida a ser determinada.</p></li>
+<li><p><strong>Titulante:</strong> solução de concentração conhecida, adicionada gradualmente ao titulado por meio de uma bureta.</p></li>
+<li><p><strong>Indicador:</strong> substância adicionada em pequena quantidade ao sistema com a função de sinalizar o término da titulação por meio de uma mudança perceptível, geralmente de cor. O indicador deve apresentar sua transição o mais próximo possível do ponto de equivalência, minimizando o erro da titulação. Em algumas análises, o indicador pode ser substituído por métodos instrumentais, como potenciometria, condutimetria ou espectrofotometria.</p></li>
+<li><p><strong>Ponto de Equivalência:</strong> instante teórico no qual a quantidade de titulante adicionada é <strong>exatamente equivalente</strong>, em termos estequiométricos, à quantidade de analito presente. Nesse ponto, a reação está completa segundo a equação química balanceada.</p></li>
+<li><p><strong>Ponto Final da Titulação:</strong> instante <strong>experimental</strong> caracterizado por uma mudança observável, como a alteração de cor de um indicador químico ou uma variação detectada instrumentalmente. Esse sinal indica, na prática, a proximidade do ponto de equivalência.</p></li>
+<li><p><strong>Erro da Titulação:</strong> diferença entre o ponto de equivalência (teórico) e o ponto final (experimental). Esse desvio deve ser minimizado pela seleção adequada do indicador ou pela utilização de métodos instrumentais mais precisos.</p></li>
+</ul>
+<section id="comparador-entre-ponto-de-equivalência-e-ponto-final" class="level3">
+<h3 class="anchored" data-anchor-id="comparador-entre-ponto-de-equivalência-e-ponto-final">Comparador entre Ponto de Equivalência e Ponto Final</h3>
+<p>A animação conceitual lado a lado que demonstra a diferença teórica versus a manifestação física experimental.</p>
+<div style="font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fff;">
+  <h4 style="text-align: center; margin-top: 0;" class="anchored">Ponto de Equivalência vs. Ponto Final</h4>
+  
+  <div style="display: flex; justify-content: space-around; gap: 10px; text-align: center;">
+    <!-- Lado Teórico -->
+    <div style="flex: 1; padding: 10px; background: #f0f3f4; border-radius: 6px;">
+      <strong style="color: #2c3e50;">Ponto de Equivalência</strong>
+      <p style="font-size: 0.8em; color: #555;">Conceito Estequiométrico Teórico</p>
+      <div style="height: 80px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #2980b9;">
+        <i>n</i><sub>ácido</sub>&nbsp;=&nbsp;<i>n</i><sub>base</sub>
+      </div>
+      <span style="font-size: 0.75em; background: #3498db; color: white; padding: 2px 6px; border-radius: 10px;">Invisível a olho nu</span>
+    </div>
+
+    <!-- Lado Experimental -->
+    <div style="flex: 1; padding: 10px; background: #f0f3f4; border-radius: 6px;">
+      <strong style="color: #2c3e50;">Ponto Final</strong>
+      <p style="font-size: 0.8em; color: #555;">Sinal Visual Experimental</p>
+      <div id="eq-demo-flask" style="height: 60px; width: 60px; margin: 10px auto; border-radius: 50%; background: #e0e0e0; border: 2px solid #bdc3c7; transition: background 0.8s;"></div>
+      <span id="eq-demo-label" style="font-size: 0.75em; background: #7f8c8d; color: white; padding: 2px 6px; border-radius: 10px;">Sem indicador</span>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 15px;">
+    <button id="btn-toggle-indicator" style="padding: 6px 12px; font-size: 0.85em; cursor: pointer; background: #8e44ad; color: white; border: none; border-radius: 4px;">Simular Adição de Indicador e Ponto Final</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  let active = false;
+  const btn = document.getElementById('btn-toggle-indicator');
+  const flask = document.getElementById('eq-demo-flask');
+  const label = document.getElementById('eq-demo-label');
+
+  btn.addEventListener('click', () => {
+    active = !active;
+    if (active) {
+      flask.style.background = "#e91e63";
+      label.style.background = "#e91e63";
+      label.textContent = "Mudança de cor visível!";
+      btn.textContent = "Resetar Visualização";
+    } else {
+      flask.style.background = "#e0e0e0";
+      label.style.background = "#7f8c8d";
+      label.textContent = "Sem indicador";
+      btn.textContent = "Simular Adição de Indicador e Ponto Final";
+    }
+  });
+})();
+</script>
+</section>
+</section>
+<section id="requisitos-para-uma-titulação-volumétrica" class="level2">
+<h2 class="anchored" data-anchor-id="requisitos-para-uma-titulação-volumétrica">Requisitos para uma titulação volumétrica</h2>
+<p>Segundo o <strong>Skoog, West, Holler e Crouch</strong>, uma titulação somente produz resultados confiáveis quando determinadas condições são atendidas. Esses requisitos garantem que o ponto de equivalência possa ser identificado com precisão e que a quantidade do analito seja calculada corretamente. Outros autores, como Harris, Vogel e Baccan, apresentam critérios muito semelhantes, apenas com diferenças de detalhamento.</p>
+<section id="a-reação-deve-possuir-estequiometria-conhecida-e-bem-definida" class="level3">
+<h3 class="anchored" data-anchor-id="a-reação-deve-possuir-estequiometria-conhecida-e-bem-definida">1. A reação deve possuir estequiometria conhecida e bem definida</h3>
+<p>A reação entre o titulante e o analito deve ser representada por uma equação química balanceada e sem ambiguidades.</p>
+<p>Por exemplo:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">HCl</mtext><mo>+</mo><mtext mathvariant="normal">NaOH</mtext><mo>→</mo><mtext mathvariant="normal">NaCl</mtext><mo>+</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext></mrow><annotation encoding="application/x-tex">\text{HCl} + \text{NaOH} \rightarrow \text{NaCl} + \text{H}_2\text{O}</annotation></semantics></math></p>
+<p>Nesse caso, a proporção é claramente 1:1.</p>
+<p>Sem uma estequiometria conhecida, o volume consumido de titulante não pode ser convertido em quantidade de matéria do analito.</p>
+<p><strong>Importância:</strong> os cálculos de concentração dependem diretamente dessa relação molar.</p>
+<hr>
+</section>
+<section id="a-reação-deve-ocorrer-de-forma-rápida" class="level3">
+<h3 class="anchored" data-anchor-id="a-reação-deve-ocorrer-de-forma-rápida">2. A reação deve ocorrer de forma rápida</h3>
+<p>A reação entre titulante e analito deve ser praticamente instantânea.</p>
+<p>Se a reação for lenta, o sistema pode não atingir o equilíbrio imediatamente após cada adição de titulante, causando erros na determinação do ponto final.</p>
+<p>Por exemplo, algumas reações de oxidação-redução exigem aquecimento ou catalisadores justamente para acelerar a cinética.</p>
+<p><strong>Importância:</strong> evita atrasos na resposta do sistema durante a titulação.</p>
+<hr>
+</section>
+<section id="a-reação-deve-ser-completa-quantitativa" class="level3">
+<h3 class="anchored" data-anchor-id="a-reação-deve-ser-completa-quantitativa">3. A reação deve ser completa (quantitativa)</h3>
+<p>A reação deve apresentar elevado rendimento, preferencialmente superior a 99,9%.</p>
+<p>Em termos de equilíbrio químico, a constante de equilíbrio deve ser suficientemente alta.</p>
+<p>Por exemplo:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>≫</mo><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">K \gg 10^4</annotation></semantics></math></p>
+<p>Quando a reação não é quantitativa, parte do analito permanece sem reagir mesmo após a adição do titulante, introduzindo erros sistemáticos.</p>
+<p><strong>Importância:</strong> garante que a quantidade de titulante consumida corresponda efetivamente à quantidade de analito presente.</p>
+<hr>
+</section>
+<section id="a-reação-deve-ser-seletiva" class="level3">
+<h3 class="anchored" data-anchor-id="a-reação-deve-ser-seletiva">4. A reação deve ser seletiva</h3>
+<p>O titulante deve reagir preferencialmente com a espécie que se deseja determinar.</p>
+<p>Caso existam reações paralelas com outras substâncias presentes na amostra, o volume gasto deixará de representar apenas o analito.</p>
+<p>Exemplo:</p>
+<ul>
+<li><p>Deseja-se determinar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math> por EDTA;</p></li>
+<li><p>Outros íons metálicos presentes também podem reagir com o EDTA.</p></li>
+</ul>
+<p>Nesses casos, utilizam-se agentes mascarantes ou etapas de separação.</p>
+<p><strong>Importância:</strong> evita interferências.</p>
+<hr>
+</section>
+<section id="deve-existir-um-meio-confiável-para-detectar-o-ponto-de-equivalência" class="level3">
+<h3 class="anchored" data-anchor-id="deve-existir-um-meio-confiável-para-detectar-o-ponto-de-equivalência">5. Deve existir um meio confiável para detectar o ponto de equivalência</h3>
+<p>O ponto de equivalência é o instante em que as quantidades estequiométricas de titulante e analito foram exatamente consumidas.</p>
+<p>Como ele não é observado diretamente, utiliza-se um método para identificar o ponto final:</p>
+<ul>
+<li><p>Indicadores ácido-base;</p></li>
+<li><p>Indicadores redox;</p></li>
+<li><p>Indicadores de adsorção;</p></li>
+<li><p>Indicadores metalocrômicos;</p></li>
+<li><p>Métodos instrumentais (potenciometria, condutimetria, espectrofotometria, amperometria etc.).</p></li>
+</ul>
+<p><strong>Importância:</strong> permite encerrar a titulação no momento correto.</p>
+<hr>
+</section>
+<section id="deve-haver-diferença-significativa-nas-propriedades-do-sistema-próximo-ao-ponto-de-equivalência" class="level3">
+<h3 class="anchored" data-anchor-id="deve-haver-diferença-significativa-nas-propriedades-do-sistema-próximo-ao-ponto-de-equivalência">6. Deve haver diferença significativa nas propriedades do sistema próximo ao ponto de equivalência</h3>
+<p>Uma mudança física ou química mensurável deve ocorrer na região do ponto de equivalência.</p>
+<p>Exemplos:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tipo de titulação</th>
+<th>Propriedade observada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ácido-base</td>
+<td>pH</td>
+</tr>
+<tr class="even">
+<td>Redox</td>
+<td>Potencial elétrico</td>
+</tr>
+<tr class="odd">
+<td>Complexométrica</td>
+<td>Cor do indicador</td>
+</tr>
+<tr class="even">
+<td>Precipitação</td>
+<td>Formação ou desaparecimento de precipitado</td>
+</tr>
+<tr class="odd">
+<td>Condutométrica</td>
+<td>Condutividade</td>
+</tr>
+</tbody>
+</table>
+<p>Quanto mais abrupta for essa mudança, mais precisa será a determinação do ponto final.</p>
+<p><strong>Importância:</strong> aumenta a exatidão da análise.</p>
+<hr>
+</section>
+<section id="o-titulante-deve-possuir-concentração-conhecida" class="level3">
+<h3 class="anchored" data-anchor-id="o-titulante-deve-possuir-concentração-conhecida">7. O titulante deve possuir concentração conhecida</h3>
+<p>A concentração do titulante precisa ser determinada com elevada precisão.</p>
+<p>Isso pode ocorrer de duas formas:</p>
+<ul>
+<li><p>Preparação a partir de um padrão primário;</p></li>
+<li><p>Padronização contra um padrão primário.</p></li>
+</ul>
+<p>Exemplo:</p>
+<p>O <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>a</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">NaOH</annotation></semantics></math> não é padrão primário porque absorve <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msub><mi>O</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">CO_2</annotation></semantics></math> e água do ar. Portanto, deve ser padronizado usando substâncias como:</p>
+<ul>
+<li><p>Biftalato de potássio (KHP);</p></li>
+<li><p>Ácido oxálico;</p></li>
+<li><p>Carbonato de sódio (dependendo da aplicação).</p></li>
+</ul>
+<p><strong>Importância:</strong> qualquer erro na concentração do titulante será transferido para o resultado final.</p>
+<hr>
+</section>
+<section id="as-medições-volumétricas-devem-ser-precisas" class="level3">
+<h3 class="anchored" data-anchor-id="as-medições-volumétricas-devem-ser-precisas">8. As medições volumétricas devem ser precisas</h3>
+<p>A titulação depende diretamente da medida de volumes.</p>
+<p>Portanto, é necessário utilizar:</p>
+<ul>
+<li><p>Buretas calibradas;</p></li>
+<li><p>Pipetas volumétricas;</p></li>
+<li><p>Balões volumétricos;</p></li>
+<li><p>Leitura correta do menisco;</p></li>
+<li><p>Temperatura adequada.</p></li>
+</ul>
+<p><strong>Importância:</strong> reduz erros experimentais.</p>
+<hr>
+</section>
+<section id="a-amostra-deve-estar-completamente-dissolvida" class="level3">
+<h3 class="anchored" data-anchor-id="a-amostra-deve-estar-completamente-dissolvida">9. A amostra deve estar completamente dissolvida</h3>
+<p>A espécie a ser titulada deve estar disponível para reagir.</p>
+<p>A presença de partículas sólidas não dissolvidas pode levar a resultados incorretos.</p>
+<p>Por isso, frequentemente realiza-se:</p>
+<ul>
+<li><p>Digestão;</p></li>
+<li><p>Solubilização;</p></li>
+<li><p>Abertura da amostra;</p></li>
+<li><p>Filtração.</p></li>
+</ul>
+<p><strong>Importância:</strong> garante que todo o analito participe da reação.</p>
+<hr>
+</section>
+<section id="resumo-dos-requisitos-segundo-skoog-e-autores-correlatos" class="level3">
+<h3 class="anchored" data-anchor-id="resumo-dos-requisitos-segundo-skoog-e-autores-correlatos">Resumo dos requisitos segundo Skoog e autores correlatos</h3>
+<p>Uma titulação ideal exige que a reação seja:</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Conhecida estequiometricamente</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Rápida</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Completa (quantitativa)</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Seletiva</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Acompanhada por uma mudança detectável no ponto de equivalência</p>
+<p>Além disso, a análise requer:</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Titulante padronizado</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Medidas volumétricas precisas</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Ausência de interferências</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>✓</mi><annotation encoding="application/x-tex">\checkmark</annotation></semantics></math> Analito totalmente disponível para reagir</p>
+<hr>
+<section id="esquema-conceitual" class="level4">
+<h4 class="anchored" data-anchor-id="esquema-conceitual">Esquema conceitual</h4>
+<pre class="text"><code>            ANÁLISE TITULOMÉTRICA CONFIÁVEL
+            |
+            +-- Reação conhecida
+            +-- Reação rápida
+            +-- Reação completa
+            +-- Reação seletiva
+            +-- Ponto de equivalência detectável
+            |
+            +-- Titulante padronizado
+            +-- Volumes medidos com precisão
+            +-- Ausência de interferências
+            +-- Analito totalmente dissolvido</code></pre>
+<p>Em síntese, o <strong>Skoog</strong> enfatiza principalmente quatro requisitos fundamentais da reação química (estequiometria conhecida, rapidez, completude e possibilidade de detectar o ponto de equivalência), enquanto os demais autores expandem a discussão para aspectos práticos e metrológicos, como padronização do titulante, seletividade e controle de erros experimentais. Esses requisitos formam a base de toda a análise titulométrica moderna.</p>
+</section>
+</section>
+</section>
+<section id="limitações-do-uso-da-técnica" class="level2">
+<h2 class="anchored" data-anchor-id="limitações-do-uso-da-técnica">Limitações do uso da técnica</h2>
+<p>Embora a titulometria seja uma técnica extremamente versátil, existem <strong>limitações relacionadas à quantidade de analito presente na amostra</strong>, tanto para concentrações muito baixas quanto para concentrações muito elevadas.</p>
+<section id="existe-uma-faixa-prática-de-trabalho" class="level3">
+<h3 class="anchored" data-anchor-id="existe-uma-faixa-prática-de-trabalho">1. Existe uma faixa prática de trabalho</h3>
+<p>Em uma titulação, o analista mede um <strong>volume de titulante</strong>. Portanto, a quantidade de analito deve ser suficiente para consumir um volume mensurável de titulante, mas não tão grande a ponto de exigir volumes excessivos.</p>
+<p>Em geral, procura-se que o volume gasto de titulante fique aproximadamente entre:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow><mo>≤</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo>≤</mo><mn>50</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow><annotation encoding="application/x-tex">10 \text{ mL} \leq V_{\text{titulante}} \leq 50 \text{ mL}</annotation></semantics></math></p>
+<p>Muitos laboratórios consideram ideal:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> a </mtext><mspace width="0.333em"></mspace></mrow><mn>30</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow><annotation encoding="application/x-tex">20 \text{ a } 30 \text{ mL}</annotation></semantics></math></p>
+<p>pois nessa faixa o erro relativo da leitura da bureta é menor.</p>
+<hr>
+</section>
+<section id="quantidades-muito-pequenas" class="level3">
+<h3 class="anchored" data-anchor-id="quantidades-muito-pequenas">2. Quantidades muito pequenas</h3>
+<p>Quando há pouco analito, o volume gasto pode ser muito pequeno.</p>
+<p>Exemplo:</p>
+<pre class="text"><code>Volume consumido = 0,30 mL</code></pre>
+<p>Se a incerteza da bureta for:</p>
+<pre class="text"><code>± 0,05 mL</code></pre>
+<p>o erro relativo torna-se enorme.</p>
+<p>Nesse caso:</p>
+<ul>
+<li><p>a mudança de cor do indicador pode ser difícil de perceber;</p></li>
+<li><p>pequenas gotas representam grande variação percentual;</p></li>
+<li><p>a exatidão diminui significativamente.</p></li>
+</ul>
+<p>Por isso, análises de traços normalmente utilizam:</p>
+<ul>
+<li><p>espectrofotometria;</p></li>
+<li><p>cromatografia;</p></li>
+<li><p>métodos eletroanalíticos;</p></li>
+<li><p>ICP-OES;</p></li>
+<li><p>ICP-MS.</p></li>
+</ul>
+<hr>
+</section>
+<section id="quantidades-muito-grandes" class="level3">
+<h3 class="anchored" data-anchor-id="quantidades-muito-grandes">3. Quantidades muito grandes</h3>
+<p>Também não é desejável que o volume consumido seja excessivo.</p>
+<p>Por exemplo:</p>
+<pre class="text"><code>Volume gasto = 120 mL</code></pre>
+<p>Problemas:</p>
+<ul>
+<li><p>titulação muito demorada;</p></li>
+<li><p>maior erro acumulado;</p></li>
+<li><p>necessidade de reabastecer a bureta;</p></li>
+<li><p>maior consumo de reagentes.</p></li>
+</ul>
+<p>Nesses casos:</p>
+<ul>
+<li><p>utiliza-se uma amostra menor;</p></li>
+<li><p>dilui-se a amostra;</p></li>
+<li><p>emprega-se titulante mais concentrado.</p></li>
+</ul>
+<hr>
+</section>
+<section id="existe-um-limite-inferior-teórico" class="level3">
+<h3 class="anchored" data-anchor-id="existe-um-limite-inferior-teórico">4. Existe um limite inferior teórico</h3>
+<p>O fator limitante é a capacidade de detectar o ponto final.</p>
+<p>Suponha uma bureta de 50 mL com leitura de:</p>
+<pre class="text"><code>± 0,02 mL</code></pre>
+<p>Se forem consumidos:</p>
+<pre class="text"><code>20,00 mL</code></pre>
+<p>o erro relativo é aproximadamente:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>0</mn><mo>,</mo><mn>02</mn></mrow><mrow><mn>20</mn><mo>,</mo><mn>00</mn></mrow></mfrac><mo>×</mo><mn>100</mn><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\frac{0,02}{20,00} \times 100 = 0,1%</annotation></semantics></math></p>
+<p>Excelente.</p>
+<p>Mas se forem consumidos:</p>
+<pre class="text"><code>0,20 mL</code></pre>
+<p>o erro relativo passa para:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>0</mn><mo>,</mo><mn>02</mn></mrow><mrow><mn>0</mn><mo>,</mo><mn>20</mn></mrow></mfrac><mo>×</mo><mn>100</mn><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">\frac{0,02}{0,20}\times 100 = 10%</annotation></semantics></math></p>
+<p>Inaceitável para análises quantitativas.</p>
+<hr>
+</section>
+<section id="limitação-pela-constante-de-equilíbrio" class="level3">
+<h3 class="anchored" data-anchor-id="limitação-pela-constante-de-equilíbrio">5. Limitação pela constante de equilíbrio</h3>
+<p>Outra limitação decorre da própria reação química.</p>
+<p>O Skoog mostra que uma reação de titulação deve ser praticamente completa.</p>
+<p>Quando o analito está extremamente diluído:</p>
+<ul>
+<li><p>o ponto de equivalência torna-se menos nítido;</p></li>
+<li><p>a curva de titulação fica menos íngreme;</p></li>
+<li><p>a mudança do indicador pode se tornar imprecisa.</p></li>
+</ul>
+<p>Por isso, algumas titulações possuem limites práticos de concentração.</p>
+<hr>
+</section>
+<section id="faixas-típicas-de-concentração" class="level3">
+<h3 class="anchored" data-anchor-id="faixas-típicas-de-concentração">6. Faixas típicas de concentração</h3>
+<p>Muitas titulações clássicas trabalham bem com soluções entre:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> e </mtext><mspace width="0.333em"></mspace></mrow><mspace width="0.167em"></mspace><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mspace width="0.167em"></mspace><mtext mathvariant="normal">mol</mtext><mo>⋅</mo><msup><mtext mathvariant="normal">L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-1} \text{ e } \, 10^{-3} \, \text{mol}\cdot\text{L}^{-1}</annotation></semantics></math></p>
+<p>ou aproximadamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0,1 \, \text{mol·L}^{-1}</annotation></semantics></math> até <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>001</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0,001 \, \text{mol·L}^{-1}</annotation></semantics></math>.</p>
+<p>Abaixo disso, frequentemente surgem dificuldades na identificação do ponto final.</p>
+<hr>
+</section>
+<section id="microtitulação-e-ultramicrotitulação" class="level3">
+<h3 class="anchored" data-anchor-id="microtitulação-e-ultramicrotitulação">7. Microtitulação e ultramicrotitulação</h3>
+<p>Para contornar essas limitações foram desenvolvidas técnicas especiais:</p>
+<section id="microtitulação" class="level4">
+<h4 class="anchored" data-anchor-id="microtitulação">Microtitulação</h4>
+<p>Utiliza:</p>
+<ul>
+<li><p>microburetas;</p></li>
+<li><p>volumes de alguns mililitros;</p></li>
+<li><p>amostras de poucos miligramas.</p></li>
+</ul>
+</section>
+<section id="ultramicrotitulação" class="level4">
+<h4 class="anchored" data-anchor-id="ultramicrotitulação">Ultramicrotitulação</h4>
+<p>Utiliza:</p>
+<ul>
+<li><p>microlitros;</p></li>
+<li><p>sistemas automatizados;</p></li>
+<li><p>detecção instrumental.</p></li>
+</ul>
+<p>Muito empregada em:</p>
+<ul>
+<li><p>bioquímica;</p></li>
+<li><p>farmacêutica;</p></li>
+<li><p>análises clínicas.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="resumindo" class="level3">
+<h3 class="anchored" data-anchor-id="resumindo">Resumindo…</h3>
+<p>A titulometria <strong>não possui um limite absoluto de massa ou quantidade de matéria</strong>, mas possui uma <strong>faixa prática de operação</strong> determinada pela precisão da medida volumétrica e pela capacidade de detectar o ponto final.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">Pouco analito</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>↓</mo></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">Volume muito pequeno</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>↓</mo></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">Grande erro relativo</mtext></mtd></mtr></mtable><mspace width="2.0em"></mspace><mtable><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">Faixa ideal</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>↓</mo></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">10–50 mL de titulante</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">(idealmente 20–30 mL)</mtext></mtd></mtr></mtable><mspace width="2.0em"></mspace><mtable><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">Muito analito</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>↓</mo></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">Volume excessivo</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>↓</mo></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">Titulação lenta e menos eficiente</mtext></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{array}{c}
+\text{Pouco analito} \\
+\downarrow \\
+\text{Volume muito pequeno} \\
+\downarrow \\
+\text{Grande erro relativo}
+\end{array}
+\qquad
+\begin{array}{c}
+\text{Faixa ideal} \\
+\downarrow \\
+\text{10--50 mL de titulante} \\
+\text{(idealmente 20--30 mL)}
+\end{array}
+\qquad
+\begin{array}{c}
+\text{Muito analito} \\
+\downarrow \\
+\text{Volume excessivo} \\
+\downarrow \\
+\text{Titulação lenta e menos eficiente}
+\end{array}</annotation></semantics></math></p>
+<p>Por essa razão, antes de realizar uma titulação, o analista geralmente escolhe a <strong>massa da amostra</strong>, a <strong>diluição</strong> e a <strong>concentração do titulante</strong> de modo que o volume gasto na bureta fique em uma faixa conveniente, garantindo boa precisão e exatidão.</p>
+</section>
+<section id="cálculo-interativo-do-erro-relativo" class="level3">
+<h3 class="anchored" data-anchor-id="cálculo-interativo-do-erro-relativo">Cálculo Interativo do Erro Relativo</h3>
+<p>Este componente ilustra por que volumes muito pequenos (ex: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>10</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow><annotation encoding="application/x-tex">&lt; 10\text{ mL}</annotation></semantics></math>) geram erros relativos inaceitáveis na leitura da bureta com incerteza fixa (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>±</mi><mn>0</mn><mo>,</mo><mn>02</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow><annotation encoding="application/x-tex">\pm 0{,}02\text{ mL}</annotation></semantics></math>).</p>
+<div style="font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: #fff;">
+  <h4 style="margin-top:0; text-align: center;" class="anchored">Calculadora do Erro Relativo na Leitura da Bureta</h4>
+  <p style="font-size: 0.85em; color: #666; text-align: center;">Incerteza instrumental fixa da bureta: <strong>± 0.02 mL</strong></p>
+
+  <div style="margin: 20px 0;">
+    <label for="volRange"><strong>Volume consumido (V<sub>titulante</sub>):</strong> <span id="rangeVal" style="color: #2980b9; font-weight: bold;">20.0 mL</span></label>
+    <input type="range" id="volRange" min="0.1" max="50" step="0.1" value="20.0" style="width: 100%; margin-top: 10px;">
+  </div>
+
+  <div id="errorDisplay" style="padding: 15px; border-radius: 6px; text-align: center; background: #e8f8f5; border: 1px solid #2ecc71;">
+    <div style="font-size: 0.9em;">Erro Relativo Calculado:</div>
+    <div id="errorPercent" style="font-size: 1.8em; font-weight: bold; color: #27ae60;">0.10 %</div>
+    <div id="errorAssessment" style="font-size: 0.85em; margin-top: 5px; font-weight: bold; color: #27ae60;">Faixa Excelente (Baixa incerteza)</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const range = document.getElementById('volRange');
+  const rangeVal = document.getElementById('rangeVal');
+  const errorPercent = document.getElementById('errorPercent');
+  const errorDisplay = document.getElementById('errorDisplay');
+  const errorAssessment = document.getElementById('errorAssessment');
+
+  range.addEventListener('input', (e) => {
+    const v = parseFloat(e.target.value);
+    rangeVal.textContent = v.toFixed(1) + " mL";
+
+    // Cálculo do erro relativo: (Incerteza / Volume) * 100
+    const err = (0.02 / v) * 100;
+    errorPercent.textContent = err.toFixed(2) + " %";
+
+    if (err <= 0.2) {
+      errorDisplay.style.background = "#e8f8f5";
+      errorDisplay.style.borderColor = "#2ecc71";
+      errorPercent.style.color = "#27ae60";
+      errorAssessment.style.color = "#27ae60";
+      errorAssessment.textContent = "Faixa Ideal (10 a 50 mL - Alta precisão)";
+    } else if (err <= 1.0) {
+      errorDisplay.style.background = "#fef9e7";
+      errorDisplay.style.borderColor = "#f1c40f";
+      errorPercent.style.color = "#d35400";
+      errorAssessment.style.color = "#d35400";
+      errorAssessment.textContent = "Faixa Aceitável (Atenção ao erro acumulado)";
+    } else {
+      errorDisplay.style.background = "#fadbd8";
+      errorDisplay.style.borderColor = "#e74c3c";
+      errorPercent.style.color = "#c0392b";
+      errorAssessment.style.color = "#c0392b";
+      errorAssessment.textContent = "Erro Inaceitável! (> 1.0% - Volume muito baixo para titulometria macro)";
+    }
+  });
+})();
+</script>
+</section>
+</section>
+<section id="materiais-utilizados-na-titulação" class="level2">
+<h2 class="anchored" data-anchor-id="materiais-utilizados-na-titulação">Materiais Utilizados na Titulação</h2>
+<p>A realização da titulação requer o uso de diversos materiais de laboratório, cada um com uma função específica para garantir a precisão do experimento:</p>
+<section id="bureta" class="level3">
+<h3 class="anchored" data-anchor-id="bureta">Bureta</h3>
+<p>A bureta é um tubo de vidro longo, graduado, equipado com uma torneira na extremidade inferior. É utilizada para armazenar e liberar o <strong>titulante</strong> de forma controlada, geralmente gota a gota, sobre a solução do <strong>titulado</strong>. Sua graduação permite medir com precisão o volume de líquido dispensado durante a titulação.</p>
+<p>Antes do uso, a bureta deve ser corretamente preenchida com o titulante, certificando-se de que <strong>todo o volume morto no bico da bureta</strong> esteja preenchido e sem a presença de bolhas de ar, pois essas irregularidades comprometem a exatidão da medição.</p>
+<p>A leitura do nível do líquido deve ser feita na altura dos olhos, observando a <strong>parte inferior do menisco</strong>. O valor deve ser registrado com todos os algarismos certos fornecidos pela graduação da bureta e mais um <strong>algarismo significativo duvidoso</strong>, que corresponde à estimativa da fração entre duas divisões da escala. Essa prática garante maior precisão na determinação do volume gasto de titulante durante a titulação.</p>
+</section>
+<section id="erlenmeyer" class="level3">
+<h3 class="anchored" data-anchor-id="erlenmeyer">Erlenmeyer</h3>
+<p>O erlenmeyer é um frasco de vidro de base larga e pescoço estreito, utilizado para conter a solução do <strong>titulado</strong> durante a titulação. Sua forma característica facilita a <strong>agitação da solução sem risco de derramamento</strong>, garantindo uma mistura homogênea entre o titulante e o analito.</p>
+<p>Durante a titulação, a <strong>agitação adequada</strong> é fundamental para que cada gota de titulante adicionada entre em contato imediato com toda a solução do titulado, evitando zonas de concentração local que poderiam gerar leituras incorretas do ponto final.</p>
+<p>A agitação deve ser feita da seguinte maneira:</p>
+<ul>
+<li><p><strong>Segure o erlenmeyer pelo pescoço</strong> com a mão não dominante.</p></li>
+<li><p>Faça <strong>movimentos circulares suaves</strong> (movimento rotacional), de modo que a solução gire sobre si mesma.</p></li>
+<li><p>Evite movimentos bruscos ou agitação vertical (sacudir), pois podem provocar respingos ou perda de solução.</p></li>
+<li><p>Próximo ao <strong>ponto final</strong>, a agitação deve ser ainda mais constante e controlada, já que a mudança perceptível (como a coloração do indicador) pode ocorrer rapidamente.</p></li>
+</ul>
+<p>Essa prática assegura que a reação química ocorra de forma uniforme em todo o volume da solução, aumentando a precisão na determinação do ponto final da titulação.</p>
+<p>Além da agitação adequada, alguns cuidados práticos devem ser observados no preparo do Erlenmeyer para a titulação. Antes do uso, o frasco deve ser lavado com água destilada para remover possíveis contaminantes. Não é necessário que esteja completamente seco, pois pequenas quantidades de água residual não afetam a análise volumétrica — o que realmente importa é que não haja presença de substâncias estranhas. Diferentemente da bureta ou da pipeta (que precisam ser enxaguadas com o titulante ou o titulado, respectivamente, para evitar diluição), o Erlenmeyer pode conter apenas água destilada sem prejuízo ao resultado, já que a concentração do analito será corrigida pelo volume pipetado.</p>
+<p>Outro cuidado importante é evitar que as paredes internas fiquem impregnadas com gotas do titulante não misturadas. Por isso, recomenda-se lavar as paredes com pequenas quantidades de água destilada durante a titulação, caso necessário, assegurando que todo o reagente adicionado esteja em contato com a solução do titulado.</p>
+</section>
+<section id="pipeta" class="level3">
+<h3 class="anchored" data-anchor-id="pipeta">Pipeta</h3>
+<p>A pipeta é um instrumento volumétrico utilizado para <strong>medir e transferir com precisão um volume fixo de solução do titulado</strong> para o Erlenmeyer, garantindo que cada titulação seja realizada com a mesma quantidade de amostra. Essa padronização é essencial para a obtenção de <strong>resultados confiáveis e reprodutíveis</strong>.</p>
+<p><strong>Cuidados e procedimentos no uso da pipeta:</strong></p>
+<ol type="1">
+<li><p><strong>Lavagem prévia:</strong> Antes de qualquer uso, a pipeta deve ser <strong>lavada com água destilada</strong> e, em seguida, <strong>enxaguada com a própria solução do titulado</strong>, de modo que as paredes internas fiquem revestidas pela solução, evitando diluição ou contaminação.</p></li>
+<li><p><strong>Enchimento correto:</strong> O preenchimento pode ser feito manualmente com uma <strong>pêra de pipetagem</strong> ou bomba adequada, tomando cuidado para não aspirar bolhas de ar, que alteram o volume real transferido.</p></li>
+<li><p><strong>Posicionamento:</strong> Mantenha a pipeta <strong>vertical</strong> durante o enchimento e a transferência para evitar erros de volume por capilaridade.</p></li>
+<li><p><strong>Leitura do menisco:</strong> Observe o <strong>menisco inferior</strong> à altura dos olhos e registre o volume com todos os algarismos certos fornecidos pela graduação, incluindo <strong>um algarismo significativo duvidoso</strong>.</p></li>
+<li><p><strong>Transferência da solução:</strong> Ao dispensar a amostra no Erlenmeyer, deixe que o líquido <strong>escoar livremente</strong>, sem soprar ou forçar o escoamento, garantindo que todo o volume medido seja transferido. O contato com as paredes internas deve ser minimizado, mas pequenas gotas residuais não comprometem a titulação se a pipeta for devidamente enxaguada.</p></li>
+<li><p><strong>Padronização:</strong> Sempre utilize a mesma pipeta para todas as titulações de uma mesma análise, evitando variações de volume que poderiam gerar desvios sistemáticos nos resultados.</p></li>
+</ol>
+<p>O uso correto da pipeta é crucial para que a titulação seja <strong>precisa e confiável</strong>, pois qualquer erro na medição da amostra impacta diretamente no cálculo da concentração do analito.</p>
+</section>
+<section id="suporte-universal-e-garra" class="level3">
+<h3 class="anchored" data-anchor-id="suporte-universal-e-garra">Suporte universal e garra</h3>
+<p>A bureta é fixada em um suporte universal com uma garra específica para mantê-la na posição vertical durante o experimento. Isso garante segurança e precisão no manuseio.</p>
+</section>
+<section id="béquer-e-frascos-auxiliares" class="level3">
+<h3 class="anchored" data-anchor-id="béquer-e-frascos-auxiliares">Béquer e frascos auxiliares</h3>
+<p>São utilizados para preparar, armazenar ou descartar soluções, bem como para realizar lavagens e diluições, quando necessário.</p>
+</section>
+</section>
+<section id="etapas-do-processo-de-titulação" class="level2">
+<h2 class="anchored" data-anchor-id="etapas-do-processo-de-titulação">Etapas do Processo de Titulação</h2>
+<p>A titulação envolve diversas etapas que devem ser realizadas com cuidado para assegurar a precisão dos resultados. A seguir, descreve-se o procedimento geral de uma titulação:</p>
+<section id="preparação-das-soluções" class="level3">
+<h3 class="anchored" data-anchor-id="preparação-das-soluções">Preparação das soluções</h3>
+<p>Antes de iniciar a titulação, é necessário preparar as duas soluções envolvidas: o titulante (de concentração conhecida) e o titulado (de concentração a ser determinada). Ambas devem estar devidamente dissolvidas e homogeneizadas.</p>
+</section>
+<section id="enchimento-da-bureta" class="level3">
+<h3 class="anchored" data-anchor-id="enchimento-da-bureta">Enchimento da bureta</h3>
+<p>Com o auxílio de um funil, a bureta é preenchida com o titulante. Em seguida, o funil é retirado, e verifica-se se há bolhas de ar no interior da bureta ou na torneira. Se houver, é necessário eliminá-las, liberando um pequeno volume do líquido até que o fluxo seja contínuo. A leitura inicial do nível do líquido deve ser registrada.</p>
+</section>
+<section id="transferência-da-amostra-para-o-erlenmeyer" class="level3">
+<h3 class="anchored" data-anchor-id="transferência-da-amostra-para-o-erlenmeyer">Transferência da amostra para o erlenmeyer</h3>
+<p>Com a pipeta, transfere-se um volume conhecido da solução do titulado para o erlenmeyer. Em seguida, adiciona-se o <strong>indicador de ponto de viragem</strong>, que servirá para sinalizar o fim da reação.</p>
+</section>
+<section id="realização-da-titulação" class="level3">
+<h3 class="anchored" data-anchor-id="realização-da-titulação">Realização da titulação</h3>
+<p>O titulante é adicionado lentamente, gota a gota, da bureta ao erlenmeyer, enquanto a solução é agitada constantemente. À medida que as gotas caem, o titulante reage com o titulado, aproximando-se do ponto de equivalência. A mudança de cor provocada pelo indicador sinaliza a chegada a esse ponto.</p>
+<p>Nos primeiros ensaios, recomenda-se realizar uma titulação de aproximação, com adição mais rápida, para ter uma ideia do volume necessário. Nas repetições seguintes, a adição deve ser mais cuidadosa ao se aproximar do volume anteriormente registrado.</p>
+</section>
+<section id="registro-do-volume-final" class="level3">
+<h3 class="anchored" data-anchor-id="registro-do-volume-final">Registro do volume final</h3>
+<p>Assim que a mudança de cor persistente ocorrer, indicando o ponto de viragem, o volume final da bureta é registrado. A diferença entre a leitura inicial e final indica o volume de titulante utilizado.</p>
+</section>
+<section id="simulação-interativa-da-titulação-bureta-e-erlenmeyer" class="level3">
+<h3 class="anchored" data-anchor-id="simulação-interativa-da-titulação-bureta-e-erlenmeyer">Simulação Interativa da Titulação (Bureta e Erlenmeyer)</h3>
+<p>Esta simulação permite que o usuário adicione o titulante (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math>) gota a gota no erlenmeyer contendo titulado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>) e indicador (fenolftaleína). O líquido muda de incolor para rosa persistente exatamente no ponto de viragem.</p>
+<div id="titration-sim" style="font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: #fafafa; text-align: center;">
+  <h3 class="anchored">Simulador de Titulação Ácido-Base</h3>
+  <p style="font-size: 0.9em; color: #555;">Titulante: NaOH (0,1 mol/L) | Titulado: HCl em Erlenmeyer com Fenolftaleína</p>
+  
+  <svg viewbox="0 0 300 320" style="width: 100%; height: 280px;">
+    <!-- Suporte Universal -->
+    <rect x="40" y="270" width="220" height="10" fill="#7f8c8d"></rect>
+    <rect x="70" y="20" width="8" height="250" fill="#95a5a6"></rect>
+    <rect x="70" y="80" width="70" height="6" fill="#7f8c8d"></rect>
+
+    <!-- Bureta -->
+    <rect x="130" y="30" width="16" height="150" fill="none" stroke="#2c3e50" stroke-width="2"></rect>
+    <rect id="burette-liquid" x="131" y="50" width="14" height="129" fill="#3498db" opacity="0.3"></rect>
+    <!-- Escala da Bureta -->
+    <line x1="146" y1="50" x2="140" y2="50" stroke="#333" stroke-width="1"></line>
+    <line x1="146" y1="80" x2="142" y2="80" stroke="#333" stroke-width="1"></line>
+    <line x1="146" y1="110" x2="140" y2="110" stroke="#333" stroke-width="1"></line>
+    <line x1="146" y1="140" x2="142" y2="140" stroke="#333" stroke-width="1"></line>
+    <line x1="146" y1="170" x2="140" y2="170" stroke="#333" stroke-width="1"></line>
+    <!-- Torneira -->
+    <circle cx="138" cy="183" r="4" fill="#e74c3c"></circle>
+    <path d="M 136,180 L 140,180 L 138,195 Z" fill="#2c3e50"></path>
+
+    <!-- Gota animada -->
+    <circle id="drop" cx="138" cy="198" r="3" fill="#3498db" opacity="0"></circle>
+
+    <!-- Erlenmeyer -->
+    <path d="M 125,210 L 151,210 L 175,265 A 5,5 0 0,1 170,270 L 106,270 A 5,5 0 0,1 101,265 Z" fill="none" stroke="#2c3e50" stroke-width="2"></path>
+    <path id="flask-liquid" d="M 112,250 L 164,250 L 170,265 A 5,5 0 0,1 165,270 L 106,270 A 5,5 0 0,1 101,265 Z" fill="#e0e0e0" opacity="0.5" style="transition: fill 0.5s;"></path>
+  </svg>
+
+  <div style="margin: 15px 0;">
+    <strong>Volume Adicionado: </strong><span id="vol-disp">0.00</span> mL
+    <br>
+    <small id="titr-status" style="color: #666;">Solução Incolor (Meio Ácido)</small>
+  </div>
+
+  <button id="btn-drop" style="padding: 8px 16px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Pingar Gota (+0.5 mL)</button>
+  <button id="btn-reset-titr" style="padding: 8px 16px; background: #95a5a6; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 8px;">Reiniciar</button>
+</div>
+
+<script>
+(function() {
+  let volume = 0;
+  const maxVol = 25.0;
+  const eqPoint = 20.0;
+  
+  const btnDrop = document.getElementById('btn-drop');
+  const btnReset = document.getElementById('btn-reset-titr');
+  const volDisp = document.getElementById('vol-disp');
+  const statusDisp = document.getElementById('titr-status');
+  const flaskLiquid = document.getElementById('flask-liquid');
+  const buretteLiquid = document.getElementById('burette-liquid');
+  const drop = document.getElementById('drop');
+
+  btnDrop.addEventListener('click', () => {
+    if (volume >= maxVol) return;
+
+    // Animação da gota
+    drop.setAttribute('opacity', '1');
+    drop.setAttribute('cy', '198');
+    
+    let dropY = 198;
+    const anim = setInterval(() => {
+      dropY += 4;
+      drop.setAttribute('cy', dropY);
+      if (dropY >= 245) {
+        clearInterval(anim);
+        drop.setAttribute('opacity', '0');
+        
+        // Atualiza volume
+        volume += 0.5;
+        volDisp.textContent = volume.toFixed(2);
+
+        // Atualiza nível da bureta
+        const currentH = 129 * (1 - volume / maxVol);
+        const currentY = 50 + (129 - currentH);
+        buretteLiquid.setAttribute('height', currentH);
+        buretteLiquid.setAttribute('y', currentY);
+
+        // Mudança de cor do Indicador (Fenolftaleína: Incolor -> Rosa)
+        if (volume < eqPoint - 1) {
+          flaskLiquid.setAttribute('fill', '#e0e0e0');
+          statusDisp.textContent = "Solução Incolor (Excesso de H+)";
+        } else if (volume >= eqPoint - 1 && volume < eqPoint) {
+          flaskLiquid.setAttribute('fill', '#f8bbd0');
+          statusDisp.textContent = "Rosa muito claro (Próximo ao ponto final)";
+        } else if (volume >= eqPoint && volume <= eqPoint + 1) {
+          flaskLiquid.setAttribute('fill', '#e91e63');
+          statusDisp.textContent = "PONTO FINAL ALCANÇADO! (Viragem do Indicador)";
+        } else {
+          flaskLiquid.setAttribute('fill', '#880e4f');
+          statusDisp.textContent = "Super-titulado! (Excesso de OH-)";
+        }
+      }
+    }, 15);
+  });
+
+  btnReset.addEventListener('click', () => {
+    volume = 0;
+    volDisp.textContent = "0.00";
+    statusDisp.textContent = "Solução Incolor (Meio Ácido)";
+    flaskLiquid.setAttribute('fill', '#e0e0e0');
+    buretteLiquid.setAttribute('height', '129');
+    buretteLiquid.setAttribute('y', '50');
+  });
+})();
+</script>
+</section>
+</section>
+<section id="interpretação-dos-resultados" class="level2">
+<h2 class="anchored" data-anchor-id="interpretação-dos-resultados">Interpretação dos Resultados</h2>
+<p>Com o volume de titulante utilizado e a sua concentração conhecida, é possível aplicar cálculos estequiométricos para determinar a concentração do titulado. Essa etapa exige conhecimento da reação química envolvida, especialmente da proporção entre as substâncias que reagem.</p>
+<p>A fórmula geral usada é:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><msub><mi>C</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">C_1 \cdot V_1 = C_2 \cdot V_2</annotation></semantics></math></p>
+<p>Onde:</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>1</mn></msub><annotation encoding="application/x-tex">V_1</annotation></semantics></math>: concentração e volume do titulante</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>2</mn></msub><annotation encoding="application/x-tex">V_2</annotation></semantics></math>: concentração e volume do titulado</li>
+</ul>
+<p>Em reações mais complexas, essa relação é ajustada conforme os coeficientes estequiométricos da equação química.</p>
+<p>Quando a reação química não ocorre na proporção 1:1, é necessário considerar os coeficientes estequiométricos da equação balanceada. Nesses casos, a relação geral é dada por:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>1</mn></msub></mrow><mi>a</mi></mfrac><mo>=</mo><mfrac><mrow><msub><mi>C</mi><mn>2</mn></msub><mo>⋅</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><mi>b</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{C_1 \cdot V_1}{a} = \frac{C_2 \cdot V_2}{b}</annotation></semantics></math></p>
+<p>ou, de forma equivalente,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><msub><mi>n</mi><mn>1</mn></msub><mi>a</mi></mfrac><mo>=</mo><mfrac><msub><mi>n</mi><mn>2</mn></msub><mi>b</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{n_1}{a} = \frac{n_2}{b}</annotation></semantics></math></p>
+<p>Onde:</p>
+<ul>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>1</mn></msub><annotation encoding="application/x-tex">V_1</annotation></semantics></math> são a concentração e o volume do titulante;</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>2</mn></msub><annotation encoding="application/x-tex">V_2</annotation></semantics></math> são a concentração e o volume do titulado;</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> são os coeficientes estequiométricos das espécies na equação química balanceada;</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mn>1</mn></msub><annotation encoding="application/x-tex">n_1</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mn>2</mn></msub><annotation encoding="application/x-tex">n_2</annotation></semantics></math> representam as quantidades de matéria (mol) das substâncias envolvidas.</p></li>
+</ul>
+<p>Assim, para qualquer reação química balanceada,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>A</mi><mo>+</mo><mi>b</mi><mi>B</mi><mo>→</mo><mtext mathvariant="normal">produtos</mtext></mrow><annotation encoding="application/x-tex">aA + bB \rightarrow \text{produtos}</annotation></semantics></math></p>
+<p>a condição de equivalência é atingida quando a razão entre o número de mols de cada reagente e seu respectivo coeficiente estequiométrico é a mesma, permitindo determinar a concentração desconhecida a partir dos dados experimentais da titulação.</p>
+<hr>
+<p>Essa forma é mais geral e engloba naturalmente a expressão simplificada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><msub><mi>C</mi><mn>2</mn></msub><msub><mi>V</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">C_1V_1=C_2V_2</annotation></semantics></math>, que corresponde ao caso particular em que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=b=1</annotation></semantics></math>.</p>
+</section>
+<section id="tipos-de-titulação" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-titulação">Tipos de Titulação</h2>
+<p>Existem diferentes tipos de titulação, dependendo da natureza da reação envolvida:</p>
+<ul>
+<li><p>Titulação ácido-base : Baseia-se na reação entre um ácido e uma base, sendo o tipo mais comum e ensinado em cursos básicos de química.</p></li>
+<li><p>Titulação de precipitação: Envolve a formação de um precipitado (substância insolúvel) durante a reação.</p></li>
+<li><p>Titulação redox: Baseia-se em reações de oxirredução, onde há transferência de elétrons entre os reagentes.</p></li>
+<li><p>Titulação complexométrica: Utiliza reações de formação de complexos, sendo comum na análise de íons metálicos.</p></li>
+</ul>
+<p>Cada tipo requer indicadores específicos e técnicas ligeiramente diferentes, mas todos seguem o mesmo princípio básico de adicionar uma solução conhecida a outra de concentração desconhecida até atingir o ponto de equivalência.</p>
+</section>
+<section id="cuidados-e-fontes-de-erro" class="level2">
+<h2 class="anchored" data-anchor-id="cuidados-e-fontes-de-erro">Cuidados e Fontes de Erro</h2>
+<p>Para garantir a precisão dos resultados, é fundamental observar certos cuidados:</p>
+<ul>
+<li><p>Verificar a calibração dos instrumentos (bureta, pipeta).</p></li>
+<li><p>Realizar as leituras no nível dos olhos, para evitar erros de paralaxe.</p></li>
+<li><p>Utilizar soluções frescas e corretamente preparadas.</p></li>
+<li><p>Fazer múltiplas repetições para aumentar a confiabilidade.</p></li>
+<li><p>Evitar contaminações durante a transferência dos líquidos.</p></li>
+</ul>
+<p>Fontes comuns de erro incluem leituras imprecisas, presença de bolhas de ar, concentração incorreta das soluções e escolha inadequada do indicador.</p>
+<p>Discutir possíveis fontes de erro: pesagem, leitura do menisco, ponto final da titulação.</p>
+<p>Comentar a importância de usar soluções padronizadas em titulações volumétricas.</p>
+<p>Discutir <em>Triplicata</em></p>
+<p>A correta utilização de vidrarias e a execução de transferências quantitativas são essenciais para garantir a <em>veracidade</em> do valor da concentração final da solução.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>🔹 O termo veracidade aparece em documentos normativos de metrologia (como o VIM – Vocabulário Internacional de Metrologia) e também no INMETRO e em guias de validação analítica. Ele tem um sentido próximo de exatidão, mas não é exatamente igual.</p>
+<p><strong>Diferença entre os termos:</strong></p>
+<p>🔹 Exatidão (<em>accuracy</em>): Grau de concordância entre um valor medido e o valor verdadeiro (ou aceito como referência). É um conceito qualitativo, amplo.</p>
+<p>🔹 Veracidade (<em>trueness</em>): Grau de concordância entre a média de várias medições e um valor de referência.</p>
+<p>👉 Ou seja: está relacionada a viés (<em>bias</em>).</p>
+<p>🔹 Precisão (<em>precision</em>): Grau de concordância entre medições independentes sob condições específicas.</p>
+<p>👉 Relaciona-se ao desvio aleatório.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="nota-histórica" class="level2">
+<h2 class="anchored" data-anchor-id="nota-histórica">Nota Histórica</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>🔹 <strong>Origem da palavra “titulação”</strong></p>
+<ul>
+<li><p>Vem do francês <em>titrer</em> → que significa <strong>fixar o “título” de uma solução</strong>.<br>
+</p></li>
+<li><p>“Título” era o nome antigo para a <strong>concentração</strong> de uma solução.<br>
+</p></li>
+<li><p>Em latim, <em>titulus</em> tem o sentido de <em>inscrição / marca / identificação</em>, daí o uso em química como a espécie de <strong>marca da intensidade</strong> de uma solução. Evoca a ideia histórica de <strong>quanto vale</strong> ou <strong>quão carregada</strong> está a solução — que era o que o termo “título” representava nos manuais antigos.<br>
+</p></li>
+<li><p>No século XIX, antes da sistematização das unidades molares modernas, o “título” de uma solução era geralmente expresso como:</p>
+<ul>
+<li><p>% m/m (massa de soluto por 100 g de solução), ou<br>
+</p></li>
+<li><p>% m/v (massa de soluto em gramas por 100 mL de solução).<br>
+</p></li>
+</ul></li>
+<li><p>Em muitos manuais antigos, “título” é usado para expressar <strong>gramas de soluto em 100 mL de solução</strong> → isto é, <strong>% m/v</strong>.</p></li>
+</ul>
+<p>🔹 <strong>Atualmente</strong></p>
+<ul>
+<li><p>Em Química Analítica moderna, quase não se usa mais o termo “título” como sinônimo de concentração.<br>
+</p></li>
+<li><p>O termo persiste apenas no nome <strong>titulação</strong>, mas a grandeza mais comumente empregada é a <strong>concentração molar</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>o</mi><mi>l</mi><mo>⋅</mo><msup><mi>L</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">mol \cdot L^{-1}</annotation></semantics></math>).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusão" class="level2">
+<h2 class="anchored" data-anchor-id="conclusão">Conclusão</h2>
+<p>A titulação é uma técnica clássica, e é extremamente eficaz, para a determinação de concentrações em soluções químicas. Apesar de simples em sua essência, exige rigor técnico, precisão na manipulação dos materiais e atenção aos detalhes. Seu aprendizado e domínio são fundamentais para qualquer profissional que atue em áreas relacionadas à química.</p>
+<p>Por meio da titulação, é possível obter resultados quantitativos confiáveis, fundamentais para o desenvolvimento científico e tecnológico, contribuindo com análises precisas em diversos campos da ciência e da indústria.</p>
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Titulacao.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04_Equilibrio_Quimico.html" class="pagination-link" aria-label="&amp;bull; &amp;nbsp; Equilíbrio Químico">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">• &nbsp; Equilíbrio Químico</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05_Padronizacao.html" class="pagination-link" aria-label="&amp;bull; &amp;nbsp;Padronização de Solução">
+        <span class="nav-page-text"><span class="chapter-title">• &nbsp;Padronização de Solução</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
