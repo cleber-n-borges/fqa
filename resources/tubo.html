@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizar Tubo de Ensaio</title>
+</head>
+<body>
+    <!-- O navegador renderiza o SVG perfeitamente aqui dentro sem dar avisos -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://w3.org" viewBox="0 0 100 100" width="200" height="200">
+  <!-- Grupo rotacionado a 45 graus com centro na base do tubo (50, 75) -->
+  <g transform="rotate(45 50 75)">
+    <!-- O Tubo de ensaio (Contorno fino de 2px) -->
+    <path d="M42 40 L42 75 A8 8 0 0 0 58 75 L58 40" 
+          fill="none" 
+          stroke="#000000" 
+          stroke-width="2" 
+          stroke-linecap="round" />
+    <!-- A boca do tubo que é APENAS o traço reto e limpo -->
+    <line x1="42" y1="40" x2="58" y2="40" 
+          stroke="#000000" 
+          stroke-width="2" 
+          stroke-linecap="round" />
+  </g>
+
+  <!-- 3 Bolhas monocromáticas saindo e subindo verticalmente -->
+  <!-- Bolha 1: Posicionada exatamente no ponto médio (centro) do traço reto inclinado -->
+  <circle cx="77" cy="47" r="2.5" fill="none" stroke="#000000" stroke-width="1.5"/>
+  <!-- Bolha 2: Subindo verticalmente a partir do ponto médio -->
+  <circle cx="80" cy="40.00" r="3.5" fill="none" stroke="#000000" stroke-width="1.5"/>
+  <!-- Bolha 3: No topo, mantendo o alinhamento vertical exato -->
+  <circle cx="80" cy="30.00" r="4.5" fill="none" stroke="#000000" stroke-width="1.5"/>
+</svg>
+
+
+</body>
+</html>
+
