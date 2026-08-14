@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizador Molecular 3D com Teoria de Superfícies</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+  <!-- 3Dmol.js para Renderização Molecular 3D -->
+  <script src="https://3dmol.org/build/3Dmol-min.js"></script>
+
+  <!-- MathJax 3 para Equações Matemáticas -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .mol-container {
+      width: 100%;
+      height: 500px;
+      position: relative;
+      background-color: #1e1e2f;
+      border-radius: 8px 8px 0 0;
+    }
+    .info-card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container my-4">
+  <div class="card shadow-sm border-0">
+    
+    <!-- Cabeçalho com Abas de Navegação -->
+    <div class="card-header bg-white border-bottom border-light p-3">
+      <ul class="nav nav-tabs card-header-tabs" id="appTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active fw-bold" id="viewer-tab" data-bs-toggle="tab" data-bs-target="#tab-viewer" type="button" role="tab">
+            <i class="fa-solid fa-cube me-2"></i>Visualizador 3D
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold text-primary" id="surfaces-tab" data-bs-toggle="tab" data-bs-target="#tab-surfaces" type="button" role="tab">
+            <i class="fa-solid fa-layer-group me-2"></i>Teoria das Superfícies
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Conteúdo das Abas -->
+    <div class="card-body p-4 tab-content" id="appTabsContent">
+      
+      <!-- ABA 1: VISUALIZADOR 3D INTEGRADO -->
+      <div class="tab-pane fade show active" id="tab-viewer" role="tabpanel">
+        <div class="row g-3">
+          <div class="col-lg-9">
+            <div id="viewport" class="mol-container border"></div>
+          </div>
+          <div class="col-lg-3">
+            <div class="p-3 border rounded bg-light h-100">
+              <h6 class="fw-bold mb-3"><i class="fa-solid fa-sliders me-2"></i>Controles de Superfície</h6>
+              
+              <div class="d-grid gap-2 mb-3">
+                <button class="btn btn-outline-primary btn-sm text-start" onclick="renderSurface('vdw')">
+                  <i class="fa-solid fa-circle me-2"></i>Van der Waals (VDW)
+                </button>
+                <button class="btn btn-outline-secondary btn-sm text-start" onclick="renderSurface('ses')">
+                  <i class="fa-solid fa-shield-halved me-2"></i>Solvente Excluído (SES)
+                </button>
+                <button class="btn btn-outline-success btn-sm text-start" onclick="renderSurface('sas')">
+                  <i class="fa-solid fa-expand me-2"></i>Solvente Acessível (SAS)
+                </button>
+                <button class="btn btn-outline-danger btn-sm text-start" onclick="removeSurfaces()">
+                  <i class="fa-solid fa-trash me-2"></i>Remover Superfície
+                </button>
+              </div>
+
+              <hr>
+              <span class="small text-muted d-block mb-1">Molécula Exemplo:</span>
+              <strong class="d-block mb-3">Ácido Lático (Molécula Pequena)</strong>
+              <p class="small text-secondary mb-0">
+                Alterne entre as superfícies para observar o efeito de preenchimento e super-suavização (<em>over-smoothing</em>).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABA 2: TEORIA DETALHADA DAS SUPERFÍCIES -->
+      <div class="tab-pane fade info-card p-2" id="tab-surfaces" role="tabpanel">
+        
+        <!-- Título Principal -->
+        <h5 class="fw-bold text-primary mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+          <i class="fa-solid fa-layer-group me-2"></i>Teoria das Superfícies Moleculares: Geração, Relações e Limitações
+        </h5>
+
+        <!-- Introdução -->
+        <p class="text-body-secondary small mb-4">
+          As superfícies moleculares são construções geométricas e matemáticas projetadas para delimitar a extensão espacial de uma molécula no vácuo ou em meio solvente. Elas são fundamentais para quantificar a área de superfície acessível, o volume molecular, a energia livre de solvatação e para mapear cavidades de ligação em macromoléculas.
+        </p>
+
+        <!-- 1. Tipos de Superfícies e Algoritmos de Geração -->
+        <h6 class="fw-bold text-secondary mb-3"><i class="fa-solid fa-microscope me-2"></i>1. Tipos de Superfícies e Algoritmos de Geração</h6>
+        <div class="row g-3 mb-4">
+          <!-- VDW -->
+          <div class="col-md-4">
+            <div class="p-3 border border-secondary border-opacity-25 rounded bg-body-tertiary h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <strong class="text-primary"><i class="fa-solid fa-circle me-1"></i>Van der Waals (VDW)</strong>
+                <span class="badge bg-dark text-light">Núcleo Duro</span>
+              </div>
+              <p class="small text-body-secondary mb-2">
+                <strong>Definição:</strong> Limite físico rígido dos núcleos atômicos com base em seus raios teóricos ou experimentais.
+              </p>
+              <p class="small text-body-secondary mb-0">
+                <strong>Geração:</strong> União do volume de esferas atômicas rígidas centradas nas coordenadas $(x_i, y_i, z_i)$ com raio $r_i$. Não leva em consideração a presença de solvente.
+              </p>
+            </div>
+          </div>
+
+          <!-- SES -->
+          <div class="col-md-4">
+            <div class="p-3 border border-secondary border-opacity-25 rounded bg-body-tertiary h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <strong class="text-primary"><i class="fa-solid fa-shield-halved me-1"></i>Solvente Excluído (SES)</strong>
+                <span class="badge bg-secondary">Connolly</span>
+              </div>
+              <p class="small text-body-secondary mb-2">
+                <strong>Definição:</strong> Fronteira física real que delimita o volume do qual o solvente é estritamente excluído.
+              </p>
+              <p class="small text-body-secondary mb-0">
+                <strong>Geração:</strong> Envelope inferior da sonda ($r_p = 1{,}4\text{ Å}$) dividido em <em>Superfície de Contato</em> (toque direto) e <em>Superfície Reentrante</em> (pontes criadas pela curvatura da sonda nas fendas).
+              </p>
+            </div>
+          </div>
+
+          <!-- SAS -->
+          <div class="col-md-4">
+            <div class="p-3 border border-secondary border-opacity-25 rounded bg-body-tertiary h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <strong class="text-primary"><i class="fa-solid fa-expand me-1"></i>Solvente Acessível (SAS)</strong>
+                <span class="badge bg-primary">Lee-Richards</span>
+              </div>
+              <p class="small text-body-secondary mb-2">
+                <strong>Definição:</strong> Local geométrico mapeado pelo <strong>centro</strong> de uma sonda esférica rígida ao rolar sobre a superfície de VDW.
+              </p>
+              <p class="small text-body-secondary mb-0">
+                <strong>Geração:</strong> Equivale a inflar o raio de cada átomo $i$ de $r_i$ para $r_i + r_p$. O envelope exterior resultante define a fronteira.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Relação Hierárquica -->
+        <h6 class="fw-bold text-secondary mb-3"><i class="fa-solid fa-ruler-combined me-2"></i>2. Relação Hierárquica de Tamanho, Área e Volume</h6>
+        <div class="p-3 border border-secondary border-opacity-25 rounded bg-body-tertiary mb-4">
+          <p class="small text-body-secondary mb-2">
+            A dimensão geométrica das três superfícies depende diretamente do raio da sonda ($r_p$). A relação de magnitude para volume e área de superfície segue estritamente a hierarquia:
+          </p>
+          <div class="row g-3 text-center my-1">
+            <div class="col-md-6">
+              <div class="p-2 border border-primary border-opacity-25 rounded bg-primary bg-opacity-10">
+                <span class="fw-bold text-primary">Relação de Volume:</span>
+                <div class="fs-6 mt-1">$$V_{\text{SAS}} > V_{\text{SES}} \ge V_{\text{VDW}}$$</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-2 border border-primary border-opacity-25 rounded bg-primary bg-opacity-10">
+                <span class="fw-bold text-primary">Relação de Área:</span>
+                <div class="fs-6 mt-1">$$A_{\text{SAS}} > A_{\text{SES}} \ge A_{\text{VDW}}$$</div>
+              </div>
+            </div>
+          </div>
+          <ul class="small text-body-secondary mb-0 mt-3 ps-3">
+            <li><strong>Volume ($V$):</strong> $V_{\text{SAS}}$ é o maior por adicionar $r_p$ a toda a periferia. $V_{\text{SES}} \ge V_{\text{VDW}}$ porque a superfície reentrante "tampa" o fundo das fendas e cavidades, incorporando esse espaço morto ao volume interno excluído.</li>
+            <li><strong>Área ($A$):</strong> $A_{\text{SAS}}$ expande a área total proporcionalmente ao aumento do raio $r_i + r_p$. $A_{\text{SES}}$ supera $A_{\text{VDW}}$ em superfícies complexas devido às superfícies reentrantes que cobrem o relevo atômico.</li>
+          </ul>
+        </div>
+
+        <!-- 3. Limitações em Moléculas Pequenas -->
+        <h6 class="fw-bold text-danger mb-3"><i class="fa-solid fa-triangle-exclamation me-2"></i>3. Limitações e Problemas Críticos em Moléculas Pequenas</h6>
+        <div class="alert alert-danger border-danger border-opacity-50 text-body p-3 mb-0">
+          <p class="small mb-2 fw-semibold text-danger">
+            A aplicação desses algoritmos a moléculas pequenas (ex.: água, etanol, ácido acético, aminoácidos isolados) apresenta severos problemas conceituais e numéricos:
+          </p>
+          <ul class="small mb-0 ps-3">
+            <li class="mb-2">
+              <strong>Incompatibilidade de Escala (Distorção Sonda vs. Molécula):</strong> O raio padrão da sonda ($r_p = 1{,}4\text{ Å}$) possui dimensão comparável ou superior ao comprimento das próprias ligações químicas ($\text{C–C} \approx 1{,}54\text{ Å}$). A sonda atua como uma "bola de basquete" tentando medir pequenos relevos atômicos, inflando e distorcendo a proporção geométrica real.
+            </li>
+            <li class="mb-2">
+              <strong>Super-suavização (<em>Over-smoothing</em>) e Perda de Nuances Químicas:</strong> Como a sonda não penetra em fendas estreitas entre grupos funcionais, a superfície reentrante cobre a molécula com um envelope contínuo. Isso elimina detalhes estereoquímicos cruciais, como o plano de um grupo carboxila (–COOH) ou a orientação de uma hidroxila (–OH).
+            </li>
+            <li class="mb-2">
+              <strong>Instabilidades Numéricas e Artefatos de Malha (Mesh):</strong> A triangulação da superfície gera variações abruptas nos vetores normais da malha em geometrias pequenas. Pequenas mudanças conformacionais causam oscilações desproporcionais na área calculada, podendo gerar furos na malha, "bolhas" artificiais ou autointersecções de triângulos na visualização 3D.
+            </li>
+            <li>
+              <strong>Falha Conceitual da Solvatação Implícita:</strong> O modelo de sonda assume uma solvatação espacial, isotrópica e contínua. Em moléculas pequenas, as interações com o solvente são altamente direcionais, dominadas por pontes de hidrogênio e pela dinâmica da primeira camada de solvatação, as quais o envelope contínuo não consegue capturar.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Scripts do Visualizador 3D -->
+<script>
+  let viewer = null;
+
+  // Coordenadas SDF do Ácido Lático
+  const lacticAcidSDF = `
+  Mrv161110503162D
+
+  9  8  0  0  0  0  0  0  0  0999 V2000
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2100    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4200    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2100    2.1000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2100    0.7000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.5400    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1500    0.4000    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.0000    0.3000    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.5000    1.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  1  0  0  0  0
+  2  4  2  0  0  0  0
+  1  5  1  0  0  0  0
+  1  6  1  0  0  0  0
+  3  7  1  0  0  0  0
+  5  8  1  0  0  0  0
+  1  9  1  0  0  0  0
+M  END
+  `;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const element = document.getElementById('viewport');
+    const config = { backgroundColor: '#1e1e2f' };
+    viewer = $3Dmol.createViewer(element, config);
+
+    viewer.addModel(lacticAcidSDF, "sdf");
+    viewer.setStyle({}, { stick: { radius: 0.15 }, sphere: { scale: 0.25 } });
+    viewer.zoomTo();
+    viewer.render();
+  });
+
+  function removeSurfaces() {
+    if (viewer) {
+      viewer.removeAllSurfaces();
+      viewer.render();
+    }
+  }
+
+  function renderSurface(type) {
+    if (!viewer) return;
+    removeSurfaces();
+
+    if (type === 'vdw') {
+      viewer.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.8, color: 'lightblue' });
+    } else if (type === 'ses') {
+      viewer.addSurface($3Dmol.SurfaceType.MS, { opacity: 0.7, color: 'coral' });
+    } else if (type === 'sas') {
+      viewer.addSurface($3Dmol.SurfaceType.SAS, { opacity: 0.5, color: 'lightgreen' });
+    }
+    viewer.render();
+  }
+</script>
+
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

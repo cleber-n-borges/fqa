@@ -1,0 +1,39 @@
+ETKDGv3 algorithm
+
+The ETKDGv3 algorithm (Experimental-Torsion Knowledge Distance Geometry version 3) is a standard open-source stochastic method used for 3D molecular conformer generation. Implemented natively in the RDKit cheminformatics toolkit, it produces highly realistic 3D coordinates from a flat 2D molecular structure (such as a SMILES string) by combining mathematical distance geometry with empirical rules.
+
+
+
+Typical Python Usage (RDKit)In practical workflows, ETKDGv3 serves as the primary seed generator before applying formal physics-based force fields like MMFF94 or Universal Force Field (UFF):
+
+
+
+
+
+Alternativa:
+
+
+explique a opção usando Chematic (Rust/WASM)! Pode se fazer o download e usar localmente ou parecido com cdn?
+
+https://github.com/kent-tokyo/chematic
+
+
+
+
+OpenChemLib   :   
+
+https://github.com/actelion/openchemlib
+
+
+
+
+
+
+
+
+
+
+
+
+
+

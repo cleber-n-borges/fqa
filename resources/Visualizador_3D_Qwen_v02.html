@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Visualizador 3D — Indicadores &amp; Ácidos Orgânicos</title>
+<style>
+  :root{ --fundo:#0b0f14; --painel:#111823; --borda:#1f2b3a;
+         --texto:#dbe7f3; --suave:#8fa3b8; --acento:#38bdf8; }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--fundo);color:var(--texto);font:14px/1.45 "Segoe UI",system-ui,sans-serif;display:flex;flex-direction:column}
+  header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+         padding:10px 16px;border-bottom:1px solid var(--borda);background:var(--painel)}
+  header h1{font-size:17px;margin:0}
+  header .acoes{display:flex;gap:8px}
+  button,select{background:#0e1520;color:var(--texto);border:1px solid var(--borda);border-radius:8px;padding:7px 10px;cursor:pointer}
+  button:hover:not(:disabled),select:hover{border-color:var(--acento)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  main{flex:1;display:flex;min-height:0}
+  #painel{width:340px;overflow-y:auto;padding:12px;border-right:1px solid var(--borda);background:var(--painel)}
+  .cartao{border:1px solid var(--borda);border-radius:10px;padding:10px 12px;margin-bottom:12px;background:#0d141d}
+  .cartao h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--acento);margin:0 0 8px}
+  .cartao label{display:block;margin:6px 0}
+  .cartao select{width:100%}
+  fieldset{border:1px solid var(--borda);border-radius:8px;margin:8px 0;padding:6px 10px;color:var(--suave)}
+  .info{margin-top:8px;color:var(--suave);font-size:12.5px}
+  .info b{color:var(--texto)}
+  .acoes-geo{display:flex;gap:6px;margin-top:8px}
+  .acoes-geo button{flex:1;font-size:12.5px;padding:7px 6px}
+  #rngIteracoes,#rngSonda{width:100%}
+  #areaVisual{flex:1;display:flex;flex-direction:column;min-width:0}
+  #viewer{flex:1;min-height:420px;position:relative}
+  #status{padding:6px 12px;border-top:1px solid var(--borda);background:var(--painel);color:var(--suave);font-size:12.5px}
+  #status.erro{color:#ff6b6b}
+  .legenda .barra{height:14px;border-radius:7px;background:linear-gradient(90deg,#d72d2d,#f2f2f2,#3c6eff)}
+  .legenda .rotulos{display:flex;justify-content:space-between;font-size:11px;color:var(--suave);margin-top:4px;text-align:center}
+  @media (max-width:820px){ main{flex-direction:column} #painel{width:100%;border-right:none;border-bottom:1px solid var(--borda)} }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Visualizador 3D — Indicadores &amp; Ácidos Orgânicos</h1>
+  <div class="acoes">
+    <button id="btnGirar">⏸ Pausar Rotação</button>
+    <button id="btnZoom">🎯 Resetar Zoom</button>
+  </div>
+</header>
+
+<main>
+  <aside id="painel">
+    <section class="cartao">
+      <h2>Seleção de Molécula</h2>
+      <select id="selMolecula">
+        <option value="acetico">Ácido Acético (CH₃COOH)</option>
+        <option value="lactico">Ácido Láctico (CH₃CHOHCOOH)</option>
+        <option value="citrico">Ácido Cítrico (C₆H₈O₇)</option>
+        <option value="fenoAcida">Fenolftaleína — Ácida / Incolor (pH &lt; 8.2)</option>
+        <option value="fenoBasica">Fenolftaleína — Básica / Rosa (pH &gt; 8.2)</option>
+      </select>
+      <label><input type="checkbox" id="chkDestacar"> Destacar Hidrogênio(s) Ácido(s)</label>
+
+      <div class="acoes-geo">
+        <button id="btnOtimizar" title="Relaxa a geometria com gradiente conjugado (ligações, ângulos e contatos)">🧪 Otimizar Geometria</button>
+        <button id="btnRestaurar" disabled title="Restaura as coordenadas originais">↩ Restaurar</button>
+      </div>
+
+      <label style="margin-top:8px">Máximo de iterações:
+        <input type="range" id="rngIteracoes" min="10" max="1000" step="10" value="350">
+        <span id="lblIteracoes" class="info" style="margin:0">350</span>
+      </label>
+
+      <div class="info" style="margin-top:6px;font-size:11.5px">
+        Minimizador didático por <b>gradiente conjugado</b> (ligações + ângulos + repulsão de van der Waals).
+        Não altera cargas parciais nem substitui um campo de força real (UFF/MMFF).
+      </div>
+
+      <div id="infoMolecula" class="info"></div>
+    </section>
+
+    <section class="cartao">
+      <h2>Controle de Superfície</h2>
+      <label>Superfície:
+        <select id="selSuperficie">
+          <option value="OFF" selected>DESATIVADA</option>
+          <option value="SES">SES (Connolly)</option>
+          <option value="VDW">VDW (Van der Waals)</option>
+          <option value="SAS">SAS (Solvente Acessível)</option>
+        </select>
+      </label>
+      <label>Raio da sonda de solvente:
+        <input type="range" id="rngSonda" min="0" max="1.8" step="0.05" value="0">
+        <span id="lblSonda" class="info" style="margin:0"></span>
+      </label>
+      <fieldset>Opacidade:
+        <label><input type="radio" name="opacidade" value="0.2"> 20% (Muito Transparente)</label>
+        <label><input type="radio" name="opacidade" value="0.5" checked> 50% (Equilibrada)</label>
+        <label><input type="radio" name="opacidade" value="0.85"> 85% (Semi-opaca)</label>
+        <label><input type="radio" name="opacidade" value="0.95"> 95% (Opaca)</label>
+      </fieldset>
+      <fieldset>Coloração da Superfície:
+        <label><input type="radio" name="modoCor" value="elemento" checked> Por Elemento (Padrão Jmol)</label>
+        <label><input type="radio" name="modoCor" value="esp"> Potencial Eletrostático / Cargas (RWB)</label>
+      </fieldset>
+    </section>
+
+    <section class="cartao">
+      <h2>Visibilidade de Átomos</h2>
+      <label><input type="checkbox" id="chkC" checked> Carbono (C)</label>
+      <label><input type="checkbox" id="chkH" checked> Hidrogênio (H)</label>
+      <label><input type="checkbox" id="chkO" checked> Oxigênio (O)</label>
+    </section>
+
+    <section class="cartao">
+      <h2>Potencial Eletrostático (Cargas)</h2>
+      <div class="legenda">
+        <div class="barra"></div>
+        <div class="rotulos"><span>−0,5 e δ⁻<br>Eletronegativo</span><span>0<br>Neutro</span><span>+0,5 e δ⁺<br>Eletropositivo</span></div>
+      </div>
+    </section>
+
+    <section class="cartao">
+      <h2>Conceito Teórico</h2>
+      <details open>
+        <summary>Entenda as Superfícies Moleculares</summary>
+        <p>A superfície de Van der Waals (VDW) representa o raio atômico teórico. As superfícies SES e SAS
+        simulam uma sonda de solvente (água, raio 1,4 Å) mapeando o envelope da molécula.</p>
+        <p><b>VDW:</b> soma dos raios de Van der Waals dos átomos.<br>
+           <b>SAS:</b> envelope traçado pelo centro da esfera do solvente.<br>
+           <b>SES:</b> envelope inacessível ao solvente (superfície de Connolly).</p>
+        <p><b>Ordem de tamanho: VDW ≤ SES ≤ SAS.</b> A SES <i>não</i> é uma VDW inflada: coincide com a VDW
+        nas regiões convexas e apenas preenche os sulcos entre átomos. A SAS, sim, é a VDW expandida pelo
+        raio da sonda — por isso é a visivelmente maior.</p>
+        <p><b>Nota:</b> em moléculas pequenas, a sonda padrão de 1,4 Å é desproporcional e degrada o cálculo
+        de Connolly; o raio da sonda é reduzido automaticamente conforme o tamanho da molécula.</p>
+      </details>
+      <details style="margin-top:8px">
+        <summary>Otimização de Geometria</summary>
+        <p>O botão <b>🧪 Otimizar</b> relaxa a molécula pelo método do <b>gradiente conjugado</b>
+        (Polak-Ribière): em vez de descer sempre na direção do gradiente (zigue-zague lento), ele combina o
+        gradiente atual com a direção anterior para atravessar vales rasos em linha reta — ideal para as
+        114 coordenadas da fenolftaleína.</p>
+        <p>Um <b>line search</b> (teste de passos) garante que cada movimento realmente reduza a energia,
+        permitindo passos grandes quando a direção é boa. O limite de iterações é ajustável acima.</p>
+      </details>
+    </section>
+  </aside>
+
+  <div id="areaVisual">
+    <div id="viewer"></div>
+    <div id="status">Inicializando…</div>
+  </div>
+</main>
+
+<script>
+"use strict";
+
+/* =========================================================================
+   ETAPA 1 — CARREGAMENTO DA BIBLIOTECA (fallback de CDN + verificação)
+   ========================================================================= */
+const CDNS = [
+  "https://cdn.jsdelivr.net/npm/3dmol@2/build/3Dmol.min.js",
+  "https://unpkg.com/3dmol@2/build/3Dmol.min.js"
+];
+function loadScript(src){
+  return new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = () => rej(new Error(src));
+    document.head.appendChild(s);
+  });
+}
+async function garante3Dmol(){
+  if (typeof $3Dmol !== 'undefined') return true;
+  for (const url of CDNS){
+    try { await loadScript(url); if (typeof $3Dmol !== 'undefined') return true; }
+    catch(e){ console.warn('Falha ao carregar CDN:', url); }
+  }
+  return false;
+}
+
+/* =========================================================================
+   ETAPA 2 — DADOS MOLECULARES
+   Átomos: [elemento, x, y, z, cargaParcial]  |  Ligações: [i, j, ordem]
+   ========================================================================= */
+function molV2000(nome, atoms, bonds){
+  const f10 = n => { let s = n.toFixed(4); while (s.length < 10) s = ' ' + s; return s; };
+  const c3  = n => String(n).padStart(3);
+  let txt = nome + "\n  Visualizador3D\n\n";
+  txt += c3(atoms.length) + c3(bonds.length) + "  0  0  0  0  0  0  0  0999 V2000\n";
+  atoms.forEach(a => {
+    txt += f10(a[1]) + f10(a[2]) + f10(a[3]) + " " + a[0].padEnd(3) +
+           " 0  0  0  0  0  0  0  0  0  0  0  0\n";
+  });
+  bonds.forEach(b => { txt += c3(b[0]+1) + c3(b[1]+1) + c3(b[2]||1) + "  0\n"; });
+  txt += "M  END\n";
+  return txt;
+}
+
+const MOLECULAS = {
+  acetico: {
+    nome:'Ácido Acético', formula:'CH₃COOH', pka:'pKₐ = 4,76',
+    desc:'Ácido fraco presente no vinagre. O hidrogênio ácido é o do grupo carboxila (–COOH).',
+    atoms:[
+      ['C',-0.750, 0.000, 0.000,-0.20], ['C', 0.750, 0.000, 0.000, 0.50],
+      ['O', 1.350, 1.070, 0.000,-0.50], ['O', 1.450,-1.130, 0.000,-0.40],
+      ['H',-1.150, 1.020, 0.000, 0.05], ['H',-1.150,-0.510, 0.890, 0.05],
+      ['H',-1.150,-0.510,-0.890, 0.05], ['H', 2.400,-1.130, 0.000, 0.45]
+    ],
+    bonds:[[0,1],[1,2,2],[1,3],[3,7],[0,4],[0,5],[0,6]],
+    hAcidos:[7], tint:null
+  },
+  lactico: {
+    nome:'Ácido Láctico', formula:'CH₃CHOHCOOH', pka:'pKₐ = 3,86',
+    desc:'Produzido na fermentação e no metabolismo muscular; possui carboxila e hidroxila.',
+    atoms:[
+      ['C', 0.000, 0.000, 0.000, 0.15], ['C',-1.520, 0.000, 0.000,-0.25],
+      ['C', 1.520, 0.000, 0.000, 0.50], ['O', 2.170, 1.050, 0.000,-0.50],
+      ['O', 2.220,-1.150, 0.000,-0.40], ['O',-0.450, 1.300, 0.380,-0.40],
+      ['H', 0.000,-0.550,-0.940, 0.05], ['H',-1.900, 1.020, 0.000, 0.05],
+      ['H',-1.900,-0.510, 0.890, 0.05], ['H',-1.900,-0.510,-0.890, 0.05],
+      ['H',-1.250, 1.900, 0.750, 0.25], ['H', 3.160,-1.050, 0.000, 0.45]
+    ],
+    bonds:[[0,1],[0,2],[2,3,2],[2,4],[4,11],[0,5],[5,10],[0,6],[1,7],[1,8],[1,9]],
+    hAcidos:[11], tint:null
+  },
+  citrico: {
+    nome:'Ácido Cítrico', formula:'C₆H₈O₇', pka:'pKₐ₁ = 3,13 · pKₐ₂ = 4,76 · pKₐ₃ = 6,40',
+    desc:'Ácido triprótico das frutas cítricas — três carboxilas com hidrogênios ionizáveis.',
+    atoms:[
+      ['C', 0.000, 0.000, 0.000, 0.20], ['O',-0.878,-0.878, 0.878,-0.45],
+      ['H',-1.430,-1.430, 1.430, 0.30], ['C',-0.878, 0.878,-0.878, 0.50],
+      ['O',-1.570, 1.570,-1.570,-0.50], ['O',-1.680, 0.350,-1.700,-0.40],
+      ['H',-2.550, 0.550,-2.000, 0.45], ['C', 0.878, 0.878, 0.878,-0.20],
+      ['H', 1.649, 0.107, 0.878, 0.05], ['H', 1.323, 1.323,-0.011, 0.05],
+      ['C', 1.756, 1.756, 1.756, 0.50], ['O', 2.410, 2.740, 1.756,-0.50],
+      ['O', 1.000, 2.220, 2.750,-0.40], ['H', 0.200, 2.500, 3.200, 0.45],
+      ['C', 0.878,-0.878,-0.878,-0.20], ['H', 1.649,-0.107,-0.878, 0.05],
+      ['H', 1.323,-1.323, 0.011, 0.05], ['C', 1.756,-1.756,-1.756, 0.50],
+      ['O', 2.410,-2.740,-1.756,-0.50], ['O', 1.000,-2.220,-2.750,-0.40],
+      ['H', 0.200,-2.500,-3.200, 0.45]
+    ],
+    bonds:[[0,1],[1,2],[0,3],[3,4,2],[3,5],[5,6],[0,7],[7,8],[7,9],[7,10],
+           [10,11,2],[10,12],[12,13],[0,14],[14,15],[14,16],[14,17],
+           [17,18,2],[17,19],[19,20]],
+    hAcidos:[6,13,20], tint:null
+  }
+};
+
+function construirFenolftaleina(basica){
+  const deg = Math.PI/180, atoms = [], bonds = [], hAcidos = [];
+  const add = (el,x,y,z,q) => { atoms.push([el,x,y,z,q||0]); return atoms.length-1; };
+  const lig = (a,b,o) => bonds.push([a,b,o||1]);
+
+  const R5 = 1.182, cx = 1.244;
+  const p5 = a => [cx + R5*Math.cos(a*deg), R5*Math.sin(a*deg)];
+  const V0 = p5(36), C0 = p5(108), OL = p5(180), Cb = p5(252), V1 = p5(324);
+
+  const iV0 = add('C', V0[0], V0[1], 0, 0);
+  const iC0 = add('C', C0[0], C0[1], 0, basica ? 0.15 : 0.10);
+  const iOL = add('O', basica ? -0.35 : OL[0], basica ? -0.65 : OL[1], 0, basica ? -0.50 : -0.25);
+  const iCb = add('C', Cb[0], Cb[1], 0, 0.45);
+  const iV1 = add('C', V1[0], V1[1], 0, 0);
+  const dk = [(Cb[0]-cx)/R5, Cb[1]/R5];
+  const iOk = add('O', Cb[0]+1.21*dk[0], Cb[1]+1.21*dk[1], 0, basica ? -0.50 : -0.45);
+
+  const cbz = [(V0[0]+V1[0])/2 + 1.204, 0];
+  const hx = a => [cbz[0] + 1.39*Math.cos(a*deg), 1.39*Math.sin(a*deg)];
+  const B1 = hx(90), B2 = hx(30), B3 = hx(-30), B4 = hx(-90);
+  const iB1 = add('C',B1[0],B1[1],0,0), iB2 = add('C',B2[0],B2[1],0,0),
+        iB3 = add('C',B3[0],B3[1],0,0), iB4 = add('C',B4[0],B4[1],0,0);
+  const fora = p => { const dx=p[0]-cbz[0], dy=p[1]-cbz[1], n=Math.hypot(dx,dy); return [dx/n,dy/n]; };
+  const iH1 = add('H',B1[0]+1.08*fora(B1)[0],B1[1]+1.08*fora(B1)[1],0,0.03);
+  const iH2 = add('H',B2[0]+1.08*fora(B2)[0],B2[1]+1.08*fora(B2)[1],0,0.03);
+  const iH3 = add('H',B3[0]+1.08*fora(B3)[0],B3[1]+1.08*fora(B3)[1],0,0.03);
+  const iH4 = add('H',B4[0]+1.08*fora(B4)[0],B4[1]+1.08*fora(B4)[1],0,0.03);
+
+  lig(iV0,iC0); if(!basica) lig(iC0,iOL);
+  lig(iOL,iCb); lig(iCb,iOk,basica?1:2); lig(iCb,iV1);
+  lig(iV0,iB1,2); lig(iB1,iB2); lig(iB2,iB3,2); lig(iB3,iB4); lig(iB4,iV1,2); lig(iV1,iV0);
+  lig(iB1,iH1); lig(iB2,iH2); lig(iB3,iH3); lig(iB4,iH4);
+
+  function anelFenol(phi, zOff){
+    const c = [2.92,0], v = [];
+    [180,120,60,0,-60,-120].forEach(a => v.push([c[0]+1.39*Math.cos(a*deg), 1.39*Math.sin(a*deg)]));
+    const rot = p => [p[0]*Math.cos(phi*deg)-p[1]*Math.sin(phi*deg),
+                      p[0]*Math.sin(phi*deg)+p[1]*Math.cos(phi*deg)];
+    const ids = v.map(p => { const r = rot(p); return add('C', C0[0]+r[0], C0[1]+r[1], zOff, 0); });
+    [1,2,4,5].forEach(k => {
+      const p=v[k], dx=p[0]-c[0], dy=p[1]-c[1], n=Math.hypot(dx,dy);
+      const r = rot([p[0]+1.08*dx/n, p[1]+1.08*dy/n]);
+      const iH = add('H', C0[0]+r[0], C0[1]+r[1], zOff, 0.03);
+      lig(ids[k], iH);
+    });
+    const rO = rot([5.67,0]);
+    const iO = add('O', C0[0]+rO[0], C0[1]+rO[1], zOff, basica ? -0.55 : -0.35);
+    lig(iC0,ids[0]); lig(ids[0],ids[1],2); lig(ids[1],ids[2]); lig(ids[2],ids[3],2);
+    lig(ids[3],ids[4]); lig(ids[4],ids[5],2); lig(ids[5],ids[0]); lig(ids[3],iO);
+    if(!basica){
+      const rH = rot([6.57,-0.33]);
+      const iHp = add('H', C0[0]+rH[0], C0[1]+rH[1], zOff, 0.30);
+      lig(iO,iHp); hAcidos.push(iHp);
+    }
+  }
+  anelFenol(90, 0.35);
+  anelFenol(160, -0.35);
+  return {atoms, bonds, hAcidos};
+}
+
+const fenoA = construirFenolftaleina(false);
+const fenoB = construirFenolftaleina(true);
+MOLECULAS.fenoAcida = {
+  nome:'Fenolftaleína (forma ácida)', formula:'C₂₀H₁₄O₄', pka:'pH < 8,2 → incolor',
+  desc:'Lactona fechada: sem conjugação extensa, não absorve luz visível.',
+  atoms:fenoA.atoms, bonds:fenoA.bonds, hAcidos:fenoA.hAcidos, tint:null
+};
+MOLECULAS.fenoBasica = {
+  nome:'Fenolftaleína (forma básica)', formula:'C₂₀H₁₂O₄²⁻', pka:'pH > 8,2 → rosa',
+  desc:'Lactona aberta e fenóis desprotonados: sistema conjugado que absorve no visível (rosa).',
+  atoms:fenoB.atoms, bonds:fenoB.bonds, hAcidos:fenoB.hAcidos,
+  tint:{ C:'#d8739f', O:'#ff4f8b', H:'#ffd9e6' }
+};
+
+const ORIGINAIS = {};
+Object.keys(MOLECULAS).forEach(k => { ORIGINAIS[k] = MOLECULAS[k].atoms.map(a => a.slice()); });
+
+/* =========================================================================
+   ETAPA 3 — ESTADO + RENDERIZAÇÃO
+   ========================================================================= */
+let viewer = null, atomSeriais = [], ultimoT = 0;
+const otimizadas = new Set();
+const estado = { mol:'acetico', girar:true, superficie:'OFF', opacidade:0.5,
+                 modoCor:'elemento', verC:true, verH:true, verO:true,
+                 destacar:false, sondaManual:0, maxIter:350 };
+
+function statusMsg(txt, erro){
+  const el = document.getElementById('status');
+  el.textContent = txt;
+  el.className = erro ? 'erro' : '';
+}
+
+function raioSondaEfetivo(){
+  if(estado.sondaManual > 0) return estado.sondaManual;
+  const m = MOLECULAS[estado.mol];
+  let maxD2 = 0;
+  for(let i=0;i<m.atoms.length;i++){
+    for(let j=i+1;j<m.atoms.length;j++){
+      const dx=m.atoms[i][1]-m.atoms[j][1],
+            dy=m.atoms[i][2]-m.atoms[j][2],
+            dz=m.atoms[i][3]-m.atoms[j][3];
+      const d2 = dx*dx+dy*dy+dz*dz;
+      if(d2 > maxD2) maxD2 = d2;
+    }
+  }
+  return Math.max(0.4, Math.min(1.4, Math.sqrt(maxD2)/6));
+}
+
+function atualizarLabelSonda(){
+  const lbl = document.getElementById('lblSonda');
+  if(!lbl) return;
+  lbl.textContent = estado.sondaManual > 0
+    ? estado.sondaManual.toFixed(2) + ' Å (fixo)'
+    : 'Automático → ' + raioSondaEfetivo().toFixed(2) + ' Å';
+}
+
+const VERMELHO=[215,45,45], BRANCO=[242,242,242], AZUL=[60,110,255];
+function cargaParaCor(q){
+  const t = Math.max(0, Math.min(1, q + 0.5));
+  const [a,b,s] = t < 0.5 ? [VERMELHO,BRANCO,t/0.5] : [BRANCO,AZUL,(t-0.5)/0.5];
+  return '#' + a.map((v,i)=>Math.round(v+(b[i]-v)*s).toString(16).padStart(2,'0')).join('');
+}
+
+function aplicarEstilos(){
+  if(!viewer) return;
+  const m = MOLECULAS[estado.mol];
+  viewer.setStyle({}, {});
+  const visiveis = [];
+  if(estado.verC) visiveis.push('C');
+  if(estado.verH) visiveis.push('H');
+  if(estado.verO) visiveis.push('O');
+
+  visiveis.forEach(el => {
+    const escala = (el === 'H') ? 0.30 : 0.27;
+    if(estado.modoCor === 'elemento' && m.tint){
+      viewer.setStyle({elem:el}, {stick:{radius:0.16,color:m.tint[el]}, sphere:{scale:escala,color:m.tint[el]}});
+    } else if(estado.modoCor === 'elemento'){
+      viewer.setStyle({elem:el}, {stick:{radius:0.16,colorscheme:'Jmol'}, sphere:{scale:escala,colorscheme:'Jmol'}});
+    }
+  });
+
+  if(estado.modoCor === 'esp'){
+    viewer.selectedAtoms().forEach((a,i) => {
+      if(visiveis.indexOf(a.elem) < 0) return;
+      const cor = cargaParaCor(m.atoms[i] ? m.atoms[i][4] : 0);
+      viewer.setStyle({serial:a.serial},
+        {stick:{radius:0.16,color:cor}, sphere:{scale:(a.elem==='H'?0.30:0.27), color:cor}});
+    });
+  }
+
+  viewer.removeAllLabels();
+  if(estado.destacar && estado.verH){
+    if(m.hAcidos.length === 0) statusMsg('Esta forma não possui hidrogênios ácidos (fenóis já desprotonados).');
+    const atoms = viewer.selectedAtoms();
+    m.hAcidos.forEach(i => {
+      const a = atoms[i];
+      if(!a) return;
+      viewer.setStyle({serial:a.serial},
+        {stick:{radius:0.20,color:'#ff2d55'}, sphere:{scale:0.55,color:'#ff2d55'}});
+      viewer.addLabel('H⁺ ácido', {position:{x:a.x, y:a.y+1.05, z:a.z},
+        backgroundColor:'#ff2d55', fontColor:'#ffffff', fontSize:12,
+        backgroundOpacity:0.85, showBackground:true});
+    });
+  }
+  viewer.render();
+}
+
+function adicionarSuperficie(){
+  try{
+    const fallback = {SES:1, VDW:2, SAS:3};
+    const tipo = ($3Dmol.SurfaceType && $3Dmol.SurfaceType[estado.superficie]) || fallback[estado.superficie] || 1;
+    const sonda = raioSondaEfetivo();
+    const estilo = { opacity: estado.opacidade };
+    if(estado.modoCor === 'esp' && $3Dmol.Gradient && $3Dmol.Gradient.RWB){
+      estilo.colorscheme = { gradient:new $3Dmol.Gradient.RWB(-0.5,0.5), min:-0.5, max:0.5 };
+    } else {
+      estilo.colorscheme = 'Jmol';
+    }
+    viewer.addSurface(tipo, estilo, {}, {}, sonda);
+    return sonda;
+  }catch(e){ statusMsg('⚠ Superfície indisponível: ' + e.message, true); return 0; }
+}
+
+/* =========================================================================
+   ETAPA 4 — CAMPO DE FORÇA DIDÁTICO
+   Termos: estiramento harmônico de ligações + flexão de ângulos +
+   repulsão de van der Waals para pares não ligados.
+   ========================================================================= */
+function criarCampoForca(m){
+  const RC  = {H:0.31, C:0.76, O:0.66};        // raios covalentes (Å)
+  const VDW = {H:1.10, C:1.70, O:1.52};        // raios de van der Waals (Å)
+  const N = m.atoms.length, lig = m.bonds;
+  const adj = Array.from({length:N}, () => new Set());
+  lig.forEach(b => { adj[b[0]].add(b[1]); adj[b[1]].add(b[0]); });
+  const ang = [];
+  for(let c=0;c<N;c++){
+    const v = [...adj[c]];
+    for(let i=0;i<v.length;i++) for(let j=i+1;j<v.length;j++) ang.push([v[i],c,v[j]]);
+  }
+  const alvo = (el,n) => {                     // ângulo ideal por nº de vizinhos
+    if(el==='O') return n===2 ? 104.5 : 0;
+    if(el==='C') return n<=2 ? 180 : n===3 ? 120 : 109.5;
+    return n===3 ? 120 : 109.5;
+  };
+  const d = (p,i,j) => Math.hypot(p[3*i]-p[3*j], p[3*i+1]-p[3*j+1], p[3*i+2]-p[3*j+2]);
+  function angulo(p,a,c,b){
+    const v1=[p[3*a]-p[3*c], p[3*a+1]-p[3*c+1], p[3*a+2]-p[3*c+2]];
+    const v2=[p[3*b]-p[3*c], p[3*b+1]-p[3*c+1], p[3*b+2]-p[3*c+2]];
+    const n1=Math.hypot(...v1), n2=Math.hypot(...v2);
+    const cs=Math.max(-1, Math.min(1, (v1[0]*v2[0]+v1[1]*v2[1]+v1[2]*v2[2])/(n1*n2)));
+    return Math.acos(cs);
+  }
+  return function energia(p){
+    let E=0;
+    for(const b of lig){                                   // estiramento de ligações
+      const d0=(RC[m.atoms[b[0]][0]]+RC[m.atoms[b[1]][0]])*(b[2]===2?0.87:1);
+      const dd=d(p,b[0],b[1])-d0; E+=350*dd*dd;
+    }
+    for(const [a,c,b] of ang){                             // flexão de ângulos
+      const t0=alvo(m.atoms[c][0], adj[c].size)*Math.PI/180;
+      if(t0>0){ const da=angulo(p,a,c,b)-t0; E+=70*da*da; }
+    }
+    for(let i=0;i<N;i++) for(let j=i+1;j<N;j++){           // repulsão não-ligada
+      if(adj[i].has(j)) continue;
+      const rmin=(VDW[m.atoms[i][0]]+VDW[m.atoms[j][0]])*0.85;
+      const dd=d(p,i,j);
+      if(dd<rmin){ const dr=rmin-dd; E+=60*dr*dr; }
+    }
+    return E;
+  };
+}
+
+/* =========================================================================
+   ETAPA 5 — OTIMIZAÇÃO POR GRADIENTE CONJUGADO (Polak-Ribière)
+   ------------------------------------------------------------------------
+   Por que não Nelder-Mead? Em 114 coordenadas o simplex teria 115 vértices
+   e o custo por iteração explode; além disso NM também é um método local.
+   O gradiente conjugado usa a derivada (via diferenças centrais) e combina a
+   direção atual com a anterior para cruzar vales rasos em linha reta,
+   convergindo muito mais rápido que a descida de gradiente pura.
+   ========================================================================= */
+function minimizarCG(m, maxIter){
+  maxIter = Math.max(1, maxIter|0);
+  const N = m.atoms.length, n = 3*N;
+  const p = new Float64Array(n);
+  m.atoms.forEach((a,i)=>{ p[3*i]=a[1]; p[3*i+1]=a[2]; p[3*i+2]=a[3]; });
+  const E = criarCampoForca(m);
+  const e0 = E(p);
+  const h = 1e-4;                             // passo p/ diferenças centrais
+
+  // Gradiente numérico: perturba cada coordenada ±h e mede a variação de E.
+  function grad(x, out){
+    for(let k=0;k<n;k++){
+      const old = x[k];
+      x[k]=old+h; const ep=E(x);
+      x[k]=old-h; const em=E(x);
+      x[k]=old;
+      out[k]=(ep-em)/(2*h);
+    }
+  }
+  const dot  = (a,b)=>{ let s=0; for(let k=0;k<n;k++) s+=a[k]*b[k]; return s; };
+  const norm2= v => dot(v,v);
+
+  const g=new Float64Array(n), gOld=new Float64Array(n),
+        d=new Float64Array(n), dir=new Float64Array(n),
+        xT=new Float64Array(n);
+
+  grad(p, g);
+  for(let k=0;k<n;k++) d[k]=-g[k];            // 1ª direção: gradiente descendente
+
+  let e=e0, it=0, convergido=false;
+  let gNorm=Math.sqrt(norm2(g));
+  let stepLen=0.1;                            // comprimento de passo (Å)
+
+  for(; it<maxIter; it++){
+    if(gNorm < 1e-3){ convergido=true; break; }           // gradiente ~0 → mínimo
+
+    const dNorm=Math.sqrt(norm2(d));
+    if(dNorm < 1e-12){ convergido=true; break; }
+    for(let k=0;k<n;k++) dir[k]=d[k]/dNorm;               // direção unitária
+    let gd = dot(g,dir);
+    if(gd >= 0){                              // segurança: volta ao gradiente
+      for(let k=0;k<n;k++) dir[k]=-g[k]/gNorm;
+      gd = dot(g,dir);
+    }
+
+    // LINE SEARCH (Armijo): tenta passos grandes e recua até reduzir E.
+    const c=1e-4;
+    let alpha=stepLen, aceita=false, eAceita=e;
+    for(let ls=0; ls<40; ls++){
+      for(let k=0;k<n;k++) xT[k]=p[k]+alpha*dir[k];
+      const eT=E(xT);
+      if(eT <= e + c*alpha*gd){ aceita=true; eAceita=eT; break; }
+      alpha*=0.5;
+    }
+    if(!aceita){ if(gNorm < 1e-2) convergido=true; break; }
+
+    for(let k=0;k<n;k++) p[k]=xT[k];          // aceita o passo
+    e=eAceita;
+    stepLen=Math.min(2.0, stepLen*1.3);       // cresce o passo em vales suaves
+
+    gOld.set(g);
+    grad(p,g);
+    const gNormNew=Math.sqrt(norm2(g));
+
+    // POLAK-RIBIÈRE (PR+): combina gradiente novo com a direção anterior.
+    const ng2=norm2(gOld);
+    let num=0; for(let k=0;k<n;k++) num+=g[k]*(g[k]-gOld[k]);
+    let beta = ng2>1e-12 ? num/ng2 : 0;
+    if(beta<0) beta=0;
+    for(let k=0;k<n;k++) d[k]=-g[k]+beta*d[k];
+
+    if(dot(d,g) > 0){ for(let k=0;k<n;k++) d[k]=-g[k]; }  // reinício de segurança
+
+    gNorm=gNormNew;
+  }
+
+  m.atoms.forEach((a,i)=>{ a[1]=p[3*i]; a[2]=p[3*i+1]; a[3]=p[3*i+2]; });
+  return {iter:it, e0, e1:e, convergido};
+}
+
+function otimizarGeometria(){
+  if(!viewer){ statusMsg('⚠ Visualizador não inicializado.', true); return; }
+  const m=MOLECULAS[estado.mol];
+  statusMsg('Otimizando geometria de ' + m.nome + ' (máx. ' + estado.maxIter + ' iterações)…');
+  setTimeout(() => {
+    try{
+      const antes=m.atoms.map(a=>[a[1],a[2],a[3]]);
+      const r=minimizarCG(m, estado.maxIter);
+      let mudou=false;
+      m.atoms.forEach((a,i)=>{
+        if(Math.abs(a[1]-antes[i][0])>1e-4 || Math.abs(a[2]-antes[i][1])>1e-4 ||
+           Math.abs(a[3]-antes[i][2])>1e-4) mudou=true;
+      });
+      if(!mudou){ statusMsg('ℹ A geometria já está no mínimo do campo de força.'); return; }
+      otimizadas.add(estado.mol);
+      const btnR=document.getElementById('btnRestaurar'); if(btnR) btnR.disabled=false;
+      carregarMolecula(estado.mol, true);
+      const sit = r.convergido ? 'convergiu' : 'atingiu o máx. de iterações';
+      statusMsg(m.nome + ' — ' + sit + ' (' + r.iter + ' it.) | E: ' +
+                r.e0.toFixed(1) + ' → ' + r.e1.toFixed(1) + ' (u.a.)');
+    }catch(err){
+      statusMsg('⚠ Falha na otimização: ' + err.message, true);
+      console.warn(err);
+    }
+  }, 30);
+}
+
+function restaurarGeometria(){
+  if(!ORIGINAIS[estado.mol]) return;
+  const m = MOLECULAS[estado.mol];
+  m.atoms = ORIGINAIS[estado.mol].map(a => a.slice());
+  otimizadas.delete(estado.mol);
+  const btnR = document.getElementById('btnRestaurar');
+  if(btnR) btnR.disabled = true;
+  carregarMolecula(estado.mol, false);
+  statusMsg(m.nome + ' — geometria original restaurada.');
+}
+
+/* =========================================================================
+   ETAPA 6 — PIPELINE DE CARREGAMENTO / CÂMERA / CONTROLES
+   ========================================================================= */
+function carregarMolecula(chave, manterCamera){
+  const m = MOLECULAS[chave];
+  if(!viewer || !m) return;
+  estado.mol = chave;
+  statusMsg('Carregando ' + m.nome + '…');
+  try{
+    viewer.clear();
+    viewer.addModel(molV2000(m.nome, m.atoms, m.bonds), 'mol');
+    const atoms = viewer.selectedAtoms();
+    if(atoms.length !== m.atoms.length){
+      statusMsg('⚠ Parser leu ' + atoms.length + ' átomos; esperados ' + m.atoms.length + '.', true);
+    }
+    atomSeriais = atoms.map(a => a.serial);
+    atoms.forEach((a,i) => { a.partialCharge = m.atoms[i] ? m.atoms[i][4] : 0; });
+    aplicarEstilos();
+    let sonda = 0;
+    if(estado.superficie !== 'OFF') sonda = adicionarSuperficie();
+    if(!manterCamera) viewer.zoomTo();
+    viewer.render();
+    atualizarInfo();
+    const btnR = document.getElementById('btnRestaurar');
+    if(btnR) btnR.disabled = !otimizadas.has(chave);
+    statusMsg(m.nome + ' — ' + atoms.length + ' átomos | superfície: ' + estado.superficie +
+              (sonda ? ' | sonda: ' + sonda.toFixed(2) + ' Å' : ''));
+  }catch(e){
+    statusMsg('❌ Erro ao renderizar: ' + e.message, true);
+    console.error(e);
+  }
+}
+
+function atualizarInfo(){
+  const m = MOLECULAS[estado.mol];
+  document.getElementById('infoMolecula').innerHTML =
+    '<b>' + m.formula + '</b> · ' + m.pka + '<br>' + m.desc;
+  atualizarLabelSonda();
+}
+
+function loop(t){
+  try{
+    if(estado.girar && viewer){
+      const dt = ultimoT ? Math.min(t - ultimoT, 50) : 16;
+      viewer.rotate(0.03*dt, 'y');
+      viewer.render();
+    }
+  }catch(e){}
+  ultimoT = t;
+  requestAnimationFrame(loop);
+}
+
+function ligarControles(){
+  const $ = id => document.getElementById(id);
+  $('selMolecula').addEventListener('change', e => carregarMolecula(e.target.value));
+  $('btnGirar').addEventListener('click', () => {
+    estado.girar = !estado.girar;
+    $('btnGirar').textContent = estado.girar ? '⏸ Pausar Rotação' : '▶ Retomar Rotação';
+  });
+  $('btnZoom').addEventListener('click', () => { viewer.zoomTo(); viewer.render(); });
+  $('btnOtimizar').addEventListener('click', otimizarGeometria);
+  $('btnRestaurar').addEventListener('click', restaurarGeometria);
+  $('chkDestacar').addEventListener('change', e => { estado.destacar = e.target.checked; aplicarEstilos(); });
+  $('chkC').addEventListener('change', e => { estado.verC = e.target.checked; aplicarEstilos(); });
+  $('chkH').addEventListener('change', e => { estado.verH = e.target.checked; aplicarEstilos(); });
+  $('chkO').addEventListener('change', e => { estado.verO = e.target.checked; aplicarEstilos(); });
+  $('selSuperficie').addEventListener('change', e => {
+    estado.superficie = e.target.value;
+    carregarMolecula(estado.mol, true);
+  });
+  $('rngSonda').addEventListener('change', e => {
+    estado.sondaManual = parseFloat(e.target.value);
+    atualizarLabelSonda();
+    if(estado.superficie !== 'OFF') carregarMolecula(estado.mol, true);
+  });
+  $('rngIteracoes').addEventListener('input', e => {
+    estado.maxIter = parseInt(e.target.value, 10);
+    document.getElementById('lblIteracoes').textContent = estado.maxIter;
+  });
+  document.querySelectorAll('input[name="opacidade"]').forEach(r =>
+    r.addEventListener('change', e => {
+      estado.opacidade = parseFloat(e.target.value);
+      if(estado.superficie !== 'OFF') carregarMolecula(estado.mol, true);
+    }));
+  document.querySelectorAll('input[name="modoCor"]').forEach(r =>
+    r.addEventListener('change', e => {
+      estado.modoCor = e.target.value;
+      if(estado.superficie !== 'OFF') carregarMolecula(estado.mol, true);
+      else aplicarEstilos();
+    }));
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  statusMsg('Carregando 3Dmol.js…');
+  const ok = await garante3Dmol();
+  if(!ok){
+    statusMsg('❌ Não foi possível carregar o 3Dmol.js (CDN). Verifique a conexão.', true);
+    return;
+  }
+  try{
+    viewer = $3Dmol.createViewer(document.getElementById('viewer'),
+             { backgroundColor:'#0b0f14', antialias:true });
+  }catch(e){
+    statusMsg('❌ WebGL indisponível neste navegador: ' + e.message, true);
+    return;
+  }
+  window.addEventListener('resize', () => { if(viewer) viewer.resize(); });
+  ligarControles();
+  carregarMolecula('acetico');
+  requestAnimationFrame(loop);
+});
+</script>
+</body>
+</html>
