@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador Microscópico — Solução Tampão</title>
+  <style>
+    :root {
+      --bg-main: #0f172a;
+      --panel-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --accent-acid: #ef4444;
+      --accent-base: #3b82f6;
+      --accent-nh4: #10b981;
+      --accent-nh4oh: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Container dos 3 Quadros Principais */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    canvas {
+      background-color: #090d16;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+      width: 100%;
+      max-width: 360px;
+      height: 320px;
+    }
+
+    /* Estilos do Quadro 2: Barras de Concentração */
+    .bar-chart-container {
+      width: 100%;
+      height: 320px;
+      background-color: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .bar-label {
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 14px;
+      background: #1e293b;
+      border-radius: 7px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 0.2s ease-out;
+    }
+
+    /* Estilos do Painel de Controles */
+    .ph-meter {
+      background: #000;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .ph-value {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #38bdf8;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .ph-status {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .slider-control {
+      width: 100%;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 0.85rem;
+    }
+
+    .slider-control input {
+      width: 100%;
+      accent-color: #38bdf8;
+      cursor: pointer;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .btn {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: opacity 0.2s, background-color 0.2s;
+      color: #fff;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-acid { background-color: var(--accent-acid); }
+    .btn-base { background-color: var(--accent-base); }
+    .btn-reset { background-color: #475569; margin-top: 5px; justify-content: center; }
+
+    /* Badge Sutis de Contagem */
+    .click-badge {
+      background-color: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    /* Painel de Equações em Tempo Real */
+    .equations-container {
+      max-width: 1200px;
+      width: 100%;
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .equations-title {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .equations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .eq-box {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .eq-label {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .eq-formula {
+      color: #f8fafc;
+      font-weight: bold;
+      word-break: break-all;
+    }
+
+    .eq-active-reaction {
+      color: #f59e0b;
+      transition: color 0.3s;
+    }
+
+    /* Botão e Container da Explicação do Código */
+    .btn-toggle-explanation {
+      background-color: #334155;
+      color: #38bdf8;
+      border: 1px solid var(--border-color);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 5px;
+      font-size: 0.85rem;
+    }
+
+    .btn-toggle-explanation:hover {
+      background-color: #475569;
+    }
+
+    .explanation-content {
+      display: none;
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 18px;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .explanation-content.show {
+      display: block;
+    }
+
+    .explanation-content h4 {
+      color: #38bdf8;
+      margin: 14px 0 6px 0;
+      font-size: 0.9rem;
+    }
+
+    .explanation-content h4:first-child {
+      margin-top: 0;
+    }
+
+    .explanation-content code {
+      background: #1e293b;
+      color: #f59e0b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8rem;
+    }
+
+    .explanation-content pre {
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 8px 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8rem;
+    }
+
+    .explanation-content ul {
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    /* Caixas Explicativas Finais */
+    .explainer-container {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+    }
+
+    .explainer-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 15px;
+      border-top: 4px solid #38bdf8;
+    }
+
+    .explainer-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .explainer-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Simulador Microscópico — Solução Tampão (NH₄OH / NH₄Cl)</h1>
+  <p class="subtitle">Análise Molecular, Agitação Térmica e Concentrações Reais do Tampão Amoniacal</p>
+
+  <!-- Dashboard de 3 Quadros -->
+  <div class="dashboard-grid">
+    
+    <!-- Quadro 1: Simulação Dinâmica -->
+    <div class="card">
+      <div class="card-title">1. Dinâmica Molecular</div>
+      <canvas id="simCanvas" width="360" height="320"></canvas>
+    </div>
+
+    <!-- Quadro 2: Gráfico de Concentrações Reais -->
+    <div class="card">
+      <div class="card-title">2. Concentrações Reais (mol/L)</div>
+      <div class="bar-chart-container">
+        
+        <div class="bar-group">
+          <div class="bar-label"><span>[NH₄OH] Base Fraca</span><span id="valNH4OH">0.2115 mol/L</span></div>
+          <div class="bar-track"><div class="bar-fill" id="barNH4OH" style="background:var(--accent-nh4oh)"></div></div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-label"><span>[NH₄⁺] Ácido Conjugado</span><span id="valNH4">0.0385 mol/L</span></div>
+          <div class="bar-track"><div class="bar-fill" id="barNH4" style="background:var(--accent-nh4)"></div></div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-label"><span>[H₃O⁺] Hidrônio Adicionado</span><span id="valH3O">0.0000 mol/L</span></div>
+          <div class="bar-track"><div class="bar-fill" id="barH3O" style="background:var(--accent-acid)"></div></div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-label"><span>[OH⁻] Hidroxila Adicionada</span><span id="valOH">0.0000 mol/L</span></div>
+          <div class="bar-track"><div class="bar-fill" id="barOH" style="background:var(--accent-base)"></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Quadro 3: Painel de Controle e Parâmetros -->
+    <div class="card">
+      <div class="card-title">3. Parâmetros e Ações</div>
+      
+      <div class="ph-meter">
+        <div class="ph-status">pH MENSURADO</div>
+        <div class="ph-value" id="phDisplay">10.00</div>
+        <div class="ph-status" id="bufferStatus">Tampão Ativo (Reserva OK)</div>
+      </div>
+
+      <div class="slider-control">
+        <label for="speedSlider"><b>Agitação Térmica (Velocidade):</b> <span id="speedVal">2.0</span>x</label>
+        <input type="range" id="speedSlider" min="0.5" max="5.0" step="0.1" value="2.0">
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-acid" id="addAcidBtn">
+          <span>+ Adicionar Ácido (H₃O⁺)</span>
+          <span class="click-badge" id="acidClicks">0x (0/8)</span>
+        </button>
+        <button class="btn btn-base" id="addBaseBtn">
+          <span>+ Adicionar Base (OH⁻)</span>
+          <span class="click-badge" id="baseClicks">0x (0/2)</span>
+        </button>
+        <button class="btn btn-reset" id="resetBtn">Resetar Estado Inicial</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Painel de Equações em Tempo Real de Execução -->
+  <div class="equations-container">
+    <div class="equations-title">Equações Químicas e Matemáticas em Tempo Real</div>
+    <div class="equations-grid">
+      
+      <div class="eq-box">
+        <div class="eq-label">Equação de Henderson-Hasselbalch (pOH / pH)</div>
+        <div class="eq-formula" id="eqHH">pOH = 4.74 + log10([NH₄⁺] / [NH₄OH])</div>
+        <div class="eq-formula" id="eqCalc" style="color:#38bdf8;">pH = 14 - (4.74 + log10(0.0385 / 0.2115)) = 10.00</div>
+      </div>
+
+      <div class="eq-box">
+        <div class="eq-label">Reação de Neutralização em Andamento</div>
+        <div class="eq-formula eq-active-reaction" id="eqReaction">Equilíbrio Dinâmico Estável</div>
+        <div class="eq-label" id="eqReactionDetail" style="text-transform:none; font-family:'Courier New', monospace;">[NH₄OH] + [NH₄⁺] = 0.2500 mol/L</div>
+      </div>
+
+    </div>
+
+    <!-- Botão Mostrar/Ocultar Explicação -->
+    <button class="btn-toggle-explanation" id="toggleExpBtn">
+      <span>📖 Mostrar / Ocultar Explicação da Lógica Matemática e Limitações Didáticas</span>
+      <span id="arrowIcon">▼</span>
+    </button>
+
+    <!-- Conteúdo Oculto da Explicação Ampliado -->
+    <div class="explanation-content" id="expContent">
+      <h4>1. Conversão das Partículas para Concentração Real (mol/L)</h4>
+      <p>Como o canvas trabalha com partículas discretas na tela, o código converte o número de "bolinhas" em concentrações molares reais:</p>
+<pre>let concNH4OH = (count.NH4OH / 26) * C_TOTAL;
+let concNH4   = (count.NH4 / 26) * C_TOTAL;
+let concH3O   = (count.H3O / 26) * C_TOTAL;
+let concOH    = (count.OH / 26) * C_TOTAL;</pre>
+      <ul>
+        <li><b>Premissa:</b> O número total de partículas iniciais no tampão é 26 (22 de NH₄OH + 4 de NH₄⁺).</li>
+        <li><b>Concentração Nominal (C_TOTAL):</b> Fixada em 0,250 mol/L.</li>
+        <li><b>Cálculo:</b> Cada espécie representa uma fração proporcional. No início:
+          <br>• [NH₄OH] ≈ (22 / 26) × 0.250 = 0.2115 mol/L
+          <br>• [NH₄⁺] ≈ (4 / 26) × 0.250 = 0.0385 mol/L
+        </li>
+      </ul>
+
+      <h4>2. Equação de Henderson-Hasselbalch (Tampão Ativo)</h4>
+      <p>Quando o tampão está ativo (sem excesso de íons livres <code>count.H3O === 0 && count.OH === 0</code>), o pH é recalculado dinamicamente:</p>
+<pre>let ratio = concNH4 > 0 ? concNH4 / (concNH4OH || 0.0001) : 0.001;
+ph = 14 - (4.74 + Math.log10(ratio));</pre>
+      <ul>
+        <li><b>Razão entre Sal e Base:</b> <code>ratio = [NH₄⁺] / [NH₄OH]</code></li>
+        <li><b>Equação para Tampão Básico:</b> pOH = pKb + log10([Sal] / [Base]). Com pKb = 4.74:
+          <br><code>pOH = 4.74 + log10(ratio)</code>
+        </li>
+        <li><b>Conversão para pH:</b> <code>pH = 14 - pOH = 14 - [4.74 + log10([NH₄⁺] / [NH₄OH])]</code></li>
+      </ul>
+
+      <h4>3. Matemática do Colapso por Esgotamento (Capacidade Tamponante)</h4>
+      <p>Quando a reserva de um dos lados do tampão é consumida por completo, o código passa a calcular o pH com base nos íons fortes em excesso:</p>
+      <ul>
+        <li><b>Perturbação Ácida Livre (<code>count.H3O > 0</code>):</b> A reserva de NH₄OH zerou. O pH passa a ser calculado diretamente a partir do excesso de íons hidrônio livres: <code>pH = -log10([H₃O⁺] livre)</code>.</li>
+        <li><b>Perturbação Básica Livre (<code>count.OH > 0</code>):</b> A reserva de NH₄⁺ zerou. O pH passa a depender do excesso de hidroxilas livres: <code>pOH = -log10([OH⁻] livre)</code> ⇒ <code>pH = 14 - pOH</code>.</li>
+      </ul>
+
+      <h4>4. Formatação Dinâmica no DOM</h4>
+      <p>O método <code>.toFixed(4)</code> arredonda as concentrações para 4 casas decimais e atualiza as strings no HTML via Template Literals em tempo real de execução.</p>
+
+      <h4 style="color:#f59e0b; border-top: 1px solid var(--border-color); padding-top: 10px;">5. Quantidades por Clique, Capacidade e Limitações Didáticas</h4>
+      <p>Abaixo estão os parâmetros operacionais exatos definidos na interface e suas implicações práticas:</p>
+      <ul>
+        <li><b>Adição por Clique:</b> Cada clique nos botões insere exatamente <b>3 partículas</b> (3 de H₃O⁺ ou 3 de OH⁻) na tela.</li>
+        <li><b>Reserva Básica Inicial:</b> O sistema começa com <b>22 partículas de NH₄OH</b>. São necessários exatamente <b>8 cliques</b> de ácido (24 partículas no total) para consumir toda a reserva básica e provocar o colapso por acidificação. Os badges nos botões exibem esse limite em tempo real <code>(clicks / limite)</code>.</li>
+        <li><b>Reserva Ácida Inicial:</b> O sistema começa com <b>4 partículas de NH₄⁺</b>. São necessários apenas <b>2 cliques</b> de base (6 partículas no total) para zerar a reserva do sal e provocar o colapso por alcalinização.</li>
+        <li><b>Escala de Partículas vs. Realidade:</b> Na vida real, 1 L dessa solução contém ~1.5 × 10²³ moléculas. No canvas, cada "bolinha" atua como uma amostragem estatística equivalente a bilhões de moléculas reais.</li>
+        <li><b>Discretização e Degraus de pH:</b> A adição de reagentes ocorre em blocos discretos de 3 partículas, fazendo a concentração e o pH variarem em saltos, ao contrário da curva contínua e suave de uma titulação real.</li>
+        <li><b>Tratamento do Limite Matemático:</b> Ao zerar uma reserva, o código aplica um valor residual interno (<code>0.0001</code>) para impedir a divisão por zero na Equação de Henderson-Hasselbalch antes de alternar para a fórmula de íons livres.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Caixas Explicativas Inferiores -->
+  <div class="explainer-container">
+    <div class="explainer-card" style="border-top-color: var(--accent-acid);">
+      <h3>Mecanismo 1: Absorção de H₃O⁺</h3>
+      <p>Quando um ácido forte é adicionado, os íons <b>H₃O⁺</b> reagem com a base fraca <b>NH₄OH</b>, gerando <b>NH₄⁺</b> e água. A concentração da base diminui enquanto a do sal aumenta, mantendo o pH estável.</p>
+    </div>
+
+    <div class="explainer-card" style="border-top-color: var(--accent-base);">
+      <h3>Mecanismo 2: Neutralização de OH⁻</h3>
+      <p>A adição de uma base forte introduz íons <b>OH⁻</b>, que são imediatamente neutralizados pelo ácido conjugado <b>NH₄⁺</b> proveniente do sal, regenerando <b>NH₄OH</b> e água.</p>
+    </div>
+
+    <div class="explainer-card" style="border-top-color: #f59e0b;">
+      <h3>Mecanismo 3: Colapso por Esgotamento</h3>
+      <p>A ultrapassagem do limite operacional consome totalmente uma das espécies da reserva tamponante. Sem a reserva para reagir, os íons livres passam a alterar o pH bruscamente.</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('simCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Elementos da Interface
+    const phDisplay = document.getElementById('phDisplay');
+    const bufferStatus = document.getElementById('bufferStatus');
+    const speedSlider = document.getElementById('speedSlider');
+    const speedVal = document.getElementById('speedVal');
+
+    // Elementos dos Badges de Cliques
+    const acidClicksBadge = document.getElementById('acidClicks');
+    const baseClicksBadge = document.getElementById('baseClicks');
+    let acidClickCount = 0;
+    let baseClickCount = 0;
+
+    // Barras do Quadro 2
+    const barNH4OH = document.getElementById('barNH4OH');
+    const barNH4 = document.getElementById('barNH4');
+    const barH3O = document.getElementById('barH3O');
+    const barOH = document.getElementById('barOH');
+
+    const valNH4OH = document.getElementById('valNH4OH');
+    const valNH4 = document.getElementById('valNH4');
+    const valH3O = document.getElementById('valH3O');
+    const valOH = document.getElementById('valOH');
+
+    // Elementos do Painel de Equações
+    const eqHH = document.getElementById('eqHH');
+    const eqCalc = document.getElementById('eqCalc');
+    const eqReaction = document.getElementById('eqReaction');
+    const eqReactionDetail = document.getElementById('eqReactionDetail');
+
+    // Elementos do Botão Mostrar/Ocultar Explicação
+    const toggleExpBtn = document.getElementById('toggleExpBtn');
+    const expContent = document.getElementById('expContent');
+    const arrowIcon = document.getElementById('arrowIcon');
+
+    toggleExpBtn.addEventListener('click', () => {
+      const isVisible = expContent.classList.contains('show');
+      if (isVisible) {
+        expContent.classList.remove('show');
+        arrowIcon.textContent = '▼';
+      } else {
+        expContent.classList.add('show');
+        arrowIcon.textContent = '▲';
+      }
+    });
+
+    // Estado Físico-Químico Inicial
+    const RADIUS = 9;
+    let speedFactor = parseFloat(speedSlider.value);
+    let particles = [];
+
+    const C_TOTAL = 0.250;
+
+    class Particle {
+      constructor(type, x, y) {
+        this.type = type;
+        this.x = x || Math.random() * (canvas.width - RADIUS * 2) + RADIUS;
+        this.y = y || Math.random() * (canvas.height - RADIUS * 2) + RADIUS;
+        let angle = Math.random() * Math.PI * 2;
+        this.vx = Math.cos(angle);
+        this.vy = Math.sin(angle);
+      }
+
+      move() {
+        this.x += this.vx * speedFactor;
+        this.y += this.vy * speedFactor;
+
+        if (this.x - RADIUS < 0 || this.x + RADIUS > canvas.width) this.vx *= -1;
+        if (this.y - RADIUS < 0 || this.y + RADIUS > canvas.height) this.vy *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, RADIUS, 0, Math.PI * 2);
+
+        switch (this.type) {
+          case 'NH4OH': ctx.fillStyle = '#f59e0b'; break;
+          case 'NH4':   ctx.fillStyle = '#10b981'; break;
+          case 'H3O':   ctx.fillStyle = '#ef4444'; break;
+          case 'OH':    ctx.fillStyle = '#3b82f6'; break;
+        }
+
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '8px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(this.type, this.x, this.y);
+      }
+    }
+
+    function updateClickBadges() {
+      acidClicksBadge.textContent = `${acidClickCount}x (${acidClickCount}/8)`;
+      baseClicksBadge.textContent = `${baseClickCount}x (${baseClickCount}/2)`;
+    }
+
+    function initBuffer() {
+      particles = [];
+      acidClickCount = 0;
+      baseClickCount = 0;
+      updateClickBadges();
+
+      for (let i = 0; i < 22; i++) particles.push(new Particle('NH4OH'));
+      for (let i = 0; i < 4; i++)  particles.push(new Particle('NH4'));
+    }
+
+    function handleCollisions() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          let p1 = particles[i];
+          let p2 = particles[j];
+
+          let dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+
+          if (dist < RADIUS * 2) {
+            // Reação 1: Adição de Ácido
+            if ((p1.type === 'H3O' && p2.type === 'NH4OH') || (p1.type === 'NH4OH' && p2.type === 'H3O')) {
+              p1.type = 'NH4';
+              particles.splice(j, 1);
+              createEffect(p1.x, p1.y, '#10b981');
+              return;
+            }
+
+            // Reação 2: Adição de Base
+            if ((p1.type === 'OH' && p2.type === 'NH4') || (p1.type === 'NH4' && p2.type === 'OH')) {
+              p1.type = 'NH4OH';
+              particles.splice(j, 1);
+              createEffect(p1.x, p1.y, '#f59e0b');
+              return;
+            }
+          }
+        }
+      }
+    }
+
+    let effects = [];
+    function createEffect(x, y, color) {
+      effects.push({ x, y, color, radius: RADIUS, alpha: 1 });
+    }
+
+    function drawEffects() {
+      for (let i = effects.length - 1; i >= 0; i--) {
+        let e = effects[i];
+        ctx.beginPath();
+        ctx.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = e.color;
+        ctx.globalAlpha = e.alpha;
+        ctx.stroke();
+        ctx.globalAlpha = 1.0;
+
+        e.radius += 1.2;
+        e.alpha -= 0.05;
+
+        if (e.alpha <= 0) effects.splice(i, 1);
+      }
+    }
+
+    function updateDashboard() {
+      let count = { NH4OH: 0, NH4: 0, H3O: 0, OH: 0 };
+      particles.forEach(p => count[p.type]++);
+
+      let concNH4OH = (count.NH4OH / 26) * C_TOTAL;
+      let concNH4 = (count.NH4 / 26) * C_TOTAL;
+      let concH3O = (count.H3O / 26) * C_TOTAL;
+      let concOH = (count.OH / 26) * C_TOTAL;
+
+      valNH4OH.textContent = `${concNH4OH.toFixed(4)} mol/L`;
+      valNH4.textContent = `${concNH4.toFixed(4)} mol/L`;
+      valH3O.textContent = `${concH3O.toFixed(4)} mol/L`;
+      valOH.textContent = `${concOH.toFixed(4)} mol/L`;
+
+      barNH4OH.style.width = `${Math.min(100, (concNH4OH / C_TOTAL) * 100)}%`;
+      barNH4.style.width = `${Math.min(100, (concNH4 / C_TOTAL) * 100)}%`;
+      barH3O.style.width = `${Math.min(100, (concH3O / C_TOTAL) * 100)}%`;
+      barOH.style.width = `${Math.min(100, (concOH / C_TOTAL) * 100)}%`;
+
+      let ph = 10.0;
+      let ratio = concNH4 > 0 ? concNH4 / (concNH4OH || 0.0001) : 0.001;
+
+      if (count.H3O === 0 && count.OH === 0) {
+        ph = 14 - (4.74 + Math.log10(ratio));
+        bufferStatus.textContent = "Tampão Ativo (Reserva OK)";
+        bufferStatus.style.color = "#94a3b8";
+
+        eqReaction.textContent = "NH₄OH(aq) ⇌ NH₄⁺(aq) + OH⁻(aq)";
+        eqReaction.style.color = "#10b981";
+        eqReactionDetail.textContent = `[Sal]/[Base] = ${ratio.toFixed(3)} | Sistema Tamponado`;
+
+        eqHH.textContent = `pOH = 4.74 + log10(${concNH4.toFixed(4)} / ${concNH4OH.toFixed(4)})`;
+        eqCalc.textContent = `pH = 14 - (${(14 - ph).toFixed(2)}) = ${ph.toFixed(2)}`;
+
+      } else if (count.H3O > 0) {
+        ph = Math.max(1.0, 10.0 - count.H3O * 0.7);
+        bufferStatus.textContent = "COLAPSO: Reserva Básica Esgotada!";
+        bufferStatus.style.color = "#ef4444";
+
+        eqReaction.textContent = "NH₄OH(aq) + H₃O⁺(aq) → NH₄⁺(aq) + H₂O(l)";
+        eqReaction.style.color = "#ef4444";
+        eqReactionDetail.textContent = `Excesso de H₃O⁺ livre = ${concH3O.toFixed(4)} mol/L`;
+
+        eqHH.textContent = `pH = -log10([H₃O⁺] livre)`;
+        eqCalc.textContent = `pH = -log10(${concH3O.toFixed(4)}) ≈ ${ph.toFixed(2)}`;
+
+      } else if (count.OH > 0) {
+        ph = Math.min(13.8, 10.0 + count.OH * 0.5);
+        bufferStatus.textContent = "COLAPSO: Reserva Ácida Esgotada!";
+        bufferStatus.style.color = "#ef4444";
+
+        eqReaction.textContent = "NH₄⁺(aq) + OH⁻(aq) → NH₄OH(aq)";
+        eqReaction.style.color = "#3b82f6";
+        eqReactionDetail.textContent = `Excesso de OH⁻ livre = ${concOH.toFixed(4)} mol/L`;
+
+        eqHH.textContent = `pOH = -log10([OH⁻] livre)`;
+        eqCalc.textContent = `pH = 14 - (-log10(${concOH.toFixed(4)})) ≈ ${ph.toFixed(2)}`;
+      }
+
+      phDisplay.textContent = ph.toFixed(2);
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.move();
+        p.draw();
+      });
+
+      handleCollisions();
+      drawEffects();
+      updateDashboard();
+
+      requestAnimationFrame(animate);
+    }
+
+    // Eventos de Controle
+    speedSlider.addEventListener('input', (e) => {
+      speedFactor = parseFloat(e.target.value);
+      speedVal.textContent = speedFactor.toFixed(1);
+    });
+
+    document.getElementById('addAcidBtn').addEventListener('click', () => {
+      acidClickCount++;
+      updateClickBadges();
+      for (let i = 0; i < 3; i++) particles.push(new Particle('H3O'));
+    });
+
+    document.getElementById('addBaseBtn').addEventListener('click', () => {
+      baseClickCount++;
+      updateClickBadges();
+      for (let i = 0; i < 3; i++) particles.push(new Particle('OH'));
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      initBuffer();
+    });
+
+    // Iniciar Simulação
+    initBuffer();
+    animate();
+  </script>
+</body>
+</html>
