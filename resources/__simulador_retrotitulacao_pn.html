@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Retrotitulação - Poder de Neutralização (PN)</title>
+  <!-- MathJax for rendering equations -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --primary-color: #2b6cb0;
+      --primary-hover: #2c5282;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --border-color: #cbd5e0;
+      --text-color: #2d3748;
+      --subtext-color: #4a5568;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #edf2f7;
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 6px;
+      font-size: 1.3em;
+    }
+
+    p.subtitle {
+      text-align: center;
+      font-size: 0.85em;
+      color: var(--subtext-color);
+      margin-bottom: 20px;
+      border-bottom: 2px solid #edf2f7;
+      padding-bottom: 10px;
+    }
+
+    /* Assembly Display Area */
+    .assembly-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 270px;
+      background-color: var(--bg-color);
+      border-radius: 8px;
+      padding: 15px 10px;
+      border: 1px solid #e2e8f0;
+      position: relative;
+    }
+
+    /* Stand support visual */
+    .stand-base {
+      position: absolute;
+      bottom: 10px;
+      width: 140px;
+      height: 8px;
+      background-color: #718096;
+      border-radius: 3px;
+      z-index: 1;
+    }
+
+    .stand-rod {
+      position: absolute;
+      bottom: 18px;
+      left: calc(50% + 70px);
+      width: 6px;
+      height: 230px;
+      background-color: #a0aec0;
+      border-radius: 2px;
+      z-index: 1;
+    }
+
+    /* Burette Styles */
+    .burette-assembly {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .burette-title {
+      font-size: 0.75em;
+      font-weight: bold;
+      color: var(--subtext-color);
+      margin-bottom: 3px;
+    }
+
+    .burette-body {
+      width: 18px;
+      height: 110px;
+      border: 2px solid #4a5568;
+      border-top: 1px solid #718096;
+      border-radius: 0 0 2px 2px;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+    }
+
+    .burette-liquid {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 80%;
+      background-color: #cbd5e0;
+      transition: height 0.1s linear;
+    }
+
+    .burette-stopcock {
+      width: 12px;
+      height: 5px;
+      background: #2d3748;
+      margin: 1px 0;
+      border-radius: 1px;
+    }
+
+    .burette-tip {
+      width: 4px;
+      height: 12px;
+      background: #718096;
+    }
+
+    /* Drip animation */
+    .drip {
+      width: 4px;
+      height: 10px;
+      background-color: rgba(203, 213, 224, 0);
+      border-radius: 2px;
+      margin: 2px 0;
+      transition: background-color 0.2s;
+    }
+
+    /* Erlenmeyer Styles */
+    .erlenmeyer-assembly {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .erlenmeyer-flask {
+      width: 84px;
+      height: 75px;
+      clip-path: polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%);
+      background-color: #cbd5e0;
+      position: relative;
+      border-radius: 0 0 8px 8px;
+      box-shadow: inset 0 -4px 6px rgba(0,0,0,0.1);
+    }
+
+    .erlenmeyer-neck {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 20%;
+      background-color: #edf2f7;
+      border-bottom: 1px solid #a0aec0;
+    }
+
+    .erlenmeyer-liquid {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 55%;
+      background-color: rgba(226, 232, 240, 0.85);
+      transition: background-color 0.4s ease;
+    }
+
+    .erlenmeyer-title {
+      font-size: 0.75em;
+      font-weight: bold;
+      color: var(--subtext-color);
+      margin-top: 4px;
+    }
+
+    /* Controls Section */
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.88em;
+    }
+
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+
+    .value-display {
+      color: var(--primary-color);
+      font-size: 1.05em;
+    }
+
+    input[type=range] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #e2e8f0;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .scale-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75em;
+      color: #718096;
+    }
+
+    /* Results Box */
+    .results-card {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #edf2f7;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+    }
+
+    .indicator-state {
+      font-size: 0.85em;
+      color: var(--subtext-color);
+      margin-bottom: 4px;
+    }
+
+    .pn-result {
+      font-size: 1.15em;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🧪 Titulação de Retorno</h2>
+    <p class="subtitle">Determinação do Poder de Neutralização (PN)</p>
+
+    <!-- Visual Simulation Assembly -->
+    <div class="assembly-container">
+      <div class="stand-rod"></div>
+      <div class="stand-base"></div>
+
+      <!-- Burette -->
+      <div class="burette-assembly">
+        <span class="burette-title">Bureta (KOH 0,10 M)</span>
+        <div class="burette-body">
+          <div id="liquidoBureta" class="burette-liquid"></div>
+        </div>
+        <div class="burette-stopcock"></div>
+        <div class="burette-tip"></div>
+      </div>
+
+      <!-- Liquid Drop / Flow -->
+      <div id="pingo" class="drip"></div>
+
+      <!-- Erlenmeyer Flask -->
+      <div class="erlenmeyer-assembly">
+        <div class="erlenmeyer-flask">
+          <div class="erlenmeyer-neck"></div>
+          <div id="liquidoErlenmeyer" class="erlenmeyer-liquid"></div>
+        </div>
+        <span class="erlenmeyer-title">Alíquota (HCl + Fenolftaleína)</span>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="control-header">
+        <span>Volume de \( 	ext{KOH} \) gasto (\( V_{	ext{KOH}} \)):</span>
+        <span class="value-display"><span id="vKohVal">0.0</span> mL</span>
+      </div>
+      
+      <input type="range" id="sliderVKoh" min="0" max="25" value="0" step="0.1" oninput="atualizarSimulacao()">
+      
+      <div class="scale-ticks">
+        <span>0 mL</span>
+        <span>Ponto de Viragem (~12.5 mL)</span>
+        <span>25 mL</span>
+      </div>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="results-card">
+      <div class="indicator-state">Estado do Indicador: <b id="txtEstado">Incolor (Meio Ácido)</b></div>
+      <div class="pn-result">
+        PN Estimado: <span id="pnEstimado">0.00</span> %
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function atualizarSimulacao() {
+      const vKohMl = parseFloat(document.getElementById('sliderVKoh').value);
+      document.getElementById('vKohVal').innerText = vKohMl.toFixed(1);
+
+      // Parâmetros físico-químicos fixos da reação
+      const cHCl = 0.50;      // Concentração de HCl (mol/L)
+      const vHCl = 0.050;     // Volume total de HCl adicionado = 50 mL (0.050 L)
+      const cKOH = 0.10;      // Concentração do KOH (mol/L)
+      const mAmostra = 0.500; // Massa do calcário = 0.500 g
+      const vKohL = vKohMl / 1000;
+
+      // Equação da Retrotitulação:
+      // PN (%) = [ (cHCl * vHCl - 4 * cKOH * vKOH) * (MM_CaCO3 / 2) / mAmostra ] * 100
+      const termoHCl = cHCl * vHCl;
+      const termoKOH = 4 * (cKOH * vKohL);
+      const pn = ((termoHCl - termoKOH) * (100.09 / 2) / mAmostra) * 100;
+
+      document.getElementById('pnEstimado').innerText = pn > 0 ? pn.toFixed(2) : "0.00";
+
+      // Animação gráfica do nível da bureta (de 80% cheia para 0%)
+      const alturaBureta = Math.max(0, 80 - (vKohMl / 25) * 80);
+      document.getElementById('liquidoBureta').style.height = alturaBureta + "%";
+
+      // Feedback visual do pingo/escoamento da torneira
+      const pingo = document.getElementById('pingo');
+      if (vKohMl > 0 && vKohMl < 25) {
+        pingo.style.backgroundColor = "rgba(160, 174, 192, 0.8)";
+      } else {
+        pingo.style.backgroundColor = "rgba(203, 213, 224, 0)";
+      }
+
+      // Mudança de cor da fenolftaleína no Erlenmeyer
+      const liqErlen = document.getElementById('liquidoErlenmeyer');
+      const txtEstado = document.getElementById('txtEstado');
+
+      if (vKohMl < 12.0) {
+        liqErlen.style.backgroundColor = "rgba(226, 232, 240, 0.85)"; // Incolor
+        txtEstado.innerText = "Incolor (Meio Ácido)";
+        txtEstado.style.color = "#4a5568";
+      } else if (vKohMl >= 12.0 && vKohMl <= 13.0) {
+        liqErlen.style.backgroundColor = "rgba(246, 135, 179, 0.85)"; // Rosa Claro (Viragem)
+        txtEstado.innerText = "Rosa Claro (Ponto de Viragem!)";
+        txtEstado.style.color = "#d69e2e";
+      } else {
+        liqErlen.style.backgroundColor = "rgba(215, 38, 117, 0.9)"; // Rosa Forte / Alcalino
+        txtEstado.innerText = "Rosa Intenso (Excesso de KOH)";
+        txtEstado.style.color = "#e53e3e";
+      }
+    }
+
+    // Inicialização ao carregar a página
+    window.onload = atualizarSimulacao;
+  </script>
+</body>
+</html>

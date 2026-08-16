@@ -34,7 +34,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./000_RegressaoLinear.html" rel="next">
-<link href="./06_Acidez_Alimentos.html" rel="prev">
+<link href="./08_Solucao_Tampao.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -49,6 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -381,6 +384,11 @@ var JSON_Questionario = "./simulador/pn.dat";
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./08_Solucao_Tampao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⮞ &nbsp; Preparo de Solução Tampão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">⮞ &nbsp;Poder de Neutralização</span></a>
   </div>
 </li>
@@ -428,6 +436,7 @@ var JSON_Questionario = "./simulador/pn.dat";
   <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
   <li><a href="#complemento-com-ia" id="toc-complemento-com-ia" class="nav-link" data-scroll-target="#complemento-com-ia">Complemento com IA</a></li>
   <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  <li><a href="#resumo-visual" id="toc-resumo-visual" class="nav-link" data-scroll-target="#resumo-visual">Resumo Visual</a></li>
   <li><a href="#simulador-de-testes" id="toc-simulador-de-testes" class="nav-link" data-scroll-target="#simulador-de-testes">Simulador de Testes</a></li>
   </ul>
 </nav>
@@ -827,6 +836,97 @@ var JSON_Questionario = "./simulador/pn.dat";
 \Big( \mathrm{C_{HCl}} \times \mathrm{V_{HCl}} \Big) -
 4 \times \Big(\mathrm{C_{KOH}} \times \mathrm{V_{KOH}} \Big)
  \Bigg] \times \Big( 100,09 \Big/ 2 \Big) } { \mathrm{m_{\text{amostra}}} } \times 100</annotation></semantics></math></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Calculadora">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Calculadora
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<!-- Calculadora PN - Poder de Neutralização -->
+<div style="background-color: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 8px; padding: 20px; max-width: 480px; margin: 20px auto; font-family: sans-serif; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+  <h3 style="margin-top: 0; color: #2c3e50; font-size: 1.15em; text-align: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;" class="anchored">
+    🧮 Calculadora do Poder de Neutralização (PN)
+  </h3>
+
+  <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.9em;">
+    
+    <!-- Concentration HCl -->
+    <div>
+      <label for="cHCl" style="font-weight: bold; display: block; margin-bottom: 2px;">C<sub>HCl</sub> (mol/L):</label>
+      <input type="number" id="cHCl" value="0.50" step="0.001" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Volume HCl -->
+    <div>
+      <label for="vHCl" style="font-weight: bold; display: block; margin-bottom: 2px;">V<sub>HCl</sub> (L):</label>
+      <input type="number" id="vHCl" placeholder="Ex: 0.050" step="0.001" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Concentration KOH -->
+    <div>
+      <label for="cKOH" style="font-weight: bold; display: block; margin-bottom: 2px;">C<sub>KOH</sub> (mol/L):</label>
+      <input type="number" id="cKOH" value="0.10" step="0.001" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Volume KOH -->
+    <div>
+      <label for="vKOH" style="font-weight: bold; display: block; margin-bottom: 2px;">V<sub>KOH</sub> (L):</label>
+      <input type="number" id="vKOH" placeholder="Ex: 0.010" step="0.001" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Massa Amostra -->
+    <div>
+      <label for="mAmostra" style="font-weight: bold; display: block; margin-bottom: 2px;">m<sub>amostra</sub> (g):</label>
+      <input type="number" id="mAmostra" value="0.500" step="0.0001" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Botão de Calcular -->
+    <button onclick="calcularPN()" style="background-color: #2b6cb0; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 6px;">
+      Calcular PN
+    </button>
+
+    <!-- Resultado -->
+    <div id="painelResultadoPN" style="display: none; margin-top: 8px; padding: 10px; background-color: #e6fffa; border: 1px solid #b2f5ea; border-radius: 4px; text-align: center;">
+      <span style="font-weight: bold; color: #234e52; display: block; margin-bottom: 2px;">Poder de Neutralização (PN):</span>
+      <span id="valorResultadoPN" style="font-size: 1.3em; font-weight: bold; color: #2c7a7b;">0.00</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function calcularPN() {
+  const cHCl = parseFloat(document.getElementById('cHCl').value);
+  const vHCl = parseFloat(document.getElementById('vHCl').value);
+  const cKOH = parseFloat(document.getElementById('cKOH').value);
+  const vKOH = parseFloat(document.getElementById('vKOH').value);
+  const mAmostra = parseFloat(document.getElementById('mAmostra').value);
+
+  if (isNaN(cHCl) || isNaN(vHCl) || isNaN(cKOH) || isNaN(vKOH) || isNaN(mAmostra) || mAmostra <= 0) {
+    alert("Por favor, preencha todos os campos com valores válidos (massa deve ser maior que zero)!");
+    return;
+  }
+
+  // PN = [ (cHCl * vHCl) - 4 * (cKOH * vKOH) ] * (100.09 / 2) / mAmostra * 100
+  const termoHCl = cHCl * vHCl;
+  const termoKOH = 4 * (cKOH * vKOH);
+  const fatorEspecial = 100.09 / 2;
+
+  const pn = ((termoHCl - termoKOH) * fatorEspecial / mAmostra) * 100;
+
+  document.getElementById('valorResultadoPN').innerText = pn.toFixed(2) + " %";
+  document.getElementById('painelResultadoPN').style.display = 'block';
+}
+</script>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Resumo">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -988,7 +1088,7 @@ var JSON_Questionario = "./simulador/pn.dat";
 
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma" id="fluxograma-pn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Fluxograma&nbsp;11.1: Sequência de cálculo para determinar o PN do calcário.
+Fluxograma&nbsp;12.1: Sequência de cálculo para determinar o PN do calcário.
 </figcaption>
 </figure>
 </div>
@@ -1256,10 +1356,39 @@ NO_3^-+2H^++\mathrm{H_2O}</annotation></semantics></math></p>
 </script>
 <hr>
 </section>
+<section id="resumo-visual" class="level2">
+<h2 class="anchored" data-anchor-id="resumo-visual">Resumo Visual</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Infográfico
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./resources/Prancha Colorida/Poder_Neutralizacao.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Poder de Neutralização do Calcário"><img src="./resources/Prancha Colorida/Poder_Neutralizacao.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Poder de Neutralização do Calcário"></a></p>
+</figure>
+</div>
+<figcaption>Poder de Neutralização do Calcário</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
 <section id="simulador-de-testes" class="level2">
 <h2 class="anchored" data-anchor-id="simulador-de-testes">Simulador de Testes</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1268,7 +1397,7 @@ NO_3^-+2H^++\mathrm{H_2O}</annotation></semantics></math></p>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div id="qa-simulador" class="qa-simulador">
     <!-- 1. TELA DE ENTRADA DO CRONÔMETRO -->
@@ -1787,8 +1916,8 @@ NO_3^-+2H^++\mathrm{H_2O}</annotation></semantics></math></p>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./06_Acidez_Alimentos.html" class="pagination-link" aria-label="⮞ &amp;nbsp; Acidez em Alimentos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">⮞ &nbsp; Acidez em Alimentos</span></span>
+      <a href="./08_Solucao_Tampao.html" class="pagination-link" aria-label="⮞ &amp;nbsp; Preparo de Solução Tampão">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">⮞ &nbsp; Preparo de Solução Tampão</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1811,6 +1940,38 @@ NO_3^-+2H^++\mathrm{H_2O}</annotation></semantics></math></p>
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
