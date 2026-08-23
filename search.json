@@ -804,7 +804,7 @@
     "href": "Titulometria.html",
     "title": "Titulometria",
     "section": "",
-    "text": "Introdução à Titulação\nA titulação (ou volumetria) é uma técnica de química analítica amplamente empregada em laboratórios para determinar a concentração de uma substância em solução. O procedimento consiste na adição controlada de uma solução de concentração conhecida (titulante) sobre outra de concentração desconhecida (titulado), até que se atinja o ponto final da titulação.\nO princípio da titulação baseia-se em uma reação química completa entre o analito (titulado) e o titulante. Essa reação deve ser expressa por uma equação química balanceada, na qual a estequiometria esteja claramente definida. É essa proporção molar que possibilita relacionar o volume de titulante consumido com a quantidade de substância presente no analito, garantindo resultados quantitativos corretos e confiáveis.\nPara um entendimento completo do processo, alguns conceitos fundamentais devem ser destacados:",
+    "text": "Introdução à Titulação\nA titulação (ou volumetria) é uma técnica analítica amplamente empregada em laboratórios para determinar a concentração de uma solução desconhecida (titulado). O procedimento consiste na adição rigorosamente controlada, gota a gota, de uma solução de concentração conhecida (titulante) até que a reação se complete, sinalizada pelo ponto final da titulação.\nA simulação interativa a seguir evidencia esse conceito de forma visual e intuitiva, permitindo acompanhar em tempo real o efeito direto do gotejamento sobre o sistema em análise.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>🕮 &nbsp; Titulometria</span>"
     ]
@@ -814,7 +814,17 @@
     "href": "Titulometria.html#introdução-à-titulação",
     "title": "Titulometria",
     "section": "",
-    "text": "Titulado (analito): espécie química de concentração desconhecida a ser determinada.\nTitulante: solução de concentração conhecida, adicionada gradualmente ao titulado por meio de uma bureta.\nIndicador: substância adicionada em pequena quantidade ao sistema com a função de sinalizar o término da titulação por meio de uma mudança perceptível, geralmente de cor. O indicador deve apresentar sua transição o mais próximo possível do ponto de equivalência, minimizando o erro da titulação. Em algumas análises, o indicador pode ser substituído por métodos instrumentais, como potenciometria, condutimetria ou espectrofotometria.\nPonto de Equivalência: instante teórico no qual a quantidade de titulante adicionada é exatamente equivalente, em termos estequiométricos, à quantidade de analito presente. Nesse ponto, a reação está completa segundo a equação química balanceada.\nPonto Final da Titulação: instante experimental caracterizado por uma mudança observável, como a alteração de cor de um indicador químico ou uma variação detectada instrumentalmente. Esse sinal indica, na prática, a proximidade do ponto de equivalência.\nErro da Titulação: diferença entre o ponto de equivalência (teórico) e o ponto final (experimental). Esse desvio deve ser minimizado pela seleção adequada do indicador ou pela utilização de métodos instrumentais mais precisos.\n\n\nComparador entre Ponto de Equivalência e Ponto Final\nA animação conceitual lado a lado que demonstra a diferença teórica versus a manifestação física experimental.\n\n  Ponto de Equivalência vs. Ponto Final\n  \n  \n    \n    \n      Ponto de Equivalência\n      Conceito Estequiométrico Teórico\n      \n        nácido = nbase\n      \n      Invisível a olho nu\n    \n\n    \n    \n      Ponto Final\n      Sinal Visual Experimental\n      \n      Sem indicador\n    \n  \n\n  \n    Simular Adição de Indicador e Ponto Final",
+    "text": "Simulação Interativa da Titulação\nNela, o usuário pode adicionar o titulante (NaOH\\text{NaOH}) gota a gota no erlenmeyer contendo titulado (HCl\\text{HCl}) e indicador (fenolftaleína). O líquido muda de incolor para rosa pálido persistente exatamente no ponto de viragem.\n\nInstruções: Clique no botão “Gotejar” para adicionar a solução de NaOH\\text{NaOH} gota a gota ao recipiente; observe o momento em que o líquido muda de cor (ponto de viragem), que ocorrerá quando o volume adicionado se aproximar de 20 mL e notando o escurecimento do rosa ao passar de 21 mL.\n\n\n  \n  Procedimento de Titulação\n  \n  \n  Titulante: NaOH (0,1 mol/L)\n  Titulado: HCl\n  Indicador: Fenolftaleína (em Erlenmeyer)\n\n  \n  \n    \n    \n    \n    \n\n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n\n    \n    \n\n    \n    \n    \n  \n\n  \n    Volume Adicionado: 0.00 mL\n    \n    Solução Incolor (Meio Ácido)\n  \n\n  Gotejar (+0.5 mL)\n  Reiniciar",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>🕮 &nbsp; Titulometria</span>"
+    ]
+  },
+  {
+    "objectID": "Titulometria.html#fundamento",
+    "href": "Titulometria.html#fundamento",
+    "title": "Titulometria",
+    "section": "Fundamento",
+    "text": "Fundamento\nO princípio da titulação baseia-se em uma reação química completa entre o analito (titulado) e o titulante. Essa reação deve ser expressa por uma equação química balanceada, na qual a estequiometria esteja claramente definida. É essa proporção molar que possibilita relacionar o volume de titulante consumido com a quantidade de substância presente no analito, garantindo resultados quantitativos corretos e confiáveis.\nPara um entendimento completo do processo, alguns conceitos fundamentais devem ser destacados:\n\nTitulado (analito): espécie química de concentração desconhecida a ser determinada.\nTitulante: solução de concentração conhecida, adicionada gradualmente ao titulado por meio de uma bureta.\nIndicador: substância adicionada em pequena quantidade ao sistema com a função de sinalizar o término da titulação por meio de uma mudança perceptível, geralmente de cor. O indicador deve apresentar sua transição o mais próximo possível do ponto de equivalência, minimizando o erro da titulação. Em algumas análises, o indicador pode ser substituído por métodos instrumentais, como potenciometria, condutimetria ou espectrofotometria.\nPonto de Equivalência: instante teórico no qual a quantidade de titulante adicionada é exatamente equivalente, em termos estequiométricos, à quantidade de analito presente. Nesse ponto, a reação está completa segundo a equação química balanceada.\nPonto Final da Titulação: instante experimental caracterizado por uma mudança observável, como a alteração de cor de um indicador químico ou uma variação detectada instrumentalmente. Esse sinal indica, na prática, a proximidade do ponto de equivalência.\nErro da Titulação: diferença entre o ponto de equivalência (teórico) e o ponto final (experimental). Esse desvio deve ser minimizado pela seleção adequada do indicador ou pela utilização de métodos instrumentais mais precisos.\n\n\nComparador entre Ponto de Equivalência e Ponto Final\nA animação conceitual lado a lado que demonstra a diferença teórica versus a manifestação física experimental.\n\n  Ponto de Equivalência vs. Ponto Final\n  \n  \n    \n    \n      Ponto de Equivalência\n      Conceito Estequiométrico Teórico\n      \n        nácido = nbase\n      \n      Invisível a olho nu\n    \n\n    \n    \n      Ponto Final\n      Sinal Visual Experimental\n      \n      Sem indicador\n    \n  \n\n  \n    Simular Adição de Indicador e Ponto Final",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>🕮 &nbsp; Titulometria</span>"
     ]
@@ -854,7 +864,7 @@
     "href": "Titulometria.html#etapas-do-processo-de-titulação",
     "title": "Titulometria",
     "section": "Etapas do Processo de Titulação",
-    "text": "Etapas do Processo de Titulação\nA titulação envolve diversas etapas que devem ser realizadas com cuidado para assegurar a precisão dos resultados. A seguir, descreve-se o procedimento geral de uma titulação:\n\nPreparação das soluções\nAntes de iniciar a titulação, é necessário preparar as duas soluções envolvidas: o titulante (de concentração conhecida) e o titulado (de concentração a ser determinada). Ambas devem estar devidamente dissolvidas e homogeneizadas.\n\n\nEnchimento da bureta\nCom o auxílio de um funil, a bureta é preenchida com o titulante. Em seguida, o funil é retirado, e verifica-se se há bolhas de ar no interior da bureta ou na torneira. Se houver, é necessário eliminá-las, liberando um pequeno volume do líquido até que o fluxo seja contínuo. A leitura inicial do nível do líquido deve ser registrada.\n\n\nTransferência da amostra para o erlenmeyer\nCom a pipeta, transfere-se um volume conhecido da solução do titulado para o erlenmeyer. Em seguida, adiciona-se o indicador de ponto de viragem, que servirá para sinalizar o fim da reação.\n\n\nRealização da titulação\nO titulante é adicionado lentamente, gota a gota, da bureta ao erlenmeyer, enquanto a solução é agitada constantemente. À medida que as gotas caem, o titulante reage com o titulado, aproximando-se do ponto de equivalência. A mudança de cor provocada pelo indicador sinaliza a chegada a esse ponto.\nNos primeiros ensaios, recomenda-se realizar uma titulação de aproximação, com adição mais rápida, para ter uma ideia do volume necessário. Nas repetições seguintes, a adição deve ser mais cuidadosa ao se aproximar do volume anteriormente registrado.\n\n\nRegistro do volume final\nAssim que a mudança de cor persistente ocorrer, indicando o ponto de viragem, o volume final da bureta é registrado. A diferença entre a leitura inicial e final indica o volume de titulante utilizado.\n\n\nSimulação Interativa da Titulação (Bureta e Erlenmeyer)\nEsta simulação permite que o usuário adicione o titulante (NaOH\\text{NaOH}) gota a gota no erlenmeyer contendo titulado (HCl\\text{HCl}) e indicador (fenolftaleína). O líquido muda de incolor para rosa persistente exatamente no ponto de viragem.\n\n  Simulador de Titulação Ácido-Base\n  Titulante: NaOH (0,1 mol/L) | Titulado: HCl em Erlenmeyer com Fenolftaleína\n  \n  \n    \n    \n    \n    \n\n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n\n    \n    \n\n    \n    \n    \n  \n\n  \n    Volume Adicionado: 0.00 mL\n    \n    Solução Incolor (Meio Ácido)\n  \n\n  Pingar Gota (+0.5 mL)\n  Reiniciar",
+    "text": "Etapas do Processo de Titulação\nA titulação envolve diversas etapas que devem ser realizadas com cuidado para assegurar a precisão dos resultados. A seguir, descreve-se o procedimento geral de uma titulação:\n\nPreparação das soluções\nAntes de iniciar a titulação, é necessário preparar as duas soluções envolvidas: o titulante (de concentração conhecida) e o titulado (de concentração a ser determinada). Ambas devem estar devidamente dissolvidas e homogeneizadas.\n\n\nEnchimento da bureta\nCom o auxílio de um funil, a bureta é preenchida com o titulante. Em seguida, o funil é retirado, e verifica-se se há bolhas de ar no interior da bureta ou na torneira. Se houver, é necessário eliminá-las, liberando um pequeno volume do líquido até que o fluxo seja contínuo. A leitura inicial do nível do líquido deve ser registrada.\n\n\nTransferência da amostra para o erlenmeyer\nCom a pipeta, transfere-se um volume conhecido da solução do titulado para o erlenmeyer. Em seguida, adiciona-se o indicador de ponto de viragem, que servirá para sinalizar o fim da reação.\n\n\nRealização da titulação\nO titulante é adicionado lentamente, gota a gota, da bureta ao erlenmeyer, enquanto a solução é agitada constantemente. À medida que as gotas caem, o titulante reage com o titulado, aproximando-se do ponto de equivalência. A mudança de cor provocada pelo indicador sinaliza a chegada a esse ponto.\nNos primeiros ensaios, recomenda-se realizar uma titulação de aproximação, com adição mais rápida, para ter uma ideia do volume necessário. Nas repetições seguintes, a adição deve ser mais cuidadosa ao se aproximar do volume anteriormente registrado.\n\n\nRegistro do volume final\nAssim que a mudança de cor persistente ocorrer, indicando o ponto de viragem, o volume final da bureta é registrado. A diferença entre a leitura inicial e final indica o volume de titulante utilizado.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>🕮 &nbsp; Titulometria</span>"
     ]
@@ -894,7 +904,7 @@
     "href": "Titulometria.html#nota-histórica",
     "title": "Titulometria",
     "section": "Nota Histórica",
-    "text": "Nota Histórica\n\n\n\n\n\n\n🔹 Origem da palavra “titulação”\n\nVem do francês titrer → que significa fixar o “título” de uma solução.\n\n“Título” era o nome antigo para a concentração de uma solução.\n\nEm latim, titulus tem o sentido de inscrição / marca / identificação, daí o uso em química como a espécie de marca da intensidade de uma solução. Evoca a ideia histórica de quanto vale ou quão carregada está a solução — que era o que o termo “título” representava nos manuais antigos.\n\nNo século XIX, antes da sistematização das unidades molares modernas, o “título” de uma solução era geralmente expresso como:\n\n% m/m (massa de soluto por 100 g de solução), ou\n\n% m/v (massa de soluto em gramas por 100 mL de solução).\n\n\nEm muitos manuais antigos, “título” é usado para expressar gramas de soluto em 100 mL de solução → isto é, % m/v.\n\n🔹 Atualmente\n\nEm Química Analítica moderna, quase não se usa mais o termo “título” como sinônimo de concentração.\n\nO termo persiste apenas no nome titulação, mas a grandeza mais comumente empregada é a concentração molar (mol⋅L−1mol \\cdot L^{-1}).",
+    "text": "Nota Histórica\n\n\n\n\n\n\nNota Histórica Expandida\nResumo:\n🔹 Origem da palavra “titulação”\n\nVem do francês titrer → que significa fixar o “título” de uma solução.\n\n“Título” era o nome antigo para a concentração de uma solução.\n\nEm latim, titulus tem o sentido de inscrição / marca / identificação, daí o uso em química como a espécie de marca da intensidade de uma solução. Evoca a ideia histórica de quanto vale ou quão carregada está a solução — que era o que o termo “título” representava nos manuais antigos.\n\nNo século XIX, antes da sistematização das unidades molares modernas, o “título” de uma solução era geralmente expresso como:\n\n% m/m (massa de soluto por 100 g de solução), ou\n\n% m/v (massa de soluto em gramas por 100 mL de solução).\n\n\nEm muitos manuais antigos, “título” é usado para expressar gramas de soluto em 100 mL de solução → isto é, % m/v.\n\n🔹 Atualmente\n\nEm Química Analítica moderna, quase não se usa mais o termo “título” como sinônimo de concentração.\n\nO termo persiste apenas no nome titulação, mas a grandeza mais comumente empregada é a concentração molar (mol⋅L−1mol \\cdot L^{-1}).",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>🕮 &nbsp; Titulometria</span>"
     ]
@@ -1607,6 +1617,182 @@
     "text": "Espectro\nEspectro\nEspectro e suas relações com cores",
     "crumbs": [
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>★ &nbsp;Espectro Teste</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html",
+    "href": "Nota_Historica_Titulo_expandida.html",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "",
+    "text": "Origem da palavra “titulação”\nA palavra “titulação” está relacionada ao francês titre e ao verbo titrer. A história desses termos, porém, é mais antiga do que a própria Química Analítica moderna e merece ser entendida com algum cuidado.\nA palavra francesa titre remonta ao latim titulus, que possuía sentidos como inscrição, marca, identificação, designação ou título. A ideia original era a de uma inscrição ou marca que identificava ou distinguia alguma coisa. Ao longo da evolução da língua francesa, titre adquiriu diversos significados, entre eles os de título, qualificação, grau e, posteriormente, teor ou proporção de uma substância. [1,2]\nUma ocorrência histórica particularmente importante é registrada em 1543, quando aparece a forma francesa tiltre com o significado de:\nisto é, a proporção de ouro ou prata presente em moedas e em objetos de ouro e prata. A fonte lexicográfica francesa atribui essa ocorrência a Lespinasse, Les métiers et corporations de la ville de Paris, t. 2, p. 22. [1]\nPortanto, o sentido originalmente documentado não era “concentração de uma solução”. Tratava-se do teor ou grau de pureza de um metal precioso, isto é, de uma medida que indicava quanto ouro ou prata havia efetivamente em uma liga, moeda ou objeto.\nA evolução semântica é bastante sugestiva:\nÉ importante, entretanto, não interpretar essa sequência como se tivesse ocorrido de maneira instantânea ou perfeitamente linear. A ocorrência de tiltre em 1543 é uma atestação documental de um determinado sentido da palavra; ela não representa o nascimento da palavra titre, que possui uma história linguística muito mais antiga. [1,2]",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#origem-da-palavra-titulação",
+    "href": "Nota_Historica_Titulo_expandida.html#origem-da-palavra-titulação",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "",
+    "text": "“proportion d’or ou d’argent dans les monnaies, dans les ouvrages d’or et d’argent”\n\n\n\n\n\n\n\ntitulus (latim)\n\n\n↓\n\n\ntitre / tiltre (francês)\n\n\n↓\n\n\ntítulo, marca, qualificação, teor ou grau\n\n\n↓\n\n\nteor/proporção de metais preciosos\n\n\n↓\n\n\nteor de uma substância\n\n\n↓\n\n\ntitrer — determinar o teor\n\n\n↓\n\n\ntitulação",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#do-título-de-metais-preciosos-ao-título-de-uma-substância",
+    "href": "Nota_Historica_Titulo_expandida.html#do-título-de-metais-preciosos-ao-título-de-uma-substância",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "Do “título” de metais preciosos ao “título” de uma substância",
+    "text": "Do “título” de metais preciosos ao “título” de uma substância\nA conexão conceitual com a Química Analítica está na própria ideia de teor.\nQuando se dizia que determinada moeda ou liga tinha determinado titre, o termo indicava sua composição ou grau de pureza: quanto daquilo que interessava — ouro ou prata — estava efetivamente presente.\nEssa mesma ideia de “quanto há de uma determinada substância” foi posteriormente incorporada à linguagem química.\nAssim, o “título” de uma solução passou a representar, em diferentes tradições químicas, uma maneira de expressar o teor ou a quantidade de substância presente em determinada quantidade de solução.\nEssa é a razão pela qual a palavra “título” pode ser entendida historicamente como uma espécie de “marca do teor” de uma solução: ela procurava indicar quanto vale, quanto contém ou quão concentrada é a solução.\nEssa interpretação é mais segura do que afirmar que titre originalmente significava “concentração”. Historicamente, o conceito de concentração química veio depois; o que existia anteriormente era a ideia mais geral de grau, proporção, teor ou pureza. [1,2]",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#o-título-nos-antigos-manuais-de-química",
+    "href": "Nota_Historica_Titulo_expandida.html#o-título-nos-antigos-manuais-de-química",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "O “título” nos antigos manuais de Química",
+    "text": "O “título” nos antigos manuais de Química\nAqui existe uma distinção importante entre a história da palavra e a história da terminologia química utilizada nos manuais.\nNos manuais mais antigos de Química e Química Analítica — especialmente aqueles que constituíram a tradição didática transmitida por professores ao longo do século XIX e grande parte do século XX — o termo “título” foi empregado para expressar o teor ou a concentração de soluções.\nEntretanto, “título” não teve uma definição única e universal em toda a literatura química.\nDependendo da época, do autor e da tradição didática, o termo podia estar associado a diferentes formas de expressar a composição de uma solução. Entre elas encontravam-se relações de massa e volume, relações percentuais e, particularmente na tradição de Química Analítica, o título expresso em gramas de substância por litro de solução.\nEssa diversidade terminológica é importante porque explica por que diferentes professores e diferentes livros antigos podem apresentar definições aparentemente distintas para “título”.\nUma documentação técnica brasileira é particularmente esclarecedora nesse sentido. A Instrução Normativa SDA nº 62, de 26 de agosto de 2003, ao apresentar formas de expressão da concentração, registra explicitamente:\n\ngramas/litro = título (T);\ngramas/100 mL = percentagem (%). [3]\n\nPortanto, na tradição em que T = g·L⁻¹, uma solução com título de 50 g·L⁻¹ contém 50 g do soluto em cada litro de solução.\nEssa acepção ainda aparece em materiais brasileiros de ensino de Química Analítica. Em material didático da Universidade Federal Rural do Rio de Janeiro, por exemplo, aparecem lado a lado:\n\nM = molaridade = mol·L⁻¹;\nT = título = g·L⁻¹;\n% m/v = porcentagem massa/volume = g/100 mL;\n% m/m = porcentagem massa/massa = g/100 g. [4]\n\nIsso confirma que a associação histórica entre título e g·L⁻¹ não é apenas uma lembrança de terminologia antiga, mas uma convenção que efetivamente permanece documentada na tradição brasileira de ensino de Química Analítica.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#título-e-porcentagem-não-são-necessariamente-a-mesma-coisa",
+    "href": "Nota_Historica_Titulo_expandida.html#título-e-porcentagem-não-são-necessariamente-a-mesma-coisa",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "Título e porcentagem: não são necessariamente a mesma coisa",
+    "text": "Título e porcentagem: não são necessariamente a mesma coisa\nPor isso, é importante evitar uma simplificação comum:\n\n“Título é simplesmente % m/v.”\n\nHistoricamente, isso não é universalmente correto.\nEm determinadas tradições didáticas, “título” pode ser apresentado como uma grandeza em g·L⁻¹, enquanto a expressão % m/v corresponde especificamente a gramas de soluto por 100 mL de solução.\nPor exemplo:\nT=50g⋅L−1 T = 50\\ \\mathrm{g \\cdot L^{-1}} \ncorresponde a:\n5,0g/100mL 5,0\\ \\mathrm{g}/100\\ \\mathrm{mL} \ne, portanto, numericamente:\nT=5,0%(m/v) T = 5,0\\%\\ (m/v) \nAs duas expressões descrevem a mesma composição, mas não são a mesma forma de expressar a grandeza.\nAlém disso, outras tradições empregaram “título” em sentido percentual. Atualmente, por exemplo, ainda é comum encontrar em materiais didáticos brasileiros a expressão “título ou porcentagem em massa” para a razão entre a massa do soluto e a massa total da solução. [5]\nPortanto, ao encontrar a palavra “título” em um livro antigo, é fundamental observar qual definição e qual unidade o autor está utilizando.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#o-título-na-química-analítica",
+    "href": "Nota_Historica_Titulo_expandida.html#o-título-na-química-analítica",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "O “título” na Química Analítica",
+    "text": "O “título” na Química Analítica\nNa Química Analítica, o termo ganhou ainda outro emprego particularmente importante.\nO título de uma solução titulante pode estar relacionado à quantidade de uma determinada substância que é quimicamente equivalente a uma unidade de volume do titulante.\nEssa utilização aproxima diretamente o conceito de título do procedimento de titulação.\nPor exemplo, uma solução de um titulante pode ser caracterizada por seu efeito sobre uma substância de referência:\nT=quantidade de substância equivalentevolume da solução titulanteT = \\frac{\\text{quantidade de substância equivalente}}{\\text{volume da solução titulante}}\nDependendo da convenção utilizada, o título pode ser expresso em unidades de massa por volume ou como um fator de equivalência em relação a uma substância específica.\nUm exemplo moderno de literatura brasileira de Química Analítica Experimental utiliza explicitamente T para o título de uma solução e relaciona o título à concentração expressa em g·L⁻¹. [6]\nHá, portanto, uma importante diferença entre:\ntítulo como forma de expressar a composição de uma solução\ne\ntítulo de uma solução titulante como característica analítica relacionada à quantidade de analito equivalente a determinado volume do reagente.\nA palavra é a mesma, mas o contexto determina seu significado.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#gay-lussac-e-o-verbo-titrer-1828",
+    "href": "Nota_Historica_Titulo_expandida.html#gay-lussac-e-o-verbo-titrer-1828",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "Gay-Lussac e o verbo titrer — 1828",
+    "text": "Gay-Lussac e o verbo titrer — 1828\nUm marco histórico particularmente importante ocorre no século XIX.\nEm 1828, o químico francês Joseph Louis Gay-Lussac empregou explicitamente o verbo titrer em um trabalho de Química Analítica.\nO trabalho, intitulado Essai des potasses du commerce, foi publicado nos Annales de Chimie et de Physique, 2ª série, volume 39, páginas 337–368.\nEm uma nota na página 340, Gay-Lussac escreveu:\n\n« Il leur serait plus facile de titrer l’acide sulfurique normal au moyen du carbonate de soude ou de potasse pur… »\n\nO verbo utilizado é titrer. [7]\nO contexto é justamente o da determinação do teor ou da concentração de uma substância química.\nEsse documento é particularmente importante porque constitui uma fonte primária histórica: não estamos apenas diante de um dicionário moderno dizendo que titrer existia. Temos o próprio Gay-Lussac empregando o verbo em um trabalho científico de 1828.\nA ideia linguística é bastante clara:\n\ntitre = teor/título\n\n\n↓\n\n\ntitrer = determinar o teor/título\n\nEssa relação ajuda a compreender por que o procedimento passou a ser associado à palavra “titulação”.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#gay-lussac-não-inventou-a-titulação-em-1828",
+    "href": "Nota_Historica_Titulo_expandida.html#gay-lussac-não-inventou-a-titulação-em-1828",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "Gay-Lussac não “inventou” a titulação em 1828",
+    "text": "Gay-Lussac não “inventou” a titulação em 1828\nÉ importante fazer uma distinção histórica.\nA utilização de métodos volumétricos para análises químicas já existia antes de 1828. O desenvolvimento da análise volumétrica ocorreu gradualmente durante o final do século XVIII e o início do século XIX.\nPortanto, seria incorreto afirmar:\n\n“Gay-Lussac inventou a titulação em 1828.”\n\nO que podemos afirmar com segurança é algo mais específico:\n\nEm 1828, Gay-Lussac empregou explicitamente o verbo francês titrer em contexto de análise química, com o sentido de determinar o teor ou a concentração de uma substância.\n\nEssa afirmação é diretamente sustentada pelo seu trabalho original. [7]\nAssim, 1828 é um marco importante para a história da terminologia, e não necessariamente para a invenção do método experimental.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#a-passagem-para-o-inglês-titrate-e-titration",
+    "href": "Nota_Historica_Titulo_expandida.html#a-passagem-para-o-inglês-titrate-e-titration",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "A passagem para o inglês: titrate e titration",
+    "text": "A passagem para o inglês: titrate e titration\nA palavra inglesa titrate aparece posteriormente.\nO Online Etymology Dictionary registra titrate em 1854, derivado do francês titrer, no sentido químico. [2]\nO substantivo inglês titration aparece posteriormente, em 1864, com o significado de análise volumétrica destinada a estabelecer a concentração ou a força padrão de uma solução ou composto. [8]\nTemos, portanto, uma sequência cronológica bastante interessante:\n\n\n\n\n\n\n\n\nData\nTermo\nContexto\n\n\n\n\nAntiguidade\ntitulus\ninscrição, marca, identificação, título\n\n\nIdade Média\ntitre / title\ntítulo, designação, qualificação\n\n\n1543\ntiltre\nproporção de ouro ou prata em moedas e objetos\n\n\n1828\ntitrer\nGay-Lussac emprega o verbo em análise química\n\n\n1854\ntitrate\nprimeira atestação inglesa indicada pela fonte\n\n\n1864\ntitration\nprimeira atestação inglesa indicada pela fonte\n\n\n\nAs datas de 1543 e 1828 são particularmente importantes porque provêm de tradições documentais diferentes: a primeira é uma atestação lexicográfica histórica; a segunda, uma ocorrência em uma publicação científica primária. [1,7]\nAs datas de 1854 e 1864 correspondem às primeiras atestações em inglês indicadas pelo Online Etymology Dictionary. [2,8]",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#o-que-significa-então-titulação",
+    "href": "Nota_Historica_Titulo_expandida.html#o-que-significa-então-titulação",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "O que significa, então, “titulação”?",
+    "text": "O que significa, então, “titulação”?\nDo ponto de vista histórico, a palavra titulação não deve ser entendida simplesmente como “adicionar uma solução gota a gota”.\nA ideia linguística mais antiga está relacionada ao título, isto é, ao teor, grau, proporção ou quantidade característica de uma substância.\nO desenvolvimento conceitual pode ser representado de forma simplificada:\ntítulo→teor→determinar o teor→titrer→titulação\\boxed{\n\\text{título}\n\\longrightarrow\n\\text{teor}\n\\longrightarrow\n\\text{determinar o teor}\n\\longrightarrow\n\\text{titrer}\n\\longrightarrow\n\\text{titulação}\n}\nAssim, historicamente, titular uma solução significa determinar seu título, isto é, determinar quantitativamente aquilo que caracteriza seu teor ou sua força analítica.\nÉ importante, contudo, não transformar essa representação em uma suposta sequência documental perfeitamente linear. A evolução da terminologia ocorreu durante séculos, e os significados de titre, “título”, titrer e seus equivalentes químicos foram se especializando gradualmente.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#o-que-mudou-com-a-química-moderna",
+    "href": "Nota_Historica_Titulo_expandida.html#o-que-mudou-com-a-química-moderna",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "O que mudou com a Química moderna?",
+    "text": "O que mudou com a Química moderna?\nCom o desenvolvimento da Química Quantitativa, da teoria atômica, da estequiometria, do conceito de quantidade de matéria e, posteriormente, da padronização internacional das grandezas e unidades, tornou-se cada vez mais importante especificar exatamente qual grandeza está sendo utilizada.\nHoje, em vez de simplesmente dizer que uma solução possui determinado “título”, é preferível indicar explicitamente a grandeza e sua unidade.\nA IUPAC define atualmente concentração como um conjunto de grandezas que caracterizam a composição de uma mistura em relação ao volume, incluindo concentração em massa, concentração em quantidade de matéria, concentração em volume e concentração numérica. [9]\nPara a grandeza que tradicionalmente era chamada de molaridade, a terminologia atual da IUPAC emprega concentração em quantidade de matéria (amount concentration ou amount-of-substance concentration), definida como a quantidade de matéria de um constituinte dividida pelo volume da mistura:\ncB=nBVc_{\\mathrm{B}} = \\frac{n_{\\mathrm{B}}}{V}\nA unidade usual é:\nmol⋅L−1\\mathrm{mol \\cdot L^{-1}}\nA própria IUPAC observa que “molarity” é um termo encontrado na literatura mais antiga para essa grandeza. [9,10]\nIsso mostra que a mudança de terminologia não aconteceu simplesmente porque uma palavra “antiga” estava errada. Trata-se de uma evolução da linguagem científica, na qual se procurou distinguir com maior precisão as diferentes grandezas utilizadas para descrever a composição das soluções.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#e-a-iupac",
+    "href": "Nota_Historica_Titulo_expandida.html#e-a-iupac",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "E a IUPAC?",
+    "text": "E a IUPAC?\nÉ tentador contar a história como se houvesse existido um momento em que a IUPAC simplesmente tivesse decidido:\n\n“não se usa mais título; agora se usa concentração molar”.\n\nHistoricamente, essa formulação seria excessivamente simplificada.\nA padronização da terminologia química ocorreu progressivamente, ao longo de muitas décadas, acompanhando o desenvolvimento da metrologia, do Sistema Internacional de Unidades, da grandeza “quantidade de matéria” e da linguagem quantitativa moderna da Química.\nUm marco conceitual particularmente importante é que a IUPAC registra que a grandeza “amount of substance” (quantidade de matéria), tal como definida atualmente, não possuía esse nome antes de 1969 e era anteriormente referida simplesmente como “número de mols”. [11]\nPortanto, é mais correto dizer que:\n\nA terminologia química moderna foi sendo progressivamente padronizada ao longo do século XX, e expressões tradicionais como “título” perderam espaço como denominações gerais de concentração, enquanto grandezas explicitamente definidas — como concentração em quantidade de matéria, concentração em massa e concentração em volume — passaram a ocupar papel central.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#título-desapareceu",
+    "href": "Nota_Historica_Titulo_expandida.html#título-desapareceu",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "“Título” desapareceu?",
+    "text": "“Título” desapareceu?\nNão completamente.\nO termo “título” ainda aparece em materiais didáticos, documentos técnicos e na própria tradição da Química Analítica, mas seu significado depende do contexto.\nPor exemplo, uma fonte brasileira de Química Analítica utiliza:\nT=g⋅L−1T = \\mathrm{g \\cdot L^{-1}}\npara o título, distinguindo-o de[4]:\n%(m/v)=g/100mL\\%\\,(m/v)=\\mathrm{g}/100\\,\\mathrm{mL}\nOutro documento técnico brasileiro também emprega explicitamente[3]:\ng⋅L−1=título (T)\\mathrm{g \\cdot L^{-1}} = \\text{título (T)}\ne\ng/100mL=percentagem\\mathrm{g}/100 \\,\\mathrm{mL} = \\text{percentagem}\nIsso é particularmente interessante porque mostra que a palavra não pertence exclusivamente à história da Química do século XIX. Ela continuou sendo utilizada em determinadas tradições técnicas e didáticas brasileiras.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#uma-observação-sobre-os-antigos-manuais",
+    "href": "Nota_Historica_Titulo_expandida.html#uma-observação-sobre-os-antigos-manuais",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "Uma observação sobre os antigos manuais",
+    "text": "Uma observação sobre os antigos manuais\nA expressão “nos manuais antigos” deve, portanto, ser entendida aqui em seu sentido didático e histórico: refere-se à tradição dos livros de Química e Química Analítica utilizados por gerações anteriores de professores e alunos, e não necessariamente a textos do século XVI ou XVII.\nNessa literatura, era possível encontrar “título” associado a diferentes formas de expressar o teor de uma solução.\nPor isso, ao consultar um livro antigo, não se deve presumir automaticamente que:\ntítulo=%m/m\\text{título} = \\%\\,m/m\nou que:\ntítulo=%m/v\\text{título} = \\%\\,m/v\nou ainda que:\ntítulo=g⋅L−1\\text{título} = \\mathrm{g \\cdot L^{-1}}\nÉ necessário verificar a definição dada pelo próprio autor e a unidade utilizada.\nEssa cautela é importante porque a palavra “título” atravessou diferentes tradições da Química e assumiu mais de uma acepção técnica.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#em-resumo",
+    "href": "Nota_Historica_Titulo_expandida.html#em-resumo",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "Em resumo",
+    "text": "Em resumo\nA história da palavra pode ser compreendida da seguinte maneira:\n\n\ntitulus, em latim, estava associado à ideia de inscrição, marca ou identificação.\n\n\n↓\n\n\nNo francês, titre passou a assumir vários sentidos  relacionados a título, qualificação, grau ou teor.\n\n\n↓\n\n\nEm 1543, encontra-se documentada a forma tiltre com o significado de proporção de ouro ou prata em moedas e objetos de metais preciosos.\n\n\n↓\n\n\nA ideia de título como teor ou grau de uma substância  encontrou posteriormente aplicação na linguagem química.\n\n\n↓\n\n\nEm 1828, Gay-Lussac empregou o verbo francês titrer em  um contexto de análise química, significando determinar o teor/concentração de uma substância.\n\n\n↓\n\n\nEm inglês, titrate aparece em 1854.\n\n\n↓\n\n\nO substantivo titration aparece em 1864.\n\n\n↓\n\n\nNa Química Analítica moderna, o procedimento passou a ser descrito por grandezas e unidades explicitamente definidas, como  concentração em quantidade de matéria (mol·L⁻¹), concentração em  massa, concentração em volume etc.\n\n\nAssim, a palavra “titulação” conserva uma memória histórica da ideia de determinar o “título” — o teor ou a força de uma substância — mesmo que “título” já não seja, atualmente, a denominação geral e inequívoca para concentração.",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
+    ]
+  },
+  {
+    "objectID": "Nota_Historica_Titulo_expandida.html#fontes-históricas-e-terminológicas",
+    "href": "Nota_Historica_Titulo_expandida.html#fontes-históricas-e-terminológicas",
+    "title": "Apêndice A — Titulação: Nota Histórica expandida",
+    "section": "Fontes históricas e terminológicas",
+    "text": "Fontes históricas e terminológicas\n[1] CNRTL — Centre National de Ressources Textuelles et Lexicales. Titre — Étymologie. Registra a história de titre, sua origem no latim titulus e, particularmente, a ocorrência de 1543: tiltre, “proportion d’or ou d’argent dans les monnaies, dans les ouvrages d’or et d’argent”. A referência histórica indicada é Lespinasse, Les métiers et corporations de la ville de Paris, t. 2, p. 22. CNRTL — Étymologie de “titre”\n[2] Online Etymology Dictionary.\n\nTitrate.* Registra titrate em 1854, relacionando-o ao francês titrer e ao francês titre, incluindo o sentido histórico de teor/pureza de ouro. Online Etymology Dictionary — “titrate”\n\n[3] Ministério da Agricultura, Pecuária e Abastecimento — Instrução Normativa SDA nº 62, de 26 de agosto de 2003. Documento técnico que apresenta explicitamente gramas/litro = título (T) e gramas/100 mL = percentagem (%). Instrução Normativa SDA nº 62/2003 — documento técnico\n[4] Universidade Federal Rural do Rio de Janeiro — material didático de Química Analítica. Apresenta T = título = g·L⁻¹, distinguindo-o de % m/v = g/100 mL.\n[5] Referência didática brasileira sobre título ou porcentagem em massa. Registra uma outra tradição terminológica na qual “título” é empregado para a razão entre a massa do soluto e a massa da solução.\n[6] Ferreira, R. Q.; Ferreira, J. R. — Química Analítica Experimental 2, Vitória : UFES, Núcleo de Educação Aberta e a Distância, 2012 Material de Química Analítica que emprega T como título de uma solução e o relaciona à concentração em g·L⁻¹. https://www.youtube.com/playlist?list=PLamt-rwOFgfjn6_V5coH_WyIvGQZgIoWd\n[7] Gay-Lussac, J. L. (1828). Essai des potasses du commerce. Annales de Chimie et de Physique, 2ª série, 39, 337–368. A ocorrência de titrer encontra-se na página 340, em nota, no contexto da determinação do ácido sulfúrico.\n[8] Online Etymology Dictionary. Titration. Registra titration em 1864, como substantivo derivado de titrate. Online Etymology Dictionary — “titration”\n[9] IUPAC — Compendium of Chemical Terminology (Gold Book). Concentration. A IUPAC define atualmente “concentration” como um conjunto de grandezas que caracterizam a composição de uma mistura em relação ao volume. IUPAC Gold Book — “concentration”\n[10] IUPAC — Compendium of Chemical Terminology (Gold Book). Amount concentration. Define a concentração em quantidade de matéria como a quantidade de um constituinte dividida pelo volume da mistura, com unidade usual mol·L⁻¹; registra também que “molarity” pertence à literatura mais antiga. IUPAC Gold Book — “amount concentration”\n[11] IUPAC — Compendium of Chemical Terminology (Gold Book). Amount of substance. A IUPAC registra que a grandeza “quantidade de matéria” não possuía esse nome antes de 1969, sendo anteriormente referida simplesmente como “número de mols”. IUPAC Gold Book — “amount of substance”",
+    "crumbs": [
+      "Apêndices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Nota Histórica Expandida</span>"
     ]
   }
 ]

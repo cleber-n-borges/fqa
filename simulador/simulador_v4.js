@@ -262,7 +262,7 @@ function showResults() {
 
     let mensagemFinal = "";
     if (percentual === 100) {
-        mensagemFinal = "🌟 Excelente! Você dominou completamente a estequiometria e análise do PN!";
+        mensagemFinal = "🌟 Excelente! Você dominou o contexto básico sobre o tema!";
     } else if (percentual >= 70) {
         mensagemFinal = "👏 Bom trabalho! Você tem uma boa base, mas vale a pena revisar os detalhes analíticos.";
     } else if (percentual >= 50) {

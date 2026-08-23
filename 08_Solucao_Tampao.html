@@ -108,6 +108,46 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<!--
+
+<script>
+
+  // 1. LER E ATUALIZAR
+
+  const temaSalvo = localStorage.getItem('temaApostilaFQA') || 'light';
+
+  document.documentElement.setAttribute('data-theme', temaSalvo);
+
+
+
+  // 2. MUDAR E GRAVAR
+
+  function alternarTema() {
+
+      const temaAtual = document.documentElement.getAttribute('data-theme');
+
+      const novoTema = temaAtual === 'light' ? 'dark' : 'light';
+
+      
+
+      document.documentElement.setAttribute('data-theme', novoTema);
+
+      localStorage.setItem('temaApostilaFQA', novoTema);
+
+  }
+
+</script>
+
+-->
+
+
+
+
+
+
+
+
+
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>
 var JSON_Questionario = "./simulador/preparo_solucao_tampao.dat";
@@ -408,6 +448,22 @@ var JSON_Questionario = "./simulador/preparo_solucao_tampao.dat";
   <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">★ &nbsp;Espectro Teste</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Nota_Historica_Titulo_expandida.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nota Histórica Expandida</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>

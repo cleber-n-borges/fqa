@@ -1041,3 +1041,14 @@ body.quarto-dark #grafico-regressao {
 
 
 
+
+/* Esconde o título/cabeçalho "Apêndices" no menu lateral */
+.sidebar-navigation .quarto-sidebar-section-appendices,
+.sidebar-navigation .sidebar-section:has(a[href*="Nota_Historica_Titulo_expandida"]) .sidebar-section-title {
+  display: none !important;
+}
+
+/* Esconde o item do apêndice específico dentro da barra lateral */
+.sidebar-navigation li.sidebar-item:has(a[href*="Nota_Historica_Titulo_expandida"]) {
+  display: none !important;
+}
