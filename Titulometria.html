@@ -470,7 +470,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#introdução-à-titulação" id="toc-introdução-à-titulação" class="nav-link active" data-scroll-target="#introdução-à-titulação">Introdução à Titulação</a>
   <ul class="collapse">
-  <li><a href="#simulação-interativa-da-titulação" id="toc-simulação-interativa-da-titulação" class="nav-link" data-scroll-target="#simulação-interativa-da-titulação">Simulação Interativa da Titulação</a></li>
+  <li><a href="#simulação-da-titulação" id="toc-simulação-da-titulação" class="nav-link" data-scroll-target="#simulação-da-titulação">Simulação da Titulação</a></li>
   </ul></li>
   <li><a href="#fundamento" id="toc-fundamento" class="nav-link" data-scroll-target="#fundamento">Fundamento</a>
   <ul class="collapse">
@@ -538,126 +538,706 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="introdução-à-titulação">Introdução à Titulação</h2>
 <p>A titulação (ou volumetria) é uma técnica analítica amplamente empregada em laboratórios para determinar a concentração de uma solução desconhecida (<strong>titulado</strong>). O procedimento consiste na adição rigorosamente controlada, gota a gota, de uma solução de concentração conhecida (<strong>titulante</strong>) até que a reação se complete, sinalizada pelo <strong>ponto final da titulação</strong>.</p>
 <p>A simulação interativa a seguir evidencia esse conceito de forma visual e intuitiva, permitindo acompanhar em tempo real o efeito direto do gotejamento sobre o sistema em análise.</p>
-<section id="simulação-interativa-da-titulação" class="level3">
-<h3 class="anchored" data-anchor-id="simulação-interativa-da-titulação">Simulação Interativa da Titulação</h3>
+<section id="simulação-da-titulação" class="level3">
+<h3 class="anchored" data-anchor-id="simulação-da-titulação">Simulação da Titulação</h3>
 <p>Nela, o usuário pode adicionar o titulante (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math>) gota a gota no erlenmeyer contendo titulado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>) e indicador (fenolftaleína). O líquido muda de incolor para rosa pálido persistente exatamente no ponto de viragem.</p>
 <blockquote class="blockquote">
 <p><strong>Instruções:</strong> Clique no botão “Gotejar” para adicionar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math> gota a gota ao recipiente; observe o momento em que o líquido muda de cor (<strong>ponto de viragem</strong>), que ocorrerá quando o volume adicionado se aproximar de 20 mL e notando o escurecimento do rosa ao passar de 21 mL.</p>
 </blockquote>
-<div id="titration-sim" style="font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: #fafafa; text-align: center;">
-  
-  <h3 class="anchored">Procedimento de Titulação</h3>
-  
-  <p style="font-size: 0.9em; color: #555; text-align: center; line-height: 1.5;">
-  <strong>Titulante:</strong> NaOH (0,1 mol/L)<br>
-  <strong>Titulado:</strong> HCl<br>
-  <strong>Indicador:</strong> Fenolftaleína (em Erlenmeyer)
-</p>
-  
-  <svg viewbox="0 0 300 320" style="width: 100%; height: 280px;">
-    <!-- Suporte Universal -->
-    <rect x="40" y="270" width="220" height="10" fill="#7f8c8d"></rect>
-    <rect x="70" y="20" width="8" height="250" fill="#95a5a6"></rect>
-    <rect x="70" y="80" width="70" height="6" fill="#7f8c8d"></rect>
+<style>
+  .titr-card {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    max-width: 680px;
+    margin: 2rem auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+  .titr-header {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .titr-header h3 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #f8fafc;
+  }
+  .titr-body {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  @media (max-width: 640px) {
+    .titr-body {
+      grid-template-columns: 1fr;
+    }
+  }
+  .titr-panel {
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 12px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 330px;
+  }
+  .titr-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  .titr-stat-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.6rem 0.5rem;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  }
+  .titr-stat-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .titr-stat-val {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    font-variant-numeric: tabular-nums;
+  }
+  .titr-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  }
+  .badge-acid {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+  }
+  .badge-near {
+    background-color: #fdf2f8;
+    color: #db2777;
+    border: 1px solid #fbcfe8;
+    animation: pulse-pink 1.5s infinite;
+  }
+  .badge-endpoint {
+    background-color: #db2777;
+    color: white;
+    border: 1px solid #be185d;
+    box-shadow: 0 0 12px rgba(219, 39, 119, 0.4);
+  }
+  .badge-basic {
+    background-color: #701a75;
+    color: white;
+    border: 1px solid #4a044e;
+  }
+  @keyframes pulse-pink {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+  .titr-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  @media (min-width: 520px) {
+    .titr-controls {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .titr-btn {
+    padding: 0.625rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    user-select: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .btn-drop-fine {
+    background-color: #f0f9ff;
+    color: #0284c7;
+    border: 1px solid #bae6fd;
+  }
+  .btn-drop-fine:hover {
+    background-color: #e0f2fe;
+    color: #0369a1;
+  }
+  .btn-drop-coarse {
+    background-color: #0284c7;
+    color: white;
+    border: 1px solid #0284c7;
+  }
+  .btn-drop-coarse:hover {
+    background-color: #0369a1;
+    border-color: #0369a1;
+  }
+  .btn-auto {
+    background-color: #10b981;
+    color: white;
+    border: 1px solid #10b981;
+  }
+  .btn-auto:hover {
+    background-color: #059669;
+    border-color: #059669;
+  }
+  .btn-auto.active {
+    background-color: #f59e0b;
+    border-color: #d97706;
+  }
+  .btn-auto.active:hover {
+    background-color: #d97706;
+  }
+  .btn-reset {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+  }
+  .btn-reset:hover {
+    background-color: #e2e8f0;
+    color: #334155;
+  }
+</style>
 
-    <!-- Bureta -->
-    <rect x="130" y="30" width="16" height="150" fill="none" stroke="#2c3e50" stroke-width="2"></rect>
-    <rect id="burette-liquid" x="131" y="50" width="14" height="129" fill="#3498db" opacity="0.3"></rect>
-    <!-- Escala da Bureta -->
-    <line x1="146" y1="50" x2="140" y2="50" stroke="#333" stroke-width="1"></line>
-    <line x1="146" y1="80" x2="142" y2="80" stroke="#333" stroke-width="1"></line>
-    <line x1="146" y1="110" x2="140" y2="110" stroke="#333" stroke-width="1"></line>
-    <line x1="146" y1="140" x2="142" y2="140" stroke="#333" stroke-width="1"></line>
-    <line x1="146" y1="170" x2="140" y2="170" stroke="#333" stroke-width="1"></line>
-    <!-- Torneira -->
-    <circle cx="138" cy="183" r="4" fill="#e74c3c"></circle>
-    <path d="M 136,180 L 140,180 L 138,195 Z" fill="#2c3e50"></path>
-
-    <!-- Gota animada -->
-    <circle id="drop" cx="138" cy="198" r="3" fill="#3498db" opacity="0"></circle>
-
-    <!-- Erlenmeyer -->
-    <path d="M 125,210 L 151,210 L 175,265 A 5,5 0 0,1 170,270 L 106,270 A 5,5 0 0,1 101,265 Z" fill="none" stroke="#2c3e50" stroke-width="2"></path>
-    <path id="flask-liquid" d="M 112,250 L 164,250 L 170,265 A 5,5 0 0,1 165,270 L 106,270 A 5,5 0 0,1 101,265 Z" fill="#e0e0e0" opacity="0.5" style="transition: fill 0.5s;"></path>
-  </svg>
-
-  <div style="margin: 15px 0;">
-    <strong>Volume Adicionado: </strong><span id="vol-disp">0.00</span> mL
-    <br>
-    <small id="titr-status" style="color: #666;">Solução Incolor (Meio Ácido)</small>
+<div class="titr-card">
+  <div class="titr-header">
+    <h3 class="anchored">Simulador de Titulação</h3>
+    <h6 style="text-align: center; margin: 0.4rem 0 0 0; font-size: 0.85rem; color: #cbd5e1; font-weight: 500; line-height: 1.4;" class="anchored">Neutralização de HCl com NaOH<br>(Indicador: Fenolftaleína)</h6>
   </div>
+  
+  <div class="titr-body">
+    <!-- Esquerda: Vidrarias (SVG) -->
+    <div class="titr-panel">
+      <svg id="titr-apparatus" viewbox="0 0 240 320" style="width: 100%; max-width: 240px; height: 320px;">
+        <defs>
+          <!-- Máscara do Formato Interno Exato do Erlenmeyer -->
+          <clippath id="flask-clip">
+            <path d="M 123 215 L 147 215 L 147 225 L 170 270 A 5,5 0 0,1 165,275 L 105,275 A 5,5 0 0,1 100,270 L 123 225 Z"></path>
+          </clippath>
 
-  <button id="btn-drop" style="padding: 8px 16px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Gotejar (+0.5 mL)</button>
-  <button id="btn-reset-titr" style="padding: 8px 16px; background: #95a5a6; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 8px;">Reiniciar</button>
+          <!-- Metal Gradients -->
+          <lineargradient id="metal-v" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#475569"></stop>
+            <stop offset="30%" stop-color="#94a3b8"></stop>
+            <stop offset="70%" stop-color="#cbd5e1"></stop>
+            <stop offset="100%" stop-color="#334155"></stop>
+          </lineargradient>
+          <lineargradient id="metal-h" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#334155"></stop>
+            <stop offset="50%" stop-color="#94a3b8"></stop>
+            <stop offset="100%" stop-color="#1e293b"></stop>
+          </lineargradient>
+          <!-- Glass Highlight -->
+          <lineargradient id="glass-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.4)"></stop>
+            <stop offset="15%" stop-color="rgba(255,255,255,0.1)"></stop>
+            <stop offset="85%" stop-color="rgba(255,255,255,0.05)"></stop>
+            <stop offset="100%" stop-color="rgba(255,255,255,0.25)"></stop>
+          </lineargradient>
+          <!-- Burette Liquid Gradient -->
+          <lineargradient id="liquid-burette" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(56, 189, 248, 0.4)"></stop>
+            <stop offset="50%" stop-color="rgba(14, 165, 233, 0.25)"></stop>
+            <stop offset="100%" stop-color="rgba(2, 132, 199, 0.45)"></stop>
+          </lineargradient>
+          <!-- Radial Gradient para a Gotícula Esférica -->
+          <radialgradient id="drop-grad" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#bae6fd"></stop>
+            <stop offset="50%" stop-color="#38bdf8"></stop>
+            <stop offset="100%" stop-color="#0284c7"></stop>
+          </radialgradient>
+        </defs>
+
+        <!-- Suporte Universal -->
+        <rect x="20" y="295" width="200" height="12" rx="4" fill="url(#metal-h)" stroke="#1e293b" stroke-width="1"></rect>
+        <rect x="50" y="15" width="8" height="280" fill="url(#metal-v)" stroke="#334155" stroke-width="0.5"></rect>
+        <rect x="50" y="60" width="76" height="6" fill="url(#metal-h)"></rect>
+        <rect x="50" y="150" width="76" height="6" fill="url(#metal-h)"></rect>
+
+        <!-- Líquido na Bureta -->
+        <rect id="burette-liquid" x="129" y="40" width="12" height="135" fill="url(#liquid-burette)"></rect>
+
+        <!-- Escala da Bureta -->
+        <g id="burette-scale"></g>
+
+        <!-- Corpo de vidro da Bureta -->
+        <rect x="128" y="30" width="14" height="150" fill="url(#glass-grad)" stroke="#475569" stroke-width="1.2" rx="1"></rect>
+        
+        <!-- Ponta cônica da Bureta -->
+        <path d="M 128 180 L 133 195 L 137 195 L 142 180 Z" fill="url(#glass-grad)" stroke="#475569" stroke-width="1.2"></path>
+
+        <!-- Torneira (Registro) -->
+        <circle cx="135" cy="183" r="4.5" fill="#1e293b"></circle>
+        <rect id="stopcock-handle" x="123" y="180" width="24" height="6" rx="2.5" fill="#ef4444" stroke="#b91c1c" stroke-width="0.5" transform="rotate(0 135 183)" style="transition: transform 0.15s; transform-origin: 135px 183px;"></rect>
+
+        <!-- Gota Esférica / Bolinha em Queda -->
+        <circle id="drop" cx="135" cy="196" r="3" fill="url(#drop-grad)" opacity="0" stroke="#0284c7" stroke-width="0.4"></circle>
+
+        <!-- LÍQUIDO DO ERLENMEYER (Recortado com clipPath - Encaixe e Subida Perfeita) -->
+        <g clip-path="url(#flask-clip)">
+          <rect id="flask-liquid" x="90" y="252" width="90" height="30" fill="rgba(224, 231, 255, 0.35)" style="transition: fill 0.3s ease, y 0.2s ease, height 0.2s ease;"></rect>
+        </g>
+
+        <!-- Ripple/Ondulação de impacto da gota -->
+        <ellipse id="ripple1" cx="135" cy="252" rx="0" ry="0" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0" style="transition: all 0.3s ease-out;"></ellipse>
+
+        <!-- Halo temporário de viragem (Swirl Effect) -->
+        <circle id="flask-swirl" cx="135" cy="252" r="1" fill="#db2777" opacity="0" style="transition: all 0.5s cubic-bezier(0.1, 0.8, 0.3, 1);"></circle>
+
+        <!-- Corpo de vidro do Erlenmeyer (Desenhado por cima para contorno perfeito) -->
+        <path d="M 123 215 L 147 215 L 147 225 L 170 270 A 5,5 0 0,1 165,275 L 105,275 A 5,5 0 0,1 100,270 L 123 225 Z" fill="none" stroke="#475569" stroke-width="1.8" stroke-linejoin="round"></path>
+        
+        <!-- Graduações do Erlenmeyer -->
+        <line x1="117" y1="260" x2="123" y2="260" stroke="#94a3b8" stroke-width="1"></line>
+        <text x="126" y="262" font-size="6" fill="#64748b">25 mL</text>
+        <line x1="121" y1="245" x2="127" y2="245" stroke="#94a3b8" stroke-width="1"></line>
+        <text x="130" y="247" font-size="6" fill="#64748b">50 mL</text>
+      </svg>
+    </div>
+    
+    <!-- Direita: Gráfico e Telemetria -->
+    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+      <!-- Gráfico da Curva de Titulação -->
+      <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; align-items: center; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);">
+        <div style="font-size: 0.75rem; font-weight: 700; color: #475569; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; align-self: flex-start;">Curva de Titulação Real</div>
+        
+        <svg id="titr-curve-svg" viewbox="0 0 200 180" style="width: 100%; height: 160px; overflow: visible;">
+          <!-- Gridlines de referência -->
+          <line x1="25" y1="85" x2="185" y2="85" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2,2"></line>
+          <text x="187" y="87" font-size="6" fill="#94a3b8" font-weight="600">pH 7</text>
+          
+          <!-- Faixa de Transição da Fenolftaleína -->
+          <rect x="25" y="55" width="160" height="18" fill="#fbcfe8" opacity="0.25"></rect>
+          <text x="187" y="65" font-size="6" fill="#db2777" font-weight="700">Viragem</text>
+
+          <!-- Eixos -->
+          <line x1="25" y1="15" x2="25" y2="155" stroke="#475569" stroke-width="1.2"></line>
+          <line x1="25" y1="155" x2="185" y2="155" stroke="#475569" stroke-width="1.2"></line>
+          
+          <!-- Rótulos dos eixos -->
+          <text x="10" y="15" font-size="7" fill="#475569" font-weight="700">pH</text>
+          <text x="175" y="167" font-size="7" fill="#475569" font-weight="700">V (mL)</text>
+          
+          <!-- Escala Y (pH) -->
+          <text x="16" y="157" font-size="6" fill="#64748b" text-anchor="end">0</text>
+          <text x="16" y="87" font-size="6" fill="#64748b" text-anchor="end">7</text>
+          <text x="16" y="18" font-size="6" fill="#64748b" text-anchor="end">14</text>
+          
+          <!-- Escala X (Volume) -->
+          <text x="25" y="164" font-size="6" fill="#64748b" text-anchor="middle">0</text>
+          <text x="89" y="164" font-size="6" fill="#64748b" text-anchor="middle">10</text>
+          <text x="153" y="164" font-size="6" fill="#64748b" text-anchor="middle">20</text>
+          <text x="185" y="164" font-size="6" fill="#64748b" text-anchor="middle">25</text>
+          
+          <!-- Curva Teórica (Pontilhada de Fundo) -->
+          <path id="curve-theoretical" d="" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"></path>
+          
+          <!-- Curva Realizada (Progressiva) -->
+          <path id="curve-actual" d="" fill="none" stroke="#db2777" stroke-width="2" stroke-linecap="round"></path>
+          
+          <!-- Ponto Indicador de Estado -->
+          <circle id="curve-dot" cx="25" cy="155" r="3.5" fill="#db2777" stroke="#ffffff" stroke-width="1" opacity="0" style="transition: all 0.15s;"></circle>
+        </svg>
+      </div>
+
+      <!-- Telemetria Analítica -->
+      <div class="titr-stats">
+        <div class="titr-stat-box">
+          <div class="titr-stat-label">Volume de NaOH</div>
+          <div class="titr-stat-val"><span id="vol-disp">0.00</span> mL</div>
+        </div>
+        <div class="titr-stat-box">
+          <div class="titr-stat-label">pH Medido</div>
+          <div class="titr-stat-val"><span id="ph-disp">1.00</span></div>
+        </div>
+      </div>
+      
+      <!-- Indicador de Estado (Badge) -->
+      <div id="titr-badge" class="titr-badge badge-acid">
+        Solução Incolor (Meio Ácido)
+      </div>
+    </div>
+  </div>
+  
+  <!-- Controles Inferiores -->
+  <div class="titr-controls">
+    <button id="btn-drop-fine" class="titr-btn btn-drop-fine" title="Adiciona 1 gota com alta precisão">
+      <svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 12h14"></path></svg>
+      Gota Fina<br> (+0.1 mL)
+    </button>
+    <button id="btn-drop-coarse" class="titr-btn btn-drop-coarse" title="Adiciona um volume maior de titulante">
+      <svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+      Adicionar<br> (+1.0 mL)
+    </button>
+    <button id="btn-auto-drop" class="titr-btn btn-auto" title="Inicia/Pausa o gotejamento automático">
+      <svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      <span id="auto-btn-text">Gotejar Auto</span>
+    </button>
+    <button id="btn-reset-titr" class="titr-btn btn-reset" title="Reinicia o experimento">
+      <svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+      Reiniciar
+    </button>
+  </div>
 </div>
 
 <script>
 (function() {
   let volume = 0;
   const maxVol = 25.0;
-  const eqPoint = 20.0;
-  
-  const btnDrop = document.getElementById('btn-drop');
+  let autoInterval = null;
+  let activeAnimationId = null;
+
+  const btnDropFine = document.getElementById('btn-drop-fine');
+  const btnDropCoarse = document.getElementById('btn-drop-coarse');
+  const btnAutoDrop = document.getElementById('btn-auto-drop');
   const btnReset = document.getElementById('btn-reset-titr');
+  
   const volDisp = document.getElementById('vol-disp');
-  const statusDisp = document.getElementById('titr-status');
-  const flaskLiquid = document.getElementById('flask-liquid');
+  const phDisp = document.getElementById('ph-disp');
   const buretteLiquid = document.getElementById('burette-liquid');
-  const drop = document.getElementById('drop');
+  const curveActual = document.getElementById('curve-actual');
+  const curveDot = document.getElementById('curve-dot');
 
-  btnDrop.addEventListener('click', () => {
-    if (volume >= maxVol) return;
-
-    // Animação da gota
-    drop.setAttribute('opacity', '1');
-    drop.setAttribute('cy', '198');
+  function calculatePH(V) {
+    const V0 = 20.0; // mL de HCl
+    const C0 = 0.1;  // mol/L de HCl
+    const Cb = 0.1;  // mol/L de NaOH
     
-    let dropY = 198;
-    const anim = setInterval(() => {
-      dropY += 4;
-      drop.setAttribute('cy', dropY);
-      if (dropY >= 245) {
-        clearInterval(anim);
+    if (Math.abs(V - 20.0) < 1e-5) return 7.00;
+    
+    if (V < 20.0) {
+      const H_moles = (C0 * V0 - Cb * V) / 1000;
+      const V_tot_L = (V0 + V) / 1000;
+      const H_conc = H_moles / V_tot_L;
+      return H_conc > 0 ? -Math.log10(H_conc) : 7.00;
+    } else {
+      const OH_moles = (Cb * V - C0 * V0) / 1000;
+      const V_tot_L = (V0 + V) / 1000;
+      const OH_conc = OH_moles / V_tot_L;
+      if (OH_conc <= 0) return 7.00;
+      const pOH = -Math.log10(OH_conc);
+      return 14.0 - pOH;
+    }
+  }
+
+  function getLiquidColor(ph) {
+    if (ph < 8.2) {
+      return "rgba(224, 231, 255, 0.35)";
+    } else if (ph >= 8.2 && ph <= 10.0) {
+      const f = (ph - 8.2) / 1.8;
+      const r = Math.round(224 + f * (233 - 224));
+      const g = Math.round(231 + f * (30 - 231));
+      const b = Math.round(255 + f * (99 - 255));
+      const a = (0.35 + f * 0.45).toFixed(2);
+      return `rgba(${r}, ${g}, ${b}, ${a})`;
+    } else {
+      if (ph > 11.5) return "rgba(136, 14, 79, 0.85)";
+      return "rgba(233, 30, 99, 0.8)";
+    }
+  }
+
+  function updateBadge(v, ph) {
+    const badge = document.getElementById('titr-badge');
+    badge.className = "titr-badge";
+    
+    if (v === 0) {
+      badge.classList.add('badge-acid');
+      badge.innerHTML = "Solução Incolor<br>(Meio Ácido)";
+    } else if (ph < 8.2) {
+      badge.classList.add('badge-acid');
+      badge.innerHTML = `Solução Incolor<br>(Excesso de H+, pH = ${ph.toFixed(2)})`;
+    } else if (ph >= 8.2 && ph < 10.0) {
+      badge.classList.add('badge-near');
+      if (v < 20.0) {
+        badge.innerHTML = `Rosa Muito Claro<br>(Próximo à Viragem, pH = ${ph.toFixed(2)})`;
+      } else {
+        badge.innerHTML = `Viragem do Indicador<br>(Ponto Final!, pH = ${ph.toFixed(2)})`;
+      }
+    } else if (ph >= 10.0 && ph < 11.5) {
+      badge.classList.add('badge-endpoint');
+      badge.innerHTML = `Ponto Final Ultrapassado!<br>(Excesso de OH-, pH = ${ph.toFixed(2)})`;
+    } else {
+      badge.classList.add('badge-basic');
+      badge.innerHTML = `Super-titulado!<br>(Solução Muito Básica, pH = ${ph.toFixed(2)})`;
+    }
+  }
+
+  function updateFlaskLiquid(v) {
+    const flaskLiquid = document.getElementById('flask-liquid');
+    
+    // Altura Y da superfície do líquido varia de 252px até 232px à medida que enche
+    const Y = 252 - (v / 25.0) * 20.0;
+    const height = 280 - Y; // Garante que cobre até o fundo do frasco
+    
+    // Atualiza a posição e a altura do retângulo recortado
+    flaskLiquid.setAttribute('y', Y.toFixed(1));
+    flaskLiquid.setAttribute('height', height.toFixed(1));
+    
+    // Atualiza os pontos centrais de impacto e animações
+    const ripple = document.getElementById('ripple1');
+    const swirl = document.getElementById('flask-swirl');
+    ripple.setAttribute('cy', Y.toFixed(1));
+    swirl.setAttribute('cy', Y.toFixed(1));
+  }
+
+  function generateActualPath(currentV) {
+    let pathD = "";
+    const step = 0.05;
+    for (let v = 0; v <= currentV; v += step) {
+      let ph = calculatePH(v);
+      let x = 25 + (v / 25.0) * 160;
+      let y = 155 - (ph / 14.0) * 140;
+      if (v === 0) pathD += `M ${x.toFixed(1)} ${y.toFixed(1)}`;
+      else pathD += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
+    }
+    let ph = calculatePH(currentV);
+    let x = 25 + (currentV / 25.0) * 160;
+    let y = 155 - (ph / 14.0) * 140;
+    if (currentV > 0) {
+      pathD += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
+    } else {
+      pathD = `M ${x.toFixed(1)} ${y.toFixed(1)}`;
+    }
+    return pathD;
+  }
+
+  function initTheoreticalCurve() {
+    let pathD = "";
+    for (let v = 0; v <= 25; v += 0.1) {
+      let ph = calculatePH(v);
+      let x = 25 + (v / 25.0) * 160;
+      let y = 155 - (ph / 14.0) * 140;
+      if (v === 0) pathD += `M ${x.toFixed(1)} ${y.toFixed(1)}`;
+      else pathD += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
+    }
+    document.getElementById('curve-theoretical').setAttribute('d', pathD);
+  }
+
+  function initBuretteScale() {
+    const scaleGroup = document.getElementById('burette-scale');
+    scaleGroup.innerHTML = '';
+    for (let i = 0; i <= 25; i++) {
+      const y = 40 + (i / 25) * 120;
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      const isMajor = i % 5 === 0;
+      line.setAttribute('x1', isMajor ? '137' : '139');
+      line.setAttribute('x2', '142');
+      line.setAttribute('y1', y.toFixed(1));
+      line.setAttribute('y2', y.toFixed(1));
+      line.setAttribute('stroke', '#475569');
+      line.setAttribute('stroke-width', isMajor ? '1' : '0.5');
+      scaleGroup.appendChild(line);
+      
+      if (isMajor) {
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '145');
+        text.setAttribute('y', (y + 2.5).toFixed(1));
+        text.setAttribute('font-size', '6');
+        text.setAttribute('fill', '#475569');
+        text.setAttribute('font-family', 'sans-serif');
+        text.textContent = i.toString();
+        scaleGroup.appendChild(text);
+      }
+    }
+  }
+
+  function updateVisuals() {
+    volDisp.textContent = volume.toFixed(2);
+    const ph = calculatePH(volume);
+    phDisp.textContent = ph.toFixed(2);
+    
+    const yTop = 40 + (volume / 25.0) * 120;
+    const height = 175 - yTop;
+    buretteLiquid.setAttribute('y', yTop.toFixed(1));
+    buretteLiquid.setAttribute('height', Math.max(0, height).toFixed(1));
+    
+    updateFlaskLiquid(volume);
+    const flaskLiquid = document.getElementById('flask-liquid');
+    flaskLiquid.setAttribute('fill', getLiquidColor(ph));
+    
+    updateBadge(volume, ph);
+    
+    const actualPathD = generateActualPath(volume);
+    curveActual.setAttribute('d', actualPathD);
+    
+    const dotX = 25 + (volume / 25.0) * 160;
+    const dotY = 155 - (ph / 14.0) * 140;
+    curveDot.setAttribute('cx', dotX.toFixed(1));
+    curveDot.setAttribute('cy', dotY.toFixed(1));
+    if (volume > 0) {
+      curveDot.setAttribute('opacity', '1');
+    } else {
+      curveDot.setAttribute('opacity', '0');
+    }
+  }
+
+  function processDrop(amount) {
+    if (volume >= maxVol) {
+      stopAuto();
+      return;
+    }
+
+    volume = parseFloat((volume + amount).toFixed(2));
+    if (volume > maxVol) volume = maxVol;
+    updateVisuals();
+
+    const handle = document.getElementById('stopcock-handle');
+    handle.style.transform = "rotate(90deg)";
+    setTimeout(() => {
+      handle.style.transform = "rotate(0deg)";
+    }, 120);
+
+    if (activeAnimationId) {
+      cancelAnimationFrame(activeAnimationId);
+      activeAnimationId = null;
+    }
+
+    const drop = document.getElementById('drop');
+    const startY = 196;
+    const targetY = 252 - (volume / 25.0) * 20.0;
+    const duration = 180;
+    let startTime = null;
+
+    drop.setAttribute('opacity', '1');
+
+    function animateDrop(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const currentY = startY + (targetY - startY) * (progress * progress);
+      drop.setAttribute('cy', currentY.toFixed(1));
+
+      if (progress < 1) {
+        activeAnimationId = requestAnimationFrame(animateDrop);
+      } else {
         drop.setAttribute('opacity', '0');
-        
-        // Atualiza volume
-        volume += 0.5;
-        volDisp.textContent = volume.toFixed(2);
+        drop.setAttribute('cy', startY.toString());
+        activeAnimationId = null;
 
-        // Atualiza nível da bureta
-        const currentH = 129 * (1 - volume / maxVol);
-        const currentY = 50 + (129 - currentH);
-        buretteLiquid.setAttribute('height', currentH);
-        buretteLiquid.setAttribute('y', currentY);
+        const ripple = document.getElementById('ripple1');
+        ripple.style.transition = "none";
+        ripple.setAttribute('rx', '0');
+        ripple.setAttribute('ry', '0');
+        ripple.setAttribute('opacity', '0.8');
+        void ripple.offsetHeight;
+        ripple.style.transition = "all 0.3s ease-out";
+        ripple.setAttribute('rx', '15');
+        ripple.setAttribute('ry', '4.5');
+        ripple.setAttribute('opacity', '0');
 
-        // Mudança de cor do Indicador (Fenolftaleína: Incolor -> Rosa)
-        if (volume < eqPoint - 1) {
-          flaskLiquid.setAttribute('fill', '#e0e0e0');
-          statusDisp.textContent = "Solução Incolor (Excesso de H+)";
-        } else if (volume >= eqPoint - 1 && volume < eqPoint) {
-          flaskLiquid.setAttribute('fill', '#f8bbd0');
-          statusDisp.textContent = "Rosa muito claro (Próximo ao ponto final)";
-        } else if (volume >= eqPoint && volume <= eqPoint + 1) {
-          flaskLiquid.setAttribute('fill', '#e91e63');
-          statusDisp.textContent = "PONTO FINAL ALCANÇADO! (Viragem do Indicador)";
-        } else {
-          flaskLiquid.setAttribute('fill', '#880e4f');
-          statusDisp.textContent = "Super-titulado! (Excesso de OH-)";
+        if (volume >= 17.5 && volume < 20.1) {
+          const swirl = document.getElementById('flask-swirl');
+          swirl.style.transition = "none";
+          swirl.setAttribute('r', '1');
+          swirl.setAttribute('opacity', (volume >= 19.5) ? '0.9' : '0.6');
+          void swirl.offsetHeight;
+          
+          let fadeDuration = (volume >= 19.5 && volume < 20.0) ? 1000 : 400;
+          swirl.style.transition = `r ${fadeDuration}ms ease-out, opacity ${fadeDuration}ms ease-out`;
+          swirl.setAttribute('r', '24');
+          swirl.setAttribute('opacity', '0');
+        }
+
+        if (volume >= maxVol) {
+          stopAuto();
         }
       }
-    }, 15);
-  });
+    }
 
-  btnReset.addEventListener('click', () => {
+    activeAnimationId = requestAnimationFrame(animateDrop);
+  }
+
+  function stopAuto() {
+    if (autoInterval) {
+      clearInterval(autoInterval);
+      autoInterval = null;
+      btnAutoDrop.classList.remove('active');
+      btnAutoDrop.innerHTML = `
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span>Gotejar Auto</span>
+      `;
+    }
+  }
+
+  btnDropFine.onclick = function() {
+    stopAuto();
+    processDrop(0.1);
+  };
+
+  btnDropCoarse.onclick = function() {
+    stopAuto();
+    processDrop(1.0);
+  };
+
+  btnAutoDrop.onclick = function() {
+    if (autoInterval) {
+      stopAuto();
+    } else {
+      if (volume >= maxVol) return;
+      btnAutoDrop.classList.add('active');
+      btnAutoDrop.innerHTML = `
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <span>Pausar Auto</span>
+      `;
+      processDrop(0.1);
+      autoInterval = setInterval(() => {
+        processDrop(0.1);
+      }, 220);
+    }
+  };
+
+  btnReset.onclick = function() {
+    stopAuto();
+    if (activeAnimationId) {
+      cancelAnimationFrame(activeAnimationId);
+      activeAnimationId = null;
+    }
+    const drop = document.getElementById('drop');
+    drop.setAttribute('opacity', '0');
+    drop.setAttribute('cy', '196');
     volume = 0;
-    volDisp.textContent = "0.00";
-    statusDisp.textContent = "Solução Incolor (Meio Ácido)";
-    flaskLiquid.setAttribute('fill', '#e0e0e0');
-    buretteLiquid.setAttribute('height', '129');
-    buretteLiquid.setAttribute('y', '50');
-  });
+    updateVisuals();
+  };
+
+  initTheoreticalCurve();
+  initBuretteScale();
+  updateVisuals();
 })();
 </script>
+
 <hr>
 <p><br></p>
 </section>
