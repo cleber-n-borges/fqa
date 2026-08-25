@@ -542,7 +542,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="simulação-da-titulação">Simulação da Titulação</h3>
 <p>Nela, o usuário pode adicionar o titulante (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math>) gota a gota no erlenmeyer contendo titulado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>) e indicador (fenolftaleína). O líquido muda de incolor para rosa pálido persistente exatamente no ponto de viragem.</p>
 <blockquote class="blockquote">
-<p><strong>Instruções:</strong> Clique no botão “Gotejar” para adicionar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math> gota a gota ao recipiente; observe o momento em que o líquido muda de cor (<strong>ponto de viragem</strong>), que ocorrerá quando o volume adicionado se aproximar de 20 mL e notando o escurecimento do rosa ao passar de 21 mL.</p>
+<p><strong>Instruções:</strong> Clique no botão “Gotejar” para adicionar a solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaOH</mtext><annotation encoding="application/x-tex">\text{NaOH}</annotation></semantics></math> gota a gota ao recipiente; observe o momento em que o líquido muda de cor (<strong>ponto de viragem</strong>), que ocorrerá quando o volume adicionado se aproximar de 20 mL e notando o escurecimento do rosa ao passar de 21 mL. Ao lado do erlenmeyer, o gráfico “Curva de Titulação Real” acompanha, em tempo real, como o pH do sistema varia a cada gota adicionada; note como a curva sobe bruscamente perto do volume de viragem — é exatamente essa subida rápida que torna a mudança de cor do indicador tão repentina.</p>
 </blockquote>
 <style>
   .titr-card {
@@ -1259,16 +1259,15 @@ ul.task-list li input[type="checkbox"] {
 <p>A animação conceitual lado a lado que demonstra a diferença teórica versus a manifestação física experimental.</p>
 <div style="font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fff;">
   <h4 style="text-align: center; margin-top: 0;" class="anchored">Ponto de Equivalência vs. Ponto Final</h4>
-  
+
   <div style="display: flex; justify-content: space-around; gap: 10px; text-align: center;">
     <!-- Lado Teórico -->
     <div style="flex: 1; padding: 10px; background: #f0f3f4; border-radius: 6px;">
-      <strong style="color: #2c3e50;">Ponto de Equivalência</strong>
       <p style="font-size: 0.8em; color: #555;">Conceito Estequiométrico Teórico</p>
       <div style="height: 80px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #2980b9;">
         <i>n</i><sub>ácido</sub>&nbsp;=&nbsp;<i>n</i><sub>base</sub>
       </div>
-      <span style="font-size: 0.75em; background: #3498db; color: white; padding: 2px 6px; border-radius: 10px;">Invisível a olho nu</span>
+      <span style="font-size: 0.75em; background: #3498db; color: white; padding: 2px 6px; border-radius: 10px;">20,00 mL (teórico, fixo)</span>
     </div>
 
     <!-- Lado Experimental -->
@@ -1276,35 +1275,54 @@ ul.task-list li input[type="checkbox"] {
       <strong style="color: #2c3e50;">Ponto Final</strong>
       <p style="font-size: 0.8em; color: #555;">Sinal Visual Experimental</p>
       <div id="eq-demo-flask" style="height: 60px; width: 60px; margin: 10px auto; border-radius: 50%; background: #e0e0e0; border: 2px solid #bdc3c7; transition: background 0.8s;"></div>
-      <span id="eq-demo-label" style="font-size: 0.75em; background: #7f8c8d; color: white; padding: 2px 6px; border-radius: 10px;">Sem indicador</span>
+      <span id="eq-demo-label" style="font-size: 0.75em; background: #7f8c8d; color: white; padding: 2px 6px; border-radius: 10px;">Sem indicador — 0,00 mL</span>
     </div>
   </div>
 
-  <div style="text-align: center; margin-top: 15px;">
-    <button id="btn-toggle-indicator" style="padding: 6px 12px; font-size: 0.85em; cursor: pointer; background: #8e44ad; color: white; border: none; border-radius: 4px;">Simular Adição de Indicador e Ponto Final</button>
+  <p id="eq-demo-erro" style="text-align: center; font-size: 0.8em; color: #555; margin-top: 10px; min-height: 1.2em;"></p>
+
+  <div style="text-align: center; margin-top: 5px;">
+    <button id="btn-toggle-indicator" style="padding: 6px 12px; font-size: 0.85em; cursor: pointer; background: #8e44ad; color: white; border: none; border-radius: 4px;">Adicionar gotas de titulante</button>
   </div>
 </div>
 
 <script>
 (function() {
-  let active = false;
+  const estados = [
+    {
+      cor: "#e0e0e0",
+      texto: "Sem indicador \u2014 0,00 mL",
+      erro: "",
+      botao: "Adicionar gotas de titulante"
+    },
+    {
+      cor: "#e91e63",
+      texto: "Viragem! \u2014 20,02 mL",
+      erro: "Erro de titula\u00e7\u00e3o \u2248 0,02 mL \u2014 dentro da incerteza da pr\u00f3pria bureta (\u00b1 0,02 mL)",
+      botao: "Continuar gotejando (excesso)"
+    },
+    {
+      cor: "#ad1457",
+      texto: "Excesso! \u2014 21,00 mL",
+      erro: "Erro de titula\u00e7\u00e3o \u2248 1,00 mL \u2014 muito acima da incerteza instrumental (\u00b1 0,02 mL): erro sistem\u00e1tico de leitura do indicador",
+      botao: "Reiniciar"
+    }
+  ];
+  let passo = 0;
+
   const btn = document.getElementById('btn-toggle-indicator');
   const flask = document.getElementById('eq-demo-flask');
   const label = document.getElementById('eq-demo-label');
+  const erro = document.getElementById('eq-demo-erro');
 
   btn.addEventListener('click', () => {
-    active = !active;
-    if (active) {
-      flask.style.background = "#e91e63";
-      label.style.background = "#e91e63";
-      label.textContent = "Mudança de cor visível!";
-      btn.textContent = "Resetar Visualização";
-    } else {
-      flask.style.background = "#e0e0e0";
-      label.style.background = "#7f8c8d";
-      label.textContent = "Sem indicador";
-      btn.textContent = "Simular Adição de Indicador e Ponto Final";
-    }
+    passo = (passo + 1) % estados.length;
+    const e = estados[passo];
+    flask.style.background = e.cor;
+    label.style.background = e.cor;
+    label.textContent = e.texto;
+    erro.textContent = e.erro;
+    btn.textContent = e.botao;
   });
 })();
 </script>
@@ -1642,54 +1660,99 @@ ul.task-list li input[type="checkbox"] {
   <h4 style="margin-top:0; text-align: center;" class="anchored">Calculadora do Erro Relativo na Leitura da Bureta</h4>
   <p style="font-size: 0.85em; color: #666; text-align: center;">Incerteza instrumental fixa da bureta: <strong>± 0.02 mL</strong></p>
 
-  <div style="margin: 20px 0;">
-    <label for="volRange"><strong>Volume consumido (V<sub>titulante</sub>):</strong> <span id="rangeVal" style="color: #2980b9; font-weight: bold;">20.0 mL</span></label>
-    <input type="range" id="volRange" min="0.1" max="50" step="0.1" value="20.0" style="width: 100%; margin-top: 10px;">
+  <div style="display: flex; gap: 20px; align-items: center;">
+    <!-- Ilustração simples da bureta -->
+    <div style="flex: 0 0 auto; text-align: center;">
+      <div style="position: relative; width: 62px; height: 160px; margin: 0 auto;">
+        <div style="position: absolute; left: 0; top: 0; width: 34px; height: 160px; border: 2px solid #7f8c8d; border-radius: 4px; background: #f7f9f9; overflow: hidden;">
+          <div id="buretaLiquido" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: #3498db; transition: height 0.15s, background 0.15s;"></div>
+        </div>
+        <!-- Graduações (0 mL no topo, 50 mL na base, como na bureta real) -->
+        <div style="position: absolute; left: 34px; top: 0; width: 28px; height: 160px; font-size: 0.55em; color: #7f8c8d;">
+          <div style="position: absolute; top: 0%; left: 0; display: flex; align-items: center; gap: 2px;"><span style="width: 7px; height: 1px; background: #7f8c8d; display: inline-block;"></span>0</div>
+          <div style="position: absolute; top: 10%; left: 0;"><span style="width: 4px; height: 1px; background: #b0b8bd; display: inline-block;"></span></div>
+          <div style="position: absolute; top: 20%; left: 0; display: flex; align-items: center; gap: 2px; transform: translateY(-50%);"><span style="width: 7px; height: 1px; background: #7f8c8d; display: inline-block;"></span>10</div>
+          <div style="position: absolute; top: 30%; left: 0;"><span style="width: 4px; height: 1px; background: #b0b8bd; display: inline-block;"></span></div>
+          <div style="position: absolute; top: 40%; left: 0; display: flex; align-items: center; gap: 2px; transform: translateY(-50%);"><span style="width: 7px; height: 1px; background: #7f8c8d; display: inline-block;"></span>20</div>
+          <div style="position: absolute; top: 50%; left: 0;"><span style="width: 4px; height: 1px; background: #b0b8bd; display: inline-block;"></span></div>
+          <div style="position: absolute; top: 60%; left: 0; display: flex; align-items: center; gap: 2px; transform: translateY(-50%);"><span style="width: 7px; height: 1px; background: #7f8c8d; display: inline-block;"></span>30</div>
+          <div style="position: absolute; top: 70%; left: 0;"><span style="width: 4px; height: 1px; background: #b0b8bd; display: inline-block;"></span></div>
+          <div style="position: absolute; top: 80%; left: 0; display: flex; align-items: center; gap: 2px; transform: translateY(-50%);"><span style="width: 7px; height: 1px; background: #7f8c8d; display: inline-block;"></span>40</div>
+          <div style="position: absolute; top: 90%; left: 0;"><span style="width: 4px; height: 1px; background: #b0b8bd; display: inline-block;"></span></div>
+          <div style="position: absolute; top: 100%; left: 0; display: flex; align-items: center; gap: 2px; transform: translateY(-100%);"><span style="width: 7px; height: 1px; background: #7f8c8d; display: inline-block;"></span>50</div>
+        </div>
+      </div>
+      <span style="font-size: 0.7em; color: #888;">Volume na bureta</span>
+    </div>
+
+    <div style="flex: 1;">
+      <div style="margin-bottom: 15px;">
+        <label for="volRange"><strong>Volume consumido (V<sub>titulante</sub>):</strong> <span id="rangeVal" style="color: #2980b9; font-weight: bold;">20.0 mL</span></label>
+        <input type="range" id="volRange" min="0.1" max="50" step="0.1" value="20.0" aria-label="Volume de titulante consumido, em mililitros" style="width: 100%; margin-top: 10px;">
+      </div>
+
+      <div id="errorDisplay" role="status" aria-live="polite" style="padding: 15px; border-radius: 6px; text-align: center; background: #e8f8f5; border: 1px solid #2ecc71;">
+        <div style="font-size: 0.9em;">Erro Relativo Calculado:</div>
+        <div id="errorFormula" style="font-size: 0.8em; color: #555; margin: 4px 0;">(0,02 ÷ 20,0) × 100</div>
+        <div id="errorPercent" style="font-size: 1.8em; font-weight: bold; color: #27ae60;">0.10 %</div>
+        <div id="errorAssessment" style="font-size: 0.85em; margin-top: 5px; font-weight: bold; color: #27ae60;">✅ Erro baixo (incerteza pouco relevante)</div>
+      </div>
+    </div>
   </div>
 
-  <div id="errorDisplay" style="padding: 15px; border-radius: 6px; text-align: center; background: #e8f8f5; border: 1px solid #2ecc71;">
-    <div style="font-size: 0.9em;">Erro Relativo Calculado:</div>
-    <div id="errorPercent" style="font-size: 1.8em; font-weight: bold; color: #27ae60;">0.10 %</div>
-    <div id="errorAssessment" style="font-size: 0.85em; margin-top: 5px; font-weight: bold; color: #27ae60;">Faixa Excelente (Baixa incerteza)</div>
-  </div>
+  <p style="font-size: 0.75em; color: #888; text-align: center; margin-top: 12px; margin-bottom: 0;">Referente à escala convencional de titulação (buretas de 25–50 mL), operando no regime de macrotitulação.</p>
 </div>
 
 <script>
 (function() {
   const range = document.getElementById('volRange');
   const rangeVal = document.getElementById('rangeVal');
+  const errorFormula = document.getElementById('errorFormula');
   const errorPercent = document.getElementById('errorPercent');
   const errorDisplay = document.getElementById('errorDisplay');
   const errorAssessment = document.getElementById('errorAssessment');
+  const buretaLiquido = document.getElementById('buretaLiquido');
 
-  range.addEventListener('input', (e) => {
-    const v = parseFloat(e.target.value);
+  function atualizar(v) {
     rangeVal.textContent = v.toFixed(1) + " mL";
 
     // Cálculo do erro relativo: (Incerteza / Volume) * 100
     const err = (0.02 / v) * 100;
+    const vFormatado = v.toFixed(1).replace(".", ",");
+    errorFormula.textContent = "(0,02 \u00f7 " + vFormatado + ") \u00d7 100";
     errorPercent.textContent = err.toFixed(2) + " %";
 
+    // O volume consumido drena a bureta: o líquido restante (não o consumido) define a altura
+    buretaLiquido.style.height = Math.max(0, 100 - (v / 50) * 100) + "%";
+
+    let cor;
     if (err <= 0.2) {
+      cor = "#2ecc71";
       errorDisplay.style.background = "#e8f8f5";
-      errorDisplay.style.borderColor = "#2ecc71";
+      errorDisplay.style.borderColor = cor;
       errorPercent.style.color = "#27ae60";
       errorAssessment.style.color = "#27ae60";
-      errorAssessment.textContent = "Faixa Ideal (10 a 50 mL - Alta precisão)";
+      errorAssessment.innerHTML = "&#9989; Erro baixo (incerteza pouco relevante)";
     } else if (err <= 1.0) {
+      cor = "#f1c40f";
       errorDisplay.style.background = "#fef9e7";
-      errorDisplay.style.borderColor = "#f1c40f";
+      errorDisplay.style.borderColor = cor;
       errorPercent.style.color = "#d35400";
       errorAssessment.style.color = "#d35400";
-      errorAssessment.textContent = "Faixa Aceitável (Atenção ao erro acumulado)";
+      errorAssessment.innerHTML = "&#9888; Erro moderado (atenção ao erro acumulado)";
     } else {
+      cor = "#e74c3c";
       errorDisplay.style.background = "#fadbd8";
-      errorDisplay.style.borderColor = "#e74c3c";
+      errorDisplay.style.borderColor = cor;
       errorPercent.style.color = "#c0392b";
       errorAssessment.style.color = "#c0392b";
-      errorAssessment.textContent = "Erro Inaceitável! (> 1.0% - Volume muito baixo para titulometria macro)";
+      errorAssessment.innerHTML = "&#10060; Erro inaceitável (&gt; 1,0% &mdash; volume baixo demais para titulometria macro)";
     }
-  });
+    buretaLiquido.style.background = cor;
+  }
+
+  range.addEventListener('input', (e) => atualizar(parseFloat(e.target.value)));
+  atualizar(parseFloat(range.value));
 })();
 </script>
 </section>
@@ -1845,7 +1908,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong><a href="./Nota_Historica_Titulo_expandida.html">Nota Histórica Expandida</a></strong></p>
+<p><a href="./Nota_Historica_Titulo_expandida.html"><strong>Nota Histórica Expandida</strong></a></p>
 <p><strong>Resumo:</strong></p>
 <p>🔹 <strong>Origem da palavra “titulação”</strong></p>
 <ul>

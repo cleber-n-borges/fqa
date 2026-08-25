@@ -76,46 +76,27 @@
 
     .liquid-water {
       fill: var(--water-color);
-      transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.8s ease;
     }
 
     .liquid-hcl {
       fill: var(--hcl-color);
-      transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.8s ease;
     }
 
-    /* Fumaça (vapores do HCl concentrado) */
     .fumes {
       opacity: 0;
-      transition: opacity 0.6s ease;
+      transition: opacity 0.5s ease;
     }
 
     .fume-bubble {
-      fill: #cfd8dc;
-      opacity: 0;
-      animation: floatUp 2.2s infinite ease-in;
+      fill: #e67e22;
+      animation: floatUp 2s infinite ease-in;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(0) scale(0.6); opacity: 0; }
-      15% { opacity: 0.55; }
-      100% { transform: translateY(-38px) scale(1.3); opacity: 0; }
-    }
-
-    /* Setas de ventilação da capela (sutil, contínuo) */
-    .vent-arrow {
-      stroke: #95a5a6;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      fill: none;
-      opacity: 0;
-      animation: ventFloat 2s infinite ease-in-out;
-    }
-
-    @keyframes ventFloat {
-      0% { transform: translateY(6px); opacity: 0; }
-      50% { opacity: 0.55; }
-      100% { transform: translateY(-6px); opacity: 0; }
+      0% { transform: translateY(0); opacity: 0.8; }
+      100% { transform: translateY(-40px); opacity: 0; }
     }
 
     .droplet {
@@ -151,7 +132,6 @@
       border-radius: 6px;
       font-size: 0.88rem;
       line-height: 1.45;
-      transition: background 0.3s ease;
     }
 
     .alert-box {
@@ -219,7 +199,7 @@
 
 <div class="sim-container">
   <h1>Simulação: Preparo de Solução de HCl</h1>
-  <p class="subtitle">Diluição sequencial: HCl comercial (37% m/m) → HCl 1,0 mol/L → HCl 0,1 mol/L</p>
+  <p class="subtitle">Diluição Sequencial: HCl Comercial (37% m/m) → HCl 1,0 mol/L → HCl 0,1 mol/L</p>
 
   <!-- Área Gráfica da Capela (SVG) -->
   <div class="canvas-container">
@@ -234,11 +214,6 @@
       <rect x="10" y="10" width="580" height="240" fill="none" stroke="#bdc3c7" stroke-width="2" stroke-dasharray="6,6" rx="5" />
       <text x="25" y="30" font-size="11" font-weight="bold" fill="#7f8c8d">CAPELA DE EXAUSTÃO (LIGADA)</text>
 
-      <!-- Ventilação sutil e contínua (reforça "capela ligada") -->
-      <path class="vent-arrow" d="M 555,18 L 560,10 L 565,18" style="animation-delay: 0s;"/>
-      <path class="vent-arrow" d="M 570,20 L 575,12 L 580,20" style="animation-delay: 0.6s;"/>
-      <path class="vent-arrow" d="M 540,20 L 545,12 L 550,20" style="animation-delay: 1.2s;"/>
-
       <!-- BANCADA -->
       <rect x="20" y="220" width="560" height="10" fill="#8d6e63" rx="2"/>
 
@@ -249,17 +224,10 @@
         <text x="25" y="70" font-size="9" font-weight="bold" fill="#c0392b" text-anchor="middle">HCl</text>
         <text x="25" y="82" font-size="7" fill="#333" text-anchor="middle">37% m/m</text>
         <text x="25" y="90" font-size="6" fill="#666" text-anchor="middle">d=1,18 g/mL</text>
-
+        
         <!-- Líquido -->
         <path d="M 3,45 L 47,45 L 47,118 A 2,2 0 0,1 45,120 L 5,120 A 2,2 0 0,1 3,118 Z" fill="rgba(230, 126, 34, 0.5)"/>
-
-        <!-- Fumaça (vapores ácidos ao manusear o frasco aberto) -->
-        <g id="fumesHCl" class="fumes">
-          <circle class="fume-bubble" cx="22" cy="4" r="3" style="animation-delay: 0s;"/>
-          <circle class="fume-bubble" cx="27" cy="2" r="2.5" style="animation-delay: 0.5s;"/>
-          <circle class="fume-bubble" cx="24" cy="6" r="2" style="animation-delay: 1s;"/>
-        </g>
-
+        
         <!-- Garrafa -->
         <path d="M 18,10 L 32,10 L 32,30 L 47,40 L 47,118 A 2,2 0 0,1 45,120 L 5,120 A 2,2 0 0,1 3,118 L 3,40 L 18,30 Z" class="glass-line" filter="url(#shadow)"/>
         <rect x="16" y="2" width="18" height="8" fill="#c0392b" rx="1"/> <!-- Tampa -->
@@ -307,7 +275,7 @@
       </g>
 
       <!-- Pipeta Animada -->
-      <g id="pipetteGroup" transform="translate(-50, -50)" style="transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);">
+      <g id="pipetteGroup" transform="translate(-50, -50)" style="transition: transform 0.6s ease;">
         <path d="M 0,0 L 6,0 L 4,90 L 1,105 L 0,105 L -3,90 Z" fill="#e0e0e0" stroke="#757575" stroke-width="1"/>
         <circle id="pipetteDrop" cx="0.5" cy="110" r="3" class="droplet" />
       </g>
@@ -316,18 +284,19 @@
 
   <!-- Controles Principais -->
   <div class="controls">
-    <button id="btnStep" onclick="executeNextStep()">Iniciar Procedimento</button>
+    <button id="btnStep" onclick="executeNextStep()">Iniciar Procedimento 1</button>
     <button id="btnReset" class="reset-btn" onclick="resetSim()" disabled>Reiniciar</button>
   </div>
 
   <!-- Painel Informativo -->
   <div class="dashboard">
-    <div class="status-box" id="statusBox" role="status" aria-live="polite">
-      <strong>Início:</strong> preparar 100 mL de HCl 1,0 mol/L a partir do ácido concentrado, sob capela.
+    <div class="status-box" id="statusBox">
+      <strong>Início:</strong> Clique no botão para iniciar a preparação de 100 mL de HCl 1,0 mol/L a partir do ácido comercial concentrado sob capela.
     </div>
     <div class="alert-box" id="alertBox">
-      <strong>Regra de ouro:</strong> <em>"Nunca adicione água ao ácido!"</em><br>
-      A diluição do HCl é fortemente exotérmica. Água adicionada ao ácido concentrado pode ferver e espirrar; por isso a água entra primeiro no balão.
+      <strong> Regra Ouro de Segurança:</strong><br>
+      <em>"Nunca adicione água ao ácido!"</em><br>
+      A diluição é fortemente exotérmica (ΔH ≈ -19 kJ/mol). A adição prévia de água absorve o calor e previne projeções violentas do líquido.
     </div>
   </div>
 </div>
@@ -339,9 +308,9 @@
   const btnStep = document.getElementById('btnStep');
   const btnReset = document.getElementById('btnReset');
   const statusBox = document.getElementById('statusBox');
+  const alertBox = document.getElementById('alertBox');
   const pipetteGroup = document.getElementById('pipetteGroup');
   const pipetteDrop = document.getElementById('pipetteDrop');
-  const fumesHCl = document.getElementById('fumesHCl');
 
   // Elementos de Líquidos dos Balões
   const liqWater1 = document.getElementById('liqWater1');
@@ -352,43 +321,38 @@
   const liqHCl2 = document.getElementById('liqHCl2');
   const labelBalao2 = document.getElementById('labelBalao2');
 
-  function mostrarFumes(mostrar) {
-    fumesHCl.style.opacity = mostrar ? '1' : '0';
-  }
-
   function executeNextStep() {
     currentStep++;
 
     if (currentStep === 1) {
-      // Passo 1: Adicionar ~40 mL de água ao Balão 1 (água primeiro!)
+      // Passo 1: Adicionar ~40 mL de Água no Balão 1
       btnStep.disabled = true;
       btnReset.disabled = false;
-      statusBox.innerHTML = "<strong>Passo 1:</strong> adicionando &asymp;40 mL de água destilada ao balão &mdash; a água entra antes do ácido.";
+      statusBox.innerHTML = "<strong>Parte 1 - Passo 1:</strong> Adicionando ~40 mL de água destilada ao Balão Volumétrico de 100 mL...";
 
       setTimeout(() => {
+        // Eleva o nível inicial da água (y: 100 -> 75, height: 40 -> 65)
         liqWater1.setAttribute('y', '75');
         liqWater1.setAttribute('height', '65');
-
+        
         setTimeout(() => {
-          statusBox.innerHTML = "<strong>Água pronta.</strong> Ela vai absorver o calor liberado ao entrar em contato com o ácido.<br><em>Próximo:</em> pipetar HCl concentrado, usando pipeta com pera de segurança.";
-          btnStep.innerText = "Passo 2: Pipetar HCl concentrado";
+          statusBox.innerHTML = "<strong>Parte 1 - Passo 1 Concluído:</strong> O balão já contém água para dissipar o calor da diluição.<br><em>Próximo passo:</em> Pipetar 8,47 mL (~8,5 mL) de HCl concentrado comercial.";
+          btnStep.innerText = "Passo 2: Pipetar 8,5 mL de HCl 11,8 mol/L";
           btnStep.disabled = false;
-        }, 700);
-      }, 250);
+        }, 800);
+      }, 300);
     }
     else if (currentStep === 2) {
-      // Passo 2: Pipetar HCl concentrado para o Balão 1
-      // C1V1 = C2V2  ->  V1 = (1,0 x 100) / 11,8 = 8,47 mL
+      // Passo 2: Pipetar 8,47 mL de HCl Concentrado para o Balão 1
       btnStep.disabled = true;
-      statusBox.innerHTML = "<strong>Passo 2:</strong> V = (1,0&nbsp;&times;&nbsp;100)/11,8 &asymp; <strong>8,47 mL</strong> de HCl concentrado, transferidos lentamente sobre a água.";
+      statusBox.innerHTML = "<strong>Parte 1 - Passo 2:</strong> Pipetando 8,47 mL de HCl comercial (11,8 mol/L) e transferindo lentamente ao Balão 1...";
 
-      mostrarFumes(true);
+      // Animação da Pipeta do Frasco de HCl para Balão 1
       pipetteGroup.setAttribute('transform', 'translate(85, 50)');
-
+      
       setTimeout(() => {
         pipetteGroup.setAttribute('transform', 'translate(255, 30)');
-        mostrarFumes(false);
-
+        
         setTimeout(() => {
           pipetteDrop.classList.add('drop-animate');
 
@@ -396,59 +360,60 @@
             pipetteDrop.classList.remove('drop-animate');
             pipetteGroup.setAttribute('transform', 'translate(-50, -50)');
 
+            // Mistura de HCl no Balão 1
             liqHCl1.setAttribute('y', '65');
             liqHCl1.setAttribute('height', '12');
 
-            statusBox.innerHTML = "<strong>Ácido adicionado</strong> ao fundo do balão, sob a água.<br><em>Próximo:</em> aferir o menisco em 100 mL.";
-            btnStep.innerText = "Passo 3: Aferir menisco (100 mL)";
+            statusBox.innerHTML = "<strong>Parte 1 - Passo 2 Concluído:</strong> 8,47 mL de HCl concentrado adicionados com sucesso ao fundo do balão.<br><em>Próximo passo:</em> Aferir o menisco em 100 mL com água destilada.";
+            btnStep.innerText = "Passo 3: Aferir Menisco (100 mL)";
             btnStep.disabled = false;
           }, 800);
-        }, 550);
-      }, 550);
+        }, 600);
+      }, 600);
     }
     else if (currentStep === 3) {
       // Passo 3: Aferição do Balão 1
       btnStep.disabled = true;
-      statusBox.innerHTML = "<strong>Passo 3:</strong> completando com água destilada até a marca de 100 mL, alinhando o menisco na altura dos olhos...";
+      statusBox.innerHTML = "<strong>Parte 1 - Passo 3:</strong> Aferindo o volume do Balão 1 com água destilada até a marca de 100 mL (alinhando o menisco)...";
 
       setTimeout(() => {
+        // Preenche até o traço vermelho de aferição (y: 35)
         liqWater1.setAttribute('y', '35');
         liqWater1.setAttribute('height', '105');
         liqHCl1.setAttribute('y', '35');
         liqHCl1.setAttribute('height', '105');
 
         setTimeout(() => {
-          labelBalao1.textContent = "HCl 1,0 mol/L (estoque)";
+          labelBalao1.textContent = "HCl 1,0 mol/L (Estoque)";
           labelBalao1.setAttribute('fill', '#27ae60');
           labelBalao1.setAttribute('font-weight', 'bold');
 
-          statusBox.innerHTML = "<strong>Parte 1 concluída!</strong> <span class='param-badge'>HCl 1,0 mol/L</span> pronto, após homogeneização.<br><em>Agora:</em> diluir esta solução-estoque para 0,1 mol/L.";
-          btnStep.innerText = "Iniciar Parte 2: preparar HCl 0,1 mol/L";
+          statusBox.innerHTML = "<strong>Parte 1 Concluída!</strong> Solução Estoque de <span class='param-badge'>HCl 1,0 mol/L</span> preparada e homogeneizada.<br><em>Início da Parte 2:</em> Preparar 100 mL de HCl 0,1 mol/L a partir desta solução estoque.";
+          btnStep.innerText = "Iniciar Parte 2: Preparar HCl 0,1 mol/L";
           btnStep.disabled = false;
-        }, 700);
-      }, 250);
+        }, 800);
+      }, 300);
     }
     else if (currentStep === 4) {
-      // Parte 2 - Passo 1: Adicionar ~40 mL de água ao Balão 2
+      // Parte 2 - Passo 1: Adicionar ~40 mL de Água no Balão 2
       btnStep.disabled = true;
-      statusBox.innerHTML = "<strong>Parte 2, passo 1:</strong> &asymp;40 mL de água destilada no segundo balão.";
+      statusBox.innerHTML = "<strong>Parte 2 - Passo 1:</strong> Adicionando ~40 mL de água destilada ao segundo Balão Volumétrico de 100 mL...";
 
       setTimeout(() => {
         liqWater2.setAttribute('y', '75');
         liqWater2.setAttribute('height', '65');
 
         setTimeout(() => {
-          statusBox.innerHTML = "<em>Próximo:</em> pipetar uma alíquota da solução-estoque de HCl 1,0 mol/L.";
+          statusBox.innerHTML = "<strong>Parte 2 - Passo 1 Concluído:</strong> Água adicionada ao Balão 2.<br><em>Próximo passo:</em> Pipetar alíquota de 10,0 mL da solução estoque de HCl 1,0 mol/L.";
           btnStep.innerText = "Passo 2: Pipetar 10 mL de HCl 1,0 mol/L";
           btnStep.disabled = false;
-        }, 700);
-      }, 250);
+        }, 800);
+      }, 300);
     }
     else if (currentStep === 5) {
       // Parte 2 - Passo 2: Pipetar 10 mL do Balão 1 para o Balão 2
-      // C1V1 = C2V2  ->  1,0 x 10 = 0,1 x 100
       btnStep.disabled = true;
-      statusBox.innerHTML = "<strong>Passo 2:</strong> C&#8321;V&#8321;=C&#8322;V&#8322; &rarr; 1,0&nbsp;&times;&nbsp;10 = 0,1&nbsp;&times;&nbsp;100. Pipetando <strong>10,0 mL</strong> da solução-estoque.";
+      statusBox.innerHTML = "<strong>Parte 2 - Passo 2:</strong> Pipetando alíquota de 10,0 mL de HCl 1,0 mol/L do Balão 1 para o Balão 2 (C₁ × V₁ = C₂ × V₂)...";
 
       pipetteGroup.setAttribute('transform', 'translate(255, 30)');
 
@@ -465,17 +430,17 @@
             liqHCl2.setAttribute('y', '65');
             liqHCl2.setAttribute('height', '12');
 
-            statusBox.innerHTML = "<strong>Alíquota transferida.</strong><br><em>Próximo:</em> aferir o menisco do Balão 2 em 100 mL.";
-            btnStep.innerText = "Passo 3: Aferir menisco (100 mL)";
+            statusBox.innerHTML = "<strong>Parte 2 - Passo 2 Concluído:</strong> 10,0 mL da solução estoque transferidos com precisão.<br><em>Próximo passo:</em> Aferir o menisco do Balão 2 para completar 100 mL.";
+            btnStep.innerText = "Passo 3: Aferir Menisco (100 mL)";
             btnStep.disabled = false;
           }, 800);
-        }, 550);
-      }, 550);
+        }, 600);
+      }, 600);
     }
     else if (currentStep === 6) {
       // Parte 2 - Passo 3: Aferição Final do Balão 2
       btnStep.disabled = true;
-      statusBox.innerHTML = "<strong>Passo 3:</strong> completando com água destilada até 100 mL...";
+      statusBox.innerHTML = "<strong>Parte 2 - Passo 3:</strong> Completando o volume do Balão 2 com água destilada até a marca de aferição (100 mL)...";
 
       setTimeout(() => {
         liqWater2.setAttribute('y', '35');
@@ -484,19 +449,19 @@
         liqHCl2.setAttribute('height', '105');
 
         setTimeout(() => {
-          labelBalao2.textContent = "HCl 0,1 mol/L (diluído)";
+          labelBalao2.textContent = "HCl 0,1 mol/L (Diluído)";
           labelBalao2.setAttribute('fill', '#27ae60');
           labelBalao2.setAttribute('font-weight', 'bold');
 
           statusBox.innerHTML = `
-            <strong>Procedimento concluído! &#10003;</strong><br>
-            &bull; <strong>Estoque:</strong> 100 mL de <span class='param-badge'>HCl 1,0 mol/L</span><br>
-            &bull; <strong>Diluída:</strong> 100 mL de <span class='param-badge'>HCl 0,1 mol/L</span><br>
-            Rotule os frascos (nome, concentração, data, responsável). Como a concentração do ácido comercial varia, a concentração exata deve ser confirmada por <strong>padronização</strong> (titulação com padrão primário).
+            <strong>Procedimento Concluído com Sucesso! ✓</strong><br>
+            • <strong>Solução Estoque (Parte 1):</strong> 100 mL de <span class='param-badge'>HCl 1,0 mol/L</span><br>
+            • <strong>Solução Diluída (Parte 2):</strong> 100 mL de <span class='param-badge'>HCl 0,1 mol/L</span><br>
+            <em>Rotulagem:</em> Ambas as soluções devem ser transferidas para frascos limpos e identificados com nome, concentração aproximada, data e responsável.
           `;
-          btnStep.innerText = "Simulação finalizada ✓";
-        }, 700);
-      }, 250);
+          btnStep.innerText = "Simulação Finalizada ✓";
+        }, 800);
+      }, 300);
     }
   }
 
@@ -504,10 +469,9 @@
     currentStep = 0;
     btnStep.disabled = false;
     btnReset.disabled = true;
-    mostrarFumes(false);
 
-    btnStep.innerText = "Iniciar Procedimento";
-    statusBox.innerHTML = "<strong>Início:</strong> preparar 100 mL de HCl 1,0 mol/L a partir do ácido concentrado, sob capela.";
+    btnStep.innerText = "Iniciar Procedimento 1";
+    statusBox.innerHTML = "<strong>Início:</strong> Clique no botão para iniciar a preparação de 100 mL de HCl 1,0 mol/L a partir do ácido comercial concentrado sob capela.";
 
     // Reseta Balão 1
     liqWater1.setAttribute('y', '100');
