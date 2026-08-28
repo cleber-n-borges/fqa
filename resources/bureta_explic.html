@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador: Leitura de Bureta e Paralaxe</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    /* Wrapper principal encapsulado */
+    .bureta-wrapper {
+      width: 100%;
+      margin: 1rem 0;
+      box-sizing: border-box;
+      font-family: inherit;
+      /* Define um contexto de container para monitorar a largura REAL disponível no Quarto */
+      container-type: inline-size;
+    }
+
+    /* Layout Flexbox inteligente */
+    .bureta-wrapper .layout-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    /* Regra para garantir o tamanho MÍNIMO e MÁXIMO dos cards */
+    .bureta-wrapper .card-simulador,
+    .bureta-wrapper .info-card {
+      /* Define 360px como o menor tamanho aceitável antes de forçar o empilhamento */
+      flex: 1 1 360px;
+      min-width: 320px; 
+      max-width: 100%;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Força o empilhamento VERTICAL automático se a área útil central do Quarto for menor que 740px */
+    @container (max-width: 740px) {
+      .bureta-wrapper .card-simulador,
+      .bureta-wrapper .info-card {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+      }
+    }
+
+    /* Card do Simulador e restrições de área do Plotly */
+    .bureta-wrapper .card-simulador {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .bureta-wrapper h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .bureta-wrapper p {
+      margin: 4px 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Garante que o SVG do Plotly nunca transborde a div pai */
+    .bureta-wrapper #plot {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 440px;
+      position: relative;
+      overflow: hidden; /* Corta vazamentos indesejados */
+    }
+
+    .bureta-wrapper #plot .plotly .main-svg {
+      max-width: 100% !important;
+    }
+
+    /* Linha de visão */
+    .bureta-wrapper #eye-line {
+      position: absolute;
+      width: 100%;
+      height: 24px;
+      cursor: ns-resize;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: all;
+      user-select: none;
+      box-sizing: border-box;
+      padding: 0 10px;
+      z-index: 10;
+    }
+
+    .bureta-wrapper #eye-tag {
+      font-size: 0.82rem;
+      font-weight: bold;
+      background: #ffffff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #0d6efd;
+      color: #0d6efd;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+
+    .bureta-wrapper #eye-line::after {
+      content: '';
+      position: absolute;
+      left: 85px;
+      right: 10px;
+      height: 2px;
+      background-color: #0d6efd;
+      border-top: 1px dashed #0d6efd;
+    }
+
+    .bureta-wrapper #eye-line.aligned #eye-tag {
+      background-color: #d1e7dd;
+      border-color: #0f5132;
+      color: #0f5132;
+    }
+
+    .bureta-wrapper .answer-box {
+      margin-top: 15px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .bureta-wrapper .answer-box input {
+      width: 90px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ced4da;
+      font-size: 0.95rem;
+      text-align: center;
+      outline: none;
+    }
+
+    .bureta-wrapper .answer-box button,
+    .bureta-wrapper .btn-new {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0d6efd;
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .bureta-wrapper .btn-new {
+      margin-top: 12px;
+      background-color: #6c757d;
+      font-size: 0.85rem;
+    }
+
+    .bureta-wrapper #status {
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #842029;
+      background-color: #f8d7da;
+      border: 1px solid #f5c2c7;
+      width: 100%;
+      min-height: 45px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .bureta-wrapper #status.success {
+      color: #0f5132;
+      background-color: #d1e7dd;
+      border-color: #badbcc;
+    }
+
+    .bureta-wrapper #status.warning {
+      color: #664d03;
+      background-color: #fff3cd;
+      border-color: #ffecb5;
+    }
+
+    /* Estilos do Card Explicativo */
+    .bureta-wrapper .info-card {
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .bureta-wrapper .info-card h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-bottom: 2px solid #e9ecef;
+      padding-bottom: 6px;
+    }
+
+    .bureta-wrapper .info-card ol {
+      margin: 8px 0 12px 0;
+      padding-left: 20px;
+    }
+
+    .bureta-wrapper .info-card .destaque {
+      background: #e7f1ff;
+      border-left: 4px solid #0d6efd;
+      border-radius: 0 6px 6px 0;
+      padding: 10px 12px;
+      margin: 12px 0;
+      font-size: 0.85rem;
+      color: #084298;
+    }
+
+    .bureta-wrapper .info-card .exemplo {
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      border: 1px solid #e9ecef;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bureta-wrapper">
+  <div class="layout-wrapper">
+
+    <div class="card-simulador">
+      <h2>Leitura de Bureta (Efeito de Paralaxe)</h2>
+      <p>1. Arraste a <b>linha azul da visão</b> até o fundo do menisco.</p>
+      <p>2. Digite o volume lido (ex: 12.85) e clique em <b>Validar</b>.</p>
+
+      <div id="plot">
+        <div id="eye-line">
+          <span id="eye-tag">👁️ Visão</span>
+        </div>
+      </div>
+
+      <div class="answer-box">
+        <label for="user-reading"><b>Leitura (mL):</b></label>
+        <input type="number" id="user-reading" step="0.01" placeholder="00.00">
+        <button id="btn-check">Validar</button>
+      </div>
+
+      <div id="status">Alinhe a visão com o fundo do menisco para eliminar a paralaxe!</div>
+
+      <button id="btn-new" class="btn-new">Sortear Novo Volume</button>
+    </div>
+
+    <div class="info-card">
+      <h3>📋 Como fazer a leitura e anotar o volume</h3>
+
+      <p>A bureta analítica possui graduação a cada <strong>0,1 mL</strong> (décimos de mililitro).
+      A leitura correta exige que o olho esteja <strong>no mesmo nível do fundo do menisco</strong>
+      — a parte mais baixa da superfície côncava do líquido — eliminando o erro de paralaxe.</p>
+
+      <ol>
+        <li>Identifique entre quais duas marcas de <strong>0,1 mL</strong> o fundo do menisco está posicionado.</li>
+        <li>Registre os dígitos certos (lidos diretamente da escala).</li>
+        <li><strong>Estime visualmente</strong> a fração entre as duas marcas adjacentes.</li>
+        <li>Anote <strong>sempre</strong> o resultado com dois algarismos após a vírgula.</li>
+      </ol>
+
+      <div class="destaque">
+        O algarismo dos <strong>centésimos</strong> é o <strong>algarismo duvidoso</strong>: não é lido
+        diretamente da escala, mas <em>estimado</em> pela posição relativa do menisco entre as marcas.
+        Apesar de incerto, seu registro é <strong>obrigatório</strong> — omiti-lo significa perda de
+        um algarismo significativo e reduz a precisão abaixo do limite instrumental da bureta.
+      </div>
+
+      <div class="exemplo">
+        <strong>Exemplo:</strong> se o fundo do menisco estiver a ¾ da distância entre as marcas de
+        12,8 e 12,9 mL, registre <strong>12,87 mL</strong> — nunca "12,8 mL" ou "12,9 mL".
+        <br><br>
+        Toda leitura de bureta deve ter a forma <strong>XX,XX mL</strong>, com os centésimos
+        sempre presentes — estimados, porém obrigatórios.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const yMinData = 12.0;
+  const yMaxData = 14.0;
+  
+  let yMeniscoReal = 12.85; 
+  let yVisaoObservador = 12.20; 
+
+  const plotDiv = document.getElementById('plot');
+  const eyeLine = document.getElementById('eye-line');
+  const eyeTag = document.getElementById('eye-tag');
+  const statusDiv = document.getElementById('status');
+  const inputReading = document.getElementById('user-reading');
+  const btnCheck = document.getElementById('btn-check');
+  const btnNew = document.getElementById('btn-new');
+
+  let isDragging = false;
+
+  function renderPlot() {
+    const xLiquido = [];
+    const yLiquido = [];
+
+    for (let x = -0.6; x <= 0.61; x += 0.02) {
+      xLiquido.push(x);
+      const yCurva = (yMeniscoReal + 0.12) - 0.333 * Math.pow(x, 2);
+      yLiquido.push(yCurva);
+    }
+
+    xLiquido.push(0.6, -0.6);
+    yLiquido.push(14.0, 14.0);
+
+    const xEscala = [];
+    const yEscala = [];
+
+    for (let y = yMinData; y <= yMaxData; y += 0.1) {
+      const valorY = parseFloat(y.toFixed(2));
+      const isMajor = Math.abs((valorY * 10) % 5) < 0.01;
+      const xInicio = 0.6;
+      const xFim = isMajor ? 0.1 : 0.35;
+
+      xEscala.push(xInicio, xFim, null);
+      yEscala.push(valorY, valorY, null);
+    }
+
+    const data = [
+      {
+        x: xLiquido,
+        y: yLiquido,
+        fill: 'toself',
+        fillcolor: 'rgba(56, 161, 243, 0.45)',
+        line: { color: '#0288d1', width: 2 },
+        type: 'scatter', 
+        mode: 'lines', 
+        hoverinfo: 'none'
+      },
+      {
+        x: [-0.6, -0.6, null, 0.6, 0.6],
+        y: [yMinData, yMaxData, null, yMinData, yMaxData],
+        mode: 'lines',
+        line: { color: '#37474f', width: 5 },
+        hoverinfo: 'none'
+      },
+      {
+        x: xEscala,
+        y: yEscala,
+        mode: 'lines',
+        line: { color: '#212121', width: 1.5 },
+        hoverinfo: 'none'
+      }
+    ];
+
+    const annotations = [];
+    for (let y = yMinData; y <= yMaxData; y += 0.5) {
+      const val = parseFloat(y.toFixed(1));
+      annotations.push({
+        x: -0.05,
+        y: val,
+        text: val.toFixed(1),
+        showarrow: false,
+        font: { size: 12, color: '#212121', family: 'Arial, sans-serif' }
+      });
+    }
+
+    const layout = {
+      yaxis: { range: [yMaxData, yMinData], visible: false, fixedrange: true },
+      xaxis: { range: [-1.2, 1.2], visible: false, fixedrange: true },
+      showlegend: false,
+      annotations: annotations,
+      margin: { t: 15, b: 15, l: 15, r: 15 },
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)',
+      autosize: true
+    };
+
+    Plotly.newPlot('plot', data, layout, { displayModeBar: false, responsive: true, staticPlot: true });
+  }
+
+  /* Garante o redimensionamento dinâmico do SVG quando o container alterar o tamanho */
+  const resizeObserver = new ResizeObserver(() => {
+    Plotly.Plots.resize(plotDiv);
+  });
+  resizeObserver.observe(plotDiv);
+
+  function setEyePosition(yPixels) {
+    const plotHeight = plotDiv.clientHeight;
+    yPixels = Math.max(10, Math.min(plotHeight - 20, yPixels));
+
+    eyeLine.style.top = `${yPixels}px`;
+
+    const lineCenter = yPixels + 11;
+    const marginT = 15;
+    const dataHeightPx = plotHeight - 2 * marginT;
+    const ratio = (lineCenter - marginT) / dataHeightPx;
+    yVisaoObservador = yMinData + Math.max(0, Math.min(1, ratio)) * (yMaxData - yMinData);
+
+    const yFundoMenisco_eye = yMeniscoReal + 0.12;
+    const erroParalaxe = Math.abs(yVisaoObservador - yFundoMenisco_eye);
+    if (erroParalaxe <= 0.012) {
+      eyeLine.classList.add('aligned');
+      eyeTag.textContent = '👁️ Visão Alinhada!';
+    } else {
+      eyeLine.classList.remove('aligned');
+      eyeTag.textContent = '👁️ Visão';
+    }
+  }
+
+  function sortearVolume() {
+    yMeniscoReal = parseFloat((12.3 + Math.random() * 1.4).toFixed(2));
+    inputReading.value = '';
+    statusDiv.textContent = 'Alinhe a visão com o fundo do menisco para eliminar a paralaxe!';
+    statusDiv.className = '';
+    
+    renderPlot();
+    setEyePosition(40);
+  }
+
+  function validarLeitura() {
+    const respostaAluno = parseFloat(inputReading.value.replace(',', '.'));
+
+    if (isNaN(respostaAluno)) {
+      statusDiv.textContent = 'Por favor, digite um valor numérico válido!';
+      statusDiv.className = 'warning';
+      return;
+    }
+
+    const yFundoMenisco = parseFloat((yMeniscoReal + 0.12).toFixed(2));
+
+    const erroParalaxe = Math.abs(yVisaoObservador - yFundoMenisco);
+    if (erroParalaxe > 0.08) {
+      statusDiv.textContent = '⚠️ Erro de Paralaxe! Arraste a linha azul da visão até o fundo do menisco.';
+      statusDiv.className = 'warning';
+      return;
+    }
+
+    const erroLeitura = Math.abs(respostaAluno - yFundoMenisco);
+
+    if (erroLeitura <= 0.03) {
+      statusDiv.textContent = `✓ Excelente! Leitura correta: ${yFundoMenisco.toFixed(2)} mL (Sua resposta: ${respostaAluno.toFixed(2)} mL).`;
+      statusDiv.className = 'success';
+    } else {
+      statusDiv.textContent = `✕ Leitura incorreta. Observe o fundo do menisco e tente estimar a segunda casa decimal.`;
+      statusDiv.className = '';
+    }
+  }
+
+  eyeLine.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    e.preventDefault();
+  });
+
+  window.addEventListener('mouseup', () => { isDragging = false; });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const rect = plotDiv.getBoundingClientRect();
+    const mouseYRelativo = e.clientY - rect.top;
+    setEyePosition(mouseYRelativo);
+  });
+
+  btnCheck.addEventListener('click', validarLeitura);
+  btnNew.addEventListener('click', sortearVolume);
+
+  sortearVolume();
+</script>
+
+</body>
+</html>

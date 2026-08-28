@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Cálcio e Magnésio em Calcário – Apostila de Química Analítica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./10_Neutralização_Calcario.html" rel="next">
+<link href="./08_Solucao_Tampao.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</script>
+
+
+
+<!-- Google tag (gtag.js) -->
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZVQ51X2MW"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'G-5ZVQ51X2MW');
+
+</script>
+
+
+
+
+
+<!--
+
+<script>
+
+  // 1. LER E ATUALIZAR
+
+  const temaSalvo = localStorage.getItem('temaApostilaFQA') || 'light';
+
+  document.documentElement.setAttribute('data-theme', temaSalvo);
+
+
+
+  // 2. MUDAR E GRAVAR
+
+  function alternarTema() {
+
+      const temaAtual = document.documentElement.getAttribute('data-theme');
+
+      const novoTema = temaAtual === 'light' ? 'dark' : 'light';
+
+      
+
+      document.documentElement.setAttribute('data-theme', novoTema);
+
+      localStorage.setItem('temaApostilaFQA', novoTema);
+
+  }
+
+</script>
+
+-->
+
+
+
+
+
+
+
+
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+// Define a variável com o nome do arquivo do Questionario
+var JSON_Questionario = "./simulador/vol_complexacao.dat";
+</script>
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09_Vol_Complexacao.html"><span class="chapter-title">⮞ &nbsp; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><msup><mi>g</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Mg^{2+}</annotation></semantics></math> em Calcário</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-title">Cálcio e Magnésio em Calcário</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Apostila de Química Analítica</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Apostila-de-Química-Analítica.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">️🡆 🏠︎ Página Inicial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Normas_Laboratorio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">🕮 &nbsp; Normas de Laboratório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Manual_Preparo_Solucao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">️🕮 &nbsp; Preparo de Soluções</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Preparo_KOH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⮞ &nbsp; Preparo de Solução de KOH</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Preparo_HCl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⮞ &nbsp; Preparo de Solução de HCl</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_Estequiometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⯈ &nbsp; Estequiometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_Equilibrio_Quimico.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⯈ &nbsp; Equilíbrio Químico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Titulometria.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">🕮 &nbsp; Titulometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Padronizacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⮞ &nbsp; Padronização de Solução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_Acidez_Alimentos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⮞ &nbsp; Acidez em Alimentos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_Vol_Precipitacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⮞ &nbsp; KCl em Fertilizante</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_Solucao_Tampao.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⮞ &nbsp; Preparo de Solução Tampão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_Vol_Complexacao.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">⮞ &nbsp; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><msup><mi>g</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Mg^{2+}</annotation></semantics></math> em Calcário</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Neutralização_Calcario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">⮞ &nbsp;Poder de Neutralização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./000_RegressaoLinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">★ &nbsp;Regressão Linear Teste</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./001_Espectro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">★ &nbsp;Espectro Teste</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Nota_Historica_Titulo_expandida.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nota Histórica Expandida</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
+  <ul class="collapse">
+  <li><a href="#preparo-da-amostra" id="toc-preparo-da-amostra" class="nav-link" data-scroll-target="#preparo-da-amostra">Preparo da Amostra</a></li>
+  <li><a href="#limitações-e-interferências-da-técnica" id="toc-limitações-e-interferências-da-técnica" class="nav-link" data-scroll-target="#limitações-e-interferências-da-técnica">Limitações e Interferências da Técnica</a></li>
+  <li><a href="#uso-dos-indicadores" id="toc-uso-dos-indicadores" class="nav-link" data-scroll-target="#uso-dos-indicadores">Uso dos indicadores</a></li>
+  </ul></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados">Dados</a></li>
+  <li><a href="#segurança-no-laboratório" id="toc-segurança-no-laboratório" class="nav-link" data-scroll-target="#segurança-no-laboratório">Segurança no Laboratório</a></li>
+  <li><a href="#roteiro-experimental" id="toc-roteiro-experimental" class="nav-link" data-scroll-target="#roteiro-experimental">Roteiro Experimental</a>
+  <ul class="collapse">
+  <li><a href="#procedimento-1" id="toc-procedimento-1" class="nav-link" data-scroll-target="#procedimento-1">Procedimento 1</a></li>
+  <li><a href="#procedimento-2" id="toc-procedimento-2" class="nav-link" data-scroll-target="#procedimento-2">Procedimento 2</a></li>
+  <li><a href="#procedimento-3" id="toc-procedimento-3" class="nav-link" data-scroll-target="#procedimento-3">Procedimento 3</a></li>
+  </ul></li>
+  <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a>
+  <ul class="collapse">
+  <li><a href="#método-1-uso-das-equações-químicas-formais" id="toc-método-1-uso-das-equações-químicas-formais" class="nav-link" data-scroll-target="#método-1-uso-das-equações-químicas-formais">Método 1: Uso das equações químicas formais</a></li>
+  <li><a href="#método-2-resolução-alternativa-por-regra-de-três" id="toc-método-2-resolução-alternativa-por-regra-de-três" class="nav-link" data-scroll-target="#método-2-resolução-alternativa-por-regra-de-três">Método 2: Resolução alternativa por regra de três</a></li>
+  <li><a href="#fluxograma-do-processo" id="toc-fluxograma-do-processo" class="nav-link" data-scroll-target="#fluxograma-do-processo">Fluxograma do Processo</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>A <a href="https://pt.wikipedia.org/wiki/Titula%C3%A7%C3%A3o_de_complexa%C3%A7%C3%A3o">titulação complexométrica</a> (ou volumetria de complexação) é uma técnica analítica quantitativa baseada na formação de um <a href="https://pt.wikipedia.org/wiki/Composto_de_coordena%C3%A7%C3%A3o"><strong>complexo</strong></a> <strong>solúvel e estável</strong> entre o analito e o titulante, que ocorre à medida que a reação atinge o equilíbrio de complexação em solução aquosa, definido pela constante de formação global ou de estabilidade <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>K</mi><mi>f</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(K_f)</annotation></semantics></math> do complexo metálico gerado.</p>
+<blockquote class="blockquote">
+<p>Compostos de coordenação, também chamados de complexos metálicos, são estruturas formadas por um átomo ou íon metálico central — que atua como um <a href="https://pt.wikipedia.org/wiki/Teoria_%C3%A1cido-base_de_Lewis">ácido de Lewis</a> — <a href="https://pt.wikipedia.org/wiki/Liga%C3%A7%C3%A3o_covalente">ligado covalentemente</a> a uma ou mais moléculas ou íons denominados <a href="https://pt.wikipedia.org/wiki/Ligante_(qu%C3%ADmica_inorg%C3%A2nica)">ligantes</a>, que atuam como <a href="https://pt.wikipedia.org/wiki/Teoria_%C3%A1cido-base_de_Lewis">bases de Lewis</a> ao doar pares de elétrons.</p>
+</blockquote>
+<p>Esta abordagem, impulsionada a partir meados do século XX principalmente pelo desenvolvimento de <a href="https://pt.wikipedia.org/wiki/Ligante_(qu%C3%ADmica_inorg%C3%A2nica)">ligantes</a> multidentados (moléculas que se ligam ao metal por múltiplos pontos) como o <a href="https://pt.wikipedia.org/wiki/EDTA">EDTA</a> (<strong>ácido etilenodiamino-tetra-acético</strong>), estabeleceu-se como um dos métodos clássicos mais precisos e versáteis da química analítica para a determinação de metais.</p>
+<p>Essa técnica é amplamente utilizada para determinar a concentração de cátions metálicos em amostras ambientais, alimentos, ligas metálicas e produtos farmacêuticos — sendo a medição da <a href="https://pt.wikipedia.org/wiki/Dureza_da_%C3%A1gua">dureza da água</a> (teor de <a href="https://pt.wikipedia.org/wiki/C%C3%A1lcio">cálcio</a> e <a href="https://pt.wikipedia.org/wiki/Magn%C3%A9sio">magnésio</a>) e a análise de <a href="https://pt.wikipedia.org/wiki/Calc%C3%A1rio">calcário</a> suas aplicações mais clássicas.</p>
+<p><strong>Principais Componentes</strong></p>
+<ul>
+<li><p><strong>Titulante (Ligante):</strong> O EDTA, substância mais empregada, é um ligante hexadentado que se coordena aos íons metálicos na proporção estequiométrica de <strong>1:1</strong>, independentemente da carga do metal, formando complexos altamente estáveis em formato de gaiola, denominados <a href="https://pt.wikipedia.org/wiki/Quelato">quelatos</a>.</p></li>
+<li><p><strong>Indicadores Metalocrômicos:</strong> São <a href="https://pt.wikipedia.org/wiki/Indicador_complexom%C3%A9trico">indicadores complexométricos</a> (corantes orgânicos, como o <a href="https://pt.wikipedia.org/wiki/Preto_de_eriocromo_T">Negro (ou Preto) de Eriocromo T — NET</a> ou a <a href="https://pt.wikipedia.org/wiki/Murexida">Murexida</a>) que mudam de cor ao se ligarem aos íons metálicos. O ponto final é atingido quando o titulante (EDTA) “arranca” o metal do indicador, liberando o corante em sua forma livre e alterando a cor da solução.</p></li>
+<li><p><strong>Controle de pH (<a href="https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o_tamp%C3%A3o">Solução Tampão</a>):</strong> A reação de complexação com o EDTA libera prótons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{H}^+)</annotation></semantics></math>. Por isso, o pH deve ser rigorosamente mantido constante com soluções tampão para assegurar a estabilidade do complexo metal-EDTA e a correta mudança de cor do indicador.</p></li>
+</ul>
+<!--
+**Tipos de Titulação Complexométrica**
+
+| Método | Como Funciona | Quando Utilizar |
+|:-----------------------|:-----------------------|:-----------------------|
+| **Direta** | O EDTA é adicionado diretamente à solução do metal até a alteração de cor do indicador. | Íons que reagem rapidamente com o EDTA e dispõem de indicador adequado. |
+| **Retrotitulação** *(ou Por Retorno)* | Adiciona-se um excesso conhecido de EDTA e titula-se o EDTA residual com uma solução padrão de outro metal (ex: $\text{Mg}^{2+}$). | Metais que reagem lentamente, precipitam em pH elevado ou bloqueiam o indicador. |
+| **Por Deslocamento** | O analito desloca um metal menos estável de outro complexo (ex: $\text{Mg-EDTA}$), e o metal liberado é então titulado. | Quando não há indicador direto satisfatório para o metal analisado. |
+| **Indireta** | Titula-se um cátion associado a um ânion para determinar indiretamente a concentração desse ânion (ex: $\text{SO}_4^{2-}$, $\text{PO}_4^{3-}$). | Determinação de ânions que formam precipitados insolúveis com íons metálicos. |
+-->
+<section id="preparo-da-amostra" class="level3">
+<h3 class="anchored" data-anchor-id="preparo-da-amostra">Preparo da Amostra</h3>
+<p>Nesta prática, a determinação de cálcio e magnésio é realizada a partir de uma amostra de <a href="https://pt.wikipedia.org/wiki/Dolomito">calcário dolomítico</a>, a qual exige um procedimento prévio de solubilização por ser uma matriz sólida insolúvel em água.</p>
+<p>A análise de <a href="https://pt.wikipedia.org/wiki/C%C3%A1lcio">cálcio</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{Ca}^{2+})</annotation></semantics></math> e <a href="https://pt.wikipedia.org/wiki/Magn%C3%A9sio">magnésio</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{Mg}^{2+})</annotation></semantics></math> em matrizes de <a href="https://pt.wikipedia.org/wiki/Calc%C3%A1rio">calcário</a> exige a decomposição prévia da rocha sedimentar (pulverizada). Essa decomposição é feita pelo ataque ácido (geralmente utilizando <a href="https://pt.wikipedia.org/wiki/%C3%81cido_clor%C3%ADdrico">ácido clorídrico</a>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>), no qual <a href="https://pt.wikipedia.org/wiki/Carbonato_de_c%C3%A1lcio">carbonato de cálcio</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">CaCO</mtext><mn>3</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{CaCO}_3)</annotation></semantics></math> e <a href="https://pt.wikipedia.org/wiki/Carbonato_de_magn%C3%A9sio">carbonato de magnésio</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">MgCO</mtext><mn>3</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{MgCO}_3)</annotation></semantics></math> são dissolvidos e convertidos em seus respectivos <a href="https://pt.wikipedia.org/wiki/Cloreto">cloretos</a> solúveis. A solução resultante é filtrada para a remoção de resíduos insolúveis (como a <a href="https://pt.wikipedia.org/wiki/Di%C3%B3xido_de_sil%C3%ADcio">sílica</a>) e diluída a um volume determinado antes de ser submetida à titulação.</p>
+<p>Na rotina laboratorial e na literatura científica, esse procedimento preliminar de conversão da matriz sólida em solução aquosa é tecnicamente denominado <strong>digestão da amostra</strong> ou <strong>decomposição por via úmida</strong>, sendo também amplamente conhecido pelo jargão analítico como <strong>abertura da amostra</strong>.</p>
+</section>
+<section id="limitações-e-interferências-da-técnica" class="level3">
+<h3 class="anchored" data-anchor-id="limitações-e-interferências-da-técnica">Limitações e Interferências da Técnica</h3>
+<ol type="1">
+<li><strong>Interferentes Metálicos:</strong> Cátions de metais de transição, se presentes na amostra, como <a href="https://pt.wikipedia.org/wiki/Cobalto">cobalto</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Co</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{Co}^{2+})</annotation></semantics></math>, <a href="https://pt.wikipedia.org/wiki/N%C3%ADquel">níquel</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Ni</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{Ni}^{2+})</annotation></semantics></math>, <a href="https://pt.wikipedia.org/wiki/Cobre">cobre</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Cu</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{Cu}^{2+})</annotation></semantics></math>, <a href="https://pt.wikipedia.org/wiki/Zinco">zinco</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Zn</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{Zn}^{2+})</annotation></semantics></math> e <a href="https://pt.wikipedia.org/wiki/Ferro">ferro</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Fe</mtext><mrow><mn>3</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">(\text{Fe}^{3+}</annotation></semantics></math>/<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">Fe</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{Fe}^{2+})</annotation></semantics></math> interferem na análise por formarem complexos estáveis com o EDTA ou por reagirem irreversivelmente com os indicadores (fenômeno conhecido como <em>“bloqueio do indicador”</em>).</li>
+</ol>
+<p>Na literatura clássica, o <a href="https://pt.wikipedia.org/wiki/Cianeto_de_pot%C3%A1ssio">cianeto de potássio</a> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KCN</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{KCN})</annotation></semantics></math> é empregado como agente mascarante para evitar essas interferências, pois ele forma cianocomplexos extremamente estáveis com esses metais de transição.</p>
+<blockquote class="blockquote">
+<p><strong>Nota de Segurança Laboratorial:</strong> Devido à extrema toxicidade do cianeto de potássio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KCN</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{KCN})</annotation></semantics></math>, esse reagente <strong>não será utilizado nesta prática</strong>. Para mitigar ou ocultar possíveis interferências sem riscos à saúde, utilizam-se agentes mascarantes alternativos mais seguros, como a <a href="https://pt.wikipedia.org/wiki/Trietanolamina">Trietanolamina</a> (para complexar íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Fe</mtext><mrow><mn>3</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Fe}^{3+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Al</mtext><mrow><mn>3</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Al}^{3+}</annotation></semantics></math> em pH alcalino) ou o ajuste criterioso do pH durante as etapas da análise.</p>
+</blockquote>
+<ol start="2" type="1">
+<li><strong>O Controle Crítico do pH (Efeito da Acidez):</strong> O EDTA só funciona bem na faixa de pH correta para cada metal. Se o pH cair durante a titulação, o EDTA perde a capacidade de se ligar ao metal; se o pH subir demais, o metal pode precipitar como hidróxido (como uma “nuvem” turva) e estragar a análise. Na prática, o uso do solução tampão não é opcional e deve ser adicionado no momento certo.</li>
+</ol>
+</section>
+<section id="uso-dos-indicadores" class="level3">
+<h3 class="anchored" data-anchor-id="uso-dos-indicadores">Uso dos indicadores</h3>
+<p>A diferenciação entre os íons cálcio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math>) e magnésio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Mg}^{2+}</annotation></semantics></math>) em amostras de calcário é viabilizada pelo comportamento físico-químico distinto dos indicadores <a href="https://pt.wikipedia.org/wiki/Murexida">Murexida</a> e <a href="https://pt.wikipedia.org/wiki/Preto_de_eriocromo_T">Negro de Eriocromo T</a> em faixas específicas de pH.</p>
+<p><strong>Visão Geral do Método em Duas Etapas</strong></p>
+<ul>
+<li><strong>Etapa 1</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math> puro): Ajusta-se o pH para <strong>12 – 13</strong>. Nessa faixa, o magnésio precipita como <a href="https://pt.wikipedia.org/wiki/Hidr%C3%B3xido_de_magn%C3%A9sio">hidróxido de magnésio</a> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">Mg(OH)</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{Mg(OH)}_2</annotation></semantics></math> — e fica inerte. Usa-se o indicador <strong>Murexida</strong>, que reage exclusivamente com o cálcio livre.</li>
+</ul>
+<p>A murexida (purpurato de amônio) é representada na sua forma desprotonada em pH alcalino como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msup><mtext mathvariant="normal">In</mtext><mrow><mn>3</mn><mo>−</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\text{H}_2\text{In}^{3-}</annotation></semantics></math> (cor <strong>púrpura/violeta</strong>).</p>
+<p><strong>A)</strong> Início da Titulação (Formação do Complexo Metal-Indicador)</p>
+<p>Ao adicionar murexida na alíquota alcalinizada, o indicador liga-se aos íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math> livres, formando um complexo de cor <strong>vermelha/rósea</strong>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><munder><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msup><mtext mathvariant="normal">In</mtext><mrow><mn>3</mn><mo>−</mo></mrow></msup></mrow><mtext mathvariant="normal">(Púrpura)</mtext></munder><mo>⇌</mo><munder><mrow><msub><mtext mathvariant="normal">CaH</mtext><mn>2</mn></msub><msup><mtext mathvariant="normal">In</mtext><mo>−</mo></msup></mrow><mtext mathvariant="normal">(Vermelho/Róseo)</mtext></munder></mrow><annotation encoding="application/x-tex">\text{Ca}^{2+} + \underset{\text{(Púrpura)}}{\text{H}_2\text{In}^{3-}} \rightleftharpoons \underset{\text{(Vermelho/Róseo)}}{\text{CaH}_2\text{In}^{-}}</annotation></semantics></math></p>
+<p><strong>B)</strong> Durante a Titulação com EDTA</p>
+<p>O EDTA (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Y</mtext><mrow><mn>4</mn><mo>−</mo></mrow></msup><annotation encoding="application/x-tex">\text{Y}^{4-}</annotation></semantics></math>) é adicionado e consome primeiramente todo o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math> que está livre na solução, pois o complexo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">Ca-EDTA</mtext><annotation encoding="application/x-tex">\text{Ca-EDTA}</annotation></semantics></math> é muito mais estável que o complexo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">Ca-Murexida</mtext><annotation encoding="application/x-tex">\text{Ca-Murexida}</annotation></semantics></math>.</p>
+<p><strong>C)</strong> Ponto Final (Viragem)</p>
+<p>Quando não resta mais <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math> livre, a última gota de EDTA arranca o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math> que estava preso ao indicador. A murexida é liberada na sua forma desprotonada livre, fazendo a solução mudar bruscamente de <strong>vermelho para violeta/púrpura</strong>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mrow><msub><mtext mathvariant="normal">CaH</mtext><mn>2</mn></msub><msup><mtext mathvariant="normal">In</mtext><mo>−</mo></msup></mrow><mtext mathvariant="normal">(Vermelho/Róseo)</mtext></munder><mo>+</mo><msup><mtext mathvariant="normal">Y</mtext><mrow><mn>4</mn><mo>−</mo></mrow></msup><mo>→</mo><msup><mtext mathvariant="normal">CaY</mtext><mrow><mn>2</mn><mo>−</mo></mrow></msup><mo>+</mo><munder><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msup><mtext mathvariant="normal">In</mtext><mrow><mn>3</mn><mo>−</mo></mrow></msup></mrow><mtext mathvariant="normal">(Violeta/Púrpura)</mtext></munder></mrow><annotation encoding="application/x-tex">\underset{\text{(Vermelho/Róseo)}}{\text{CaH}_2\text{In}^{-}} + \text{Y}^{4-} \rightarrow \text{CaY}^{2-} + \underset{\text{(Violeta/Púrpura)}}{\text{H}_2\text{In}^{3-}}</annotation></semantics></math></p>
+<ul>
+<li><strong>Etapa 2 (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\text{Ca}^{2+} + \text{Mg}^{2+}</annotation></semantics></math>): Em uma nova alíquota, ajusta-se o pH para <strong>10</strong>. Ambos os íons ficam solúveis. Usa-se o <strong>Negro de Eriocromo T (NET)</strong> para determinar a soma total (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\text{Ca}^{2+} + \text{Mg}^{2+}</annotation></semantics></math>). A quantidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Mg}^{2+}</annotation></semantics></math> é obtida por diferença.</li>
+</ul>
+<p>Em solução tampão de pH 10, o Negro de Eriocromo T (NET) predomina na sua forma desprotonada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">HIn</mtext><mrow><mn>2</mn><mo>−</mo></mrow></msup><annotation encoding="application/x-tex">\text{HIn}^{2-}</annotation></semantics></math>, que possui cor <strong>azul</strong>.</p>
+<p><strong>A)</strong> Início da Titulação (Formação do Complexo Metal-Indicador)</p>
+<p>O NET liga-se aos cátions metálicos livres na solução (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">M</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{M}^{2+}</annotation></semantics></math>, onde <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">M</mtext><mo>=</mo><mtext mathvariant="normal">Ca</mtext></mrow><annotation encoding="application/x-tex">\text{M} = \text{Ca}</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">Mg</mtext><annotation encoding="application/x-tex">\text{Mg}</annotation></semantics></math>). Por ter maior afinidade com o magnésio, forma-se predominantemente o complexo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">MgIn</mtext><mo>−</mo></msup><annotation encoding="application/x-tex">\text{MgIn}^{-}</annotation></semantics></math>, de cor <strong>vermelho-vinho</strong>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">M</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><munder><msup><mtext mathvariant="normal">HIn</mtext><mrow><mn>2</mn><mo>−</mo></mrow></msup><mtext mathvariant="normal">(Azul)</mtext></munder><mo>⇌</mo><munder><msup><mtext mathvariant="normal">MIn</mtext><mo>−</mo></msup><mtext mathvariant="normal">(Vermelho-vinho)</mtext></munder><mo>+</mo><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\text{M}^{2+} + \underset{\text{(Azul)}}{\text{HIn}^{2-}} \rightleftharpoons \underset{\text{(Vermelho-vinho)}}{\text{MIn}^{-}} + \text{H}^+</annotation></semantics></math></p>
+<p><strong>B)</strong> Durante a Titulação com EDTA</p>
+<p>O EDTA reage primeiro com todo o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Mg}^{2+}</annotation></semantics></math> livres na solução, pois os complexos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">Ca-EDTA</mtext><annotation encoding="application/x-tex">\text{Ca-EDTA}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">Mg-EDTA</mtext><annotation encoding="application/x-tex">\text{Mg-EDTA}</annotation></semantics></math> possuem constantes de formação mais elevadas do que o complexo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">Mg-NET</mtext><annotation encoding="application/x-tex">\text{Mg-NET}</annotation></semantics></math>.</p>
+<p><strong>C)</strong> Ponto Final (Viragem)</p>
+<p>Após a complexação de todo o metal livre, a adição de EDTA força a deslocação do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Mg}^{2+}</annotation></semantics></math> que estava ligado ao NET. O indicador retorna ao seu estado livre desprotonado, fazendo a cor da solução virar de <strong>vermelho-vinho para azul nítido</strong>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><msup><mtext mathvariant="normal">MIn</mtext><mo>−</mo></msup><mtext mathvariant="normal">(Vermelho-vinho)</mtext></munder><mo>+</mo><msup><mtext mathvariant="normal">Y</mtext><mrow><mn>4</mn><mo>−</mo></mrow></msup><mo>+</mo><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo>→</mo><msup><mtext mathvariant="normal">MY</mtext><mrow><mn>2</mn><mo>−</mo></mrow></msup><mo>+</mo><munder><msup><mtext mathvariant="normal">HIn</mtext><mrow><mn>2</mn><mo>−</mo></mrow></msup><mtext mathvariant="normal">(Azul)</mtext></munder></mrow><annotation encoding="application/x-tex">\underset{\text{(Vermelho-vinho)}}{\text{MIn}^{-}} + \text{Y}^{4-} + \text{H}^+ \rightarrow \text{MY}^{2-} + \underset{\text{(Azul)}}{\text{HIn}^{2-}}</annotation></semantics></math></p>
+<p><br></p>
+<p><strong>Resumo das Cores no Ponto Final</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Etapa</th>
+<th>Indicador</th>
+<th>pH</th>
+<th>Cor Inicial</th>
+<th>Cor no Ponto Final</th>
+<th>Determina</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>Murexida</td>
+<td>12 – 13</td>
+<td>Vermelho / Róseo</td>
+<td>Violeta / Púrpura</td>
+<td>Apenas <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>Negro de Eriocromo T</td>
+<td>10</td>
+<td>Vermelho-vinho</td>
+<td>Azul</td>
+<td>Total<br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{Ca}^{2+} + \text{Mg}^{2+})</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li><p>Executar a <strong>abertura</strong> ácida de amostra de calcário dolomítico para dissolução dos carbonatos de cálcio e magnésio.</p></li>
+<li><p>Determinar o teor de cálcio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math>) por titulação complexométrica direta em pH <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>−</mo><mn>13</mn></mrow><annotation encoding="application/x-tex">12 - 13</annotation></semantics></math> utilizando o indicador Murexida.</p></li>
+<li><p>Determinar o teor total de cálcio e magnésio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\text{Ca}^{2+} + \text{Mg}^{2+}</annotation></semantics></math>) em pH <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>10</mn><annotation encoding="application/x-tex">10</annotation></semantics></math> utilizando o indicador Negro de Eriocromo T.</p></li>
+<li><p>Calcular o teor percentual em massa (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mi>m</mi><mi>/</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">\%\,m/m</annotation></semantics></math>) de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">CaO</mtext><annotation encoding="application/x-tex">\text{CaO}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">MgO</mtext><annotation encoding="application/x-tex">\text{MgO}</annotation></semantics></math> presentes na amostra de calcário por método diferencial.</p></li>
+<li><p>Compreender a aplicação do agente mascarante trietanolamina na eliminação de interferências por ferro e alumínio.</p></li>
+</ul>
+</section>
+<section id="dados" class="level2">
+<h2 class="anchored" data-anchor-id="dados">Dados</h2>
+<ol type="1">
+<li><p><strong>Massas Molares — M.M.</strong></p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">Na</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">EDTA</mtext><mo>⋅</mo><mn>2</mn><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>372</mn><mo>,</mo><mn>24</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{Na}_2\text{H}_2\text{EDTA}\cdot 2\text{H}_2\text{O}) = 372{,}24 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">CaCO</mtext><mn>3</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>100</mn><mo>,</mo><mn>09</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{CaCO}_3) = 100{,}09 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">MgCO</mtext><mn>3</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>84</mn><mo>,</mo><mn>31</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{MgCO}_3) = 84{,}31 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">CaO</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>56</mn><mo>,</mo><mn>08</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{CaO}) = 56{,}08 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>=</mo><mn>40</mn><mo>,</mo><mn>08</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{Ca}^{2+} = 40{,}08 \ \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">MgO</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>40</mn><mo>,</mo><mn>30</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{MgO}) = 40{,}30 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><mi>.</mi><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>24</mn><mo>,</mo><mn>31</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">g·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M.M.(\text{Mg}^{2+}) = 24{,}31 \, \text{g·mol}^{-1}</annotation></semantics></math></li>
+</ul></li>
+<li><p><strong>Equações Químicas Relevantes</strong></p></li>
+</ol>
+<ul>
+<li>Abertura ácida do calcário:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">CaCO</mtext><mrow><mn>3</mn><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mn>2</mn><msub><mtext mathvariant="normal">HCl</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msubsup><mtext mathvariant="normal">Ca</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msubsup><mo>+</mo><mn>2</mn><msubsup><mtext mathvariant="normal">Cl</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>−</mo></msubsup><mo>+</mo><msub><mtext mathvariant="normal">CO</mtext><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>↑</mo><mi>+</mi><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\text{CaCO}_{3(s)} + 2\text{HCl}_{(aq)} \rightarrow \text{Ca}^{2+}_{(aq)} + 2\text{Cl}^{-}_{(aq)} + \text{CO}_{2(g)} \uparrow + \text{H}_2\text{O}_{(l)}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">MgCO</mtext><mrow><mn>3</mn><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mn>2</mn><msub><mtext mathvariant="normal">HCl</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><msubsup><mtext mathvariant="normal">Mg</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msubsup><mo>+</mo><mn>2</mn><msubsup><mtext mathvariant="normal">Cl</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>−</mo></msubsup><mo>+</mo><msub><mtext mathvariant="normal">CO</mtext><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>↑</mo><mi>+</mi><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\text{MgCO}_{3(s)} + 2\text{HCl}_{(aq)} \rightarrow \text{Mg}^{2+}_{(aq)} + 2\text{Cl}^{-}_{(aq)} + \text{CO}_{2(g)} \uparrow + \text{H}_2\text{O}_{(l)}</annotation></semantics></math></p>
+<ul>
+<li>Reação de complexação dos cátions com EDTA (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Na</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">Y</mtext></mrow><annotation encoding="application/x-tex">\text{Na}_2\text{H}_2\text{Y}</annotation></semantics></math>):</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mtext mathvariant="normal">Ca</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msubsup><mo>+</mo><msub><mtext mathvariant="normal">Na</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">Y</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">CaY</mtext><msubsup><mo stretchy="false" form="postfix">]</mo><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo>+</mo><mn>2</mn><msubsup><mtext mathvariant="normal">Na</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><mn>2</mn><msubsup><mtext mathvariant="normal">H</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup></mrow><annotation encoding="application/x-tex">\text{Ca}^{2+}_{(aq)} + \text{Na}_2\text{H}_2\text{Y}_{(aq)} \rightarrow [\text{CaY}]^{2-}_{(aq)} + 2\text{Na}^{+}_{(aq)} + 2\text{H}^{+}_{(aq)}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mtext mathvariant="normal">Mg</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msubsup><mo>+</mo><msub><mtext mathvariant="normal">Na</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">Y</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>→</mo><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">MgY</mtext><msubsup><mo stretchy="false" form="postfix">]</mo><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo>+</mo><mn>2</mn><msubsup><mtext mathvariant="normal">Na</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>+</mo><mn>2</mn><msubsup><mtext mathvariant="normal">H</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup></mrow><annotation encoding="application/x-tex">\text{Mg}^{2+}_{(aq)} + \text{Na}_2\text{H}_2\text{Y}_{(aq)} \rightarrow [\text{MgY}]^{2-}_{(aq)} + 2\text{Na}^{+}_{(aq)} + 2\text{H}^{+}_{(aq)}</annotation></semantics></math></p>
+<ul>
+<li>Viragem do Ponto Final com Indicadores Metalocrômicos:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><munder><mrow><msub><mtext mathvariant="normal">CaH</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">In</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>−</mo></msubsup></mrow><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">Vermelho/Róseo (Murexida)</mtext></munder><mo>+</mo><msubsup><mtext mathvariant="normal">Y</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>4</mn><mo>−</mo></mrow></msubsup><mo>→</mo><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">CaY</mtext><msubsup><mo stretchy="false" form="postfix">]</mo><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo>+</mo><munder><munder><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msubsup><mtext mathvariant="normal">In</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>3</mn><mo>−</mo></mrow></msubsup></mrow><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">Violeta/Púrpura</mtext></munder></mrow><annotation encoding="application/x-tex">\underbrace{\text{CaH}_2\text{In}^{-}_{(aq)}}_{\text{Vermelho/Róseo (Murexida)}} + \text{Y}^{4-}_{(aq)} \rightarrow [\text{CaY}]^{2-}_{(aq)} + \underbrace{\text{H}_2\text{In}^{3-}_{(aq)}}_{\text{Violeta/Púrpura}}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><munder><msubsup><mtext mathvariant="normal">MgIn</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>−</mo></msubsup><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">Vermelho-Vinho (NET)</mtext></munder><mo>+</mo><msubsup><mtext mathvariant="normal">Y</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>4</mn><mo>−</mo></mrow></msubsup><mo>+</mo><msubsup><mtext mathvariant="normal">H</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo>+</mo></msubsup><mo>→</mo><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">MgY</mtext><msubsup><mo stretchy="false" form="postfix">]</mo><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo>+</mo><munder><munder><msubsup><mtext mathvariant="normal">HIn</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">Azul (pH 10)</mtext></munder></mrow><annotation encoding="application/x-tex">\underbrace{\text{MgIn}^{-}_{(aq)}}_{\text{Vermelho-Vinho (NET)}} + \text{Y}^{4-}_{(aq)} + \text{H}^{+}_{(aq)} \rightarrow [\text{MgY}]^{2-}_{(aq)} + \underbrace{\text{HIn}^{2-}_{(aq)}}_{\text{Azul (pH 10)}}</annotation></semantics></math></p>
+<ol start="3" type="1">
+<li><p><strong>Propriedades e Parâmetros Físico-Químicos</strong></p>
+<ul>
+<li><p>Precipitação seletiva do magnésio:</p>
+<p>Em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pH</mtext><mo>&gt;</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">\text{pH} &gt; 12</annotation></semantics></math>, o magnésio precipita quantitativamente como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">Mg(OH)</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{Mg(OH)}_2</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>K</mi><mrow><mi>p</mi><mi>s</mi></mrow></msub><mo>=</mo><mn>5</mn><mo>,</mo><mn>61</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>12</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(K_{ps} = 5{,}61 \times 10^{-12})</annotation></semantics></math>, ficando inerte frente ao EDTA.</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="segurança-no-laboratório" class="level2">
+<h2 class="anchored" data-anchor-id="segurança-no-laboratório">Segurança no Laboratório</h2>
+<ul>
+<li><p><strong>Ácidos Concentrados</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">HCl</mtext></mrow><annotation encoding="application/x-tex">(\text{HCl}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">HNO</mtext><mn>3</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{HNO}_3)</annotation></semantics></math>: A etapa de ataque ácido libera vapores tóxicos e corrosivos (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">HCl</mtext><mrow><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><annotation encoding="application/x-tex">\text{HCl}_{(g)}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">NO</mtext><mi>x</mi></msub><annotation encoding="application/x-tex">\text{NO}_{x}</annotation></semantics></math>); o aquecimento para decomposição do calcário deve ser realizado obrigatoriamente dentro da <strong>capela de exaustão</strong>.</p></li>
+<li><p><strong>Bases e Soluções Tampão (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KOH</mtext><annotation encoding="application/x-tex">\text{KOH}</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">20\%</annotation></semantics></math> e Tampão <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtext mathvariant="normal">pH </mtext><mspace width="0.333em"></mspace></mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">\text{pH } 10</annotation></semantics></math>): São fortemente alcalinos e causam queimaduras químicas na pele e mucosas ocular e oral.</p></li>
+<li><p><strong>Agentes Quelantes e Indicadores (EDTA, NET e Murexida):</strong></p>
+<ul>
+<li>O <strong>EDTA</strong> e a <strong>Murexida</strong> causam irritação ocular e respiratória leve.</li>
+<li>A <strong>trietanolamina</strong> causa irritação cutânea, dermatite por contato continuado e lesões oculares.</li>
+<li>O <strong>Negro de Eriocromo T (NET)</strong> é irritante ocular grave e tóxico para organismos aquáticos.</li>
+<li>O manuseio dos indicadores na forma sólida dispersa em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">NaCl</mtext><annotation encoding="application/x-tex">\text{NaCl}</annotation></semantics></math> deve ser feito com cuidado para evitar suspensão e inalação de pó.</li>
+</ul></li>
+<li><p><strong>EPIs Obrigatórios:</strong> Utilizar obrigatoriamente jaleco de manga longa, luvas de nitrila e óculos de proteção durante toda a prática.</p></li>
+<li><p><strong>Substituição de Agentes Mascarantes:</strong> Cátions metálicos interferentes causam o “bloqueio do indicador”. O cianeto de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KCN</mtext><annotation encoding="application/x-tex">\text{KCN}</annotation></semantics></math>), classicamente utilizado, <strong>não é empregado nesta prática devido à sua extrema toxicidade aguda</strong>. Utiliza-se a <a href="https://pt.wikipedia.org/wiki/Trietanolamina"><strong>trietanolamina</strong></a> como alternativa segura para mascarar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Fe</mtext><mrow><mn>3</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Fe}^{3+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Al</mtext><mrow><mn>3</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Al}^{3+}</annotation></semantics></math>.</p></li>
+<li><p><strong>Gestão de Resíduos:</strong> O descarte de todas as soluções efluentes das titulações deve ser feito exclusivamente no frasco coletor específico para <strong>Resíduos de Titulação Complexométrica (EDTA + Íons Metálicos + Indicadores Orgânicos)</strong>, evitando a contaminação da rede de esgoto.</p></li>
+</ul>
+<hr>
+</section>
+<section id="roteiro-experimental" class="level2">
+<h2 class="anchored" data-anchor-id="roteiro-experimental">Roteiro Experimental</h2>
+<section id="procedimento-1" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento-1">Procedimento 1</h3>
+<p><strong>Abertura da amostra de Calcário e Preparo de Solução</strong></p>
+<ol type="1">
+<li>Pesar 0,20 g de calcário dolomítico em um Becher de 250 mL.</li>
+<li>Adicionar 10 mL de solução de HCl 1:1 e 5 gotas de HNO3 concentrado.</li>
+<li>Aquecer a solução a ebulição até secura. (mais ou menos 5 minutos).</li>
+<li>Adicionar 10 mL de água destilada ;</li>
+<li>Filtrar a solução para um balão volumétrico de 100 mL e completar o volume com água destilada. Reações químicas: CaCO3 + 2 HCl Ca2+ + 2 Cl-+ CO2(g) + H2O MgCO3 + 2 HCl Mg 2+ + 2 Cl- + CO2 (g)+ H2O</li>
+</ol>
+</section>
+<section id="procedimento-2" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento-2">Procedimento 2</h3>
+<p><strong>Determinação de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math></p>
+<ol type="1">
+<li>Pipetar 10 mL da solução da amostra, transferir para em Erlenmeyer de 250 mL e adicionar 40 mL de H2O e 10 mL de KOH 20%, para precipitar o magnésio sob a forma de Mg(OH)2, o que ocorre a pH acima de 12.</li>
+<li>Adicionar 10 gotas de trietanolamina, para impedir a precipitação do hidróxido ou do sal básico e 0,05 g (uma ponta de espátula) do indicador murexida 1:100 em NaCl (vermelho em pH acima de 11).</li>
+<li>Titular com solução de EDTA – Na2 0,01M até coloração azul.</li>
+</ol>
+<p>Reação química Ca2+ + Na2H2Y [CaY]-2 + 2 Na+ + 2H+</p>
+</section>
+<section id="procedimento-3" class="level3">
+<h3 class="anchored" data-anchor-id="procedimento-3">Procedimento 3</h3>
+<p><strong>Determinação de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math> + <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><msup><mi>g</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Mg^{2+}</annotation></semantics></math></p>
+<ol type="a">
+<li>Pipetar 10 mL da solução de amostra e transferir para um Erlenmeyer.</li>
+<li>Adicionar 40 mL de H2O e 20 mL de tampão pH 10 para evitar variações de pH no meio reacional, pois acima do pH 12 o Mg++ precipita e abaixo de pH 9 tanto os íons cálcio quanto os íons magnésio não formam complexos estáveis com o EDTA.</li>
+<li>Adicionar 10 gotas de trietanolamina para impedir a precipitação do hidróxido do metal ou do sal básico</li>
+<li>Adicionar 0,05 g (uma ponta de espátula) do indicador negro de eriocromo T 1:100 em NaCl (vermelho em pH 10).</li>
+<li>Titular com solução de EDTA– Na2 0,01M até aparecimento da cor azul.</li>
+</ol>
+<p>Reações químicas Ca2+ + Na2H2Y [CaY]-2 + 2 Na+ + 2H+ Mg2+ + Na2H2Y [MgY]-2 + 2 Na+ + 2 H+</p>
+</section>
+</section>
+<section id="guia-do-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
+<p>Este guia apresenta o procedimento para determinar a porcentagem em massa de óxido de cálcio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">CaO</mtext></mrow><annotation encoding="application/x-tex">\% \, \text{CaO}</annotation></semantics></math>) e óxido de magnésio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">MgO</mtext></mrow><annotation encoding="application/x-tex">\% \, \text{MgO}</annotation></semantics></math>) na amostra de calcário.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grandeza</th>
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: center;">Unidade Recomendada</th>
+<th style="text-align: left;">Observação / Aplicação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Concentração do EDTA</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mtext mathvariant="normal">EDTA</mtext></msub><annotation encoding="application/x-tex">M_{\text{EDTA}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Molaridade exata da solução de EDTA padrão (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}0100 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Volume EDTA em pH &gt; 12</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>1</mn></msub><annotation encoding="application/x-tex">V_1</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math></td>
+<td style="text-align: left;">Volume consumido na titulação exclusiva de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><msup><mi mathvariant="normal">a</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Ca^{2+}}</annotation></semantics></math> (Murexida)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Volume EDTA em pH 10</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>2</mn></msub><annotation encoding="application/x-tex">V_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math></td>
+<td style="text-align: left;">Volume consumido na titulação da soma <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><msup><mi mathvariant="normal">a</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup><mo mathvariant="normal">+</mo><mi mathvariant="normal">M</mi><msup><mi mathvariant="normal">g</mi><mrow><mn mathvariant="normal">2</mn><mo mathvariant="normal">+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Ca^{2+} + Mg^{2+}}</annotation></semantics></math> (NET)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Massa molar do CaO</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><msub><mi>.</mi><mtext mathvariant="normal">CaO</mtext></msub></mrow><annotation encoding="application/x-tex">M.M._{\text{CaO}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{g\cdot mol^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Constante do composto (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>56</mn><mo>,</mo><mn>08</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">56{,}08 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Massa molar do MgO</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>.</mi><mi>M</mi><msub><mi>.</mi><mtext mathvariant="normal">MgO</mtext></msub></mrow><annotation encoding="application/x-tex">M.M._{\text{MgO}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{g\cdot mol^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Constante do composto (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mo>,</mo><mn>30</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">40{,}30 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Massa da amostra</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mtext mathvariant="normal">amostra</mtext></msub><annotation encoding="application/x-tex">m_{\text{amostra}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">g</mi><annotation encoding="application/x-tex">\mathrm{g}</annotation></semantics></math></td>
+<td style="text-align: left;">Massa total de calcário pesada (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∼</mo><mn>0</mn><mo>,</mo><mn>2000</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">\sim 0{,}2000 \ \mathrm{g}</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Fator de Alíquota</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>f</mi><mtext mathvariant="normal">aliq</mtext></msub><annotation encoding="application/x-tex">f_{\text{aliq}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>−</mi><annotation encoding="application/x-tex">-</annotation></semantics></math></td>
+<td style="text-align: left;">Razão entre o volume do balão e a alíquota (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mi>/</mi><mn>10</mn><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">100 / 10 = 10</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled" title="Atenção para a Separação dos Volumes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção para a Separação dos Volumes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>1</mn></msub><annotation encoding="application/x-tex">V_1</annotation></semantics></math> quantifica diretamente a quantidade de íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Ca}^{2+}</annotation></semantics></math>.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mtext mathvariant="normal">Mg</mtext></msub><mo>=</mo><msub><mi>V</mi><mn>2</mn></msub><mo>−</mo><msub><mi>V</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">V_{\text{Mg}} = V_2 - V_1</annotation></semantics></math> quantifica diretamente a quantidade de íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Mg}^{2+}</annotation></semantics></math>.</li>
+<li>O fator de alíquota (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mtext mathvariant="normal">aliq</mtext></msub><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">f_{\text{aliq}} = 10</annotation></semantics></math>) deve ser aplicado para relacionar os mols da alíquota titulada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10 \, \text{mL}</annotation></semantics></math> com a massa total dissolvida no balão de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \, \text{mL}</annotation></semantics></math>.</li>
+</ul>
+</div>
+</div>
+<section id="método-1-uso-das-equações-químicas-formais" class="level3">
+<h3 class="anchored" data-anchor-id="método-1-uso-das-equações-químicas-formais">Método 1: Uso das equações químicas formais</h3>
+<p><strong>Passo 1</strong> — Determinar a massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">CaO</mtext><annotation encoding="application/x-tex">\text{CaO}</annotation></semantics></math> e sua porcentagem: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mtext mathvariant="normal">Ca</mtext></msub><mo>=</mo><msub><mi>M</mi><mtext mathvariant="normal">EDTA</mtext></msub><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>V</mi><mn>1</mn></msub><mn>1000</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">n_{\text{Ca}} = M_{\text{EDTA}} \cdot \left(\frac{V_1}{1000}\right)</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mtext mathvariant="normal">CaO (balão)</mtext></msub><mo>=</mo><msub><mi>n</mi><mtext mathvariant="normal">Ca</mtext></msub><mo>⋅</mo><mi>M</mi><mi>.</mi><mi>M</mi><msub><mi>.</mi><mtext mathvariant="normal">CaO</mtext></msub><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>100</mn><mn>10</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">m_{\text{CaO (balão)}} = n_{\text{Ca}} \cdot M.M._{\text{CaO}} \cdot \left(\frac{100}{10}\right)</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">CaO</mtext><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>m</mi><mtext mathvariant="normal">CaO (balão)</mtext></msub><msub><mi>m</mi><mtext mathvariant="normal">amostra</mtext></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\% \, \text{CaO} = \left( \frac{m_{\text{CaO (balão)}}}{m_{\text{amostra}}} \right) \cdot 100</annotation></semantics></math></p>
+<p><strong>Passo 2</strong> — Determinar a massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">MgO</mtext><annotation encoding="application/x-tex">\text{MgO}</annotation></semantics></math> e sua porcentagem: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mtext mathvariant="normal">Mg</mtext></msub><mo>=</mo><msub><mi>V</mi><mn>2</mn></msub><mo>−</mo><msub><mi>V</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">V_{\text{Mg}} = V_2 - V_1</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mtext mathvariant="normal">Mg</mtext></msub><mo>=</mo><msub><mi>M</mi><mtext mathvariant="normal">EDTA</mtext></msub><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>V</mi><mtext mathvariant="normal">Mg</mtext></msub><mn>1000</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">n_{\text{Mg}} = M_{\text{EDTA}} \cdot \left(\frac{V_{\text{Mg}}}{1000}\right)</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mtext mathvariant="normal">MgO (balão)</mtext></msub><mo>=</mo><msub><mi>n</mi><mtext mathvariant="normal">Mg</mtext></msub><mo>⋅</mo><mi>M</mi><mi>.</mi><mi>M</mi><msub><mi>.</mi><mtext mathvariant="normal">MgO</mtext></msub><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>100</mn><mn>10</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">m_{\text{MgO (balão)}} = n_{\text{Mg}} \cdot M.M._{\text{MgO}} \cdot \left(\frac{100}{10}\right)</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">MgO</mtext><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>m</mi><mtext mathvariant="normal">MgO (balão)</mtext></msub><msub><mi>m</mi><mtext mathvariant="normal">amostra</mtext></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\% \, \text{MgO} = \left( \frac{m_{\text{MgO (balão)}}}{m_{\text{amostra}}} \right) \cdot 100</annotation></semantics></math></p>
+<hr>
+</section>
+<section id="método-2-resolução-alternativa-por-regra-de-três" class="level3">
+<h3 class="anchored" data-anchor-id="método-2-resolução-alternativa-por-regra-de-três">Método 2: Resolução alternativa por regra de três</h3>
+<p><strong>Exemplo prático:</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mtext mathvariant="normal">amostra</mtext></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>2000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">m_{\text{amostra}} = 0{,}2000 \ \text{g}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mn>6</mn><mo>,</mo><mn>50</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_1 = 6{,}50 \ \text{mL}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mn>2</mn></msub><mo>=</mo><mn>11</mn><mo>,</mo><mn>20</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_2 = 11{,}20 \ \text{mL}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mtext mathvariant="normal">EDTA</mtext></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M_{\text{EDTA}} = 0{,}0100 \ \text{mol·L}^{-1}</annotation></semantics></math>.</p>
+<p><strong>Passo 1</strong> — Porcentagem de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">CaO</mtext><annotation encoding="application/x-tex">\text{CaO}</annotation></semantics></math>: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol EDTA</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols EDTA</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>6</mn><mo>,</mo><mn>50</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+0{,}0100 \ \text{mol EDTA} &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
+x_1 \ \text{mols EDTA}    &amp; \text{-------------} &amp; 6{,}50 \ \text{mL}
+\end{array}</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mn>6</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> na alíquota de </mtext><mspace width="0.333em"></mspace></mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">x_1 = 6{,}50 \times 10^{-5} \ \text{mols de } \text{Ca}^{2+} \text{ na alíquota de } 10 \ \text{mL}</annotation></semantics></math></p>
+<p>Multiplicando pelo fator de alíquota (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mi>/</mi><mn>10</mn><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">100 / 10 = 10</annotation></semantics></math>): <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mtext mathvariant="normal">Ca (total)</mtext></msub><mo>=</mo><mn>6</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> no balão</mtext></mrow></mrow><annotation encoding="application/x-tex">n_{\text{Ca (total)}} = 6{,}50 \times 10^{-4} \ \text{mols de } \text{Ca}^{2+} \text{ no balão}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mol de </mtext><mspace width="0.333em"></mspace></mrow><mtext mathvariant="normal">CaO</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>56</mn><mo>,</mo><mn>08</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>6</mn><mo>,</mo><mn>50</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>m</mi><mtext mathvariant="normal">CaO</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \ \text{mol de } \text{CaO} &amp; \text{-------------} &amp; 56{,}08 \ \text{g} \\
+6{,}50 \times 10^{-4} \ \text{mol} &amp; \text{-------------} &amp; m_{\text{CaO}} \ \text{g}
+\end{array}</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mtext mathvariant="normal">CaO</mtext></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>03645</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">g de </mtext><mspace width="0.333em"></mspace></mrow><mtext mathvariant="normal">CaO</mtext></mrow><annotation encoding="application/x-tex">m_{\text{CaO}} = 0{,}03645 \ \text{g de } \text{CaO}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">CaO</mtext><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>03645</mn></mrow><mrow><mn>0</mn><mo>,</mo><mn>2000</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>×</mo><mn>100</mn><mo>=</mo><mn>18</mn><mo>,</mo><mn>23</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\% \, \text{CaO} = \left(\frac{0{,}03645}{0{,}2000}\right) \times 100 = 18{,}23\%</annotation></semantics></math></p>
+<p><strong>Passo 2</strong> — Porcentagem de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">MgO</mtext><annotation encoding="application/x-tex">\text{MgO}</annotation></semantics></math>: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mtext mathvariant="normal">Mg</mtext></msub><mo>=</mo><msub><mi>V</mi><mn>2</mn></msub><mo>−</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mn>11</mn><mo>,</mo><mn>20</mn><mo>−</mo><mn>6</mn><mo>,</mo><mn>50</mn><mo>=</mo><mn>4</mn><mo>,</mo><mn>70</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">V_{\text{Mg}} = V_2 - V_1 = 11{,}20 - 6{,}50 = 4{,}70 \ \text{mL}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol EDTA</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols EDTA</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>4</mn><mo>,</mo><mn>70</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+0{,}0100 \ \text{mol EDTA} &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
+x_2 \ \text{mols EDTA}    &amp; \text{-------------} &amp; 4{,}70 \ \text{mL}
+\end{array}</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>4</mn><mo>,</mo><mn>70</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> na alíquota</mtext></mrow></mrow><annotation encoding="application/x-tex">x_2 = 4{,}70 \times 10^{-5} \ \text{mols de } \text{Mg}^{2+} \text{ na alíquota}</annotation></semantics></math></p>
+<p>No balão total (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math>): <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mtext mathvariant="normal">Mg (total)</mtext></msub><mo>=</mo><mn>4</mn><mo>,</mo><mn>70</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">n_{\text{Mg (total)}} = 4{,}70 \times 10^{-4} \ \text{mols de } \text{Mg}^{2+}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mol de </mtext><mspace width="0.333em"></mspace></mrow><mtext mathvariant="normal">MgO</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>40</mn><mo>,</mo><mn>30</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>4</mn><mo>,</mo><mn>70</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>m</mi><mtext mathvariant="normal">MgO</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+1 \ \text{mol de } \text{MgO} &amp; \text{-------------} &amp; 40{,}30 \ \text{g} \\
+4{,}70 \times 10^{-4} \ \text{mol} &amp; \text{-------------} &amp; m_{\text{MgO}} \ \text{g}
+\end{array}</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mtext mathvariant="normal">MgO</mtext></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>01894</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">g de </mtext><mspace width="0.333em"></mspace></mrow><mtext mathvariant="normal">MgO</mtext></mrow><annotation encoding="application/x-tex">m_{\text{MgO}} = 0{,}01894 \ \text{g de } \text{MgO}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">MgO</mtext><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>01894</mn></mrow><mrow><mn>0</mn><mo>,</mo><mn>2000</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>×</mo><mn>100</mn><mo>=</mo><mn>9</mn><mo>,</mo><mn>47</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\% \, \text{MgO} = \left(\frac{0{,}01894}{0{,}2000}\right) \times 100 = 9{,}47\%</annotation></semantics></math></p>
+</section>
+<section id="fluxograma-do-processo" class="level3">
+<h3 class="anchored" data-anchor-id="fluxograma-do-processo">Fluxograma do Processo</h3>
+<div id="fluxograma-Complexacao" class="center fluxograma-adaptavel quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fluxograma figure">
+<div aria-describedby="fluxograma-Complexacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg width="100%" style="height: auto;" viewbox="0 0 1280 1480" version="1.1" id="svg_koh_preparo" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<style id="style1">
+  .graph-bg       { fill: var(--bg-graph, #ffffff); }
+  .node-bg-root   { fill: var(--bg-node-root, #e5e5e5); }
+  .node-bg        { fill: var(--bg-node, #f0f0f0); }
+  .stroke-color   { stroke: var(--stroke-main, #000000); stroke-width: 2px; }
+  .text-color     { fill: var(--text-main, #000000); }
+  
+  .edge-line      { stroke: var(--stroke-main, #000000); stroke-width: 3px; }
+  .edge-arrow     { fill: var(--stroke-main, #000000); stroke: var(--stroke-main, #000000); }
+
+  .formula-text {
+    font-family: "Latin Modern Math", "Cambria Math", "Helvetica", sans-Serif;
+    font-size: 24px;
+    fill: var(--text-main, #000000);
+    text-anchor: middle;
+  }
+  .subscript { font-size: 16px; }
+</style>
+  <g id="graph0">
+    <title id="title1">Preparo_KOH</title>
+    <polygon class="graph-bg" stroke="none" points="0,0 1280,0 1280,1480 0,1480" id="polygon1"></polygon>
+
+    <!-- ROOT -->
+    <g id="node1">
+      <polygon class="node-bg-root" stroke="none" points="280,30 970,30 970,80 280,80" id="polygon2"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="62" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text2">Preparo de Solução de KOH 0,1 mol·L⁻¹ (100 mL)</text>
+      <polygon fill="none" class="stroke-color" points="280,30 970,30 970,80 280,80" id="polygon3"></polygon>
+    </g>
+
+    <!-- SETA ROOT -> P1 -->
+    <path class="edge-line" d="M625,80 L625,120" id="path3"></path>
+    <polygon class="edge-arrow" points="620,120 625,130 630,120" id="polygon4"></polygon>
+
+    <!-- PASSO 1: Mols Necessários -->
+    <g id="node2">
+      <polygon class="node-bg" stroke="none" points="330,130 920,130 920,250 330,250" id="polygon5"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="170" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text5">Passo 1 — Mols de KOH necessários</text>
+      <line x1="330" y1="200" x2="920" y2="200" class="stroke-color" id="line5"></line>
+      
+      <!-- Formula P1 -->
+      <text class="formula-text" x="625" y="232" id="text9">n<tspan class="subscript" dy="6">KOH</tspan><tspan dy="-6"> = M × V = 0,100 mol·L</tspan><tspan class="subscript" dy="-6">−1</tspan><tspan dy="6"> × 0,100 L = 0,0100 mol</tspan></text>
+      <polygon fill="none" class="stroke-color" points="330,130 920,130 920,250 330,250" id="polygon9"></polygon>
+    </g>
+
+    <!-- SETA P1 -> P2 -->
+    <path class="edge-line" d="M625,250 L625,290" id="path9"></path>
+    <polygon class="edge-arrow" points="620,290 625,300 630,290" id="polygon10"></polygon>
+
+    <!-- PASSO 2: Massa Teórica (LARGURA EXPANDIDA PARA ACOMODAR A STRING) -->
+    <g id="node3">
+      <polygon class="node-bg" stroke="none" points="200,300 1050,300 1050,440 200,440" id="polygon11"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="340" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text11">Passo 2 — Massa teórica de KOH puro</text>
+      <line x1="200" y1="370" x2="1050" y2="370" class="stroke-color" id="line11"></line>
+      <line x1="560" y1="370" x2="560" y2="440" class="stroke-color" id="line12"></line>
+      
+      <!-- Esquerda: Massa Molar -->
+      <text class="formula-text" x="380" y="412" id="text16">M.M.(KOH) = 56,11 g·mol<tspan class="subscript" dy="-6">−1</tspan></text>
+      <!-- Direita: Cálculo amplo -->
+      <text class="formula-text" x="805" y="412" id="text19">m<tspan class="subscript" dy="6">teórica</tspan><tspan dy="-6"> = 0,0100 × 56,11 = 0,5611 g</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="200,300 1050,300 1050,440 200,440" id="polygon20"></polygon>
+    </g>
+
+    <!-- SETA P2 -> P3 -->
+    <path class="edge-line" d="M625,440 L625,480" id="path20"></path>
+    <polygon class="edge-arrow" points="620,480 625,490 630,480" id="polygon21"></polygon>
+
+    <!-- PASSO 3: Correção por Pureza -->
+    <g id="node4">
+      <polygon class="node-bg" stroke="none" points="250,490 1000,490 1000,630 250,630" id="polygon22"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="530" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text22">Passo 3 — Correção por pureza do reagente (90%)</text>
+      <line x1="250" y1="560" x2="1000" y2="560" class="stroke-color" id="line22"></line>
+      <line x1="625" y1="560" x2="625" y2="630" class="stroke-color" id="line23"></line>
+      
+      <!-- Regra de três explicativa -->
+      <text class="formula-text" x="437" y="602" id="text23">90 g puro ↔ 100 g comercial</text>
+      <!-- Cálculo corrigido -->
+      <text class="formula-text" x="812" y="602" id="text25">m<tspan class="subscript" dy="6">corrigida</tspan><tspan dy="-6"> = 0,5611 / 0,90 ≈ 0,62 g</tspan></text>
+      
+      <polygon fill="none" class="stroke-color" points="250,490 1000,490 1000,630 250,630" id="polygon25"></polygon>
+    </g>
+
+    <!-- SETA P3 -> P4 -->
+    <path class="edge-line" d="M625,630 L625,670" id="path25"></path>
+    <polygon class="edge-arrow" points="620,670 625,680 630,670" id="polygon26"></polygon>
+
+    <!-- PASSO 4: Pesagem e Dissolução -->
+    <g id="node5">
+      <polygon class="node-bg" stroke="none" points="200,680 1050,680 1050,810 200,810" id="polygon27"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="720" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text27">Passo 4 — Pesagem e Dissolução Inicial</text>
+      <line x1="200" y1="750" x2="1050" y2="750" class="stroke-color" id="line27"></line>
+      
+      <text class="formula-text" x="625" y="782" id="text31">Pesar ~0,62 g de KOH em béquer + Dissolver em ~50 mL H<tspan class="subscript" dy="6">2</tspan><tspan dy="-6">O destilada</tspan></text>
+      <polygon fill="none" class="stroke-color" points="200,680 1050,680 1050,810 200,810" id="polygon31"></polygon>
+    </g>
+
+    <!-- SETA P4 -> P5 -->
+    <path class="edge-line" d="M625,810 L625,850" id="path31"></path>
+    <polygon class="edge-arrow" points="620,850 625,860 630,850" id="polygon32"></polygon>
+
+    <!-- PASSO 5: Transferência e Volumetria -->
+    <g id="node6">
+      <polygon class="node-bg" stroke="none" points="10,860 1270,860 1270,1040 10,1040" id="polygon33"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="640" y="900" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text33">Passo 5 — Transferência Quantitativa e Aferição</text>
+      <line x1="10" y1="930" x2="1270" y2="930" class="stroke-color" id="line33"></line>
+      <line x1="430" y1="930" x2="430" y2="1040" class="stroke-color" id="line34"></line>
+      <line x1="850" y1="930" x2="850" y2="1040" class="stroke-color" id="line35"></line>
+      
+      <!-- Sub-bloco 1 -->
+      <text class="formula-text" x="220" y="985" id="text42">Balão Volumétrico 100 mL</text>
+      <!-- Sub-bloco 2 -->
+      <text class="formula-text" x="640" y="985" id="text44">Lavar béquer e transferir enxágues</text>
+      <!-- Sub-bloco 3 -->
+      <text class="formula-text" x="1060" y="985" id="text46">Aferir o menisco sem erro de paralaxe</text>
+      
+      <polygon fill="none" class="stroke-color" points="10,860 1270,860 1270,1040 10,1040" id="polygon48"></polygon>
+    </g>
+
+    <!-- SETA P5 -> P6 -->
+    <path class="edge-line" d="M625,1040 L625,1080" id="path48"></path>
+    <polygon class="edge-arrow" points="620,1080 625,1090 630,1080" id="polygon49"></polygon>
+
+    <!-- PASSO 6: Armazenamento e Frasco (DIVISÃO REMOVIDA / MENSAGEM ÚNICA) -->
+    <g id="node7">
+      <polygon class="node-bg" stroke="none" points="180,1090 1070,1090 1070,1230 180,1230" id="polygon50"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="1130" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text50">Passo 6 — Escolha do Frasco de Armazenamento</text>
+      <line x1="180" y1="1160" x2="1070" y2="1160" class="stroke-color" id="line50"></line>
+      
+      <!-- Mensagem Única sem divisória -->
+      <text class="formula-text" x="625" y="1202" id="text53">Frasco de Polietileno / PTFE — Evita reação lenta do KOH com o vidro</text>
+      
+      <polygon fill="none" class="stroke-color" points="180,1090 1070,1090 1070,1230 180,1230" id="polygon57"></polygon>
+    </g>
+
+    <!-- SETA P6 -> P7 -->
+    <path class="edge-line" d="M625,1230 L625,1270" id="path57"></path>
+    <polygon class="edge-arrow" points="620,1270 625,1280 630,1270" id="polygon58"></polygon>
+
+    <!-- PASSO 7: Rotulagem Final -->
+    <g id="node8">
+      <polygon class="node-bg" stroke="none" points="220,1280 1030,1280 1030,1430 220,1430" id="polygon59"></polygon>
+      <text class="text-color" space="preserve" text-anchor="middle" x="625" y="1320" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="28.00" id="text59">Passo 7 — Rotulagem e Identificação Final</text>
+      <line x1="220" y1="1350" x2="1030" y2="1350" class="stroke-color" id="line59"></line>
+      
+      <!-- Informações do Rótulo -->
+      <text class="formula-text" x="625" y="1385" id="text60">Nome da Solução (KOH) | Concentração (~0,1 mol·L⁻¹)</text>
+      <text class="formula-text" x="625" y="1415" id="text61">Data de Preparo | Nome do Responsável</text>
+      
+      <polygon fill="none" class="stroke-color" points="220,1280 1030,1280 1030,1430 220,1430" id="polygon65"></polygon>
+    </g>
+  </g>
+</svg>
+
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma quarto-uncaptioned" id="fluxograma-Complexacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fluxograma&nbsp;13.1
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
+<p>Explique por que é necessário alcalinizar o meio até <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pH</mtext><mo>&gt;</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">\text{pH} &gt; 12</annotation></semantics></math> na determinação exclusiva de cálcio e qual o precipitado formado.</p>
+<p>Qual a função da adição de trietanolamina durante as titulações de amostras de calcário?</p>
+<p>Uma amostra de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>2015</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">g</mtext></mrow><annotation encoding="application/x-tex">0{,}2015 \, \text{g}</annotation></semantics></math> de calcário dolomítico foi tratada adequadamente e diluída para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>,</mo><mn>0</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100{,}0 \, \text{mL}</annotation></semantics></math>. Uma alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10{,}00 \, \text{mL}</annotation></semantics></math> em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtext mathvariant="normal">pH </mtext><mspace width="0.333em"></mspace></mrow><mn>12</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\text{pH } 12{,}5</annotation></semantics></math> consumiu <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>,</mo><mn>20</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">7{,}20 \, \text{mL}</annotation></semantics></math> de EDTA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0{,}0100 \, \text{mol·L}^{-1}</annotation></semantics></math>. Outra alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>00</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10{,}00 \, \text{mL}</annotation></semantics></math> em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtext mathvariant="normal">pH </mtext><mspace width="0.333em"></mspace></mrow><mn>10</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\text{pH } 10{,}0</annotation></semantics></math> consumiu <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>,</mo><mn>80</mn><mspace width="0.167em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">12{,}80 \, \text{mL}</annotation></semantics></math> da mesma solução de EDTA. Calcule a porcentagem em massa de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">CaO</mtext><annotation encoding="application/x-tex">\text{CaO}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">MgO</mtext><annotation encoding="application/x-tex">\text{MgO}</annotation></semantics></math> na amostra.</p>
+<p>Por que o cianeto de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KCN</mtext><annotation encoding="application/x-tex">\text{KCN}</annotation></semantics></math>) é evitado na rotina acadêmica de análise de complexação e qual o fenômeno analítico que ele previne?</p>
+<hr>
+<hr>
+<p>Essa afirmação é sustentada por três pilares históricos, químicos e práticos que transformaram radicalmente o panorama da Química Analítica na metade do século XX:</p>
+<p>Para esclarecer a linha do tempo exata sem margem para dúvidas:</p>
+<pre><code>1935 (Síntese da molécula): O EDTA foi sintetizado pela primeira vez pelo químico austríaco Ferdinand Münz enquanto trabalhava para a empresa alemã IG Farben. Münz patenteou o produto para ser usado na indústria têxtil (para capturar íons de cálcio e magnésio da água de lavagem de tecidos).
+
+1945 (Início da aplicação analítica): Dez anos depois, o químico Gerold Schwarzenbach, na Suíça, publicou os primeiros trabalhos demonstrando que o EDTA e outros aminocarboxilatos podiam ser usados como reagentes analíticos em titulações volumétricas. Foi ele quem inventou os indicadores metalocrômicos (como o Eriocromo T) nessa mesma época.</code></pre>
+<p><strong>A síntese (1935):</strong> O EDTA foi sintetizado pela primeira vez em 1935 pelo químico austríaco Ferdinand Münz na Alemanha. A intenção original de Münz não era a análise química quantitativa, mas sim criar um substituto do ácido cítrico para abrandar a água (remover <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><msup><mi>g</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Mg^{2+}</annotation></semantics></math>) e evitar depósitos em indústrias têxteis.</p>
+<p><strong>1. O Marco Histórico (Década de 1940)</strong> Até meados dos anos 1940, complexar metais em solução envolvia predominantemente ligantes <strong>monodentados</strong> (como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>H</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">NH_3</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>N</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">CN^-</annotation></semantics></math>). Essas reações eram pouco práticas para titulações, pois ocorriam em várias etapas sucessivas e geravam pontos finais pouco nítidos. O cenário mudou a partir dos trabalhos do químico suíço <strong>Gerold Schwarzenbach</strong>, que introduziu o uso dos ácidos aminocarboxílicos (com destaque para o EDTA) e desenvolveu os primeiros <em>indicadores metalocrômicos</em>. Isso permitiu, pela primeira vez, realizar titulações de íons metálicos de forma direta, visual e extremamente precisa.</p>
+<p><strong>2. O Efeito Quelato e a Estequiometria 1:1 (Razão Química)</strong> Diferente dos ligantes monodentados, ligantes multidentados (como o EDTA, que é hexadentado) “abraçam” o íon metálico em vários pontos de coordenação simultaneamente, formando anéis heterocíclicos conhecidos como <strong>quelatos</strong>.</p>
+<p>Isso traz duas grandes vantagens analíticas:</p>
+<ul>
+<li><p><strong>Estequiometria simples (1:1):</strong> Independentemente da carga do cátion metálico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mrow><mi>n</mi><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">M^{n+}</annotation></semantics></math>), a reação ocorre sempre na proporção exata de 1 mol de EDTA para 1 mol de metal (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>M</mi><mrow><mi>n</mi><mo>+</mo></mrow></msup><mo>+</mo><msup><mi>Y</mi><mrow><mn>4</mn><mo>−</mo></mrow></msup><mo>⇌</mo><mi>M</mi><msup><mi>Y</mi><mrow><mi>n</mi><mo>−</mo><mn>4</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M^{n+} + Y^{4-} \rightleftharpoons MY^{n-4}</annotation></semantics></math>), evitando etapas intermediárias.</p></li>
+<li><p><strong>Elevada Constante de Formação (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>f</mi></msub><annotation encoding="application/x-tex">K_f</annotation></semantics></math>): A termodinâmica do <em>efeito quelato</em> gera um ganho entrópico gigantesco, resultando em valores de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>f</mi></msub><annotation encoding="application/x-tex">K_f</annotation></semantics></math> extremamente altos. Isso garante que a reação de titulação seja praticamente completa no ponto de equivalência.</p></li>
+</ul>
+<p><strong>3. Versatilidade e Aplicação Prática</strong> O surgimento do EDTA resolveu um dos maiores desafios analíticos da época: a determinação rápida da dureza da água (íons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><msup><mi>g</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Mg^{2+}</annotation></semantics></math>) e a quantificação de quase todos os metais da tabela periódica. Por ser um método versátil, reprodutível e de baixo custo, a volumetria com EDTA substituiu métodos gravimétricos lentos e tornou-se um padrão universal na indústria, na geologia e nas análises clínicas/ambientais.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./08_Solucao_Tampao.html" class="pagination-link" aria-label="⮞ &amp;nbsp; Preparo de Solução Tampão">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">⮞ &nbsp; Preparo de Solução Tampão</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./10_Neutralização_Calcario.html" class="pagination-link" aria-label="⮞ &amp;nbsp;Poder de Neutralização">
+        <span class="nav-page-text"><span class="chapter-title">⮞ &nbsp;Poder de Neutralização</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Adaptado por Prof.&nbsp;Cleber Borges</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
