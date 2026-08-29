@@ -641,6 +641,22 @@ var JSON_Questionario = "./simulador/vol_complexacao.dat";
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Estrutura 3D do EDTA, Indicadores e Complexos
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><a href="./resources/Complexacao_EDTA.html" target="_blank" rel="noopener noreferrer">Visualização das moléculas</a></p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="objetivos" class="level2">
@@ -946,6 +962,230 @@ n_{\text{Mg}^{2+}\text{, total}} \ \text{mols de } \text{MgO} &amp; \text{------
 <p><br></p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mtext mathvariant="normal">MgO</mtext><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>m</mi><mtext mathvariant="normal">MgO</mtext></msub><msub><mi>m</mi><mtext mathvariant="normal">amostra</mtext></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\%\text{MgO} = \left( \frac{m_{\text{MgO}}}{m_{\text{amostra}}} \right) \cdot 100</annotation></semantics></math></p>
 <p><br></p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled" title="Calculadora">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Calculadora
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<!-- Calculadora CaO, MgO, Carbonatos e PN em Calcário (Volumetria de Complexação) -->
+<div style="background-color: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 8px; padding: 20px; max-width: 500px; margin: 20px auto; font-family: sans-serif; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+  <h3 style="margin-top: 0; color: #2c3e50; font-size: 1.15em; text-align: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;" class="anchored">
+    🧮 Calculadora Analítica de Calcário (CaO, MgO, Carbonatos e PN)
+  </h3>
+
+  <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.9em;">
+    
+    <!-- Concentração EDTA -->
+    <div>
+      <label for="cEDTA" style="font-weight: bold; display: block; margin-bottom: 2px;">C<sub>EDTA</sub> (mol/L):</label>
+      <input type="number" id="cEDTA" value="0.0100" step="0.0001" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Volume gasto Titulação 1 (Ca2+) -->
+    <div>
+      <label for="vEDTA_Ca" style="font-weight: bold; display: block; margin-bottom: 2px;">V<sub>1</sub> (EDTA para Ca²⁺) (mL):</label>
+      <input type="number" id="vEDTA_Ca" placeholder="Ex: 12.00" step="0.01" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Volume gasto Titulação 2 (Ca2+ + Mg2+) -->
+    <div>
+      <label for="vEDTA_Soma" style="font-weight: bold; display: block; margin-bottom: 2px;">V<sub>2</sub> (EDTA para Ca²⁺ + Mg²⁺) (mL):</label>
+      <input type="number" id="vEDTA_Soma" placeholder="Ex: 18.00" step="0.01" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Volume Alíquota -->
+    <div>
+      <label for="vAliquotaCalcario" style="font-weight: bold; display: block; margin-bottom: 2px;">V<sub>alíquota</sub> (mL):</label>
+      <input type="number" id="vAliquotaCalcario" value="10.0" step="0.1" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Volume Balão -->
+    <div>
+      <label for="vBalaoCalcario" style="font-weight: bold; display: block; margin-bottom: 2px;">V<sub>balão</sub> (mL):</label>
+      <input type="number" id="vBalaoCalcario" value="250.0" step="0.1" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Massa Amostra -->
+    <div>
+      <label for="mAmostraCalcario" style="font-weight: bold; display: block; margin-bottom: 2px;">m<sub>amostra</sub> (g):</label>
+      <input type="number" id="mAmostraCalcario" value="0.5000" step="0.0001" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    </div>
+
+    <!-- Botão de Calcular -->
+    <button onclick="calcularCalcario()" style="background-color: #2b6cb0; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 6px;">
+      Calcular Perfil Completo
+    </button>
+
+    <!-- Alerta de Inconsistência de Volumes -->
+    <div id="alertaErroVolume" style="display: none; margin-top: 8px; padding: 8px; background-color: #fff5f5; border: 1px solid #feb2b2; border-radius: 4px; color: #c53030; font-size: 0.85em; text-align: center;">
+      ⚠️ <strong>Erro:</strong> O volume total V₂ deve ser maior ou igual ao volume V₁ (Ca²⁺)!
+    </div>
+
+    <!-- Alerta de Inconsistência Física/Estequiométrica -->
+    <div id="alertaErroCalcario" style="display: none; margin-top: 8px; padding: 8px; background-color: #fff5f5; border: 1px solid #feb2b2; border-radius: 4px; color: #c53030; font-size: 0.85em; text-align: center;">
+      ⚠️ <strong>Atenção:</strong> A soma equivalente de carbonatos superou 100% da massa da amostra! Verifique os dados digitados.
+    </div>
+
+    <!-- Painel de Resultados Completo -->
+    <div id="painelResultadoCalcario" style="display: none; margin-top: 8px; padding: 12px; background-color: #f7fafc; border: 1px solid #cbd5e0; border-radius: 6px; text-align: center;">
+      
+      <!-- Seção 1: Expressão Comercial (Óxidos) -->
+      <div style="background-color: #edf2f7; padding: 8px; border-radius: 4px; margin-bottom: 8px;">
+        <span style="font-weight: bold; color: #2d3748; font-size: 0.85em; display: block; margin-bottom: 4px;">Óxidos Equivalentes (Norma MAPA)</span>
+        <div style="display: flex; justify-content: space-around;">
+          <div>
+            <span style="font-size: 0.8em; color: #4a5568; display: block;">% CaO</span>
+            <span id="valorResultadoCaO" style="font-size: 1.15em; font-weight: bold; color: #2c7a7b;">0.00 %</span>
+          </div>
+          <div>
+            <span style="font-size: 0.8em; color: #4a5568; display: block;">% MgO</span>
+            <span id="valorResultadoMgO" style="font-size: 1.15em; font-weight: bold; color: #2b6cb0;">0.00 %</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção 2: Composição Mineral Real (Carbonatos) -->
+      <div style="background-color: #e6fffa; padding: 8px; border-radius: 4px; border: 1px solid #b2f5ea; margin-bottom: 8px;">
+        <span style="font-weight: bold; color: #234e52; font-size: 0.85em; display: block; margin-bottom: 4px;">Composição Real Estimada (Carbonatos)</span>
+        <div style="display: flex; justify-content: space-around; margin-bottom: 4px;">
+          <div>
+            <span style="font-size: 0.8em; color: #234e52; display: block;">% CaCO₃</span>
+            <span id="valorResultadoCaCO3" style="font-size: 1.05em; font-weight: bold; color: #234e52;">0.00 %</span>
+          </div>
+          <div>
+            <span style="font-size: 0.8em; color: #234e52; display: block;">% MgCO₃</span>
+            <span id="valorResultadoMgCO3" style="font-size: 1.05em; font-weight: bold; color: #234e52;">0.00 %</span>
+          </div>
+        </div>
+        <div style="border-top: 1px dashed #b2f5ea; padding-top: 4px;">
+          <span style="font-size: 0.8em; color: #234e52;">Soma dos Carbonatos: </span>
+          <span id="valorResultadoSomaCarbonatos" style="font-weight: bold; color: #234e52;">0.00 %</span>
+        </div>
+      </div>
+
+      <!-- Seção 3: Limites Teóricos & PN -->
+      <div style="background-color: #ebf8ff; padding: 8px; border-radius: 4px; border: 1px solid #bee3f8; margin-bottom: 8px; text-align: left; font-size: 0.82em; color: #2c5282;">
+        <div style="margin-bottom: 3px;">
+          <strong>Poder de Neutralização (PN):</strong> <span id="valorResultadoPN" style="font-size: 1.1em; font-weight: bold; color: #2b6cb0;">0.00 %</span> (em % CaCO₃ eq)
+        </div>
+        <div style="margin-bottom: 3px;">
+          <strong>Limite Téorico de Óxidos:</strong> <span id="valorLimiteOxidos" style="font-weight: bold;">0.00 %</span>
+          <span style="display: block; font-size: 0.9em; color: #4a5568;">(Máximo absoluto em óxidos para a proporção mineral desta amostra)</span>
+        </div>
+      </div>
+
+      <!-- Seção 4: Classificação Comercial -->
+      <div style="border-top: 1px solid #e2e8f0; padding-top: 6px;">
+        <span style="font-weight: bold; color: #4a5568; display: block; font-size: 0.85em;">Classificação do Calcário (Teor de MgO):</span>
+        <span id="valorClassificacao" style="font-size: 1.05em; font-weight: bold; color: #742a2a;">-</span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+function calcularCalcario() {
+  const cEDTA = parseFloat(document.getElementById('cEDTA').value);
+  const vEDTA_Ca = parseFloat(document.getElementById('vEDTA_Ca').value);
+  const vEDTA_Soma = parseFloat(document.getElementById('vEDTA_Soma').value);
+  const vAliquota = parseFloat(document.getElementById('vAliquotaCalcario').value);
+  const vBalao = parseFloat(document.getElementById('vBalaoCalcario').value);
+  const mAmostra = parseFloat(document.getElementById('mAmostraCalcario').value);
+
+  const alertaVol = document.getElementById('alertaErroVolume');
+  const alertaErro = document.getElementById('alertaErroCalcario');
+
+  alertaVol.style.display = 'none';
+  alertaErro.style.display = 'none';
+
+  if (isNaN(cEDTA) || isNaN(vEDTA_Ca) || isNaN(vEDTA_Soma) || isNaN(vAliquota) || isNaN(vBalao) || isNaN(mAmostra) || 
+      cEDTA <= 0 || vEDTA_Ca <= 0 || vEDTA_Soma <= 0 || vAliquota <= 0 || vBalao <= 0 || mAmostra <= 0) {
+    alert("Por favor, preencha todos os campos com valores válidos maiores que zero!");
+    return;
+  }
+
+  if (vEDTA_Soma < vEDTA_Ca) {
+    alertaVol.style.display = 'block';
+    document.getElementById('painelResultadoCalcario').style.display = 'none';
+    return;
+  }
+
+  // Constantes Estequiométricas
+  const MM_CaO = 56.08;
+  const MM_MgO = 40.30;
+  const fatorAliquota = vBalao / vAliquota;
+
+  // Cálculo de Mols na Alíquota
+  const vCa_L = vEDTA_Ca / 1000.0;
+  const vMg_L = (vEDTA_Soma - vEDTA_Ca) / 1000.0;
+
+  // Massas de Óxidos equivalentes
+  const massaCaO = cEDTA * vCa_L * fatorAliquota * MM_CaO;
+  const massaMgO = cEDTA * vMg_L * fatorAliquota * MM_MgO;
+
+  // Teores em % m/m
+  const teorCaO = (massaCaO / mAmostra) * 100.0;
+  const teorMgO = (massaMgO / mAmostra) * 100.0;
+
+  // Conversão para Carbonatos Reais (CaCO3 = CaO * 1.7848 | MgCO3 = MgO * 2.0921)
+  const teorCaCO3 = teorCaO * 1.7848;
+  const teorMgCO3 = teorMgO * 2.0921;
+  const somaCarbonatos = teorCaCO3 + teorMgCO3;
+
+  // Poder de Neutralização (PN % CaCO3 eq = %CaO * 1.7848 + %MgO * 2.4819)
+  const teorPN = (teorCaO * 1.7848) + (teorMgO * 2.4819);
+
+  // Cálculo do Limite Teórico de Óxidos Máximo para esta razão Ca/Mg
+  // Se a amostra fosse 100% constituída por estes dois carbonatos na proporção encontrada:
+  let limiteTeoricoOxidos = 0;
+  if (somaCarbonatos > 0) {
+    const fracaoCaCO3 = teorCaCO3 / somaCarbonatos;
+    const fracaoMgCO3 = teorMgCO3 / somaCarbonatos;
+    limiteTeoricoOxidos = (fracaoCaCO3 * 56.03) + (fracaoMgCO3 * 47.80);
+  }
+
+  // Classificação Agronômica
+  let classificacao = "";
+  if (teorMgO < 5.0) {
+    classificacao = "Calcítico (< 5,0% MgO)";
+  } else if (teorMgO <= 12.0) {
+    classificacao = "Magnesiano (5,0% a 12,0% MgO)";
+  } else {
+    classificacao = "Dolomítico (> 12,0% MgO)";
+  }
+
+  // Validação: soma dos carbonatos não pode superar 100% da rocha
+  if (somaCarbonatos > 100.0) {
+    alertaErro.style.display = 'block';
+  }
+
+  // Renderização dos Resultados
+  document.getElementById('valorResultadoCaO').innerText = teorCaO.toFixed(2) + " %";
+  document.getElementById('valorResultadoMgO').innerText = teorMgO.toFixed(2) + " %";
+  document.getElementById('valorResultadoCaCO3').innerText = teorCaCO3.toFixed(2) + " %";
+  document.getElementById('valorResultadoMgCO3').innerText = teorMgCO3.toFixed(2) + " %";
+  document.getElementById('valorResultadoSomaCarbonatos').innerText = somaCarbonatos.toFixed(2) + " %";
+  document.getElementById('valorResultadoPN').innerText = teorPN.toFixed(2) + " %";
+  document.getElementById('valorLimiteOxidos').innerText = limiteTeoricoOxidos.toFixed(2) + " %";
+  document.getElementById('valorClassificacao').innerText = classificacao;
+
+  document.getElementById('painelResultadoCalcario').style.display = 'block';
+}
+</script>
+
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="fluxograma-da-determinação-de-cao-e-mgo" class="level3">
@@ -1256,7 +1496,7 @@ Fluxograma&nbsp;13.1: Sequência de procedimentos envolvidos para o cálculo de 
 <section id="resumo-visual" class="level2">
 <h2 class="anchored" data-anchor-id="resumo-visual">Resumo Visual</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1265,7 +1505,7 @@ Fluxograma&nbsp;13.1: Sequência de procedimentos envolvidos para o cálculo de 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

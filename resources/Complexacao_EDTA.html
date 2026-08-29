@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizador 3D — Volumetria de Complexação &amp; Indicadores Metalocrômicos</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- 3Dmol.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.4/3Dmol-min.js"></script>
+
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderKaTeX()"></script>
+
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .theme-title-text { color: #ffffff; transition: color 0.3s ease; }
+    .card-dark {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .viewer-container {
+      position: relative;
+      width: 100%;
+      height: 540px;
+      background-color: #010409;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #30363d;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .controls-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #8b949e;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .info-card {
+      background-color: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .esp-legend-card {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background-color: rgba(22, 27, 34, 0.88);
+      backdrop-filter: blur(6px);
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #c9d1d9;
+      z-index: 10;
+      width: 230px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+      display: none;
+    }
+    .esp-legend-title {
+      font-weight: 700;
+      font-size: 0.73rem;
+      margin-bottom: 6px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .esp-gradient-bar {
+      height: 12px;
+      width: 100%;
+      border-radius: 4px;
+      background: linear-gradient(to right, #ff0000 0%, #ffffff 50%, #0000ff 100%);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+    .esp-legend-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      font-size: 0.68rem;
+      line-height: 1.1;
+    }
+
+    body.light-theme { background-color: #f6f8fa; color: #24292f; }
+    body.light-theme .theme-title-text { color: #1f2328; }
+    body.light-theme .text-secondary { color: #57606a !important; }
+    body.light-theme .card-dark {
+      background-color: #ffffff;
+      border-color: #d0d7de;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    body.light-theme .viewer-container { background-color: #f8f9fa; border-color: #d0d7de; }
+    body.light-theme .info-card { background-color: #f3f4f6; border-color: #d0d7de; color: #24292f; }
+    body.light-theme .esp-legend-card {
+      background-color: rgba(255, 255, 255, 0.92);
+      border-color: #d0d7de;
+      color: #24292f;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+    
+    .nav-tabs .nav-link {
+      color: #8b949e;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      border-bottom: 2px solid transparent;
+    }
+    body.light-theme .nav-tabs .nav-link { color: #57606a; }
+    .nav-tabs .nav-link.active {
+      color: #0969da;
+      background: transparent;
+      border-bottom: 2px solid #0969da;
+    }
+  </style>
+</head>
+<body class="py-4 light-theme">
+
+<div class="container-fluid px-4">
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-6">
+      <h3 class="fw-bold theme-title-text mb-1">
+        <i class="fa-solid fa-atom text-primary me-2"></i>Visualizador 3D: Volumetria de Complexação (EDTA &amp; Indicadores)
+      </h3>
+      <p class="text-secondary mb-0">Coordenação Octaédrica, Quelação Metálica e Viragem de Cor</p>
+    </div>
+    <div class="col-md-6 text-md-end mt-2 mt-md-0">
+      <button class="btn btn-outline-dark btn-sm me-1 btn-theme-std" id="btn-theme" onclick="toggleTheme()">
+        <i class="fa-solid fa-moon me-1"></i>Tema Escuro
+      </button>
+      <button class="btn btn-outline-dark btn-sm me-1 btn-theme-std" id="btn-spin" onclick="toggleSpin()">
+        <i class="fa-solid fa-pause me-1" id="spin-icon"></i>Pausar Rotação
+      </button>
+      <button class="btn btn-outline-dark btn-sm me-1 btn-theme-std" onclick="resetZoom()">
+        <i class="fa-solid fa-compress-arrows-alt me-1"></i>Resetar Zoom
+      </button>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <!-- Visualizador 3D -->
+    <div class="col-lg-7">
+      <div class="card card-dark p-3">
+        <div id="molecule-3d-viewer" class="viewer-container">
+          <div id="esp-legend" class="esp-legend-card">
+            <div class="esp-legend-title">Potencial Eletrostático (Cargas)</div>
+            <div class="esp-gradient-bar"></div>
+            <div class="esp-legend-labels">
+              <span class="text-start"><strong>-0.5 e</strong><br><span class="text-danger">δ⁻ Eletronegativo</span></span>
+              <span class="text-center"><strong>0</strong><br><span class="text-secondary">Neutro</span></span>
+              <span class="text-end"><strong>+0.5 e</strong><br><span class="text-primary">δ⁺ Eletropositivo</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="col-lg-5">
+      <div class="card card-dark p-3 h-100">
+        <div class="mb-3">
+          <div class="controls-label"><i class="fa-solid fa-flask-vial me-1"></i> Seleção &amp; Complexos Metálicos</div>
+          <div class="mb-2">
+            <label class="form-label text-secondary mb-1" style="font-size:0.75rem;">Espécie Molecular / Complexo:</label>
+            <select class="form-select form-select-sm" id="select-molecule" onchange="changeMolecule(this.value)">
+              <optgroup label="Agente Titulante (EDTA)">
+                <option value="edtaLivre">EDTA Livre (H₄Y / Hexadentado Flexível)</option>
+                <option value="edtaMetal" selected>Complexo EDTA-Metal [M-EDTA]²⁻ (Hexadentado)</option>
+              </optgroup>
+              <optgroup label="Indicador: Murexida (Determinação de Ca²⁺)">
+                <option value="murexidaLivre">Murexida Livre — Violeta (pH ≈ 12)</option>
+                <option value="murexidaCa">Complexo [Ca-Murexida]⁺ — Vermelho-Rubi</option>
+              </optgroup>
+              <optgroup label="Indicador: Negro de Eriocromo T (Determinação de Ca²⁺ / Mg²⁺)">
+                <option value="ebtLivre">Negro de Eriocromo T (EBT) Livre — Azul (pH ≈ 10)</option>
+                <option value="ebtMg">Complexo [Mg-EBT(H₂O)₃]⁻ — Vermelho-Vinho</option>
+              </optgroup>
+            </select>
+          </div>
+          
+          <div class="mb-2">
+            <button class="btn btn-sm btn-outline-dark w-100 btn-theme-std" id="btn-coordination" onclick="toggleCoordinationHighlight()">
+              <i class="fa-solid fa-dharmachakra me-1"></i> Destacar Centro de Coordenação / Íon Metálico
+            </button>
+          </div>
+
+          <div class="p-2 border border-secondary border-opacity-25 rounded bg-body-tertiary">
+            <label class="form-label text-secondary mb-1 fw-bold" style="font-size:0.75rem;">Otimização Geométrica (Gradiente Conjugado):</label>
+            <div class="row g-2 align-items-center">
+              <div class="col-7">
+                <button class="btn btn-sm btn-outline-dark w-100 btn-theme-std" id="btn-optimize" onclick="optimizeGeometry()">
+                  <i class="fa-solid fa-wand-magic-sparkles me-1"></i>Otimizar Estrutura
+                </button>
+              </div>
+              <div class="col-5">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text px-1 text-secondary" style="font-size:0.7rem;">Passos</span>
+                  <input type="number" class="form-control form-control-sm px-1 text-center" id="max-steps-input" value="350" min="10" max="1000" step="10">
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-2">
+              <button class="btn btn-sm btn-outline-dark w-100 btn-theme-std" id="btn-reset-geom" onclick="resetGeometry()">
+                <i class="fa-solid fa-rotate-left me-1"></i>Restaurar Geometria Inicial
+              </button>
+            </div>
+
+            <canvas id="opt-chart" style="width: 100%; height: 110px; display: none;" class="mt-2 rounded border border-secondary border-opacity-25"></canvas>
+            <div id="optimize-status-text" class="mt-1 text-secondary" style="font-size:0.75rem; min-height: 1.1rem;">
+              Status: Pronto para otimizar.
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="controls-label"><i class="fa-solid fa-layer-group me-1"></i> Controle de Superfície Molecular</div>
+          <button class="btn btn-sm btn-outline-dark w-100 mb-2" id="btn-surface" onclick="toggleSurface()">
+            <i class="fa-solid fa-cloud me-1"></i>Superfície: <strong id="surface-status">DESATIVADA</strong>
+          </button>
+
+          <div class="row g-2 mb-2">
+            <div class="col-6">
+              <label class="form-label text-secondary mb-1" style="font-size:0.75rem;">Geometria:</label>
+              <select class="form-select form-select-sm" id="surface-type-select" onchange="changeSurfaceType(this.value)">
+                <option value="SES" selected>SES (Connolly)</option>
+                <option value="VDW">VDW (Van der Waals)</option>
+                <option value="SAS">SAS (Solvente Acessível)</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label class="form-label text-secondary mb-1" style="font-size:0.75rem;">Opacidade:</label>
+              <select class="form-select form-select-sm" id="surface-opacity-select" onchange="changeSurfaceOpacity(this.value)">
+                <option value="0.2">20% (Transparente)</option>
+                <option value="0.5" selected>50% (Média)</option>
+                <option value="0.85">85% (Semi-opaca)</option>
+                <option value="0.95">95% (Opaca)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-2">
+            <div class="col-12">
+              <label class="form-label text-secondary mb-1" style="font-size:0.75rem;">Coloração da Superfície:</label>
+              <select class="form-select form-select-sm" id="surface-color-select" onchange="changeSurfaceColor(this.value)">
+                <option value="Jmol" selected>Por Elemento Químico (CPK / Jmol)</option>
+                <option value="electrostatic">Potencial Eletrostático / Cargas (RWB)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="controls-label"><i class="fa-solid fa-eye me-1"></i> Filtro de Elementos</div>
+          <div class="row g-2">
+            <div class="col-2">
+              <button class="btn btn-sm w-100 btn-atom-toggle" id="btn-atom-C" onclick="toggleAtom('C')">
+                <i class="fa-solid fa-circle me-1" style="color: #909090;"></i> C
+              </button>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-sm w-100 btn-atom-toggle" id="btn-atom-N" onclick="toggleAtom('N')">
+                <i class="fa-solid fa-circle me-1 text-primary"></i> N
+              </button>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-sm w-100 btn-atom-toggle" id="btn-atom-O" onclick="toggleAtom('O')">
+                <i class="fa-solid fa-circle me-1 text-danger"></i> O
+              </button>
+            </div>
+            <div class="col-3">
+              <button class="btn btn-sm w-100 btn-atom-toggle" id="btn-atom-S" onclick="toggleAtom('S')">
+                <i class="fa-solid fa-circle me-1" style="color: #ffc800;"></i> S
+              </button>
+            </div>
+            <div class="col-3">
+              <button class="btn btn-sm w-100 btn-atom-toggle" id="btn-atom-Metal" onclick="toggleAtom('Metal')">
+                <i class="fa-solid fa-gem me-1 text-warning"></i> Metal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Painel Teórico -->
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="card card-dark p-3">
+        <ul class="nav nav-tabs mb-3" id="infoTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="mol-tab" data-bs-toggle="tab" data-bs-target="#tab-mol" type="button" role="tab">
+              <i class="fa-solid fa-atom me-1"></i> Estrutura &amp; Constantes
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="titulacao-tab" data-bs-toggle="tab" data-bs-target="#tab-titulacao" type="button" role="tab">
+              <i class="fa-solid fa-vial-circle-check me-1"></i> Princípio da Titulação &amp; Viragem
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="indicadores-tab" data-bs-toggle="tab" data-bs-target="#tab-indicadores" type="button" role="tab">
+              <i class="fa-solid fa-palette me-1"></i> Murexida vs Negro de Eriocromo T
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="opt-tab" data-bs-toggle="tab" data-bs-target="#tab-optimization" type="button" role="tab">
+              <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Otimização &amp; Geometria de Coordenação
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="infoTabsContent">
+          <div class="tab-pane fade show active info-card p-3" id="tab-mol" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom border-secondary border-opacity-25">
+              <h5 class="mb-0 fw-bold text-primary" id="info-mol-title">Complexo EDTA-Metal</h5>
+              <span class="badge bg-secondary" id="info-mol-pka">$\log K_f = 10.7$ ($\text{Ca}^{2+}$) / $8.7$ ($\text{Mg}^{2+}$)</span>
+            </div>
+            <div id="info-mol-detail"></div>
+          </div>
+
+          <div class="tab-pane fade info-card p-3" id="tab-titulacao" role="tabpanel">
+            <h5 class="fw-bold text-primary mb-2 pb-1 border-bottom border-secondary border-opacity-25">
+              Mecanismo Competitivo e Substituição do Ligante na Viragem
+            </h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-2 border border-secondary border-opacity-25 rounded bg-body-tertiary">
+                  <h6 class="fw-bold text-danger mb-1"><i class="fa-solid fa-circle me-1 text-danger"></i> 1. Início da Titulação (Complexo Metal-Indicador)</h6>
+                  <ul class="ps-3 mb-0 text-secondary" style="font-size:0.83rem; line-height: 1.5;">
+                    <li>Uma pequena quantidade de indicador ($\text{Ind}$) é adicionada à solução contendo os íons metálicos ($\text{M}^{2+}$).</li>
+                    <li>Forma-se o complexo $[\text{M-Ind}]$ com cor característica (ex: vermelho-vinho no EBT ou vermelho-rubi na Murexida).</li>
+                    <li><strong>Requisito Fundamental:</strong> O complexo $[\text{M-Ind}]$ deve ser menos estável que o complexo $[\text{M-EDTA}]$ ($K_{f,\text{Ind}} < K_{f,\text{EDTA}}$).</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-2 border border-primary border-opacity-25 rounded bg-body-tertiary">
+                  <h6 class="fw-bold text-primary mb-1"><i class="fa-solid fa-circle me-1 text-primary"></i> 2. Ponto de Equivalência (Liberação do Indicador Livre)</h6>
+                  <ul class="ps-3 mb-0 text-secondary" style="font-size:0.83rem; line-height: 1.5;">
+                    <li>À medida que o EDTA ($\text{Y}^{4-}$) é adicionado, ele substitui o indicador complexado:
+                      <br><div class="my-1 text-center font-monospace text-primary">$$[\text{M-Ind}] + \text{Y}^{4-} \rightarrow [\text{M-EDTA}]^{2-} + \text{Ind}_{\text{livre}}$$</div></li>
+                    <li>No ponto final, todo o metal é sequestrado pela cage hexadentada do EDTA, deslocando o indicador para sua <strong>forma livre</strong>, mudando bruscamente a cor da solução.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade info-card p-3" id="tab-indicadores" role="tabpanel">
+            <h5 class="fw-bold text-primary mb-2 pb-1 border-bottom border-secondary border-opacity-25">
+              Comparativo Técnico de Indicadores Metalocrômicos
+            </h5>
+            <div class="row g-3 text-secondary" style="font-size: 0.85rem;">
+              <div class="col-md-6">
+                <div class="p-2 border border-secondary border-opacity-25 rounded h-100">
+                  <strong class="text-primary d-block mb-1">Murexida (Purpurato de Amônio)</strong>
+                  <ul class="ps-3 mb-0" style="line-height:1.4;">
+                    <li><strong>Aplicação:</strong> Titulação seletiva de $\text{Ca}^{2+}$ na presença de $\text{Mg}^{2+}$.</li>
+                    <li><strong>Condição:</strong> $\text{pH} \approx 12$ (alcalinizado com $\text{NaOH}$ para precipitar $\text{Mg(OH)}_2$).</li>
+                    <li><strong>Viragem:</strong> Vermelho-Rubi ($[\text{Ca-Murexida}]^+$) $\rightarrow$ Violeta/Púrpura (Murexida livre).</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-2 border border-secondary border-opacity-25 rounded h-100">
+                  <strong class="text-primary d-block mb-1">Negro de Eriocromo T (EBT)</strong>
+                  <ul class="ps-3 mb-0" style="line-height:1.4;">
+                    <li><strong>Aplicação:</strong> Titulação da Dureza Total ($\text{Ca}^{2+} + \text{Mg}^{2+}$).</li>
+                    <li><strong>Condição:</strong> $\text{pH} \approx 10$ (Tamponado com $\text{NH}_4\text{OH}/\text{NH}_4\text{Cl}$).</li>
+                    <li><strong>Viragem:</strong> Vermelho-Vinho ($[\text{Mg-EBT}]^-$) $\rightarrow$ Azul Puro (EBT livre $\text{HIn}^{2-}$).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade info-card p-3" id="tab-optimization" role="tabpanel">
+            <h5 class="fw-bold text-primary mb-2 pb-1 border-bottom border-secondary border-opacity-25">
+              Otimização de Geometria em Química de Coordenação
+            </h5>
+
+            <div class="alert alert-warning border border-warning border-opacity-50 text-body mb-3 p-2 px-3" style="font-size:0.82rem;">
+              <i class="fa-solid fa-triangle-exclamation text-warning me-2 fs-6"></i>
+              <strong>Aviso Didático:</strong> O motor de minimização geométrica é uma simulação didática simplificada em tempo real no navegador. Ele demonstra como os ângulos de ligação da esfera de coordenação relaxam para estabilizar a gaiola quelante ao redor do metal.
+            </div>
+
+            <div class="row g-3 text-secondary" style="font-size:0.84rem;">
+              <div class="col-md-4">
+                <div class="p-2 border border-secondary border-opacity-25 rounded h-100 bg-body-tertiary">
+                  <h6 class="fw-bold text-primary mb-1"><i class="fa-solid fa-shapes me-1"></i> Geometria Octaédrica</h6>
+                  <p class="mb-0">
+                    O EDTA e os complexos solvatados como $[\text{Mg-EBT}(\text{H}_2\text{O})_3]^-$ adotam esferas de coordenação octaédricas de número de coordenação 6 para maximizar a estabilidade eletrostática do cátion central.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="p-2 border border-secondary border-opacity-25 rounded h-100 bg-body-tertiary">
+                  <h6 class="fw-bold text-primary mb-1"><i class="fa-solid fa-bolt me-1"></i> Efeito Quelato</h6>
+                  <p class="mb-0">
+                    A formação de múltiplos anéis quelantes fundidos ($\text{M-N-C-C-N}$ e $\text{M-O-C-C-N}$) confere elevadíssima estabilidade entrópica e entálpica comparada a ligantes monodentados.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="p-2 border border-secondary border-opacity-25 rounded h-100 bg-body-tertiary">
+                  <h6 class="fw-bold text-primary mb-1"><i class="fa-solid fa-calculator me-1"></i> Minimização por Gradiente Conjugado</h6>
+                  <p class="mb-0">
+                    O algoritmo ajusta iterativamente as posições tridimensionais $(x, y, z)$ para aliviar tensões estéricas e alinhar os ângulos dador-metal às geometrias ideais.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let viewer = null;
+  let showSurface = false;
+  let isSpinning = true;
+  let isLightTheme = true;
+  let showCoordination = false;
+
+  let selectedMoleculeKey = 'edtaMetal';
+  let selectedSurfaceType = 'SES';
+  let surfaceOpacity = 0.5;
+  let selectedSurfaceColor = 'Jmol';
+
+  let atomVisibility = { C: true, N: true, O: true, S: true, Metal: true, H: true };
+
+  let coordinationShapes = [];
+  let coordinationLabels = [];
+
+  let lastEnergyHistory = [];
+  let lastMaxSteps = 350;
+
+  function renderKaTeX() {
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+      });
+    }
+  }
+
+  function molV2000(nome, atoms, bonds){
+    const f10 = n => { let s = Number(n).toFixed(4); while (s.length < 10) s = ' ' + s; return s; };
+    const c3  = n => String(n).padStart(3);
+    let txt = nome + "\n  Visualizador3D_Complexacao\n\n";
+    txt += c3(atoms.length) + c3(bonds.length) + "  0  0  0  0  0  0  0  0999 V2000\n";
+    atoms.forEach(a => {
+      let elem = a[0].padEnd(3);
+      txt += f10(a[1]) + f10(a[2]) + f10(a[3]) + " " + elem +
+             " 0  0  0  0  0  0  0  0  0  0  0  0\n";
+    });
+    bonds.forEach(b => { txt += c3(b[0]+1) + c3(b[1]+1) + c3(b[2]||1) + "  0\n"; });
+    txt += "M  END\n";
+    return txt;
+  }
+
+  /* ESTRUTURAS ATUALIZADAS E CORRIGIDAS (SEM Na+ E COM Mg-EBT OCTAÉDRICO COMPLETO) */
+  const MOLECULAS = {
+    edtaLivre: {
+      nome: 'EDTA Livre (Ácido Etilenodiamino-tetra-acético)', formula: 'C₁₀H₁₆N₂O₈ (H₄Y)', pka: 'pKa₁=1.0, pKa₂=1.6, pKa₃=6.3, pKa₄=10.3',
+      desc: '<p>O <strong>EDTA livre</strong> é um ligante poliprótico flexível contendo 2 grupos amino terciários e 4 grupos carboxílicos. Em solução, sua conformação tridimensional é aberta e dinâmica. Durante a complexação quelante, seus pares eletrônicos nos átomos de N e O se flexionam para envolver o cátion metálico central.</p>',
+      atoms: [
+        ['O',  -3.5826,   2.9979,   1.7148, -0.50],
+        ['C',  -3.7420,   1.6599,   1.6489,  0.45],
+        ['O',  -4.8440,   1.1809,   1.4257, -0.50],
+        ['C',  -2.4452,   0.8880,   1.8337,  0.05],
+        ['N',  -1.7917,   0.5746,   0.5401, -0.30],
+        ['C',  -0.4207,   0.0737,   0.7805,  0.05],
+        ['C',   0.4290,  -0.1314,  -0.5019,  0.05],
+        ['N',   1.8314,  -0.4795,  -0.1955, -0.30],
+        ['C',   2.6412,   0.7261,   0.1089,  0.05],
+        ['C',   3.9617,   0.3933,   0.8001,  0.45],
+        ['O',   4.6850,   1.5071,   1.0557, -0.50],
+        ['O',   4.4025,  -0.6971,   1.1242, -0.50],
+        ['C',   2.4353,  -1.3264,  -1.2586,  0.05],
+        ['C',   2.4725,  -0.7086,  -2.6538,  0.45],
+        ['O',   2.9510,  -1.5764,  -3.5726, -0.50],
+        ['O',   2.1420,   0.4138,  -2.9990, -0.50],
+        ['C',  -2.6134,  -0.3067,  -0.3292,  0.05],
+        ['C',  -2.8717,  -1.7130,   0.2032,  0.45],
+        ['O',  -3.4833,  -2.4901,  -0.7186, -0.50],
+        ['O',  -2.6064,  -2.1747,   1.3005, -0.50],
+        ['H',  -4.4759,   3.3526,   1.5275,  0.15],
+        ['H',  -2.6531,   0.0022,   2.4422,  0.03],
+        ['H',  -1.7883,   1.5221,   2.4439,  0.03],
+        ['H',   0.0910,   0.8116,   1.4095,  0.03],
+        ['H',  -0.4348,  -0.8597,   1.3562,  0.03],
+        ['H',   0.3723,   0.7621,  -1.1358,  0.03],
+        ['H',  -0.0243,  -0.9556,  -1.0654,  0.03],
+        ['H',   2.8551,   1.3125,  -0.7896,  0.03],
+        ['H',   2.1017,   1.3690,   0.8128,  0.03],
+        ['H',   5.4861,   1.1625,   1.5039,  0.15],
+        ['H',   3.4582,  -1.6078,  -0.9910,  0.03],
+        ['H',   1.8593,  -2.2578,  -1.3225,  0.03],
+        ['H',   2.9300,  -1.0693,  -4.4114,  0.15],
+        ['H',  -3.5833,   0.1608,  -0.5274,  0.03],
+        ['H',  -2.1286,  -0.3980,  -1.3071,  0.03],
+        ['H',  -3.6160,  -3.3427,  -0.2528,  0.15]
+      ],
+      bonds: [
+        [0, 1, 1], [1, 2, 2], [1, 3, 1], [3, 4, 1], [4, 5, 1],
+        [5, 6, 1], [6, 7, 1], [7, 8, 1], [8, 9, 1], [9, 10, 1],
+        [9, 11, 2], [7, 12, 1], [12, 13, 1], [13, 14, 1], [13, 15, 2],
+        [4, 16, 1], [16, 17, 1], [17, 18, 1], [17, 19, 2], [0, 20, 1],
+        [3, 21, 1], [3, 22, 1], [5, 23, 1], [5, 24, 1], [6, 25, 1],
+        [6, 26, 1], [8, 27, 1], [8, 28, 1], [10, 29, 1], [12, 30, 1],
+        [12, 31, 1], [14, 32, 1], [16, 33, 1], [16, 34, 1], [18, 35, 1]
+      ],
+      metalIdx: null,
+      ligandDonors: []
+    },
+
+    edtaMetal: {
+      nome: 'Complexo EDTA-Metal', formula: '[M-EDTA]²⁻ (M = Ca²⁺ / Mg²⁺ / Co²⁺)', pka: '$\\log K_f(\\text{Ca}) = 10.7$ | $\\log K_f(\\text{Mg}) = 8.7$',
+      desc: '<p>O <strong>EDTA</strong> é um ligante hexadentado quelante que envolve completamente o íon metálico central em uma geometria <strong>octaédrica distorcida</strong>, coordenando através de 2 nitrogênios amínicos e 4 oxigênios de grupos carboxilato.</p>',
+      atoms: [
+        ['Ca', 1.0842,  0.4677,  0.8477, 2.00],
+        ['N',  1.0279, -1.5189,  0.0427,-0.30],
+        ['N', -0.3562,  1.0216, -0.6411,-0.30],
+        ['C',  0.3339, -1.3273, -1.2345, 0.05],
+        ['C', -0.8214, -0.2782, -1.1348, 0.05],
+        ['C',  2.4426, -1.8575,  0.0669, 0.05],
+        ['C',  3.1466, -1.1535,  1.2471, 0.45],
+        ['C',  0.4397,  1.7768, -1.6064, 0.05],
+        ['C',  1.9130,  1.3969, -1.5485, 0.45],
+        ['C', -1.2409,  1.8689,  0.1437, 0.05],
+        ['C', -0.4504,  2.5942,  1.2542, 0.45],
+        ['C',  0.2536, -2.2578,  1.0378, 0.05],
+        ['C', -0.6566, -1.3421,  1.8449, 0.45],
+        ['O',  4.2771, -1.4549,  1.5532,-0.50],
+        ['O',  2.5724,  1.2193, -2.5456,-0.50],
+        ['O', -0.9657,  3.4844,  1.8902,-0.50],
+        ['O', -1.7990, -1.6373,  2.1061,-0.50],
+        ['O',  2.6675, -0.3312,  2.0051,-0.60],
+        ['O',  2.5319,  1.1709, -0.5356,-0.60],
+        ['O',  0.7175,  2.4304,  1.5532,-0.60],
+        ['O', -0.3632, -0.2354,  2.2313,-0.60],
+        ['H',  1.0415, -1.0178, -2.0407, 0.03],
+        ['H', -0.0650, -2.3059, -1.5936, 0.03],
+        ['H', -1.3090, -0.1469, -2.1302, 0.03],
+        ['H', -1.6363, -0.6905, -0.4926, 0.03],
+        ['H',  2.9614, -1.5440, -0.8717, 0.03],
+        ['H',  2.5803, -2.9632,  0.1284, 0.03],
+        ['H',  0.0403,  1.6468, -2.6398, 0.03],
+        ['H',  0.4058,  2.8758, -1.4087, 0.03],
+        ['H', -1.7636,  2.6046, -0.5127, 0.03],
+        ['H', -2.0520,  1.2794,  0.6365, 0.03],
+        ['H', -0.3360, -3.0738,  0.5574, 0.03],
+        ['H',  0.9094, -2.7642,  1.7870, 0.03]
+      ],
+      bonds: [
+        [16, 12, 2], [15, 10, 2], [17, 6, 1], [13, 6, 2], [20, 12, 1], [20, 0, 1],
+        [19, 10, 1], [19, 0, 1], [12, 11, 1], [10, 9, 1], [6, 5, 1], [1, 0, 1],
+        [18, 0, 1], [2, 0, 1], [11, 1, 1], [9, 2, 1], [5, 1, 1], [1, 3, 1],
+        [18, 8, 1], [2, 7, 1], [2, 4, 1], [8, 7, 1], [8, 14, 2], [4, 3, 1], [17, 0, 1],
+        [3, 21, 1], [3, 22, 1], [4, 23, 1], [4, 24, 1], [5, 25, 1], [5, 26, 1],
+        [7, 27, 1], [7, 28, 1], [9, 29, 1], [9, 30, 1], [11, 31, 1], [11, 32, 1]
+      ],
+      metalIdx: 0,
+      ligandDonors: [1, 2, 17, 18, 19, 20]
+    },
+
+    murexidaLivre: {
+      nome: 'Murexida (Livre / Desprotonada)', formula: 'C₈H₄N₅O₆⁻', pka: 'Violeta / Púrpura (pH ≈ 12)',
+      desc: '<p>A <strong>Murexida</strong> (purpurato de amônio) é um indicador metalocrômico. Em solução alcalina forte ($\text{pH} > 11$), apresenta intensa cor violeta decorrente do sistema de elétrons $\pi$ delocalizados entre os dois anéis de pirimidina contíguos.</p>',
+      atoms: [
+        ['C', -1.35,  0.02,  0.00, 0.10], ['N',  0.00,  0.00,  0.00,-0.30], ['C',  1.35, -0.02,  0.00, 0.10],
+        ['C', -2.10,  1.20,  0.00, 0.40], ['N', -3.45,  1.10,  0.00,-0.20], ['C', -4.10, -0.10,  0.00, 0.45],
+        ['N', -3.40, -1.25,  0.00,-0.20], ['C', -2.05, -1.20,  0.00, 0.40],
+        ['O', -1.55,  2.32,  0.00,-0.50], ['O', -5.32, -0.15,  0.00,-0.50], ['O', -1.48, -2.30,  0.00,-0.50],
+        ['C',  2.10, -1.20,  0.00, 0.40], ['N',  3.45, -1.10,  0.00,-0.20], ['C',  4.10,  0.10,  0.00, 0.45],
+        ['N',  3.40,  1.25,  0.00,-0.20], ['C',  2.05,  1.20,  0.00, 0.40],
+        ['O',  1.55, -2.32,  0.00,-0.50], ['O',  5.32,  0.15,  0.00,-0.50], ['O',  1.48,  2.30,  0.00,-0.50],
+        ['H', -3.95,  1.96,  0.00, 0.15], ['H', -3.90, -2.12,  0.00, 0.15],
+        ['H',  3.95, -1.96,  0.00, 0.15], ['H',  3.90,  2.12,  0.00, 0.15]
+      ],
+      bonds: [
+        [0,1,2], [1,2,1], [0,3,1], [3,4,1], [4,5,1], [5,6,1], [6,7,1], [7,0,1],
+        [3,8,2], [5,9,2], [7,10,2], [2,11,1], [11,12,1], [12,13,1], [13,14,1],
+        [14,15,1], [15,2,1], [11,16,2], [13,17,2], [15,18,2],
+        [4,19,1], [6,20,1], [12,21,1], [14,22,1]
+      ],
+      metalIdx: null,
+      ligandDonors: []
+    },
+
+    murexidaCa: {
+      nome: 'Complexo [Ca-Murexida]⁺', formula: '[Ca(C₈H₄N₅O₆)]⁺', pka: 'Vermelho-Rubi (Início da Titulação)',
+      desc: '<p>O íon <strong>$\text{Ca}^{2+}$</strong> coordena-se à murexida formando um quelato tridentado ativado através do nitrogênio central e dos oxigênios carbonílicos vizinhos. Esta perturbação eletrônica altera a absorção UV-Vis da solução de violeta para <strong>vermelho-rubi</strong>.</p>',
+      atoms: [
+        ['Ca', 0.00,  2.15,  0.00, 2.00],
+        ['N',  0.00,  0.00,  0.00,-0.40],
+        ['C', -1.25, -0.40,  0.00, 0.10], ['C',  1.25, -0.40,  0.00, 0.10],
+        ['C', -2.15,  0.65,  0.00, 0.40], ['N', -3.45,  0.30,  0.00,-0.20],
+        ['C', -3.90, -1.00,  0.00, 0.45], ['N', -3.05, -2.05,  0.00,-0.20], ['C', -1.75, -1.80,  0.00, 0.40],
+        ['O', -1.70,  1.85,  0.00,-0.60], ['O', -5.08, -1.25,  0.00,-0.50], ['O', -1.05, -2.82,  0.00,-0.50],
+        ['C',  2.15,  0.65,  0.00, 0.40], ['N',  3.45,  0.30,  0.00,-0.20],
+        ['C',  3.90, -1.00,  0.00, 0.45], ['N',  3.05, -2.05,  0.00,-0.20], ['C',  1.75, -1.80,  0.00, 0.40],
+        ['O',  1.70,  1.85,  0.00,-0.60], ['O',  5.08, -1.25,  0.00,-0.50], ['O',  1.05, -2.82,  0.00,-0.50],
+        ['H', -4.08,  1.08,  0.00, 0.15], ['H', -3.42, -2.98,  0.00, 0.15],
+        ['H',  4.08,  1.08,  0.00, 0.15], ['H',  3.42, -2.98,  0.00, 0.15]
+      ],
+      bonds: [
+        [0,1,1], [0,9,1], [0,17,1],
+        [2,1,2], [3,1,1], [2,4,1], [4,5,1], [5,6,1], [6,7,1], [7,8,1], [8,2,1],
+        [4,9,2], [6,10,2], [8,11,2], [3,12,1], [12,13,1], [13,14,1], [14,15,1],
+        [15,16,1], [16,3,1], [12,17,2], [14,18,2], [16,19,2],
+        [5,20,1], [7,21,1], [13,22,1], [15,23,1]
+      ],
+      metalIdx: 0,
+      ligandDonors: [1, 9, 17]
+    },
+
+    ebtLivre: {
+      nome: 'Negro de Eriocromo T (EBT Livre)', formula: 'C₂₀H₁₂N₃O₇S⁻ (HIn²⁻)', pka: 'Azul Puro (pH ≈ 10)',
+      desc: '<p>O <strong>Negro de Eriocromo T</strong> é um indicador sulfonado azoico. Na faixa de pH tampão 9–10, o contra-íon $\text{Na}^+$ dissociou-se em meio aquoso e predomina a espécie aniólica deprotonada $\text{HIn}^{2-}$, apresentando forte coloração <strong>azul puro</strong>.</p>',
+      atoms: [
+        ['C',  -7.2063,   0.0545,   1.0067, 0.00],
+        ['C',  -7.0235,  -0.8347,  -0.0506, 0.00],
+        ['C',  -5.7462,  -1.0644,  -0.5689, 0.00],
+        ['C',  -4.6211,  -0.4005,  -0.0312, 0.00],
+        ['C',  -4.8218,   0.5041,   1.0476, 0.00],
+        ['C',  -6.1124,   0.7223,   1.5553, 0.00],
+        ['C',  -3.7322,   1.1811,   1.6079, 0.00],
+        ['C',  -2.4467,   0.9755,   1.1156, 0.00],
+        ['C',  -2.2249,   0.0876,   0.0517, 0.00],
+        ['C',  -3.3035,  -0.6030,  -0.5264, 0.00],
+        ['O',  -3.0162,  -1.4733,  -1.5845,-0.60],
+        ['N',  -0.9048,  -0.1330,  -0.4636,-0.20],
+        ['N',   0.1143,   0.4736,  -0.0035,-0.20],
+        ['C',   1.4396,   0.2558,  -0.5142, 0.00],
+        ['C',   2.5335,   0.2895,   0.3816, 0.00],
+        ['C',   2.3352,   0.6028,   1.7407, 0.00],
+        ['C',   3.4055,   0.6292,   2.6319, 0.00],
+        ['C',   4.7043,   0.3415,   2.1965, 0.00],
+        ['C',   4.9158,   0.0219,   0.8445, 0.00],
+        ['C',   3.8458,  -0.0126,  -0.0774, 0.00],
+        ['C',   4.0467,  -0.3454,  -1.4413, 0.00],
+        ['C',   2.9570,  -0.3304,  -2.3194, 0.00],
+        ['C',   1.6738,  -0.0054,  -1.8834, 0.00],
+        ['O',   0.6689,   0.0858,  -2.8492,-0.60],
+        ['S',   5.6422,  -0.7666,  -2.0944, 1.20],
+        ['O',   6.5697,   0.4078,  -1.9571,-0.50],
+        ['O',   5.5386,  -1.1329,  -3.5486,-0.50],
+        ['O',   6.2637,  -2.0843,  -1.2573,-0.50],
+        ['N',   5.8040,   0.3734,   3.1263, 0.50],
+        ['O',   6.9666,   0.1171,   2.7495,-0.40],
+        ['O',   5.5922,   0.6876,   4.4494,-0.40],
+        ['H',  -8.1989,   0.2268,   1.4024, 0.15],
+        ['H',  -7.8770,  -1.3502,  -0.4722, 0.15],
+        ['H',  -5.6701,  -1.7632,  -1.3859, 0.15],
+        ['H',  -6.2748,   1.4098,   2.3771, 0.15],
+        ['H',  -3.8750,   1.8723,   2.4304, 0.15],
+        ['H',  -1.6230,   1.5118,   1.5692, 0.15],
+        ['H',  -3.7011,  -2.0230,  -2.0814, 0.05],
+        ['H',   1.3503,   0.8345,   2.1262, 0.15],
+        ['H',   3.2135,   0.8771,   3.6679, 0.15],
+        ['H',   5.9235,  -0.1956,   0.5263, 0.15],
+        ['H',   3.1025,  -0.5461,  -3.3700, 0.15],
+        ['H',  -0.2278,   0.5214,  -2.6826, 0.05]
+      ],
+      bonds: [
+        [0,1,2], [1,2,1], [2,3,2], [3,4,1], [4,5,2], [4,6,1],
+        [6,7,2], [7,8,1], [8,9,2], [9,10,1], [8,11,1], [11,12,2],
+        [12,13,1], [13,14,1], [14,15,2], [15,16,1], [16,17,2], [17,18,1],
+        [18,19,2], [19,20,1], [20,21,2], [21,22,1], [22,23,1], [20,24,1],
+        [24,25,2], [24,26,2], [24,27,1], [17,28,1], [28,29,2], [28,30,1],
+        [5,0,1], [9,3,1], [22,13,2], [19,14,1],
+        [0,31,1], [1,32,1], [2,33,1], [5,34,1], [6,35,1], [7,36,1],
+        [10,37,1], [15,38,1], [16,39,1], [18,40,1], [21,41,1], [23,42,1]
+      ],
+      metalIdx: null,
+      ligandDonors: []
+    },
+
+    ebtMg: {
+      nome: 'Complexo [Mg-EBT(H₂O)₃]⁻', formula: '[Mg(C₂₀H₁₁N₃O₇S)(H₂O)₃]⁻', pka: 'Vermelho-Vinho (Início da Titulação)',
+      desc: '<p>O íon <strong>$\text{Mg}^{2+}$</strong> forma um quelato tridentado estável ($O, N, O$) com o EBT. As 3 posições restantes do octaedro são preenchidas por moléculas de $\text{H}_2\text{O}$ coordenadas, formando o complexo $[\text{Mg}(\text{EBT})(\text{H}_2\text{O})_3]^-$. A alteração na ressonância do grupo azo gera a cor <strong>vermelho-vinho</strong>.</p>',
+      atoms: [
+        ['Mg', -0.5800, -0.7200, -1.3500, 2.00], // 0
+        ['C',  -7.2063,   0.0545,   1.0067, 0.00], // 1
+        ['C',  -7.0235,  -0.8347,  -0.0506, 0.00], // 2
+        ['C',  -5.7462,  -1.0644,  -0.5689, 0.00], // 3
+        ['C',  -4.6211,  -0.4005,  -0.0312, 0.00], // 4
+        ['C',  -4.8218,   0.5041,   1.0476, 0.00], // 5
+        ['C',  -6.1124,   0.7223,   1.5553, 0.00], // 6
+        ['C',  -3.7322,   1.1811,   1.6079, 0.00], // 7
+        ['C',  -2.4467,   0.9755,   1.1156, 0.00], // 8
+        ['C',  -2.2249,   0.0876,   0.0517, 0.00], // 9
+        ['C',  -3.3035,  -0.6030,  -0.5264, 0.00], // 10
+        ['O',  -3.0162,  -1.4733,  -1.5845,-0.60], // 11 (Dador Phenolic 1)
+        ['N',  -0.9048,  -0.1330,  -0.4636,-0.30], // 12 (Dador Azo N)
+        ['N',   0.1143,   0.4736,  -0.0035,-0.20], // 13
+        ['C',   1.4396,   0.2558,  -0.5142, 0.00], // 14
+        ['C',   2.5335,   0.2895,   0.3816, 0.00], // 15
+        ['C',   2.3352,   0.6028,   1.7407, 0.00], // 16
+        ['C',   3.4055,   0.6292,   2.6319, 0.00], // 17
+        ['C',   4.7043,   0.3415,   2.1965, 0.00], // 18
+        ['C',   4.9158,   0.0219,   0.8445, 0.00], // 19
+        ['C',   3.8458,  -0.0126,  -0.0774, 0.00], // 20
+        ['C',   4.0467,  -0.3454,  -1.4413, 0.00], // 21
+        ['C',   2.9570,  -0.3304,  -2.3194, 0.00], // 22
+        ['C',   1.6738,  -0.0054,  -1.8834, 0.00], // 23
+        ['O',   0.6689,   0.0858,  -2.8492,-0.60], // 24 (Dador Phenolic 2)
+        ['S',   5.6422,  -0.7666,  -2.0944, 1.20], // 25
+        ['O',   6.5697,   0.4078,  -1.9571,-0.50], // 26
+        ['O',   5.5386,  -1.1329,  -3.5486,-0.50], // 27
+        ['O',   6.2637,  -2.0843,  -1.2573,-0.50], // 28
+        ['N',   5.8040,   0.3734,   3.1263, 0.50], // 29
+        ['O',   6.9666,   0.1171,   2.7495,-0.40], // 30
+        ['O',   5.5922,   0.6876,   4.4494,-0.40], // 31
+        ['H',  -8.1989,   0.2268,   1.4024, 0.15], // 32
+        ['H',  -7.8770,  -1.3502,  -0.4722, 0.15], // 33
+        ['H',  -5.6701,  -1.7632,  -1.3859, 0.15], // 34
+        ['H',  -6.2748,   1.4098,   2.3771, 0.15], // 35
+        ['H',  -3.8750,   1.8723,   2.4304, 0.15], // 36
+        ['H',  -1.6230,   1.5118,   1.5692, 0.15], // 37
+        ['H',   1.3503,   0.8345,   2.1262, 0.15], // 38
+        ['H',   3.2135,   0.8771,   3.6679, 0.15], // 39
+        ['H',   5.9235,  -0.1956,   0.5263, 0.15], // 40
+        ['H',   3.1025,  -0.5461,  -3.3700, 0.15], // 41
+        // Moléculas de Água Solvatantes (completando a coordenação octaédrica do Mg2+)
+        ['O',  -0.5800, -2.7500, -1.3500,-0.40], // 42 (H2O 1)
+        ['H',  -1.3500, -3.2000, -1.6500, 0.20], // 43
+        ['H',   0.1500, -3.2000, -1.6500, 0.20], // 44
+        ['O',  -0.5800, -0.7200, -3.3800,-0.40], // 45 (H2O 2)
+        ['H',  -1.3500, -0.7200, -3.9000, 0.20], // 46
+        ['H',   0.1500, -0.7200, -3.9000, 0.20], // 47
+        ['O',  -2.5800, -0.7200, -1.3500,-0.40], // 48 (H2O 3)
+        ['H',  -3.1000, -1.4500, -1.6500, 0.20], // 49
+        ['H',  -3.1000,  0.0100, -1.6500, 0.20]  // 50
+      ],
+      bonds: [
+        [0,11,1], [0,12,1], [0,24,1], [0,42,1], [0,45,1], [0,48,1],
+        [1,2,2], [2,3,1], [3,4,2], [4,5,1], [5,6,2], [5,7,1],
+        [7,8,2], [8,9,1], [9,10,2], [10,11,1], [9,12,1], [12,13,2],
+        [13,14,1], [14,15,1], [15,16,2], [16,17,1], [17,18,2], [18,19,1],
+        [19,20,2], [20,21,1], [21,22,2], [22,23,1], [23,24,1], [21,25,1],
+        [25,26,2], [25,27,2], [25,28,1], [18,29,1], [29,30,2], [29,31,1],
+        [6,1,1], [10,4,1], [23,14,2], [20,15,1],
+        [1,32,1], [2,33,1], [3,34,1], [6,35,1], [7,36,1], [8,37,1],
+        [16,38,1], [17,39,1], [19,40,1], [22,41,1],
+        [42,43,1], [42,44,1], [45,46,1], [45,47,1], [48,49,1], [48,50,1]
+      ],
+      metalIdx: 0,
+      ligandDonors: [11, 12, 24, 42, 45, 48]
+    }
+  };
+
+  const INITIAL_ATOMS = {};
+  Object.keys(MOLECULAS).forEach(key => {
+    INITIAL_ATOMS[key] = MOLECULAS[key].atoms.map(a => [...a]);
+  });
+
+  function resetGeometry() {
+    if (!MOLECULAS[selectedMoleculeKey] || !INITIAL_ATOMS[selectedMoleculeKey]) return;
+    MOLECULAS[selectedMoleculeKey].atoms = INITIAL_ATOMS[selectedMoleculeKey].map(a => [...a]);
+    loadMoleculeData(selectedMoleculeKey);
+    const statusEl = document.getElementById('optimize-status-text');
+    if (statusEl) statusEl.innerHTML = 'Status: Geometria inicial restaurada.';
+  }
+
+  window.addEventListener("load", function () {
+    const container = document.getElementById("molecule-3d-viewer");
+    if (!container || typeof $3Dmol === 'undefined') return;
+
+    try {
+      viewer = $3Dmol.createViewer(container, { backgroundColor: "#f8f9fa" });
+      loadMoleculeData(selectedMoleculeKey);
+
+      if (isSpinning) viewer.spin("y", 0.8);
+
+      updateAllButtonStyles();
+      updateEspLegendVisibility();
+    } catch (err) {
+      console.error("Erro ao inicializar 3Dmol:", err);
+    }
+  });
+
+  function loadMoleculeData(key) {
+    if (!viewer || !MOLECULAS[key]) return;
+    const mol = MOLECULAS[key];
+    viewer.clear();
+    const molData = molV2000(mol.nome, mol.atoms, mol.bonds);
+    viewer.addModel(molData, "mol");
+
+    const atoms = viewer.selectedAtoms();
+    atoms.forEach((a, i) => {
+      a.partialCharge = mol.atoms[i] ? mol.atoms[i][4] : 0;
+    });
+
+    applyAtomStyles();
+    viewer.resize();
+    viewer.zoomTo();
+
+    if (showSurface) renderSurface();
+    if (showCoordination) renderCoordinationHighlight();
+    updateMoleculeInfoCard();
+    
+    lastEnergyHistory = [];
+    const canvas = document.getElementById('opt-chart');
+    if (canvas) canvas.style.display = 'none';
+
+    const statusEl = document.getElementById('optimize-status-text');
+    if(statusEl) statusEl.innerHTML = 'Status: Pronto para otimizar.';
+  }
+
+  function changeMolecule(val) {
+    selectedMoleculeKey = val;
+    loadMoleculeData(selectedMoleculeKey);
+  }
+
+  function criarCampoForca(m){
+    const RC  = {H:0.31, C:0.76, N:0.71, O:0.66, S:1.05, Ca:1.74, Mg:1.41, Co:1.26, Na:1.86};
+    const VDW = {H:1.10, C:1.70, N:1.55, O:1.52, S:1.80, Ca:2.00, Mg:1.73, Co:1.70, Na:2.27};
+    const N = m.atoms.length, lig = m.bonds;
+    const adj = Array.from({length:N}, () => new Set());
+    
+    lig.forEach(b => { 
+      if(b[0] < N && b[1] < N){
+        adj[b[0]].add(b[1]); 
+        adj[b[1]].add(b[0]); 
+      }
+    });
+
+    const ang = [];
+    for(let c=0; c<N; c++){
+      const v = [...adj[c]];
+      for(let i=0; i<v.length; i++){
+        for(let j=i+1; j<v.length; j++){
+          ang.push([v[i], c, v[j]]);
+        }
+      }
+    }
+
+    const alvo = (el, n) => {
+      if(el === 'Ca' || el === 'Mg' || el === 'Co') return 90;
+      if(el === 'O') return n === 2 ? 104.5 : 0;
+      if(el === 'N') return n === 3 ? 107.0 : 120;
+      if(el === 'C') return n <= 2 ? 180 : (n === 3 ? 120 : 109.5);
+      return 109.5;
+    };
+
+    function angulo(p, a, c, b){
+      const v1 = [p[3*a] - p[3*c], p[3*a+1] - p[3*c+1], p[3*a+2] - p[3*c+2]];
+      const v2 = [p[3*b] - p[3*c], p[3*b+1] - p[3*c+1], p[3*b+2] - p[3*c+2]];
+      const n1 = Math.hypot(v1[0], v1[1], v1[2]);
+      const n2 = Math.hypot(v2[0], v2[1], v2[2]);
+      if (n1 === 0 || n2 === 0) return 0;
+      const cs = Math.max(-1, Math.min(1, (v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2]) / (n1 * n2)));
+      return Math.acos(cs);
+    }
+
+    return function energia(p){
+      let E = 0;
+      for(const b of lig){
+        const a1 = b[0], a2 = b[1], ordem = b[2] || 1;
+        const r1 = RC[m.atoms[a1][0]] || 0.7;
+        const r2 = RC[m.atoms[a2][0]] || 0.7;
+        const d0 = (r1 + r2) * (ordem === 2 ? 0.87 : 1.0);
+        const dx = p[3*a1] - p[3*a2];
+        const dy = p[3*a1+1] - p[3*a2+1];
+        const dz = p[3*a1+2] - p[3*a2+2];
+        const dd = Math.hypot(dx, dy, dz) - d0;
+        E += 350 * dd * dd;
+      }
+      for(const [a, c, b] of ang){
+        const t0 = alvo(m.atoms[c][0], adj[c].size) * Math.PI / 180;
+        if(t0 > 0){ 
+          const da = angulo(p, a, c, b) - t0; 
+          E += 70 * da * da; 
+        }
+      }
+      for(let i=0; i<N; i++){
+        for(let j=i+1; j<N; j++){
+          if(adj[i].has(j)) continue;
+          const vdw1 = VDW[m.atoms[i][0]] || 1.5;
+          const vdw2 = VDW[m.atoms[j][0]] || 1.5;
+          const rmin = (vdw1 + vdw2) * 0.85;
+          const dx = p[3*i] - p[3*j];
+          const dy = p[3*i+1] - p[3*j+1];
+          const dz = p[3*i+2] - p[3*j+2];
+          const dd = Math.hypot(dx, dy, dz);
+          if(dd < rmin && dd > 1e-5){ 
+            const dr = rmin - dd; 
+            E += 60 * dr * dr; 
+          }
+        }
+      }
+      return E;
+    };
+  }
+
+  function drawOptimizationChart(history, maxSteps) {
+    const canvas = document.getElementById('opt-chart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
+    const w = rect.width;
+    const h = rect.height;
+
+    ctx.clearRect(0, 0, w, h);
+    if (!history || history.length === 0) return;
+
+    const padL = 38, padR = 12, padT = 16, padB = 20;
+    const plotW = w - padL - padR;
+    const plotH = h - padT - padB;
+
+    let minE = Math.min(...history);
+    let maxE = Math.max(...history);
+    if (minE === maxE) { maxE += 1; minE -= 1; }
+    const marginE = (maxE - minE) * 0.08;
+    minE -= marginE;
+    maxE += marginE;
+
+    const totalX = Math.max(maxSteps, history.length - 1, 1);
+
+    const textColor = isLightTheme ? '#57606a' : '#8b949e';
+    const gridColor = isLightTheme ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
+    const lineColor = '#0969da';
+
+    ctx.font = '10px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    ctx.fillStyle = textColor;
+    ctx.textAlign = 'left';
+    ctx.fillText('Energia (E)', padL, padT - 4);
+    ctx.textAlign = 'right';
+    ctx.fillText('Passos', w - padR, h - 4);
+
+    ctx.strokeStyle = gridColor;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+
+    const gridSteps = 3;
+    for (let i = 0; i <= gridSteps; i++) {
+      const yVal = minE + (maxE - minE) * (i / gridSteps);
+      const yPos = padT + plotH - (plotH * (i / gridSteps));
+
+      ctx.moveTo(padL, yPos);
+      ctx.lineTo(w - padR, yPos);
+
+      ctx.fillStyle = textColor;
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(yVal.toFixed(0), padL - 4, yPos);
+    }
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    const xGridCount = 4;
+    for (let i = 0; i <= xGridCount; i++) {
+      const stepVal = Math.round((totalX / xGridCount) * i);
+      const xPos = padL + (plotW * (stepVal / totalX));
+      ctx.fillText(stepVal, xPos, padT + plotH + 3);
+    }
+
+    const getX = (stepIdx) => padL + plotW * (stepIdx / totalX);
+    const getY = (val) => padT + plotH - plotH * ((val - minE) / (maxE - minE));
+
+    const grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
+    grad.addColorStop(0, 'rgba(9, 105, 218, 0.30)');
+    grad.addColorStop(1, 'rgba(9, 105, 218, 0.0)');
+
+    ctx.beginPath();
+    ctx.moveTo(getX(0), padT + plotH);
+    for (let i = 0; i < history.length; i++) {
+      ctx.lineTo(getX(i), getY(history[i]));
+    }
+    ctx.lineTo(getX(history.length - 1), padT + plotH);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 2;
+    for (let i = 0; i < history.length; i++) {
+      const px = getX(i);
+      const py = getY(history[i]);
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    if (history.length > 0) {
+      const lastIdx = history.length - 1;
+      const cx = getX(lastIdx);
+      const cy = getY(history[lastIdx]);
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, 3.5, 0, 2 * Math.PI);
+      ctx.fillStyle = '#dc3545';
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
+
+  function optimizeGeometry() {
+    if (!viewer || !MOLECULAS[selectedMoleculeKey]) return;
+
+    const btn = document.getElementById('btn-optimize');
+    const btnReset = document.getElementById('btn-reset-geom');
+    const statusEl = document.getElementById('optimize-status-text');
+    const stepsInput = document.getElementById('max-steps-input');
+    const canvas = document.getElementById('opt-chart');
+
+    const maxSteps = parseInt(stepsInput.value) || 350;
+    lastMaxSteps = maxSteps;
+
+    if (btn) btn.disabled = true;
+    if (btnReset) btnReset.disabled = true;
+    if (canvas) canvas.style.display = 'block';
+
+    const m = MOLECULAS[selectedMoleculeKey];
+    const N = m.atoms.length, n = 3*N;
+    const p = new Float64Array(n);
+    m.atoms.forEach((a,i)=>{ p[3*i]=a[1]; p[3*i+1]=a[2]; p[3*i+2]=a[3]; });
+    
+    const E = criarCampoForca(m);
+    const e0 = E(p);
+    const h = 1e-4;
+
+    function grad(x, out){
+      for(let k=0; k<n; k++){
+        const old = x[k];
+        x[k] = old + h; const ep = E(x);
+        x[k] = old - h; const em = E(x);
+        x[k] = old;
+        out[k] = (ep - em) / (2 * h);
+      }
+    }
+
+    const dot   = (a,b) => { let s=0; for(let k=0;k<n;k++) s+=a[k]*b[k]; return s; };
+    const norm2 = v => dot(v,v);
+
+    const g=new Float64Array(n), gOld=new Float64Array(n),
+          d=new Float64Array(n), dir=new Float64Array(n),
+          xT=new Float64Array(n);
+
+    grad(p, g);
+    for(let k=0; k<n; k++) d[k] = -g[k];
+
+    let e = e0, it = 0, convergido = false;
+    let gNorm = Math.sqrt(norm2(g));
+    let stepLen = 0.05;
+
+    lastEnergyHistory = [e0];
+    drawOptimizationChart(lastEnergyHistory, maxSteps);
+
+    function loopOtimizacao() {
+      const stepsPerChunk = Math.max(1, Math.floor(maxSteps / 80));
+      let finalizado = false;
+
+      for (let chunk = 0; chunk < stepsPerChunk; chunk++) {
+        if (it >= maxSteps || isNaN(e) || isNaN(gNorm) || gNorm < 1e-3) {
+          convergido = (gNorm < 1e-3);
+          finalizado = true;
+          break;
+        }
+
+        const dNorm = Math.sqrt(norm2(d));
+        if (dNorm < 1e-12 || isNaN(dNorm)) { convergido = true; finalizado = true; break; }
+        for (let k = 0; k < n; k++) dir[k] = d[k] / dNorm;
+
+        let gd = dot(g, dir);
+        if (gd >= 0) {
+          for (let k = 0; k < n; k++) dir[k] = -g[k] / gNorm;
+          gd = dot(g, dir);
+        }
+
+        const c = 1e-4;
+        let alpha = stepLen, aceita = false, eAceita = e;
+        for (let ls = 0; ls < 30; ls++) {
+          for (let k = 0; k < n; k++) xT[k] = p[k] + alpha * dir[k];
+          const eT = E(xT);
+          if (eT <= e + c * alpha * gd) { aceita = true; eAceita = eT; break; }
+          alpha *= 0.5;
+        }
+
+        if (!aceita) {
+          if (gNorm < 1e-2) convergido = true;
+          finalizado = true;
+          break;
+        }
+
+        for (let k = 0; k < n; k++) p[k] = xT[k];
+        e = eAceita;
+        stepLen = Math.min(0.5, stepLen * 1.2);
+
+        gOld.set(g);
+        grad(p, g);
+        const gNormNew = Math.sqrt(norm2(g));
+
+        const ng2 = norm2(gOld);
+        let num = 0; for (let k = 0; k < n; k++) num += g[k] * (g[k] - gOld[k]);
+        let beta = ng2 > 1e-12 ? num / ng2 : 0;
+        if (beta < 0) beta = 0;
+        for (let k = 0; k < n; k++) d[k] = -g[k] + beta * d[k];
+
+        if (dot(d, g) > 0) { for (let k = 0; k < n; k++) d[k] = -g[k]; }
+
+        gNorm = gNormNew;
+        it++;
+        lastEnergyHistory.push(e);
+      }
+
+      m.atoms.forEach((a, idx) => { a[1] = p[3 * idx]; a[2] = p[3 * idx + 1]; a[3] = p[3 * idx + 2]; });
+
+      if (statusEl) {
+        statusEl.innerHTML = `<span class="text-primary"><i class="fa-solid fa-spinner fa-spin me-1"></i>Passo ${it}/${maxSteps} — Energia: ${e.toFixed(2)}</span>`;
+      }
+      
+      drawOptimizationChart(lastEnergyHistory, maxSteps);
+
+      const molData = molV2000(m.nome, m.atoms, m.bonds);
+      viewer.clear();
+      viewer.addModel(molData, "mol");
+      const vAtoms = viewer.selectedAtoms();
+      vAtoms.forEach((a, idx) => {
+        a.partialCharge = m.atoms[idx] ? m.atoms[idx][4] : 0;
+      });
+      applyAtomStyles();
+      if (showSurface) renderSurface();
+      if (showCoordination) renderCoordinationHighlight();
+
+      if (!finalizado && it < maxSteps) {
+        requestAnimationFrame(loopOtimizacao);
+      } else {
+        if (statusEl) {
+          const sit = convergido ? 'Convergido' : 'Limite de passos atingido';
+          const badgeClass = convergido ? 'text-success' : 'text-warning';
+          statusEl.innerHTML = `<span class="${badgeClass} fw-bold"><i class="fa-solid fa-check-circle me-1"></i>${sit}! (${it} iteraç. | Energia: ${e0.toFixed(1)} → ${e.toFixed(1)})</span>`;
+        }
+        if (btn) btn.disabled = false;
+        if (btnReset) btnReset.disabled = false;
+      }
+    }
+
+    requestAnimationFrame(loopOtimizacao);
+  }
+
+  function renderSurface() {
+    if (!viewer) return;
+    try {
+      viewer.removeAllSurfaces();
+      if (!showSurface) {
+        updateEspLegendVisibility();
+        return;
+      }
+
+      let typeEnum = $3Dmol.SurfaceType.MS;
+      if (selectedSurfaceType === 'VDW') typeEnum = $3Dmol.SurfaceType.VDW;
+      else if (selectedSurfaceType === 'SAS') typeEnum = $3Dmol.SurfaceType.SAS;
+
+      let colorConfig = selectedSurfaceColor;
+      if (selectedSurfaceColor === 'electrostatic') {
+        colorConfig = { prop: 'charge', gradient: 'rwb', min: -0.5, max: 0.5 };
+      }
+
+      viewer.addSurface(typeEnum, {
+        opacity: parseFloat(surfaceOpacity),
+        colorscheme: colorConfig,
+        probeRadius: 1.4
+      }, {}, {});
+
+      viewer.render();
+      updateEspLegendVisibility();
+    } catch (err) {
+      console.error("Erro ao desenhar superfície:", err);
+    }
+  }
+
+  function updateEspLegendVisibility() {
+    const legend = document.getElementById('esp-legend');
+    if (!legend) return;
+    if (showSurface && selectedSurfaceColor === 'electrostatic') {
+      legend.style.display = 'block';
+    } else {
+      legend.style.display = 'none';
+    }
+  }
+
+  function changeSurfaceColor(val) {
+    selectedSurfaceColor = val;
+    if (showSurface) renderSurface();
+    else updateEspLegendVisibility();
+  }
+
+  function updateMoleculeInfoCard() {
+    const mol = MOLECULAS[selectedMoleculeKey];
+    const titleEl = document.getElementById('info-mol-title');
+    const pkaEl = document.getElementById('info-mol-pka');
+    const detailEl = document.getElementById('info-mol-detail');
+
+    if (titleEl) titleEl.innerHTML = `${mol.nome} <small class="text-secondary fs-6">(${mol.formula})</small>`;
+    if (pkaEl) pkaEl.innerHTML = mol.pka;
+    if (detailEl) detailEl.innerHTML = mol.desc;
+    
+    renderKaTeX();
+  }
+
+  function renderCoordinationHighlight() {
+    clearCoordinationHighlight();
+    const mol = MOLECULAS[selectedMoleculeKey];
+    if (mol.metalIdx === null || mol.metalIdx === undefined) return;
+
+    const metalAt = mol.atoms[mol.metalIdx];
+    const mCoord = { x: metalAt[1], y: metalAt[2], z: metalAt[3] };
+    
+    const metalSphere = viewer.addSphere({
+      center: mCoord,
+      radius: 0.85,
+      color: '#ffc107',
+      alpha: 0.6
+    });
+
+    const metalLabel = viewer.addLabel(`Íon Metálico (${metalAt[0]})`, {
+      position: mCoord,
+      backgroundColor: '#ffc107',
+      backgroundOpacity: 0.9,
+      fontColor: 'black',
+      fontSize: 12,
+      alignment: 'bottomCenter'
+    });
+
+    coordinationShapes.push(metalSphere);
+    coordinationLabels.push(metalLabel);
+
+    if (mol.ligandDonors) {
+      mol.ligandDonors.forEach(donorIdx => {
+        const dAt = mol.atoms[donorIdx];
+        const dCoord = { x: dAt[1], y: dAt[2], z: dAt[3] };
+
+        const line = viewer.addLine({
+          start: mCoord,
+          end: dCoord,
+          color: '#0d6efd',
+          wireframe: false,
+          linewidth: 3,
+          dashed: true
+        });
+
+        const donorSphere = viewer.addSphere({
+          center: dCoord,
+          radius: 0.45,
+          color: '#0d6efd',
+          alpha: 0.5
+        });
+
+        coordinationShapes.push(line);
+        coordinationShapes.push(donorSphere);
+      });
+    }
+
+    viewer.render();
+  }
+
+  function clearCoordinationHighlight() {
+    coordinationShapes.forEach(s => viewer.removeShape(s));
+    coordinationLabels.forEach(l => viewer.removeLabel(l));
+    coordinationShapes = [];
+    coordinationLabels = [];
+  }
+
+  function toggleCoordinationHighlight() {
+    showCoordination = !showCoordination;
+    const btn = document.getElementById('btn-coordination');
+
+    if (showCoordination) {
+      renderCoordinationHighlight();
+      if (btn) btn.classList.add('active', 'btn-warning');
+    } else {
+      clearCoordinationHighlight();
+      if (btn) btn.classList.remove('active', 'btn-warning');
+      viewer.render();
+    }
+  }
+
+  function applyAtomStyles() {
+    if (!viewer) return;
+
+    ['C', 'N', 'O', 'S', 'H'].forEach(elem => {
+      const isVisible = atomVisibility[elem];
+      if (isVisible) {
+        const scale = (elem === 'H') ? 0.30 : 0.27;
+        viewer.setStyle({ elem: elem }, { stick: { radius: 0.16, colorscheme: 'Jmol' }, sphere: { scale: scale, colorscheme: 'Jmol' } });
+      } else {
+        viewer.setStyle({ elem: elem }, { hidden: true });
+      }
+    });
+
+    const metals = ['Ca', 'Mg', 'Co', 'Na'];
+    metals.forEach(mElem => {
+      if (atomVisibility['Metal']) {
+        viewer.setStyle({ elem: mElem }, { stick: { radius: 0.25, color: '#ffc107' }, sphere: { scale: 0.70, color: '#ffc107' } });
+      } else {
+        viewer.setStyle({ elem: mElem }, { hidden: true });
+      }
+    });
+
+    viewer.render();
+  }
+
+  function toggleAtom(elemGroup) {
+    atomVisibility[elemGroup] = !atomVisibility[elemGroup];
+    applyAtomStyles();
+    updateAtomButtonsUI();
+  }
+
+  function updateAtomButtonsUI() {
+    ['C', 'N', 'O', 'S', 'Metal'].forEach(elem => {
+      const btn = document.getElementById(`btn-atom-${elem}`);
+      if (!btn) return;
+
+      const isVisible = atomVisibility[elem];
+      const activeClass = isLightTheme ? 'btn-dark' : 'btn-warning';
+      const inactiveClass = isLightTheme ? 'btn-outline-dark' : 'btn-outline-warning';
+
+      btn.classList.remove('btn-dark', 'btn-warning', 'btn-outline-dark', 'btn-outline-warning', 'opacity-50');
+      btn.classList.add(isVisible ? activeClass : inactiveClass);
+      if (!isVisible) btn.classList.add('opacity-50');
+    });
+  }
+
+  function updateSurfaceButtonUI() {
+    const btn = document.getElementById('btn-surface');
+    const statusText = document.getElementById('surface-status');
+    if (!btn || !statusText) return;
+
+    const outlineClass = isLightTheme ? 'btn-outline-dark' : 'btn-outline-warning';
+    const activeClass = isLightTheme ? 'btn-dark' : 'btn-warning';
+
+    btn.classList.remove('btn-outline-dark', 'btn-outline-warning', 'btn-dark', 'btn-warning', 'active');
+    btn.classList.add(showSurface ? activeClass : outlineClass);
+    if (showSurface) btn.classList.add('active');
+    statusText.textContent = showSurface ? 'ATIVADA' : 'DESATIVADA';
+  }
+
+  function updateAllButtonStyles() {
+    const outlineToAdd = isLightTheme ? 'btn-outline-dark' : 'btn-outline-warning';
+    const outlineToRemove = isLightTheme ? 'btn-outline-warning' : 'btn-outline-dark';
+
+    document.querySelectorAll('.btn-theme-std').forEach(btn => {
+      btn.classList.remove(outlineToRemove);
+      btn.classList.add(outlineToAdd);
+    });
+
+    updateSurfaceButtonUI();
+    updateAtomButtonsUI();
+  }
+
+  function toggleSurface() {
+    showSurface = !showSurface;
+    updateSurfaceButtonUI();
+    renderSurface();
+  }
+
+  function changeSurfaceType(val) {
+    selectedSurfaceType = val;
+    if (showSurface) renderSurface();
+  }
+
+  function changeSurfaceOpacity(val) {
+    surfaceOpacity = val;
+    if (showSurface) renderSurface();
+  }
+
+  function toggleTheme() {
+    isLightTheme = !isLightTheme;
+    document.body.classList.toggle('light-theme', isLightTheme);
+    const btnTheme = document.getElementById("btn-theme");
+    
+    if (btnTheme) {
+      btnTheme.innerHTML = isLightTheme 
+        ? '<i class="fa-solid fa-moon me-1"></i>Tema Escuro' 
+        : '<i class="fa-solid fa-sun me-1"></i>Tema Claro';
+    }
+
+    updateAllButtonStyles();
+
+    if (lastEnergyHistory && lastEnergyHistory.length > 0) {
+      drawOptimizationChart(lastEnergyHistory, lastMaxSteps);
+    }
+
+    if (viewer) {
+      viewer.setBackgroundColor(isLightTheme ? '#f8f9fa' : '#010409');
+      viewer.render();
+    }
+  }
+
+  function toggleSpin() {
+    if (!viewer) return;
+    isSpinning = !isSpinning;
+    const btnIcon = document.getElementById("spin-icon");
+    const btnText = document.getElementById("btn-spin");
+
+    if (isSpinning) {
+      viewer.spin("y", 0.8);
+      if (btnIcon) btnIcon.className = "fa-solid fa-pause me-1";
+      if (btnText) btnText.childNodes[1].nodeValue = "Pausar Rotação";
+    } else {
+      viewer.spin(false);
+      if (btnIcon) btnIcon.className = "fa-solid fa-play me-1";
+      if (btnText) btnText.childNodes[1].nodeValue = "Girar Molécula";
+    }
+  }
+
+  function resetZoom() {
+    if (viewer) {
+      viewer.zoomTo();
+      viewer.render();
+    }
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
