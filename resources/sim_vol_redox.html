@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decomposição da Água Oxigenada - Teor em Volumes</title>
+  <style>
+    :root {
+      --bg-color: #f0f4f8;
+      --card-bg: #ffffff;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --accent: #0ea5e9;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-color);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      background-image: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+    }
+
+    .container {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 30px;
+      max-width: 950px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .header h1 span {
+      color: var(--primary);
+    }
+
+    .header .subtitle {
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .header .subtitle strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ===== CONCENTRATION SELECTOR ===== */
+    .vol-selector {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      background: #f1f5f9;
+      padding: 12px 20px;
+      border-radius: 12px;
+    }
+
+    .vol-selector .label {
+      font-weight: 600;
+      color: var(--text);
+      margin-right: 10px;
+      font-size: 0.95rem;
+    }
+
+    .vol-btn {
+      background: #e2e8f0;
+      color: #334155;
+      border: 2px solid transparent;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vol-btn:hover:not(:disabled) {
+      background: #cbd5e1;
+      transform: translateY(-1px);
+    }
+
+    .vol-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .vol-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary-dark);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .vol-btn .icon {
+      font-size: 1.1rem;
+    }
+
+    /* ===== CONTROLS ===== */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .controls .btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .main-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .main-btn:hover:not(:disabled) {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .main-btn:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .main-btn.secondary {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .main-btn.secondary:hover:not(:disabled) {
+      background: #cbd5e1;
+      transform: translateY(-2px);
+    }
+
+    .main-btn.success {
+      background: var(--success);
+    }
+
+    .main-btn.success:hover:not(:disabled) {
+      background: #16a34a;
+    }
+
+    .main-btn.warning {
+      background: var(--warning);
+    }
+
+    .main-btn.warning:hover:not(:disabled) {
+      background: #d97706;
+    }
+
+    /* ===== STAGE ===== */
+    .stage {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 520px;
+      margin: 15px 0 20px;
+      position: relative;
+      background: linear-gradient(180deg, #eef2f6 0%, #f8fafc 100%);
+      border-radius: 12px;
+      padding: 20px 30px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      min-height: 500px;
+    }
+
+    /* ===== CNTP TAG ===== */
+    .cntp-tag {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #e0f2fe;
+      border: 1px solid #7dd3fc;
+      color: #0369a1;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-align: right;
+      line-height: 1.4;
+      box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15);
+      z-index: 5;
+    }
+
+    .cntp-tag small {
+      font-weight: 400;
+      font-size: 10px;
+    }
+
+    /* ===== EQUATION CARD ===== */
+    .equation-card {
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      padding: 8px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.3);
+      z-index: 10;
+      white-space: nowrap;
+      border: 1px solid #334155;
+    }
+
+    .equation-card .eq-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fbbf24;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .equation-card .eq-text .arrow {
+      color: #60a5fa;
+      margin: 0 4px;
+    }
+
+    /* ===== CLOSED SYSTEM ===== */
+    .closed-system {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    /* ===== BALLOON AREA ===== */
+    .balloon-area {
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .balloon-wrapper {
+      position: relative;
+      width: 260px;
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-right: 20px;
+    }
+
+    .balloon {
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle at 30% 30%, #93c5fd, #2563eb);
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      box-shadow: 
+        inset -6px -6px 25px rgba(0, 0, 0, 0.15),
+        0 8px 30px rgba(37, 99, 235, 0.3),
+        0 0 60px rgba(37, 99, 235, 0.1);
+      transition: width 0.08s linear, height 0.08s linear;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      opacity: 0.95;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 25%;
+      width: 25%;
+      height: 20%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .balloon-label {
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 12px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* ===== RULER ===== */
+    .ruler {
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+      height: 190px;
+      width: 55px;
+      border-left: 2px dashed #94a3b8;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      padding-left: 8px;
+      padding-bottom: 2px;
+    }
+
+    .ruler-mark {
+      position: relative;
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      display: flex;
+      align-items: flex-end;
+      height: 20px;
+    }
+
+    .ruler-mark::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      width: 8px;
+      height: 2px;
+      background: #94a3b8;
+    }
+
+    .ruler-mark:last-child::before {
+      height: 3px;
+      background: #475569;
+    }
+
+    /* ===== FLASK ===== */
+    .flask-neck {
+      width: 26px;
+      height: 28px;
+      border-left: 4px solid #475569;
+      border-right: 4px solid #475569;
+      background: #cbd5e1;
+      z-index: 2;
+      position: relative;
+    }
+
+    .stopper {
+      width: 32px;
+      height: 14px;
+      background: linear-gradient(180deg, #475569, #334155);
+      border-radius: 4px 4px 2px 2px;
+      margin-bottom: -2px;
+      z-index: 3;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .stopper::after {
+      content: '🔒';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .flask-body {
+      width: 130px;
+      height: 130px;
+      border: 4px solid #475569;
+      border-top: none;
+      clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+      position: relative;
+      background: #e2e8f0;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+    }
+
+    .flask-body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .liquid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(180deg, #0284c7, #0369a1);
+      transition: height 0.5s ease, background 0.5s ease;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .liquid::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+      border-radius: 50%;
+    }
+
+    /* ===== BUBBLES ===== */
+    .bubble {
+      position: absolute;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+      border-radius: 50%;
+      animation: rise linear infinite;
+      pointer-events: none;
+      box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes rise {
+      0% { 
+        bottom: 0; 
+        opacity: 0; 
+        transform: translateX(0) scale(0.6); 
+      }
+      15% { 
+        opacity: 1; 
+      }
+      85% {
+        opacity: 1;
+      }
+      100% { 
+        bottom: 100%; 
+        opacity: 0; 
+        transform: translateX(var(--drift)) scale(1.4); 
+      }
+    }
+
+    /* ===== SAMPLE LABEL ===== */
+    .info-tag {
+      font-size: 0.9rem;
+      margin-top: 10px;
+      background: #e2e8f0;
+      padding: 6px 16px;
+      border-radius: 20px;
+      display: inline-block;
+      font-weight: 600;
+      color: var(--text);
+      border: 1px solid #cbd5e1;
+    }
+
+    .info-tag .highlight-vol {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* ===== TRACKER ===== */
+    .tracker-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+    }
+
+    .tracker-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .tracker-item .label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .tracker-item .value {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .tracker-item .value.h2o2 { color: #dc2626; }
+    .tracker-item .value.h2o { color: #2563eb; }
+    .tracker-item .value.o2 { color: #16a34a; }
+
+    .tracker-item .icon-badge {
+      font-size: 1.2rem;
+      margin-bottom: 2px;
+    }
+
+    /* ===== EXPLANATION ===== */
+    .formula-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 0.95rem;
+      color: #1e40af;
+      line-height: 1.6;
+      min-height: 60px;
+      transition: all 0.3s ease;
+    }
+
+    .formula-box .highlight {
+      font-weight: 700;
+      color: #0369a1;
+    }
+
+    .formula-box .success-text {
+      color: #16a34a;
+      font-weight: 600;
+    }
+
+    /* ===== STOICHIOMETRY INFO ===== */
+    .stoich-info {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 6px;
+      align-items: center;
+      justify-items: center;
+      background: #f1f5f9;
+      padding: 10px 16px;
+      border-radius: 10px;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .stoich-info .mol-box {
+      text-align: center;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: white;
+      min-width: 60px;
+    }
+
+    .stoich-info .mol-box .mol-label {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .stoich-info .mol-box .mol-value {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .stoich-info .arrow-symbol {
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+
+    /* ===== PROGRESS BAR ===== */
+    .progress-container {
+      width: 100%;
+      margin-top: 12px;
+      background: #e2e8f0;
+      border-radius: 20px;
+      height: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 20px;
+      transition: width 0.3s ease;
+      position: relative;
+    }
+
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    /* ===== COMPARISON MODE ===== */
+    .comparison-mode {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 16px 0;
+      padding: 16px;
+      background: #f8fafc;
+      border-radius: 12px;
+      border: 2px solid #bfdbfe;
+    }
+
+    .comparison-mode.active {
+      display: grid;
+    }
+
+    .comparison-item {
+      text-align: center;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .comparison-item .vol-title {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .comparison-item .vol-gas {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #16a34a;
+      margin: 4px 0;
+    }
+
+    .comparison-item .vol-bar {
+      height: 30px;
+      background: #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .comparison-item .vol-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      transition: width 1s ease;
+      border-radius: 6px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .container {
+        padding: 16px;
+      }
+
+      .header h1 {
+        font-size: 1.3rem;
+      }
+
+      .stage {
+        height: 450px;
+        padding: 15px;
+        min-height: 400px;
+      }
+
+      .equation-card {
+        padding: 6px 12px;
+        top: 10px;
+      }
+
+      .equation-card .eq-text {
+        font-size: 0.8rem;
+      }
+
+      .balloon-wrapper {
+        width: 180px;
+        height: 160px;
+        margin-right: 10px;
+      }
+
+      .ruler {
+        height: 150px;
+        width: 40px;
+        font-size: 9px;
+      }
+
+      .flask-body {
+        width: 100px;
+        height: 100px;
+      }
+
+      .flask-neck {
+        width: 20px;
+        height: 20px;
+      }
+
+      .cntp-tag {
+        font-size: 9px;
+        padding: 4px 10px;
+        top: 10px;
+        right: 10px;
+      }
+
+      .tracker-box {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 12px;
+      }
+
+      .tracker-item .value {
+        font-size: 0.95rem;
+      }
+
+      .stoich-info {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        font-size: 0.8rem;
+      }
+
+      .comparison-mode {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .vol-selector {
+        padding: 10px 14px;
+      }
+
+      .vol-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+
+      .main-btn {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+      }
+
+      .controls {
+        gap: 6px;
+      }
+
+      .controls .btn-group {
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stage {
+        height: 380px;
+        padding: 10px;
+        min-height: 340px;
+      }
+
+      .balloon-wrapper {
+        width: 140px;
+        height: 130px;
+      }
+
+      .flask-body {
+        width: 80px;
+        height: 80px;
+      }
+
+      .flask-neck {
+        width: 16px;
+        height: 16px;
+      }
+
+      .ruler {
+        height: 120px;
+        width: 32px;
+        font-size: 8px;
+      }
+
+      .balloon-label {
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" role="main">
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <h1>🧪 Decomposição da <span>Água Oxigenada</span></h1>
+    <p class="subtitle">
+      O <strong>teor em volumes</strong> indica quantos mL de gás oxigênio (O₂) 
+      <strong>1 mL</strong> de H₂O₂ pode liberar nas <strong>CNTP</strong>.
+      <br>Quanto maior o teor, <strong>mais gás</strong> é produzido!
+    </p>
+  </header>
+
+  <!-- ===== CONCENTRATION SELECTOR ===== -->
+  <div class="vol-selector" role="group" aria-label="Seleção de concentração">
+    <span class="label">💧 Concentração:</span>
+    <button class="vol-btn active" id="btn10" onclick="selecionarVolume(10)" aria-pressed="true">
+      <span class="icon">🔵</span> 10 Vol.
+    </button>
+    <button class="vol-btn" id="btn20" onclick="selecionarVolume(20)" aria-pressed="false">
+      <span class="icon">🟦</span> 20 Vol.
+    </button>
+    <button class="vol-btn" id="btn30" onclick="selecionarVolume(30)" aria-pressed="false">
+      <span class="icon">🟪</span> 30 Vol.
+    </button>
+  </div>
+
+  <!-- ===== CONTROLS ===== -->
+  <div class="controls">
+    <div class="btn-group">
+      <button class="main-btn" id="startBtn" onclick="iniciarDecomposicao()">
+        ▶ Iniciar Reação
+      </button>
+      <button class="main-btn secondary" id="pauseBtn" onclick="togglePausa()" disabled>
+        ⏸ Pausar
+      </button>
+      <button class="main-btn warning" id="speedBtn" onclick="acelerarReacao()" disabled>
+        ⏩ Acelerar
+      </button>
+    </div>
+    <div class="btn-group">
+      <button class="main-btn secondary" onclick="resetarSimulacao()">
+        ↺ Resetar
+      </button>
+      <button class="main-btn success" id="compareBtn" onclick="toggleComparacao()">
+        📊 Comparar Teores
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== STAGE ===== -->
+  <div class="stage" role="img" aria-label="Simulação da decomposição da água oxigenada">
+    <!-- CNTP Tag -->
+    <div class="cntp-tag">
+      <b>CNTP</b><br>
+      <small>T = 0 °C (273 K)<br>P = 1 atm</small>
+    </div>
+
+    <!-- Equation Card -->
+    <div class="equation-card">
+      <span class="eq-text">
+        2H₂O₂(aq) <span class="arrow">→</span> 2H₂O(l) <span class="arrow">+</span> O₂(g)
+      </span>
+    </div>
+
+    <div class="closed-system">
+      <!-- Balloon Area -->
+      <div class="balloon-area">
+        <div class="balloon-wrapper">
+          <div class="balloon" id="balloon" role="img" aria-label="Balão de gás oxigênio">
+            <span class="balloon-label" id="balloonLabel">0,0 mL</span>
+          </div>
+        </div>
+
+        <!-- Ruler -->
+        <div class="ruler" id="ruler" aria-label="Escala volumétrica">
+          <div class="ruler-mark" id="rulerMax">30 mL</div>
+          <div class="ruler-mark" id="rulerMid">15 mL</div>
+          <div class="ruler-mark">0 mL</div>
+        </div>
+      </div>
+
+      <!-- Flask Components -->
+      <div class="stopper" title="Sistema fechado - vedação hermética"></div>
+      <div class="flask-neck"></div>
+      <div class="flask-body" id="flaskBody">
+        <div class="liquid" id="liquid" role="img" aria-label="Solução de água oxigenada"></div>
+      </div>
+
+      <!-- Sample Label -->
+      <div class="info-tag">
+        📋 Amostra: <strong>1,0 mL</strong> de H₂O₂ 
+        <span class="highlight-vol" id="volText">10</span> Vol.
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-container" style="width: 80%;">
+        <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+      </div>
+      <div class="progress-label">
+        <span>Reação: <span id="progressText">0%</span></span>
+        <span id="progressStatus">Aguardando início...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TRACKER ===== -->
+  <div class="tracker-box">
+    <div class="tracker-item">
+      <span class="icon-badge">🧪</span>
+      <span class="label">H₂O₂ Restante</span>
+      <span class="value h2o2" id="trackH2O2">1.00 mL</span>
+    </div>
+    <div class="tracker-item">
+      <span class="icon-badge">💧</span>
+      <span class="label">H₂O Formada</span>
+      <span class="value h2o" id="trackH2O">0.00 mL</span>
+    </div>
+    <div class="tracker-item">
+      <span class="icon-badge">🟢</span>
+      <span class="label">O₂ Liberado</span>
+      <span class="value o2" id="trackO2">0.0 mL</span>
+    </div>
+  </div>
+
+  <!-- ===== STOICHIOMETRY INFO ===== -->
+  <div class="stoich-info">
+    <div class="mol-box">
+      <div class="mol-label">Reagente</div>
+      <div class="mol-value" style="color:#dc2626;">2 H₂O₂</div>
+    </div>
+    <span class="arrow-symbol">→</span>
+    <div class="mol-box">
+      <div class="mol-label">Produto</div>
+      <div class="mol-value" style="color:#2563eb;">2 H₂O</div>
+    </div>
+    <span class="arrow-symbol">+</span>
+    <div class="mol-box">
+      <div class="mol-label">Gás</div>
+      <div class="mol-value" style="color:#16a34a;">1 O₂</div>
+    </div>
+  </div>
+
+  <!-- ===== EXPLANATION ===== -->
+  <div class="formula-box" id="explanation">
+    <strong>💡 Como funciona:</strong> 
+    Selecione o <strong>teor em volumes</strong> desejado e clique em 
+    <strong>"Iniciar Reação"</strong> para ver a decomposição total da amostra.
+    <br>
+    <span style="font-size:0.9rem; color:#475569;">
+      ⚡ <strong>Relação:</strong> 1 mL de H₂O₂ a X Vol. → X mL de O₂ (CNTP)
+    </span>
+  </div>
+
+  <!-- ===== COMPARISON MODE ===== -->
+  <div class="comparison-mode" id="comparisonMode">
+    <div class="comparison-item">
+      <div class="vol-title">🔵 10 Vol.</div>
+      <div class="vol-gas" id="comp10">0 mL</div>
+      <div class="vol-bar">
+        <div class="vol-bar-fill" id="compBar10" style="width:0%;"></div>
+      </div>
+    </div>
+    <div class="comparison-item">
+      <div class="vol-title">🟦 20 Vol.</div>
+      <div class="vol-gas" id="comp20">0 mL</div>
+      <div class="vol-bar">
+        <div class="vol-bar-fill" id="compBar20" style="width:0%;"></div>
+      </div>
+    </div>
+    <div class="comparison-item">
+      <div class="vol-title">🟪 30 Vol.</div>
+      <div class="vol-gas" id="comp30">0 mL</div>
+      <div class="vol-bar">
+        <div class="vol-bar-fill" id="compBar30" style="width:0%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== STATE =====
+  let animacaoRodando = false;
+  let pausado = false;
+  let acelerado = false;
+  let teorSelecionado = 10;
+  let volumeGas = 0;
+  let timer = null;
+  let incremento = 0;
+  let intervalTime = 30;
+  let comparacaoAtiva = false;
+  let reacaoConcluida = false;
+
+  // ===== DOM REFS =====
+  const balloon = document.getElementById('balloon');
+  const balloonLabel = document.getElementById('balloonLabel');
+  const liquid = document.getElementById('liquid');
+  const flaskBody = document.getElementById('flaskBody');
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  const progressStatus = document.getElementById('progressStatus');
+  const explanation = document.getElementById('explanation');
+  const startBtn = document.getElementById('startBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const speedBtn = document.getElementById('speedBtn');
+
+  // ===== RULER UPDATE =====
+  function atualizarEscalaRuler() {
+    const rulerMax = document.getElementById('rulerMax');
+    const rulerMid = document.getElementById('rulerMid');
+    rulerMax.innerText = teorSelecionado + ' mL';
+    rulerMid.innerText = (teorSelecionado / 2) + ' mL';
+  }
+
+  // ===== SELECT VOLUME =====
+  function selecionarVolume(vol) {
+    // Não permitir trocar durante a reação (a menos que esteja pausada ou concluída)
+    if (animacaoRodando && !pausado && !reacaoConcluida) return;
+    if (animacaoRodando && !reacaoConcluida) {
+      // Se está pausado, resetar antes de trocar
+      resetarSimulacao();
+    }
+    
+    teorSelecionado = vol;
+    
+    document.querySelectorAll('.vol-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    const btn = document.getElementById('btn' + vol);
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    document.getElementById('volText').innerText = vol;
+
+    atualizarEscalaRuler();
+    resetarSimulacao();
+    atualizarComparacao();
+  }
+
+  // ===== TOGGLE PAUSE =====
+  function togglePausa() {
+    if (!animacaoRodando) return;
+    
+    if (pausado) {
+      // Continuar
+      pausado = false;
+      pauseBtn.textContent = '⏸ Pausar';
+      pauseBtn.disabled = false;
+      startBtn.disabled = true;
+      speedBtn.disabled = false;
+      progressStatus.textContent = '▶ Em andamento...';
+      
+      // Retomar a reação
+      if (!reacaoConcluida) {
+        explanation.innerHTML = `
+          <strong>▶ Reação retomada</strong><br>
+          <span style="font-size:0.9rem;">
+            Liberando <strong>${teorSelecionado} mL</strong> de gás O₂ nas CNTP.
+            ${acelerado ? '⚡ Modo acelerado ativado!' : ''}
+          </span>
+        `;
+        continuarDecomposicao();
+      }
+    } else {
+      // Pausar
+      pausado = true;
+      pauseBtn.textContent = '▶ Continuar';
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      progressStatus.textContent = '⏸ Pausado';
+      explanation.innerHTML = `
+        <strong>⏸ Reação pausada</strong><br>
+        <span style="font-size:0.9rem; color:#475569;">
+          Clique em <strong>"Continuar"</strong> para retomar a decomposição.
+        </span>
+      `;
+    }
+  }
+
+  // ===== START DECOMPOSITION =====
+  function iniciarDecomposicao() {
+    // Se já foi concluída, resetar primeiro
+    if (reacaoConcluida) {
+      resetarSimulacao();
+      // Pequeno delay para permitir o reset
+      setTimeout(() => iniciarDecomposicao(), 100);
+      return;
+    }
+    
+    if (animacaoRodando && !pausado) return;
+    
+    if (pausado) {
+      // Resume - agora tratado pelo togglePausa
+      togglePausa();
+      return;
+    }
+
+    // New start
+    animacaoRodando = true;
+    pausado = false;
+    acelerado = false;
+    reacaoConcluida = false;
+    volumeGas = 0;
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+    pauseBtn.textContent = '⏸ Pausar';
+    speedBtn.disabled = false;
+    speedBtn.textContent = '⏩ Acelerar';
+
+    // Bloquear botões de volume durante a reação
+    document.querySelectorAll('.vol-btn').forEach(b => b.disabled = true);
+
+    // Clean existing bubbles
+    document.querySelectorAll('.bubble').forEach(b => b.remove());
+
+    // Show balloon label
+    balloonLabel.style.opacity = '1';
+
+    // Create bubbles
+    const totalBolhas = Math.min(teorSelecionado * 2.5, 60);
+    for (let i = 0; i < totalBolhas; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const tamanho = Math.random() * 6 + 2;
+      const posX = Math.random() * 70 + 15;
+      const delay = Math.random() * 2.0;
+      const duracao = Math.random() * 0.7 + 0.4;
+      const drift = (Math.random() - 0.5) * 18;
+      b.style.width = tamanho + 'px';
+      b.style.height = tamanho + 'px';
+      b.style.left = posX + '%';
+      b.style.animationDelay = delay + 's';
+      b.style.animationDuration = duracao + 's';
+      b.style.setProperty('--drift', drift + 'px');
+      flaskBody.appendChild(b);
+    }
+
+    const duracao = acelerado ? 1500 : 4000;
+    const intervalos = duracao / intervalTime;
+    incremento = teorSelecionado / intervalos;
+
+    explanation.innerHTML = `
+      <strong>⚡ Reação em andamento...</strong><br>
+      <span style="font-size:0.9rem;">
+        Liberando <strong>${teorSelecionado} mL</strong> de gás O₂ nas CNTP.
+        <br>${acelerado ? '⏩ Modo acelerado ativado!' : '⏳ Aguarde...'}
+      </span>
+    `;
+    progressStatus.textContent = 'Em andamento...';
+
+    continuarDecomposicao();
+  }
+
+  // ===== CONTINUE DECOMPOSITION =====
+  function continuarDecomposicao() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+    
+    const velocidade = acelerado ? 1.8 : 1;
+    const step = incremento * velocidade;
+
+    timer = setInterval(() => {
+      if (pausado) {
+        clearInterval(timer);
+        timer = null;
+        return;
+      }
+
+      volumeGas += step;
+      if (volumeGas >= teorSelecionado) {
+        volumeGas = teorSelecionado;
+        clearInterval(timer);
+        timer = null;
+        concluirSimulacao();
+        return;
+      }
+
+      atualizarVisualizacao(volumeGas);
+    }, intervalTime);
+  }
+
+  // ===== UPDATE VISUALIZATION =====
+  function atualizarVisualizacao(gas) {
+    const progresso = gas / teorSelecionado;
+    
+    // Balloon size
+    const tamanhoBase = 14;
+    const fatorExpansao = 180 * (teorSelecionado / 30);
+    const expansao = progresso * fatorExpansao;
+    const largura = tamanhoBase + expansao;
+    const altura = tamanhoBase + (expansao * 1.05);
+    balloon.style.width = largura + 'px';
+    balloon.style.height = altura + 'px';
+    
+    // Label
+    const fontSize = Math.min(10 + (gas * (10 / teorSelecionado)), 16);
+    balloonLabel.style.fontSize = fontSize + 'px';
+    balloonLabel.innerText = gas.toFixed(1) + ' mL O₂';
+
+    // Liquid level
+    const liquidHeight = 40 * (1 - progresso * 0.85);
+    liquid.style.height = liquidHeight + '%';
+    
+    // Liquid color (decomposing)
+    const opacity = 1 - (progresso * 0.5);
+    liquid.style.background = `linear-gradient(180deg, rgba(56, 189, 248, ${opacity}), rgba(2, 132, 199, ${opacity}))`;
+
+    // Progress bar
+    const percent = Math.min(progresso * 100, 100);
+    progressBar.style.width = percent + '%';
+    progressText.textContent = Math.round(percent) + '%';
+
+    // Tracker
+    document.getElementById('trackH2O2').innerText = (1.0 - (0.95 * progresso)).toFixed(2) + ' mL';
+    document.getElementById('trackH2O').innerText = (0.95 * progresso).toFixed(2) + ' mL';
+    document.getElementById('trackO2').innerText = gas.toFixed(1) + ' mL';
+
+    // Update comparison if active
+    if (comparacaoAtiva) {
+      atualizarComparacao();
+    }
+  }
+
+  // ===== SPEED UP =====
+  function acelerarReacao() {
+    if (!animacaoRodando || pausado || reacaoConcluida) return;
+    acelerado = true;
+    speedBtn.textContent = '⚡ Acelerado!';
+    speedBtn.disabled = true;
+    progressStatus.textContent = '⚡ Acelerado!';
+    
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+      continuarDecomposicao();
+    }
+  }
+
+  // ===== CONCLUSION =====
+  function concluirSimulacao() {
+    animacaoRodando = false;
+    pausado = false;
+    reacaoConcluida = true;
+    
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    document.querySelectorAll('.bubble').forEach(b => b.remove());
+
+    startBtn.disabled = false;
+    startBtn.textContent = '🔄 Reiniciar';
+    pauseBtn.disabled = true;
+    pauseBtn.textContent = '⏸ Pausar';
+    speedBtn.disabled = true;
+    speedBtn.textContent = '⏩ Acelerar';
+
+    // Desbloquear botões de volume
+    document.querySelectorAll('.vol-btn').forEach(b => b.disabled = false);
+
+    // Final balloon size
+    const tamanhoBase = 14;
+    const fatorExpansao = 180 * (teorSelecionado / 30);
+    const largura = tamanhoBase + fatorExpansao;
+    const altura = tamanhoBase + (fatorExpansao * 1.05);
+    balloon.style.width = largura + 'px';
+    balloon.style.height = altura + 'px';
+    balloonLabel.style.fontSize = '16px';
+    balloonLabel.innerText = teorSelecionado + '.0 mL O₂';
+
+    // Final liquid
+    liquid.style.height = '6%';
+    liquid.style.background = 'linear-gradient(180deg, rgba(56, 189, 248, 0.3), rgba(2, 132, 199, 0.3))';
+
+    // Progress
+    progressBar.style.width = '100%';
+    progressText.textContent = '100%';
+    progressStatus.textContent = '✅ Concluído!';
+
+    // Trackers final
+    document.getElementById('trackH2O2').innerText = '0.05 mL';
+    document.getElementById('trackH2O').innerText = '0.95 mL';
+    document.getElementById('trackO2').innerText = teorSelecionado + '.0 mL';
+
+    // Update comparison
+    if (comparacaoAtiva) {
+      atualizarComparacao();
+    }
+
+    explanation.innerHTML = `
+      <span class="success-text">✅ Reação concluída!</span><br>
+      <span style="font-size:0.95rem;">
+        <strong>1 mL</strong> de H₂O₂ a <strong>${teorSelecionado} Vol.</strong> 
+        liberou exatamente <strong>${teorSelecionado} mL</strong> de gás O₂ nas CNTP.
+        <br>
+        <span style="font-size:0.85rem; color:#475569;">
+          📌 Relação estequiométrica: 2 H₂O₂ → 2 H₂O + 1 O₂
+        </span>
+      </span>
+    `;
+  }
+
+  // ===== RESET =====
+  function resetarSimulacao() {
+    animacaoRodando = false;
+    pausado = false;
+    acelerado = false;
+    reacaoConcluida = false;
+    volumeGas = 0;
+    
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    startBtn.disabled = false;
+    startBtn.textContent = '▶ Iniciar Reação';
+    pauseBtn.disabled = true;
+    pauseBtn.textContent = '⏸ Pausar';
+    speedBtn.disabled = true;
+    speedBtn.textContent = '⏩ Acelerar';
+
+    // Desbloquear botões de volume
+    document.querySelectorAll('.vol-btn').forEach(b => b.disabled = false);
+
+    document.querySelectorAll('.bubble').forEach(b => b.remove());
+
+    liquid.style.height = '40%';
+    liquid.style.background = 'linear-gradient(180deg, #0284c7, #0369a1)';
+
+    balloon.style.width = '14px';
+    balloon.style.height = '14px';
+    balloonLabel.style.opacity = '0';
+    balloonLabel.innerText = '0,0 mL';
+
+    progressBar.style.width = '0%';
+    progressText.textContent = '0%';
+    progressStatus.textContent = 'Aguardando início...';
+
+    document.getElementById('trackH2O2').innerText = '1.00 mL';
+    document.getElementById('trackH2O').innerText = '0.00 mL';
+    document.getElementById('trackO2').innerText = '0.0 mL';
+
+    explanation.innerHTML = `
+      <strong>💡 Como funciona:</strong> 
+      Selecione o <strong>teor em volumes</strong> desejado e clique em 
+      <strong>"Iniciar Reação"</strong> para ver a decomposição total da amostra.
+      <br>
+      <span style="font-size:0.9rem; color:#475569;">
+        ⚡ <strong>Relação:</strong> 1 mL de H₂O₂ a X Vol. → X mL de O₂ (CNTP)
+      </span>
+    `;
+
+    if (comparacaoAtiva) {
+      atualizarComparacao();
+    }
+  }
+
+  // ===== COMPARISON MODE =====
+  function toggleComparacao() {
+    const mode = document.getElementById('comparisonMode');
+    comparacaoAtiva = !comparacaoAtiva;
+    mode.classList.toggle('active');
+    document.getElementById('compareBtn').textContent = 
+      comparacaoAtiva ? '📊 Ocultar Comparação' : '📊 Comparar Teores';
+    
+    if (comparacaoAtiva) {
+      atualizarComparacao();
+    }
+  }
+
+  function atualizarComparacao() {
+    if (!comparacaoAtiva) return;
+    
+    const volumes = [10, 20, 30];
+    const gasAtual = volumeGas || 0;
+    const progresso = teorSelecionado > 0 ? gasAtual / teorSelecionado : 0;
+
+    volumes.forEach(vol => {
+      const gasProducido = vol * progresso;
+      const maxGas = vol;
+      
+      document.getElementById('comp' + vol).textContent = 
+        gasProducido.toFixed(1) + ' mL';
+      
+      const bar = document.getElementById('compBar' + vol);
+      const percent = Math.min((gasProducido / maxGas) * 100, 100);
+      bar.style.width = percent + '%';
+    });
+  }
+
+  // ===== INIT =====
+  atualizarEscalaRuler();
+</script>
+
+</body>
+</html>
