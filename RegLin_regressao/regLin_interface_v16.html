@@ -22,7 +22,7 @@
             --primary: #6C5CE7;
             --primary-light: #a29bfe;
             --primary-dark: #4834d4;
-            --bg-main: #f8f9fa; // #f8f9fe;
+            --bg-main: #f8f9fa;
             --card-shadow: 0 12px 40px rgba(108, 92, 231, 0.10);
             --radius: 20px;
         }
@@ -33,21 +33,14 @@
         
         body {
             background: var(--bg-main);
-            /* font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; */
             padding: 20px;
         }
         
-        /* ==============================
-           LAYOUT PRINCIPAL
-           ============================== */
         .regression-app {
             max-width: 1440px;
             margin: 0 auto;
         }
         
-        /* ==============================
-           HEADER
-           ============================== */
         .app-header {
             display: flex;
             justify-content: space-between;
@@ -79,9 +72,6 @@
             flex-wrap: wrap;
         }
         
-        /* ==============================
-           CARDS
-           ============================== */
         .card-modern {
             background: #ffffff;
             border: none;
@@ -95,9 +85,6 @@
             padding: 12px 24px 24px 24px;
         }
         
-        /* ==============================
-           ÁREA DE DADOS (Entrada + Resultados)
-           ============================== */
         .data-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -111,9 +98,6 @@
             }
         }
         
-        /* ==============================
-           TEXTAREA DE DADOS
-           ============================== */
         .data-textarea {
             resize: vertical;
             min-height: 120px;
@@ -179,9 +163,6 @@
             color: #ced4da;
         }
         
-        /* ==============================
-           BOTÃO CALCULAR (SEM MOVIMENTO)
-           ============================== */
         .btn-calc {
             background: var(--primary);
             color: #fff;
@@ -211,9 +192,6 @@
             transform: none !important;
         }
         
-        /* ==============================
-           RESULTADOS PRINCIPAIS
-           ============================== */
         .results-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -265,9 +243,6 @@
             color: #2980b9;
         }
         
-        /* ==============================
-           BOTÃO MOSTRAR/OCULTAR ESTATÍSTICAS
-           ============================== */
         .stats-toggle-wrapper {
             margin-top: 20px;
             margin-bottom: 4px;
@@ -358,9 +333,6 @@
             color: #fff;
         }
         
-        /* ==============================
-           ESTATÍSTICAS DETALHADAS
-           ============================== */
         .stats-detailed {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -500,12 +472,8 @@
             border-color: #f0c27a;
         }
         
-        /* ==============================
-           GRÁFICO
-           ============================== */
         .chart-container {
-            /* height: 480px;  ← REMOVA ESTA LINHA */
-            min-height: 680px; /* Altura mínima */
+            min-height: 680px;
             border-radius: 14px;
             background: #fafbfc;
             position: relative;
@@ -527,9 +495,6 @@
             opacity: 0.5;
         }
         
-        /* ==============================
-           CONTROLES DO GRÁFICO
-           ============================== */
         .chart-controls {
             display: flex;
             gap: 20px;
@@ -566,9 +531,6 @@
             font-weight: 500;
         }
         
-        /* ==============================
-           DEMO SELECTOR
-           ============================== */
         .demo-selector {
             display: flex;
             align-items: center;
@@ -602,9 +564,6 @@
             box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.12);
         }
         
-        /* ==============================
-           TOGGLES DE VISIBILIDADE
-           ============================== */
         .toggle-section {
             display: flex;
             gap: 12px;
@@ -642,9 +601,6 @@
             background: #dc3545;
         }
         
-        /* ==============================
-           UTILITÁRIOS
-           ============================== */
         .fade-transition {
             transition: opacity 0.25s ease, transform 0.25s ease;
         }
@@ -659,9 +615,6 @@
         .mb-12 { margin-bottom: 12px; }
         .gap-8 { gap: 8px; }
         
-        /* ==============================
-           RESPONSIVO
-           ============================== */
         @media (max-width: 768px) {
             .app-header h1 {
                 font-size: 1.2rem;
@@ -697,9 +650,6 @@
 
 <div class="regression-app">
 
-    <!-- ============================================================
-         HEADER
-         ============================================================ -->
     <header class="app-header">
         <h1>
             <i class="fas fa-chart-line"></i>
@@ -707,7 +657,6 @@
         </h1>
         
         <div class="header-actions">
-            <!-- Demo Selector -->
             <div class="demo-selector">
                 <label for="demo-select"><i class="fas fa-database"></i> Demo</label>
                 <select id="demo-select">
@@ -720,7 +669,6 @@
                 </select>
             </div>
             
-            <!-- Toggles de Visibilidade -->
             <div class="toggle-section">
                 <button class="btn-toggle" data-target="panel-data" id="toggle-data">
                     <i class="fas fa-table"></i> Dados
@@ -734,14 +682,10 @@
         </div>
     </header>
 
-    <!-- ============================================================
-         PAINEL: DADOS E RESULTADOS
-         ============================================================ -->
     <div id="panel-data" class="fade-transition">
         <div class="card-modern">
             <div class="card-body">
                 
-                <!-- Dicas de entrada -->
                 <div class="input-dicas" style="background: #f8f9fe; border-radius: 14px; padding: 12px 16px; margin-bottom: 20px; border: 1px solid #e9ecef;">
                 <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.8rem; color: var(--text-secondary);">
                     <span style="display: flex; align-items: center; gap: 6px;">
@@ -760,9 +704,7 @@
                 </div>
                 </div>
                 
-                <!-- Grid: Entrada de Dados -->
                 <div class="data-grid">
-                    <!-- Coluna X -->
                     <div>
                         <div class="data-label">
                             <span>Valores de <strong>X</strong></span>
@@ -774,7 +716,6 @@
                         </div>
                     </div>
                     
-                    <!-- Coluna Y -->
                     <div>
                         <div class="data-label">
                             <span>Valores de <strong>Y</strong></span>
@@ -787,7 +728,6 @@
                     </div>
                 </div>
                 
-                <!-- Controles de Bandas -->
                 <div class="row g-2 mb-3">
                     <div class="col-md-6">
                         <div class="form-check form-switch">
@@ -809,13 +749,11 @@
                     </div>
                 </div>
                 
-                <!-- Botão Calcular -->
                 <button id="btn-calcular" class="btn-calc">
                     <i class="fas fa-calculator"></i>
                     Calcular Regressão
                 </button>
                 
-                <!-- Mensagem de Erro -->
                 <div id="mensagem-erro" class="mt-3" style="display: none;">
                     <div class="alert alert-danger rounded-3" style="font-size: 0.9rem;">
                         <i class="fas fa-exclamation-circle me-2"></i>
@@ -823,12 +761,8 @@
                     </div>
                 </div>
                 
-                <!-- ============================================================
-                     RESULTADOS
-                     ============================================================ -->
                 <div id="resultados" style="display: none; margin-top: 20px;">
                     
-                    <!-- Stats Principais -->
                     <div class="results-stats">
                         <div class="stat-item">
                             <div class="stat-label">Equação</div>
@@ -842,7 +776,6 @@
                             <div class="stat-label">Intercept (b)</div>
                             <div class="stat-value" id="res-intercept">—</div>
                         </div>
-
                         <div class="stat-item">
                             <div class="stat-label">R²</div>
                             <div class="stat-value r2" id="res-r2">—</div>
@@ -851,10 +784,8 @@
                             <div class="stat-label">Pontos</div>
                             <div class="stat-value n" id="res-n">—</div>
                         </div>
-
                     </div>
                     
-                    <!-- Botão Mostrar/Ocultar Estatísticas Detalhadas -->
                     <div class="stats-toggle-wrapper">
                         <button class="btn-stats-toggle" id="btn-stats-toggle">
                             <span class="btn-stats-icon">
@@ -870,11 +801,9 @@
                         </button>
                     </div>
                     
-                    <!-- Estatísticas Detalhadas (ocultas inicialmente) -->
                     <div id="stats-details-container" style="display: none; margin-top: 16px;">
                         <div class="stats-detailed">
                             
-                            <!-- Bloco 1: Somas e Médias -->
                             <div class="stats-block">
                                 <div class="stats-block-title">
                                     <i class="fas fa-calculator"></i> Somas e Médias
@@ -893,19 +822,16 @@
                                         <span class="stats-value-mono" id="res-media-y">—</span>
                                     </div>
                                     <div class="stats-row">
-                                        <!--<span class="stats-label">∑X</span>-->
                                         <span class="stats-label">\(\sum X_{i}\)</span>
                                         <span class="stats-value-mono" id="res-somax">—</span>
                                     </div>
                                     <div class="stats-row">
-                                        <!--<span class="stats-label">∑Y</span>-->
                                         <span class="stats-label">\(\sum Y_{i}\)</span>
                                         <span class="stats-value-mono" id="res-somay">—</span>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Bloco 2: Incertezas dos Coeficientes -->
                             <div class="stats-block">
                                 <div class="stats-block-title">
                                     <i class="fas fa-chart-line"></i> Incertezas dos Coeficientes
@@ -942,14 +868,10 @@
         </div>
     </div>
 
-    <!-- ============================================================
-         PAINEL: GRÁFICO
-         ============================================================ -->
     <div id="panel-chart" class="fade-transition mt-20">
         <div class="card-modern">
             <div class="card-body">
                 
-                <!-- Container do Gráfico -->
                 <div class="chart-container" id="chart-container">
                     <div id="grafico-regressao" style="width: 100%; height: 100%; display: none;"></div>
                     <div class="chart-placeholder" id="chart-placeholder">
@@ -964,9 +886,6 @@
 
 </div>
 
-<!-- ============================================================
-   JAVASCRIPT COMPLETO
-   ============================================================ -->
 <script>
 (function() {
     'use strict';
@@ -1091,7 +1010,6 @@
         const erroSlope = Math.sqrt(varianciaResidual / ssX);
         const erroIntercept = Math.sqrt(varianciaResidual * (1/n + Math.pow(mediaX, 2) / ssX));
         
-        // t-Student (aproximado)
         let tStudent;
         if (df > 30) tStudent = 1.96;
         else {
@@ -1170,14 +1088,12 @@
         document.getElementById('res-slope').textContent = resultado.slope.toFixed(6);
         document.getElementById('res-intercept').textContent = resultado.intercept.toFixed(6);
         
-        // Bloco 1: Somas e Médias
         document.getElementById('res-sstot').textContent = resultado.ssTot.toFixed(4);
         document.getElementById('res-ssres').textContent = resultado.ssRes.toFixed(4);
         document.getElementById('res-media-y').textContent = resultado.mediaY.toFixed(4);
         document.getElementById('res-somax').textContent = resultado.somaX.toFixed(2);
         document.getElementById('res-somay').textContent = resultado.somaY.toFixed(2);
         
-        // Bloco 2: Incertezas
         document.getElementById('res-erro-slope').textContent = incertezas.erroSlope.toFixed(6);
         document.getElementById('res-erro-intercept').textContent = incertezas.erroIntercept.toFixed(6);
         document.getElementById('res-ci-slope').textContent = `[${incertezas.slopeCI[0].toFixed(6)}, ${incertezas.slopeCI[1].toFixed(6)}]`;
@@ -1220,11 +1136,18 @@
     }
 
     // ============================================================
-    // 8. GRÁFICO (Plotly v4 - com todas as features da versão antiga)
+    // 8. GRÁFICO (CORRIGIDO PARA IFRAME)
     // ============================================================
     function renderizarGrafico(resultado, bandas) {
         const container = document.getElementById('grafico-regressao');
         const placeholder = document.getElementById('chart-placeholder');
+        
+        // Verifica se o Plotly está disponível
+        if (typeof Plotly === 'undefined') {
+            console.warn('Plotly não carregado, tentando novamente em 500ms');
+            setTimeout(() => renderizarGrafico(resultado, bandas), 500);
+            return;
+        }
         
         container.style.display = 'block';
         placeholder.style.display = 'none';
@@ -1234,9 +1157,8 @@
         const mostrarConfianca = document.getElementById('toggle-banda-confianca').checked;
         const mostrarPredicao = document.getElementById('toggle-banda-predicao').checked;
         
-        // Verifica se é celular
-        //const ehCelular = window.matchMedia("(max-width: 768px)").matches;
         const ehCelular = window.matchMedia("(max-width: 480px)").matches;
+        const isIframe = window.parent !== window;
 
         const traces = [];
         
@@ -1283,7 +1205,6 @@
                 showlegend: true
             });
             
-            // Borda superior
             traces.push({
                 x: bandas.x,
                 y: bandas.confianca.superior,
@@ -1296,7 +1217,6 @@
                 showlegend: false
             });
             
-            // Borda inferior
             traces.push({
                 x: bandas.x,
                 y: bandas.confianca.inferior,
@@ -1326,7 +1246,6 @@
                 showlegend: true
             });
             
-            // Borda superior
             traces.push({
                 x: bandas.x,
                 y: bandas.predicao.superior,
@@ -1339,7 +1258,6 @@
                 showlegend: false
             });
             
-            // Borda inferior
             traces.push({
                 x: bandas.x,
                 y: bandas.predicao.inferior,
@@ -1353,13 +1271,16 @@
             });
         }
         
-        // Layout com título editável
+        // Layout
         const sinal = resultado.intercept >= 0 ? '+' : '−';
         const equacaoStr = `Y = ${resultado.slope.toFixed(3)}·X ${sinal} ${Math.abs(resultado.intercept).toFixed(3)}`;
         
+        // ALTURA DINÂMICA - ajustada para funcionar no iframe
+        const containerHeight = isIframe ? Math.min(700, window.innerHeight - 100) : 900;
+        
         const layout = {
-            height: 1200, // <-- AUMENTE este valor (padrão é 450)
-            width: null, // null = 100% da largura do container
+            height: containerHeight,
+            width: null,
             dragmode: ehCelular ? false : 'zoom',
             title: {
                 text: `📈 ${equacaoStr}`,
@@ -1430,33 +1351,18 @@
             }]
         };
         
-        // ============================================
-        // CONFIGURAÇÕES (Features da versão antiga)
-        // ============================================
         const config = {
             responsive: true,
-            autosize: true, // <-- importante para redimensionar
-            displayModeBar: !ehCelular,
+            autosize: true,
+            displayModeBar: !ehCelular && !isIframe,
             scrollZoom: !ehCelular,
             doubleClick: !ehCelular ? 'reset+autosize' : false,
-            
-            // Mantido vazio já que 'sendDataToCloud' foi removido no Plotly v4
-            //modeBarButtonsToRemove: [],
             modeBarButtonsToRemove: ['sendDataToCloud'],
-            
             displaylogo: true,
-            modeBarButtonsToAdd: [
-                'toImage',          
-                'resetScale2d', 
-                'zoom2d',           
-                'pan2d',
-                'select2d',         
-                'lasso2d',
-                'drawline',         
-                'drawrect',
-                'drawopenpath',
-                'drawclosedpath',
-                'eraseshape'        
+            modeBarButtonsToAdd: isIframe ? [] : [
+                'toImage', 'resetScale2d', 'zoom2d', 'pan2d',
+                'select2d', 'lasso2d', 'drawline', 'drawrect',
+                'drawopenpath', 'drawclosedpath', 'eraseshape'
             ],
             toImageButtonOptions: {
                 format: 'png',
@@ -1473,8 +1379,39 @@
             }
         };
         
-        // Renderizar
-        Plotly.react(container, traces, layout, config);
+        // ============================================
+        // CORREÇÃO: Limpar e recriar com timeout para iframe
+        // ============================================
+        try {
+            Plotly.purge(container);
+            
+            setTimeout(() => {
+                try {
+                    Plotly.newPlot(container, traces, layout, config);
+                    
+                    setTimeout(() => {
+                        if (typeof sendHeight === 'function') {
+                            sendHeight();
+                        }
+                    }, 100);
+                } catch (e) {
+                    console.error('Erro ao renderizar Plotly:', e);
+                    try {
+                        Plotly.react(container, traces, layout, config);
+                    } catch (e2) {
+                        console.error('Erro no fallback:', e2);
+                    }
+                }
+            }, 50);
+            
+        } catch (e) {
+            console.error('Erro ao limpar Plotly:', e);
+            try {
+                Plotly.react(container, traces, layout, config);
+            } catch (e2) {
+                console.error('Erro no fallback final:', e2);
+            }
+        }
     }
 
     // ============================================================
@@ -1562,7 +1499,51 @@
     }
 
     // ============================================================
-    // 12. INICIALIZAÇÃO
+    // 12. REDIMENSIONAMENTO PARA IFRAME
+    // ============================================================
+    function initResizeHandlers() {
+        // Força o redimensionamento do Plotly quando o iframe é redimensionado
+        if (window.ResizeObserver) {
+            const resizeObserver = new ResizeObserver(() => {
+                const container = document.getElementById('grafico-regressao');
+                if (container && container.style.display !== 'none') {
+                    try {
+                        Plotly.Plots.resize(container);
+                    } catch (e) {
+                        // Ignora erros
+                    }
+                }
+            });
+            resizeObserver.observe(document.body);
+        }
+
+        // Redimensiona quando a janela muda de tamanho
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('grafico-regressao');
+            if (container && container.style.display !== 'none') {
+                try {
+                    Plotly.Plots.resize(container);
+                } catch (e) {
+                    // Ignora erros
+                }
+            }
+        });
+
+        // Redimensiona quando o iframe recebe foco
+        window.addEventListener('focus', () => {
+            const container = document.getElementById('grafico-regressao');
+            if (container && container.style.display !== 'none') {
+                try {
+                    Plotly.Plots.resize(container);
+                } catch (e) {
+                    // Ignora erros
+                }
+            }
+        });
+    }
+
+    // ============================================================
+    // 13. INICIALIZAÇÃO
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
         // Evento do botão calcular
@@ -1579,14 +1560,14 @@
         // Toggles de visibilidade
         initToggles();
         initBandasToggles();
+        initResizeHandlers();
         
         // Executa automaticamente ao carregar
-        executarCalculo();
+        setTimeout(executarCalculo, 300);
     });
 
 })();
 </script>
-
 
 <script>
     function sendHeight() {
@@ -1597,13 +1578,9 @@
         }, '*');
     }
 
-    // Envia a altura quando carregar
     window.addEventListener('load', sendHeight);
-    
-    // Envia a altura quando a janela for redimensionada
     window.addEventListener('resize', sendHeight);
     
-    // Observa mudanças no DOM (para conteúdos dinâmicos)
     if (window.ResizeObserver) {
         const observer = new ResizeObserver(sendHeight);
         observer.observe(document.body);
