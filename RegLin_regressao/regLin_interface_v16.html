@@ -1136,7 +1136,7 @@
     }
 
     // ============================================================
-    // 8. GRÁFICO (CORRIGIDO PARA IFRAME)
+    // 8. GRÁFICO (CORRIGIDO - TUDO DA V16 + BARRA DA V14)
     // ============================================================
     function renderizarGrafico(resultado, bandas) {
         const container = document.getElementById('grafico-regressao');
@@ -1275,7 +1275,7 @@
         const sinal = resultado.intercept >= 0 ? '+' : '−';
         const equacaoStr = `Y = ${resultado.slope.toFixed(3)}·X ${sinal} ${Math.abs(resultado.intercept).toFixed(3)}`;
         
-        // ALTURA DINÂMICA - ajustada para funcionar no iframe
+        // ALTURA DINÂMICA - ESSENCIAL PARA O IFRAME
         const containerHeight = isIframe ? Math.min(700, window.innerHeight - 100) : 900;
         
         const layout = {
@@ -1351,18 +1351,32 @@
             }]
         };
         
+        // ============================================
+        // CONFIGURAÇÕES - IGUAL À V14 (com todos os botões, exceto compartilhar)
+        // ============================================
         const config = {
             responsive: true,
-            autosize: true,
-            displayModeBar: !ehCelular && !isIframe,
+            autosize: true,  // ESSENCIAL PARA O IFRAME
+            displayModeBar: !ehCelular,
             scrollZoom: !ehCelular,
             doubleClick: !ehCelular ? 'reset+autosize' : false,
+            
+            // EXATAMENTE IGUAL À V14 - remove o botão de compartilhar
             modeBarButtonsToRemove: ['sendDataToCloud'],
+            
             displaylogo: true,
-            modeBarButtonsToAdd: isIframe ? [] : [
-                'toImage', 'resetScale2d', 'zoom2d', 'pan2d',
-                'select2d', 'lasso2d', 'drawline', 'drawrect',
-                'drawopenpath', 'drawclosedpath', 'eraseshape'
+            modeBarButtonsToAdd: [
+                'toImage',          
+                'resetScale2d', 
+                'zoom2d',           
+                'pan2d',
+                'select2d',         
+                'lasso2d',
+                'drawline',         
+                'drawrect',
+                'drawopenpath',
+                'drawclosedpath',
+                'eraseshape'        
             ],
             toImageButtonOptions: {
                 format: 'png',
@@ -1502,7 +1516,6 @@
     // 12. REDIMENSIONAMENTO PARA IFRAME
     // ============================================================
     function initResizeHandlers() {
-        // Força o redimensionamento do Plotly quando o iframe é redimensionado
         if (window.ResizeObserver) {
             const resizeObserver = new ResizeObserver(() => {
                 const container = document.getElementById('grafico-regressao');
@@ -1517,7 +1530,6 @@
             resizeObserver.observe(document.body);
         }
 
-        // Redimensiona quando a janela muda de tamanho
         window.addEventListener('resize', () => {
             const container = document.getElementById('grafico-regressao');
             if (container && container.style.display !== 'none') {
@@ -1529,7 +1541,6 @@
             }
         });
 
-        // Redimensiona quando o iframe recebe foco
         window.addEventListener('focus', () => {
             const container = document.getElementById('grafico-regressao');
             if (container && container.style.display !== 'none') {
@@ -1546,23 +1557,17 @@
     // 13. INICIALIZAÇÃO
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
-        // Evento do botão calcular
         document.getElementById('btn-calcular').addEventListener('click', executarCalculo);
-        
-        // Evento do botão de estatísticas detalhadas
         document.getElementById('btn-stats-toggle').addEventListener('click', toggleStatsDetails);
         
-        // Demo Select
         document.getElementById('demo-select').addEventListener('change', function() {
             if (this.value) carregarDemo(this.value);
         });
         
-        // Toggles de visibilidade
         initToggles();
         initBandasToggles();
         initResizeHandlers();
         
-        // Executa automaticamente ao carregar
         setTimeout(executarCalculo, 300);
     });
 
