@@ -15,16 +15,19 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Plotly v4 -->
-    <!--<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@4.0.0/plotly.min.js"></script>-->
     <script src="https://cdn.plot.ly/plotly-4.0.0.min.js" charset="utf-8"></script>
     
     <style>
+        /* ============================================================
+           CORES - Tema Cosmo (AZUL) - SOMENTE CORES ALTERADAS
+           ============================================================ */
         :root {
-            --primary: #6C5CE7;
-            --primary-light: #a29bfe;
-            --primary-dark: #4834d4;
+            --primary: #2780E3;
+            --primary-light: #6ea8fe;
+            --primary-dark: #1a5fb4;
+            --primary-bg: #e7f1ff;
             --bg-main: #f8f9fa;
-            --card-shadow: 0 12px 40px rgba(108, 92, 231, 0.10);
+            --card-shadow: 0 12px 40px rgba(39, 128, 227, 0.10);
             --radius: 20px;
         }
         
@@ -116,7 +119,7 @@
         .data-textarea:focus {
             border-color: var(--primary);
             background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.12);
+            box-shadow: 0 0 0 4px rgba(39, 128, 227, 0.12);
             outline: none;
         }
         
@@ -137,7 +140,7 @@
         }
         
         .data-label .badge-var {
-            background: var(--primary-light);
+            background: var(--primary);
             color: #fff;
             font-size: 0.7rem;
             padding: 2px 10px;
@@ -184,7 +187,7 @@
         
         .btn-calc:hover {
             background: var(--primary-dark);
-            box-shadow: 0 4px 16px rgba(108, 92, 231, 0.25);
+            box-shadow: 0 4px 16px rgba(39, 128, 227, 0.25);
             color: #fff;
             transform: none !important;
         }
@@ -201,7 +204,7 @@
         }
         
         .stat-item {
-            background: #f8f9fe;
+            background: var(--primary-bg);
             border-radius: 14px;
             padding: 14px 16px;
             text-align: center;
@@ -210,7 +213,7 @@
         }
         
         .stat-item:hover {
-            border-color: var(--primary-light);
+            border-color: var(--primary);
             transform: translateY(-1px);
         }
         
@@ -241,7 +244,7 @@
         }
         
         .stat-item .stat-value.n {
-            color: #2980b9;
+            color: var(--primary);
         }
         
         .stats-toggle-wrapper {
@@ -251,7 +254,7 @@
         
         .btn-stats-toggle {
             width: 100%;
-            background: #f8f9fe;
+            background: var(--primary-bg);
             border: 2px solid #e9ecef;
             border-radius: 14px;
             padding: 14px 20px;
@@ -264,10 +267,10 @@
         }
         
         .btn-stats-toggle:hover {
-            background: #f0f1fe;
-            border-color: var(--primary-light);
+            background: #d4e4ff;
+            border-color: var(--primary);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.10);
+            box-shadow: 0 4px 12px rgba(39, 128, 227, 0.10);
         }
         
         .btn-stats-toggle:active {
@@ -330,7 +333,7 @@
         }
         
         .btn-stats-toggle.active .btn-stats-arrow {
-            background: var(--primary-light);
+            background: var(--primary);
             color: #fff;
         }
         
@@ -393,7 +396,7 @@
         }
         
         .stats-block {
-            background: #f8f9fe;
+            background: var(--primary-bg);
             border-radius: 14px;
             padding: 16px 20px;
             border: 1px solid #e9ecef;
@@ -401,8 +404,8 @@
         }
         
         .stats-block:hover {
-            border-color: var(--primary-light);
-            box-shadow: 0 2px 12px rgba(108, 92, 231, 0.08);
+            border-color: var(--primary);
+            box-shadow: 0 2px 12px rgba(39, 128, 227, 0.08);
         }
         
         .stats-block-title {
@@ -463,8 +466,8 @@
         .stats-value-mono.ci {
             font-size: 0.75rem;
             color: var(--primary-dark);
-            background: rgba(108, 92, 231, 0.06);
-            border-color: var(--primary-light);
+            background: rgba(39, 128, 227, 0.06);
+            border-color: var(--primary);
         }
         
         .stats-value-mono.variance {
@@ -562,7 +565,7 @@
         .demo-selector select:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.12);
+            box-shadow: 0 0 0 3px rgba(39, 128, 227, 0.12);
         }
         
         .toggle-section {
@@ -686,25 +689,23 @@
     <div id="panel-data" class="fade-transition">
         <div class="card-modern">
             <div class="card-body">
-                
-                <div class="input-dicas" style="background: #f8f9fe; border-radius: 14px; padding: 12px 16px; margin-bottom: 20px; border: 1px solid #e9ecef;">
-                <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.8rem; color: var(--text-secondary);">
-                    <span style="display: flex; align-items: center; gap: 6px;">
-                        <i class="fas fa-info-circle" style="color: var(--primary);"></i> 
-                        Informe os pares de dados experimentais.
-                    </span><br>
-                    <span style="display: flex; align-items: center; gap: 6px;">
-                        <i class="fas fa-arrows-left-right" style="color: var(--primary);"></i> 
-                        Separe por <strong>vírgulas</strong>, <strong>espaços</strong> ou <strong>quebras de linha</strong>.
-                    </span><br>
-                    <span style="display: flex; align-items: center; gap: 6px;">
-                        <i class="fas fa-arrow-right" style="color: var(--primary);"></i> 
-                        Use <strong>.</strong> (ponto) como separador decimal 
-                        <span class="text-secondary">(ex: <strong>3.14</strong>)</span>
-                    </span>
-                </div>
-                </div>
-                
+<div class="input-dicas" style="background: #f8f9fe; border-radius: 14px; padding: 12px 16px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.8rem; color: #6c757d;">
+        <span style="display: flex; align-items: center; gap: 6px;">
+            <i class="fas fa-info-circle" style="color: var(--primary);"></i> 
+            Informe os pares de dados experimentais.
+        </span>
+        <span style="display: flex; align-items: center; gap: 6px;">
+            <i class="fas fa-arrows-left-right" style="color: var(--primary);"></i> 
+            Separe por <strong>vírgulas</strong>, <strong>espaços</strong> ou <strong>quebras de linha</strong>.
+        </span>
+        <span style="display: flex; align-items: center; gap: 6px;">
+            <i class="fas fa-arrow-right" style="color: var(--primary);"></i> 
+            Use <strong>.</strong> (ponto) como separador decimal 
+            <span class="text-secondary">(ex: <strong>3.14</strong>)</span>
+        </span>
+    </div>
+</div>
                 <div class="data-grid">
                     <div>
                         <div class="data-label">
@@ -887,6 +888,9 @@
 
 </div>
 
+<!-- ============================================================
+   SCRIPTS - NENHUMA ALTERAÇÃO! CONGELADOS!
+   ============================================================ -->
 <script>
 (function() {
     'use strict';
@@ -1137,13 +1141,12 @@
     }
 
     // ============================================================
-    // 8. GRÁFICO (CORRIGIDO - TUDO DA V16 + BARRA DA V14)
+    // 8. GRÁFICO - CONGELADO! NENHUMA ALTERAÇÃO!
     // ============================================================
     function renderizarGrafico(resultado, bandas) {
         const container = document.getElementById('grafico-regressao');
         const placeholder = document.getElementById('chart-placeholder');
         
-        // Verifica se o Plotly está disponível
         if (typeof Plotly === 'undefined') {
             console.warn('Plotly não carregado, tentando novamente em 500ms');
             setTimeout(() => renderizarGrafico(resultado, bandas), 500);
@@ -1163,7 +1166,6 @@
 
         const traces = [];
         
-        // Dados Experimentais
         traces.push({
             x: resultado.x,
             y: resultado.y,
@@ -1179,7 +1181,6 @@
             hovertemplate: `<b>Ponto</b><br>${labelX}: %{x:.4f}<br>${labelY}: %{y:.4f}<extra></extra>`
         });
         
-        // Reta de Regressão
         traces.push({
             x: bandas.x,
             y: bandas.yPred,
@@ -1190,7 +1191,6 @@
             hovertemplate: `<b>Reta</b><br>${labelX}: %{x:.4f}<br>${labelY}: %{y:.4f}<extra></extra>`
         });
         
-        // Banda de Confiança (95%)
         if (mostrarConfianca) {
             traces.push({
                 x: bandas.x.concat(bandas.x.slice().reverse()),
@@ -1231,7 +1231,6 @@
             });
         }
         
-        // Banda de Predição (95%)
         if (mostrarPredicao) {
             traces.push({
                 x: bandas.x.concat(bandas.x.slice().reverse()),
@@ -1272,11 +1271,9 @@
             });
         }
         
-        // Layout
         const sinal = resultado.intercept >= 0 ? '+' : '−';
         const equacaoStr = `Y = ${resultado.slope.toFixed(3)}·X ${sinal} ${Math.abs(resultado.intercept).toFixed(3)}`;
         
-        // ALTURA DINÂMICA - ESSENCIAL PARA O IFRAME
         const containerHeight = isIframe ? Math.min(700, window.innerHeight - 100) : 900;
         
         const layout = {
@@ -1361,16 +1358,12 @@
             }]
         };
         
-        // ============================================
-        // CONFIGURAÇÕES - IGUAL À V14 (com todos os botões, exceto compartilhar)
-        // ============================================
         const config = {
             responsive: true,
-            autosize: true,  // ESSENCIAL PARA O IFRAME
+            autosize: true,
             displayModeBar: !ehCelular,
             scrollZoom: !ehCelular,
             doubleClick: !ehCelular ? 'reset+autosize' : false,
-            // EXATAMENTE IGUAL À V14 - remove o botão de compartilhar
             modeBarButtonsToRemove: ['sendDataToCloud'],
             displaylogo: true,
             editable: true,
@@ -1404,9 +1397,6 @@
             }
         };
         
-        // ============================================
-        // CORREÇÃO: Limpar e recriar com timeout para iframe
-        // ============================================
         try {
             Plotly.purge(container);
             
@@ -1497,7 +1487,7 @@
     }
 
     // ============================================================
-    // 11. TOGGLES DAS BANDAS (atualização em tempo real)
+    // 11. TOGGLES DAS BANDAS
     // ============================================================
     function initBandasToggles() {
         const toggleConfianca = document.getElementById('toggle-banda-confianca');
@@ -1533,9 +1523,7 @@
                 if (container && container.style.display !== 'none') {
                     try {
                         Plotly.Plots.resize(container);
-                    } catch (e) {
-                        // Ignora erros
-                    }
+                    } catch (e) {}
                 }
             });
             resizeObserver.observe(document.body);
@@ -1546,9 +1534,7 @@
             if (container && container.style.display !== 'none') {
                 try {
                     Plotly.Plots.resize(container);
-                } catch (e) {
-                    // Ignora erros
-                }
+                } catch (e) {}
             }
         });
 
@@ -1557,9 +1543,7 @@
             if (container && container.style.display !== 'none') {
                 try {
                     Plotly.Plots.resize(container);
-                } catch (e) {
-                    // Ignora erros
-                }
+                } catch (e) {}
             }
         });
     }
