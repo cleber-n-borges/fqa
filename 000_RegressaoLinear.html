@@ -478,7 +478,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#calibração-em-química" id="toc-calibração-em-química" class="nav-link active" data-scroll-target="#calibração-em-química">Calibração em Química</a></li>
+  <li><a href="#calibração-em-química" id="toc-calibração-em-química" class="nav-link active" data-scroll-target="#calibração-em-química">Calibração em Química</a>
+  <ul class="collapse">
+  <li><a href="#informações-obtidas" id="toc-informações-obtidas" class="nav-link" data-scroll-target="#informações-obtidas">📊 Informações Obtidas</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -492,8 +495,19 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="calibração-em-química" class="level2">
 <h2 class="anchored" data-anchor-id="calibração-em-química">Calibração em Química</h2>
-<p>Esta ferramenta interativa permite calcular e visualizar curvas de calibração para métodos analíticos, utilizando o <strong>modelo linear</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>=</mo><mi>a</mi><mo>⋅</mo><mi>x</mi><mo>+</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(y = a \cdot x + b)</annotation></semantics></math>.</p>
-<p>Insira seus dados experimentais e obtenha a equação da reta (<strong>coeficiente angular — <em>slope</em></strong> , e <strong>coeficiente linear — <em>intercept</em></strong>), coeficiente de determinação <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(R^2)</annotation></semantics></math> e intervalos de confiança, fundamentais para análises quantitativas em Química Analítica.</p>
+<p>Esta ferramenta permite o cálculo e visualização da curva de calibração para métodos analíticos, utilizando o <strong>modelo linear</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>=</mo><mi>a</mi><mo>⋅</mo><mi>x</mi><mo>+</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(y = a \cdot x + b)</annotation></semantics></math>.</p>
+<section id="informações-obtidas" class="level3">
+<h3 class="anchored" data-anchor-id="informações-obtidas">📊 Informações Obtidas</h3>
+<p>Com esta ferramenta, você obtém:</p>
+<ul>
+<li><strong>Equação da reta de calibração</strong> — com <em>slope</em> e <em>intercept</em></li>
+<li><strong>Coeficiente angular (<em>slope</em>)</strong> — sensibilidade do método</li>
+<li><strong>Coeficiente linear (<em>intercept</em>)</strong> — sinal do branco</li>
+<li><strong>Coeficiente de determinação</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(R^2)</annotation></semantics></math> — qualidade do ajuste linear</li>
+<li><strong>Intervalos de confiança (95%)</strong> — para <em>slope</em> e <em>intercept</em></li>
+<li><strong>Análise de variância</strong> — SST, SSR e variância residual</li>
+<li><strong>Gráfico interativo</strong> — com bandas de confiança e predição</li>
+</ul>
 <iframe id="regression-iframe" src="./RegLin_regressao/regLin_interface_v16.html" scrolling="no" style="
         width: 100%; 
         height: 700px; 
@@ -514,6 +528,7 @@ ul.task-list li input[type="checkbox"] {
 </script>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

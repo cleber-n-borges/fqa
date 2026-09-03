@@ -1804,7 +1804,17 @@
     "href": "000_RegressaoLinear.html",
     "title": "Regressão Linear",
     "section": "",
-    "text": "Calibração em Química\nEsta ferramenta interativa permite calcular e visualizar curvas de calibração para métodos analíticos, utilizando o modelo linear (y=a⋅x+b)(y = a \\cdot x + b).\nInsira seus dados experimentais e obtenha a equação da reta (coeficiente angular — slope , e coeficiente linear — intercept), coeficiente de determinação (R2)(R^2) e intervalos de confiança, fundamentais para análises quantitativas em Química Analítica.",
+    "text": "Calibração em Química\nEsta ferramenta permite o cálculo e visualização da curva de calibração para métodos analíticos, utilizando o modelo linear (y=a⋅x+b)(y = a \\cdot x + b).",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>★ &nbsp;Regressão Linear</span>"
+    ]
+  },
+  {
+    "objectID": "000_RegressaoLinear.html#calibração-em-química",
+    "href": "000_RegressaoLinear.html#calibração-em-química",
+    "title": "Regressão Linear",
+    "section": "",
+    "text": "📊 Informações Obtidas\nCom esta ferramenta, você obtém:\n\nEquação da reta de calibração — com slope e intercept\nCoeficiente angular (slope) — sensibilidade do método\nCoeficiente linear (intercept) — sinal do branco\nCoeficiente de determinação (R2)(R^2) — qualidade do ajuste linear\nIntervalos de confiança (95%) — para slope e intercept\nAnálise de variância — SST, SSR e variância residual\nGráfico interativo — com bandas de confiança e predição",
     "crumbs": [
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>★ &nbsp;Regressão Linear</span>"
     ]
