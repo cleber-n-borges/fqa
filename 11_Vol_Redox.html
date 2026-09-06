@@ -49,6 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -499,6 +502,16 @@ var JSON_Questionario = "./simulador/vol_redox.dat";
   </ul></li>
   <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a></li>
   <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a>
+  <ul class="collapse">
+  <li><a href="#método-1-uso-das-equações-químicas-e-algébricas-formais" id="toc-método-1-uso-das-equações-químicas-e-algébricas-formais" class="nav-link" data-scroll-target="#método-1-uso-das-equações-químicas-e-algébricas-formais">Método 1: Uso das equações químicas e algébricas formais</a></li>
+  <li><a href="#método-2-cálculo-alternativo-por-regra-de-três" id="toc-método-2-cálculo-alternativo-por-regra-de-três" class="nav-link" data-scroll-target="#método-2-cálculo-alternativo-por-regra-de-três">Método 2: Cálculo alternativo por regra de três</a></li>
+  <li><a href="#fluxograma-da-determinação-de-peróxido-em-volumes" id="toc-fluxograma-da-determinação-de-peróxido-em-volumes" class="nav-link" data-scroll-target="#fluxograma-da-determinação-de-peróxido-em-volumes">Fluxograma da Determinação de Peróxido em Volumes</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#complemento-com-ia" id="toc-complemento-com-ia" class="nav-link" data-scroll-target="#complemento-com-ia">Complemento com IA</a></li>
+  <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
+  <li><a href="#resumo-visual" id="toc-resumo-visual" class="nav-link" data-scroll-target="#resumo-visual">Resumo Visual</a></li>
   </ul>
 </nav>
     </div>
@@ -760,6 +773,628 @@ var JSON_Questionario = "./simulador/vol_redox.dat";
 <li><p>UNITED STATES PHARMACOPEIAL CONVENTION. <strong>United States Pharmacopeia (USP-NF)</strong>. Rockville: USP. Monograph: Hydrogen Peroxide Topical Solution. Disponível em: <a href="https://www.uspnf.com/" class="uri">https://www.uspnf.com/</a>. Acesso restrito via assinatura.</p></li>
 <li><p>AVANZI QUÍMICA. <strong>Gerenciamento de Riscos com Peróxido de Hidrogênio</strong>: Estratégias de Segurança Ocupacional Essenciais. <em>Blog Avanzi Química</em>, 10 jan. 2025. Disponível em: <a href="https://avanziquimica.com.br/blog/blog-p/cuidados-produtos-quimicos/gerenciamento-de-riscos-com-peroxido-de-hidrogenio-estrategias-de-seguranca-ocupacional-essenciais" class="uri">https://avanziquimica.com.br/blog/blog-p/cuidados-produtos-quimicos/gerenciamento-de-riscos-com-peroxido-de-hidrogenio-estrategias-de-seguranca-ocupacional-essenciais</a>. Acesso em: 30 ago. 2026.</p></li>
 </ol>
+</section>
+<section id="guia-do-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
+<p>Este guia apresenta os procedimentos e as equações para determinar a concentração de peróxido de hidrogênio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{H}_2\text{O}_2)</annotation></semantics></math> em água oxigenada comercial a partir dos dados de uma titulação por permanganimetria, convertendo os resultados algébricos para a porcentagem em massa por volume <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\% m/v)</annotation></semantics></math> e para o <strong>Teor em Volumes (Vol.)</strong>.</p>
+<p>Antes de iniciar os cálculos, organize os dados e parâmetros da prática:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grandeza</th>
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: center;">Unidade Recomendada</th>
+<th style="text-align: left;">Observação / Aplicação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Concentração do titulante</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub></msub><annotation encoding="application/x-tex">C_{\text{KMnO}_4}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mol\cdot L^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Concentração da solução padronizada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{KMnO}_4</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0200</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0{,}0200 \ \mathrm{mol\cdot L^{-1}})</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Volume de titulante gasto</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><annotation encoding="application/x-tex">V_{\text{titulante}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">L</mi><annotation encoding="application/x-tex">\mathrm{L}</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math></td>
+<td style="text-align: left;">Volume consumido na titulação até o ponto final rosa-pálido (incógnita experimental)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Volume da alíquota titulada</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">alíquota</mtext></msub><annotation encoding="application/x-tex">V_{\text{alíquota}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math> ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">L</mi><annotation encoding="application/x-tex">\mathrm{L}</annotation></semantics></math></td>
+<td style="text-align: left;">Volume da solução diluída levado ao erlenmeyer <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">L</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(10{,}0 \ \mathrm{mL} = 0{,}0100 \ \mathrm{L})</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Volume do balão de diluição</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">balão</mtext></msub><annotation encoding="application/x-tex">V_{\text{balão}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math></td>
+<td style="text-align: left;">Volume do balão usado na diluição da amostra <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>100</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(100{,}0 \ \mathrm{mL})</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Volume de amostra original</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">amostra</mtext></msub><annotation encoding="application/x-tex">V_{\text{amostra}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><annotation encoding="application/x-tex">\mathrm{mL}</annotation></semantics></math></td>
+<td style="text-align: left;">Alíquota de água oxigenada comercial pipetada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(10{,}0 \ \mathrm{mL})</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Massa molar do</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">M.M.</mtext><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow></msub><annotation encoding="application/x-tex">\text{M.M.}_{\text{H}_2\text{O}_2}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{g\cdot mol^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Constante do analito <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>34</mn><mo>,</mo><mn>014</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(34{,}014 \ \mathrm{g\cdot mol^{-1}})</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Volume molar nas CNTP</strong></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">molar</mtext></msub><annotation encoding="application/x-tex">V_{\text{molar}}</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">L</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{L\cdot mol^{-1}}</annotation></semantics></math></td>
+<td style="text-align: left;">Constante do gás oxigênio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>22</mn><mo>,</mo><mn>414</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">L</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(22{,}414 \ \mathrm{L\cdot mol^{-1}})</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled" title="Atenção para as Unidades, Fator de Diluição e Relação Estequiométrica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção para as Unidades, Fator de Diluição e Relação Estequiométrica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Relação Estequiométrica</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>:</mo><mn>5</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2:5)</annotation></semantics></math>: Pela equação balanceada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mspace width="0.167em"></mspace><msubsup><mtext mathvariant="normal">MnO</mtext><mn>4</mn><mo>−</mo></msubsup><mo>+</mo><mn>5</mn><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mo>+</mo><mn>6</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo>→</mo><mn>2</mn><mspace width="0.167em"></mspace><msup><mtext mathvariant="normal">Mn</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><mn>5</mn><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mo>+</mo><mn>8</mn><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2\,\text{MnO}_4^- + 5\,\text{H}_2\text{O}_2 + 6\,\text{H}^+ \rightarrow 2\,\text{Mn}^{2+} + 5\,\text{O}_2 + 8\,\text{H}_2\text{O})</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mols</mtext></mrow></mrow><annotation encoding="application/x-tex">2\text{ mols}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">MnO</mtext><mn>4</mn><mo>−</mo></msubsup><annotation encoding="application/x-tex">\text{MnO}_4^-</annotation></semantics></math> reagem exatamente com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mols</mtext></mrow></mrow><annotation encoding="application/x-tex">5\text{ mols}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math>.</li>
+<li><strong>Fator de Diluição</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>F</mi><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(FD)</annotation></semantics></math>: Como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>0</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow><annotation encoding="application/x-tex">10{,}0\text{ mL}</annotation></semantics></math> da amostra bruta foram diluídos para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>,</mo><mn>0</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow><annotation encoding="application/x-tex">100{,}0\text{ mL}</annotation></semantics></math>, o fator de diluição é <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>D</mi><mo>=</mo><mfrac><msub><mi>V</mi><mtext mathvariant="normal">balão</mtext></msub><msub><mi>V</mi><mtext mathvariant="normal">amostra</mtext></msub></mfrac><mo>=</mo><mfrac><mrow><mn>100</mn><mo>,</mo><mn>0</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow><mrow><mn>10</mn><mo>,</mo><mn>0</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mL</mtext></mrow></mrow></mfrac><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">FD = \frac{V_{\text{balão}}}{V_{\text{amostra}}} = \frac{100{,}0\text{ mL}}{10{,}0\text{ mL}} = 10</annotation></semantics></math>. A concentração da amostra comercial é <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> vezes</mtext></mrow></mrow><annotation encoding="application/x-tex">10\text{ vezes}</annotation></semantics></math> maior que a da alíquota.</li>
+<li><strong>Constante de Conversão em Volumes</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>11</mn><mo>,</mo><mn>207</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(11{,}207)</annotation></semantics></math>: Como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mol</mtext></mrow></mrow><annotation encoding="application/x-tex">1\text{ mol}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math> gera <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>5</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mol</mtext></mrow></mrow><annotation encoding="application/x-tex">0{,}5\text{ mol}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{O}_2</annotation></semantics></math>, e cada mol de gás ocupa <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>22</mn><mo>,</mo><mn>414</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> L</mtext></mrow></mrow><annotation encoding="application/x-tex">22{,}414\text{ L}</annotation></semantics></math> nas CNTP, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mol</mtext></mrow><mo>⋅</mo><msup><mtext mathvariant="normal">L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1\text{ mol}\cdot\text{L}^{-1}</annotation></semantics></math> equivale a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>,</mo><mn>207</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> Volumes</mtext></mrow></mrow><annotation encoding="application/x-tex">11{,}207\text{ Volumes}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{O}_2</annotation></semantics></math>.</li>
+<li><strong>Volume em Litros:</strong> Nos métodos algébricos formais, o volume de titulante gasto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(V_{\text{titulante}})</annotation></semantics></math> deve obrigatoriamente estar em litros <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">L</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{L})</annotation></semantics></math>.</li>
+</ul>
+</div>
+</div>
+<hr>
+<section id="método-1-uso-das-equações-químicas-e-algébricas-formais" class="level3">
+<h3 class="anchored" data-anchor-id="método-1-uso-das-equações-químicas-e-algébricas-formais">Método 1: Uso das equações químicas e algébricas formais</h3>
+<p><strong>Passo 1</strong> — Determinar a quantidade de matéria <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(n)</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{KMnO}_4</annotation></semantics></math> consumida em função de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><annotation encoding="application/x-tex">V_{\text{titulante}}</annotation></semantics></math> (em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">L</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{L})</annotation></semantics></math>:</p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub></msub><mo>=</mo><msub><mi>C</mi><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub></msub><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>0200</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mols)</mtext></mrow><annotation encoding="application/x-tex">n_{\text{KMnO}_4} = C_{\text{KMnO}_4} \cdot V_{\text{titulante}} = 0{,}0200 \cdot V_{\text{titulante}} \ \text{(mols)}</annotation></semantics></math></p>
+<p><br></p>
+<p><strong>Passo 2</strong> — Calcular a quantidade de matéria de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math> presente na alíquota pela relação estequiométrica <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>:</mo><mn>5</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2:5)</annotation></semantics></math>:</p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (alíquota)</mtext></mrow></mrow></msub><mo>=</mo><msub><mi>n</mi><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub></msub><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>5</mn><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0200</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>⋅</mo><mn>2</mn><mo>,</mo><mn>5</mn><mo>=</mo><mn>0</mn><mo>,</mo><mn>0500</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mols)</mtext></mrow><annotation encoding="application/x-tex">n_{\text{H}_2\text{O}_2\text{ (alíquota)}} = n_{\text{KMnO}_4} \cdot \left(\frac{5}{2}\right) = (0{,}0200 \cdot V_{\text{titulante}}) \cdot 2{,}5 = 0{,}0500 \cdot V_{\text{titulante}} \ \text{(mols)}</annotation></semantics></math></p>
+<p><br></p>
+<p><strong>Passo 3</strong> — Determinar a concentração molar da solução diluída e da amostra comercial (bruta):</p>
+<p><br></p>
+<ol type="1">
+<li><strong>Concentração da solução diluída</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>C</mi><mtext mathvariant="normal">diluída</mtext></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(C_{\text{diluída}})</annotation></semantics></math>:</li>
+</ol>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (diluída)</mtext></mrow></mrow></msub><mo>=</mo><mfrac><msub><mi>n</mi><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (alíquota)</mtext></mrow></mrow></msub><msub><mi>V</mi><mtext mathvariant="normal">alíquota</mtext></msub></mfrac><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>0500</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub></mrow><mrow><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">L</mtext></mrow></mfrac><mo>=</mo><mn>5</mn><mo>,</mo><mn>00</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mol</mtext><mo>⋅</mo><msup><mtext mathvariant="normal">L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mtext mathvariant="normal">)</mtext></mrow><annotation encoding="application/x-tex">C_{\text{H}_2\text{O}_2\text{ (diluída)}} = \frac{n_{\text{H}_2\text{O}_2\text{ (alíquota)}}}{V_{\text{alíquota}}} = \frac{0{,}0500 \cdot V_{\text{titulante}}}{0{,}0100 \ \text{L}} = 5{,}00 \cdot V_{\text{titulante}} \ \text{(mol}\cdot\text{L}^{-1}\text{)}</annotation></semantics></math></p>
+<p><br></p>
+<ol start="2" type="1">
+<li><strong>Concentração da amostra comercial</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>C</mi><mtext mathvariant="normal">comercial</mtext></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(C_{\text{comercial}})</annotation></semantics></math> aplicando o Fator de Diluição <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>F</mi><mi>D</mi><mo>=</mo><mn>10</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(FD = 10)</annotation></semantics></math>:</li>
+</ol>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (comercial)</mtext></mrow></mrow></msub><mo>=</mo><msub><mi>C</mi><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (diluída)</mtext></mrow></mrow></msub><mo>⋅</mo><mi>F</mi><mi>D</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>5</mn><mo>,</mo><mn>00</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>⋅</mo><mn>10</mn><mo>=</mo><mn>50</mn><mo>,</mo><mn>00</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mol</mtext><mo>⋅</mo><msup><mtext mathvariant="normal">L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mtext mathvariant="normal">)</mtext></mrow><annotation encoding="application/x-tex">C_{\text{H}_2\text{O}_2\text{ (comercial)}} = C_{\text{H}_2\text{O}_2\text{ (diluída)}} \cdot FD = (5{,}00 \cdot V_{\text{titulante}}) \cdot 10 = 50{,}00 \cdot V_{\text{titulante}} \ \text{(mol}\cdot\text{L}^{-1}\text{)}</annotation></semantics></math></p>
+<p><br></p>
+<p><strong>Passo 4</strong> — Expressar a concentração em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% m/v</annotation></semantics></math> e no Teor em Volumes (Vol.):</p>
+<p><br></p>
+<ol type="1">
+<li><strong>Porcentagem massa/volume </strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\% m/v)</annotation></semantics></math>:</li>
+</ol>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi></mrow></msub><mo>=</mo><mfrac><mrow><msub><mi>C</mi><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (comercial)</mtext></mrow></mrow></msub><mo>⋅</mo><msub><mtext mathvariant="normal">M.M.</mtext><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow></msub></mrow><mn>10</mn></mfrac><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>50</mn><mo>,</mo><mn>00</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>⋅</mo><mn>34</mn><mo>,</mo><mn>014</mn></mrow><mn>10</mn></mfrac><mo>=</mo><mn>170</mn><mo>,</mo><mn>07</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mi>%</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m/v</mtext></mrow></mrow><annotation encoding="application/x-tex">C_{\% m/v} = \frac{C_{\text{H}_2\text{O}_2\text{ (comercial)}} \cdot \text{M.M.}_{\text{H}_2\text{O}_2}}{10} = \frac{(50{,}00 \cdot V_{\text{titulante}}) \cdot 34{,}014}{10} = 170{,}07 \cdot V_{\text{titulante}} \ \% \text{ m/v}</annotation></semantics></math></p>
+<p><br></p>
+<ol start="2" type="1">
+<li><strong>Teor em Volumes (Vol.):</strong></li>
+</ol>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Teor em Volumes (Vol.)</mtext><mo>=</mo><msub><mi>C</mi><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (comercial)</mtext></mrow></mrow></msub><mo>×</mo><mn>11</mn><mo>,</mo><mn>207</mn><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>50</mn><mo>,</mo><mn>00</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>11</mn><mo>,</mo><mn>207</mn><mo>=</mo><mn>560</mn><mo>,</mo><mn>35</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">Vol.</mtext></mrow><annotation encoding="application/x-tex">\text{Teor em Volumes (Vol.)} = C_{\text{H}_2\text{O}_2\text{ (comercial)}} \times 11{,}207 = (50{,}00 \cdot V_{\text{titulante}}) \times 11{,}207 = 560{,}35 \cdot V_{\text{titulante}} \ \text{Vol.}</annotation></semantics></math></p>
+<p><br></p>
+<hr>
+</section>
+<section id="método-2-cálculo-alternativo-por-regra-de-três" class="level3">
+<h3 class="anchored" data-anchor-id="método-2-cálculo-alternativo-por-regra-de-três">Método 2: Cálculo alternativo por regra de três</h3>
+<p><br></p>
+<p>Para o cálculo por regra de três, o volume <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><annotation encoding="application/x-tex">V_{\text{titulante}}</annotation></semantics></math> é expresso diretamente em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">mL</mtext><annotation encoding="application/x-tex">\text{mL}</annotation></semantics></math>.</p>
+<p><br></p>
+<p><strong>Passo 1</strong> — Calcular os mols de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{KMnO}_4</annotation></semantics></math> gastos na titulação em função de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><annotation encoding="application/x-tex">V_{\text{titulante}}</annotation></semantics></math> (em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">mL</mtext><annotation encoding="application/x-tex">\text{mL}</annotation></semantics></math>):</p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>0200</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">(mL)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+0{,}0200 \ \text{mols de } \text{KMnO}_4 &amp; \text{-------------} &amp; 1000 \ \text{mL} \\
+x_1 \ \text{mols de } \text{KMnO}_4     &amp; \text{-------------} &amp; V_{\text{titulante}} \ \text{(mL)}
+\end{array}</annotation></semantics></math></p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>0200</mn><mo>×</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub></mrow><mn>1000</mn></mfrac><mo>=</mo><mn>2</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">x_1 = \frac{0{,}0200 \times V_{\text{titulante}}}{1000} = 2{,}00 \times 10^{-5} \cdot V_{\text{titulante}} \ \text{mols de } \text{KMnO}_4</annotation></semantics></math> <br></p>
+<p><strong>Passo 2</strong> — Relacionar os mols de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{KMnO}_4</annotation></semantics></math> com os mols de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math> na alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10{,}0 \ \text{mL}</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>:</mo><mn>5</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2:5)</annotation></semantics></math>:</p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>2</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>5</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>2</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+2 \ \text{mols de } \text{KMnO}_4 &amp; \text{-------------} &amp; 5 \ \text{mols de } \text{H}_2\text{O}_2 \\
+2{,}00 \times 10^{-5} \cdot V_{\text{titulante}} &amp; \text{-------------} &amp; x_2 \ \text{mols de } \text{H}_2\text{O}_2
+\end{array}</annotation></semantics></math></p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>5</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mn>5</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (em </mtext><mspace width="0.333em"></mspace></mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL diluídos)</mtext></mrow><annotation encoding="application/x-tex">x_2 = \frac{(2{,}00 \times 10^{-5} \cdot V_{\text{titulante}}) \times 5}{2} = 5{,}00 \times 10^{-5} \cdot V_{\text{titulante}} \ \text{mols de } \text{H}_2\text{O}_2 \text{ (em } 10 \ \text{mL diluídos)}</annotation></semantics></math></p>
+<p><br></p>
+<p><strong>Passo 3</strong> — Determinar os mols de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math> na amostra comercial e sua concentração molar:</p>
+<p><br></p>
+<ol type="1">
+<li><strong>Quantidade no balão de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> (proveniente de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10 \ \text{mL}</annotation></semantics></math> da amostra comercial bruta):</li>
+</ol>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>5</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL (alíquota)</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL (balão)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+    5{,}00 \times 10^{-5} \cdot V_{\text{titulante}} \ \text{mols} &amp; \text{-------------} &amp; 10 \ \text{mL (alíquota)} \\
+    x_3 \ \text{mols de } \text{H}_2\text{O}_2                    &amp; \text{-------------} &amp; 100 \ \text{mL (balão)}
+    \end{array}</annotation></semantics></math></p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>3</mn></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>5</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>100</mn></mrow><mn>10</mn></mfrac><mo>=</mo><mn>5</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mols de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_3 = \frac{(5{,}00 \times 10^{-5} \cdot V_{\text{titulante}}) \times 100}{10} = 5{,}00 \times 10^{-4} \cdot V_{\text{titulante}} \ \text{mols de } \text{H}_2\text{O}_2</annotation></semantics></math> <br></p>
+<ol start="2" type="1">
+<li><strong>Molaridade da amostra comercial </strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1000 \ \text{mL})</annotation></semantics></math>:</li>
+</ol>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>5</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL comercial</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>C</mi><mtext mathvariant="normal">comercial</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+    5{,}00 \times 10^{-4} \cdot V_{\text{titulante}} \ \text{mols} &amp; \text{-------------} &amp; 10 \ \text{mL comercial} \\
+    C_{\text{comercial}} \ \text{mols}                               &amp; \text{-------------} &amp; 1000 \ \text{mL}
+    \end{array}</annotation></semantics></math></p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (comercial)</mtext></mrow></mrow></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>5</mn><mo>,</mo><mn>00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>1000</mn></mrow><mn>10</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>0500</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext><mo>⋅</mo><msup><mtext mathvariant="normal">L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">C_{\text{H}_2\text{O}_2\text{ (comercial)}} = \frac{(5{,}00 \times 10^{-4} \cdot V_{\text{titulante}}) \times 1000}{10} = 0{,}0500 \cdot V_{\text{titulante}} \ \text{mol}\cdot\text{L}^{-1}</annotation></semantics></math></p>
+<p><br></p>
+<p><strong>Passo 4</strong> — Converter a concentração para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\% m/v</annotation></semantics></math> e Teor em Volumes:</p>
+<p><br></p>
+<ol type="1">
+<li><strong>Massa de</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math> por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> de amostra comercial <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\% m/v)</annotation></semantics></math>:</li>
+</ol>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">mol de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>34</mn><mo>,</mo><mn>014</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn><mo>,</mo><mn>0500</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">mols</mtext></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>4</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">g</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+    1 \ \text{mol de } \text{H}_2\text{O}_2 &amp; \text{-------------} &amp; 34{,}014 \ \text{g} \\
+    0{,}0500 \cdot V_{\text{titulante}} \ \text{mols} &amp; \text{-------------} &amp; x_4 \ \text{g}
+    \end{array}</annotation></semantics></math></p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>4</mn></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0500</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>34</mn><mo>,</mo><mn>014</mn><mo>=</mo><mn>1</mn><mo>,</mo><mn>7007</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">g em </mtext><mspace width="0.333em"></mspace></mrow><mn>1000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">x_4 = (0{,}0500 \cdot V_{\text{titulante}}) \times 34{,}014 = 1{,}7007 \cdot V_{\text{titulante}} \ \text{g em } 1000 \ \text{mL}</annotation></semantics></math></p>
+<p><br></p>
+<p>Para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">100 \ \text{mL}</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\% m/v)</annotation></semantics></math>:</p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>%</mi><mi>m</mi><mi>/</mi><mi>v</mi></mrow></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>,</mo><mn>7007</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub></mrow><mn>10</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>17007</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mi>%</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m/v</mtext></mrow></mrow><annotation encoding="application/x-tex">C_{\% m/v} = \frac{1{,}7007 \cdot V_{\text{titulante}}}{10} = 0{,}17007 \cdot V_{\text{titulante}} \ \% \text{ m/v}</annotation></semantics></math></p>
+<ol start="2" type="1">
+<li><strong>Teor em Volumes:</strong></li>
+</ol>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext><mo>⋅</mo><msup><mtext mathvariant="normal">L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> de </mtext><mspace width="0.333em"></mspace></mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><mn>11</mn><mo>,</mo><mn>207</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">Vol.</mtext></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0500</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">mol</mtext><mo>⋅</mo><msup><mtext mathvariant="normal">L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mtd><mtd columnalign="center" style="text-align: center"><mtext mathvariant="normal">————-</mtext></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>5</mn></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">Vol.</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ccc}
+    1 \ \text{mol}\cdot\text{L}^{-1} \text{ de } \text{H}_2\text{O}_2 &amp; \text{-------------} &amp; 11{,}207 \ \text{Vol.} \\
+    (0{,}0500 \cdot V_{\text{titulante}}) \ \text{mol}\cdot\text{L}^{-1} &amp; \text{-------------} &amp; x_5 \ \text{Vol.}
+    \end{array}</annotation></semantics></math></p>
+<p><br></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>5</mn></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0500</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>11</mn><mo>,</mo><mn>207</mn><mo>=</mo><mn>0</mn><mo>,</mo><mn>56035</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">Vol.</mtext></mrow><annotation encoding="application/x-tex">x_5 = (0{,}0500 \cdot V_{\text{titulante}}) \times 11{,}207 = 0{,}56035 \cdot V_{\text{titulante}} \ \text{Vol.}</annotation></semantics></math></p>
+<p><br></p>
+<p>👉 <em>Expressão Final:</em></p>
+<p>Substituindo o valor experimental de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><annotation encoding="application/x-tex">V_{\text{titulante}}</annotation></semantics></math> obtido na bureta, determina-se diretamente a concentração da água oxigenada comercial:</p>
+<ul>
+<li><p><strong>Método 1 </strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub></mrow><annotation encoding="application/x-tex">(V_{\text{titulante}}</annotation></semantics></math> em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">L</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{L})</annotation></semantics></math>:</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Teor (Vol.)</mtext><mo>=</mo><mn>560</mn><mo>,</mo><mn>35</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub></mrow><annotation encoding="application/x-tex">\text{Teor (Vol.)} = 560{,}35 \cdot V_{\text{titulante}}</annotation></semantics></math></p></li>
+<li><p><strong>Método 2 </strong>(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub><annotation encoding="application/x-tex">V_{\text{titulante}}</annotation></semantics></math> em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">mL</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{mL})</annotation></semantics></math>:</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Teor (Vol.)</mtext><mo>=</mo><mn>0</mn><mo>,</mo><mn>56035</mn><mo>⋅</mo><msub><mi>V</mi><mtext mathvariant="normal">titulante</mtext></msub></mrow><annotation encoding="application/x-tex">\text{Teor (Vol.)} = 0{,}56035 \cdot V_{\text{titulante}}</annotation></semantics></math></p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="fluxograma-da-determinação-de-peróxido-em-volumes" class="level3">
+<h3 class="anchored" data-anchor-id="fluxograma-da-determinação-de-peróxido-em-volumes">Fluxograma da Determinação de Peróxido em Volumes</h3>
+<p>O fluxograma a seguir resume a sequência lógica dos cálculos e etapas operacionais para a determinação quantitativa do teor em volumes do peróxido de hidrogênio.</p>
+<div id="fluxograma-Vol-Redox" class="center fluxograma-adaptavel quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fluxograma figure">
+<div aria-describedby="fluxograma-Vol-Redox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 2150" width="100%" height="100%">
+  <defs>
+    <style>
+      .graph-bg { fill: var(--bg-graph, #ffffff); }
+      .node-bg-root { fill: var(--bg-node-root, #e5e5e5); stroke: #000000; stroke-width: 3px; }
+      .node-bg { fill: var(--bg-node, #f0f0f0); stroke: #000000; stroke-width: 2.5px; }
+      .edge-line { stroke: #000000; stroke-width: 2.5px; fill: none; }
+      .edge-arrow { fill: #000000; }
+      .text-title { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #000000; }
+      .text-step { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #000000; }
+      .text-body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 16px; fill: #000000; }
+      .text-math { font-family: "Latin Modern Math", "Cambria Math", "Helvetica Neue", Helvetica, sans-serif; font-size: 16px; fill: #000000; }
+      .subscript { baseline-shift: sub; font-size: 75%; }
+      .superscript { baseline-shift: super; font-size: 75%; }
+    </style>
+  </defs>
+
+  <!-- Fundo do Gráfico -->
+  <rect class="graph-bg" width="1280" height="2150"></rect>
+
+  <!-- NODE ROOT: Título Geral -->
+  <g id="nodeRoot">
+    <rect class="node-bg-root" x="240" y="40" width="800" height="70" rx="0" ry="0"></rect>
+    <text class="text-title" x="640" y="82" text-anchor="middle">DETERMINAÇÃO DO TEOR DE PERÓXIDO DE HIDROGÊNIO EM VOLUMES</text>
+  </g>
+
+  <!-- Seta Root -> Passo 1 -->
+  <path class="edge-line" d="M 640 110 L 640 148"></path>
+  <polygon class="edge-arrow" points="640,158 634,144 646,144"></polygon>
+
+  <!-- NODE 1: Diluição da Amostra Comercial -->
+  <g id="node1">
+    <rect class="node-bg" x="80" y="160" width="1120" height="170"></rect>
+    <text class="text-step" x="640" y="190" text-anchor="middle">PASSO 1: DILUIÇÃO DA AMOSTRA COMERCIAL (ÁGUA OXIGENADA 10 V)</text>
+    <line x1="80" y1="205" x2="1200" y2="205" stroke="#000000" stroke-width="2"></line>
+    
+    <!-- Subdivisão interna 3 colunas -->
+    <line x1="453" y1="205" x2="453" y2="330" stroke="#000000" stroke-width="1.5" stroke-dasharray="5"></line>
+    <line x1="826" y1="205" x2="826" y2="330" stroke="#000000" stroke-width="1.5" stroke-dasharray="5"></line>
+
+    <!-- Coluna 1 -->
+    <text class="text-body" x="266" y="240" text-anchor="middle">• Pipetar <tspan class="text-math">10,0 mL</tspan> da amostra comercial</text>
+    <text class="text-math" x="266" y="265" text-anchor="middle">(V<tspan class="subscript">amostra</tspan> = 10,0 mL de H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan> ~3% m/v)</text>
+    <text class="text-body" x="266" y="295" text-anchor="middle">Usar pipeta volumétrica e propipeta</text>
+
+    <!-- Coluna 2 -->
+    <text class="text-body" x="640" y="240" text-anchor="middle">• Transferir para balão volumétrico</text>
+    <text class="text-math" x="640" y="265" text-anchor="middle">(V<tspan class="subscript">balão</tspan> = 100,0 mL)</text>
+    <text class="text-body" x="640" y="295" text-anchor="middle">Aferir com água destilada até o menisco</text>
+
+    <!-- Coluna 3 -->
+    <text class="text-body" x="1013" y="240" text-anchor="middle">• Homogeneizar por inversão</text>
+    <text class="text-math" x="1013" y="265" text-anchor="middle">Fator de Diluição (FD) = V<tspan class="subscript">balão</tspan> / V<tspan class="subscript">amostra</tspan></text>
+    <text class="text-math" font-weight="bold" x="1013" y="295" text-anchor="middle">FD = 100,0 / 10,0 = 10</text>
+  </g>
+
+  <!-- Seta Passo 1 -> Passo 2 -->
+  <path class="edge-line" d="M 640 330 L 640 368"></path>
+  <polygon class="edge-arrow" points="640,378 634,364 646,364"></polygon>
+
+  <!-- NODE 2: Preparação e Titulação da Alíquota -->
+  <g id="node2">
+    <rect class="node-bg" x="80" y="380" width="1120" height="220"></rect>
+    <text class="text-step" x="640" y="410" text-anchor="middle">PASSO 2: PREPARAÇÃO DA ALÍQUOTA E TITULAÇÃO REDOX</text>
+    <line x1="80" y1="425" x2="1200" y2="425" stroke="#000000" stroke-width="2"></line>
+
+    <!-- Subdivisão interna 3 colunas -->
+    <line x1="453" y1="425" x2="453" y2="600" stroke="#000000" stroke-width="1.5" stroke-dasharray="5"></line>
+    <line x1="826" y1="425" x2="826" y2="600" stroke="#000000" stroke-width="1.5" stroke-dasharray="5"></line>
+
+    <!-- Coluna 1: Alíquota e Acidificação -->
+    <text class="text-title" x="266" y="455" text-anchor="middle">Preparo no Erlenmeyer</text>
+    <text class="text-body" x="266" y="485" text-anchor="middle">• Transfira <tspan class="text-math">10,0 mL</tspan> da solução diluída</text>
+    <text class="text-math" x="266" y="510" text-anchor="middle">(V<tspan class="subscript">alíquota</tspan> = 10,0 mL = 0,0100 L)</text>
+    <text class="text-body" x="266" y="540" text-anchor="middle">• Adicione <tspan class="text-math">20 mL</tspan> de <tspan class="text-math">H<tspan class="subscript">2</tspan>SO<tspan class="subscript">4</tspan> 1,0 mol·L<tspan class="superscript">-1</tspan></tspan></text>
+    <text class="text-body" x="266" y="565" text-anchor="middle">(pH &lt; 1 para redução total a Mn<tspan class="superscript">2+</tspan>)</text>
+
+    <!-- Coluna 2: Titulante -->
+    <text class="text-title" x="640" y="455" text-anchor="middle">Bureta e Titulante</text>
+    <text class="text-body" x="640" y="485" text-anchor="middle">• Solução de <tspan class="text-math">KMnO<tspan class="subscript">4</tspan> 0,0200 mol·L<tspan class="superscript">-1</tspan></tspan></text>
+    <text class="text-body" x="640" y="515" text-anchor="middle">• Preencher e zerar a bureta</text>
+    <text class="text-body" x="640" y="545" text-anchor="middle">• Eliminar bolhas de ar na ponta</text>
+    <text class="text-body" x="640" y="575" text-anchor="middle">• Agitação constante na adição</text>
+
+    <!-- Coluna 3: Ponto Final -->
+    <text class="text-title" x="1013" y="455" text-anchor="middle">Ponto Final (Autoindicador)</text>
+    <text class="text-body" x="1013" y="485" text-anchor="middle">• Coloração <tspan font-weight="bold">rosa-pálida persistente</tspan></text>
+    <text class="text-body" x="1013" y="510" text-anchor="middle">(por pelo menos 30 segundos)</text>
+    <text class="text-body" x="1013" y="540" text-anchor="middle">• Excesso de 1 gota de MnO<tspan class="subscript">4</tspan><tspan class="superscript">-</tspan></text>
+    <text class="text-math" font-weight="bold" x="1013" y="570" text-anchor="middle">Anotar V<tspan class="subscript">titulante</tspan> (mL ou L)</text>
+  </g>
+
+  <!-- Seta Passo 2 -> Passo 3 -->
+  <path class="edge-line" d="M 640 600 L 640 638"></path>
+  <polygon class="edge-arrow" points="640,648 634,634 646,634"></polygon>
+
+  <!-- NODE 3: Reação Global e Estequiometria -->
+  <g id="node3">
+    <rect class="node-bg" x="80" y="650" width="1120" height="150"></rect>
+    <text class="text-step" x="640" y="680" text-anchor="middle">PASSO 3: REAÇÃO GLOBAL DE OXIRREDUÇÃO E RELAÇÃO ESTEQUIOMÉTRICA</text>
+    <line x1="80" y1="695" x2="1200" y2="695" stroke="#000000" stroke-width="2"></line>
+
+    <text class="text-math" font-weight="bold" x="640" y="725" text-anchor="middle">2 MnO<tspan class="subscript">4</tspan><tspan class="superscript">-</tspan> (aq) + 5 H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan> (aq) + 6 H<tspan class="superscript">+</tspan> (aq) ⟶ 2 Mn<tspan class="superscript">2+</tspan> (aq) + 5 O<tspan class="subscript">2</tspan> (g) + 8 H<tspan class="subscript">2</tspan>O (l)   (ΔE° = +0,815 V)</text>
+
+    <line x1="80" y1="745" x2="1200" y2="745" stroke="#000000" stroke-width="1.5" stroke-dasharray="5"></line>
+
+    <text class="text-title" x="640" y="775" text-anchor="middle">Proporção Molar: 2 mols de MnO<tspan class="subscript">4</tspan><tspan class="superscript">-</tspan> : 5 mols de H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan>  →  n(H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan>) = 2,5 × n(KMnO<tspan class="subscript">4</tspan>)</text>
+  </g>
+
+  <!-- Seta Passo 3 -> Ramos de Cálculo -->
+  <path class="edge-line" d="M 640 800 L 640 830"></path>
+  <path class="edge-line" d="M 360 830 L 920 830"></path>
+  <path class="edge-line" d="M 360 830 L 360 858"></path>
+  <path class="edge-line" d="M 920 830 L 920 858"></path>
+  <polygon class="edge-arrow" points="360,868 354,854 366,854"></polygon>
+  <polygon class="edge-arrow" points="920,868 914,854 926,854"></polygon>
+
+  <!-- RAMO ESQUERDO: MÉTODO 1 -->
+  <g id="node4A">
+    <rect class="node-bg" x="80" y="870" width="550" height="830"></rect>
+    <text class="text-step" x="355" y="900" text-anchor="middle">MÉTODO 1: ALGEBRAICO FORMAL</text>
+    <text class="text-math" x="355" y="922" text-anchor="middle">(V<tspan class="subscript">titulante</tspan> expresso obrigatoriamente em Litros - L)</text>
+    <line x1="80" y1="935" x2="630" y2="935" stroke="#000000" stroke-width="2"></line>
+
+    <!-- Etapa 1.1 -->
+    <text class="text-title" x="100" y="965" text-anchor="start">1. Mols de KMnO<tspan class="subscript">4</tspan> consumidos:</text>
+    <text class="text-math" x="115" y="995" text-anchor="start">n<tspan class="subscript">KMnO4</tspan> = C<tspan class="subscript">KMnO4</tspan> × V<tspan class="subscript">titulante</tspan></text>
+    <text class="text-math" x="115" y="1020" text-anchor="start">n<tspan class="subscript">KMnO4</tspan> = 0,0200 mol·L<tspan class="superscript">-1</tspan> × V<tspan class="subscript">titulante</tspan> (L)</text>
+
+    <line x1="90" y1="1040" x2="620" y2="1040" stroke="#000000" stroke-width="1" stroke-dasharray="4"></line>
+
+    <!-- Etapa 1.2 -->
+    <text class="text-title" x="100" y="1070" text-anchor="start">2. Mols de H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan> na alíquota (10,0 mL):</text>
+    <text class="text-math" x="115" y="1100" text-anchor="start">n<tspan class="subscript">H2O2 (alíquota)</tspan> = n<tspan class="subscript">KMnO4</tspan> × 2,5</text>
+    <text class="text-math" x="115" y="1125" text-anchor="start">n<tspan class="subscript">H2O2 (alíquota)</tspan> = (0,0200 × V<tspan class="subscript">titulante</tspan>) × 2,5</text>
+    <text class="text-math" x="115" y="1150" text-anchor="start">n<tspan class="subscript">H2O2 (alíquota)</tspan> = 0,0500 × V<tspan class="subscript">titulante</tspan> (mols)</text>
+
+    <line x1="90" y1="1170" x2="620" y2="1170" stroke="#000000" stroke-width="1" stroke-dasharray="4"></line>
+
+    <!-- Etapa 1.3 -->
+    <text class="text-title" x="100" y="1200" text-anchor="start">3. Concentração Molar (mol·L<tspan class="superscript">-1</tspan>):</text>
+    <text class="text-body" x="115" y="1225" text-anchor="start">a) Solução Diluída (V<tspan class="subscript">alíquota</tspan> = 0,0100 L):</text>
+    <text class="text-math" x="130" y="1250" text-anchor="start">C<tspan class="subscript">diluída</tspan> = (0,0500 × V<tspan class="subscript">titulante</tspan>) / 0,0100 L</text>
+    <text class="text-math" x="130" y="1275" text-anchor="start">C<tspan class="subscript">diluída</tspan> = 5,00 × V<tspan class="subscript">titulante</tspan> (mol·L<tspan class="superscript">-1</tspan>)</text>
+
+    <text class="text-body" x="115" y="1305" text-anchor="start">b) Amostra Comercial (FD = 10):</text>
+    <text class="text-math" x="130" y="1330" text-anchor="start">C<tspan class="subscript">comercial</tspan> = C<tspan class="subscript">diluída</tspan> × 10</text>
+    <text class="text-math" x="130" y="1355" text-anchor="start">C<tspan class="subscript">comercial</tspan> = 50,00 × V<tspan class="subscript">titulante</tspan> (mol·L<tspan class="superscript">-1</tspan>)</text>
+
+    <line x1="90" y1="1375" x2="620" y2="1375" stroke="#000000" stroke-width="1" stroke-dasharray="4"></line>
+
+    <!-- Etapa 1.4 -->
+    <text class="text-title" x="100" y="1405" text-anchor="start">4. Conversões de Concentração:</text>
+    <text class="text-body" x="115" y="1430" text-anchor="start">a) Porcentagem em massa/volume (% m/v):</text>
+    <text class="text-math" x="130" y="1455" text-anchor="start">C<tspan class="subscript">% m/v</tspan> = (C<tspan class="subscript">comercial</tspan> × MM<tspan class="subscript">H2O2</tspan>) / 10</text>
+    <text class="text-math" x="130" y="1480" text-anchor="start">C<tspan class="subscript">% m/v</tspan> = (50,00 × V<tspan class="subscript">titulante</tspan> × 34,014) / 10</text>
+    <text class="text-math" x="130" y="1505" text-anchor="start">C<tspan class="subscript">% m/v</tspan> = 170,07 × V<tspan class="subscript">titulante</tspan> (% m/v)</text>
+
+    <text class="text-body" x="115" y="1540" text-anchor="start">b) Teor em Volumes (Vol.):</text>
+    <text class="text-math" x="130" y="1565" text-anchor="start">Teor (Vol.) = C<tspan class="subscript">comercial</tspan> × 11,207</text>
+    <text class="text-math" x="130" y="1590" text-anchor="start">Teor (Vol.) = (50,00 × V<tspan class="subscript">titulante</tspan>) × 11,207</text>
+    <text class="text-math" font-weight="bold" x="130" y="1620" text-anchor="start">Teor (Vol.) = 560,35 × V<tspan class="subscript">titulante</tspan> (L)</text>
+  </g>
+
+  <!-- RAMO DIREITO: MÉTODO 2 -->
+  <g id="node4B">
+    <rect class="node-bg" x="650" y="870" width="550" height="830"></rect>
+    <text class="text-step" x="925" y="900" text-anchor="middle">MÉTODO 2: REGRA DE TRÊS PROPORCIONAL</text>
+    <text class="text-math" x="925" y="922" text-anchor="middle">(V<tspan class="subscript">titulante</tspan> expresso diretamente em MiliLitros - mL)</text>
+    <line x1="650" y1="935" x2="1200" y2="935" stroke="#000000" stroke-width="2"></line>
+
+    <!-- Etapa 2.1 -->
+    <text class="text-title" x="670" y="965" text-anchor="start">1. Mols de KMnO<tspan class="subscript">4</tspan> consumidos:</text>
+    <text class="text-math" x="685" y="990" text-anchor="start">0,0200 mol KMnO<tspan class="subscript">4</tspan>  ————  1000 mL</text>
+    <text class="text-math" x="685" y="1015" text-anchor="start">x<tspan class="subscript">1</tspan> mol KMnO<tspan class="subscript">4</tspan>       ————  V<tspan class="subscript">titulante</tspan> (mL)</text>
+    <text class="text-math" x="685" y="1040" text-anchor="start">x<tspan class="subscript">1</tspan> = 2,00 × 10<tspan class="superscript">-5</tspan> × V<tspan class="subscript">titulante</tspan> mol KMnO<tspan class="subscript">4</tspan></text>
+
+    <line x1="660" y1="1055" x2="1190" y2="1055" stroke="#000000" stroke-width="1" stroke-dasharray="4"></line>
+
+    <!-- Etapa 2.2 -->
+    <text class="text-title" x="670" y="1085" text-anchor="start">2. Mols de H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan> na alíquota (10 mL):</text>
+    <text class="text-math" x="685" y="1110" text-anchor="start">2 mol KMnO<tspan class="subscript">4</tspan>      ————  5 mol H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan></text>
+    <text class="text-math" x="685" y="1135" text-anchor="start">x<tspan class="subscript">1</tspan> mol KMnO<tspan class="subscript">4</tspan>      ————  x<tspan class="subscript">2</tspan> mol H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan></text>
+    <text class="text-math" x="685" y="1160" text-anchor="start">x<tspan class="subscript">2</tspan> = 5,00 × 10<tspan class="superscript">-5</tspan> × V<tspan class="subscript">titulante</tspan> mol H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan></text>
+
+    <line x1="660" y1="1175" x2="1190" y2="1175" stroke="#000000" stroke-width="1" stroke-dasharray="4"></line>
+
+    <!-- Etapa 2.3 -->
+    <text class="text-title" x="670" y="1205" text-anchor="start">3. Mols no balão (100 mL) e Molaridade Comercial:</text>
+    <text class="text-body" x="685" y="1228" text-anchor="start">a) Mols no balão de 100 mL (x<tspan class="subscript">3</tspan>):</text>
+    <text class="text-math" x="700" y="1250" text-anchor="start">x<tspan class="subscript">2</tspan> mol  ————  10 mL alíquota</text>
+    <text class="text-math" x="700" y="1272" text-anchor="start">x<tspan class="subscript">3</tspan> mol  ————  100 mL balão  →  x<tspan class="subscript">3</tspan> = 5,00 × 10<tspan class="superscript">-4</tspan> × V<tspan class="subscript">tit</tspan></text>
+
+    <text class="text-body" x="685" y="1302" text-anchor="start">b) Concentração na amostra comercial (1000 mL):</text>
+    <text class="text-math" x="700" y="1325" text-anchor="start">x<tspan class="subscript">3</tspan> mol  ————  10 mL comercial</text>
+    <text class="text-math" x="700" y="1348" text-anchor="start">C<tspan class="subscript">comercial</tspan>  ————  1000 mL  →  C<tspan class="subscript">comercial</tspan> = 0,0500 × V<tspan class="subscript">tit</tspan> mol/L</text>
+
+    <line x1="660" y1="1365" x2="1190" y2="1365" stroke="#000000" stroke-width="1" stroke-dasharray="4"></line>
+
+    <!-- Etapa 2.4 -->
+    <text class="text-title" x="670" y="1395" text-anchor="start">4. Conversões de Concentração:</text>
+    <text class="text-body" x="685" y="1420" text-anchor="start">a) Massa em 100 mL (% m/v):</text>
+    <text class="text-math" x="700" y="1445" text-anchor="start">massa (1000 mL) = 0,0500 × V<tspan class="subscript">titulante</tspan> × 34,014</text>
+    <text class="text-math" x="700" y="1470" text-anchor="start">C<tspan class="subscript">% m/v</tspan> = 0,17007 × V<tspan class="subscript">titulante</tspan> (% m/v)</text>
+
+    <text class="text-body" x="685" y="1505" text-anchor="start">b) Teor em Volumes (1 mol/L = 11,207 Vol.):</text>
+    <text class="text-math" x="700" y="1530" text-anchor="start">1 mol·L<tspan class="superscript">-1</tspan>      ————  11,207 Vol.</text>
+    <text class="text-math" x="700" y="1555" text-anchor="start">C<tspan class="subscript">comercial</tspan>     ————  x<tspan class="subscript">5</tspan> Vol.</text>
+    <text class="text-math" font-weight="bold" x="700" y="1585" text-anchor="start">Teor (Vol.) = 0,56035 × V<tspan class="subscript">titulante</tspan> (mL)</text>
+  </g>
+
+  <!-- União dos Ramos para o Passo 5 -->
+  <path class="edge-line" d="M 355 1700 L 355 1730"></path>
+  <path class="edge-line" d="M 925 1700 L 925 1730"></path>
+  <path class="edge-line" d="M 355 1730 L 925 1730"></path>
+  <path class="edge-line" d="M 640 1730 L 640 1758"></path>
+  <polygon class="edge-arrow" points="640,1768 634,1754 646,1754"></polygon>
+
+  <!-- NODE 5: Avaliação de Conformidade USP -->
+  <g id="node5">
+    <rect class="node-bg" x="80" y="1770" width="1120" height="170"></rect>
+    <text class="text-step" x="640" y="1800" text-anchor="middle">PASSO 5: AVALIAÇÃO DE CONFORMIDADE E LIMITES DE ESPECIFICAÇÃO (USP)</text>
+    <line x1="80" y1="1815" x2="1200" y2="1815" stroke="#000000" stroke-width="2"></line>
+
+    <!-- Subdivisão interna 2 colunas -->
+    <line x1="640" y1="1815" x2="640" y2="1940" stroke="#000000" stroke-width="1.5" stroke-dasharray="5"></line>
+
+    <!-- Coluna 1: Especificação USP -->
+    <text class="text-title" x="360" y="1845" text-anchor="middle">Especificação da Farmacopeia (USP)</text>
+    <text class="text-body" x="360" y="1875" text-anchor="middle">• Água Oxigenada Tópica Rotulada a 10 Volumes (3% m/v):</text>
+    <text class="text-math" x="360" y="1900" text-anchor="middle">Faixa de Aceitação: 2,5% a 3,5% m/v</text>
+    <text class="text-math" font-weight="bold" x="360" y="1925" text-anchor="middle">Equivalente a: 8,3 a 11,7 Volumes</text>
+
+    <!-- Coluna 2: Critério de Decisão -->
+    <text class="text-title" x="920" y="1845" text-anchor="middle">Conclusão do Controle de Qualidade</text>
+    <text class="text-body" x="920" y="1875" text-anchor="middle">• Se 8,3 ≤ Teor (Vol.) ≤ 11,7 → <tspan font-weight="bold" fill="#008000">AMOSTRA CONFORME</tspan></text>
+    <text class="text-body" x="920" y="1900" text-anchor="middle">• Se Teor (Vol.) &lt; 8,3 → Decomposição / Degradação (Luz, Temp.)</text>
+    <text class="text-body" x="920" y="1925" text-anchor="middle">• Se Teor (Vol.) &gt; 11,7 → Erro de Formulação ou Matéria Orgânica</text>
+  </g>
+
+  <!-- Seta Passo 5 -> Passo Final -->
+  <path class="edge-line" d="M 640 1940 L 640 1978"></path>
+  <polygon class="edge-arrow" points="640,1988 634,1974 646,1974"></polygon>
+
+  <!-- NODE 6: Descarte e Segurança -->
+  <g id="node6">
+    <rect class="node-bg" x="180" y="1990" width="920" height="110"></rect>
+    <text class="text-step" x="640" y="2020" text-anchor="middle">PASSO 6: DESCARTE DE RESÍDUOS E SEGURANÇA LABORATORIAL</text>
+    <line x1="180" y1="2035" x2="1100" y2="2035" stroke="#000000" stroke-width="2"></line>
+
+    <text class="text-body" font-weight="bold" x="640" y="2060" text-anchor="middle">PROIBIDO O DESCARTE DIRETO NA PIA!</text>
+    <text class="text-body" x="640" y="2085" text-anchor="middle">Descartar os resíduos titulados e de permanganato no galão coletor: <tspan font-weight="bold">"Resíduos de Permanganimetria (Manganês)"</tspan></text>
+  </g>
+</svg>
+
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma" id="fluxograma-Vol-Redox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fluxograma&nbsp;12.1: Sequência de cálculo e processo para a determinação de peróxido em volumes.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Orientações">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Orientações
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para a resolução das questões a seguir, utilize os dados e constantes físico-químicas apresentados neste material, incluindo as massas molares (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">H</mtext><mo>=</mo><mn>1</mn><mo>,</mo><mn>008</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\text{H} = 1{,}008 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">O</mtext><mo>=</mo><mn>16</mn><mo>,</mo><mn>00</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\text{O} = 16{,}00 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">K</mtext><mo>=</mo><mn>39</mn><mo>,</mo><mn>10</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\text{K} = 39{,}10 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Mn</mtext><mo>=</mo><mn>54</mn><mo>,</mo><mn>94</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\text{Mn} = 54{,}94 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>) e o volume molar nas CNTP <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>V</mi><mrow><mi>m</mi><mi>o</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub><mo>=</mo><mn>22</mn><mo>,</mo><mn>414</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">L</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(V_{molar} = 22{,}414 \ \mathrm{L\cdot mol^{-1}})</annotation></semantics></math>.</p>
+</div>
+</div>
+<p><strong>1.</strong> Um volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">25{,}0 \ \mathrm{mL}</annotation></semantics></math> de uma solução de água oxigenada comercial foi transferido para um erlenmeyer e acidificado com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">20 \ \mathrm{mL}</annotation></semantics></math> de ácido sulfúrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">SO</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{SO}_4</annotation></semantics></math>) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">1{,}0 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>. A solução foi titulada, consumindo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">10{,}5 \ \mathrm{mL}</annotation></semantics></math> de uma solução de permanganato de potássio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{KMnO}_4</annotation></semantics></math>) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>0200</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}0200 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math> com fator de correção <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>c</mi></msub><mo>=</mo><mn>0</mn><mo>,</mo><mn>989</mn></mrow><annotation encoding="application/x-tex">f_c = 0{,}989</annotation></semantics></math>. Qual é o percentual em massa por volume <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mspace width="0.222em"></mspace><mi>m</mi><mi>/</mi><mi>v</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\% \ m/v)</annotation></semantics></math> de peróxido de hidrogênio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{H}_2\text{O}_2)</annotation></semantics></math> nessa amostra?</p>
+<p><strong>2.</strong> Uma amostra de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">2{,}0 \ \mathrm{mL}</annotation></semantics></math> de água oxigenada foi transferida para um balão volumétrico de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>500</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">500{,}0 \ \mathrm{mL}</annotation></semantics></math> e o volume foi completado com água destilada. Uma alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">25{,}0 \ \mathrm{mL}</annotation></semantics></math> desta solução diluída foi transferida para um erlenmeyer, acidificada e titulada, consumindo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>21</mn><mo>,</mo><mn>1</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">21{,}1 \ \mathrm{mL}</annotation></semantics></math> de solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\text{KMnO}_4 \ 0{,}0100 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math> com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>c</mi></msub><mo>=</mo><mn>1</mn><mo>,</mo><mn>056</mn></mrow><annotation encoding="application/x-tex">f_c = 1{,}056</annotation></semantics></math>. Determine a concentração da amostra original expressa em <strong>Teor em Volumes (Vol.)</strong>.</p>
+<p><strong>3.</strong> Durante o procedimento experimental de titulação por permanganimetria, o meio reacional presente no erlenmeyer deve ser convenientemente acidificado com ácido sulfúrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">SO</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{SO}_4</annotation></semantics></math>) antes da adição do titulante.</p>
+<ol type="a">
+<li><p>Qual é a função do meio fortemente ácido (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">pH</mtext><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\text{pH} &lt; 1</annotation></semantics></math>) na reação entre o íon <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">MnO</mtext><mn>4</mn><mo>−</mo></msubsup><annotation encoding="application/x-tex">\text{MnO}_4^-</annotation></semantics></math> e o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math>?</p></li>
+<li><p>Explique por que o ácido clorídrico (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">HCl</mtext><annotation encoding="application/x-tex">\text{HCl}</annotation></semantics></math>) <strong>não</strong> deve ser utilizado para acidificar a solução nesta titulação.</p></li>
+</ol>
+<p><strong>4.</strong> Na padronização de uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{KMnO}_4</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>0200</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">0{,}0200 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>, gastou-se um volume médio de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>19</mn><mo>,</mo><mn>8</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">19{,}8 \ \mathrm{mL}</annotation></semantics></math> do titulante para reagir completamente com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1320</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">0{,}1320 \ \mathrm{g}</annotation></semantics></math> de oxalato de sódio (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">Na</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">C</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">\text{Na}_2\text{C}_2\text{O}_4</annotation></semantics></math>, padrão primário, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">M.M.</mtext><mo>=</mo><mn>134</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">g</mi><mo mathvariant="normal">⋅</mo><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><msup><mi mathvariant="normal">l</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\text{M.M.} = 134{,}0 \ \mathrm{g\cdot mol^{-1}}</annotation></semantics></math>) em meio ácido.</p>
+<ol type="a">
+<li><p>Calcule a concentração molar real da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{KMnO}_4</annotation></semantics></math>.</p></li>
+<li><p>Determine o fator de correção (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>f</mi><mi>c</mi></msub><annotation encoding="application/x-tex">f_c</annotation></semantics></math>) dessa solução.</p></li>
+</ol>
+<p><strong>5.</strong> Na titulação de peróxido de hidrogênio com permanganato de potássio, a solução no erlenmeyer passa de incolor para rosa-pálido no ponto final da reação.</p>
+<ol type="a">
+<li><p>Qual substância atua como indicador visual nessa titulação?</p></li>
+<li><p>Por que a formação de um precipitado castanho de dióxido de manganês (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">MnO</mtext><mn>2</mn></msub><annotation encoding="application/x-tex">\text{MnO}_2</annotation></semantics></math>) durante a titulação compromete a exatidão do resultado analítico?</p></li>
+</ol>
+<p><strong>6.</strong> Uma alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">10{,}0 \ \mathrm{mL}</annotation></semantics></math> de uma solução diluída de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math> (preparada pela diluição de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">10{,}0 \ \mathrm{mL}</annotation></semantics></math> de amostra comercial para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">100{,}0 \ \mathrm{mL}</annotation></semantics></math>) foi titulada com uma solução padronizada de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>0200</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\text{KMnO}_4 \ 0{,}0200 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>. O volume de titulante consumido no ponto final foi de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>17</mn><mo>,</mo><mn>8</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">17{,}8 \ \mathrm{mL}</annotation></semantics></math>.</p>
+<ol type="a">
+<li><p>Calcule a concentração molar (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mol\cdot L^{-1}}</annotation></semantics></math>) de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math> na amostra comercial bruta.</p></li>
+<li><p>Determine se a amostra atende à especificação da <em>United States Pharmacopeia</em> (USP) para água oxigenada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">Volumes</mtext></mrow><annotation encoding="application/x-tex">10 \ \text{Volumes}</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>,</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">8{,}3</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>,</mo><mn>7</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">Vol.</mtext></mrow><annotation encoding="application/x-tex">11{,}7 \ \text{Vol.}</annotation></semantics></math>).</p></li>
+</ol>
+<p><strong>7.</strong> Um analista realizou a titulação de uma amostra comercial de água oxigenada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">Volumes</mtext></mrow><annotation encoding="application/x-tex">10 \ \text{Volumes}</annotation></semantics></math> utilizando vidrarias que continham resíduos de poeira e matéria orgânica. O volume de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mtext mathvariant="normal">KMnO</mtext><mn>4</mn></msub><annotation encoding="application/x-tex">\text{KMnO}_4</annotation></semantics></math> gasto na titulação foi superior ao esperado teoricamente.</p>
+<ol type="a">
+<li><p>O erro experimental cometido pelo analista causará uma <strong>superestimação</strong> ou <strong>subestimação</strong> do teor de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{H}_2\text{O}_2</annotation></semantics></math>? Justifique com base nas propriedades do titulante.</p></li>
+<li><p>Qual o procedimento correto para o descarte do efluente gerado após o término desta titulação?</p></li>
+</ol>
+</section>
+<section id="complemento-com-ia" class="level2">
+<h2 class="anchored" data-anchor-id="complemento-com-ia">Complemento com IA</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="➘">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>➘
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div id="complemIA" class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Tópico Extra</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">IA Responde</a></li></ul>
+<div id="complemIA" class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>De que modo o <strong>potencial padrão</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi mathvariant="normal">Δ</mi><msup><mi>E</mi><mo>∘</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\Delta E^\circ)</annotation></semantics></math> se relaciona com a temática da titulação redox e de que forma essa análise é estendida a sistemas mais sofisticados?</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>O <strong>potencial padrão global</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi mathvariant="normal">Δ</mi><msup><mi>E</mi><mo>∘</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\Delta E^\circ)</annotation></semantics></math> expressa a força motriz termodinâmica de uma reação de oxirredução quando todos os reagentes e produtos encontram-se em suas condições termodinâmicas padrão <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">(1{,}0 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>25</mn><mo>∘</mo></msup><mtext mathvariant="normal">C</mtext></mrow><annotation encoding="application/x-tex">25^\circ\text{C}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">atm</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">1 \ \text{atm})</annotation></semantics></math>.</p>
+<p>Como a grandeza de potencial elétrico é definida apenas como uma diferença em relação a um referencial, torna-se fisicamente impossível determinar o valor absoluto de uma semirreação isolada. Por convenção da IUPAC, adotou-se o <strong>Eletrodo Padrão de Hidrogênio (EPH)</strong> como referência universal, atribuindo-se a ele o potencial arbitrário de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>00</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">V</mtext></mrow><annotation encoding="application/x-tex">0{,}00 \ \text{V}</annotation></semantics></math>. Consequentemente, todas as tabelas termodinâmicas compilam exclusivamente potenciais padrões de redução (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>E</mi><mtext mathvariant="normal">red</mtext><mo>∘</mo></msubsup><annotation encoding="application/x-tex">E^\circ_{\text{red}}</annotation></semantics></math>) em relação ao EPH.</p>
+<p>Para determinar o potencial global da titulação, identifica-se a semirreação do analito que sofre oxidação e inverte-se o seu sentido reacional — o que acarreta a troca de sinal do seu potencial elétrico. O <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>E</mi><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\Delta E^\circ</annotation></semantics></math> do sistema é obtido pela soma algébrica direta das semirreações:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>E</mi><mo>∘</mo></msup><mo>=</mo><msubsup><mi>E</mi><mtext mathvariant="normal">red (titulante)</mtext><mo>∘</mo></msubsup><mo>−</mo><msubsup><mi>E</mi><mtext mathvariant="normal">red (analito)</mtext><mo>∘</mo></msubsup></mrow><annotation encoding="application/x-tex">\Delta E^\circ = E^\circ_{\text{red (titulante)}} - E^\circ_{\text{red (analito)}}</annotation></semantics></math></p>
+<p>A obtenção de um valor <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msup><mi>E</mi><mo>∘</mo></msup><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta E^\circ &gt; 0</annotation></semantics></math> confirma a espontaneidade da reação, garantindo a sua viabilidade quantitativa e estequiométrica.</p>
+<p><strong>Extrapolação para Condições Reais: A Equação de Nernst</strong></p>
+<p>Durante o processo volumétrico, a adição progressiva do titulante altera continuamente as concentrações das espécies na solução, afastando o sistema do estado-padrão de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">1{,}0 \ \mathrm{mol\cdot L^{-1}}</annotation></semantics></math>. A determinação do potencial elétrico real (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>E</mi><annotation encoding="application/x-tex">E</annotation></semantics></math>) sob concentrações arbitrárias é descrita pela <strong>Equação de Nernst</strong>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi mathvariant="normal">Δ</mi><msup><mi>E</mi><mo>∘</mo></msup><mo>−</mo><mfrac><mrow><mi>R</mi><mo>⋅</mo><mi>T</mi></mrow><mrow><mi>n</mi><mo>⋅</mo><mi>F</mi></mrow></mfrac><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>Q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">E = \Delta E^\circ - \frac{R \cdot T}{n \cdot F} \ln(Q)</annotation></semantics></math></p>
+<p>O quociente de reação <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>Q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Q)</annotation></semantics></math> quantifica a razão entre as atividades instantâneas dos produtos e reagentes, ajustando dinamicamente o potencial elétrico ao longo de todo o perfil da titulação.</p>
+<p>A Equação de Nernst está embarcada em tecnologias essenciais no mercado e na vida cotidiana:</p>
+<ul>
+<li><p><strong>Sondas Automáticas de Cloro e Tratamento de Água:</strong> O controle do teor de cloro em piscinas públicas e estações de tratamento de água potável (ETA) frequentemente fazem uso de sensores de Potencial de Oxirredução (ORP). O sensor lê a voltagem da água em milivolts e, via Nernst, a bomba dosadora calcula e injeta a quantidade exata de sanitizante necessária em tempo real.</p></li>
+<li><p><strong>Monitoramento Clínico Beira-Leito (UTI):</strong> Em emergências médicas, os analisadores de gases e eletrólitos do sangue (hemogasômetros) medem íons de sódio, potássio e cálcio livre no sangue em segundos. Cada sensor gera um sinal em milivolts que o software do aparelho converte instantaneamente para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mo mathvariant="normal">⋅</mo><msup><mi mathvariant="normal">L</mi><mrow><mi mathvariant="normal">−</mi><mn mathvariant="normal">1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{mmol\cdot L^{-1}}</annotation></semantics></math> de eletrólitos usando a Equação de Nernst.</p></li>
+<li><p><strong>Automação da Indústria de Bebidas e Laticínios:</strong> Na fabricação em escala industrial de sucos, vinhos e leites, titulações manuais com viragem de cor são inviáveis. Tituladores automáticos industriais usam a variação de potencial elétrico prevista por Nernst para dosar amostras continuamente na linha de produção, eliminando a interferência da cor natural da amostra.</p></li>
+<li><p><strong>Injeção Eletrônica Automotiva (Sonda Lambda):</strong> O sensor de oxigênio no escapamento dos carros mede a diferença de pressão parcial de oxigênio entre o gás expelido e o ar atmosférico. Essa diferença gera uma voltagem convertida via Nernst pela central do veículo para ajustar a proporção exata de combustível injetado no motor.</p></li>
+</ul>
+<p>Em suma, enquanto o potencial padrão <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi mathvariant="normal">Δ</mi><msup><mi>E</mi><mo>∘</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\Delta E^\circ)</annotation></semantics></math> fornece uma caracterização termodinâmica estática do sistema em condições-padrão, a <strong>Equação de Nernst</strong> é o algoritmo por trás do monitoramento automatizado no mundo real.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="áudio" class="level2">
+<h2 class="anchored" data-anchor-id="áudio">Áudio</h2>
+<ul>
+<li><p>Desafio aos alunos:</p>
+<ul>
+<li>Faça a <strong>leitura do texto</strong> com atenção primeiramente!</li>
+<li>Ouça o arquivo MP3 na sequência.</li>
+<li>Faça uma comparação crítica:
+<ul>
+<li>Identifique se há imprecisões cometidas pela IA.</li>
+<li>Identifique se a IA conseguiu esclarecer alguma ambiguidade do texto.</li>
+</ul></li>
+</ul></li>
+<li><p>Áudio sintetizado por IA a partir deste texto.</p></li>
+</ul>
+<!-- 1. Estilo do Player Uniforme -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+<!-- 2. Sua tag de áudio normal com uma classe -->
+<audio id="meu-audio" controls="">
+    <source src="mp3/Volumes_Peroxido.mp3" type="audio/mp3">
+</audio>
+
+<!-- 3. O script que padroniza o Firefox e o Chrome -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // Inicializa o player garantindo os controles de velocidade (settings) e download
+    const player = new Plyr('#meu-audio', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'download'],
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
+<hr>
+</section>
+<section id="resumo-visual" class="level2">
+<h2 class="anchored" data-anchor-id="resumo-visual">Resumo Visual</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Infográfico
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./resources/Prancha Colorida/Volumes_Peroxido.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Teor de Peróxido em Volumes"><img src="./resources/Prancha Colorida/Volumes_Peroxido.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Teor de Peróxido em Volumes"></a></p>
+</figure>
+</div>
+<figcaption>Teor de Peróxido em Volumes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
 
 
 </section>
@@ -1211,6 +1846,38 @@ var JSON_Questionario = "./simulador/vol_redox.dat";
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
