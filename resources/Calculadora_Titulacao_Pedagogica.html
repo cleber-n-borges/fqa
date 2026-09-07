@@ -229,6 +229,7 @@
     /* Seção de Informações Úteis */
     details.info-uteis {
       margin-top: 24px;
+      margin-bottom: 24px;
       background-color: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
@@ -441,7 +442,7 @@
   <!-- EQUAÇÃO QUÍMICA E ALERTA DE ESTEQUIOMETRIA -->
   <div class="equacao-container">
     <div class="equacao-formula">
-      <i>a</i> Titulante + <i>b</i> Titulado (Analito) &rarr; Produtos
+      <i>a mols</i>  de Titulante + <i>b mols</i>  de Titulado (Analito) &rarr; Produtos
     </div>
     <div class="equacao-alerta">
       &#9888; <strong>Atenção:</strong> Certifique-se de usar a proporção em mols <strong><i>a : b</i></strong> da reação balanceada.
@@ -560,10 +561,7 @@
     <button type="submit" class="btn-calcular">Calcular Teor Percentual</button>
   </form>
 
-  <button type="button" id="btnPedagogico" class="controle-pedagogico"
-          onclick="alternarPainelPedagogico()" aria-expanded="false">
-    Mostrar cálculo passo a passo
-  </button>
+
 
   <!-- MENSAGEM DE ERRO -->
   <div id="erroBox" class="erro-container"></div>
@@ -583,7 +581,7 @@
   </div>
 
   <!-- INFORMAÇÕES ÚTEIS E FÓRMULAS -->
-  <details class="info-uteis" open>
+  <details class="info-uteis" close>
     <summary>&#128161; Informações Úteis e Fórmulas de Cálculo</summary>
     <ul>
       <li><strong>Relação Estequiométrica:</strong> n<sub>analito</sub> = n<sub>titulante</sub> &times; (b / a)</li>
@@ -594,6 +592,14 @@
       <li><strong>Teor % v/v (Solução do Analito):</strong> (mL da solução / mL de amostra) &times; 100, onde V<sub>solução</sub> = (massa / &rho;<sub>solução</sub>) / (Pureza % / 100).</li>
     </ul>
   </details>
+  
+
+  <button type="button" id="btnPedagogico" class="btn-calcular"
+          onclick="alternarPainelPedagogico()" aria-expanded="false">
+    Mostrar cálculo passo a passo
+  </button>
+
+
 
     </div><!-- /.calculadora-coluna -->
 
