@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador: Padronização das Soluções de KOH e HCl</title>
+  <style>
+    /* ============================================================
+       CORES - Tema Cosmo (AZUL)
+       ============================================================ */
+    :root {
+      --primary: #2780E3;
+      --primary-light: #6ea8fe;
+      --primary-dark: #1a5fb4;
+      --primary-bg: #e7f1ff;
+      --bg-main: #f8f9fa;
+      --card-shadow: 0 12px 40px rgba(39, 128, 227, 0.10);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-main);
+      color: #2d3436;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      max-width: 950px;
+      background: var(--primary);
+      color: white;
+      padding: 20px;
+      border-radius: var(--radius);
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: var(--card-shadow);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    .tabs {
+      width: 100%;
+      max-width: 950px;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px 15px;
+      background: #e9ecef;
+      border: 1px solid #dee2e6;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #495057;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary-dark);
+      box-shadow: 0 4px 12px rgba(39, 128, 227, 0.25);
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      max-width: 950px;
+      width: 100%;
+    }
+
+    @media (max-width: 800px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e9ecef;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1a1a2e;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--primary-bg);
+      padding-bottom: 8px;
+      font-weight: 700;
+    }
+
+    /* BANCADA DO LABORATÓRIO */
+    #flask-panel {
+      position: relative;
+      width: 100%;
+      height: 310px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      background: #fafbfc;
+      border-radius: 12px;
+      border: 1px solid #e9ecef;
+      padding: 15px 0;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .indicator-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #6c757d;
+    }
+
+    /* BURETA COM TITULANTE AZUL */
+    .burette-assembly {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .burette-tube {
+      width: 14px;
+      height: 120px;
+      border: 2px solid #495057;
+      border-bottom: none;
+      background: rgba(255, 255, 255, 0.9);
+      position: relative;
+    }
+
+    .burette-liquid {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: var(--primary);
+      height: 100%;
+      transition: height 0.1s linear;
+    }
+
+    .stopcock {
+      width: 22px;
+      height: 8px;
+      background: #495057;
+      border-radius: 2px;
+    }
+
+    /* GOTA AZUL DE ALTO CONTRASTE */
+    .blue-drop {
+      width: 8px;
+      height: 10px;
+      background-color: var(--primary);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: absolute;
+      top: 135px;
+      opacity: 0;
+    }
+
+    @keyframes dropFall {
+      0% { top: 135px; opacity: 1; }
+      100% { top: 195px; opacity: 0; }
+    }
+
+    .anim-drop {
+      animation: dropFall 0.25s linear;
+    }
+
+    /* ERLENMEYER */
+    .erlenmeyer {
+      width: 120px;
+      height: 140px;
+      position: relative;
+      background: rgba(255, 255, 255, 0.8);
+      clip-path: polygon(35% 0%, 65% 0%, 65% 30%, 100% 100%, 0% 100%, 35% 30%);
+      border: 2px solid #333;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .liquid {
+      width: 100%;
+      height: 65%;
+      background-color: rgba(240, 248, 255, 0.85);
+      transition: background-color 0.3s ease;
+    }
+
+    /* BOTÕES DE CONTROLE */
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px 6px;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--primary);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    button:hover { background-color: var(--primary-dark); }
+    button:active { transform: scale(0.98); }
+
+    button.validate-btn { 
+      background-color: #27ae60; 
+      margin-top: 5px; 
+    }
+    button.validate-btn:hover { background-color: #219653; }
+    
+    button.reset { background-color: #6c757d; }
+    button.reset:hover { background-color: #495057; }
+
+    .readouts {
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-light);
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    /* PAINEL DE NOTIFICAÇÃO DO PONTO FINAL DA TITULAÇÃO */
+    .endpoint-banner {
+      display: none;
+      background-color: #fce4ec;
+      border: 1px solid #f8bbd0;
+      color: #c2185b;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    /* PAINEL DE INSTRUÇÕES E CÁLCULOS */
+    .instruction-box {
+      background: #fff8e1;
+      border-left: 4px solid #ffc107;
+      padding: 10px 12px;
+      font-size: 0.82rem;
+      color: #856404;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .formula-info {
+      background: var(--primary-bg);
+      border-left: 4px solid var(--primary);
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      color: var(--primary-dark);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .input-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #495057;
+    }
+
+    .input-group input {
+      padding: 8px 10px;
+      border: 1px solid #ced4da;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #1a1a2e;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(39, 128, 227, 0.12);
+    }
+
+    .status-box {
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 12px;
+      display: block;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .status-box.info {
+      color: var(--primary-dark);
+      background-color: var(--primary-bg);
+      border: 1px solid var(--primary-light);
+    }
+
+    .status-box.success {
+      color: #155724;
+      background-color: #d4edda;
+      border: 1px solid #c3e6cb;
+    }
+
+    .status-box.danger {
+      color: #721c24;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+    }
+
+    .status-box.warning {
+      color: #856404;
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Simulador: Padronização das Soluções de KOH e HCl</h1>
+    <p>Prática Titulométrica Virtual de Química Analítica</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="setProcedure(1)">Procedimento 1: Padronização do KOH com KHP</button>
+    <button class="tab-btn" onclick="setProcedure(2)">Procedimento 2: Padronização do HCl com KOH</button>
+  </div>
+
+  <div class="container">
+    <!-- ESQUERDA: TITULAÇÃO -->
+    <div class="card">
+      <h2 id="proc-title">Titulação de KHP com KOH</h2>
+
+      <div id="flask-panel">
+        <div class="indicator-label">Indicador: Fenolftaleína (3 gotas)</div>
+
+        <div class="burette-assembly">
+          <div class="burette-tube">
+            <div id="burette-liquid" class="burette-liquid"></div>
+          </div>
+          <div class="stopcock"></div>
+        </div>
+
+        <div id="blue-drop" class="blue-drop"></div>
+
+        <div class="erlenmeyer">
+          <div id="liquid" class="liquid"></div>
+        </div>
+      </div>
+
+      <div id="endpoint-banner" class="endpoint-banner">
+        🎯 <strong>Ponto Final Atingido!</strong><br>
+        O indicador Fenolftaleína mudou de cor (viragem da solução).
+      </div>
+
+      <div class="readouts">
+        Volume Gasto na Bureta: <span id="vol-display">0.00</span> mL
+      </div>
+
+      <div class="btn-group">
+        <button onclick="addTitrant(0.05)">+ 1 Gota (0.05 mL)</button>
+        <button onclick="addTitrant(0.50)">+ 0.50 mL</button>
+      </div>
+      <div class="btn-group">
+        <button onclick="addTitrant(1.00)">+ 1.00 mL</button>
+        <button class="reset" onclick="resetTitration()">Reiniciar Titulação</button>
+      </div>
+    </div>
+
+    <!-- DIREITA: CÁLCULOS E AVALIAÇÃO -->
+    <div class="card">
+      <h2>Cálculos e Validação Metrológica</h2>
+
+      <div class="instruction-box">
+        <strong>Como usar esta etapa:</strong><br>
+        1. Titule a solução até a mudança para rosa suave.<br>
+        2. Faça os cálculos de M_Ex e Fc no papel.<br>
+        3. Digite seus resultados abaixo e clique em <strong>Validar</strong> para verificar se você acertou.
+      </div>
+
+      <!-- PROCEDIMENTO 1 -->
+      <div id="calc-p1">
+        <div class="formula-info">
+          <strong>Parâmetros de Entrada:</strong><br>
+          • Massa Molar do KHP = 204,22 g/mol<br>
+          • Concentração Aparente do KOH = 0,1000 mol/L
+        </div>
+
+        <div class="input-group">
+          <label for="p1-mass">Massa de KHP Pesada (m em g):</label>
+          <input type="number" id="p1-mass" value="0.5106" step="0.0001" onchange="resetTitration()">
+        </div>
+
+        <div class="input-group">
+          <label for="p1-mex">Concentração Exata de KOH (M_Ex em mol/L):</label>
+          <input type="number" id="p1-mex" placeholder="Digite seu cálculo. Ex: 0.1020" step="0.0001">
+        </div>
+
+        <div class="input-group">
+          <label for="p1-fc">Fator de Correção de KOH (Fc):</label>
+          <input type="number" id="p1-fc" placeholder="Digite seu cálculo. Ex: 1.020" step="0.001">
+        </div>
+
+        <button class="validate-btn" onclick="validateProc1()">Validar Padronização do KOH</button>
+        <div id="p1-status" class="status-box info">Adicione titulante no simulador e informe seus cálculos acima.</div>
+      </div>
+
+      <!-- PROCEDIMENTO 2 -->
+      <div id="calc-p2" style="display: none;">
+        <div class="formula-info">
+          <strong>Parâmetros de Entrada:</strong><br>
+          • Volume de HCl Pipetado = 20,00 mL<br>
+          • Concentração Aparente do HCl = 0,1000 mol/L<br>
+          • KOH Padronizado = <span id="p2-koh-val">0,1020 mol/L</span>
+        </div>
+
+        <div class="input-group">
+          <label for="p2-mex">Concentração Exata de HCl (M_Ex em mol/L):</label>
+          <input type="number" id="p2-mex" placeholder="Digite seu cálculo. Ex: 0.0980" step="0.0001">
+        </div>
+
+        <div class="input-group">
+          <label for="p2-fc">Fator de Correção de HCl (Fc):</label>
+          <input type="number" id="p2-fc" placeholder="Digite seu cálculo. Ex: 0.980" step="0.001">
+        </div>
+
+        <button class="validate-btn" onclick="validateProc2()">Validar Padronização do HCl</button>
+        <div id="p2-status" class="status-box info">Adicione titulante no simulador e informe seus cálculos acima.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentProcedure = 1;
+    let vSpent = 0.0;
+
+    const MM_KHP = 204.22;
+    const C_AP_KOH = 0.1000;
+    const C_AP_HCL = 0.1000;
+    const V_HCL = 20.00;
+
+    let koh_M_Ex = null;
+
+    const liquid = document.getElementById('liquid');
+    const buretteLiquid = document.getElementById('burette-liquid');
+    const blueDrop = document.getElementById('blue-drop');
+    const volDisplay = document.getElementById('vol-display');
+    const endpointBanner = document.getElementById('endpoint-banner');
+
+    function setProcedure(proc) {
+      currentProcedure = proc;
+      
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons[0].classList.toggle('active', proc === 1);
+      buttons[1].classList.toggle('active', proc === 2);
+
+      if (proc === 1) {
+        document.getElementById('proc-title').textContent = "Titulação de KHP com KOH";
+        document.getElementById('calc-p1').style.display = "block";
+        document.getElementById('calc-p2').style.display = "none";
+      } else {
+        document.getElementById('proc-title').textContent = "Titulação de HCl com KOH Padronizado";
+        document.getElementById('calc-p1').style.display = "none";
+        document.getElementById('calc-p2').style.display = "block";
+
+        const kohValText = koh_M_Ex ? koh_M_Ex.toFixed(4) + " mol/L" : "0,1020 mol/L (Valor Padrão Simulado)";
+        document.getElementById('p2-koh-val').textContent = kohValText;
+      }
+
+      resetTitration();
+    }
+
+    function getEquivalenceVolume() {
+      if (currentProcedure === 1) {
+        const mass = parseFloat(document.getElementById('p1-mass').value) || 0.5106;
+        const realKOHMolarity = 0.1020;
+        const molesKHP = mass / MM_KHP;
+        return (molesKHP / realKOHMolarity) * 1000;
+      } else {
+        const realHClMolarity = 0.0980;
+        const kohMolarity = koh_M_Ex || 0.1020;
+        return (V_HCL * realHClMolarity) / kohMolarity;
+      }
+    }
+
+    function addTitrant(amount) {
+      if (vSpent >= 50.0) return;
+
+      vSpent += amount;
+      volDisplay.textContent = vSpent.toFixed(2);
+
+      const fillHeight = Math.max(0, 100 - (vSpent / 50.0 * 100));
+      buretteLiquid.style.height = fillHeight + "%";
+
+      blueDrop.classList.remove('anim-drop');
+      void blueDrop.offsetWidth;
+      blueDrop.classList.add('anim-drop');
+
+      const vEq = getEquivalenceVolume();
+
+      // Controle de cor de indicação por Fenolftaleína e aviso do Ponto Final
+      if (vSpent < vEq - 0.25) {
+        liquid.style.backgroundColor = "rgba(240, 248, 255, 0.85)";
+        endpointBanner.style.display = "none";
+      } else if (Math.abs(vSpent - vEq) <= 0.25) {
+        liquid.style.backgroundColor = "rgba(255, 105, 180, 0.55)"; // Rosa suave (Ponto de viragem ideal)
+        endpointBanner.style.display = "block";
+        endpointBanner.innerHTML = `🎯 <strong>Ponto Final Atingido!</strong><br>A Fenolftaleína mudou para rosa suave em V = ${vSpent.toFixed(2)} mL.`;
+      } else {
+        liquid.style.backgroundColor = "rgba(220, 20, 60, 0.85)"; // Rosa forte/púrpura (Excesso)
+        endpointBanner.style.display = "block";
+        endpointBanner.innerHTML = `⚠️ <strong>Ponto Final Excedido!</strong><br>Solução supertitulada em V = ${vSpent.toFixed(2)} mL (Rosa intenso).`;
+      }
+    }
+
+    function resetTitration() {
+      vSpent = 0.0;
+      volDisplay.textContent = "0.00";
+      buretteLiquid.style.height = "100%";
+      liquid.style.backgroundColor = "rgba(240, 248, 255, 0.85)";
+      endpointBanner.style.display = "none";
+
+      const p1Status = document.getElementById('p1-status');
+      p1Status.className = "status-box info";
+      p1Status.textContent = "Adicione titulante no simulador e informe seus cálculos acima.";
+
+      const p2Status = document.getElementById('p2-status');
+      p2Status.className = "status-box info";
+      p2Status.textContent = "Adicione titulante no simulador e informe seus cálculos acima.";
+    }
+
+    function validateProc1() {
+      const mass = parseFloat(document.getElementById('p1-mass').value);
+      const userMex = parseFloat(document.getElementById('p1-mex').value);
+      const userFc = parseFloat(document.getElementById('p1-fc').value);
+      const status = document.getElementById('p1-status');
+
+      if (vSpent <= 0) {
+        status.className = "status-box warning";
+        status.textContent = "⚠ Realize a titulação na bancada virtual antes de validar.";
+        return;
+      }
+
+      if (isNaN(userMex) || isNaN(userFc)) {
+        status.className = "status-box warning";
+        status.textContent = "⚠ Preencha os campos 'Concentração Exata' e 'Fator de Correção' para que o sistema valide suas contas.";
+        return;
+      }
+
+      const vL = vSpent / 1000.0;
+      const calcMex = (mass / MM_KHP) / vL;
+      const calcFc = calcMex / C_AP_KOH;
+
+      if (Math.abs(userMex - calcMex) < 0.0015 && Math.abs(userFc - calcFc) < 0.015) {
+        koh_M_Ex = calcMex;
+        status.className = "status-box success";
+        status.innerHTML = `✔ <strong>Excelente! Seus cálculos estão corretos.</strong><br>` +
+                           `M_Ex de KOH = ${calcMex.toFixed(4)} mol/L | Fc = ${calcFc.toFixed(3)}<br>` +
+                           `Você pode avançar para a aba "Procedimento 2".`;
+      } else {
+        status.className = "status-box danger";
+        status.innerHTML = `✖ <strong>Resultado divergente.</strong><br>` +
+                           `Para o volume de ${vSpent.toFixed(2)} mL gasto na bureta:<br>` +
+                           `• M_Ex calculada esperada: ~${calcMex.toFixed(4)} mol/L<br>` +
+                           `• Fc esperado: ~${calcFc.toFixed(3)}`;
+      }
+    }
+
+    function validateProc2() {
+      const userMex = parseFloat(document.getElementById('p2-mex').value);
+      const userFc = parseFloat(document.getElementById('p2-fc').value);
+      const status = document.getElementById('p2-status');
+
+      if (vSpent <= 0) {
+        status.className = "status-box warning";
+        status.textContent = "⚠ Realize a titulação na bancada virtual antes de validar.";
+        return;
+      }
+
+      if (isNaN(userMex) || isNaN(userFc)) {
+        status.className = "status-box warning";
+        status.textContent = "⚠ Preencha os campos 'Concentração Exata' e 'Fator de Correção' para que o sistema valide suas contas.";
+        return;
+      }
+
+      const mKOH = koh_M_Ex || 0.1020;
+      const calcMex = (mKOH * vSpent) / V_HCL;
+      const calcFc = calcMex / C_AP_HCL;
+
+      if (Math.abs(userMex - calcMex) < 0.0015 && Math.abs(userFc - calcFc) < 0.015) {
+        status.className = "status-box success";
+        status.innerHTML = `✔ <strong>Excelente! Padronização do HCl concluída com sucesso.</strong><br>` +
+                           `M_Ex de HCl = ${calcMex.toFixed(4)} mol/L | Fc = ${calcFc.toFixed(3)}`;
+      } else {
+        status.className = "status-box danger";
+        status.innerHTML = `✖ <strong>Resultado divergente.</strong><br>` +
+                           `Para o volume de ${vSpent.toFixed(2)} mL de KOH gasto na bureta:<br>` +
+                           `• M_Ex de HCl esperada: ~${calcMex.toFixed(4)} mol/L<br>` +
+                           `• Fc esperado: ~${calcFc.toFixed(3)}`;
+      }
+    }
+  </script>
+
+  <!-- Script de auto-redimensionamento para iframe -->
+  <script>
+    (function() {
+      let lastHeight = 0;
+
+      function sendHeight() {
+        const appContainers = document.querySelectorAll('.card');
+        if (!appContainers || appContainers.length === 0) return;
+
+        let totalHeight = 0;
+        appContainers.forEach(container => {
+          if (container.offsetHeight > totalHeight) {
+            totalHeight = container.offsetHeight;
+          }
+        });
+
+        const currentHeight = totalHeight + 180;
+
+        if (Math.abs(currentHeight - lastHeight) > 5) {
+          lastHeight = currentHeight;
+          window.parent.postMessage({
+            type: 'iframeResize',
+            height: currentHeight
+          }, '*');
+        }
+      }
+
+      window.sendHeight = sendHeight;
+      window.addEventListener('load', sendHeight);
+      window.addEventListener('resize', sendHeight);
+
+      document.addEventListener('click', function() {
+        sendHeight();
+        setTimeout(sendHeight, 150);
+      });
+
+      document.addEventListener('input', function() {
+        sendHeight();
+        setTimeout(sendHeight, 150);
+      });
+    })();
+  </script>
+</body>
+</html>
