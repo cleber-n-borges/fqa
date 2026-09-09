@@ -649,46 +649,51 @@
   </script>
 
   <!-- Script de auto-redimensionamento para iframe -->
-  <script>
-    (function() {
-      let lastHeight = 0;
 
-      function sendHeight() {
-        const appContainers = document.querySelectorAll('.card');
-        if (!appContainers || appContainers.length === 0) return;
+<script>
+  (function() {
+    let lastHeight = 0;
 
-        let totalHeight = 0;
-        appContainers.forEach(container => {
-          if (container.offsetHeight > totalHeight) {
-            totalHeight = container.offsetHeight;
-          }
-        });
+    function sendHeight() {
+      // Mede apenas a altura real dos elementos de conteúdo (sem ler o body/html que se estica)
+      const header = document.querySelector('header');
+      const tabs = document.querySelector('.tabs');
+      const container = document.querySelector('.container');
 
-        const currentHeight = totalHeight + 180;
+      if (!container) return;
 
-        if (Math.abs(currentHeight - lastHeight) > 5) {
-          lastHeight = currentHeight;
-          window.parent.postMessage({
-            type: 'iframeResize',
-            height: currentHeight
-          }, '*');
-        }
+      // Soma a altura dos elementos + margens
+      const totalContentHeight = (header ? header.offsetHeight + 20 : 0) +
+                                 (tabs ? tabs.offsetHeight + 15 : 0) +
+                                 container.offsetHeight + 40; // 40px para paddings da página
+
+      // Envia a mensagem apenas se a variação for relevante (evita loops e microajustes)
+      if (Math.abs(totalContentHeight - lastHeight) > 8) {
+        lastHeight = totalContentHeight;
+        window.parent.postMessage({
+          type: 'iframeResize',
+          height: totalContentHeight
+        }, '*');
       }
+    }
 
-      window.sendHeight = sendHeight;
-      window.addEventListener('load', sendHeight);
-      window.addEventListener('resize', sendHeight);
+    // Dispara no carregamento inicial
+    window.addEventListener('load', sendHeight);
 
-      document.addEventListener('click', function() {
+    // Observa mudanças de tamanho nos cartões e conteúdo dinâmico sem depender da janela
+    if (window.ResizeObserver) {
+      const observer = new ResizeObserver(function() {
         sendHeight();
-        setTimeout(sendHeight, 150);
       });
+      const container = document.querySelector('.container');
+      if (container) observer.observe(container);
+    } else {
+      // Fallback para navegadores antigos
+      document.addEventListener('click', function() { setTimeout(sendHeight, 100); });
+      document.addEventListener('input', function() { setTimeout(sendHeight, 100); });
+    }
+  })();
+</script>
 
-      document.addEventListener('input', function() {
-        sendHeight();
-        setTimeout(sendHeight, 150);
-      });
-    })();
-  </script>
 </body>
 </html>
