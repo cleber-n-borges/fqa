@@ -614,15 +614,36 @@ var JSON_Questionario = "./simulador/preparo_koh.dat";
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Visualize a simulação para reproduzir os passos do uso de balança:</p>
-<iframe src="./resources/balanca.html" width="100%" height="740px" style="border: none; border-radius: 8px;" title="Simulação Virtual do uso de balança analítica">
-</iframe>
-<p style="text-align: center; font-size: 0.85em; color: #666;">
-</p><p><em>Simulação Virtual do uso de balança analítica.</em></p>
-<p></p>
+<p>Visualize a simulação para reproduzir os passos do uso da balança analítica (<a href="./resources/Sim_Balanca.html" target="_blank" rel="noopener noreferrer">abrir em nova aba</a>):</p>
+<iframe id="Sim_Balanca-iframe" src="./resources/Sim_Balanca.html" scrolling="no" style="
+        width: 100%; 
+        height: 750px; 
+        display: block;
+        border: 1px solid #dee2e6; 
+        border-radius: 12px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    " title="Simulação Virtual de Pesagem" loading="lazy" allow="fullscreen"></iframe>
+
+<p style="text-align: center;">
+<em>Simulação Virtual do uso de balança analítica.</em>
+</p>
+
+<script>
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.type === 'iframeResize' && event.data.height) {
+            const iframe = document.getElementById('Sim_Balanca-iframe');
+            if (iframe) {
+                // Atribui diretamente a altura exata do conteúdo sem somar pixels extras
+                iframe.style.height = event.data.height + 'px';
+            }
+        }
+    });
+</script>
 </div>
 </div>
 </div>
+<hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -635,12 +656,32 @@ var JSON_Questionario = "./simulador/preparo_koh.dat";
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Visualize a simulação para reproduzir os passos do preparo da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math>:</p>
-<iframe src="./resources/Sim_Preparo_KOH.html" width="100%" height="720px" style="border: none; border-radius: 8px;" title="Simulação Virtual do preparo da solução de KOH">
-</iframe>
-<p style="text-align: center; font-size: 0.85em; color: #666;">
-</p><p><em>Simulação Virtual do Preparo da Solução de KOH.</em></p>
-<p></p>
+<p>Visualize a simulação para reproduzir os passos do preparo da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> (<a href="./resources/Sim_Preparo_KOH.html" target="_blank" rel="noopener noreferrer">abrir em nova aba</a>):</p>
+<iframe id="Sim_Preparo_KOH-iframe" src="./resources/Sim_Preparo_KOH.html" scrolling="no" style="
+        width: 100%; 
+        height: 730px; 
+        display: block;
+        border: 1px solid #dee2e6; 
+        border-radius: 12px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    " title="Simulação do Preparo de KOH" loading="lazy" allow="fullscreen"></iframe>
+
+<p style="text-align: center;">
+<em>Simulação Virtual do Preparo da Solução de KOH.</em>
+</p>
+
+<script>
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.type === 'iframeResize' && event.data.height) {
+            const iframe = document.getElementById('Sim_Preparo_KOH-iframe');
+            if (iframe) {
+                // Atribui diretamente a altura exata do conteúdo sem somar pixels extras
+                iframe.style.height = event.data.height + 'px';
+            }
+        }
+    });
+</script>
 </div>
 </div>
 </div>

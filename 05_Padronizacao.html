@@ -553,17 +553,6 @@ var JSON_Questionario = "./simulador/05-Padronizacao.dat";
 </ol>
 <p>O composto padrão primário utilizado nesta prática será o <a href="https://pt.wikipedia.org/wiki/Hidrogenoftalato_de_pot%C3%A1ssio">biftalato de potássio</a>. O nome é comumente abreviado para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> (<em>Potassium Hydrogen Phthalate</em>).</p>
 <p>O <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>H</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KHP</annotation></semantics></math> é amplamente utilizado em análises volumétricas porque atende de forma exemplar aos requisitos acima: apresenta elevada pureza, é estável ao ar, possui massa molar suficientemente alta, além de ser solúvel em água. Por essas características, tornou-se um dos padrões primários mais empregados em titulações ácido–base.</p>
-<!--
-::: {.callout-note collapse="true"}
-### Estrutura 3D do Biftalato de Potássio
-
-Visualização interativa da molécula:
-
-```{=html}
-<iframe src="./resources/KHP.html" width="100%" height="1220px" style="border: none; border-radius: 12px; overflow: hidden;"></iframe>
-```
-:::
--->
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -577,7 +566,36 @@ Visualização interativa da molécula:
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Visualização interativa da molécula (<a href="./resources/KHP.html" target="_blank" rel="noopener noreferrer">abrir em nova aba</a>):</p>
+<!--
+```{=html}
 <iframe src="./resources/KHP.html" width="100%" height="1220px" style="border: none; border-radius: 12px; overflow: hidden;"></iframe>
+```
+-->
+<iframe id="KHP-iframe" src="./resources/KHP.html" scrolling="no" style="
+        width: 100%; 
+        height: 730px; 
+        display: block;
+        border: 1px solid #dee2e6; 
+        border-radius: 12px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    " title="Simulação do Preparo de KOH" loading="lazy" allow="fullscreen"></iframe>
+
+<p style="text-align: center;">
+<em>Visualização da Estrutura Molecular do KHP.</em>
+</p>
+
+<script>
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.type === 'iframeResize' && event.data.height) {
+            const iframe = document.getElementById('KHP-iframe');
+            if (iframe) {
+                // Atribui diretamente a altura exata do conteúdo sem somar pixels extras
+                iframe.style.height = event.data.height + 'px';
+            }
+        }
+    });
+</script>
 </div>
 </div>
 </div>
@@ -700,7 +718,7 @@ Visualização interativa da molécula:
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Simulação do Processo de Padronização</p>
+<p>Simulação da Padronização do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>O</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">KOH</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> (<a href="./resources/Sim_Pradronizacao_v02.html" target="_blank" rel="noopener noreferrer">abrir em nova aba</a>):</p>
 <iframe id="padronizacao-iframe" src="./resources/Sim_Pradronizacao_v02.html" scrolling="no" style="
         width: 100%; 
         height: 750px; 
@@ -712,7 +730,7 @@ Visualização interativa da molécula:
     " title="Simulação Virtual da Padronização de KOH e HCl" loading="lazy" allow="fullscreen"></iframe>
 
 <p style="text-align: center;">
-<em>Simulador de Padronização.</em>
+<em>Simulador do processo de Padronização.</em>
 </p>
 
 <script>

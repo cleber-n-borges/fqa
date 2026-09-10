@@ -519,5 +519,50 @@
   window.onload = initSVG;
 </script>
 
+<script>
+    (function() {
+        let lastHeight = 0;
+
+        function sendHeight() {
+            // Mede a altura real do conteúdo total da página
+            const body = document.body;
+            const html = document.documentElement;
+
+            const currentHeight = Math.max(
+                body.scrollHeight, body.offsetHeight,
+                html.clientHeight, html.scrollHeight, html.offsetHeight
+            );
+
+            // Evita disparos repetidos para variações menores que 5px
+            if (Math.abs(currentHeight - lastHeight) > 5) {
+                lastHeight = currentHeight;
+                window.parent.postMessage({
+                    type: 'iframeResize',
+                    height: currentHeight
+                }, '*');
+            }
+        }
+
+        // 1. Executa na carga inicial da página
+        window.addEventListener('load', sendHeight);
+        window.addEventListener('resize', sendHeight);
+
+        // 2. Observa redimensionamentos no body/DOM (moderno e nativo)
+        if ('ResizeObserver' in window) {
+            const resizeObserver = new ResizeObserver(sendHeight);
+            resizeObserver.observe(document.body);
+        }
+
+        // 3. Fallback para alterações no DOM (elementos adicionados/removidos)
+        if ('MutationObserver' in window) {
+            const mutationObserver = new MutationObserver(sendHeight);
+            mutationObserver.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: true
+            });
+        }
+    })();
+</script>
 </body>
 </html>

@@ -6,45 +6,55 @@
   <title>Simulação: Preparo de Solução de HCl</title>
   <style>
     :root {
-      --bg-color: #f4f7f6;
-      --card-bg: #ffffff;
-      --primary: #1e3d59;
-      --accent: #ff6e40;
-      --hcl-color: rgba(230, 126, 34, 0.4);
-      --water-color: rgba(52, 152, 219, 0.35);
+      --primary: #2780E3;
+      --primary-light: #6ea8fe;
+      --primary-dark: #1a5fb4;
+      --primary-bg: #e7f1ff;
+      --bg-main: #f8f9fa;
+      --card-shadow: 0 12px 40px rgba(39, 128, 227, 0.10);
+      --radius: 20px;
+
+      --hcl-color: rgba(39, 128, 227, 0.55);
+      --water-color: rgba(39, 128, 227, 0.25);
       --glass: #2c3e50;
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-color);
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-main);
+      color: #2d3436;
       margin: 0;
-      padding: 15px;
+      padding: 20px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     .sim-container {
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      padding: 20px;
+      background-color: #ffffff;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid #e9ecef;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 100%;
       max-width: 900px;
       box-sizing: border-box;
     }
 
     h1 {
-      color: var(--primary);
-      margin: 0 0 4px 0;
-      font-size: 1.5rem;
+      color: #1a1a2e;
+      margin: 0 0 6px 0;
+      font-size: 1.3rem;
+      font-weight: 700;
       text-align: center;
     }
 
     p.subtitle {
-      color: #555;
-      margin: 0 0 15px 0;
+      color: #6c757d;
+      margin: 0 0 20px 0;
       font-size: 0.9rem;
       text-align: center;
     }
@@ -53,9 +63,9 @@
     .canvas-container {
       width: 100%;
       height: 380px;
-      background: linear-gradient(180deg, #fafafa 0%, #f0f4f8 100%);
-      border: 1px solid #dcdfe6;
-      border-radius: 10px;
+      background: #fafbfc;
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
       position: relative;
       overflow: hidden;
     }
@@ -75,12 +85,12 @@
     }
 
     .liquid-water {
-      fill: var(--water-color);
+      fill: url(#waterGrad);
       transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .liquid-hcl {
-      fill: var(--hcl-color);
+      fill: url(#hclGrad);
       transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -91,7 +101,7 @@
     }
 
     .fume-bubble {
-      fill: #cfd8dc;
+      fill: #b0bec5;
       opacity: 0;
       animation: floatUp 2.2s infinite ease-in;
     }
@@ -104,7 +114,7 @@
 
     /* Setas de ventilação da capela (sutil, contínuo) */
     .vent-arrow {
-      stroke: #95a5a6;
+      stroke: var(--primary-light);
       stroke-width: 1.6;
       stroke-linecap: round;
       fill: none;
@@ -119,7 +129,7 @@
     }
 
     .droplet {
-      fill: #e67e22;
+      fill: #0d6efd;
       opacity: 0;
     }
 
@@ -138,6 +148,7 @@
       grid-template-columns: 1.2fr 0.8fr;
       gap: 15px;
       margin-top: 15px;
+      width: 100%;
     }
 
     @media (max-width: 650px) {
@@ -145,69 +156,82 @@
     }
 
     .status-box {
-      background: #eef4f8;
-      border-left: 4px solid #3498db;
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-light);
+      color: var(--primary-dark);
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 0.88rem;
+      font-weight: 600;
       line-height: 1.45;
       transition: background 0.3s ease;
     }
 
     .alert-box {
-      background: #fdf2e9;
-      border-left: 4px solid #e67e22;
+      background: #f8d7da;
+      border: 1px solid #f5c2c7;
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 0.85rem;
       line-height: 1.4;
-      color: #7e5109;
+      color: #842029;
     }
 
     /* Botões */
     .controls {
       display: flex;
       gap: 10px;
-      margin-top: 15px;
+      margin-top: 20px;
+      width: 100%;
     }
 
     button {
-      flex: 1;
+      flex: 2;
       padding: 10px 14px;
       border: none;
-      border-radius: 6px;
-      background-color: #3498db;
-      color: white;
+      border-radius: 8px;
+      background-color: #0d6efd;
+      color: #ffffff;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: bold;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+      transition: all 0.15s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     button:hover:not(:disabled) {
-      background-color: #2980b9;
-      transform: translateY(-1px);
+      background-color: #0b5ed7;
+    }
+
+    button:active:not(:disabled) {
+      transform: scale(0.97);
     }
 
     button:disabled {
-      background-color: #bdc3c7;
+      background-color: #a0c4ff;
+      color: #ffffff;
       cursor: not-allowed;
-      box-shadow: none;
+      transform: none;
     }
 
     .reset-btn {
-      background-color: #7f8c8d;
-      flex: 0.3;
+      flex: 1;
+      background-color: #6c757d;
+      color: #ffffff;
     }
 
     .reset-btn:hover:not(:disabled) {
-      background-color: #6c7a89;
+      background-color: #5c636a;
     }
 
     .param-badge {
       display: inline-block;
-      background: #e2e8f0;
+      background: var(--primary-bg);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary-light);
       padding: 2px 6px;
       border-radius: 4px;
       font-family: monospace;
@@ -226,13 +250,23 @@
     <svg viewBox="0 0 600 260" id="labSvg">
       <defs>
         <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-          <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+          <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.10"/>
         </filter>
+
+        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6ea8fe" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#0d6efd" stop-opacity="0.45"/>
+        </linearGradient>
+
+        <linearGradient id="hclGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6ea8fe" stop-opacity="0.65"/>
+          <stop offset="100%" stop-color="#0d6efd" stop-opacity="0.75"/>
+        </linearGradient>
       </defs>
 
       <!-- Indicador da Capela de Exaustão -->
-      <rect x="10" y="10" width="580" height="240" fill="none" stroke="#bdc3c7" stroke-width="2" stroke-dasharray="6,6" rx="5" />
-      <text x="25" y="30" font-size="11" font-weight="bold" fill="#7f8c8d">CAPELA DE EXAUSTÃO (LIGADA)</text>
+      <rect x="10" y="10" width="580" height="240" fill="none" stroke="#b0bec5" stroke-width="2" stroke-dasharray="6,6" rx="5" />
+      <text x="25" y="30" font-size="11" font-weight="bold" fill="#6c757d">CAPELA DE EXAUSTÃO (LIGADA)</text>
 
       <!-- Ventilação sutil e contínua (reforça "capela ligada") -->
       <path class="vent-arrow" d="M 555,18 L 560,10 L 565,18" style="animation-delay: 0s;"/>
@@ -240,18 +274,18 @@
       <path class="vent-arrow" d="M 540,20 L 545,12 L 550,20" style="animation-delay: 1.2s;"/>
 
       <!-- BANCADA -->
-      <rect x="20" y="220" width="560" height="10" fill="#8d6e63" rx="2"/>
+      <rect x="20" y="220" width="560" height="10" fill="#e9ecef" rx="2"/>
 
       <!-- VIDRARIA 1: Frasco de HCl Concentrado Comercial (Esquerda) -->
       <g id="frascoHCl" transform="translate(60, 90)">
         <!-- Rótulo -->
-        <rect x="5" y="55" width="40" height="40" fill="#fff" stroke="#ccc" rx="2"/>
-        <text x="25" y="70" font-size="9" font-weight="bold" fill="#c0392b" text-anchor="middle">HCl</text>
-        <text x="25" y="82" font-size="7" fill="#333" text-anchor="middle">37% m/m</text>
-        <text x="25" y="90" font-size="6" fill="#666" text-anchor="middle">d=1,18 g/mL</text>
+        <rect x="5" y="55" width="40" height="40" fill="#fff" stroke="#e9ecef" rx="2"/>
+        <text x="25" y="70" font-size="9" font-weight="bold" fill="#dc3545" text-anchor="middle">HCl</text>
+        <text x="25" y="82" font-size="7" fill="#2d3436" text-anchor="middle">37% m/m</text>
+        <text x="25" y="90" font-size="6" fill="#6c757d" text-anchor="middle">d=1,18 g/mL</text>
 
         <!-- Líquido -->
-        <path d="M 3,45 L 47,45 L 47,118 A 2,2 0 0,1 45,120 L 5,120 A 2,2 0 0,1 3,118 Z" fill="rgba(230, 126, 34, 0.5)"/>
+        <path d="M 3,45 L 47,45 L 47,118 A 2,2 0 0,1 45,120 L 5,120 A 2,2 0 0,1 3,118 Z" fill="url(#hclGrad)"/>
 
         <!-- Fumaça (vapores ácidos ao manusear o frasco aberto) -->
         <g id="fumesHCl" class="fumes">
@@ -262,9 +296,9 @@
 
         <!-- Garrafa -->
         <path d="M 18,10 L 32,10 L 32,30 L 47,40 L 47,118 A 2,2 0 0,1 45,120 L 5,120 A 2,2 0 0,1 3,118 L 3,40 L 18,30 Z" class="glass-line" filter="url(#shadow)"/>
-        <rect x="16" y="2" width="18" height="8" fill="#c0392b" rx="1"/> <!-- Tampa -->
-        <text x="25" y="138" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">HCl Comercial</text>
-        <text x="25" y="150" font-size="9" fill="#666" text-anchor="middle">(11,8 mol/L)</text>
+        <rect x="16" y="2" width="18" height="8" fill="#dc3545" rx="1"/> <!-- Tampa -->
+        <text x="25" y="138" font-size="10" font-weight="bold" fill="#2d3436" text-anchor="middle">HCl Comercial</text>
+        <text x="25" y="150" font-size="9" fill="#6c757d" text-anchor="middle">(11,8 mol/L)</text>
       </g>
 
       <!-- VIDRARIA 2: Balão Volumétrico Parte 1 (Centro) -->
@@ -282,9 +316,9 @@
         <!-- Vidro do Balão 1 -->
         <path d="M 18,0 L 32,0 M 22,0 L 28,0 L 28,60 L 48,110 A 22,22 0 0,1 2,110 L 22,60 Z" class="glass-line" filter="url(#shadow)"/>
         <!-- Traço de Aferição (Menisco) -->
-        <line x1="22" y1="35" x2="28" y2="35" stroke="#c0392b" stroke-width="1.5"/>
-        <text x="25" y="158" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">Parte 1: Balão 100 mL</text>
-        <text x="25" y="170" font-size="9" id="labelBalao1" fill="#666" text-anchor="middle">Alvo: 1,0 mol/L</text>
+        <line x1="22" y1="35" x2="28" y2="35" stroke="#dc3545" stroke-width="1.5"/>
+        <text x="25" y="158" font-size="10" font-weight="bold" fill="#2d3436" text-anchor="middle">Parte 1: Balão 100 mL</text>
+        <text x="25" y="170" font-size="9" id="labelBalao1" fill="#6c757d" text-anchor="middle">Alvo: 1,0 mol/L</text>
       </g>
 
       <!-- VIDRARIA 3: Balão Volumétrico Parte 2 (Direita) -->
@@ -301,14 +335,14 @@
 
         <!-- Vidro do Balão 2 -->
         <path d="M 18,0 L 32,0 M 22,0 L 28,0 L 28,60 L 48,110 A 22,22 0 0,1 2,110 L 22,60 Z" class="glass-line" filter="url(#shadow)"/>
-        <line x1="22" y1="35" x2="28" y2="35" stroke="#c0392b" stroke-width="1.5"/>
-        <text x="25" y="158" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">Parte 2: Balão 100 mL</text>
-        <text x="25" y="170" font-size="9" id="labelBalao2" fill="#666" text-anchor="middle">Alvo: 0,1 mol/L</text>
+        <line x1="22" y1="35" x2="28" y2="35" stroke="#dc3545" stroke-width="1.5"/>
+        <text x="25" y="158" font-size="10" font-weight="bold" fill="#2d3436" text-anchor="middle">Parte 2: Balão 100 mL</text>
+        <text x="25" y="170" font-size="9" id="labelBalao2" fill="#6c757d" text-anchor="middle">Alvo: 0,1 mol/L</text>
       </g>
 
       <!-- Pipeta Animada -->
       <g id="pipetteGroup" transform="translate(-50, -50)" style="transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);">
-        <path d="M 0,0 L 6,0 L 4,90 L 1,105 L 0,105 L -3,90 Z" fill="#e0e0e0" stroke="#757575" stroke-width="1"/>
+        <path d="M 0,0 L 6,0 L 4,90 L 1,105 L 0,105 L -3,90 Z" fill="#e9ecef" stroke="#b0bec5" stroke-width="1"/>
         <circle id="pipetteDrop" cx="0.5" cy="110" r="3" class="droplet" />
       </g>
     </svg>
@@ -419,7 +453,7 @@
 
         setTimeout(() => {
           labelBalao1.textContent = "HCl 1,0 mol/L (estoque)";
-          labelBalao1.setAttribute('fill', '#27ae60');
+          labelBalao1.setAttribute('fill', '#1a5fb4');
           labelBalao1.setAttribute('font-weight', 'bold');
 
           statusBox.innerHTML = "<strong>Parte 1 concluída!</strong> <span class='param-badge'>HCl 1,0 mol/L</span> pronto, após homogeneização.<br><em>Agora:</em> diluir esta solução-estoque para 0,1 mol/L.";
@@ -485,7 +519,7 @@
 
         setTimeout(() => {
           labelBalao2.textContent = "HCl 0,1 mol/L (diluído)";
-          labelBalao2.setAttribute('fill', '#27ae60');
+          labelBalao2.setAttribute('fill', '#1a5fb4');
           labelBalao2.setAttribute('font-weight', 'bold');
 
           statusBox.innerHTML = `
@@ -515,7 +549,7 @@
     liqHCl1.setAttribute('y', '100');
     liqHCl1.setAttribute('height', '0');
     labelBalao1.textContent = "Alvo: 1,0 mol/L";
-    labelBalao1.setAttribute('fill', '#666');
+    labelBalao1.setAttribute('fill', '#6c757d');
     labelBalao1.setAttribute('font-weight', 'normal');
 
     // Reseta Balão 2
@@ -524,12 +558,56 @@
     liqHCl2.setAttribute('y', '100');
     liqHCl2.setAttribute('height', '0');
     labelBalao2.textContent = "Alvo: 0,1 mol/L";
-    labelBalao2.setAttribute('fill', '#666');
+    labelBalao2.setAttribute('fill', '#6c757d');
     labelBalao2.setAttribute('font-weight', 'normal');
 
     pipetteGroup.setAttribute('transform', 'translate(-50, -50)');
   }
 </script>
+<script>
+    (function() {
+        let lastHeight = 0;
 
+        function sendHeight() {
+            // Mede a altura real do conteúdo total da página
+            const body = document.body;
+            const html = document.documentElement;
+
+            const currentHeight = Math.max(
+                body.scrollHeight, body.offsetHeight,
+                html.clientHeight, html.scrollHeight, html.offsetHeight
+            );
+
+            // Evita disparos repetidos para variações menores que 5px
+            if (Math.abs(currentHeight - lastHeight) > 5) {
+                lastHeight = currentHeight;
+                window.parent.postMessage({
+                    type: 'iframeResize',
+                    height: currentHeight
+                }, '*');
+            }
+        }
+
+        // 1. Executa na carga inicial da página
+        window.addEventListener('load', sendHeight);
+        window.addEventListener('resize', sendHeight);
+
+        // 2. Observa redimensionamentos no body/DOM (moderno e nativo)
+        if ('ResizeObserver' in window) {
+            const resizeObserver = new ResizeObserver(sendHeight);
+            resizeObserver.observe(document.body);
+        }
+
+        // 3. Fallback para alterações no DOM (elementos adicionados/removidos)
+        if ('MutationObserver' in window) {
+            const mutationObserver = new MutationObserver(sendHeight);
+            mutationObserver.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: true
+            });
+        }
+    })();
+</script>
 </body>
 </html>

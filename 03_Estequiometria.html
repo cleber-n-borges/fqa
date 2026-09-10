@@ -702,15 +702,36 @@ var JSON_Questionario = "./simulador/estequiometria.dat";
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Visualize a simulação da Precipitação de PbI₂:</p>
-<iframe src="./resources/Sim_EQ_PbI2.html" width="100%" height="900px" style="border: none; border-radius: 8px;" title="Simulação Virtual da Precipitação de PbI₂">
-</iframe>
-<p style="text-align: center; font-size: 0.85em; color: #666;">
-</p><p><em>Simulação Virtual da Precipitação de PbI₂.</em></p>
-<p></p>
+<p>Visualize a simulação da Precipitação de PbI₂ (<a href="./resources/Sim_EQ_PbI2.html" target="_blank" rel="noopener noreferrer">abrir em nova aba</a>):</p>
+<iframe id="Sim_EQ_PbI2-iframe" src="./resources/Sim_EQ_PbI2.html" scrolling="no" style="
+        width: 100%; 
+        height: 940px; 
+        display: block;
+        border: 1px solid #dee2e6; 
+        border-radius: 12px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    " title="Simulação do Preparo de KOH" loading="lazy" allow="fullscreen"></iframe>
+
+<p style="text-align: center;">
+<em>Simulação Virtual da Precipitação de PbI₂.</em>
+</p>
+
+<script>
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.type === 'iframeResize' && event.data.height) {
+            const iframe = document.getElementById('Sim_EQ_PbI2.html');
+            if (iframe) {
+                // Adiciona uma pequena margem de segurança para evitar barras de rolagem indesejadas
+                iframe.style.height = (event.data.height + 10) + 'px';
+            }
+        }
+    });
+</script>
 </div>
 </div>
 </div>
+<hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -723,7 +744,7 @@ var JSON_Questionario = "./simulador/estequiometria.dat";
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Reação entre Pb(NO₃)₂ e KI na precipitação de PbI₂:</p>
+<p>Reação entre Pb(NO₃)₂ e KI na precipitação de PbI₂ (<a href="./resources/Sim_Estequiometria_PbI2.html" target="_blank" rel="noopener noreferrer">abrir em nova aba</a>):</p>
 <iframe id="SIM_Esteq01-iframe" src="./resources/Sim_Estequiometria_PbI2.html" scrolling="no" style="
         width: 100%; 
         height: 980px; 
@@ -735,7 +756,7 @@ var JSON_Questionario = "./simulador/estequiometria.dat";
     " title="Estequiometria da Precipitação de PbI₂" loading="lazy" allow="fullscreen"></iframe>
 
 <p style="text-align: center;">
-<em>Simulador Estequiométrico.</em>
+<em>Simulador da Estequiometria da Precipitação de PbI₂:.</em>
 </p>
 
 <script>
@@ -752,6 +773,7 @@ var JSON_Questionario = "./simulador/estequiometria.dat";
 </div>
 </div>
 </div>
+<hr>
 </section>
 </section>
 <section id="discussão" class="level2">
