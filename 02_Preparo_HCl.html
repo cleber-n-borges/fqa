@@ -648,12 +648,32 @@ var JSON_Questionario = "./simulador/preparo_koh.dat";
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Visualize a simulação para reproduzir os passos do preparo da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math>:</p>
-<iframe src="./resources/Sim_Preparo_HCl.html" width="100%" height="770px" style="border: none; border-radius: 8px;" title="Simulação Virtual do preparo da solução de HCl">
-</iframe>
-<p style="text-align: center; font-size: 0.85em; color: #666;">
-</p><p><em>Simulação Virtual do Preparo da Solução de HCl.</em></p>
-<p></p>
+<p>Visualize a simulação para reproduzir os passos do preparo da solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">HCl</annotation></semantics></math> (<a href="./resources/Sim_Preparo_HCl.html" target="_blank" rel="noopener noreferrer">abrir em nova aba</a>):</p>
+<iframe id="Sim_Preparo_HCl-iframe" src="./resources/Sim_Preparo_HCl.html" scrolling="no" style="
+        width: 100%; 
+        height: 730px; 
+        display: block;
+        border: 1px solid #dee2e6; 
+        border-radius: 12px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    " title="Simulação do Preparo de HCl" loading="lazy" allow="fullscreen"></iframe>
+
+<p style="text-align: center;">
+<em>Simulação Virtual do Preparo da Solução de HCl.</em>
+</p>
+
+<script>
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.type === 'iframeResize' && event.data.height) {
+            const iframe = document.getElementById('Sim_Preparo_HCl-iframe');
+            if (iframe) {
+                // Atribui diretamente a altura exata do conteúdo sem somar pixels extras
+                iframe.style.height = event.data.height + 'px';
+            }
+        }
+    });
+</script>
 </div>
 </div>
 </div>
