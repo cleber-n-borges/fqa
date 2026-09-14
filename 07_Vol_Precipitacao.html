@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -41,14 +44,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-1c09a971e424effac75e96463c2344c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-31eec405f952a06984a5a5c45f2e320a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b88ca53c51a6c9b31090f9273313e93b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-16351af34048f5c8d627805919a1ea1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b88ca53c51a6c9b31090f9273313e93b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -854,13 +857,13 @@ m_{\text{KCl (puro)}}\text{ (g de KCl)} &amp;\text{ ----- } \% \text{ m/m de KCl
 <li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext></mrow></msub><mo>=</mo><mn>94</mn><mo>,</mo><mn>20</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow><mo>⋅</mo><msup><mtext mathvariant="normal">mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M_{\text{K}_2\text{O}} = 94{,}20\text{ g}\cdot\text{mol}^{-1}</annotation></semantics></math></li>
 </ul>
 <p><strong>2. Razão de Equivalência Físico-Química:</strong></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtext mathvariant="normal">Fator de Conversão </mtext><mspace width="0.333em"></mspace></mrow><mo stretchy="false" form="prefix">(</mo><mi>F</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><msub><mi>M</mi><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext></mrow></msub><mrow><mn>2</mn><mo>×</mo><msub><mi>M</mi><mtext mathvariant="normal">KCl</mtext></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>94</mn><mo>,</mo><mn>20</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow></mrow><mrow><mn>149</mn><mo>,</mo><mn>10</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow></mrow></mfrac><mo>≈</mo><mrow><mn>𝟎</mn><mo mathvariant="bold">,</mo><mn>𝟔𝟑𝟏𝟕</mn></mrow></mrow><annotation encoding="application/x-tex">\text{Fator de Conversão } (F) = \frac{M_{\text{K}_2\text{O}}}{2 \times M_{\text{KCl}}} = \frac{94{,}20\text{ g}}{149{,}10\text{ g}} \approx \mathbf{0{,}6317}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtext mathvariant="normal">Fator de Conversão </mtext><mspace width="0.333em"></mspace></mrow><mo stretchy="false" form="prefix">(</mo><mi>F</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><msub><mi>M</mi><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext></mrow></msub><mrow><mn>2</mn><mo>×</mo><msub><mi>M</mi><mtext mathvariant="normal">KCl</mtext></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>94</mn><mo>,</mo><mn>20</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow></mrow><mrow><mn>149</mn><mo>,</mo><mn>10</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow></mrow></mfrac><mo>≈</mo><mrow><mn mathvariant="bold">𝟎</mn><mo mathvariant="bold">,</mo><mn mathvariant="bold">𝟔𝟑𝟏𝟕</mn></mrow></mrow><annotation encoding="application/x-tex">\text{Fator de Conversão } (F) = \frac{M_{\text{K}_2\text{O}}}{2 \times M_{\text{KCl}}} = \frac{94{,}20\text{ g}}{149{,}10\text{ g}} \approx \mathbf{0{,}6317}</annotation></semantics></math></p>
 <p><strong>Aplicação Prática</strong></p>
 <p>Cada <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow></mrow><annotation encoding="application/x-tex">1\text{ g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KCl</mtext><annotation encoding="application/x-tex">\text{KCl}</annotation></semantics></math> puro equivale quimicamente a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>6317</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> g</mtext></mrow></mrow><annotation encoding="application/x-tex">0{,}6317\text{ g}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext></mrow><annotation encoding="application/x-tex">\text{K}_2\text{O}</annotation></semantics></math>. Por essa razão, multiplica-se a porcentagem de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">KCl</annotation></semantics></math> obtida diretamente por esse fator:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo>=</mo><mi>%</mi><mspace width="0.167em"></mspace><mtext mathvariant="normal">KCl</mtext><mo>⋅</mo><mn>0</mn><mo>,</mo><mn>6317</mn></mrow><annotation encoding="application/x-tex">\%\,\text{K}_2\text{O} = \%\,\text{KCl} \cdot 0{,}6317</annotation></semantics></math></p>
 <blockquote class="blockquote">
 <p><strong>Exemplo Prático:</strong> Se a análise da amostra comercial indicar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>95</mn><mi>%</mi><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">m/m</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">95\%\,(\text{m/m})</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">KCl</mtext><annotation encoding="application/x-tex">\text{KCl}</annotation></semantics></math> puro, a garantia comercial em potássio será:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo>=</mo><mn>95</mn><mo>×</mo><mn>0</mn><mo>,</mo><mn>6317</mn><mo>=</mo><mrow><mn>𝟔𝟎</mn><mo mathvariant="bold">,</mo><mn>𝟎𝟏</mn><mi mathvariant="bold">%</mi><mspace width="0.167em"></mspace><msub><mtext mathvariant="bold">𝐊</mtext><mn>𝟐</mn></msub><mtext mathvariant="bold">𝐎</mtext></mrow></mrow><annotation encoding="application/x-tex">\%\,\text{K}_2\text{O} = 95 \times 0{,}6317 = \mathbf{60{,}01\%\,\text{K}_2\text{O}}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mspace width="0.167em"></mspace><msub><mtext mathvariant="normal">K</mtext><mn>2</mn></msub><mtext mathvariant="normal">O</mtext><mo>=</mo><mn>95</mn><mo>×</mo><mn>0</mn><mo>,</mo><mn>6317</mn><mo>=</mo><mrow><mn mathvariant="bold">𝟔𝟎</mn><mo mathvariant="bold">,</mo><mn mathvariant="bold">𝟎𝟏</mn><mi mathvariant="bold-italic">%</mi><mspace width="0.167em"></mspace><msub><mtext mathvariant="bold">𝐊</mtext><mn mathvariant="bold">𝟐</mn></msub><mtext mathvariant="bold">𝐎</mtext></mrow></mrow><annotation encoding="application/x-tex">\%\,\text{K}_2\text{O} = 95 \times 0{,}6317 = \mathbf{60{,}01\%\,\text{K}_2\text{O}}</annotation></semantics></math></p>
 <p>Esse é exatamente o padrão do fertilizante comercial conhecido como <strong>Muriato de Potássio (MOP)</strong>.</p>
 </blockquote>
 <hr>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Titulação Volumétrica — Teor Percentual</title>
+  <style>
+    /* Reset básico e estilos da página */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Card Principal */
+    .titulacao-widget {
+      width: 100%;
+      max-width: 720px;
+      padding: 32px;
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    }
+
+    .titulacao-widget h2 {
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+      color: #0f172a;
+      text-align: center;
+    }
+
+    .titulacao-widget p.descricao {
+      font-size: 0.9rem;
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    /* Painel da Equação e Alerta */
+    .equacao-container {
+      background-color: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .equacao-formula {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .equacao-alerta {
+      font-size: 0.82rem;
+      color: #b45309;
+      background-color: #fffbeb;
+      border: 1px solid #fef3c7;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .titulacao-widget fieldset {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      background-color: #ffffff;
+    }
+
+    .titulacao-widget legend {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #334155;
+      padding: 0 8px;
+    }
+
+    .titulacao-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #475569;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper input, 
+    .input-wrapper select {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background-color: #ffffff;
+      color: #0f172a;
+    }
+
+    .input-wrapper input:focus,
+    .input-wrapper select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .unit-select, .unit-label {
+      margin-left: 8px;
+      font-size: 0.85rem;
+      color: #64748b;
+      white-space: nowrap;
+    }
+
+    .unit-select {
+      cursor: pointer;
+    }
+
+    /* Campos Dinâmicos */
+    .campo-dinamico {
+      display: none;
+    }
+
+    .campo-dinamico.ativo {
+      display: flex;
+    }
+
+    .btn-calcular {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: #2563eb;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-calcular:hover {
+      background-color: #1d4ed8;
+    }
+
+    /* Caixa de Resultados e Erros */
+    .resultado-container {
+      margin-top: 24px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f0f9ff;
+      border: 1px solid #bae6fd;
+      display: block;
+    }
+
+    .resultado-titulo {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .resultado-valor {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0c4a6e;
+      margin: 4px 0 16px 0;
+    }
+
+    .resultado-detalhes {
+      font-size: 0.85rem;
+      color: #334155;
+      border-top: 1px solid #e0f2fe;
+      padding-top: 12px;
+      line-height: 1.6;
+    }
+
+    .resultado-detalhes strong {
+      color: #0f172a;
+    }
+
+    .erro-container {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 6px;
+      background-color: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .erro-container.ativo {
+      display: block;
+    }
+
+    /* Seção de Informações Úteis */
+    details.info-uteis {
+      margin-top: 24px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    details.info-uteis summary {
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      outline: none;
+    }
+
+    details.info-uteis ul {
+      margin-top: 10px;
+      margin-left: 20px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<main class="titulacao-widget">
+  <h2>Cálculo do Teor Percentual de Titulação</h2>
+  <p class="descricao">Determine o teor percentual (m/v, m/m ou v/v) do analito na amostra a partir dos dados volumétricos da titulação.</p>
+
+  <!-- EQUAÇÃO QUÍMICA E ALERTA DE ESTEQUIOMETRIA -->
+  <div class="equacao-container">
+    <div class="equacao-formula">
+      <i>a</i> Titulante + <i>b</i> Titulado (Analito) &rarr; Produtos
+    </div>
+    <div class="equacao-alerta">
+      &#9888; <strong>Atenção:</strong> Certifique-se de usar a proporção em mols <strong><i>a : b</i></strong> da reação balanceada.
+    </div>
+  </div>
+
+  <form id="formTitulacao" onsubmit="calcularTeor(event)">
+    <!-- 1. BLOCO DO TITULANTE -->
+    <fieldset>
+      <legend>1. Solução Titulante</legend>
+      <div class="titulacao-grid">
+        <div class="form-group">
+          <label for="concTitulante">Concentração Molar (C<sub>titulante</sub>):</label>
+          <div class="input-wrapper">
+            <input type="number" id="concTitulante" step="any" min="0" placeholder="Ex: 0.1000" required>
+            <span class="unit-label">mol/L</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="volTitulante">Volume Consumido (V<sub>titulante</sub>):</label>
+          <div class="input-wrapper">
+            <input type="number" id="volTitulante" step="any" min="0" placeholder="Ex: 12.50" required>
+            <select id="unidadeVolTitulante" class="unit-select">
+              <option value="mL" selected>mL</option>
+              <option value="L">L</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="coefTitulante">Coeficiente (a):</label>
+          <div class="input-wrapper">
+            <input type="number" id="coefTitulante" step="1" min="1" value="1" placeholder="Ex: 1" required>
+            <span class="unit-label">mol(s)</span>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 2. BLOCO DO TITULADO / ANALITO -->
+    <fieldset>
+      <legend>2. Titulado (Analito)</legend>
+      <div class="titulacao-grid">
+        <div class="form-group">
+          <label for="coefAnalito">Coeficiente (b):</label>
+          <div class="input-wrapper">
+            <input type="number" id="coefAnalito" step="1" min="1" value="1" placeholder="Ex: 1" required>
+            <span class="unit-label">mol(s)</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="massaMolarAnalito">Massa Molar (M<sub>analito</sub>):</label>
+          <div class="input-wrapper">
+            <input type="number" id="massaMolarAnalito" step="any" min="0" placeholder="Ex: 60.05" required>
+            <span class="unit-label">g/mol</span>
+          </div>
+        </div>
+
+        <div id="wrapperDensidade" class="form-group campo-dinamico">
+          <label for="densidadeAnalito" id="labelDensidade">Densidade do Analito Puro (&rho;):</label>
+          <div class="input-wrapper">
+            <input type="number" id="densidadeAnalito" step="any" min="0" placeholder="Ex: 1.05">
+            <span class="unit-label">g/mL</span>
+          </div>
+        </div>
+
+        <div id="wrapperPureza" class="form-group campo-dinamico">
+          <label for="purezaSolucao">Pureza / Concentração da Solução Estoque:</label>
+          <div class="input-wrapper">
+            <input type="number" id="purezaSolucao" step="any" min="0.01" max="100" value="100" placeholder="Ex: 37">
+            <span class="unit-label">% m/m</span>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 3. BLOCO DA AMOSTRA -->
+    <fieldset>
+      <legend>3. Amostra & Diluição</legend>
+      <div class="titulacao-grid">
+        <div class="form-group">
+          <label for="tipoAmostra">Tipo de Teor Percentual:</label>
+          <div class="input-wrapper">
+            <select id="tipoAmostra" onchange="atualizarUnidadesAmostra()">
+              <option value="mv" selected>% m/v (g / 100 mL)</option>
+              <option value="mm">% m/m (g / 100 g)</option>
+              <option value="vv_puro">% v/v (Analito Puro)</option>
+              <option value="vv_solucao">% v/v (Solução do Analito)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="qtdAmostra" id="labelQtdAmostra">Alíquota da Amostra (Volume):</label>
+          <div class="input-wrapper">
+            <input type="number" id="qtdAmostra" step="any" min="0" placeholder="Ex: 10.00" required>
+            <select id="unidadeAmostra" class="unit-select">
+              <option value="mL" selected>mL</option>
+              <option value="L">L</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fatorDiluicao">Fator de Diluição (F<sub>d</sub>):</label>
+          <div class="input-wrapper">
+            <input type="number" id="fatorDiluicao" step="any" min="1" value="1" placeholder="Ex: 1" required>
+            <span class="unit-label">x</span>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn-calcular">Calcular Teor Percentual</button>
+  </form>
+
+  <!-- MENSAGEM DE ERRO -->
+  <div id="erroBox" class="erro-container"></div>
+
+  <!-- PAINEL DE RESULTADO -->
+  <div id="resultadoBox" class="resultado-container">
+    <div class="resultado-titulo">Resultado do Ensaio</div>
+    <div id="resultadoPercentual" class="resultado-valor">--- %</div>
+    
+    <div class="resultado-detalhes">
+      <div><strong>Mols do Titulante consumidos:</strong> <span id="resMolsTitulante">---</span> mol</div>
+      <div><strong>Mols do Analito na alíquota:</strong> <span id="resMolsAnalito">---</span> mol</div>
+      <div><strong>Massa total do Analito calculada:</strong> <span id="resMassaAnalito">---</span> g</div>
+      <div id="resLinhaVolAnalito" style="display: none;"><strong>Volume do Analito/Solução calculado:</strong> <span id="resVolAnalito">---</span> mL</div>
+      <div><strong>Tipo de Teor:</strong> <span id="resTipoTeor">% (m/v) [g / 100 mL]</span></div>
+    </div>
+  </div>
+
+  <!-- INFORMAÇÕES ÚTEIS E FÓRMULAS -->
+  <details class="info-uteis" open>
+    <summary>&#128161; Informações Úteis e Fórmulas de Cálculo</summary>
+    <ul>
+      <li><strong>Relação Estequiométrica:</strong> n<sub>analito</sub> = n<sub>titulante</sub> &times; (b / a)</li>
+      <li><strong>Fator de Diluição (F<sub>d</sub>):</strong> Se a alíquota foi retirada de um balão diluído, F<sub>d</sub> = V<sub>balão</sub> / V<sub>alíquota</sub>. Se não houve diluição, use F<sub>d</sub> = 1.</li>
+      <li><strong>Teor % m/v:</strong> (g de analito / mL de amostra) &times; 100</li>
+      <li><strong>Teor % m/m:</strong> (g de analito / g de amostra) &times; 100</li>
+      <li><strong>Teor % v/v (Analito Puro):</strong> (mL de analito puro / mL de amostra) &times; 100, onde V<sub>analito</sub> = massa / &rho;<sub>puro</sub>.</li>
+      <li><strong>Teor % v/v (Solução do Analito):</strong> (mL da solução / mL de amostra) &times; 100, onde V<sub>solução</sub> = (massa / &rho;<sub>solução</sub>) / (Pureza % / 100).</li>
+    </ul>
+  </details>
+</main>
+
+<script>
+  function atualizarUnidadesAmostra() {
+    const tipo = document.getElementById('tipoAmostra').value;
+    const label = document.getElementById('labelQtdAmostra');
+    const selectUnidade = document.getElementById('unidadeAmostra');
+    const wrapperDensidade = document.getElementById('wrapperDensidade');
+    const labelDensidade = document.getElementById('labelDensidade');
+    const inputDensidade = document.getElementById('densidadeAnalito');
+    const wrapperPureza = document.getElementById('wrapperPureza');
+    const inputPureza = document.getElementById('purezaSolucao');
+
+    if (tipo === 'mv') {
+      label.innerText = 'Alíquota da Amostra (Volume):';
+      selectUnidade.innerHTML = `<option value="mL" selected>mL</option><option value="L">L</option>`;
+      wrapperDensidade.classList.remove('ativo');
+      wrapperPureza.classList.remove('ativo');
+      inputDensidade.removeAttribute('required');
+      inputPureza.removeAttribute('required');
+    } else if (tipo === 'mm') {
+      label.innerText = 'Massa da Amostra:';
+      selectUnidade.innerHTML = `<option value="g" selected>g</option><option value="mg">mg</option>`;
+      wrapperDensidade.classList.remove('ativo');
+      wrapperPureza.classList.remove('ativo');
+      inputDensidade.removeAttribute('required');
+      inputPureza.removeAttribute('required');
+    } else if (tipo === 'vv_puro') {
+      label.innerText = 'Alíquota da Amostra (Volume):';
+      selectUnidade.innerHTML = `<option value="mL" selected>mL</option><option value="L">L</option>`;
+      labelDensidade.innerText = 'Densidade do Analito Puro (ρ):';
+      wrapperDensidade.classList.add('ativo');
+      wrapperPureza.classList.remove('ativo');
+      inputDensidade.setAttribute('required', 'required');
+      inputPureza.removeAttribute('required');
+    } else if (tipo === 'vv_solucao') {
+      label.innerText = 'Alíquota da Amostra (Volume):';
+      selectUnidade.innerHTML = `<option value="mL" selected>mL</option><option value="L">L</option>`;
+      labelDensidade.innerText = 'Densidade da Solução do Analito (ρ):';
+      wrapperDensidade.classList.add('ativo');
+      wrapperPureza.classList.add('ativo');
+      inputDensidade.setAttribute('required', 'required');
+      inputPureza.setAttribute('required', 'required');
+    }
+  }
+
+  function calcularTeor(event) {
+    event.preventDefault();
+
+    const erroBox = document.getElementById('erroBox');
+    const resLinhaVolAnalito = document.getElementById('resLinhaVolAnalito');
+
+    erroBox.classList.remove('ativo');
+
+    try {
+      // 1. Entrada de dados
+      const C_titulante = parseFloat(document.getElementById('concTitulante').value);
+      let V_titulante = parseFloat(document.getElementById('volTitulante').value);
+      const unidadeV_titulante = document.getElementById('unidadeVolTitulante').value;
+      const a = parseFloat(document.getElementById('coefTitulante').value);
+
+      const b = parseFloat(document.getElementById('coefAnalito').value);
+      const M_analito = parseFloat(document.getElementById('massaMolarAnalito').value);
+
+      const tipoAmostra = document.getElementById('tipoAmostra').value;
+      let qtdAmostra = parseFloat(document.getElementById('qtdAmostra').value);
+      const unidadeAmostra = document.getElementById('unidadeAmostra').value;
+      const F_d = parseFloat(document.getElementById('fatorDiluicao').value);
+
+      // Validação rápida
+      if (C_titulante <= 0 || V_titulante <= 0 || a <= 0 || b <= 0 || M_analito <= 0 || qtdAmostra <= 0 || F_d <= 0) {
+        throw new Error("Todos os valores numéricos inseridos devem ser maiores que zero.");
+      }
+
+      // 2. Normalização de unidades
+      if (unidadeV_titulante === 'mL') {
+        V_titulante = V_titulante / 1000;
+      }
+
+      let qtdAmostraNormalizada = qtdAmostra;
+      if (unidadeAmostra === 'L') {
+        qtdAmostraNormalizada = qtdAmostra * 1000;
+      } else if (unidadeAmostra === 'mg') {
+        qtdAmostraNormalizada = qtdAmostra / 1000;
+      }
+
+      // 3. Cálculos Estequiométricos
+      const n_titulante = C_titulante * V_titulante;
+      const n_analito_aliquota = n_titulante * (b / a);
+      const m_analito_aliquota = n_analito_aliquota * M_analito;
+      const m_analito_total = m_analito_aliquota * F_d;
+
+      // 4. Cálculo do Teor Percentual
+      let teorPercentual = 0;
+      let volAnalitoTotal = 0;
+
+      if (tipoAmostra === 'mv' || tipoAmostra === 'mm') {
+        teorPercentual = (m_analito_total / qtdAmostraNormalizada) * 100;
+        resLinhaVolAnalito.style.display = 'none';
+      } else if (tipoAmostra === 'vv_puro') {
+        const densidade = parseFloat(document.getElementById('densidadeAnalito').value);
+        if (isNaN(densidade) || densidade <= 0) throw new Error("Informe uma densidade válida para o analito puro.");
+
+        volAnalitoTotal = m_analito_total / densidade; // mL
+        teorPercentual = (volAnalitoTotal / qtdAmostraNormalizada) * 100;
+
+        document.getElementById('resVolAnalito').innerText = volAnalitoTotal.toFixed(4);
+        resLinhaVolAnalito.style.display = 'block';
+      } else if (tipoAmostra === 'vv_solucao') {
+        const densidade = parseFloat(document.getElementById('densidadeAnalito').value);
+        const pureza = parseFloat(document.getElementById('purezaSolucao').value);
+
+        if (isNaN(densidade) || densidade <= 0) throw new Error("Informe uma densidade válida para a solução do analito.");
+        if (isNaN(pureza) || pureza <= 0 || pureza > 100) throw new Error("Informe um percentual de pureza válido entre 0 e 100%.");
+
+        const massaSolucao = m_analito_total / (pureza / 100);
+        volAnalitoTotal = massaSolucao / densidade; // mL
+        teorPercentual = (volAnalitoTotal / qtdAmostraNormalizada) * 100;
+
+        document.getElementById('resVolAnalito').innerText = volAnalitoTotal.toFixed(4);
+        resLinhaVolAnalito.style.display = 'block';
+      }
+
+      // 5. Exibição dos resultados
+      document.getElementById('resultadoPercentual').innerText = `${teorPercentual.toFixed(3)} %`;
+      document.getElementById('resMolsTitulante').innerText = n_titulante.toExponential(4);
+      document.getElementById('resMolsAnalito').innerText = n_analito_aliquota.toExponential(4);
+      document.getElementById('resMassaAnalito').innerText = m_analito_total.toFixed(4);
+
+      let tipoTexto = '% (m/v) [g / 100 mL]';
+      if (tipoAmostra === 'mm') tipoTexto = '% (m/m) [g / 100 g]';
+      if (tipoAmostra === 'vv_puro') tipoTexto = '% (v/v) [mL puro / 100 mL]';
+      if (tipoAmostra === 'vv_solucao') tipoTexto = '% (v/v) [mL solução / 100 mL]';
+
+      document.getElementById('resTipoTeor').innerText = tipoTexto;
+
+    } catch (err) {
+      erroBox.innerText = err.message || "Ocorreu um erro no cálculo. Verifique os dados fornecidos.";
+      erroBox.classList.add('ativo');
+    }
+  }
+</script>
+
+</body>
+</html>
