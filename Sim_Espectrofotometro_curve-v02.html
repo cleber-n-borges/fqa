@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulação: Espectrofotômetro — Esquema Básico (Interativo)</title>
+<meta name="description" content="Simulação animada e interativa de um espectrofotômetro de feixe simples para fins didáticos: caminho óptico, espectro A(λ), lei de Beer–Lambert, autozero com branco reagente ou água, fenda ajustável, luz parasita e curva de calibração.">
+<style>
+/* ----------------------------------------------------------------
+   RAÍZ DA FIGURA — contêiner de tudo.
+   Variáveis CSS (trocar aqui muda o tema inteiro):
+     --w         largura da figura (100% por padrão)
+     --fig-zoom  zoom global da figura (acessibilidade / embed)
+     --bg        fundo geral
+     --ink       texto principal (valores em destaque)
+     --muted     texto secundário / rótulos
+     --line      linhas divisórias e bordas de card
+     --bar       corpo das fendas no desenho
+     --edge      bordas de controles (botões, pills, sliders)
+   Nota: --line e --edge são propositalmente diferentes — --edge é mais
+   claro para dar relevo aos controles clicáveis.
+   ---------------------------------------------------------------- */
+.fig-esp{
+  --w: 100%;
+  --fig-zoom: 1;
+
+  --bg: #101623; --ink: #e8edf7; --muted: #8fa0bd;
+  --line: #2a3550; --bar: #39455f; --edge: #46527a;
+
+  zoom: var(--fig-zoom);
+  width: var(--w); max-width: none;
+  box-sizing: border-box; margin: 0 auto;
+  padding: 12px;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--bg); color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px; line-height: 1.35;
+}
+.fig-esp *{ box-sizing: border-box; margin: 0; padding: 0; }
+/* Desabilita seleção de texto no palco e nos controles: arrastar um slider
+   não deve selecionar rótulos acidentalmente. */
+.fig-esp .scene, .fig-esp .ctl{ user-select: none; }
+
+/* Título geral da figura (fora dos cards): "Esquema Básico..." */
+.fig-esp .t{ display:flex; align-items:baseline; gap:8px; margin-bottom:8px; }
+.fig-esp .t b{ font-size:15px; }
+.fig-esp .t span{ color:var(--muted); font-size:11.5px; }
+
+/* ---- palco --------------------------------------------------
+   Palco do Q1. ATENÇÃO: as coordenadas das peças ópticas são ABSOLUTAS
+   em px e o JS depende delas (ORIGIN = {x:110.5, y:105} em init()).
+   A altura 210px é casada com .scene-inner e com as posições .lamp,
+   .mono, .prisma etc. — mudar a altura desalinha o feixe sem aviso. */
+.fig-esp .scene{
+  position: relative; height: 210px;
+  background: radial-gradient(90px 60px at 6% 50%, rgba(255,255,255,.09), transparent 70%), #0b101b;
+  border-radius: 8px; overflow: hidden;
+}
+
+.fig-esp .lamp{
+  position:absolute; left:4px; top:85px; width:30px; height:40px;
+  border-radius: 8px 4px 4px 8px;
+  background: linear-gradient(160deg,#37425c,#1d2536);
+  border:1px solid var(--edge);
+}
+.fig-esp .lamp::after{
+  content:""; position:absolute; right:-5px; top:50%;
+  width:10px; height:16px; transform:translateY(-50%);
+  border-radius:3px; background:#fff;
+  box-shadow:0 0 14px 4px rgba(255,255,255,.55);
+  animation: esp-lamp 2.4s ease-in-out infinite;
+}
+@keyframes esp-lamp{ 50%{ box-shadow:0 0 20px 7px rgba(255,255,255,.75);} }
+
+.fig-esp .sline{
+  position:absolute; height:3px; border-radius:2px; z-index:3;
+  background:#ffffff;
+  box-shadow:0 0 6px rgba(255,255,255,.45);
+}
+
+.fig-esp .mono{
+  position:absolute; left:62px; top:34px; width:152px; height:142px;
+  border:1px solid var(--edge); border-radius:6px; z-index:2;
+}
+.fig-esp .fenda{ position:absolute; width:4px; background:var(--bar); z-index:4; }
+.fig-esp .f-in-top { left:62px;  top:34px;  height:66px; }
+.fig-esp .f-in-bot { left:62px;  top:110px; height:60px; }
+.fig-esp .f-out-top{ left:208px; top:40px;  height:60px; z-index:4;}
+.fig-esp .f-out-bot{ left:208px; top:110px; height:60px; z-index:4;}
+
+.fig-esp .prisma{
+  position:absolute; left:98px; top:74px; width:50px; height:62px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgba(223,230,245,.36), rgba(154,168,204,.22));
+  transform-origin: 50% 60%;
+  transition: transform .25s ease;
+  z-index:2;
+}
+
+.fig-esp .rays{
+  position:absolute; left:110px; top:105px; width:0; height:0;
+  transition: transform .25s ease; z-index:3;
+}
+.fig-esp .ray{
+  position:absolute; left:0; top:-1px; width:101px; height:2px;
+  border-radius:1px; transform-origin:0 50%;
+  background-image: repeating-linear-gradient(90deg,
+      rgba(255,255,255,.75) 0 4px, rgba(0,0,0,.30) 4px 11px);
+  background-size:11px 100%;
+  animation: esp-ray .45s linear infinite;
+  opacity:.85;
+  transition: opacity .2s;
+}
+@keyframes esp-ray{ to{ background-position:11px 0; } }
+.fig-esp .ray--sel{
+  height:3px; top:-1.5px;
+  box-shadow:0 0 8px 1px rgba(255,255,255,.35);
+}
+
+.fig-esp .arc{
+  position:absolute; left:193px; top:38px; width:11px; height:108px;
+  border:2px solid #65628a; border-left:none;
+  border-radius: 0 54px 54px 0 / 0 54px 54px 0;
+  background: repeating-linear-gradient(to bottom, rgba(126,140,180,.30) 0 2px, transparent 2px 8px);
+  z-index:2;
+}
+
+.fig-esp .beamline{
+  position:absolute; top:50%; transform:translateY(-50%);
+  height:2.5px; border-radius:1px; z-index:1;
+  background-image: repeating-linear-gradient(90deg,
+      rgba(255,255,255,.75) 0 4px, rgba(0,0,0,.30) 4px 11px);
+  background-size:11px 100%;
+  animation: esp-ray .45s linear infinite;
+}
+.fig-esp .beam--io{ left:213px; width:33px; }
+.fig-esp .beam--i { left:302px; width:26px; transition: opacity .3s; }
+
+.fig-esp .cuv{
+  position:absolute; left:246px; top:66px; width:56px; height:78px;
+  border:2px solid rgba(255,255,255,.45); border-radius:5px;
+  background: rgba(255,255,255,.06); z-index:2;
+}
+.fig-esp .liq{
+  position:absolute; inset:2px; border-radius:3px;
+  background: linear-gradient(180deg,#ffe066,#e0a800);
+  opacity:.25; transition: opacity .35s;
+}
+
+.fig-esp .det{
+  position:absolute; left:328px; top:82px; width:20px; height:46px;
+  border:2px solid #55628a; border-radius:6px;
+  background:#fff; opacity:.1; transition: opacity .3s, background .3s;
+  z-index:2;
+}
+
+.fig-esp .il{ position:absolute; top:80px; font-style:italic; font-size:11px; color:var(--muted); z-index:4;}
+.fig-esp .il sub{ font-size:8px; }
+.fig-esp .il--i0{ left:222px; } .fig-esp .il--i{ left:309px; }
+
+.fig-esp .lab-in{ position:absolute; font-size:8px; color:var(--muted); text-align:center; line-height:1.3; transform:translateX(-50%); z-index:5; }
+.fig-esp .li-e{ left:64px;  top:149px; }
+.fig-esp .li-p{ left:123px; top:149px; }
+.fig-esp .li-s{ left:211px; top:149px; }
+
+.fig-esp .num{ position:absolute; top:190px; font-size:8.5px; color:var(--muted); white-space:nowrap; }
+.fig-esp .num b{ color:var(--ink); font-weight:600; }
+.fig-esp .n1{ left:2px; } .fig-esp .n2{ left:62px; width:152px; text-align:center; }
+.fig-esp .n3{ left:243px; } .fig-esp .n4{ left:306px; }
+
+/* ---- gráficos -----------------------------------------------
+   Alturas em px abaixo são PADRÃO INICIAL: o JS as sobrescreve em tempo
+   real. .plot (Q2) é reescrito por syncSpectrumHeight() para casar com a
+   altura do Q1; .cal (Q4) acompanha a largura do canvas-host. No mobile
+   (< 900px) as media queries devolvem a altura fixa e o JS para de mexer. */
+.fig-esp .plotwrap{ margin-top:8px; }
+.fig-esp .plothint{ font-size:9.5px; color:var(--muted); text-align:right; margin-top:2px; }
+.fig-esp .plot, .fig-esp .cal{
+  display:block; width:100%;
+  border:1px solid var(--line); border-radius:8px;
+  background:#0b101b; cursor:crosshair; touch-action:none;
+}
+.fig-esp .plot{ height:150px; }
+.fig-esp .cal{ height:104px; cursor:pointer; }
+.fig-esp .plot:focus-visible, .fig-esp .cal:focus-visible{
+  outline:2px solid #7b8fc4; outline-offset:1px;
+}
+
+/* ---- leitura ------------------------------------------------ */
+.fig-esp .read{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 9px; margin-top:10px; }
+.fig-esp .chip{ width:14px; height:14px; border-radius:50%; border:1px solid var(--edge);
+  background:#5522ff; transition: background .25s; }
+.fig-esp .cell{ font-size:11.5px; color:var(--muted); }
+.fig-esp .cell b{ color:var(--ink); font-variant-numeric: tabular-nums; }
+.fig-esp .disp{
+  margin-left:auto; padding:4px 10px;
+  border:2px solid var(--edge); border-radius:6px; box-shadow: inset 0 0 0 2px #0b101b, inset 0 0 0 3px var(--edge);
+  font-family: ui-monospace, Consolas, monospace; font-size:15px; font-weight:700;
+  background:#0b101b; color:#d7ff5e; font-variant-numeric: tabular-nums;
+}
+.fig-esp .disp--raw{ color:#8fa0bd; }
+
+/* ---- controles ---------------------------------------------- */
+.fig-esp .ctl{ margin-top:10px; display:grid; gap:9px; }
+/* Reserva de altura do Q3 — evita o quadro "pular" quando as mensagens
+   mudam de tamanho. min-height usa em (relativo ao line-height), entao
+   acompanha zoom/fonte. Os multiplicadores sao o PIOR CASO de linhas de
+   cada bloco; se alguem acrescentar uma linha a uma mensagem, atualize aqui. */
+.fig-esp .status  { min-height: calc(4 * 1.45em); }  /* sem ref(2) · invalida(4) · agua(2) · branco(2) */
+.fig-esp .warnbox { min-height: calc(3 * 1.45em); }  /* vazio(0) · aviso Beer(3)                    */
+.fig-esp .devtxt  { min-height: calc(5 * 1.45em); }  /* base(3) · +causa(4) · +vale(5)              */
+.fig-esp .formula { min-height: calc(4 * 1.60em); }  /* Beer+eps(2) · +leitura(3) · +aviso(4)      */
+.fig-esp .kv .wide{ min-height: calc(3 * 1.45em); }  /* base(2) · +intercepto(3)                    */
+.fig-esp .grp{ display:grid; gap:6px; }
+.fig-esp .grp-lab{ font-size:10px; font-weight:600; color:var(--muted); letter-spacing:.03em; }
+.fig-esp .grp + .grp,
+.fig-esp .diag{ padding-top:9px; border-top:1px solid var(--line); }
+.fig-esp .diag{ display:grid; gap:9px; }
+.fig-esp .row{ display:flex; align-items:center; gap:8px; }
+.fig-esp .lab{ font-size:11.5px; color:var(--muted); flex:0 0 auto; }
+.fig-esp .lab b{ color:var(--ink); }
+.fig-esp input[type=range]{
+  -webkit-appearance:none; appearance:none; flex:1; height:10px; border-radius:5px; outline:none;
+  background: linear-gradient(90deg,#4b0082,#7700ff,#2255ff,#00b3e6,#33cc33,#ffee00,#ff9900,#ff3300,#b30000);
+  cursor:pointer;
+}
+.fig-esp input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; width:16px; height:16px; border-radius:50%;
+  background:#fff; border:2px solid #55628a;
+}
+.fig-esp input[type=range]::-moz-range-thumb{
+  width:14px; height:14px; border-radius:50%; background:#fff; border:2px solid #55628a;
+}
+.fig-esp .btn{
+  flex:0 0 30px; height:30px; border:1px solid var(--edge); border-radius:8px;
+  background:#26314a; color:var(--ink); font-size:17px; cursor:pointer;
+  transition: background .15s, opacity .15s;
+}
+.fig-esp .btn:hover:not(:disabled){ background:#33405f; }
+.fig-esp .btn:disabled{ opacity:.35; cursor:default; }
+.fig-esp .cl{ flex:1; text-align:center; font-size:11.5px; color:var(--muted); }
+.fig-esp .cl b{ display:block; color:var(--ink); font-size:12.5px; font-variant-numeric:tabular-nums; }
+.fig-esp .sl{ flex:0 0 44px; text-align:right; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+.fig-esp .pill{
+  flex:0 0 auto; height:28px; padding:0 11px;
+  border:1px solid var(--edge); border-radius:14px;
+  background:#26314a; color:#9aa8c6; font-size:11px; font-weight:600; cursor:pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.fig-esp .pill:hover{ background:#33405f; }
+.fig-esp .pill.on{ background:#3a4f85; border-color:#7b8fc4; color:#e8f0ff; }
+.fig-esp .pill.on--bad{ background:#5c3140; border-color:#a8627a; color:#ffd9d9; }
+.fig-esp .status{ display:grid; grid-template-columns:auto 1fr; align-items:start; margin-top:0; font-size:11px; color:var(--muted); text-align:left; white-space:pre-line; line-height:1.45; min-height:calc(4 * 1.45em); }
+.fig-esp .dot{ width:9px; height:9px; border-radius:50%; display:inline-block; margin:4px 6px 0 0; }
+.fig-esp .dot.ok{ background:#3fdc6a; box-shadow:0 0 6px #3fdc6a; }
+.fig-esp .dot.warn{ background:#ffc233; box-shadow:0 0 6px #ffc233; }
+.fig-esp .dot.bad{ background:#ff5a5a; box-shadow:0 0 6px #ff5a5a; }
+/* ATENÇÃO: white-space:pre-line é o que faz os '\n' escritos pelo JS em
+   update() virarem quebras de linha reais. Se esta propriedade for
+   removida, todas as mensagens multilinha do diagnóstico colapsam numa
+   linha só. A reserva de altura acima assume exatamente esse layout. */
+.fig-esp .warnbox{ min-height:calc(3 * 1.45em); font-size:11px; color:#ff9b8a; text-align:left; white-space:pre-line; line-height:1.45; }
+/* Bloco .formula do Q3 — a lei de Beer e a leitura do instrumento.
+   ATENÇÃO: white-space:pre-line transforma os '\n' montados pelo JS em
+   quebras de linha reais. É ele que garante "uma linha por equação" —
+   sem ele, a lei de Beer, a linha de leitura e o aviso viram um texto só,
+   ilegível. A reserva min-height de 4 linhas cobre o PIOR caso:
+     linha 1  lei de Beer + ε molar (o <br> força a 2ª linha física)
+     linha 2  leitura (água / sem autozero)
+     linha 3  aviso em vermelho
+   Se um novo aviso for acrescentado, aumentar a reserva junto — senão o
+   card Q3 volta a "pular" de altura e arrasta o Q4 pela sincronização. */
+.fig-esp .formula{
+  font-family: ui-monospace, Consolas, monospace; font-size:10.5px;
+  color:var(--muted); text-align:left; line-height:1.6; white-space:pre-line;
+  min-height:calc(4 * 1.60em);
+}
+.fig-esp .formula b{ color:var(--ink); }
+
+.fig-esp .dev{ margin-top:0; }
+.fig-esp .devbar{
+  height:6px; border-radius:3px; background:#0b101b; border:1px solid var(--line);
+  overflow:hidden; position:relative;
+}
+.fig-esp .devfill{
+  display:block; height:100%; width:0%;
+  background:#3fdc6a; transition: width .18s ease, background .18s ease;
+}
+.fig-esp .devtxt{ font-size:10.5px; color:var(--muted); text-align:left; margin-top:4px;
+  font-variant-numeric:tabular-nums; white-space:pre-line; line-height:1.45;
+  min-height:calc(5 * 1.45em); }
+.fig-esp .devtxt b{ color:var(--ink); }
+.fig-esp .devtxt .bad{ color:#ff9b8a; }
+
+.fig-esp .calwrap{ margin-top:10px; }
+.fig-esp .calhead{ font-size:10.5px; color:var(--muted); text-align:center; margin-bottom:4px; }
+.fig-esp .calhead b{ color:var(--ink); }
+.fig-esp .calinfo{ font-size:10px; }
+
+.fig-esp .kv{
+  margin-top:0; display:grid; grid-template-columns:auto 1fr;
+  gap:3px 10px; font-size:10.5px; color:var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.fig-esp .kv b{ color:var(--ink); }
+/* Layout do texto longo do .kv. A RESERVA de altura NÃO é declarada aqui:
+   ela vive no bloco de reservas do Q3 (linha ~244), junto das outras.
+   Duplicá-la aqui criava duas fontes para o mesmo valor — a segunda
+   sobrescrevia a primeira em silêncio. Um valor, um lugar. */
+.fig-esp .kv .wide{ grid-column:1 / -1; text-align:left; white-space:pre-line; line-height:1.45; margin-top:2px; }
+.fig-esp .kv .bad{ color:#ff9b8a; }
+.fig-esp .kv .good{ color:#3fdc6a; }
+
+.fig-esp input[type=range].j-cslider{
+  background: linear-gradient(90deg,#22304f,#3a4f85);
+}
+
+/* Texto didático do Q4 (Interpretação). Conteúdo é ESTÁTICO no HTML —
+   não é reescrito pelo JS. Alterar aqui exige revisar o texto junto. */
+.fig-esp .cap{ margin-top:0; text-align:justify; font-size:10.5px; color:var(--muted); line-height:1.5; }
+.fig-esp .cap b{ color:var(--ink); }
+
+/* ---- sliders dos eixos dos gráficos ------------------------- */
+
+.fig-esp .calzoom{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px 10px;
+  margin-top:6px;
+  font-size:10.5px;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.fig-esp .calzoom-grp{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.fig-esp .calzoom-lab{ color:var(--muted); }
+.fig-esp .calzoom input[type=range].j-calx{
+  width:140px;
+  height:6px;
+  background:linear-gradient(90deg,#3a4f85,#22304f);
+}
+.fig-esp .calzoom input[type=range].j-calx::-webkit-slider-thumb{
+  width:12px; height:12px; border-width:1px;
+}
+.fig-esp .calzoom input[type=range].j-calx::-moz-range-thumb{
+  width:11px; height:11px; border-width:1px;
+}
+.fig-esp .calzoom-val{
+  color:var(--ink);
+  font-weight:600;
+  min-width:26px;
+  text-align:right;
+}
+.fig-esp .calzoom-unit{ color:var(--muted); }
+
+/* wrapper canvas + slider Y vertical (à direita)
+   O slider Y é um <input type=range> ROTACIONADO -90° (ver .yslider-track
+   input abaixo). Como o elemento continua horizontal no DOM, o JS ajusta
+   sua largura em px via syncYSliderWidths() para que, depois de rotacionado,
+   ele cubra a altura real do canvas. */
+.fig-esp .plot-flex{
+  display:flex;
+  align-items:stretch;
+  gap:6px;
+  flex:1 1 auto;    /* ← estica dentro do calwrap / plotwrap */
+  min-height:0;     /* ← permite encolher em containers flex */
+}
+.fig-esp .plot-flex .canvas-host{
+  flex:1 1 auto;
+  min-width:0;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+}
+.fig-esp .plot-flex .canvas-host > canvas{
+  flex:1 1 auto;
+  min-height:0;
+}
+
+.fig-esp .yslider{
+  flex:0 0 26px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  font-size:9.5px;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  user-select:none;
+}
+.fig-esp .yslider-lab{
+  font-weight:600;
+  color:var(--ink);
+  line-height:1;
+}
+.fig-esp .yslider-track{
+  flex:1 1 auto;
+  width:14px;
+  min-height:60px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.fig-esp .yslider-track input[type=range].j-spy,
+.fig-esp .yslider-track input[type=range].j-caly{
+  -webkit-appearance:none; appearance:none;
+  width:150px;
+  height:6px;
+  background:linear-gradient(90deg,#22304f,#3a4f85);
+  border-radius:3px;
+  outline:none;
+  cursor:pointer;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(-90deg);
+  transform-origin:center center;
+  transition: opacity .15s;
+}
+.fig-esp .yslider-track input[type=range].j-spy::-webkit-slider-thumb,
+.fig-esp .yslider-track input[type=range].j-caly::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:12px; height:12px; border-radius:50%;
+  background:#fff; border:1px solid #55628a;
+}
+.fig-esp .yslider-track input[type=range].j-spy::-moz-range-thumb,
+.fig-esp .yslider-track input[type=range].j-caly::-moz-range-thumb{
+  width:12px; height:12px; border-radius:50%;
+  background:#fff; border:1px solid #55628a;
+}
+.fig-esp .yslider-track input[type=range].is-auto{
+  opacity:.55;
+}
+.fig-esp .yslider-track input[type=range].is-auto:hover{
+  opacity:.85;
+}
+
+.fig-esp .yslider-hint{
+  font-size:8.5px;
+  color:var(--muted);
+  line-height:1;
+  cursor:pointer;
+  text-decoration:underline dotted;
+  text-underline-offset:2px;
+  transition: color .15s;
+}
+.fig-esp .yslider-hint:hover{ color:var(--ink); }
+.fig-esp .yslider-hint.hidden{ visibility:hidden; }
+
+
+/* ==============================================================
+   LAYOUT — grade 2×2
+   ============================================================== */
+
+.fig-esp{ width:100%; max-width:none; }
+
+.fig-esp .esp-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:12px;
+  width:100%;
+  align-items:start;
+}
+
+.fig-esp .esp-card{
+  min-width:0;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:rgba(11,16,27,.48);
+}
+
+.fig-esp .esp-card-title{
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+  margin-bottom:8px;
+  padding-bottom:5px;
+  border-bottom:1px solid var(--line);
+  color:var(--ink);
+  font-size:12px;
+  font-weight:600;
+}
+
+.fig-esp .esp-card-title span{
+  color:var(--muted);
+  font-size:10.5px;
+  font-weight:400;
+}
+
+.fig-esp .instrument-layout{
+  display:grid;
+  grid-template-columns:85% 15%;
+  gap:8px;
+  align-items:center;
+  width:100%;
+}
+
+.fig-esp .esp-card--instrument .scene{
+  position:relative;
+  width:100%;
+  max-width:none;
+  height:210px;
+  margin:0;
+  zoom:1;
+}
+
+.fig-esp .scene-inner{
+  position:relative;
+  width:400px;
+  height:210px;
+  margin:0 auto;
+}
+
+.fig-esp .esp-card--instrument .lamp{left:30px}
+.fig-esp .esp-card--instrument .mono{left:88px}
+.fig-esp .esp-card--instrument .f-in-top{left:88px}
+.fig-esp .esp-card--instrument .f-in-bot{left:88px}
+.fig-esp .esp-card--instrument .prisma{left:124px}
+.fig-esp .esp-card--instrument .rays{left:136px}
+.fig-esp .esp-card--instrument .arc{left:219px}
+.fig-esp .esp-card--instrument .f-out-top{left:234px}
+.fig-esp .esp-card--instrument .f-out-bot{left:234px}
+.fig-esp .esp-card--instrument .beam--io{left:239px}
+.fig-esp .esp-card--instrument .beam--i{left:328px}
+.fig-esp .esp-card--instrument .cuv{left:272px}
+.fig-esp .esp-card--instrument .det{left:354px}
+.fig-esp .esp-card--instrument .il--i0{left:248px}
+.fig-esp .esp-card--instrument .il--i{left:335px}
+.fig-esp .esp-card--instrument .li-e{left:90px}
+.fig-esp .esp-card--instrument .li-p{left:149px}
+.fig-esp .esp-card--instrument .li-s{left:237px}
+.fig-esp .esp-card--instrument .n1{left:28px}
+.fig-esp .esp-card--instrument .n2{left:88px}
+.fig-esp .esp-card--instrument .n3{left:269px}
+.fig-esp .esp-card--instrument .n4{left:332px}
+.fig-esp .esp-card--instrument .sline{left:60px}
+
+.fig-esp .esp-card--instrument .read{
+  margin-top:0;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:5px;
+  padding:6px 4px;
+  border-left:1px solid var(--line);
+  padding-left:8px;
+}
+
+.fig-esp .esp-card--instrument .read .lam-group{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:10.5px;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+
+.fig-esp .esp-card--instrument .read .lam-group .chip{
+  width:12px; height:12px; flex:0 0 auto; align-self:center;
+}
+
+.fig-esp .esp-card--instrument .read .cell{
+  font-size:10px; text-align:center;
+}
+
+.fig-esp .esp-card--instrument .read .disp{
+  margin-left:0; text-align:center; font-size:13px; padding:3px 4px; width:100%;
+}
+
+.fig-esp .esp-card--instrument .read .read-title{
+  font-size:9.5px; color:var(--muted); text-align:center;
+  font-weight:600; letter-spacing:.3px; margin-bottom:2px;
+}
+
+/* Q2 — altura sincronizada via JS (Q1 → Q2)
+   O Q2 NÃO tem altura própria: syncSpectrumHeight() lê a altura real do
+   Q1 e a impõe aqui, para que as duas colunas da grade terminem alinhadas.
+   Por isso este card é flex-column com o plotwrap esticando (flex:1). */
+.fig-esp .esp-card--spectrum{
+  display:flex;
+  flex-direction:column;
+}
+.fig-esp .esp-card--spectrum .plotwrap{
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  margin-top:8px;
+}
+
+/* Q3 — altura NATURAL (não sincronizada por JS).
+   A estabilidade da altura deste card vem das reservas min-height
+   declaradas acima, em .status / .warnbox / .devtxt / .formula / .kv .wide.
+   Este card é a RÉGUA: syncResultsHeight() copia a altura dele para o Q4. */
+.fig-esp .esp-card--controls .ctl{ margin-top:0 }
+
+/* Q4 — altura sincronizada via JS (Q3 → Q4)
+   Espelha o Q3 para fechar a linha da grade. Se o Q3 crescer, o Q4 cresce
+   junto — motivo pelo qual as reservas de altura do Q3 existem. */
+.fig-esp .esp-card--results{
+  display:flex;
+  flex-direction:column;
+}
+.fig-esp .esp-card--results .esp-results-grid{
+  flex:1 1 auto;
+  align-items:stretch;
+  min-height:0;
+}
+
+.fig-esp .esp-results-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(200px,0.85fr);
+  gap:12px;
+  align-items:stretch;
+}
+
+.fig-esp .esp-results-grid .calwrap{
+  display:flex;
+  flex-direction:column;
+  margin-top:0;
+  min-height:0;
+}
+
+.fig-esp .esp-results-grid .cap{
+  min-height:0;
+}
+
+.fig-esp .cap-title{
+  font-size:11px;
+  color:var(--ink);
+  font-weight:600;
+  margin-bottom:6px;
+  padding-bottom:4px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+}
+
+@media (max-width:1100px){
+  .fig-esp .esp-results-grid{ grid-template-columns:1fr }
+}
+
+@media (max-width:900px){
+  .fig-esp .esp-grid{ grid-template-columns:1fr }
+  .fig-esp .instrument-layout{
+    grid-template-columns:85% 15%;
+    justify-content:center;
+  }
+  .fig-esp .esp-card--spectrum{ height:auto !important }
+  .fig-esp .esp-card--spectrum .plot{ height:150px !important }
+  .fig-esp .esp-card--results{ height:auto !important }
+}
+
+@media (max-width:620px){
+  .fig-esp .instrument-layout{ grid-template-columns:1fr }
+  .fig-esp .esp-card--instrument .scene{ margin:0 auto; max-width:100% }
+  .fig-esp .scene-inner{ width:100%; max-width:400px }
+  .fig-esp .esp-card--instrument .read{
+    flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center;
+    border-left:none; border-top:1px solid var(--line);
+    padding-left:0; padding-top:6px;
+  }
+  .fig-esp .esp-card--instrument .read .disp{ width:auto }
+  .fig-esp .esp-card--instrument .read .lam-group{ width:100% }
+}
+
+@media (max-width:480px){
+  .fig-esp{ padding:8px }
+  .fig-esp .esp-grid{ gap:8px }
+  .fig-esp .esp-card{ padding:8px }
+  .fig-esp .t{ flex-wrap:wrap }
+  .fig-esp .t b{ font-size:14px }
+}
+
+@media print{
+  .fig-esp{ zoom:1; max-width:100% }
+  .fig-esp *{ animation:none !important; transition:none !important }
+  .fig-esp .scene, .fig-esp .plot, .fig-esp .cal{ break-inside: avoid }
+}
+@media (prefers-reduced-motion: reduce){
+  .fig-esp *{ animation:none !important }
+}
+</style>
+</head>
+<body>
+
+<figure class="fig-esp" role="figure" aria-label="Simulação animada do esquema de um espectrofotômetro com espectro da fonte, autozero com branco reagente ou água, fenda ajustável, luz parasita e curva de calibração">
+  <div class="t"><b>Esquema Básico de um Espectrofotômetro</b><span> — Interativo (funcionamento real)</span></div>
+
+  <!-- GRADE 2×2: no desktop são 2 colunas; abaixo de 900px vira 1 coluna.
+       Q1 e Q2 formam a linha de cima (alturas sincronizadas por JS).
+       Q3 e Q4 formam a linha de baixo (Q3 é a régua, Q4 espelha). -->
+  <div class="esp-grid">
+
+    <!-- ==========================================================
+         QUADRANTE 1 — INSTRUMENTO
+         Esquerda: palco animado do caminho óptico (lâmpada → fenda de
+         entrada → prisma → fenda de saída → cubeta → detector).
+         Direita: bloco "LEITURA" com λ, %T, sinal e absorbância.
+         O JS move .rays/.prisma conforme lam e acende .det conforme %T.
+         ========================================================== -->
+    <div class="esp-card esp-card--instrument">
+      <div class="esp-card-title">1. Instrumento <span>caminho óptico + leitura</span></div>
+      <div class="instrument-layout">
+        <div class="scene">
+          <div class="scene-inner">
+            <div class="lamp"></div>
+            <div class="mono"></div>
+            <div class="fenda f-in-top"></div><div class="fenda f-in-bot"></div>
+            <div class="prisma"></div>
+            <div class="rays"></div>
+            <div class="arc"></div>
+            <div class="fenda f-out-top"></div><div class="fenda f-out-bot"></div>
+            <div class="beamline beam--io"></div>
+            <span class="il il--i0">I<sub>0</sub></span>
+            <div class="cuv"><div class="liq"></div></div>
+            <div class="beamline beam--i"></div>
+            <span class="il il--i">I</span>
+            <div class="det"></div>
+            <span class="lab-in li-e">fenda de<br>entrada</span>
+            <span class="lab-in li-p">prisma ou<br>rede de difração</span>
+            <span class="lab-in li-s">fenda de<br>saída</span>
+            <span class="num n1"><b>1.</b> fonte: "luz branca"</span>
+            <span class="num n2"><b>2.</b> monocromador</span>
+            <span class="num n3"><b>3.</b> cubeta</span>
+            <span class="num n4"><b>4.</b> detector</span>
+          </div>
+        </div>
+        <div class="read" aria-live="polite">
+          <div class="read-title">LEITURA</div>
+          <div class="lam-group">
+            <span class="chip"></span>
+            <span>λ <b class="j-lam">430 nm</b></span>
+          </div>
+          <span class="cell">%T <b class="j-t">57,5</b></span>
+          <span class="cell">sinal <b class="j-sig">20%</b></span>
+          <div class="disp j-a">0,240 A</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         QUADRANTE 2 — ESPECTRO
+         Um único canvas (.j-cvspec) plota QUATRO séries:
+           · A medido      (linha principal, ciano)
+           · Beer–Lambert  (referência tracejada clara)
+           · sem parasita  (amarela, só quando luz parasita está ligada)
+           · I₀ relativa   (pontilhada cinza, eixo próprio)
+         Interação: clique/toque/setas escolhem λ. O slider Y à direita
+         trava a escala do eixo A (modo manual); "auto" volta ao automático.
+         ========================================================== -->
+    <div class="esp-card esp-card--spectrum">
+      <div class="esp-card-title">2. Espectro <span>A(λ), Beer–Lambert e I₀</span></div>
+      <div class="plotwrap">
+        <div class="plot-flex">
+          <div class="canvas-host">
+            <canvas class="plot j-cvspec" tabindex="0" role="img"
+              aria-label="Espectro medido: absorbância A(λ), lei de Beer e intensidade relativa da fonte I0. Clique, toque ou use as setas para escolher o comprimento de onda."></canvas>
+          </div>
+          <div class="yslider">
+            <span class="yslider-lab j-spy-lab">auto</span>
+            <div class="yslider-track">
+              <input type="range" class="j-spy" min="0.1" max="8.0" step="0.005" value="2.5"
+                     aria-label="Travar a escala do eixo A do espectro. Arraste para entrar em modo manual.">
+            </div>
+            <span class="yslider-hint j-spy-auto hidden" role="button" tabindex="0"
+                  aria-label="Voltar à escala automática do eixo A do espectro">auto</span>
+          </div>
+        </div>
+        <div class="plothint">clique · toque · ← → no gráfico escolhem λ</div>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         QUADRANTE 3 — CONTROLES E DIAGNÓSTICO
+         Quatro grupos (.grp) de entrada:
+           parâmetros    — λ, fenda (Δλ), concentração c
+           referência    — autozero com branco, zerar com água, limpar
+           perturbações  — luz parasita 0,5%, restaurar padrões
+           cenários      — exercício 3, exercício 7, exportar CSV
+         Abaixo, o bloco .diag (saída) é reescrito a cada update():
+           .status   → estado da referência (bolinha + texto)
+           .warnbox  → aviso quando o desvio da lei de Beer é grande
+           .dev      → barra + decomposição do desvio (fenda × parasita)
+           .formula  → substituição numérica em A = ε·b·c
+           .kv       → ajuste dos padrões, R², RMSE, c calculada, erro
+         As mensagens usam '\n' + white-space:pre-line (uma por linha).
+         ========================================================== -->
+    <div class="esp-card esp-card--controls">
+      <div class="esp-card-title">3. Controles e diagnóstico <span>parâmetros, referência e ajuste</span></div>
+      <div class="ctl">
+        <div class="grp">
+          <span class="grp-lab">parâmetros</span>
+          <div class="row"><span class="lab">λ de leitura</span><input type="range" class="j-slider" min="400" max="700" step="1" value="430" aria-label="Selecionar comprimento de onda (nm) — gira o prisma"><span class="sl j-dl2">430 nm</span></div>
+          <div class="row"><span class="lab">fenda (Δλ)</span><input type="range" class="j-slit" min="1" max="16" step="1" value="4" aria-label="Largura da fenda de saída — banda espectral (nm)"><span class="sl j-dl">4 nm</span></div>
+          <div class="row"><button type="button" class="btn j-dec" aria-label="Diminuir concentração">−</button><span class="cl">concentração da amostra <b class="j-c">c = 4,0 mg·L⁻¹ de P</b></span><button type="button" class="btn j-inc" aria-label="Aumentar concentração">+</button></div>
+          <div class="row"><span class="lab">c (mg·L⁻¹)</span><input type="range" class="j-cslider" min="0" max="100" step="0.1" value="4" aria-label="Concentração da amostra em mg por litro de fósforo (contínua, passo 0,1)"><span class="sl j-csl">4,0</span></div>
+        </div>
+        <div class="grp">
+          <span class="grp-lab">referência</span>
+          <div class="row" style="flex-wrap:wrap; gap:6px;"><button type="button" class="pill j-zero" aria-label="Registrar o branco reagente (autozero correto)">autozero · branco reagente</button><button type="button" class="pill j-zero2" aria-label="Zerar com água destilada em vez do branco">zerar com água</button><button type="button" class="pill j-refclear" aria-label="Limpar a referência">limpar referência</button></div>
+        </div>
+        <div class="grp">
+          <span class="grp-lab">perturbações</span>
+          <div class="row" style="flex-wrap:wrap; gap:6px;"><button type="button" class="pill j-stray" aria-label="Alternar luz parasita de 0,5%">luz parasita 0,5%</button><button type="button" class="pill j-reset" aria-label="Restaurar os padrões da simulação">restaurar padrões</button></div>
+        </div>
+        <div class="grp">
+          <span class="grp-lab">cenários e exportação</span>
+          <div class="row" style="flex-wrap:wrap; gap:6px;"><button type="button" class="pill j-sc3" aria-label="Cenário do exercício 3: leitura com branco reagente">cenário: exercício 3</button><button type="button" class="pill j-sc7" aria-label="Cenário do exercício 7: leitura zerada com água">cenário: exercício 7</button><button type="button" class="pill j-csv" aria-label="Exportar os dados desta simulação em CSV">exportar CSV</button></div>
+        </div>
+        <div class="diag">
+          <div class="status"><span class="dot j-dot ok"></span><span class="j-stat"></span></div>
+          <div class="warnbox j-warn"></div>
+          <div class="dev"><div class="devbar"><span class="devfill j-devfill"></span></div><div class="devtxt j-dev"></div></div>
+          <div class="formula j-formula"></div>
+          <div class="kv">
+            <span>ajuste dos padrões</span><b class="j-fitab">—</b>
+            <span>R² · RMSE</span><b class="j-fitr2">—</b>
+            <span>c calculada (A lido)</span><b class="j-ccalc">—</b>
+            <span>erro vs. nominal</span><b class="j-cerr">—</b>
+            <span class="wide j-fitnote"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         QUADRANTE 4 — RESULTADOS E INTERPRETAÇÃO
+         Esquerda: curva de calibração A × c (.j-cvcal) com a faixa
+         analítica 0–10 mg·L⁻¹ sombreada, os padrões e o ponto atual.
+         Direita: texto fixo de interpretação (branco, fenda, luz parasita).
+         Dois controles de eixo: slider Y (A máx) e slider X (c máx).
+         ========================================================== -->
+    <div class="esp-card esp-card--results">
+      <div class="esp-card-title">4. Resultados e interpretação <span>curva de calibração + conceitos</span></div>
+      <div class="esp-results-grid">
+        <div class="calwrap">
+          <div class="calhead"><b>Curva de calibração</b> A × c <span class="calinfo j-calinfo"></span></div>
+
+          <div class="plot-flex">
+            <div class="canvas-host">
+              <canvas class="cal j-cvcal" tabindex="0" role="img" aria-label="Curva de calibração: absorbância em função da concentração de fósforo, com a faixa analítica de 0 a 10 mg por litro destacada. Use as setas para mudar a concentração."></canvas>
+            </div>
+            <div class="yslider">
+              <span class="yslider-lab j-caly-lab">2,4</span>
+              <div class="yslider-track">
+                <input type="range" class="j-caly" min="0.2" max="2.4" step="0.01" value="2.4"
+                       aria-label="Faixa máxima do eixo de absorbância da curva de calibração">
+              </div>
+              <span class="yslider-hint hidden" aria-hidden="true">A</span>
+            </div>
+          </div>
+
+          <div class="calzoom">
+            <div class="calzoom-grp">
+              <span class="calzoom-lab">eixo c:</span>
+              <input type="range" class="j-calx" min="10" max="100" step="0.1" value="100"
+                     aria-label="Faixa máxima do eixo de concentração da curva de calibração">
+              <span class="calzoom-val j-calxv">100</span>
+              <span class="calzoom-unit">mg·L⁻¹</span>
+            </div>
+          </div>
+        </div>
+        <div class="cap">
+          <div class="cap-title">Interpretação</div>
+          A fonte é constante, mas não "plana": a lâmpada de tungstênio-halogênio emite mais no vermelho (curva I₀ no gráfico) — por isso o instrumento registra o <b>branco reagente</b> antes da amostra. Zerar com <b>água</b> deixa a leitura com a absorbância do próprio branco. A <b>fenda</b> ajusta a banda espectral: fenda larga suaviza picos finos (feição espectral estreita em 486 nm). Com <b>luz parasita</b> de 0,5%, A alto deixa de obedecer à lei de Beer — e é por isso que o método tem <b>faixa analítica</b> (0–10 mg·L⁻¹, sombreada na curva de calibração). Leitura: A = ε·b·c.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</figure>
+
+<script>
+(function(){
+  "use strict";
+  document.querySelectorAll(".fig-esp").forEach(init);
+
+  /* init(root) — inicializa UMA instância da figura.
+     É chamada para cada elemento ".fig-esp" da página (normalmente um).
+     Todo o estado da simulação vive no escopo desta função: não há
+     variáveis globais. root é o <figure class="fig-esp">.
+
+     ORDEM INTERNA:
+       1. constantes e o @model (matemática pura)
+       2. estado mutável + funções de referência/leitura
+       3. cache de elementos DOM (objeto el)
+       4. desenho dos gráficos (canvas)
+       5. update() — recalcula tudo e escreve na tela
+       6. event listeners + sincronização de alturas */
+  function init(root){
+    /* ---- constantes de configuração da simulação ---- */
+    var AMAXCAL_DEF = 2.4;   /* teto PADRÃO do eixo A na curva de calibração */
+    var DEVFULL = 0.5;       /* desvio (A) que enche 100% da barra .devbar  */
+    var DEVWARN = 0.02;      /* abaixo disto o desvio é "verde" (aceitável) */
+    var AMAXHI = 2.5;        /* teto do eixo A do espectro quando em AUTO   */
+    var CMAX = 100;          /* concentração máxima permitida (mg·L⁻¹ de P) */
+    var STRAY = 0.005;       /* fração de luz parasita do botão: 0,5%       */
+    var STDS = [0, 1, 2, 4, 6, 8, 10]; /* padrões da curva de calibração (mg·L⁻¹) */
+
+    /* ================================================================
+       @model — MATEMÁTICA DO ESPECTROFOTÔMETRO (sem DOM, sem estado)
+       ================================================================
+       Todas as funções daqui são PURAS em relação à tela: recebem números
+       e devolvem números. Elas podem ser extraídas e testadas isoladamente.
+
+       ATENÇÃO: o delimitador @model NÃO é uma fronteira de chamadas.
+       bandT/A_band/A_meas são chamadas também em update(), fora do bloco.
+       Mudar uma assinatura aqui exige varrer o arquivo inteiro.
+       ================================================================ */
+    /* @model:start */
+    /* Constantes físicas do modelo:
+         K430  absortividade de referência em 430 nm (L·mg⁻¹·cm⁻¹)
+         MP    massa molar do fósforo (g·mol⁻¹) — usada só para exibir ε molar
+         ABLK  absorbância do branco reagente no ponto central de sua banda */
+    var K430 = 0.0600, MP = 30.974, ABLK = 0.030;
+
+    /* g(x,m,s) — gaussiana normalizada em x=m com largura s. Bloco de
+       construção de todos os perfis espectrais abaixo. */
+    function g(x,m,s){ return Math.exp(-Math.pow((x-m)/s,2)); }
+    /* epsRel(l) — forma do espectro de absorção RELATIVA (normalizada).
+       Soma de 4 bandas gaussianas que imitam um cromóforo real:
+         430 nm / s=70  banda principal larga (máx ~2.0 → define a escala)
+         486 nm / s=6   feição espectral estreita e aguda do ANALITO
+                        (NÃO é linha de hólmio: hólmio é padrão de
+                        calibração de comprimento de onda, outro contexto.
+                        Aqui é uma banda fictícia do cromóforo, usada para
+                        demonstrar o efeito da largura de fenda — texto do
+                        Q4 alinhado com esta leitura)
+         545 nm / s=45  ombro verde
+         620 nm / s=60  cauda vermelha
+       A divisão por 2.0 normaliza para que epsRel(430) ≈ 1. */
+    function epsRel(l){
+      return (2.0*g(l,430,70) + 1.2*g(l,486,6) + 0.55*g(l,545,45) + 0.25*g(l,620,60)) / 2.0;
+    }
+    /* blkRel(l) — forma da absorbância do BRANCO reagente (banda larga em
+       430 nm). Separado de epsRel porque o branco não contém o analito:
+       é a matriz do reagente que absorve de fundo. */
+    function blkRel(l){ return g(l,430,110); }
+    /* k(l) — absortividade efetiva (L·mg⁻¹·cm⁻¹) no comprimento l.
+       É o "ε·b" da lei de Beer já com b=1 cm embutido. */
+    function k(l){ return K430 * epsRel(l); }
+    /* epsMolar(l) — absortividade MOLAR (L·mol⁻¹·cm⁻¹), só para exibição.
+       Converte de mg para mol usando a massa molar do fósforo. */
+    function epsMolar(l){ return k(l) * MP * 1000; }
+    /* A_ideal(l,c) — lei de Beer PURA: A = k·c. Sem branco, sem luz
+       parasita, sem ponderação de banda. É o "ideal teórico". */
+    function A_ideal(l, c){ return k(l) * c; }
+    /* srcI(l) — intensidade RELATIVA da fonte (lâmpada tungstênio-halogênio)
+       em função do comprimento de onda, normalizada para 1.0 no vermelho.
+       Cresce de 0.30 (400 nm) até 1.0 (700 nm) — é a curva I₀ do gráfico Q2.
+       Justifica o autozero: como a fonte não é plana, o branco precisa ser
+       registrado antes da amostra.
+       Retorna valores fora de [400,700] por extrapolação dos ramos extremos
+       (usado por bandT quando a fenda invade as bordas do intervalo). */
+    function srcI(l){
+      var z = (l - 400) / 300;
+      if (z <= 0) return 0.30;
+      if (z >= 1) return 1.0;
+      return 0.30 + 0.70 * Math.pow(z, 1.25);
+    }
+    /* bandT(l, c, dlam) — TRANSMISSÃO medida através da cubeta.
+       Assinatura: (comprimento central l, concentração c, largura de fenda dlam).
+       dlam é OBRIGATÓRIO — omiti-lo faz li virar NaN e contamina todo o
+       cálculo em silêncio (foi exatamente o bug corrigido na linha do sinal).
+
+       Como funciona: a fenda não mede um ponto, mede uma BANDA. O código
+       amostra n=15 pontos ao longo de [l−dlam/2, l+dlam/2], calcula a
+       transmitância de cada um (branco + analito) e faz a MÉDIA PONDERADA
+       pela intensidade da fonte (srcI). Fenda larga = média mais suave =
+       picos finos desaparecem (ex.: a feição estreita de 486 nm —
+       "feição" e não "linha": é banda de ABSORÇÃO do analito, não
+       linha de emissão/calibração como a do hólmio).
+
+       Já embute o branco (ABLK·blkRel) e o analito (k·c) no mesmo expoente.
+       Retorna T (0..1). Protegido por T_guard em A_band/A_meas. */
+    function bandT(l, c, dlam){
+      var n = 15, sum = 0, wsum = 0, i, li, w;
+      for (i = 0; i < n; i++){
+        li  = l + (i/(n-1) - 0.5) * dlam;
+        w   = srcI(li);
+        sum += w * Math.pow(10, -(ABLK*blkRel(li) + k(li)*c));
+        wsum += w;
+      }
+      return wsum > 0 ? sum / wsum : 0;
+    }
+    /* M2 — guarda de transmissao contra NaN/0/negativo.
+       Math.max(1e-12, NaN) retorna NaN (NaN propaga em Math.max), entao a
+       guarda antiga NAO protegia o unico caso que importava: uma aridade
+       errada em bandT() virava NaN silencioso na tela. Aqui testamos a
+       transmissao antes do log; se nao for finita e positiva, usamos 1e-12. */
+    function T_guard(t){
+      return (isFinite(t) && t > 0) ? t : 1e-12;
+    }
+    /* A_band(l,c,dlam) — absorbância SEM luz parasita (S=0).
+       É a curva amarela do Q2 e a base do cálculo de A_instr_ns. */
+    function A_band(l, c, dlam){ return -Math.log10(T_guard(bandT(l, c, dlam))); }
+    /* A_meas(l,c,dlam,S) — absorbância COM luz parasita S (fração 0..1).
+       Modelo: a luz parasita adiciona uma fração S da intensidade que não
+       atravessa a amostra. T_efetiva = (1−S)·T + S. Quando S=0 coincide
+       exatamente com A_band. É a função que gera a "leitura" do aparelho. */
+    function A_meas(l, c, dlam, S){
+      return -Math.log10(T_guard((1-S)*bandT(l, c, dlam) + S));
+    }
+    /* linfit(xs,ys) — regressão linear por mínimos quadrados ordinários.
+       Entrada: arrays de x (concentrações) e y (absorbâncias).
+       Retorna { a: inclinação, b: intercepto, r2: coeficiente de
+                 determinação, rmse: erro RMS em A }.
+       Usada em calibrate() com os padrões STDS, e exibida no Q3 (.kv).
+       Se a variância de x for zero (impossível com STDS fixo), a=0. */
+    function linfit(xs, ys){
+      var n = xs.length, sx=0, sy=0, sxx=0, sxy=0, i;
+      for (i = 0; i < n; i++){ sx += xs[i]; sy += ys[i]; sxx += xs[i]*xs[i]; sxy += xs[i]*ys[i]; }
+      var den = n*sxx - sx*sx;
+      var a = den !== 0 ? (n*sxy - sx*sy)/den : 0;
+      var b = (sy - a*sx)/n;
+      var my = sy/n, ssT = 0, ssR = 0;
+      for (i = 0; i < n; i++){
+        var f = a*xs[i] + b;
+        ssT += Math.pow(ys[i]-my, 2);
+        ssR += Math.pow(ys[i]-f, 2);
+      }
+      return { a: a, b: b, r2: ssT > 1e-15 ? 1 - ssR/ssT : 1, rmse: Math.sqrt(ssR/n) };
+    }
+    /* @model:end */
+
+    /* ================================================================
+       ESTADO MUTÁVEL DA SIMULAÇÃO
+       ================================================================
+       Estes são os únicos valores que mudam com a interação. Toda a tela
+       é uma função deles: update() lê estes valores e reescreve tudo.
+       ================================================================ */
+
+    /* --- entrada do usuário --- */
+    var cVal = 4.0;              /* concentração atual (mg·L⁻¹ de P), 0..CMAX */
+    var DEF_C = 4.0;             /* valor de c ao restaurar padrões          */
+    var lam = 430;               /* comprimento de onda de leitura (nm)      */
+    var dlam = 4;                /* largura da fenda de saída Δλ (nm)        */
+    var strayOn = false;         /* luz parasita LIGADA? (estado de UI)      */
+    var S = 0;                   /* luz parasita como FRAÇÃO (0 ou STRAY) —
+                                    é a MESMA informação de strayOn, mas na
+                                    forma numérica que o modelo consome.   */
+    /* A inicial vem do MODELO, não de um literal 0.030.
+       ⚠️ CONSISTÊNCIA (item analisado): o literal 0.030 diferia do valor
+       calculado A_meas(430,0,4,0) ≈ 0,0299962 em ~4e-6 A — invisível em
+       tela (3 casas), mas criava DUAS origens para a mesma grandeza:
+       boot dizia 0.030, reset/cenário diziam o calculado. Agora boot =
+       reset = cenário 3 numericamente idênticos. */
+    var ref = { lam: 430, dlam: 4, kind: "blank", A: A_meas(430, 0, 4, 0) };
+                                 /* referência registrada (autozero).
+                                    kind: "blank" (branco reagente) ou
+                                    "water" (água destilada). null = sem ref.
+
+                                    A = absorbância do branco MEDIDA E
+                                    CONGELADA no instante do autozero.
+
+                                    ⚠️ MUDANÇA DE COMPORTAMENTO (esta versão):
+                                    antes o campo A NÃO existia e o branco era
+                                    RECALCULADO a cada leitura, com o S (luz
+                                    parasita) de AGORA. Isso fazia a própria
+                                    referência acompanhar a parasita, cancelando
+                                    parte do efeito que o simulador quer
+                                    demonstrar. Num instrumento real o autozero
+                                    grava a fotocorrente daquele instante e ela
+                                    NÃO muda quando a parasita é ligada depois.
+                                    É esse comportamento que passamos a modelar.
+
+                                    Quem CONSTRÓI ref: os 2 botões de autozero,
+                                    o reset e cenario(). TODOS precisam preencher
+                                    A — se algum esquecer, refMeas devolve
+                                    undefined e o mostrador exibe "NaN A". */
+
+    /* --- escala dos eixos dos gráficos --- */
+    var calXMax = 100;           /* teto do eixo c na curva de calibração (mg·L⁻¹) */
+    var calYMax = AMAXCAL_DEF;   /* teto do eixo A na curva de calibração          */
+    var specYAuto = true;        /* eixo A do espectro em modo automático?         */
+    var specYMax = AMAXHI;       /* teto manual do eixo A do espectro (se !auto)   */
+
+    /* --- estado de interação / desenho (não aparece diretamente) --- */
+    var hv = -1;                 /* λ sob o mouse no gráfico do espectro; -1 = fora */
+    var lastH = 0;               /* última altura enviada ao iframe pai (postHeight) */
+    var rafId = 0;               /* id do requestAnimationFrame pendente (0 = livre) */
+    var pressed = false;         /* ponteiro pressionado sobre um canvas?            */
+
+    /* C() — acessor de leitura da concentração. Existe para que as funções
+       do modelo possam ser lidas como física (C()) sem expor cVal. */
+    function C(){ return cVal; }
+
+    /* ================================================================
+       BRANCO EFETIVO — FONTE ÚNICA DE VERDADE
+       ================================================================
+       O branco reagente aparece na tela em TRÊS lugares (e mais o CSV):
+         · .status   (zeroInfo)  — aviso "leitura inclui o branco"
+         · .formula  (linha 2)   — A_lido = A + A_branco
+         · .fitnote              — "intercepto carrega o erro do branco"
+
+       Se cada um calcular por conta própria, os números DIVERGEM: o branco
+       integrado na banda depende de λ e de Δλ, então uma constante fixa
+       (ABLK) só acerta no pico da gaussiana (λ = 430 nm). Em λ = 500 nm
+       com fenda larga, o valor real é ~0,020 A e não 0,030 A.
+
+       Por isso TODOS leem desta função. Ela é, POR DEFINIÇÃO, a
+       absorbância que o INSTRUMENTO lê de uma cubeta só com branco
+       reagente (c = 0):
+
+         A_meas(l, 0, dlam, S)
+
+       que já vem integrada na banda por bandT e já inclui a luz parasita
+       — exatamente o que o aluno veria pondo o branco no lugar da amostra.
+
+       ⚠️ CORREÇÃO (bug real de rodada anterior): aqui havia
+            A_meas(l,0,dlam,S) − A_band(l,0,dlam)
+       e o comentário afirmava que a diferença "isola SÓ o branco". Estava
+       INVERTIDO. O branco já está dentro de bandT (o termo ABLK·blkRel
+       entra no expoente de bandT), portanto nos DOIS operandos: a
+       subtração o CANCELA e sobra apenas o artefato da luz parasita.
+       Com S = 0 os dois operandos são a MESMA expressão, e o resultado
+       era exatamente 0,000 — fazendo a linha 2 do .formula exibir
+       "0,270 = 0,240 + 0,000" no exercício 7, o cenário mais didático.
+
+       ATENÇÃO: esta função NÃO substitui ideal_instr(). O ideal_instr
+       continua somando ABLK*blkRel(l) no PONTO CENTRAL — é a semântica
+       didática congelada (ver o comentário L2 lá). Aqui é a MEDIÇÃO do
+       branco para EXIBIÇÃO, que deve bater com o que o instrumento lê.
+       ================================================================ */
+    function brancoEfetivo(l){
+      return A_meas(l, 0, dlam, S);
+    }
+
+    /* ================================================================
+       REFERÊNCIA (AUTOZERO) E GRANDEZAS DE LEITURA
+       ================================================================
+       Conceito: o instrumento mede a amostra MENOS a referência. Se a
+       referência foi registrada em outro λ ou outra fenda, ela é
+       considerada INVÁLIDA (refOK() = false) e o instrumento passa a
+       exibir a leitura crua, sem desconto.
+       ================================================================ */
+
+    /* refOK() — a referência foi registrada nas MESMAS condições atuais
+       (mesmo λ e mesma fenda)? Se não, ela não pode ser descontada. */
+    function refOK(){ return !!ref && ref.lam === lam && ref.dlam === dlam; }
+
+    /* refMeas(l,c) — absorbância a DESCONTAR da leitura.
+       Retorna 0 quando: (a) não há referência válida; ou (b) a referência
+       é água — zerar com água significa "não descontar o branco".
+       Caso contrário, devolve o valor CONGELADO em ref.A.
+
+       ⚠️ Antes esta função RECALCULAVA o branco com o S atual
+       (A_meas(l, c, ref.dlam, S)). Como o autozero é um ato físico
+       registrado num instante, recalculá-lo fazia a referência "seguir"
+       a luz parasita e mascarar parte do desvio que o Q3 quer mostrar.
+       Agora ref.A é lido direto — o valor do momento do clique.
+
+       O parâmetro l não é mais usado para MEDIR: refOK() já garante
+       ref.lam === lam, então ref.A É o valor no λ atual. Mantido na
+       assinatura porque as chamadas (A_instr/A_instr_ns) o passam. */
+    function refMeas(l, c){
+      if (!refOK()) return 0;
+      return ref.kind === "water" ? 0 : ref.A;
+    }
+
+    /* refBand(l) — o mesmo desconto que refMeas, mas SEM luz parasita.
+       Usada por A_instr_ns() para produzir a curva "sem parasita" do Q2.
+
+       ⚠️ POR QUE ESTA **NÃO** FOI CONGELADA COMO refMeas:
+       as duas descontam o branco, mas são grandezas DIFERENTES de propósito.
+         · refMeas → o branco COMO FOI REGISTRADO no autozero (com o S daquele
+           instante). É o desconto real: alimenta A_instr, a leitura do Q1.
+         · refBand → o branco SEM parasita, recalculado sempre com S=0. É o
+           contrafactual "como seria a leitura se não houvesse luz parasita",
+           e por isso NÃO pode herdar o S do registro — se herdasse, a curva
+           comparativa do Q2 (A_instr_ns) perderia o sentido: ela existe para
+           isolar justamente a parcela devP atribuída à parasita.
+       Se um dia alguém "corrigir" refBand para ler ref.A, a curva amarela do
+       Q2 deixa de ser o contrafactual sem parasita e passa a ser uma segunda
+       cópia de A_instr — o diagnóstico de causa dominante quebra em silêncio. */
+    function refBand(l){
+      if (!refOK()) return 0;
+      return ref.kind === "water" ? 0 : A_band(l, 0, ref.dlam);
+    }
+
+    /* A_instr(l,c) — A LEITURA DO INSTRUMENTO. É a grandeza principal:
+       alimenta o mostrador do Q1, o marcador do Q2 e o cálculo do desvio.
+       = A_meas(atual) − referência registrada. */
+    function A_instr(l, c){
+      if (c === undefined) c = cVal;
+      return A_meas(l, c, dlam, S) - refMeas(l, 0);
+    }
+
+    /* A_instr_ns(l,c) — mesma leitura, porém SEM luz parasita (ns = no stray).
+       A diferença A_instr_ns − A_instr isola a contribuição da luz parasita,
+       que é o termo devP exibido na decomposição do desvio no Q3. */
+    function A_instr_ns(l, c){
+      if (c === undefined) c = cVal;
+      return A_band(l, c, dlam) - refBand(l);
+    }
+    /* L1/L2 (DECISAO: opcao A — mantida a semantica didatica).
+       ideal_instr() e o "ideal de Beer PURO": k(l)*c, sem ponderacao por
+       banda e sem luz parasita. E DE PROPOSITO que ele NAO inclua S nem
+       dlam — este valor e o que o Q3 usa como rotulo didatico de "ideal"
+       na formula, e o que o usuario compara mentalmente com a lei de Beer.
+
+       ATENCAO (L1): por isso dev = ideal_instr - A_instr NAO isola uma
+       unica causa fisica — ele mistura desvio de banda + luz parasita.
+       O desvio e decomposto explicitamente em devS (fenda) e devP
+       (parasita) no update(), que e quem da o diagnostico de causa.
+       Se um dia se quiser que "ideal" seja o ideal NA MESMA condicao
+       fisica da leitura, esta funcao precisa receber S e usar a mesma
+       media ponderada de bandT — e o numero exibido em dev/warn MUDA.
+
+       L2: o branco e somado como ABLK*blkRel(l) no ponto central, nao como
+       media ponderada pela fonte. Com fenda larga isso deixa um residuo
+       puramente numerico (banda vs. ponto) em relacao ao caminho de
+       A_meas. Residuo pequeno e aceito nesta opcao. */
+    function ideal_instr(l, c){
+      if (c === undefined) c = cVal;
+      var a = A_ideal(l, c);
+      if (!(refOK() && ref.kind === "blank")) a += ABLK * blkRel(l);
+      return a;
+    }
+
+    /* ================================================================
+       CACHE DE ELEMENTOS DOM (objeto el)
+       ================================================================
+       Cada chave é uma referência direta a um nó da figura, resolvida UMA
+       vez na inicialização. Convenção dos seletores:
+         .j-*  → "gancho de JavaScript" — classe sem CSS próprio, usada
+                 apenas para o JS encontrar o elemento.
+       Se um .j-* for renomeado no HTML sem atualizar aqui, o JS quebra
+       com null silencioso (por isso os guardas "if (el.x)").
+       ================================================================ */
+    var el = {
+      prisma: root.querySelector(".prisma"),
+      rays:   root.querySelector(".rays"),
+      liq:    root.querySelector(".liq"),
+      io:     root.querySelector(".beam--io"),
+      bi:     root.querySelector(".beam--i"),
+      det:    root.querySelector(".det"),
+      chip:   root.querySelector(".chip"),
+      lam:    root.querySelector(".j-lam"),
+      t:      root.querySelector(".j-t"),
+      sig:    root.querySelector(".j-sig"),
+      a:      root.querySelector(".j-a"),
+      c:      root.querySelector(".j-c"),
+      dl:     root.querySelector(".j-dl"),
+      dl2:    root.querySelector(".j-dl2"),
+      sl:     root.querySelector(".j-slider"),
+      slit:   root.querySelector(".j-slit"),
+      dec:    root.querySelector(".j-dec"),
+      inc:    root.querySelector(".j-inc"),
+      zero:   root.querySelector(".j-zero"),
+      zero2:  root.querySelector(".j-zero2"),
+      refclr: root.querySelector(".j-refclear"),
+      stray:  root.querySelector(".j-stray"),
+      reset:  root.querySelector(".j-reset"),
+      dot:    root.querySelector(".j-dot"),
+      stat:   root.querySelector(".j-stat"),
+      warn:   root.querySelector(".j-warn"),
+      devfill:root.querySelector(".j-devfill"),
+      dev:    root.querySelector(".j-dev"),
+      frm:    root.querySelector(".j-formula"),
+      calinfo:root.querySelector(".j-calinfo"),
+      cvspec: root.querySelector(".j-cvspec"),
+      cvcal:  root.querySelector(".j-cvcal"),
+      cslider:root.querySelector(".j-cslider"),
+      csl:    root.querySelector(".j-csl"),
+      calx:   root.querySelector(".j-calx"),
+      calxv:  root.querySelector(".j-calxv"),
+      caly:   root.querySelector(".j-caly"),
+      calylab:root.querySelector(".j-caly-lab"),
+      spy:    root.querySelector(".j-spy"),
+      spylab: root.querySelector(".j-spy-lab"),
+      spyauto:root.querySelector(".j-spy-auto"),
+      sc3:    root.querySelector(".j-sc3"),
+      sc7:    root.querySelector(".j-sc7"),
+      csv:    root.querySelector(".j-csv"),
+      fitab:  root.querySelector(".j-fitab"),
+      fitr2:  root.querySelector(".j-fitr2"),
+      fitnote:root.querySelector(".j-fitnote"),
+      ccalc:  root.querySelector(".j-ccalc"),
+      cerr:   root.querySelector(".j-cerr")
+    };
+
+    /* A_read(l,c) — absorbância usada para a CURVA DE CALIBRAÇÃO.
+       Hoje é matematicamente idêntica a A_instr(). Existe como nome próprio
+       porque historicamente a curva usava a leitura crua; mantê-la separada
+       deixa explícito que calibrate() depende da referência registrada. */
+    function A_read(l, c){
+      if (c === undefined) c = cVal;
+      return A_meas(l, c, dlam, S) - refMeas(l, 0);
+    }
+
+    /* calibrate() — ajusta a reta A = a·c + b aos padrões STDS.
+       Para cada padrão mede A_read(lam, c); passa os pares para linfit().
+       Retorna o mesmo objeto de linfit: { a, b, r2, rmse }.
+       É recalculada a cada update(), então a curva reage a λ, fenda,
+       referência e luz parasita em tempo real. */
+    function calibrate(){
+      var xs = STDS.slice();
+      var ys = xs.map(function(c){ return A_read(lam, c); });
+      return linfit(xs, ys);
+    }
+
+    /* ================================================================
+       FORMATAÇÃO (pt-BR)
+       ================================================================ */
+
+    /* fmt(n,d) — número com d casas decimais e vírgula decimal.
+       Ex.: fmt(4, 1) → "4,0" */
+    function fmt(n,d){ return n.toFixed(d).replace(".", ","); }
+
+    /* fmtS(n,d) — número COM SINAL explícito, usado em desvios e erros.
+       Ex.: fmtS(0.123,3) → "+0,123" · fmtS(-0.05,3) → "−0,050".
+       Zera valores abaixo de 5e-4 para não exibir "−0,000". */
+    function fmtS(n,d){
+      var v = Math.abs(n) < 5e-4 ? 0 : n;
+      return (v > 0 ? "+" : (v < 0 ? "−" : "")) + Math.abs(v).toFixed(d).replace(".", ",");
+    }
+    /* M1 — guarda de NaN em fmtSig.
+       Sem isto, qualquer falha numerica futura (ex.: aridade errada numa
+       funcao do @model) volta a renderizar "NaN%" silenciosamente na tela.
+       Devolvemos "—" (mesmo marcador ja usado em el.cerr) para que a falha
+       seja VISIVEL como ausencia de dado, nunca como numero falso. */
+    function fmtSig(v){
+      if (!isFinite(v)) return "—";
+      if (v === 0) return "0";
+      return (v < 1 ? fmt(v, 1) : fmt(v, 0));
+    }
+    /* refTxt() — descrição textual do estado da referência, usada em
+       várias mensagens do Q3 e no CSV. Cobre 4 casos: sem referência,
+       referência inválida (λ/Δλ mudaram), água ou branco reagente. */
+    function refTxt(){
+      if (!ref) return "sem referência";
+      if (!refOK()) return "referência inválida (λ " + ref.lam + " nm · Δλ " + ref.dlam + " nm)";
+      return ref.kind === "water" ? "água" : "branco reagente";
+    }
+
+    /* ================================================================
+       refEstado() — CLASSIFICA O ESTADO DA REFERÊNCIA EM 4 CASOS
+       ================================================================
+       Substitui o antigo booleano comBranco, que colapsava dois estados
+       fisicamente DIFERENTES no mesmo `false`:
+
+         "blank" → branco reagente válido.
+                   A leitura JÁ é a lei de Beer: nada a somar.
+         "water" → água válida.
+                   A leitura é Beer + o branco reagente residual (a água
+                   não continha o reagente, então ele não foi descontado).
+         "none"  → nenhuma referência registrada (ref === null).
+                   O instrumento não desconta NADA — leitura crua.
+         "stale" → referência registrada mas INVÁLIDA (λ ou Δλ mudaram
+                   depois do autozero). Também é leitura crua.
+
+       POR QUE ISSO IMPORTA: "water" e "none"/"stale" produzem hoje o
+       MESMO número (todos somam ABLK·blkRel em ideal_instr), mas por
+       razões físicas distintas. O bloco .formula do Q3 precisa dizer
+       QUAL é o caso — senão o aluno acha que "zerar com água" e "não
+       zerar" são a mesma coisa.
+
+       Usado por: update() (bloco 4b, montagem da fórmula didática).
+       ================================================================ */
+    function refEstado(){
+      if (!ref) return "none";
+      if (!refOK()) return "stale";
+      return ref.kind === "water" ? "water" : "blank";
+    }
+
+    /* ================================================================
+       COR — espectro visível aproximado e utilidades de canvas
+       ================================================================ */
+
+    /* wlRGB(L) — converte comprimento de onda (nm) em cor RGB aproximada,
+       imitando a percepção do olho humano. Usada para colorir o feixe no
+       palco, o chip do Q1, o marcador de λ e as linhas do espectro.
+       Nos extremos (L<420 ou L>660) a intensidade cai (fator f) para
+       representar a perda de sensibilidade do olho nas bordas do visível. */
+    function wlRGB(L){
+      var r=0,g=0,b=0;
+      if(L<440){ r=(440-L)/60; b=1; }
+      else if(L<490){ g=(L-440)/50; b=1; }
+      else if(L<510){ g=1; b=(510-L)/20; }
+      else if(L<580){ r=(L-510)/70; g=1; }
+      else if(L<645){ r=1; g=(645-L)/65; }
+      else { r=1; }
+      var f = L<420 ? .35+.65*(L-400)/20 : (L>660 ? .35+.65*(700-L)/40 : 1);
+      var c=function(x){ return Math.max(0, Math.min(255, Math.round(255*x*f))); };
+      return [c(r),c(g),c(b)];
+    }
+    /* rgbCss(v,a) — monta a string CSS a partir do array [r,g,b].
+       Sem o 2º argumento gera "rgb(...)"; com ele, "rgba(...,a)". */
+    function rgbCss(v,a){
+      return a===undefined ? "rgb("+v[0]+","+v[1]+","+v[2]+")"
+                           : "rgba("+v[0]+","+v[1]+","+v[2]+","+a+")";
+    }
+
+    /* ================================================================
+       PALCO DO Q1 — construção dos raios coloridos do prisma
+       ================================================================
+       ORIGIN é o ponto de onde os raios divergem, em coordenadas do
+       .scene-inner (px). N=61 raios cobrem de 700 nm (j=0) a 400 nm
+       (j=N-1), cada um com uma cor de wlRGB e um ângulo alphaOf().
+       O conjunto inteiro (.rays) gira em update() para selecionar λ. */
+    var ORIGIN = { x: 110.5, y: 105 };
+    /* N — número de raios desenhados; rayEls[] e rayL[] ficam em paralelo
+       (elemento DOM e comprimento de onda correspondente). */
+    var N = 61;
+    var rayEls = [], rayL = [];
+    /* alphaOf(l) — ângulo de cada raio, em graus. Mapeia 700 nm → −15° e
+       400 nm → +15°, ou seja, o vermelho desvia menos que o violeta. */
+    function alphaOf(l){ return -15 + (700-l)/300 * 30; }
+
+    /* Linha branca do feixe de entrada (criada por JS para poder calcular
+       o comprimento a partir de ORIGIN, que é a fonte única de verdade). */
+    var wline = document.createElement("div");
+    wline.className = "sline";
+    wline.style.left  = "60px";
+    wline.style.top   = (ORIGIN.y - 1.5) + "px";
+    wline.style.width = (ORIGIN.x - 34) + "px";
+    root.querySelector(".scene-inner").appendChild(wline);
+
+    for (var j = 0; j < N; j++){
+      var lJ = 700 - j*300/(N-1);
+      var r  = document.createElement("div");
+      r.className = "ray";
+      r.style.backgroundColor = rgbCss(wlRGB(lJ));
+      r.style.transform = "rotate(" + alphaOf(lJ).toFixed(2) + "deg)";
+      el.rays.appendChild(r);
+      rayEls.push(r); rayL.push(lJ);
+    }
+
+    /* prep(cv) — PREPARA UM CANVAS PARA DESENHO. Chamada no início de
+       plotSpectrum() e plotCal(). Resolve três problemas de uma vez:
+         1. devicePixelRatio (telas retina): o canvas é dimensionado em
+            pixels físicos (W,H) e o contexto é escalado por Z·dpr, para
+            que as coordenadas do código continuem em px lógicos.
+         2. zoom CSS da figura (--fig-zoom): Z corrige a diferença entre a
+            caixa de layout (clientWidth) e a caixa renderizada (rect).
+         3. borda do canvas: o deslocamento bl/bt evita que o conteúdo
+            fique sob a borda de 1px.
+       Devolve { ctx, W, H, Z, dpr, bl, rect } — W/H em px LÓGICOS. */
+    function prep(cv){
+      var rr = cv.getBoundingClientRect();
+      var cs = getComputedStyle(cv);
+      var bl = parseFloat(cs.borderLeftWidth)  || 0;
+      var br = parseFloat(cs.borderRightWidth) || 0;
+      var bt = parseFloat(cs.borderTopWidth)   || 0;
+      var lw = cv.clientWidth, lh = cv.clientHeight;
+      var Z  = (lw + bl + br) > 0 ? rr.width / (lw + bl + br) : 1;
+      var dpr= window.devicePixelRatio || 1;
+      var W  = Math.max(40, Math.round(rr.width  * dpr));
+      var H  = Math.max(20, Math.round(rr.height * dpr));
+      if (cv.width !== W || cv.height !== H){ cv.width = W; cv.height = H; }
+      var ctx = cv.getContext("2d");
+      ctx.setTransform(Z*dpr, 0, 0, Z*dpr, bl*Z*dpr, bt*Z*dpr);
+      ctx.clearRect(0, 0, lw, lh);
+      return { ctx: ctx, W: lw, H: lh, Z: Z, dpr: dpr, bl: bl, rect: rr };
+    }
+    /* localX(cv,m,clientX) — converte a coordenada X do EVENTO (clientX,
+       relativa à viewport) para a coordenada interna do canvas, já
+       desfazendo o zoom. m é o objeto devolvido por prep(). */
+    function localX(cv, m, clientX){
+      return (clientX - m.rect.left) / m.Z - m.bl;
+    }
+
+    /* syncYSliderWidths() — faz o slider Y (um input range rotacionado -90°)
+       ter largura igual à ALTURA do track. Sem isto, após a rotação, o
+       controle não cobriria a altura real do gráfico. Roda no boot, no
+       resize e dentro de update(). Ignora tracks com menos de 20px. */
+    function syncYSliderWidths(){
+      var tracks = root.querySelectorAll(".yslider-track");
+      for (var i = 0; i < tracks.length; i++){
+        var tr = tracks[i];
+        var inp = tr.querySelector("input[type=range]");
+        if (!inp) continue;
+        var h = tr.clientHeight;
+        if (h > 20) inp.style.width = h + "px";
+      }
+    }
+
+    /* ======================= espectro ========================
+       LP/RP/TP/BP são as MARGENS internas do canvas do espectro
+       (Left, Right, Top, Bottom) reservadas para eixos e rótulos.
+       A área de plotagem é pw = W−LP−RP por ph = H−TP−BP. */
+    var LP = 34, RP = 14, TP = 10, BP = 20;
+
+    /* niceMax(v) — arredonda o teto do eixo A para um valor "redondo"
+       acima de v, escolhendo a granularidade conforme a magnitude. Usada
+       no modo AUTO do eixo A do espectro (specYAuto). */
+    function niceMax(v){
+      if (v <= 0.05) return 0.05;
+      if (v <= 0.10) return 0.10;
+      if (v <= 1.0)  return Math.ceil(v / 0.05) * 0.05;
+      if (v <= 4.0)  return Math.ceil(v / 0.20) * 0.20;
+      if (v <= 8.0)  return Math.ceil(v / 0.50) * 0.50;
+      return Math.ceil(v / 1.0) * 1.0;
+    }
+
+    /* plotSpectrum() — DESENHA O GRÁFICO DO Q2 (canvas .j-cvspec).
+       Não recebe argumentos e não devolve nada: lê o estado do escopo
+       (lam, dlam, S, ref, specYAuto, specYMax, hv) e escreve no canvas.
+
+       ORDEM DE DESENHO (importa por causa da sobreposição):
+         1. grade e rótulos dos eixos (λ em nm, A)
+         2. curva I₀ relativa (cinza pontilhada, eixo próprio)
+         3. curva Beer ideal (branca tracejada)
+         4. curva medida (linha principal) e, se strayOn, a curva sem parasita
+         5. linha vertical do λ atual + tooltip de hover (hv)
+       O teto do eixo A vem de dataset.amax, gravado por update(). */
+    function plotSpectrum(){
+      var m = prep(el.cvspec), ctx = m.ctx;
+      var W = m.W, H = m.H;
+      var pw = W - LP - RP, ph = H - TP - BP;
+      var L0 = 400, L1 = 700;
+
+      /* Teto automático do eixo A. Precisa considerar TODAS as curvas
+         desenhadas, senão uma delas estoura o topo do gráfico.
+
+         ⚠️ CORREÇÃO (bug real): antes o laço considerava só A_instr e
+         ideal_instr. A curva "sem parasita" (A_instr_ns, amarela
+         tracejada, desenhada quando strayOn) ficava FORA do cálculo —
+         ela podia ultrapassar o teto automático sem o algoritmo prever,
+         e o gráfico a clipava contra o topo sem aviso coerente.
+         Como A_instr_ns NÃO tem o termo de luz parasita, com S ligado
+         ela fica ACIMA de A_instr em absorbâncias altas — exatamente o
+         caso em que o teto era subestimado. */
+      var mx = 0;
+      for (var l0 = L0; l0 <= L1; l0 += 1){
+        mx = Math.max(mx, A_instr(l0));
+        mx = Math.max(mx, ideal_instr(l0));
+        if (strayOn){
+          mx = Math.max(mx, A_instr_ns(l0));
+        }
+      }
+      var AMAX;
+      if (specYAuto){
+        AMAX = niceMax(mx * 1.15 + 1e-9);
+      } else {
+        AMAX = Math.max(0.05, specYMax);
+      }
+      el.cvspec.dataset.amax = AMAX;
+
+      function X(l){ return LP + (l-L0)/(L1-L0)*pw; }
+      function Y(a){ return TP + (1 - Math.min(a,AMAX)/AMAX)*ph; }
+      ctx.lineWidth = 1;
+
+      ctx.font = "9px system-ui, sans-serif";
+      ctx.fillStyle = "#8fa0bd";
+      ctx.textAlign = "center";
+      for (var l = L0; l <= L1; l += 50){
+        var x = X(l);
+        ctx.strokeStyle = "rgba(138,160,189,.16)";
+        ctx.beginPath(); ctx.moveTo(x,TP); ctx.lineTo(x,TP+ph); ctx.stroke();
+        ctx.fillText(l+"", x, H-4);
+      }
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#5d6b8a";
+      ctx.fillText("nm", LP, H-4);
+
+      var step;
+      if (AMAX <= 0.5) step = 0.1;
+      else if (AMAX <= 1.0) step = 0.2;
+      else if (AMAX <= 2.5) step = 0.5;
+      else if (AMAX <= 5.0) step = 1.0;
+      else step = 2.0;
+
+      ctx.fillStyle = "#8fa0bd";
+      ctx.textAlign = "right";
+      for (var av = 0; av <= AMAX + 1e-9; av += step){
+        var yv = Y(av);
+        ctx.strokeStyle = "rgba(138,160,189,.10)";
+        ctx.beginPath(); ctx.moveTo(LP,yv); ctx.lineTo(LP+pw,yv); ctx.stroke();
+        ctx.fillText(fmt(av, av<1?2:(av<10?1:0)), LP-4, yv+3);
+      }
+      ctx.textAlign = "left";
+      ctx.save();
+      ctx.translate(10, TP+ph/2);
+      ctx.rotate(-Math.PI/2);
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#8fa0bd";
+      ctx.fillText("A", 0, 0);
+      ctx.restore();
+
+      /* ------------------------------------------------------------------
+         AVISOS DO CANTO SUPERIOR DIREITO — posicionamento ESTRUTURAL.
+
+         Antes, dois avisos independentes eram desenhados em W-6, TP+9:
+           (a) "manual · eixo A ≤ X"  — quando o eixo A está travado
+           (b) "curva acima da escala →" — quando A ultrapassa o teto
+         Como (b) só pode ocorrer quando (a) existe (no modo automático o
+         teto é niceMax(mx*1.15), que sempre cobre o máximo), a colisão
+         não era um caso raro: era GARANTIDA, e o aviso mais importante
+         (o de clipping) ficava ilegível.
+
+         Solução adotada: uma ÚNICA pilha vertical de avisos. Cada aviso
+         ocupa uma linha abaixo do anterior, ancorado em TP+9, TP+19, ...
+         Assim a posição depende do NÚMERO de avisos, não de uma condição
+         de modo — acrescentar um terceiro aviso no futuro não recria a
+         colisão, e nenhuma coordenada mágica (TP+19) fica órfã.
+
+         ARMADILHA CONHECIDA: textAlign é estado do contexto e não volta
+         sozinho ao default. Toda função que o muda PRECISA restaurá-lo
+         para "left" antes de retornar, senão o próximo texto desenhado
+         sai alinhado à direita por acidente. Por isso o helper abaixo
+         sempre restaura o alinhamento e a fonte.
+         ------------------------------------------------------------------ */
+
+      /* avisoNoCanto(txt) — empilha um aviso no canto superior direito.
+         Usa a variável avisoLinha para controlar a linha atual e SEMPRE
+         restaura textAlign/font, evitando vazamento de estado do canvas. */
+      var avisoLinha = 0;
+      function avisoNoCanto(txt){
+        ctx.font = "bold 8px system-ui, sans-serif";
+        ctx.fillStyle = "#ffc233";
+        ctx.textAlign = "right";
+        ctx.fillText(txt, W-6, TP+9 + avisoLinha*10);
+        ctx.textAlign = "left";
+        ctx.font = "8px system-ui, sans-serif";
+        avisoLinha++;
+      }
+
+      if (!specYAuto){
+        avisoNoCanto("manual · eixo A ≤ " + fmt(AMAX,2));
+      }
+
+      var clipou = false;
+      ctx.beginPath();
+      for (var l3 = L0; l3 <= L1; l3 += 1){
+        var a3v = A_instr(l3);
+        if (a3v > AMAX) clipou = true;
+        /* A curva "sem parasita" também é desenhada quando strayOn e
+           também precisa do teste de clipping — senão ela é cortada em
+           silêncio, sem o aviso de canto que a curva principal recebe. */
+        if (strayOn && A_instr_ns(l3) > AMAX) clipou = true;
+        var yy = Y(Math.max(0, a3v));
+        if (l3 === L0){ ctx.moveTo(X(l3),yy); } else { ctx.lineTo(X(l3),yy); }
+      }
+      ctx.strokeStyle = "#8df0ff"; ctx.lineWidth = 1.8;
+      ctx.stroke();
+      if (clipou){
+        avisoNoCanto("curva acima da escala →");
+      }
+
+      ctx.beginPath();
+      for (var l4 = L0; l4 <= L1; l4 += 1){
+        var yy2 = Y(Math.max(0, ideal_instr(l4)));
+        if (l4 === L0){ ctx.moveTo(X(l4),yy2); } else { ctx.lineTo(X(l4),yy2); }
+      }
+      ctx.strokeStyle = "rgba(255,255,255,.38)"; ctx.lineWidth = 1;
+      ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]);
+
+      if (strayOn){
+        ctx.beginPath();
+        for (var l6 = L0; l6 <= L1; l6 += 1){
+          var yy6 = Y(Math.max(0, A_instr_ns(l6)));
+          if (l6 === L0){ ctx.moveTo(X(l6),yy6); } else { ctx.lineTo(X(l6),yy6); }
+        }
+        ctx.strokeStyle = "rgba(255,194,51,.75)"; ctx.lineWidth = 1;
+        ctx.setLineDash([5,3]); ctx.stroke(); ctx.setLineDash([]);
+      }
+
+      ctx.beginPath();
+      for (var l5 = L0; l5 <= L1; l5 += 2){
+        var v = srcI(l5);
+        var y5 = TP + (1 - (v-0.25)/0.75)*ph;
+        if (l5 === L0){ ctx.moveTo(X(l5),y5); } else { ctx.lineTo(X(l5),y5); }
+      }
+      ctx.strokeStyle = "rgba(170,182,214,.65)"; ctx.lineWidth = 1;
+      ctx.setLineDash([1,3]); ctx.stroke(); ctx.setLineDash([]);
+
+      ctx.font = "8px system-ui, sans-serif";
+      ctx.fillStyle = "#8fa0bd";
+      ctx.strokeStyle = "#8df0ff"; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.moveTo(LP,TP+8); ctx.lineTo(LP+13,TP+8); ctx.stroke();
+      ctx.fillText("A medido", LP+15, TP+11);
+      var lx = LP+59;
+      ctx.strokeStyle = "rgba(255,255,255,.5)"; ctx.lineWidth = 1;
+      ctx.setLineDash([3,3]); ctx.beginPath(); ctx.moveTo(lx,TP+8); ctx.lineTo(lx+13,TP+8); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillText("Beer–Lambert", lx+15, TP+11);
+      lx = lx + 78;
+      if (strayOn){
+        ctx.strokeStyle = "rgba(255,194,51,.85)";
+        ctx.setLineDash([5,3]); ctx.beginPath(); ctx.moveTo(lx,TP+8); ctx.lineTo(lx+13,TP+8); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillText("sem parasita", lx+15, TP+11);
+        lx = lx + 74;
+      }
+      ctx.strokeStyle = "rgba(170,182,214,.65)"; ctx.lineWidth = 1;
+      ctx.setLineDash([1,3]); ctx.beginPath(); ctx.moveTo(lx,TP+8); ctx.lineTo(lx+13,TP+8); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillText("I₀ rel.", lx+15, TP+11);
+
+      var cx = X(lam);
+      ctx.strokeStyle = "rgba(255,255,255,.55)";
+      ctx.beginPath(); ctx.moveTo(cx,TP); ctx.lineTo(cx,TP+ph); ctx.stroke();
+      var tx = "λ " + lam + " nm";
+      ctx.font = "bold 9px ui-monospace, Consolas, monospace";
+      var tw = ctx.measureText(tx).width;
+      ctx.fillStyle = "rgba(11,16,27,.9)";
+      ctx.fillRect(cx-tw/2-3, TP-1, tw+6, 12);
+      ctx.fillStyle = "#d7ff5e";
+      ctx.fillText(tx, cx-tw/2, TP+9);
+
+      if (hv >= L0 && hv <= L1){
+        var hx = X(hv);
+        ctx.strokeStyle = "rgba(255,255,255,.22)";
+        ctx.beginPath(); ctx.moveTo(hx,TP); ctx.lineTo(hx,TP+ph); ctx.stroke();
+        /* M3 — alinhado com o cursor de lambda: o tooltip de hover mostra a
+           MESMA grandeza da linha vertical de leitura (A_instr, que respeita
+           o autozero). Antes usava A_read, que ignora refMeas quando a
+           referencia esta invalida, e os dois numeros do mesmo grafico
+           divergiam. */
+        var hvInstr = A_instr(hv, C());
+        var ht = "λ " + Math.round(hv) + " · A " + fmt(hvInstr,3) +
+                 " · %T " + fmt(Math.pow(10,-hvInstr)*100,0);
+        ctx.font = "8.5px ui-monospace, Consolas, monospace";
+        var htw = ctx.measureText(ht).width;
+        ctx.fillStyle = "rgba(11,16,27,.9)";
+        ctx.fillRect(LP, TP+ph-13, htw+8, 12);
+        ctx.fillStyle = "#cfe0ff";
+        ctx.fillText(ht, LP+4, TP+ph-4);
+      }
+    }
+
+    /* =================== curva de calibração =================
+       CL/CR/CT/CB — margens internas do canvas da curva de calibração
+       (Left, Right, Top, Bottom), análogas a LP/RP/TP/BP do espectro. */
+    var CL = 34, CR = 14, CT = 10, CB = 16;
+
+    /* plotCal() — DESENHA O GRÁFICO DO Q4 (canvas .j-cvcal).
+       Lê calXMax/calYMax (escala dos eixos) e o estado atual; escreve
+       direto no canvas. Série desenhadas, de baixo para cima:
+         1. faixa analítica 0–10 mg·L⁻¹ (área sombreada)
+         2. reta de ajuste dos padrões (verde tracejada) + pontos medidos
+         3. ponto da amostra atual (c, A) com guia vertical
+       O eixo c vai de 0 a calXMax; o eixo A, de 0 a calYMax. */
+    function plotCal(){
+      var m = prep(el.cvcal), ctx = m.ctx;
+      var W = m.W, H = m.H;
+      var pw = W - CL - CR, ph = H - CT - CB;
+      var C0 = 0, C1 = calXMax, Y1 = calYMax;
+
+      function X(c){ return CL + (c-C0)/(C1-C0)*pw; }
+      function Y(a){ return CT + (1 - Math.min(Math.max(a,0),Y1)/Y1)*ph; }
+      ctx.lineWidth = 1;
+
+      var xFaixaHi = Math.min(10, C1);
+      ctx.fillStyle = "rgba(63,220,106,.10)";
+      ctx.fillRect(X(0), CT, X(xFaixaHi)-X(0), ph);
+      ctx.strokeStyle = "rgba(63,220,106,.35)";
+      ctx.beginPath(); ctx.moveTo(X(xFaixaHi),CT); ctx.lineTo(X(xFaixaHi),CT+ph); ctx.stroke();
+
+      var cStep = C1 <= 20 ? 2 : (C1 <= 50 ? 5 : (C1 <= 80 ? 10 : 20));
+      ctx.font = "8px system-ui, sans-serif";
+      ctx.fillStyle = "#8fa0bd";
+      ctx.textAlign = "center";
+      for (var cv2 = 0; cv2 <= C1 + 1e-9; cv2 += cStep){
+        var xv = X(cv2);
+        ctx.strokeStyle = "rgba(138,160,189,.14)";
+        ctx.beginPath(); ctx.moveTo(xv,CT); ctx.lineTo(xv,CT+ph); ctx.stroke();
+        ctx.fillText(cv2+"", xv, H-5);
+      }
+
+      var aStep = Y1 <= 0.4 ? 0.05 : (Y1 <= 1.0 ? 0.1 : (Y1 <= 1.6 ? 0.2 : 0.4));
+      ctx.textAlign = "right";
+      for (var av = 0; av <= Y1 + 1e-9; av += aStep){
+        var yv = Y(av);
+        ctx.strokeStyle = "rgba(138,160,189,.10)";
+        ctx.beginPath(); ctx.moveTo(CL,yv); ctx.lineTo(CL+pw,yv); ctx.stroke();
+        ctx.fillText(fmt(av, av<1?2:1), CL-3, yv+3);
+      }
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#5d6b8a";
+      ctx.fillText("mg·L⁻¹ P →", W-CR-42, H-5);
+      ctx.save();
+      ctx.translate(CL-14, CT+ph/2);
+      ctx.rotate(-Math.PI/2);
+      ctx.textAlign = "center";
+      ctx.fillText("A", 0, 0);
+      ctx.restore();
+
+      ctx.beginPath();
+      var first = true;
+      for (var c3 = C0; c3 <= C1; c3 += 1){
+        var a3 = A_read(lam, c3);
+        var y3 = Y(a3);
+        if (first){ ctx.moveTo(X(c3),y3); first = false; } else { ctx.lineTo(X(c3),y3); }
+      }
+      ctx.strokeStyle = "#8df0ff"; ctx.lineWidth = 1.8;
+      ctx.stroke();
+
+      ctx.beginPath();
+      first = true;
+      for (var c4 = C0; c4 <= C1; c4 += 1){
+        var a4 = ideal_instr(lam, c4);
+        var y4 = Y(a4);
+        if (first){ ctx.moveTo(X(c4),y4); first = false; } else { ctx.lineTo(X(c4),y4); }
+      }
+      ctx.strokeStyle = "rgba(255,255,255,.38)"; ctx.lineWidth = 1;
+      ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]);
+
+      var fit = calibrate();
+      var xAjusteHi = Math.min(10, C1);
+      ctx.beginPath();
+      for (var c5 = C0; c5 <= xAjusteHi + 1e-9; c5 += 0.5){
+        var y5 = Y(fit.a*c5 + fit.b);
+        if (c5 === C0){ ctx.moveTo(X(c5),y5); } else { ctx.lineTo(X(c5),y5); }
+      }
+      ctx.strokeStyle = "rgba(63,220,106,.85)"; ctx.lineWidth = 1.2;
+      ctx.setLineDash([6,3]); ctx.stroke(); ctx.setLineDash([]);
+
+      for (var s5 = 0; s5 < STDS.length; s5++){
+        var cSt = STDS[s5];
+        if (cSt > C1) continue;
+        var aSt = A_read(lam, cSt);
+        if (aSt > Y1) continue;
+        var ySt = Y(aSt);
+        ctx.fillStyle = "#0b101b";
+        ctx.beginPath(); ctx.arc(X(cSt), ySt, 3.2, 0, Math.PI*2); ctx.fill();
+        ctx.strokeStyle = "#3fdc6a"; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(X(cSt), ySt, 3.2, 0, Math.PI*2); ctx.stroke();
+      }
+      ctx.font = "bold 8px system-ui, sans-serif";
+      ctx.fillStyle = "rgba(63,220,106,.9)";
+      ctx.fillText("ajuste dos padrões", X(0)+3, CT+ph-4);
+
+      var aCur = A_instr(lam);
+      if (C() <= C1 && aCur <= Y1){
+        var cxx = X(C()), cyy = Y(aCur);
+        ctx.strokeStyle = "rgba(255,255,255,.55)";
+        ctx.beginPath(); ctx.moveTo(cxx,CT); ctx.lineTo(cxx,CT+ph); ctx.stroke();
+        ctx.fillStyle = "#d7ff5e";
+        ctx.beginPath(); ctx.arc(cxx, cyy, 3, 0, Math.PI*2); ctx.fill();
+        ctx.strokeStyle = "rgba(11,16,27,.9)";
+        ctx.beginPath(); ctx.arc(cxx, cyy, 3, 0, Math.PI*2); ctx.stroke();
+      }
+
+      ctx.font = "bold 8px system-ui, sans-serif";
+      ctx.fillStyle = "rgba(63,220,106,.85)";
+      ctx.fillText("faixa analítica 0–10", X(0)+3, CT+9);
+      ctx.font = "8px system-ui, sans-serif";
+      var cc = C();
+      var dentro = cc <= 10;
+      ctx.fillStyle = dentro ? "rgba(63,220,106,.9)" : "rgba(255,155,138,.9)";
+      ctx.fillText(dentro ? "c atual: dentro" : "c atual: FORA", W-CR-52, CT+9);
+    }
+
+    /* ================================================================
+       MENSAGENS DE DIAGNÓSTICO DO Q3
+       ================================================================
+       Cada bloco abaixo produz o texto de UMA linha da área .diag.
+       REGRA: as mensagens usam '\n' e o CSS usa white-space:pre-line,
+       de modo que CADA FRASE SAI NUMA LINHA — uma mensagem por linha,
+       para não confundir o usuário. Ao acrescentar texto aqui, verifique
+       se a reserva de min-height correspondente no CSS ainda cobre o
+       novo número de linhas (senão o card volta a "pular").
+       ================================================================ */
+
+    /* zeroInfo() — linha .status (bolinha colorida + texto).
+       Devolve { dot, txt } onde dot é "ok" | "warn" | "bad".
+       Quatro estados, em ordem de prioridade:
+         1. sem referência           → bad  (vermelho)
+         2. referência inválida      → warn (amarelo): λ ou Δλ mudaram
+         3. referência de água       → warn: a leitura inclui o branco
+         4. branco reagente válido   → ok   (verde)
+       Pior caso de altura: 4 linhas (estado 2). */
+    function zeroInfo(){
+      if (!ref) return { dot:"bad", txt:'sem referência\nclique em "autozero · branco reagente"' };
+      if (!refOK()){
+        return { dot:"warn", txt:"referência inválida\nregistrada em λ " + ref.lam + " nm · Δλ " + ref.dlam +
+                " nm\nagora λ " + lam + " nm · Δλ " + dlam + " nm\nrefaça o autozero" };
+      }
+      if (ref.kind === "water"){
+        /* O valor do branco vem de brancoEfetivo(lam), NÃO da constante
+           ABLK: o branco integrado na banda varia com λ e Δλ, e esta
+           mensagem precisa concordar com a linha 2 do .formula — que usa
+           exatamente a mesma função. Antes exibia ABLK fixo (0,030) e
+           divergia da fórmula fora de λ=430 nm. */
+        return { dot:"warn", txt:"referência: ÁGUA (zerada sem o branco)\na leitura inclui a absorbância do branco reagente (+" + fmt(brancoEfetivo(lam),3) + " A)\n○ a referência de água NÃO desconta o branco" };
+      }
+      /* Branco reagente válido. Se a luz parasita estiver ligada, deixa
+         EXPLÍCITO na tela que a referência é um valor congelado do
+         instante do autozero — e que por isso o efeito da parasita
+         aparece por inteiro na leitura (não é cancelado pela referência). */
+      var linhas = "λ " + ref.lam + " nm · Δλ " + ref.dlam + " nm";
+      linhas += "\nreferência CONGELADA no autozero: A = " + fmt(ref.A,3) + " A";
+      if (strayOn){
+        linhas += "\n○ luz parasita ligada DEPOIS do autozero não altera a referência";
+        linhas += "\n○ por isso o efeito da parasita aparece inteiro na leitura";
+      }
+      return { dot:"ok", txt:"referência: branco reagente\n" + linhas };
+    }
+
+    /* syncSliderLabels(amaxAtual) — mantém o slider Y do espectro coerente
+       com o modo atual: em AUTO o rótulo mostra "auto" e o slider fica
+       esmaecido (.is-auto); em MANUAL mostra o teto numérico e aparece o
+       atalho "auto" para voltar. amaxAtual é o teto calculado no último
+       plotSpectrum() (lido de dataset.amax), usado só no modo AUTO. */
+    function syncSliderLabels(amaxAtual){
+      if (el.spylab) el.spylab.textContent = specYAuto ? "auto" : fmt(specYMax,2);
+      if (el.spy){
+        var shown = specYAuto ? (amaxAtual || AMAXHI) : specYMax;
+        el.spy.value = shown;
+        el.spy.classList.toggle("is-auto", specYAuto);
+      }
+      if (el.spyauto){
+        el.spyauto.classList.toggle("hidden", specYAuto);
+      }
+      if (el.calylab) el.calylab.textContent = fmt(calYMax,2);
+    }
+
+    /* ================================================================
+       update() — O CÉREBRO DA SIMULAÇÃO. Recalcula TODA a tela a partir
+       do estado atual. É chamada por qualquer controle que mude estado
+       (λ, fenda, c, referência, luz parasita, reset, cenário).
+
+       Ordem de trabalho:
+         1. gira prisma e raios para o λ escolhido (palco Q1)
+         2. acende feixe/cubeta/detector conforme a transmitância
+         3. escreve o mostrador do Q1 (λ, %T, sinal, A)
+         4. escreve o diagnóstico do Q3 (status, aviso, desvio, fórmula, ajuste)
+         5. agenda o redesenho dos gráficos (draw) e reenvia a altura
+
+       Nada aqui lê o DOM para decidir física: física vem do estado,
+       e o DOM é apenas o destino da escrita. */
+    function update(){
+      /* --- 1. posiciona o prisma e o leque de raios para o λ atual ---
+         O prisma gira METADE do ângulo do leque: é o efeito didático de
+         "dispersão" — pequena rotação do prisma, grande separação de cores. */
+      var th = -alphaOf(lam);
+      el.rays.style.transform   = "rotate(" + th.toFixed(2) + "deg)";
+      el.prisma.style.transform = "rotate(" + (th*0.5).toFixed(2) + "deg)";
+
+      /* --- 2. realce dos raios dentro da banda da fenda ---
+         "half" é a meia-largura efetiva da banda (fenda + folga de 2,6°);
+         os raios dentro dela ficam mais opacos e contribuem para a COR do
+         feixe (média ponderada). "best" guarda o raio mais próximo de λ,
+         que recebe a classe .ray--sel (mais espesso e brilhante).
+         beamCol é a cor resultante — é ela que pinta o feixe de entrada. */
+      var half = dlam/2 + 2.6;
+      var best = 0, bestD = 1e9;
+      var mR=0,mG=0,mB=0,mW=0;
+      for (var k2 = 0; k2 < N; k2++){
+        var dj = Math.abs(rayL[k2] - lam);
+        if (dj <= half){
+          var wgt = Math.max(0, 1 - dj/half);
+          var cc = wlRGB(rayL[k2]);
+          mR += cc[0]*wgt; mG += cc[1]*wgt; mB += cc[2]*wgt; mW += wgt;
+          rayEls[k2].style.opacity = (0.5 + 0.5*wgt).toFixed(2);
+          if (dj < bestD){ bestD = dj; best = k2; }
+        } else {
+          rayEls[k2].style.opacity = "0.28";
+        }
+      }
+      rayEls.forEach(function(r,k3){ r.classList.toggle("ray--sel", k3 === best); });
+      var beamCol = mW > 0 ? [mR/mW, mG/mW, mB/mW] : wlRGB(lam);
+
+      /* --- 3. óptica: transmitância e mostrador do Q1 ---
+         AI   = absorbância lida (com autozero)
+         TM   = transmitância = 10^(−A), limitada a [−9, 9] para não gerar
+                números absurdos se A explodir (ex.: luz parasita + c alta)
+         col  = cor do λ atual, usada no chip e nos elementos ópticos
+         As opacidades de .bi (feixe I) e .det (detector) são proporcionais
+         a TM: mais luz atravessa → detector mais aceso. A cubeta (.liq)
+         fica mais escura conforme a concentração sobe. */
+      var cV = C();
+      var AI = A_instr(lam);
+      var TM = Math.pow(10, -Math.max(-9, Math.min(9, AI)));
+      var col = wlRGB(lam);
+      el.io.style.background = rgbCss(beamCol);
+      el.bi.style.background = rgbCss(col);
+      el.bi.style.opacity    = (0.10 + 0.90*Math.max(0,Math.min(1,TM))).toFixed(2);
+      el.det.style.background = rgbCss(col);
+      el.det.style.opacity    = (0.08 + 0.92*Math.max(0,Math.min(1,TM))).toFixed(2);
+      el.liq.style.opacity    = (0.10 + 0.60*(cV/100)).toFixed(2);
+
+      el.chip.style.background = rgbCss(col);
+      el.lam.textContent = lam + " nm";
+      el.t.textContent = fmt(TM*100, 1);
+      el.sig.textContent = fmtSig(100*srcI(lam)*Math.max(0,Math.min(1, (1-S)*bandT(lam,cV,dlam) + S))) + "%";
+      el.a.textContent  = fmt(AI,3) + " A";
+      el.a.classList.toggle("disp--raw", !refOK());
+      el.c.textContent  = "c = " + fmt(cV, cV < 10 ? 1 : 0) + " mg·L⁻¹ de P";
+      el.dl.textContent = dlam + " nm";
+      el.dl2.textContent = lam + " nm";
+      if (el.cslider) el.cslider.value = cV;
+      if (el.csl) el.csl.textContent = fmt(cV, 1);
+      el.dec.disabled = (cV <= 0);
+      el.inc.disabled = (cV >= CMAX);
+
+      /* --- 4a. linha de status da referência (.status) ---
+         zeroInfo() devolve { dot, txt }. O texto já vem com '\n' para
+         sair uma frase por linha (CSS white-space:pre-line). */
+      var zi = zeroInfo();
+      el.dot.className = "dot " + zi.dot;
+      el.stat.textContent = zi.txt;
+
+      /* DECOMPOSIÇÃO DO DESVIO (bloco .dev):
+           dev  = ideal_instr − A_instr      → desvio TOTAL (banda + parasita)
+           devS = ideal_instr − A_instr_ns   → parcela atribuída à BANDA (Δλ)
+           devP = dev − devS                 → parcela atribuída à LUZ PARASITA
+         A barra (.devbar) satura em DEVFULL = 0,5 A; as cores mudam em
+         DEVWARN (verde) e 0,10 A (amarelo → vermelho).
+
+         ⚠️ NOTA DE DESIGN (item analisado e MANTIDO — NÃO é bug):
+         esta decomposição é CONTRAFACTUAL, não uma separação de
+         perturbações físicas independentes. Os dois termos vêm de
+         comparar ESTADOS do modelo:
+             devS = (ideal) − (leitura sem parasita)   → o que a fenda faz
+             devP = (leitura sem parasita) − (leitura com parasita)
+         A luz parasita entra MULTIPLICATIVAMENTE na transmitância
+         (T_ef = (1−S)·T + S), ANTES do log10, então os dois efeitos não
+         são aditivos no sentido físico estrito — a soma dev = devS+devP
+         é uma identidade da DEFINIÇÃO adotada, não uma lei do modelo.
+         Isso é perfeitamente útil didaticamente (isola de onde vem o
+         desvio), mas os rótulos "parcela atribuída" foram escolhidos
+         justamente para não sugerir independência física. */
+      var dev = ideal_instr(lam) - A_instr(lam);
+      var devS= ideal_instr(lam) - A_instr_ns(lam);
+      var devP= dev - devS;
+      var ad  = Math.abs(dev);
+      var pct = Math.min(100, ad/DEVFULL*100);
+      el.devfill.style.width = pct.toFixed(1) + "%";
+      el.devfill.style.background = ad < DEVWARN ? "#3fdc6a" : (ad < 0.10 ? "#ffc233" : "#ff5a5a");
+
+      /* Causa dominante: compara o módulo das duas parcelas. Se a luz
+         parasita pesa mais que a banda, ela é apontada como culpada. */
+      var causa = Math.abs(devP) >= Math.abs(devS) ? "luz parasita" : "banda espectral " + dlam + " nm";
+      var txt = "Δ (ideal − medido) = <b>" + fmtS(dev,3) + " A</b>\n" +
+                "fenda: " + fmtS(devS,3) + " A\n" +
+                "luz parasita: " + fmtS(devP,3) + " A";
+      if (ad >= DEVWARN){
+        txt += '\n<span class="bad">causa dominante: ' + causa + "</span>";
+        if (dev < 0) txt += "\nmedido ACIMA do ideal (suavização da banda em vale)";
+      }
+      el.dev.innerHTML = txt;
+
+      /* .warnbox — só aparece quando o desvio da lei de Beer é GRANDE
+         (>= 0.05 A). Abaixo disso fica vazio, mas a altura está reservada
+         pelo CSS (min-height), então o card não se move. */
+      el.warn.textContent = ad >= 0.05
+        ? "desvio da lei de Beer\nA medido (" + fmt(AI,3) + ") " +
+          (dev > 0 ? "<" : ">") + " ideal (" + fmt(ideal_instr(lam),3) + ")\ndesvio " + fmtS(dev,3) + " A"
+        : "";
+
+      /* ------------------------------------------------------------------
+         --- 4b. BLOCO .formula — A LEI DE BEER E A LEITURA DO INSTRUMENTO
+         ------------------------------------------------------------------
+         REGRA DE OURO DESTE BLOCO: a lei de Beer NUNCA é alterada para
+         "fazer a conta fechar". Ela é uma identidade física:
+
+             A = ε·b·c        (somente o analito; NUNCA tem termo aditivo)
+
+         O que pode acontecer é o INSTRUMENTO ler mais do que a lei prevê,
+         quando a referência não desconta o branco reagente:
+
+             A_lido = A + A_branco     (modelo do INSTRUMENTO, não de Beer)
+
+         São DUAS equações diferentes e o aluno precisa ver as duas. Por
+         isso este bloco é montado em até TRÊS linhas, cada uma uma
+         igualdade VERDADEIRA e conferível na calculadora:
+
+           linha 1  lei de Beer      A = ε·b·c        (sempre aparece)
+           linha 2  leitura atual    A_lido = ...     (só quando difere de Beer)
+           linha 3  aviso em vermelho                  (só quando não é branco)
+
+         Os três estados possíveis vêm de refEstado():
+
+           "blank" → leitura JÁ é Beer. Só a linha 1. Nada a somar.
+           "water" → linha 1 + linha 2 com o branco EXPLÍCITO:
+                       A_lido = A + A_branco
+                     0,270 = 0,240 + 0,030
+                     (o +0,030 é o branco reagente que a água não continha)
+           "none"/"stale" → linha 1 + linha 2 diferente, porque NÃO há
+                     branco descontado nem resíduo: é leitura crua.
+                       A_lido = A (sem referência) + A_branco
+                     O texto deixa claro que o termo do branco está
+                     presente por AUSÊNCIA de autozero, não por escolha.
+
+         A_branco é calculado UMA vez em `brancoA` e é A MESMA EXPRESSÃO
+         que ideal_instr() usa internamente (ABLK * blkRel(lam)). Usar a
+         mesma expressão garante que os dois números nunca divirjam — se
+         um dia ABLK mudar, os dois lados acompanham juntos.
+
+         NOTA HISTÓRICA (evita regressão): antes, este bloco escrevia
+         `A = ε·b·c → 0,270 = 0,0600 × 4,0 × 1` no cenário de água, o que
+         era FALSO (0,0600×4,0 = 0,240). A correção tentadora seria somar
+         o branco ao lado direito da lei de Beer, produzindo
+         `0,270 = 0,240 + 0,030` sob o rótulo "A = ε·b·c" — o que também
+         é fisicamente errado: ensina que a lei de Beer tem termo aditivo.
+         A solução adotada separa as duas equações em duas linhas.
+         ------------------------------------------------------------------ */
+      var kk = k(lam);
+      var eh = ideal_instr(lam);
+      var est = refEstado();
+      /* brancoA — valor EXIBIDO na linha 2. Vem de brancoEfetivo(), a
+         fonte única lida também por zeroInfo(), .fitnote e o CSV. NÃO
+         recalcular aqui: se este número divergir do que aparece na linha
+         de status (.status), o aluno vê dois valores para o mesmo branco
+         dentro do mesmo card Q3. */
+      var brancoA = brancoEfetivo(lam);
+      var cTxt = fmt(cV, cV < 10 ? 1 : 0);
+
+      /* linha 1 — sempre: a lei de Beer, com os números substituídos.
+         Aqui usamos A_ideal (Beer PURO, k·c) e NÃO ideal_instr, porque
+         ideal_instr pode carregar o branco e esta linha deve mostrar a
+         lei de Beer limpa. O ideal_instr continua sendo exibido — mas na
+         linha 2, como "A_lido". */
+      var fBeer = "A = ε·b·c → <b>" + fmt(A_ideal(lam, cV),3) + "</b> = <b>" +
+                  fmt(kk,4) + "</b> L·mg⁻¹·cm⁻¹ × " + cTxt + " mg·L⁻¹ × 1 cm";
+
+      /* linha 2 — só quando a leitura difere de Beer.
+         A referência (autozero) pode ou não ter descontado o branco; o que
+         importa é que a linha MOSTRE a composição do número lido. */
+      /* A_lido é, POR DEFINIÇÃO, a leitura do instrumento — então o lado
+         ESQUERDO usa A_instr(lam), e NÃO ideal_instr(lam).
+
+         Por que isso importa: ideal_instr soma o branco no PONTO CENTRAL
+         (ABLK·blkRel(lam), semântica didática congelada — ver comentário
+         L2), enquanto brancoEfetivo() o mede INTEGRADO NA BANDA. Os dois
+         caminhos diferem de 0,0000–0,0005 A, o suficiente para a igualdade
+         não fechar na 3ª casa exibida em casos extremos. Usando A_instr,
+         o lado esquerdo e a soma do lado direito saem do MESMO caminho
+         numérico (a leitura real do instrumento) e a igualdade fecha.
+
+         Isso NÃO altera ideal_instr(), A_ideal(), k(), ABLK nem o .dev:
+         é só o número EXIBIDO nesta linha didática. */
+      var fLeitura = "";
+      /* NOTA DE DESIGN (item analisado e MANTIDO — NÃO é bug):
+         a igualdade A_lido = A + A_branco exibida abaixo NÃO é exata no
+         modelo, porque bandT() faz média de TRANSMITÂNCIAS e o log10 não
+         é aditivo: A_meas = -log10(ΣI0·10^-(Ab+Ak)/ΣI0) ≠ A_ideal+Abranco.
+         Erro medido: ~7e-5 A (Δλ=4nm), ~1,2e-3 A (Δλ=16nm),
+         ~2,9e-3 A (Δλ=16nm + parasita) — INVISÍVEL nas 3 casas exibidas.
+         Manteve-se "=" porque fecha na precisão de tela em qualquer
+         combinação de sliders e trocar por "≈" criaria uma dúvida que o
+         aluno não tem como resolver, sem ganho didático. Se um dia a
+         precisão exibida aumentar (4+ casas), reavaliar. */
+      if (est === "water"){
+        /* Água: o branco reagente está presente na cubeta (a amostra é a
+           mesma) e NÃO foi descontado — a água não o continha. A leitura
+           é Beer + branco. As duas parcelas são exibidas. */
+        fLeitura = "leitura (água): A_lido = A + A_branco → <b>" +
+                   fmt(A_instr(lam),3) + "</b> = <b>" + fmt(A_ideal(lam, cV),3) + "</b> + <b>" +
+                   fmt(brancoA,3) + "</b>";
+      } else if (est === "none" || est === "stale"){
+        /* Sem autozero válido: NÃO há referência nenhuma descontada —
+           nem branco, nem água. A leitura crua é Beer + branco. A frase
+           deixa explícito que o termo aparece por AUSÊNCIA de autozero,
+           não por escolha do usuário — evita confundir com o caso água. */
+        fLeitura = "leitura sem autozero: A_lido = A + A_branco → <b>" +
+                   fmt(A_instr(lam),3) + "</b> = <b>" + fmt(A_ideal(lam, cV),3) + "</b> + <b>" +
+                   fmt(brancoA,3) + "</b>";
+      }
+
+      /* linha 3 — aviso vermelho, por estado. Só aparece quando a leitura
+         NÃO é Beer puro (water / none / stale). O texto muda conforme a
+         causa, para não atribuir ao branco um erro que é de outra coisa. */
+      var fAviso = "";
+      if (est === "water"){
+        fAviso = "\n<span style='color:#ff9b8a'>referência: água — a leitura inclui o branco reagente (+" +
+                 fmt(brancoA,3) + " A) que a água não continha</span>";
+      } else if (est === "none"){
+        fAviso = "\n<span style='color:#ff9b8a'>sem referência — a leitura não desconta nada; o branco reagente aparece somado</span>";
+      } else if (est === "stale"){
+        fAviso = "\n<span style='color:#ff9b8a'>referência inválida (λ " + ref.lam + " nm · Δλ " +
+                 ref.dlam + " nm; agora λ " + lam + " nm · Δλ " + dlam +
+                 " nm) — refaça o autozero</span>";
+      }
+
+      /* Montagem final: linha 1 sempre; linha 2 e aviso conforme o estado.
+         O ε molar entra na mesma linha 1 (é a mesma grandeza kk, só
+         convertida para mol), separado por '·' para não virar outra linha. */
+      el.frm.innerHTML =
+        fBeer +
+        "<br>ε(" + lam + " nm) = " + fmt(kk,4) +
+        " L·mg⁻¹·cm⁻¹ (≈ " + fmt(epsMolar(lam),0) + " L·mol⁻¹·cm⁻¹)" +
+        (fLeitura ? "\n" + fLeitura : "") +
+        fAviso;
+
+      el.calinfo.textContent = "· λ = " + lam + " nm · c atual " + fmt(cV,1) + " mg·L⁻¹" +
+        (cV <= 10 ? " (faixa analítica)" : " (FORA da faixa analítica)");
+
+      /* --- 4c. ajuste dos padrões e concentração calculada (.kv) ---
+         A curva de calibração A = a·c + b é refeita A CADA update(), com
+         os padrões medidos nas condições atuais. A partir dela inverte-se
+         a leitura: c_calc = (A_lido − b)/a. O erro percentual compara essa
+         estimativa com a concentração nominal (cV) que o usuário ajustou.
+         Se a inclinação for zero (sem sinal), evita-se a divisão por zero.
+
+         NOTA DE DESIGN (item analisado e MANTIDO — NÃO é bug):
+         a calibração é DINÂMICA de propósito. Consequência didática: como
+         os padrões são remedidos na condição de agora, cCalc sai sempre
+         perto de cV, e o "erro vs. nominal" mede apenas a NÃO-LINEARIDADE
+         do ajuste — nunca o erro de usar uma curva feita no passado.
+         Um modo "experimento" (botão que congela a, b, R², RMSE e depois
+         mede uma amostra em condição diferente) mostraria esse erro, mas
+         é FUNÇÃO NOVA — fora do escopo desta versão. Registrado como
+         decisão consciente de modelagem, não como defeito. */
+      var fit = calibrate();
+      var cCalc = fit.a !== 0 ? (AI - fit.b) / fit.a : 0;
+      var errPct = cV > 0 ? (cCalc - cV) / cV * 100 : 0;
+      if (el.fitab) el.fitab.textContent = "A = " + fmt(fit.a,4) + "·c " + fmtS(fit.b,4);
+      if (el.fitr2) el.fitr2.textContent = "R² " + fmt(fit.r2,4) + " · RMSE " + fmt(fit.rmse,4) + " A";
+      if (el.ccalc) el.ccalc.textContent = fmt(cCalc,2) + " mg·L⁻¹";
+      if (el.cerr){
+        el.cerr.textContent = cV > 0 ? fmtS(errPct,1) + "%" : "—";
+        el.cerr.className = "j-cerr " + (Math.abs(errPct) <= 5 ? "good" : "bad");
+      }
+      /* L3 — o fitnote abaixo atribuia o intercepto ao branco sempre que a
+         referencia nao fosse "blank" valida. Com luz parasita ligada o vies
+         tambem vem de S (A_meas e nao-linear em S). O texto agora cita
+         explicitamente a luz parasita quando ela esta ativa, em vez de
+         culpar o branco por um erro que nao e dele. */
+      if (el.fitnote){
+        /* L3 — a mensagem do intercepto agora separa DUAS causas possiveis:
+           - referencia nao-branco: erro do branco (+ABLK)
+           - luz parasita ativa: vies nao-linear de S sobre A_meas
+           Quando as duas coincidem, as duas linhas aparecem. Antes o texto
+           culpava o branco mesmo com S ligado, que era o diagnostico errado. */
+        /* O fitnote separa QUATRO estados, não dois. Antes o `else`
+           cobria água + sem referência + referência expirada com a MESMA
+           frase ("intercepto carrega o erro do branco"), o que era
+           impreciso: sem autozero o intercepto pode carregar outros
+           efeitos instrumentais, não só o branco. */
+        var notaIntercepto;
+        var estF = refEstado();
+        if (estF === "blank"){
+          notaIntercepto = strayOn
+            ? "\nintercepto ≈ 0 (branco descontado) · luz parasita ativa distorce o ajuste"
+            : "\nintercepto ≈ 0 (branco descontado)";
+        } else if (estF === "water"){
+          notaIntercepto = "\nintercepto carrega o branco NÃO descontado (+" +
+            fmt(brancoEfetivo(lam),3) + " A)" +
+            (strayOn ? " · e a luz parasita (não-linear em S)" : "");
+        } else if (estF === "none"){
+          notaIntercepto = "\nSEM autozero — o intercepto carrega o branco (+" +
+            fmt(brancoEfetivo(lam),3) + " A) e o offset do instrumento" +
+            (strayOn ? " · e a luz parasita (não-linear em S)" : "");
+        } else { /* stale */
+          notaIntercepto = "\nreferência EXPIRADA (λ ou Δλ mudaram) — intercepto não confiável; refaça o autozero" +
+            (strayOn ? " · e a luz parasita (não-linear em S)" : "");
+        }
+        el.fitnote.textContent =
+          "padrões: " + STDS.join("·") + " mg·L⁻¹\n" +
+          "referência: " + refTxt() +
+          notaIntercepto;
+        el.fitnote.className = "wide j-fitnote";
+      }
+
+      /* --- 5. fecha o ciclo: sliders, gráficos e altura do iframe ---
+         amaxNow lê o teto do eixo A que o último plotSpectrum() gravou em
+         dataset.amax (usado no modo AUTO). draw() apenas AGENDA o
+         redesenho no próximo frame — ver a função draw(). */
+      var amaxNow = parseFloat(el.cvspec.dataset.amax) || AMAXHI;
+      syncSliderLabels(amaxNow);
+      syncYSliderWidths();
+      draw();
+      postHeight();
+    }
+
+    /* draw() — AGENDA um redesenho dos dois gráficos no próximo frame.
+       Se já existe um frame agendado (rafId != 0), não faz nada: várias
+       chamadas seguidas (mover slider, hover, resize) viram UM só desenho.
+       Esta é a razão pela qual update() pode chamar draw() sem medo. */
+    function draw(){
+      if (rafId) return;
+      rafId = requestAnimationFrame(function(){
+        rafId = 0;
+        plotSpectrum();
+        plotCal();
+      });
+    }
+
+    /* bindPlot(cv, isSpec) — liga UM canvas à interação de ponteiro/teclado.
+         cv      : o elemento canvas (.j-cvspec ou .j-cvcal)
+         isSpec  : true para o espectro (manipula lam),
+                   false para a curva de calibração (manipula cVal).
+       Converte a posição do clique em valor físico usando a MESMA
+       geometria do desenho (LP/RP no espectro, CL/CR na curva), de modo
+       que o que o usuário vê coincide com o que ele altera.
+       Teclado: setas (±1; Shift = ±10 no espectro, ±5 na curva),
+       Home/End vão aos extremos. O pointer capture é opcional (try/catch)
+       porque navegadores antigos podem recusar o pointerId. */
+    function bindPlot(cv, isSpec){
+      function toVal(ev){
+        var m = prep(cv);
+        var lx = localX(cv, m, ev.clientX);
+        if (isSpec){
+          var pw = m.W - LP - RP;
+          return 400 + (lx - LP)/pw*300;
+        }
+        var pw2 = m.W - CL - CR;
+        return (lx - CL)/pw2*calXMax;
+      }
+      function apply(ev){
+        var v = toVal(ev);
+        if (isSpec){
+          lam = Math.round(Math.max(400, Math.min(700, v)));
+          el.sl.value = lam;
+        } else {
+          cVal = Math.round(Math.max(0, Math.min(CMAX, v)) * 10) / 10;
+        }
+        update();
+      }
+      cv.addEventListener("pointerdown", function(ev){
+        pressed = true;
+        try { cv.setPointerCapture(ev.pointerId); } catch(e){}
+        apply(ev);
+      });
+      cv.addEventListener("pointermove", function(ev){
+        if (isSpec && ev.pointerType === "mouse"){
+          var m = prep(cv);
+          var lx = localX(cv, m, ev.clientX);
+          var pw = m.W - LP - RP;
+          hv = Math.max(400, Math.min(700, 400 + (lx - LP)/pw*300));
+          draw();
+        }
+        if (pressed) apply(ev);
+      });
+      cv.addEventListener("pointerup", function(){ pressed = false; });
+      cv.addEventListener("pointercancel", function(){ pressed = false; });
+      cv.addEventListener("pointerleave", function(){
+        if (isSpec){ hv = -1; draw(); }
+        pressed = false;
+      });
+      cv.addEventListener("keydown", function(ev){
+        if (isSpec){
+          /* Passo do espectro: ±1 nm (setas) ou ±10 nm (Shift).
+             Declarado AQUI dentro, e não no topo do handler: o ramo da
+             curva de calibração usa outro passo (±5 mg/L), e uma variável
+             compartilhada sugeria — falsamente — que os dois eram iguais. */
+          var st = ev.shiftKey ? 10 : 1;
+          if (ev.key === "ArrowLeft"){  lam = Math.max(400, lam - st); ev.preventDefault(); }
+          else if (ev.key === "ArrowRight"){ lam = Math.min(700, lam + st); ev.preventDefault(); }
+          else if (ev.key === "Home"){ lam = 400; ev.preventDefault(); }
+          else if (ev.key === "End"){ lam = 700; ev.preventDefault(); }
+          else return;
+          el.sl.value = lam;
+        } else {
+          var cs = ev.shiftKey ? 5 : 0.1;
+          if (ev.key === "ArrowLeft" || ev.key === "ArrowDown"){ cVal = Math.max(0, cVal-cs); ev.preventDefault(); }
+          else if (ev.key === "ArrowRight" || ev.key === "ArrowUp"){ cVal = Math.min(CMAX, cVal+cs); ev.preventDefault(); }
+          else if (ev.key === "Home"){ cVal = 0; ev.preventDefault(); }
+          else if (ev.key === "End"){ cVal = CMAX; ev.preventDefault(); }
+          else return;
+          cVal = Math.round(cVal*10)/10;
+        }
+        update();
+      });
+    }
+    bindPlot(el.cvspec, true);
+    bindPlot(el.cvcal, false);
+
+    /* ---------- sincronização de altura Q1 → Q2 ----------
+       O Q1 (palco) tem altura natural; o Q2 (espectro) é esticado para
+       casar com ele e as duas colunas da grade terminarem alinhadas.
+       Comportamento:
+         · em telas <= 900px a sincronização é DESLIGADA (media query
+           devolve altura fixa de 150px ao canvas) — ver CSS @media;
+         · h1 < 40px é ignorado (layout ainda não pronto);
+         · h1 === lastQ1H evita reprocessar quando nada mudou;
+         · o canvas recebe a sobra (h1 − padding − borda − título − dica)
+           e só é ajustado se essa sobra for >= 80px.
+       Observador: um ResizeObserver no Q1 redesenha os gráficos e
+       reenvia a altura ao iframe pai. */
+    var Q1 = root.querySelector(".esp-card--instrument");
+    var Q2 = root.querySelector(".esp-card--spectrum");
+    var lastQ1H = 0;
+
+    function syncSpectrumHeight(){
+      if (!Q1 || !Q2) return;
+      if (window.matchMedia("(max-width: 900px)").matches){
+        Q2.style.height = "";
+        el.cvspec.style.height = "";
+        /* ⚠️ CORREÇÃO (bug real): zerar lastQ1H ao entrar no breakpoint.
+           Sem isso, o cenário é: desktop (Q1=500 → lastQ1H=500) →
+           encolhe p/ <=900px (limpa height, mas lastQ1H segue 500) →
+           volta p/ desktop (Q1=500 de novo) → h1 === lastQ1H → return
+           SEM reaplicar a altura ao Q2. A sincronização ficava quebrada
+           em silêncio depois de atravessar o breakpoint. */
+        lastQ1H = 0;
+        return;
+      }
+      var h1 = Math.round(Q1.getBoundingClientRect().height);
+      if (h1 < 40 || h1 === lastQ1H) return;
+      lastQ1H = h1;
+
+      Q2.style.height = h1 + "px";
+
+      var title = Q2.querySelector(".esp-card-title");
+      var wrap  = Q2.querySelector(".plotwrap");
+      var hint  = Q2.querySelector(".plothint");
+      if (!wrap) return;
+      var cs2 = getComputedStyle(Q2);
+      var padY = (parseFloat(cs2.paddingTop)||0) + (parseFloat(cs2.paddingBottom)||0);
+      var borY = (parseFloat(cs2.borderTopWidth)||0) + (parseFloat(cs2.borderBottomWidth)||0);
+      var hTitle = title ? title.getBoundingClientRect().height : 0;
+      var hHint  = hint  ? hint.getBoundingClientRect().height  : 0;
+      var csW = getComputedStyle(wrap);
+      var wrapMargin = (parseFloat(csW.marginTop)||0) + (parseFloat(csW.marginBottom)||0);
+
+      var hPlot = Math.round(h1 - padY - borY - hTitle - hHint - wrapMargin);
+      if (hPlot >= 80){
+        el.cvspec.style.height = hPlot + "px";
+      }
+    }
+
+    if (window.ResizeObserver && Q1){
+      var roQ1 = new ResizeObserver(function(){
+        syncSpectrumHeight();
+        syncYSliderWidths();
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = 0;
+        plotSpectrum();
+        plotCal();
+        postHeight();
+      });
+      roQ1.observe(Q1);
+    }
+
+    syncSpectrumHeight();
+    requestAnimationFrame(syncSpectrumHeight);
+
+    /* ---------- sincronização de altura Q3 → Q4 ----------
+       O Q3 é a RÉGUA desta linha: sua altura natural (estabilizada pelas
+       reservas min-height do CSS) é copiada para o Q4, para que a curva de
+       calibração e o texto de interpretação terminem na mesma linha que
+       os controles. Diferente do Q1→Q2, aqui NÃO se mexe em filhos: só a
+       altura do card. Em <= 900px a cópia é desligada (height = ""). */
+    var Q3 = root.querySelector(".esp-card--controls");
+    var Q4 = root.querySelector(".esp-card--results");
+    var lastQ3H = 0;
+
+    function syncResultsHeight(){
+      if (!Q3 || !Q4) return;
+      if (window.matchMedia("(max-width: 900px)").matches){
+        Q4.style.height = "";
+        /* ⚠️ CORREÇÃO (bug real): mesma razão do Q1→Q2 — sem zerar
+           lastQ3H, voltar ao desktop com a MESMA altura de Q3 faz a
+           função retornar cedo e o Q4 fica sem altura sincronizada. */
+        lastQ3H = 0;
+        return;
+      }
+      var h3 = Math.round(Q3.getBoundingClientRect().height);
+      if (h3 < 40 || h3 === lastQ3H) return;
+      lastQ3H = h3;
+      Q4.style.height = h3 + "px";
+    }
+
+    if (window.ResizeObserver && Q3){
+      var roQ3 = new ResizeObserver(function(){
+        syncResultsHeight();
+        syncYSliderWidths();
+        postHeight();
+      });
+      roQ3.observe(Q3);
+    }
+
+    syncResultsHeight();
+    requestAnimationFrame(syncResultsHeight);
+
+    /* postHeight() — informa ao documento PAI (quando a figura está dentro
+       de um iframe) qual deve ser a altura do iframe, para que ele cresça
+       junto com o conteúdo e não apareça barra de rolagem interna.
+       Se a figura não está em iframe (window.parent === window), sai.
+       A guarda Math.abs(h − lastH) > 1 impede postagens repetidas com a
+       mesma altura — é o que evita o ciclo de realimentação
+       observer → postMessage → resize do iframe → observer. */
+    function postHeight(){
+      if (window.parent === window) return;
+      var rr = root.getBoundingClientRect();
+      var cs = document.body ? window.getComputedStyle(document.body) : null;
+      var pad = cs ? (parseFloat(cs.marginTop)||0) + (parseFloat(cs.marginBottom)||0) : 0;
+      var h = Math.ceil(rr.height + pad + 2);
+      if (h > 0 && Math.abs(h - lastH) > 1){
+        lastH = h;
+        try { window.parent.postMessage({ type:"iframeResize", height: h }, "*"); } catch(e){}
+      }
+    }
+
+    /* exportCSV() — monta e baixa um CSV com TODO o estado da simulação.
+       Seções do arquivo, nesta ordem:
+         1. Parâmetros (λ, fenda, c, luz parasita, referência, escalas)
+         2. Espectro    — 400..700 nm: A medido, %T, A ideal, I₀ relativa
+         3. Curva       — 0..100 mg·L⁻¹: A medido e A ideal
+         4. Ajuste      — os padrões medidos + a, b, R², RMSE, c calculada
+       O separador é ';' (padrão pt-BR, evita conflito com a vírgula
+       decimal). O BOM \uFEFF garante acentuação correta no Excel.
+       O nome do arquivo carrega λ e c para distinguir exportações. */
+    /* ================================================================
+       exportCSV() — exporta o estado COMPLETO do experimento.
+
+       ⚠️ CONSISTÊNCIA COM A TELA (esta versão):
+       o CSV era a ÚNICA testemunha do branco que não registrava o estado
+       novo da referência. Quem abrisse o arquivo via A medido = 0,270 e
+       A ideal = 0,240 SEM a linha que explica a diferença de 0,030 —
+       exatamente o problema que a tela já resolveu. Agora o CSV exporta:
+
+         · estado da referência   (blank/water/none/stale) — refEstado()
+         · A_branco REGISTRADO    (o valor CONGELADO em ref.A)
+         · A_branco efetivo AGORA (brancoEfetivo(lam), o que o instrumento
+                                  leria neste instante — difere quando a
+                                  luz parasita foi ligada após o autozero)
+         · A_lido e A ideal, para a diferença de 0,030 fechar no arquivo
+
+       A referência é um ATO FÍSICO: o valor fica congelado no instante do
+       clique, mesmo que a luz parasita mude depois. É isso que o CSV
+       registra — não o "branco de agora". */
+    function exportCSV(){
+      var L = [];
+      L.push("Simulacao do espectrofotometro;gerado em;" + new Date().toLocaleString("pt-BR"));
+      L.push("");
+      L.push("Parametros");
+      L.push("lambda (nm);" + lam);
+      L.push("fenda dlambda (nm);" + dlam);
+      L.push("concentracao (mg/L P);" + fmt(cVal,1));
+      L.push("luz parasita (fracao);" + fmt(S,3));
+      L.push("espectro eixo A; " + (specYAuto ? "auto" : ("manual " + fmt(specYMax,2))));
+      L.push("curva eixo c max (mg/L);" + calXMax);
+      L.push("curva eixo A max; " + fmt(calYMax,2));
+      L.push("");
+      L.push("Referencia (autozero)");
+      L.push("estado; " + refEstado());
+      L.push("descricao; " + refTxt());
+      if (ref){
+        L.push("registrada em lambda (nm);" + ref.lam);
+        L.push("registrada com fenda (nm);" + ref.dlam);
+        if (ref.kind !== "water"){
+          L.push("A_branco REGISTRADO (congelado no autozero) (A);" + fmt(ref.A,4));
+        } else {
+          L.push("A_branco REGISTRADO (agua: nao desconta) (A);0,0000");
+        }
+      }
+      L.push("A_branco efetivo AGORA (medido pelo instrumento) (A);" + fmt(brancoEfetivo(lam),4));
+      L.push("A_lido (A_instr) (A);" + fmt(A_instr(lam),4));
+      L.push("A ideal (Beer-Lambert puro) (A);" + fmt(ideal_instr(lam),4));
+      L.push("nota; A_branco REGISTRADO e o valor do instante do autozero e NAO muda se a luz parasita for ligada depois; A_branco efetivo AGORA e o que o instrumento leria neste momento");
+      L.push("");
+      /* SEÇÃO ESPECTRO — 6 COLUNAS FIXAS.
+         A coluna "A sem parasita" (A_instr_ns) é o CONTRAFACTUAL: qual
+         seria a leitura se a luz parasita não existisse, com tudo o mais
+         igual. A diferença A medido − A sem parasita é o efeito da
+         parasita — a MESMA parcela devP que o Q3 mostra no diagnóstico
+         de causa dominante. Sem esta coluna, quem abre o CSV vê dois
+         números (medido e ideal) e não consegue reconstruir a conta.
+         Com S=0 a coluna é IDÊNTICA a "A medido" — redundância de
+         propósito: formato fixo de 6 colunas vale mais que bytes.
+
+         A coluna usa A_instr_ns() — a MESMA função que desenha a curva
+         amarela tracejada do Q2 ("sem parasita"). NÃO é um cálculo
+         paralelo: se A_instr_ns() mudar, o CSV e o gráfico mudam juntos.
+
+         RENOMEAÇÃO "A medido" → "A medido (com ref.)":
+         o valor é A_instr(), que JÁ desconta a referência registrada (o
+         autozero congelado). O nome antigo não dizia isso e podia ser
+         lido como "absorbância bruta do instrumento". O sufixo
+         "(com ref.)" deixa explícito que o desconto está embutido. */
+      L.push("Espectro");
+      L.push("lambda (nm);A medido (com ref.);A sem parasita;%T;A ideal (Beer-Lambert);I0 relativa");
+      var l;
+      for (l = 400; l <= 700; l += 1){
+        var am = A_instr(l), ai = ideal_instr(l), ans = A_instr_ns(l);
+        L.push(l + ";" + fmt(am,4) + ";" + fmt(ans,4) + ";" + fmt(Math.pow(10,-am)*100,2) + ";" +
+               fmt(ai,4) + ";" + fmt(srcI(l),4));
+      }
+      L.push("");
+      /* CURVA DE CALIBRAÇÃO — mesma simetria do Espectro.
+         "A sem parasita" aqui é A_band(lam,c,dlam) − refBand(lam):
+         a absorbância do padrão SEM luz parasita, descontando o branco
+         também sem parasita. É a coluna que permite ver, no Excel, o
+         quanto a parasita desloca cada ponto da curva.
+
+         Note a diferença em relação ao Espectro: lá o contrafactual é
+         A_instr_ns() (que usa refBand internamente); aqui a expressão é
+         escrita direta porque o eixo é c, não λ — é o mesmo cálculo,
+         aplicado ponto a ponto na curva de calibração.
+
+         Mesma renomeação do Espectro: "A medido" → "A medido (com ref.)",
+         porque A_read() também JÁ desconta a referência registrada. */
+      L.push("Curva de calibracao");
+      L.push("c (mg/L P);A medido (com ref.);A sem parasita;A ideal (Beer-Lambert)");
+      var c;
+      for (c = 0; c <= 100; c += 1){
+        var cm = A_read(lam,c), ci = ideal_instr(lam,c), cns = A_band(lam, c, dlam) - refBand(lam);
+        L.push(c + ";" + fmt(cm,4) + ";" + fmt(cns,4) + ";" + fmt(ci,4));
+      }
+      L.push("");
+      var f = calibrate();
+      L.push("Ajuste dos padroes (minimos quadrados)");
+      L.push("padrao (mg/L P);A medido");
+      for (var i2 = 0; i2 < STDS.length; i2++){
+        L.push(STDS[i2] + ";" + fmt(A_read(lam, STDS[i2]),4));
+      }
+      L.push("inclinacao a (A por mg/L);" + fmt(f.a,5));
+      L.push("intercepto b (A);" + fmt(f.b,5));
+      L.push("R2;" + fmt(f.r2,5));
+      L.push("RMSE (A);" + fmt(f.rmse,5));
+      var cc2 = f.a !== 0 ? (A_instr(lam) - f.b)/f.a : 0;
+      L.push("c calculada (mg/L P);" + fmt(cc2,3));
+      L.push("erro relativo (%);" + fmt(cVal > 0 ? (cc2-cVal)/cVal*100 : 0,2));
+
+      var txt = "\uFEFF" + L.join("\r\n");
+      var blob = new Blob([txt], { type:"text/csv;charset=utf-8" });
+      var url  = URL.createObjectURL(blob);
+      var host = document.body || root;
+      var a2   = document.createElement("a");
+      a2.href = url;
+      a2.download = "espectrofotometro_" + lam + "nm_c" +
+                    fmt(cVal,1).replace(",","") + "mgL.csv";
+      host.appendChild(a2); a2.click(); host.removeChild(a2);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    }
+
+    /* ================================================================
+       EVENT LISTENERS DOS CONTROLES DO Q3
+       ================================================================
+       Padrão geral: o handler ATUALIZA UMA variável de estado e chama
+       update(). Nada de lógica de tela aqui — a tela é consequência de
+       update(). Isso mantém uma única fonte de verdade.
+       ================================================================ */
+
+    /* λ de leitura — slider horizontal (gira o prisma no Q1).
+       Muda λ → a referência pode ficar INVÁLIDA (refOK() = false). */
+    el.sl.addEventListener("input", function(){ lam = +el.sl.value; update(); });
+
+    /* Fenda (Δλ) — largura da banda espectral. Afeta bandT() (média
+       ponderada) e também invalida a referência se o valor mudar. */
+    el.slit.addEventListener("input", function(){ dlam = +el.slit.value; update(); });
+
+    /* Botões − / + da concentração: passo de 0,5 mg·L⁻¹, limitado a
+       [0, CMAX]. O botão correspondente é desabilitado por update(). */
+    el.dec.addEventListener("click", function(){ cVal = Math.max(0, Math.round((cVal-0.5)*10)/10); update(); });
+    el.inc.addEventListener("click", function(){ cVal = Math.min(CMAX, Math.round((cVal+0.5)*10)/10); update(); });
+
+    /* Slider contínuo da concentração — passo de 0,1 mg·L⁻¹. */
+    if (el.cslider) el.cslider.addEventListener("input", function(){ cVal = Math.round((+el.cslider.value)*10)/10; update(); });
+
+    /* Slider X da curva de calibração — só muda a ESCALA do eixo c;
+       não recalcula nada, então chama draw() (redesenho) e não update(). */
+    if (el.calx) el.calx.addEventListener("input", function(){
+      calXMax = +el.calx.value;
+      if (el.calxv) el.calxv.textContent = calXMax;
+      draw();
+    });
+
+    if (el.caly) el.caly.addEventListener("input", function(){
+      calYMax = +el.caly.value;
+      if (el.calylab) el.calylab.textContent = fmt(calYMax, 2);
+      draw();
+    });
+
+    /* Slider Y do espectro — ao ser tocado, ENTRA EM MODO MANUAL
+       (specYAuto = false) e o teto passa a ser o valor do slider. O
+       atalho "auto" (el.spyauto) volta ao automático, aceitando clique
+       e teclado (Enter/Espaço) por acessibilidade. */
+    if (el.spy){
+      el.spy.addEventListener("input", function(){
+        specYAuto = false;
+        specYMax  = +el.spy.value;
+        if (el.spylab) el.spylab.textContent = fmt(specYMax, 2);
+        if (el.spyauto) el.spyauto.classList.remove("hidden");
+        el.spy.classList.remove("is-auto");
+        draw();
+      });
+    }
+    if (el.spyauto){
+      el.spyauto.addEventListener("click", function(){
+        specYAuto = true;
+        syncSliderLabels(parseFloat(el.cvspec.dataset.amax) || AMAXHI);
+        draw();
+      });
+      el.spyauto.addEventListener("keydown", function(ev){
+        if (ev.key === "Enter" || ev.key === " "){
+          ev.preventDefault();
+          specYAuto = true;
+          syncSliderLabels(parseFloat(el.cvspec.dataset.amax) || AMAXHI);
+          draw();
+        }
+      });
+    }
+
+    /* --- BOTÕES DE REFERÊNCIA (AUTOZERO) ---
+       A referência é gravada SEMPRE com o λ e a fenda atuais. Se depois
+       o usuário mudar λ ou Δλ, refOK() passa a ser falso e a leitura
+       aparece "crua" (classe .disp--raw no mostrador do Q1).
+         · autozero · branco reagente → kind "blank" (correto)
+         · zerar com água             → kind "water" (inclui o branco)
+         · limpar referência          → ref = null                    */
+    el.zero.addEventListener("click", function(){
+      /* CONGELA o branco medido AGORA (com o S atual). A partir daqui a
+         referência não muda mais, mesmo que a luz parasita seja ligada. */
+      ref = { lam: lam, dlam: dlam, kind: "blank", A: A_meas(lam, 0, dlam, S) };
+      update();
+    });
+    el.zero2.addEventListener("click", function(){
+      /* Água: não desconta o branco, então A = 0 por definição. */
+      ref = { lam: lam, dlam: dlam, kind: "water", A: 0 };
+      update();
+    });
+    el.refclr.addEventListener("click", function(){ ref = null; update(); });
+
+    /* Luz parasita — alterna 0 / STRAY. strayOn (UI) e S (modelo) mudam
+       juntos: são a mesma informação em duas formas. O visual do botão
+       usa .on (azul) e .on--bad (vermelho) para sinalizar perturbação. */
+    el.stray.addEventListener("click", function(){
+      strayOn = !strayOn;
+      S = strayOn ? STRAY : 0;
+      el.stray.classList.toggle("on", strayOn);
+      el.stray.classList.toggle("on--bad", strayOn);
+      el.stray.setAttribute("aria-pressed", strayOn ? "true" : "false");
+      update();
+    });
+    /* Restaurar padrões — devolve TODAS as variáveis de estado aos valores
+       iniciais (concentração, λ, fenda, escalas dos gráficos, luz parasita
+       e referência de branco) e sincroniza os controles visuais (sliders,
+       rótulos, classes dos botões) antes de chamar update().
+       É o único ponto que mexe em TODOS os controles de uma vez. */
+    el.reset.addEventListener("click", function(){
+      cVal = DEF_C; lam = 430; dlam = 4;
+      calXMax = 100; calYMax = AMAXCAL_DEF;
+      specYAuto = true; specYMax = AMAXHI;
+      if (el.calx) el.calx.value = 100;
+      if (el.calxv) el.calxv.textContent = "100";
+      if (el.caly) el.caly.value = AMAXCAL_DEF;
+      if (el.calylab) el.calylab.textContent = fmt(AMAXCAL_DEF, 2);
+      if (el.spy) el.spy.value = AMAXHI;
+      if (el.spylab) el.spylab.textContent = "auto";
+      if (el.spyauto) el.spyauto.classList.add("hidden");
+      if (el.spy) el.spy.classList.toggle("is-auto", true);
+      strayOn = false; S = 0;
+      /* A congelada com S=0 (o reset desliga a parasita ANTES de registrar). */
+      ref = { lam: 430, dlam: 4, kind: "blank", A: A_meas(430, 0, 4, 0) };
+      el.sl.value = lam; el.slit.value = dlam;
+      if (el.cslider) el.cslider.value = cVal;
+      el.stray.classList.remove("on","on--bad");
+      el.stray.setAttribute("aria-pressed","false");
+      update();
+    });
+    el.stray.setAttribute("aria-pressed", "false");
+
+    /* cenario(kind) — aplica um estado didático predefinido.
+       kind = "blank" → exercício 3: leitura referenciada no branco.
+       kind = "water" → exercício 7: leitura zerada com água (a absorbância
+                        do branco permanece embutida na leitura).
+       Tudo o mais (λ, fenda, escalas, luz parasita) volta ao padrão, como
+       em reset. A DIFERENÇA entre os dois cenários é só o kind da ref. */
+    function cenario(kind){
+      cVal = DEF_C; lam = 430; dlam = 4;
+      calXMax = 100; calYMax = AMAXCAL_DEF;
+      specYAuto = true; specYMax = AMAXHI;
+      if (el.calx) el.calx.value = 100;
+      if (el.calxv) el.calxv.textContent = "100";
+      if (el.caly) el.caly.value = AMAXCAL_DEF;
+      if (el.calylab) el.calylab.textContent = fmt(AMAXCAL_DEF, 2);
+      if (el.spy) el.spy.value = AMAXHI;
+      if (el.spylab) el.spylab.textContent = "auto";
+      if (el.spyauto) el.spyauto.classList.add("hidden");
+      if (el.spy) el.spy.classList.toggle("is-auto", true);
+      strayOn = false; S = 0;
+      /* O cenário registra a referência com S=0 (a parasita é desligada
+         antes) e CONGELA o valor correspondente:
+           · "blank" → A do branco a 430 nm, fenda 4 nm
+           · "water" → 0 (água não desconta o branco) */
+      ref = { lam: 430, dlam: 4, kind: kind,
+              A: kind === "water" ? 0 : A_meas(430, 0, 4, 0) };
+      el.sl.value = lam; el.slit.value = dlam;
+      if (el.cslider) el.cslider.value = cVal;
+      el.stray.classList.remove("on","on--bad");
+      el.stray.setAttribute("aria-pressed","false");
+      update();
+    }
+    if (el.sc3) el.sc3.addEventListener("click", function(){ cenario("blank"); });
+    if (el.sc7) el.sc7.addEventListener("click", function(){ cenario("water"); });
+    if (el.csv) el.csv.addEventListener("click", exportCSV);
+
+    /* ---------- OBSERVADORES E BOOT ---------- */
+
+    /* ResizeObserver na raiz: quando a figura muda de tamanho por qualquer
+       motivo externo (container, zoom da página), reenvia a altura ao pai. */
+    if (window.ResizeObserver){
+      var ro = new ResizeObserver(function(){ postHeight(); });
+      ro.observe(root);
+    }
+
+    /* Resize da JANELA: o viewport mudou, então tudo que depende de medida
+       precisa ser refeito — alturas sincronizadas, larguras dos sliders Y,
+       redesenho dos canvas e altura do iframe. */
+    window.addEventListener("resize", function(){
+      syncSpectrumHeight();
+      syncResultsHeight();
+      syncYSliderWidths();
+      draw();
+      postHeight();
+    });
+
+    /* Boot: garante o estado visual inicial coerente (botão de luz parasita
+       apagado) e faz o primeiro ciclo completo de renderização. */
+    el.stray.classList.remove("on","on--bad");
+    update();
+    postHeight();
+
+    /* "Settle": nos primeiros instantes o layout pode mudar algumas vezes
+       (fontes carregando, zoom aplicado, iframe ajustando a altura).
+       Este laço roda a sincronização a cada 250 ms por ~3,75 s e depois
+       se encerra sozinho — é uma rede de segurança, não um polling eterno. */
+    var settle = 0;
+    var settleTimer = setInterval(function(){
+      syncSpectrumHeight();
+      syncResultsHeight();
+      syncYSliderWidths();
+      postHeight();
+      if (++settle > 15) clearInterval(settleTimer);
+    }, 250);
+  }
+})();
+</script>
+
+</body>
+</html>
