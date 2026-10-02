@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DETERMINAÇÃO ESPECTROFOTOMÉTRICA DE FÓSFORO EM TECIDO DE CAFEEIRO – Apostila de Química Analítica</title>
+<title>DETERMINAÇÃO ESPECTROFOTOMÉTRICA DE FÓSFORO EM TECIDO FOLIAR – Apostila de Química Analítica</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -345,7 +345,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title"><span class="chapter-title">DETERMINAÇÃO ESPECTROFOTOMÉTRICA DE FÓSFORO EM TECIDO DE CAFEEIRO</span></h1>
+      <h1 class="title"><span class="chapter-title">DETERMINAÇÃO ESPECTROFOTOMÉTRICA DE FÓSFORO EM TECIDO FOLIAR</span></h1>
                       </div>
   </div>
     
@@ -516,21 +516,20 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
   <li><a href="#digestão-da-amostra-tecido-foliar" id="toc-digestão-da-amostra-tecido-foliar" class="nav-link" data-scroll-target="#digestão-da-amostra-tecido-foliar">2) Digestão da Amostra (Tecido Foliar)</a></li>
   <li><a href="#preparo-da-solução-da-amostra" id="toc-preparo-da-solução-da-amostra" class="nav-link" data-scroll-target="#preparo-da-solução-da-amostra">3) Preparo da Solução da Amostra</a></li>
   <li><a href="#realização-das-leituras-espectrofotométricas" id="toc-realização-das-leituras-espectrofotométricas" class="nav-link" data-scroll-target="#realização-das-leituras-espectrofotométricas">4) Realização das leituras espectrofotométricas</a></li>
+  <li><a href="#determinação-da-concentração-de-fósforo-nas-amostras" id="toc-determinação-da-concentração-de-fósforo-nas-amostras" class="nav-link" data-scroll-target="#determinação-da-concentração-de-fósforo-nas-amostras">5) Determinação da concentração de fósforo nas amostras</a></li>
   <li><a href="#simulação" id="toc-simulação" class="nav-link" data-scroll-target="#simulação">Simulação</a></li>
   </ul></li>
   <li><a href="#discussão" id="toc-discussão" class="nav-link" data-scroll-target="#discussão">Discussão</a></li>
   <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
   <li><a href="#guia-do-cálculo" id="toc-guia-do-cálculo" class="nav-link" data-scroll-target="#guia-do-cálculo">Guia do Cálculo</a>
   <ul class="collapse">
-  <li><a href="#método-1-uso-das-equações-formais-regressão-por-mínimos-quadrados" id="toc-método-1-uso-das-equações-formais-regressão-por-mínimos-quadrados" class="nav-link" data-scroll-target="#método-1-uso-das-equações-formais-regressão-por-mínimos-quadrados">Método 1: Uso das equações formais (regressão por mínimos quadrados)</a></li>
-  <li><a href="#método-2-cálculo-alternativo-por-regra-de-três-interpolação-na-curva" id="toc-método-2-cálculo-alternativo-por-regra-de-três-interpolação-na-curva" class="nav-link" data-scroll-target="#método-2-cálculo-alternativo-por-regra-de-três-interpolação-na-curva">Método 2: Cálculo alternativo por regra de três (interpolação na curva)</a></li>
-  <li><a href="#fluxograma-da-determinação-colorimétrica-de-fósforo" id="toc-fluxograma-da-determinação-colorimétrica-de-fósforo" class="nav-link" data-scroll-target="#fluxograma-da-determinação-colorimétrica-de-fósforo">Fluxograma da Determinação Colorimétrica de Fósforo</a></li>
+  <li><a href="#método-uso-da-curva-de-calibração-via-regressão-por-mínimos-quadrados" id="toc-método-uso-da-curva-de-calibração-via-regressão-por-mínimos-quadrados" class="nav-link" data-scroll-target="#método-uso-da-curva-de-calibração-via-regressão-por-mínimos-quadrados">Método: Uso da curva de calibração (via regressão por mínimos quadrados)</a></li>
+  <li><a href="#fluxograma-da-determinação-espectrofotométrica-de-fósforo" id="toc-fluxograma-da-determinação-espectrofotométrica-de-fósforo" class="nav-link" data-scroll-target="#fluxograma-da-determinação-espectrofotométrica-de-fósforo">Fluxograma da Determinação Espectrofotométrica de Fósforo</a></li>
   </ul></li>
   <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
   <li><a href="#complemento-com-ia" id="toc-complemento-com-ia" class="nav-link" data-scroll-target="#complemento-com-ia">Complemento com IA</a></li>
   <li><a href="#áudio" id="toc-áudio" class="nav-link" data-scroll-target="#áudio">Áudio</a></li>
   <li><a href="#resumo-visual" id="toc-resumo-visual" class="nav-link" data-scroll-target="#resumo-visual">Resumo Visual</a></li>
-  <li><a href="#simulador-de-testes" id="toc-simulador-de-testes" class="nav-link" data-scroll-target="#simulador-de-testes">Simulador de Testes</a></li>
   </ul>
 </nav>
     </div>
@@ -1695,6 +1694,8 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <li><p>Realizar a primeira leitura espectrofotométrica com o <strong>branco</strong> (solução padrão de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0 \ \text{mg·L}^{-1}</annotation></semantics></math>) a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mn>430</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nm</mtext></mrow><annotation encoding="application/x-tex">\lambda = 430 \ \text{nm}</annotation></semantics></math></p></li>
 <li><p>Realizar as demais leituras das absorbância das soluções padrão e das amostras.</p></li>
 </ol>
+<p><br></p>
+<hr>
 <section id="tabela-de-registro-de-dados-curva-de-calibração" class="level4">
 <h4 class="anchored" data-anchor-id="tabela-de-registro-de-dados-curva-de-calibração">Tabela de Registro de Dados — Curva de Calibração</h4>
 <table class="caption-top table">
@@ -1707,9 +1708,9 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <thead>
 <tr class="header">
 <th style="text-align: center;">Solução</th>
-<th style="text-align: center;">Concentração de P (mg·L⁻¹)</th>
-<th style="text-align: center;">Transmitância (%T)</th>
-<th style="text-align: center;">Absorbância (A)</th>
+<th style="text-align: center;">Concentração de P<br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mi>g</mi><mo>⋅</mo><msup><mi>L</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(mg \cdot L^{-1})</annotation></semantics></math></th>
+<th style="text-align: center;">Transmitância<br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mi>T</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\%T)</annotation></semantics></math></th>
+<th style="text-align: center;">Absorbância<br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A)</annotation></semantics></math></th>
 </tr>
 </thead>
 <tbody>
@@ -1749,6 +1750,27 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
+</tbody>
+</table>
+</section>
+<section id="tabela-de-registro-de-dados-amostras" class="level4">
+<h4 class="anchored" data-anchor-id="tabela-de-registro-de-dados-amostras">Tabela de Registro de Dados — Amostras</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Amostra</strong></th>
+<th style="text-align: center;"><strong>Absorbância</strong> <br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A)</annotation></semantics></math></th>
+<th style="text-align: center;"><strong>Transmitância</strong> <br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mi>T</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\%T)</annotation></semantics></math></th>
+<th style="text-align: center;"><strong>Concentração de P</strong> <br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mi>g</mi><mo>⋅</mo><msup><mi>L</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(mg \cdot L^{-1})</annotation></semantics></math></th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td style="text-align: center;"><strong>Amostra 1</strong></td>
 <td style="text-align: center;"></td>
@@ -1769,7 +1791,22 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </tr>
 </tbody>
 </table>
+<hr>
+<p><br></p>
 </section>
+</section>
+<section id="determinação-da-concentração-de-fósforo-nas-amostras" class="level3">
+<h3 class="anchored" data-anchor-id="determinação-da-concentração-de-fósforo-nas-amostras">5) Determinação da concentração de fósforo nas amostras</h3>
+<ol type="1">
+<li><strong>Obtenção dos parâmetros da equação da reta:</strong></li>
+</ol>
+<p>Determine os valores do coeficiente angular <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(m)</annotation></semantics></math> e do coeficiente linear <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(n)</annotation></semantics></math> por meio da regressão linear simples obtida com os dados da curva de calibração.</p>
+<p><strong><em>🠞Use:</em></strong> a <a href="./002_RegressaoLinear.html" target="_blank"><em>ferramenta</em> de Regressão Linear</a></p>
+<ol start="2" type="1">
+<li><strong>Cálculo da concentração da solução lida:</strong></li>
+</ol>
+<p>Isolando a concentração <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(c)</annotation></semantics></math> na equação da reta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo>=</mo><mi>m</mi><mo>⋅</mo><mi>c</mi><mo>+</mo><mi>n</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A = m \cdot c + n)</annotation></semantics></math>, calcule a concentração de fósforo na alíquota lida de cada amostra <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(j)</annotation></semantics></math> aplicando a fórmula:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mrow><mi>a</mi><mi>m</mi><mi>o</mi><mi>s</mi><mi>t</mi><mi>r</mi><msub><mi>a</mi><mi>j</mi></msub></mrow></msub><mo>=</mo><mfrac><mrow><msub><mi>A</mi><mrow><mi>a</mi><mi>m</mi><mi>o</mi><mi>s</mi><mi>t</mi><mi>r</mi><msub><mi>a</mi><mi>j</mi></msub></mrow></msub><mo>−</mo><mi>n</mi></mrow><mi>m</mi></mfrac></mrow><annotation encoding="application/x-tex"> c_{amostra_j} = \frac{ A_{amostra_j} - n }{ m } </annotation></semantics></math></p>
 </section>
 <section id="simulação" class="level3">
 <h3 class="anchored" data-anchor-id="simulação">Simulação</h3>
@@ -1794,9 +1831,11 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </section>
 <section id="discussão" class="level2">
 <h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
-<p>A determinação espectrofotométrica de fósforo em tecido foliar baseia-se na formação do complexo vanadomolibdofosfórico, cuja absorção de radiação em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>430</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nm</mtext></mrow><annotation encoding="application/x-tex">430 \ \text{nm}</annotation></semantics></math>, expressa como absorbância, é proporcional à concentração de P na solução — dentro dos limites da Lei de Lambert-Beer.</p>
-<p>O método gráfico (construção de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> versus <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>) permite a determinação direta a partir da curva. A <a href="https://pt.wikipedia.org/wiki/M%C3%ADnimos_quadrados">regressão por mínimos quadrados</a> fornece uma equação da reta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">(</mo><mi>A</mi><mo>=</mo><mi>m</mi><mo>⋅</mo><mi>c</mi><mo>+</mo><mi>n</mi><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\big(A = m \cdot c + n\big)</annotation></semantics></math> que sistematiza a interpolação. A qualidade do ajuste é avaliada pelo coeficiente de determinação <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(R^2)</annotation></semantics></math>.</p>
-<p>É indispensável o uso do <strong>branco</strong> para zerar o equipamento, descontando a absorbância residual do reagente. Além disso, como a amostra passa por etapas de digestão e diluição, a concentração lida na alíquota deve ser multiplicada pelo <strong>fator de diluição total</strong> para expressar o resultado na amostra original <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">mg·kg</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{mg·kg}^{-1})</annotation></semantics></math>.</p>
+<p>A determinação espectrofotométrica de fósforo em tecido foliar fundamenta-se na reação do íon ortofosfato <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msubsup><mtext mathvariant="normal">PO</mtext><mn>4</mn><mrow><mn>3</mn><mo>−</mo></mrow></msubsup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{PO}_4^{3-})</annotation></semantics></math>, liberado da matriz vegetal pela digestão oxidativa com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">HNO</mtext><mn>3</mn></msub><mi>/</mi><msub><mtext mathvariant="normal">H</mtext><mn>2</mn></msub><msub><mtext mathvariant="normal">O</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{HNO}_3/\text{H}_2\text{O}_2</annotation></semantics></math>, com os reagentes molibdato e metavanadato de amônio em meio nítrico, formando o heteropoliácido de coloração amarela — o ácido vanadomolibdatofosfórico. A absorbância desse complexo, medida em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>430</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nm</mtext></mrow><annotation encoding="application/x-tex">430 \ \text{nm}</annotation></semantics></math>, é diretamente proporcional à concentração de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>, dentro dos limites de validade da Lei de Lambert-Beer.</p>
+<p>A construção da curva analítica sistematiza matematicamente a interpolação direta ao fornecer os parâmetros da reta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo>=</mo><mi>m</mi><mo>⋅</mo><mi>c</mi><mo>+</mo><mi>n</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A = m \cdot c + n)</annotation></semantics></math>. Desvios pontuais observados nas calibrações reais — sobretudo nas extremidades da faixa de trabalho — podem evidenciar perda de linearidade em concentrações elevadas ou limitação do sinal analítico em concentrações muito baixas, o que reforça a recomendação de interpolar preferencialmente no terço médio da curva.</p>
+<p>Do ponto de vista operacional, o <strong>zeramento do espectrofotômetro com o branco de reagentes</strong> é indispensável: essa solução, contendo todos os componentes do método exceto o analito, permite descontar a absorbância residual decorrente das espécies de vanádio e molibdênio e do meio ácido, assegurando que o sinal medido corresponda exclusivamente ao analito. Ademais, como a amostra percorre etapas sucessivas de digestão e diluição volumétrica (aferições em balões de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">50 \ \text{mL}</annotation></semantics></math>, incluindo a alíquota de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">10 \ \text{mL}</annotation></semantics></math> do extrato diluída a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">mL</mtext></mrow><annotation encoding="application/x-tex">50 \ \text{mL}</annotation></semantics></math> após adição do reagente), a concentração obtida por interpolação refere-se à solução efetivamente lida; o resultado na amostra original <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">mg·kg</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{mg·kg}^{-1})</annotation></semantics></math> exige a multiplicação pelo <strong>fator de diluição total</strong>, que acumula todas as razões volumétricas do procedimento.</p>
+<p>Cabe ainda considerar as fontes de erro típicas do procedimento experimental: a secagem insuficiente do <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><msub><mi>H</mi><mn>2</mn></msub><mi>P</mi><msub><mi>O</mi><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">KH_2PO_4</annotation></semantics></math> (sal padrão) pode introduzir erro sistemático por excesso na concentração da solução estoque, deslocando a curva de calibração; leituras realizadas antes do tempo de desenvolvimento completo da cor (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">\approx 15</annotation></semantics></math> minutos) subestimam a absorbância; e a digestão incompleta do tecido foliar pode acarretar turbidez ou cor residual no extrato, comprometendo a linearidade da resposta. O controle dessas etapas — associado ao emprego de cubeta de caminho óptico padronizado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">cm</mtext></mrow><annotation encoding="application/x-tex">1{,}0 \ \text{cm}</annotation></semantics></math>) e à leitura no comprimento de onda de máxima absorção do complexo (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo><mn>430</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nm</mtext></mrow><annotation encoding="application/x-tex">\approx 430 \ \text{nm}</annotation></semantics></math>) — garante a exatidão e a reprodutibilidade da determinação.</p>
+<p>Completa a discussão a interpretação nutricional do resultado: teores foliares de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1{,}2</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>5</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">g·kg</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2{,}5 \ \text{g·kg}^{-1}</annotation></semantics></math> são considerados adequados ao cafeeiro, de modo que a concentração obtida permite avaliar o estado nutricional da planta. A técnica empregada é particularmente apropriada a esse contexto por conciliar simplicidade operacional, elevada estabilidade do complexo colorido e faixa de trabalho compatível com os teores usualmente encontrados em tecido vegetal; para concentrações abaixo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1 \ \text{mg·L}^{-1}</annotation></semantics></math>, o método do azul de molibdênio, de maior sensibilidade, constitui alternativa recomendada.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1817,18 +1856,17 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <section id="bibliografia" class="level2">
 <h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
 <ul>
-<li>HARRIS, D. C. <strong>Análise Química Quantitativa</strong>. 9. ed.&nbsp;Rio de Janeiro: LTC, 2017.</li>
-<li>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J.; CROUCH, S. R. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.</li>
-<li>VOGEL, A. I. <strong>Análise Química Quantitativa</strong>. 6. ed.&nbsp;Rio de Janeiro: LTC, 2012.</li>
-<li>MALAVOLTA, E.; VITTI, G. C.; OLIVEIRA, S. A. <strong>Avaliação do estado nutricional das plantas: princípios e aplicações</strong>. 2. ed.&nbsp;Piracicaba: POTAFOS, 1997.</li>
-<li>WIKIPÉDIA. <strong>Lei de Beer-Lambert</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Lei_de_Beer-Lambert" class="uri">https://pt.wikipedia.org/wiki/Lei_de_Beer-Lambert</a></li>
-<li>WIKIPÉDIA. <strong>Espectrofotometria</strong>. Disponível em: <a href="https://pt.wikipedia.org/wiki/Espectrofotometria" class="uri">https://pt.wikipedia.org/wiki/Espectrofotometria</a></li>
+<li><p>HARRIS, D. C. <strong>Análise Química Quantitativa</strong>. 9. ed.&nbsp;Rio de Janeiro: LTC, 2017.</p></li>
+<li><p>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J.; CROUCH, S. R. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.</p></li>
+<li><p>VOGEL, A. I. <strong>Análise Química Quantitativa</strong>. 6. ed.&nbsp;Rio de Janeiro: LTC, 2012.</p></li>
+<li><p>MALAVOLTA, E.; VITTI, G. C.; OLIVEIRA, S. A. <strong>Avaliação do estado nutricional das plantas: princípios e aplicações</strong>. 2. ed.&nbsp;Piracicaba: POTAFOS, 1997.</p></li>
+<li><p>BRASIL. Ministério da Agricultura e Pecuária. <strong>Manual de Métodos Analíticos Oficiais de Fertilizantes, Corretivos, Substratos, Condicionadores e Remineralizadores de Solo</strong>: Volume I. Brasília, DF: Ministério da Agricultura e Pecuária, 2024. Disponível em: <a href="https://wikisda.agricultura.gov.br/pt-br/Laborat%C3%B3rios/Metodologia/Fertilizantes/ManualFICVolI">https://wikisda.agricultura.gov.br/pt-br/Laborat%C3%B3rios/Metodologia/Fertilizantes/ManualFICVolI</a>. Acesso em: 1 out. 2026.</p></li>
 </ul>
 <hr>
 </section>
 <section id="guia-do-cálculo" class="level2">
 <h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
-<p>Este guia apresenta o procedimento para determinar a concentração de fósforo (ou de outro analito colorimétrico) a partir dos dados de transmitância/absorbância e da curva de calibração.</p>
+<p>Este guia apresenta o procedimento para determinar a concentração de fósforo (ou de outro analito determinado por espectrofotometria) a partir dos dados de transmitância/absorbância e da curva de calibração.</p>
 <p><strong>Atenção para as Unidades e Métodos:</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -1850,13 +1888,13 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <td style="text-align: left;"><strong>Transmitância</strong></td>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> (ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>%</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\%T</annotation></semantics></math>)</td>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> (ou <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>%</mi><annotation encoding="application/x-tex">\%</annotation></semantics></math>)</td>
-<td style="text-align: left;">Fração de luz transmitida <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mi>I</mi><msub><mi>I</mi><mn>0</mn></msub></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\left(T = \dfrac{I}{I_0}\right)</annotation></semantics></math></td>
+<td style="text-align: left;">Fração de luz transmitida<br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mi>I</mi><msub><mi>I</mi><mn>0</mn></msub></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\left(T = \dfrac{I}{I_0}\right)</annotation></semantics></math></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Absorbância</strong></td>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math></td>
 <td style="text-align: center;">Adimensional</td>
-<td style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mi>T</mi></mrow><annotation encoding="application/x-tex">A = -\log_{10} T</annotation></semantics></math> (com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> em fração)</td>
+<td style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mi>T</mi></mrow><annotation encoding="application/x-tex">A = -\log_{10} T</annotation></semantics></math><br> (com <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> em fração)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Absortividade</strong></td>
@@ -1868,7 +1906,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <td style="text-align: left;"><strong>Caminho ótico</strong></td>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math></td>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">cm</mtext><annotation encoding="application/x-tex">\text{cm}</annotation></semantics></math></td>
-<td style="text-align: left;">Espessura da cubeta (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">cm</mtext></mrow><annotation encoding="application/x-tex">1{,}0 \ \text{cm}</annotation></semantics></math>)</td>
+<td style="text-align: left;">Espessura da cubeta<br> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">cm</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1{,}0 \ \text{cm})</annotation></semantics></math></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Concentração (alíquota)</strong></td>
@@ -1906,13 +1944,14 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </ul>
 </div>
 </div>
-<section id="método-1-uso-das-equações-formais-regressão-por-mínimos-quadrados" class="level3">
-<h3 class="anchored" data-anchor-id="método-1-uso-das-equações-formais-regressão-por-mínimos-quadrados">Método 1: Uso das equações formais (regressão por mínimos quadrados)</h3>
-<p><strong>Exemplo (Exercício 1 da prática):</strong> dados de transmitância e concentração:</p>
+<section id="método-uso-da-curva-de-calibração-via-regressão-por-mínimos-quadrados" class="level3">
+<h3 class="anchored" data-anchor-id="método-uso-da-curva-de-calibração-via-regressão-por-mínimos-quadrados">Método: Uso da curva de calibração (via regressão por mínimos quadrados)</h3>
+<p><strong>Exemplo de Aplicação Prática (Dados do Exercício 1):</strong></p>
+<p>Para ilustrar a construção da curva de calibração e os cálculos de determinação, utilizaremos os dados experimentais obtidos no <strong>Exercício 1</strong>. A partir das leituras de transmitância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mi>T</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\%T)</annotation></semantics></math> medidas no espectrofotômetro para cada solução padrão de concentração conhecida <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(c)</annotation></semantics></math>, faremos a conversão para absorbância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A)</annotation></semantics></math> e o cálculo dos parâmetros do modelo linear.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: center;">Transmitância (%)</th>
+<th style="text-align: center;">Transmitância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\%)</annotation></semantics></math></th>
 <th style="text-align: center;">100</th>
 <th style="text-align: center;">85</th>
 <th style="text-align: center;">70</th>
@@ -1922,7 +1961,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Concentração (mg/kg)</td>
+<td style="text-align: center;">Concentração <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mi>g</mi><mo>⋅</mo><mi>k</mi><msup><mi>g</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(mg \cdot kg^{-1})</annotation></semantics></math></td>
 <td style="text-align: center;">0</td>
 <td style="text-align: center;">2,5</td>
 <td style="text-align: center;">5,3</td>
@@ -1931,13 +1970,21 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </tr>
 </tbody>
 </table>
-<p><strong>Passo 1</strong> — Converter transmitância em absorbância (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mi>/</mi><mn>100</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A = -\log_{10}(T/100)</annotation></semantics></math>):</p>
+<p><strong>Passo 1</strong> — Converter transmitância em absorbância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mi>/</mi><mn>100</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A = -\log_{10}(T/100))</annotation></semantics></math>:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>85</mn><mn>100</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>85</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0</mn><mo>,</mo><mn>0706</mn></mrow><annotation encoding="application/x-tex">A = -\log_{10}\left(\frac{85}{100}\right) = -\log_{10}(0{,}85) = 0{,}0706</annotation></semantics></math></p>
 <p>Aplicando a todos os pontos:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Concentração (mg/kg)</th>
+<th style="text-align: center;">Concentração <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mi>g</mi><mo>⋅</mo><mi>k</mi><msup><mi>g</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(mg \cdot kg^{-1})</annotation></semantics></math></th>
 <th style="text-align: center;">0</th>
 <th style="text-align: center;">2,5</th>
 <th style="text-align: center;">5,3</th>
@@ -1947,7 +1994,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Absorbância (A)</td>
+<td style="text-align: center;">Absorbância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A)</annotation></semantics></math></td>
 <td style="text-align: center;">0,0000</td>
 <td style="text-align: center;">0,0706</td>
 <td style="text-align: center;">0,1549</td>
@@ -1956,8 +2003,10 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </tr>
 </tbody>
 </table>
-<p><strong>Passo 2</strong> — Ajustar a reta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>a</mi><mo>⋅</mo><mi>c</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">A = a \cdot c + b</annotation></semantics></math> por mínimos quadrados:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mrow><mi>n</mi><mo>∑</mo><mo stretchy="false" form="prefix">(</mo><mi>c</mi><mo>⋅</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mo>∑</mo><mi>c</mi><mo>⋅</mo><mo>∑</mo><mi>A</mi></mrow><mrow><mi>n</mi><mo>∑</mo><msup><mi>c</mi><mn>2</mn></msup><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mo>∑</mo><mi>c</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mspace width="2.0em"></mspace><mi>b</mi><mo>=</mo><mfrac><mrow><mo>∑</mo><mi>A</mi><mo>−</mo><mi>a</mi><mo>∑</mo><mi>c</mi></mrow><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">a = \frac{n \sum (c \cdot A) - \sum c \cdot \sum A}{n \sum c^2 - (\sum c)^2} \qquad b = \frac{\sum A - a \sum c}{n}</annotation></semantics></math></p>
+<p><strong>Passo 2</strong> — Ajustar a reta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>m</mi><mo>⋅</mo><mi>c</mi><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">A = m \cdot c + n</annotation></semantics></math> pelo Método dos Mínimos Quadrados:</p>
+<p>Para realizar o ajuste linear, considera-se o número de condições de concentração testadas na curva de calibração, indicado por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">p = 5</annotation></semantics></math> (excluindo o branco de reagentes usado no zeramento do equipamento).</p>
+<p>Com base nos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">p = 5</annotation></semantics></math> pontos experimentais <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>c</mi><mi>i</mi></msub><mo>,</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(c_i, A_i)</annotation></semantics></math>, os parâmetros da reta são determinados pelas seguintes equações:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mfrac><mrow><mn>5</mn><mo>∑</mo><mo stretchy="false" form="prefix">(</mo><mi>c</mi><mo>⋅</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mo>∑</mo><mi>c</mi><mo>⋅</mo><mo>∑</mo><mi>A</mi></mrow><mrow><mn>5</mn><mo>∑</mo><msup><mi>c</mi><mn>2</mn></msup><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mo>∑</mo><mi>c</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mspace width="2.0em"></mspace><mi>n</mi><mo>=</mo><mfrac><mrow><mo>∑</mo><mi>A</mi><mo>−</mo><mi>m</mi><mo>∑</mo><mi>c</mi></mrow><mn>5</mn></mfrac></mrow><annotation encoding="application/x-tex">m = \frac{5 \sum (c \cdot A) - \sum c \cdot \sum A}{5 \sum c^2 - (\sum c)^2} \qquad n = \frac{\sum A - m \sum c}{5}</annotation></semantics></math></p>
 <p>Resultado do ajuste (valores verificados computacionalmente):</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>03749</mn><mo>⋅</mo><mi>c</mi><mo>−</mo><mn>0</mn><mo>,</mo><mn>01973</mn><mspace width="2.0em"></mspace><mo stretchy="false" form="prefix">(</mo><msup><mi>R</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>9913</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A = 0{,}03749 \cdot c - 0{,}01973 \qquad (R^2 = 0{,}9913)</annotation></semantics></math></p>
 <p><strong>Passo 3</strong> — Determinar a absorbância da amostra (transmitância de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>65</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">65\%</annotation></semantics></math>):</p>
@@ -1969,75 +2018,164 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <p>👉 <em>Resultado:</em> a concentração de magnésio na amostra original é de aproximadamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1556</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·kg</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1556 \ \text{mg·kg}^{-1}</annotation></semantics></math>.</p>
 <hr>
 </section>
-<section id="método-2-cálculo-alternativo-por-regra-de-três-interpolação-na-curva" class="level3">
-<h3 class="anchored" data-anchor-id="método-2-cálculo-alternativo-por-regra-de-três-interpolação-na-curva">Método 2: Cálculo alternativo por regra de três (interpolação na curva)</h3>
-<p><strong>Exemplo (Exercício 2 da prática):</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Transmitância (%)</th>
-<th style="text-align: center;">86</th>
-<th style="text-align: center;">71</th>
-<th style="text-align: center;">64</th>
-<th style="text-align: center;">48</th>
-<th style="text-align: center;">39</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Concentração (mg/kg)</td>
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">15</td>
-<td style="text-align: center;">20</td>
-<td style="text-align: center;">25</td>
-<td style="text-align: center;">30</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Passo 1</strong> — Converter transmitância em absorbância:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>T</mi><mn>100</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">A = -\log_{10}\left(\frac{T}{100}\right)</annotation></semantics></math></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Concentração (mg/kg)</th>
-<th style="text-align: center;">10</th>
-<th style="text-align: center;">15</th>
-<th style="text-align: center;">20</th>
-<th style="text-align: center;">25</th>
-<th style="text-align: center;">30</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Absorbância (A)</td>
-<td style="text-align: center;">0,0655</td>
-<td style="text-align: center;">0,1487</td>
-<td style="text-align: center;">0,1938</td>
-<td style="text-align: center;">0,3188</td>
-<td style="text-align: center;">0,4089</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Passo 2</strong> — Construir a reta média (ou regressão) — ajuste verificado:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>01714</mn><mo>⋅</mo><mi>c</mi><mo>−</mo><mn>0</mn><mo>,</mo><mn>1156</mn><mspace width="2.0em"></mspace><mo stretchy="false" form="prefix">(</mo><msup><mi>R</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>9813</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A = 0{,}01714 \cdot c - 0{,}1156 \qquad (R^2 = 0{,}9813)</annotation></semantics></math></p>
-<p><strong>Passo 3</strong> — Para a amostra com absorbância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>268</mn></mrow><annotation encoding="application/x-tex">A = 0{,}268</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mfrac><mrow><mn>0</mn><mo>,</mo><mn>268</mn><mo>+</mo><mn>0</mn><mo>,</mo><mn>1156</mn></mrow><mrow><mn>0</mn><mo>,</mo><mn>01714</mn></mrow></mfrac><mo>=</mo><mn>22</mn><mo>,</mo><mn>38</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·kg</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">c = \frac{0{,}268 + 0{,}1156}{0{,}01714} = 22{,}38 \ \text{mg·kg}^{-1}</annotation></semantics></math></p>
-<p><strong>Passo 4</strong> — Aplicar o fator de diluição (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>270</mn><annotation encoding="application/x-tex">270</annotation></semantics></math> vezes):</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext mathvariant="normal">amostra</mtext></msub><mo>=</mo><mn>22</mn><mo>,</mo><mn>38</mn><mo>×</mo><mn>270</mn><mo>≈</mo><mn>6044</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·kg</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">C_{\text{amostra}} = 22{,}38 \times 270 \approx 6044 \ \text{mg·kg}^{-1}</annotation></semantics></math></p>
-<p>👉 <em>Resultado:</em> a concentração de ferro na amostra é de aproximadamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6044</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·kg</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">6044 \ \text{mg·kg}^{-1}</annotation></semantics></math>.</p>
-</section>
-<section id="fluxograma-da-determinação-colorimétrica-de-fósforo" class="level3">
-<h3 class="anchored" data-anchor-id="fluxograma-da-determinação-colorimétrica-de-fósforo">Fluxograma da Determinação Colorimétrica de Fósforo</h3>
-<p>O fluxograma resume a sequência lógica de cálculos e etapas experimentais, desde a digestão da amostra e o preparo da curva de calibração até a leitura espectrofotométrica e o cálculo final.</p>
+<section id="fluxograma-da-determinação-espectrofotométrica-de-fósforo" class="level3">
+<h3 class="anchored" data-anchor-id="fluxograma-da-determinação-espectrofotométrica-de-fósforo">Fluxograma da Determinação Espectrofotométrica de Fósforo</h3>
+<p>O fluxograma resume a sequência lógica de cálculos e etapas experimentais, desde a digestão da amostra e o preparo da curva de calibração até a leitura espectrofotométrica e o cálculo final de concentração de amostra desconhecida.</p>
 <div id="fluxograma-Espectrofotometria" class="center fluxograma-adaptavel quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fluxograma figure">
 <div aria-describedby="fluxograma-Espectrofotometria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<svg width="100%" style="height: auto;" viewbox="0 0 1280 1850" id="svg_fosforo_espectro">
+  <style>
+    .formula-text { font-family: Helvetica, Arial, sans-serif; font-size: 22px; }
+    .superscript { font-size: 14px; }
+    .subscript { font-size: 14px; }
+  </style>
 
-<h4 class="anchored"> inserir depois </h4>
-<!--{{< include Fluxo_Espectrofotometria.html >}}-->
+  <g id="graph0">
+    <title id="title1">Determinação_Fósforo_Espectrofotometria</title>
+    <polygon class="graph-bg" stroke="none" points="0,0 1280,0 1280,1850 0,1850" id="polygon1"></polygon>
+
+    <!-- ROOT -->
+    <g id="node1">
+      <polygon class="node-bg-root" stroke="none" points="140,30 1140,30 1140,80 140,80" id="polygon2"></polygon>
+      <text class="text-color" text-anchor="middle" dominant-baseline="middle" x="640" y="55" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="26.00" id="text2">Determinação Espectrofotométrica de Fósforo em Tecido Foliar</text>
+      <polygon fill="none" class="stroke-color" points="140,30 1140,30 1140,80 140,80" id="polygon3"></polygon>
+    </g>
+
+    <!-- SETA ROOT -> P1 -->
+    <path class="edge-line" d="M640,80 L640,120" id="path3"></path>
+    <polygon class="edge-arrow" points="635,120 640,130 645,120" id="polygon4"></polygon>
+
+    <!-- PASSO 1: Preparo das Soluções e Reagentes -->
+    <g id="node2">
+      <polygon class="node-bg" stroke="none" points="10,130 1270,130 1270,330 10,330" id="polygon5"></polygon>
+      <text class="text-color" text-anchor="middle" dominant-baseline="middle" x="640" y="165" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="26.00" id="text5">Passo 1 — Preparo da Solução Estoque de P e Reagente Vanadato-Molibdato</text>
+      <line x1="10" y1="200" x2="1270" y2="200" class="stroke-color" id="line5"></line>
+      <line x1="640" y1="200" x2="640" y2="330" class="stroke-color" id="line6"></line>
+      
+      <!-- Esquerda (Centro X=325) -->
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="325" y="230" id="text6">Solução Estoque (100 mg·L<tspan class="superscript">-1</tspan> P):</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="325" y="265" id="text7">Pesar 0,4394 g de KH<tspan class="subscript">2</tspan>PO<tspan class="subscript">4</tspan> (seco a 105 °C)</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="325" y="300" id="text8">Dissolver e aferir para 1,0 L em H<tspan class="subscript">2</tspan>O destilada</text>
+
+      <!-- Direita (Centro X=955) -->
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="955" y="230" id="text9">Reagente Vanadato-Molibdato (1,0 L):</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="955" y="265" id="text10">2,5 g NH<tspan class="subscript">4</tspan>VO<tspan class="subscript">3</tspan> + 25,0 g (NH<tspan class="subscript">4</tspan>)<tspan class="subscript">6</tspan>Mo<tspan class="subscript">7</tspan>O<tspan class="subscript">24</tspan>·4H<tspan class="subscript">2</tspan>O</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="955" y="300" id="text11">+ 250 mL HNO<tspan class="subscript">3</tspan> conc., aferir balão de 1,0 L com H<tspan class="subscript">2</tspan>O</text>
+
+      <polygon fill="none" class="stroke-color" points="10,130 1270,130 1270,330 10,330" id="polygon12"></polygon>
+    </g>
+
+    <!-- SETA P1 -> P2 -->
+    <path class="edge-line" d="M640,330 L640,370" id="path12"></path>
+    <polygon class="edge-arrow" points="635,370 640,380 645,370" id="polygon13"></polygon>
+
+    <!-- PASSO 2: Digestão de Tecido Foliar -->
+    <g id="node3">
+      <polygon class="node-bg" stroke="none" points="100,380 1180,380 1180,530 100,530" id="polygon14"></polygon>
+      <text class="text-color" text-anchor="middle" dominant-baseline="middle" x="640" y="415" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="26.00" id="text14">Passo 2 — Digestão da Amostra (Tecido Foliar)</text>
+      <line x1="100" y1="450" x2="1180" y2="450" class="stroke-color" id="line14"></line>
+
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="475" id="text15">Pesar ~0,50 g de folha seca em tubo digestor + 3 mL HNO<tspan class="subscript">3</tspan> conc. + 1 mL H<tspan class="subscript">2</tspan>O<tspan class="subscript">2</tspan></text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="505" id="text16">Digerir em bloco até límpido → Resfriar → Aferir em balão volumétrico de 50 mL</text>
+
+      <polygon fill="none" class="stroke-color" points="100,380 1180,380 1180,530 100,530" id="polygon17"></polygon>
+    </g>
+
+    <!-- SETA P2 -> P3 -->
+    <path class="edge-line" d="M640,530 L640,570" id="path17"></path>
+    <polygon class="edge-arrow" points="635,570 640,580 645,570" id="polygon18"></polygon>
+
+    <!-- PASSO 3: Desenvolvimento de Cor -->
+    <g id="node4">
+      <polygon class="node-bg" stroke="none" points="10,580 1270,580 1270,780 10,780" id="polygon19"></polygon>
+      <text class="text-color" text-anchor="middle" dominant-baseline="middle" x="640" y="615" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="26.00" id="text19">Passo 3 — Desenvolvimento de Cor (Curva Padrão e Amostra)</text>
+      <line x1="10" y1="650" x2="1270" y2="650" class="stroke-color" id="line19"></line>
+      <line x1="640" y1="650" x2="640" y2="780" class="stroke-color" id="line20"></line>
+
+      <!-- Esquerda (Centro X=325) -->
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="325" y="680" id="text20">Curva Padrão (Balões de 50 mL):</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="325" y="715" id="text21">Pipetar 0, 2, 4, 6, 8 e 10 mL da Estoque (0 a 20 mg·L<tspan class="superscript">-1</tspan> P)</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="325" y="750" id="text22">+ 10 mL Reagente Vanadato-Molibdato + Aferir a 50 mL</text>
+
+      <!-- Direita (Centro X=955) -->
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="955" y="680" id="text23">Amostra Foliar (Balão de 50 mL):</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="955" y="715" id="text24">Pipetar alíquota de 10,0 mL do extrato digerido</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="955" y="750" id="text25">+ 10 mL Reagente Vanadato-Molibdato + Aferir a 50 mL (15 min)</text>
+
+      <polygon fill="none" class="stroke-color" points="10,580 1270,580 1270,780 10,780" id="polygon26"></polygon>
+    </g>
+
+    <!-- SETA P3 -> P4 -->
+    <path class="edge-line" d="M640,780 L640,820" id="path26"></path>
+    <polygon class="edge-arrow" points="635,820 640,830 645,820" id="polygon27"></polygon>
+
+    <!-- PASSO 4: Medição Espectrofotométrica -->
+    <g id="node5">
+      <polygon class="node-bg" stroke="none" points="150,820 1130,820 1130,970 150,970" id="polygon28"></polygon>
+      <text class="text-color" text-anchor="middle" dominant-baseline="middle" x="640" y="855" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="26.00" id="text28">Passo 4 — Leitura Espectrofotométrica (λ = 430 nm)</text>
+      <line x1="150" y1="890" x2="1130" y2="890" class="stroke-color" id="line28"></line>
+
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="915" id="text29">Zerar o equipamento (A = 0,000) com a solução Branco (0 mg·L<tspan class="superscript">-1</tspan> P)</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="945" id="text30">Ler as Absorbâncias (A) de cada Padrão e das Amostras em cubeta de 1,0 cm</text>
+
+      <polygon fill="none" class="stroke-color" points="150,820 1130,820 1130,970 150,970" id="polygon31"></polygon>
+    </g>
+
+    <!-- SETA P4 -> P5 -->
+    <path class="edge-line" d="M640,970 L640,1010" id="path31"></path>
+    <polygon class="edge-arrow" points="635,1010 640,1020 645,1010" id="polygon32"></polygon>
+
+    <!-- PASSO 5: Curva de Calibração -->
+    <g id="node6">
+      <polygon class="node-bg" stroke="none" points="200,1020 1080,1020 1080,1190 200,1190" id="polygon33"></polygon>
+      <text class="text-color" text-anchor="middle" dominant-baseline="middle" x="640" y="1055" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="26.00" id="text33">Passo 5 — Curva de Calibração e Interpolação</text>
+      <line x1="200" y1="1090" x2="1080" y2="1090" class="stroke-color" id="line33"></line>
+
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="1120" id="text34">Equação da Reta dos Padrões: A = m × c + n</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="1155" id="text35">c<tspan class="subscript">lida</tspan> (mg·L<tspan class="superscript">-1</tspan>) = (A<tspan class="subscript">amostra</tspan> − n) / m</text>
+
+      <polygon fill="none" class="stroke-color" points="200,1020 1080,1020 1080,1190 200,1190" id="polygon36"></polygon>
+    </g>
+
+    <!-- SETA P5 -> P6 -->
+    <path class="edge-line" d="M640,1190 L640,1230" id="path36"></path>
+    <polygon class="edge-arrow" points="635,1230 640,1240 645,1230" id="polygon37"></polygon>
+
+    <!-- PASSO 6: Cálculo do Teor Final -->
+    <g id="node7">
+      <polygon class="node-bg" stroke="none" points="120,1240 1160,1240 1160,1440 120,1440" id="polygon38"></polygon>
+      <text class="text-color" text-anchor="middle" dominant-baseline="middle" x="640" y="1275" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="26.00" id="text38">Passo 6 — Cálculo do Teor de Fósforo Foliar (g·kg⁻¹)</text>
+      <line x1="120" y1="1310" x2="1160" y2="1310" class="stroke-color" id="line38"></line>
+
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="1350" id="text39">Fator de Diluição (F<tspan class="subscript">d</tspan>) = (50 mL / 10 mL) = 5</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="1395" id="text40">C<tspan class="subscript">amostra</tspan> (g·kg<tspan class="superscript">-1</tspan>) = [ c<tspan class="subscript">lida</tspan> (mg·L<tspan class="superscript">-1</tspan>) × 0,05 L × 5 ] / m<tspan class="subscript">amostra</tspan> (g)</text>
+
+      <polygon fill="none" class="stroke-color" points="120,1240 1160,1240 1160,1440 120,1440" id="polygon41"></polygon>
+    </g>
+
+    <!-- SETA P6 -> P7 -->
+    <path class="edge-line" d="M640,1440 L640,1480" id="path41"></path>
+    <polygon class="edge-arrow" points="635,1480 640,1490 645,1480" id="polygon42"></polygon>
+
+    <!-- PASSO 7: Avaliação Nutricional -->
+    <g id="node8">
+      <polygon class="node-bg" stroke="none" points="180,1490 1100,1490 1100,1760 180,1760" id="polygon43"></polygon>
+      <text class="text-color" text-anchor="middle" dominant-baseline="middle" x="640" y="1525" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="26.00" id="text43">Passo 7 — Interpretação do Estado Nutricional</text>
+      <line x1="180" y1="1560" x2="1100" y2="1560" class="stroke-color" id="line43"></line>
+
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="1600" id="text44">Comparar C<tspan class="subscript">amostra</tspan> obtido com os teores foliares de referência</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="1650" id="text45">Faixa de Suficiência (Cafeeiro): 1,2 a 2,5 g·kg<tspan class="superscript">-1</tspan> de P</text>
+      <text class="formula-text" text-anchor="middle" dominant-baseline="middle" x="640" y="1700" id="text46">Classificação: Deficiente (&lt; 1,2) | Adequado | Excessivo (&gt; 2,5)</text>
+
+      <polygon fill="none" class="stroke-color" points="180,1490 1100,1490 1100,1760 180,1760" id="polygon47"></polygon>
+    </g>
+  </g>
+</svg>
+
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fluxograma" id="fluxograma-Espectrofotometria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação colorimétrica de fósforo em tecido de cafeeiro.
+Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação de fósforo em tecido foliar via espectrofotometria.
 </figcaption>
 </figure>
 </div>
@@ -2052,7 +2190,7 @@ Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação colo
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: center;">Transmitância (%)</th>
+<th style="text-align: center;">Transmitância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\%)</annotation></semantics></math></th>
 <th style="text-align: center;">100</th>
 <th style="text-align: center;">85</th>
 <th style="text-align: center;">70</th>
@@ -2062,7 +2200,7 @@ Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação colo
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Concentração (mg/kg)</td>
+<td style="text-align: center;">Concentração <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mi>g</mi><mo>⋅</mo><mi>k</mi><msup><mi>g</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(mg \cdot kg^{-1})</annotation></semantics></math></td>
 <td style="text-align: center;">0</td>
 <td style="text-align: center;">2,5</td>
 <td style="text-align: center;">5,3</td>
@@ -2076,7 +2214,7 @@ Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação colo
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: center;">Transmitância (%)</th>
+<th style="text-align: center;">Transmitância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>%</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\%)</annotation></semantics></math></th>
 <th style="text-align: center;">86</th>
 <th style="text-align: center;">71</th>
 <th style="text-align: center;">64</th>
@@ -2086,7 +2224,7 @@ Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação colo
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Concentração (mg/kg)</td>
+<td style="text-align: center;">Concentração <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mi>g</mi><mo>⋅</mo><mi>k</mi><msup><mi>g</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(mg \cdot kg^{-1})</annotation></semantics></math></td>
 <td style="text-align: center;">10</td>
 <td style="text-align: center;">15</td>
 <td style="text-align: center;">20</td>
@@ -2097,7 +2235,7 @@ Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação colo
 </table></li>
 <li><p>Uma solução padrão de fósforo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">4{,}0 \ \text{mg·L}^{-1}</annotation></semantics></math>, analisada em cubeta de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">cm</mtext></mrow><annotation encoding="application/x-tex">1{,}0 \ \text{cm}</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>430</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nm</mtext></mrow><annotation encoding="application/x-tex">430 \ \text{nm}</annotation></semantics></math>, apresentou absorbância de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>240</mn></mrow><annotation encoding="application/x-tex">0{,}240</annotation></semantics></math>.</p>
 <ul>
-<li><p><strong>a)</strong> Calcule a absortividade aparente da espécie no comprimento de onda utilizado <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>ε</mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mi>A</mi><mrow><mi>b</mi><mo>⋅</mo><mi>c</mi></mrow></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\left(\varepsilon = \dfrac{A}{b \cdot c}\right)</annotation></semantics></math>.</p></li>
+<li><p><strong>a)</strong> Calcule a absortividade aparente da espécie no comprimento de onda utilizado <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>ε</mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mi>A</mi><mrow><mi>ℓ</mi><mo>⋅</mo><mi>c</mi></mrow></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\left(\varepsilon = \dfrac{A}{\ell \cdot c}\right)</annotation></semantics></math>.</p></li>
 <li><p><strong>b)</strong> Qual seria a absorbância esperada para uma solução de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10 \ \text{mg·L}^{-1}</annotation></semantics></math> na mesma cubeta?</p></li>
 </ul></li>
 <li><p>Por que a curva de calibração deve ser construída com absorbância (e não com transmitância) no eixo vertical? Qual grandeza é linearmente proporcional à concentração segundo a Lei de Lambert-Beer?</p></li>
@@ -2207,36 +2345,12 @@ Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação colo
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./resources/Prancha Colorida/Preparo_HCl.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Espectrofotometria — Determinação de Fósforo"><img src="./resources/Prancha Colorida/Preparo_HCl.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Espectrofotometria — Determinação de Fósforo"></a></p>
+<p><a href="./resources/Prancha Colorida/Espectro_P_Tecido_Foliar.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Espectrofotometria — Determinação de Fósforo por Espectrofotometria"><img src="./resources/Prancha Colorida/Espectro_P_Tecido_Foliar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Espectrofotometria — Determinação de Fósforo por Espectrofotometria"></a></p>
 </figure>
 </div>
-<figcaption>Espectrofotometria — Determinação de Fósforo</figcaption>
+<figcaption>Espectrofotometria — Determinação de Fósforo por Espectrofotometria</figcaption>
 </figure>
 </div>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="simulador-de-testes" class="level2">
-<h2 class="anchored" data-anchor-id="simulador-de-testes">Simulador de Testes</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Questionário
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>```{=html}</p>
-<h4 class="anchored">
-inserir depois
-</h4>
-<!-- {{< include simulador_de_testes.html >}} -->
 </div>
 </div>
 </div>
