@@ -1052,3 +1052,22 @@ body.quarto-dark #grafico-regressao {
 .sidebar-navigation li.sidebar-item:has(a[href*="Nota_Historica_Titulo_expandida"]) {
   display: none !important;
 }
+
+
+
+
+
+
+/*  /* Esconde a scrollbar do sidebar, mas mantém o scroll */   
+/*  #quarto-sidebar {
+/*    scrollbar-width: none; /* Firefox */
+/*  }
+/*  
+/*  #quarto-sidebar::-webkit-scrollbar {
+/*    display: none; /* Chrome, Edge, Safari */
+/*  }
+/* 
+/* #quarto-sidebar {
+/*   overflow-y: hidden;
+/* }
+/* 
