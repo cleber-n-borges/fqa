@@ -1056,8 +1056,7 @@ body.quarto-dark #grafico-regressao {
 
 
 
-
-
+/*
 /*  /* Esconde a scrollbar do sidebar, mas mantém o scroll */   
 /*  #quarto-sidebar {
 /*    scrollbar-width: none; /* Firefox */
@@ -1070,4 +1069,32 @@ body.quarto-dark #grafico-regressao {
 /* #quarto-sidebar {
 /*   overflow-y: hidden;
 /* }
-/* 
+/*
+*/
+
+
+
+/* Garante que o texto fique acima do fundo */
+body {
+  position: relative;
+  z-index: 1;
+}
+
+/* Aplica a marca d'água APENAS em páginas sem a classe 'no-watermark' */
+body:not(.no-watermark)::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  
+  background-image: url('Logo_Fund_QA_Marca_Dagua_v02.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 40%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
