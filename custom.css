@@ -1072,6 +1072,18 @@ body.quarto-dark #grafico-regressao {
 /*
 */
 
+/* --------------------------------------------------------
+/* Esconde a barra de rolagem, mas mantém a rolagem funcional */
+#quarto-sidebar {
+  overflow-y: auto; /* Garante que o scroll funcione */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Para Chrome, Edge, Safari */
+#quarto-sidebar::-webkit-scrollbar {
+  display: none; /* Remove a barra visualmente */
+}
+/* --------------------------------------------------------
 
 
 /* Garante que o texto fique acima do fundo */
