@@ -616,7 +616,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <blockquote class="blockquote">
 <ol type="1">
 <li><p><strong>Transmissão × transmitância</strong> — transmissão é o fenômeno; transmitância é a grandeza, a razão <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>i</mi></msub><mo>=</mo><msub><mi>I</mi><mi>i</mi></msub><mi>/</mi><msub><mi>I</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">T_{i} = I_{i} / {I_0}</annotation></semantics></math>.</p></li>
-<li><p><strong>Notação dos índices</strong> — o índice <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> identifica a solução cuja transmitância está sendo medida (branco, padrão ou amostra). O subscrito <strong>0</strong> em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>I</mi><mn>0</mn></msub><annotation encoding="application/x-tex">I_{0}</annotation></semantics></math>​ não é um índice dessa série: é um <strong>rótulo de referência</strong>, indicando a intensidade da radiação antes de interagir com a solução — a mesma para todas as soluções medidas.</p></li>
+<li><p><strong>Notação dos índices</strong> — o índice <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> identifica a solução cuja transmitância está sendo medida (branco, padrão ou amostra). O subscrito <strong>0</strong> em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>I</mi><mn>0</mn></msub><annotation encoding="application/x-tex">I_{0}</annotation></semantics></math> não é um índice dessa série: é um <strong>rótulo de referência</strong>, indicando a intensidade da radiação antes de interagir com a solução — a mesma para todas as soluções medidas.</p></li>
 </ol>
 </blockquote>
 <p>A transmitância, contudo, não varia linearmente com a concentração. Por isso, define-se a <a href="https://pt.wikipedia.org/wiki/Absorb%C3%A2ncia"><strong>absorbância</strong></a>:</p>
@@ -633,6 +633,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <blockquote class="blockquote">
 <p><strong>Absorção × absorbância</strong> — absorção é o fenômeno; absorbância é a grandeza que o instrumento fornece, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub><mo>=</mo><mi>−</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>10</mn></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>T</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A_i =−log_{10}( T_i )</annotation></semantics></math>.</p>
 </blockquote>
+<p><br></p>
 <p><strong>Simulação Interativa da Transmitância</strong></p>
 <p>Use os botões <strong>+</strong> e <strong>−</strong> para variar a concentração da solução e observe o feixe transmitido (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>I</mi><annotation encoding="application/x-tex">I</annotation></semantics></math>) enfraquecer à medida que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> cai e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> sobe (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mi>T</mi></mrow><annotation encoding="application/x-tex">A = -\log_{10} T</annotation></semantics></math>).</p>
 
@@ -1091,7 +1092,6 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 
 
 <center><em>Simulação de T e A em solução</em></center>
-<p><br></p>
 </section>
 <section id="lei-de-lambert-beer" class="level3">
 <h3 class="anchored" data-anchor-id="lei-de-lambert-beer">Lei de Lambert-Beer</h3>
@@ -1136,11 +1136,11 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <h4 class="anchored" data-anchor-id="cálculo-manual-dos-parâmetros-do-modelo">Cálculo manual dos parâmetros do modelo</h4>
 <p>Para calcular manualmente as estimativas dos parâmetros da reta (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>) pelo <strong>Método dos Mínimos Quadrados Ordinários (OLS)</strong>, utiliza-se o conjunto de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> pares ordenados de dados experimentais <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>c</mi><mi>i</mi></msub><mo>,</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(c_i, A_i)</annotation></semantics></math>.</p>
 <ol type="1">
-<li><strong>Coeficiente angular (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>):</strong></li>
+<li><strong>Coeficiente angular (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>):</li>
 </ol>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mfrac><mrow><mi>p</mi><mo>∑</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>c</mi><mi>i</mi></msub><mo>⋅</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>∑</mo><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mo>∑</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mi>p</mi><mo>∑</mo><msubsup><mi>c</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mo>∑</mo><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">m = \frac{p \sum (c_i \cdot A_i) - \left(\sum c_i\right) \left(\sum A_i\right)}{p \sum c_i^2 - \left(\sum c_i\right)^2}</annotation></semantics></math></p>
 <ol start="2" type="1">
-<li><strong>Coeficiente linear (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>):</strong></li>
+<li><strong>Coeficiente linear (</strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>):</li>
 </ol>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mfrac><mrow><mo>∑</mo><msub><mi>A</mi><mi>i</mi></msub><mo>−</mo><mi>m</mi><mo>∑</mo><msub><mi>c</mi><mi>i</mi></msub></mrow><mi>p</mi></mfrac><mo>=</mo><mover><mi>A</mi><mo accent="true">‾</mo></mover><mo>−</mo><mi>m</mi><mo>⋅</mo><mover><mi>c</mi><mo accent="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">n = \frac{\sum A_i - m \sum c_i}{p} = \bar{A} - m \cdot \bar{c}</annotation></semantics></math></p>
 <p>Em que:</p>
@@ -1593,7 +1593,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </section>
 <section id="o-método-do-ácido-vanadomolibdatofosfórico" class="level3">
 <h3 class="anchored" data-anchor-id="o-método-do-ácido-vanadomolibdatofosfórico">O Método do Ácido Vanadomolibdatofosfórico</h3>
-<p>O <strong>método do ácido vanadomolibdatofosfórico</strong> (também conhecido como <em>método do amarelo de vanadomolibdato</em>) é um método espectrofotométrico clássico e amplamente utilizado para a <strong>determinação quantitativa de fósforo (na forma de íons ortofosfatos, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">PO</mtext><mn>4</mn><mrow><mn>3</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{PO}_4^{3-}</annotation></semantics></math>)</strong> em amostras como águas, solos, fertilizantes, efluentes e tecidos vegetais. Sua determinação em tecido vegetal é rotineira em laboratórios de <a href="https://pt.wikipedia.org/wiki/Nutri%C3%A7%C3%A3o_vegetal">nutrição de plantas</a>.</p>
+<p>O <strong>método do ácido vanadomolibdatofosfórico</strong> (também conhecido como <em>método do amarelo de vanadomolibdato</em>) é um método espectrofotométrico clássico e amplamente utilizado para a <strong>determinação quantitativa de fósforo (na forma de íons ortofosfatos,</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">PO</mtext><mn>4</mn><mrow><mn>3</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{PO}_4^{3-}</annotation></semantics></math>) em amostras como águas, solos, fertilizantes, efluentes e tecidos vegetais. Sua determinação em tecido vegetal é rotineira em laboratórios de <a href="https://pt.wikipedia.org/wiki/Nutri%C3%A7%C3%A3o_vegetal">nutrição de plantas</a>.</p>
 <ol type="1">
 <li>Princípio Químico da Reação</li>
 </ol>
@@ -1605,7 +1605,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <li>Condições de Medição Espectrofotométrica</li>
 </ol>
 <ul>
-<li><p><strong>Comprimento de onda <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>λ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lambda)</annotation></semantics></math>:</strong> A leitura de absorbância é realizada na região do azul/violeta, geralmente entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>400</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> nm</mtext></mrow></mrow><annotation encoding="application/x-tex">400\text{ nm}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>470</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> nm</mtext></mrow></mrow><annotation encoding="application/x-tex">470\text{ nm}</annotation></semantics></math> (sendo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>430</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> nm</mtext></mrow></mrow><annotation encoding="application/x-tex">430\text{ nm}</annotation></semantics></math> o valor mais comum).</p></li>
+<li><p><strong>Comprimento de onda</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>λ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lambda)</annotation></semantics></math>: A leitura de absorbância é realizada na região do azul/violeta, geralmente entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>400</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> nm</mtext></mrow></mrow><annotation encoding="application/x-tex">400\text{ nm}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>470</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> nm</mtext></mrow></mrow><annotation encoding="application/x-tex">470\text{ nm}</annotation></semantics></math> (sendo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>430</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> nm</mtext></mrow></mrow><annotation encoding="application/x-tex">430\text{ nm}</annotation></semantics></math> o valor mais comum).</p></li>
 <li><p><strong>Faixa de trabalho:</strong> O método é ideal para concentrações moderadas a altas de fósforo (tipicamente entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mg/L</mtext></mrow></mrow><annotation encoding="application/x-tex">1\text{ mg/L}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mg/L</mtext></mrow></mrow><annotation encoding="application/x-tex">20\text{ mg/L}</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">P</mtext><annotation encoding="application/x-tex">\text{P}</annotation></semantics></math>).</p></li>
 </ul>
 <ol start="3" type="1">
@@ -1935,7 +1935,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <li><p>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J.; CROUCH, S. R. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.</p></li>
 <li><p>VOGEL, A. I. <strong>Análise Química Quantitativa</strong>. 6. ed.&nbsp;Rio de Janeiro: LTC, 2012.</p></li>
 <li><p>MALAVOLTA, E.; VITTI, G. C.; OLIVEIRA, S. A. <strong>Avaliação do estado nutricional das plantas: princípios e aplicações</strong>. 2. ed.&nbsp;Piracicaba: POTAFOS, 1997.</p></li>
-<li><p>BRASIL. Ministério da Agricultura e Pecuária. <strong>Manual de Métodos Analíticos Oficiais de Fertilizantes, Corretivos, Substratos, Condicionadores e Remineralizadores de Solo</strong>: Volume I. Brasília, DF: Ministério da Agricultura e Pecuária, 2024. Disponível em: <a href="https://wikisda.agricultura.gov.br/pt-br/Laborat%C3%B3rios/Metodologia/Fertilizantes/ManualFICVolI">https://wikisda.agricultura.gov.br/pt-br/Laborat%C3%B3rios/Metodologia/Fertilizantes/ManualFICVolI</a>. Acesso em: 1 out. 2026.</p></li>
+<li><p>BRASIL. Ministério da Agricultura e Pecuária. <strong>Manual de Métodos Analíticos Oficiais de Fertilizantes, Corretivos, Substratos, Condicionadores e Remineralizadores de Solo</strong>: Volume I. Brasília, DF: Ministério da Agricultura e Pecuária, 2024. Disponível em: <a href="https://wikisda.agricultura.gov.br/pt-br/Laborat%C3%B3rios/Metodologia/Fertilizantes/ManualFICVolI" class="uri">https://wikisda.agricultura.gov.br/pt-br/Laborat%C3%B3rios/Metodologia/Fertilizantes/ManualFICVolI</a>. Acesso em: 1 out. 2026.</p></li>
 </ul>
 <hr>
 </section>
@@ -2050,12 +2050,12 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <p>Aplicando a todos os pontos:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 35%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
+<col style="width: 46%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
