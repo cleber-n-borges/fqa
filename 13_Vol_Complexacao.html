@@ -541,6 +541,11 @@ var JSON_Questionario = "./simulador/vol_complexacao.dat";
   <a href="./19_Nota_Historica_Titulo_expandida.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nota Histórica Expandida</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20_Tabela_Periodica.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tabela Periódica</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -603,16 +608,43 @@ var JSON_Questionario = "./simulador/vol_complexacao.dat";
 <li><p><strong>Indicadores Metalocrômicos:</strong> São <a href="https://pt.wikipedia.org/wiki/Indicador_complexom%C3%A9trico">indicadores complexométricos</a> (corantes orgânicos, como o <a href="https://pt.wikipedia.org/wiki/Preto_de_eriocromo_T">Negro (ou Preto) de Eriocromo T — NET</a> ou a <a href="https://pt.wikipedia.org/wiki/Murexida">Murexida</a>) que mudam de cor ao se ligarem aos íons metálicos. O ponto final é atingido quando o titulante (EDTA) “arranca” o metal do indicador, liberando o corante em sua forma livre e alterando a cor da solução.</p></li>
 <li><p><strong>Controle de pH (<a href="https://pt.wikipedia.org/wiki/Solu%C3%A7%C3%A3o_tamp%C3%A3o">Solução Tampão</a>):</strong> A reação de complexação com o EDTA libera prótons <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">H</mtext><mo>+</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{H}^+)</annotation></semantics></math>. Por isso, o pH deve ser rigorosamente mantido constante com soluções tampão para assegurar a estabilidade do complexo metal-EDTA e a correta mudança de cor do indicador.</p></li>
 </ul>
-<!--
-**Tipos de Titulação Complexométrica**
-
-| Método | Como Funciona | Quando Utilizar |
-|:-----------------------|:-----------------------|:-----------------------|
-| **Direta** | O EDTA é adicionado diretamente à solução do metal até a alteração de cor do indicador. | Íons que reagem rapidamente com o EDTA e dispõem de indicador adequado. |
-| **Retrotitulação** *(ou Por Retorno)* | Adiciona-se um excesso conhecido de EDTA e titula-se o EDTA residual com uma solução padrão de outro metal (ex: $\text{Mg}^{2+}$). | Metais que reagem lentamente, precipitam em pH elevado ou bloqueiam o indicador. |
-| **Por Deslocamento** | O analito desloca um metal menos estável de outro complexo (ex: $\text{Mg-EDTA}$), e o metal liberado é então titulado. | Quando não há indicador direto satisfatório para o metal analisado. |
-| **Indireta** | Titula-se um cátion associado a um ânion para determinar indiretamente a concentração desse ânion (ex: $\text{SO}_4^{2-}$, $\text{PO}_4^{3-}$). | Determinação de ânions que formam precipitados insolúveis com íons metálicos. |
--->
+<p><strong>Tipos de Titulação Complexométrica</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Como Funciona</th>
+<th style="text-align: left;">Quando Utilizar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Direta</strong></td>
+<td style="text-align: left;">O EDTA é adicionado diretamente à solução do metal até a alteração de cor do indicador.</td>
+<td style="text-align: left;">Íons que reagem rapidamente com o EDTA e dispõem de indicador adequado.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Retrotitulação</strong> <em>(ou Por Retorno)</em></td>
+<td style="text-align: left;">Adiciona-se um excesso conhecido de EDTA e titula-se o EDTA residual com uma solução padrão de outro metal (ex: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><annotation encoding="application/x-tex">\text{Mg}^{2+}</annotation></semantics></math>).</td>
+<td style="text-align: left;">Metais que reagem lentamente, precipitam em pH elevado ou bloqueiam o indicador.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Por Deslocamento</strong></td>
+<td style="text-align: left;">O analito desloca um metal menos estável de outro complexo (ex: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">Mg-EDTA</mtext><annotation encoding="application/x-tex">\text{Mg-EDTA}</annotation></semantics></math>), e o metal liberado é então titulado.</td>
+<td style="text-align: left;">Quando não há indicador direto satisfatório para o metal analisado.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Indireta</strong></td>
+<td style="text-align: left;">Titula-se um cátion associado a um ânion para determinar indiretamente a concentração desse ânion (ex: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">SO</mtext><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{SO}_4^{2-}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mtext mathvariant="normal">PO</mtext><mn>4</mn><mrow><mn>3</mn><mo>−</mo></mrow></msubsup><annotation encoding="application/x-tex">\text{PO}_4^{3-}</annotation></semantics></math>).</td>
+<td style="text-align: left;">Determinação de ânions que formam precipitados insolúveis com íons metálicos.</td>
+</tr>
+</tbody>
+</table>
 <section id="preparo-da-amostra" class="level3">
 <h3 class="anchored" data-anchor-id="preparo-da-amostra">Preparo da Amostra</h3>
 <p>Nesta prática, a determinação de cálcio e magnésio é realizada a partir de uma amostra de <a href="https://pt.wikipedia.org/wiki/Dolomito">calcário dolomítico</a>, a qual exige um procedimento prévio de solubilização por ser uma matriz sólida insolúvel em água.</p>
@@ -839,7 +871,6 @@ var JSON_Questionario = "./simulador/vol_complexacao.dat";
 <li><p><strong>Titulação:</strong> Titular com solução padrão de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">EDTA-Na</mtext><mn>2</mn></msub><mspace width="0.222em"></mspace><mn>0</mn><mo>,</mo><mn>0100</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{EDTA-Na}_2 \ 0{,}0100 \ \text{mol·L}^{-1}</annotation></semantics></math> até o aparecimento de uma <strong>cor azul nítida</strong> (ponto final).</p></li>
 <li><p><strong>Registro de Dados:</strong> Anotar o volume total gasto (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>2</mn></msub><annotation encoding="application/x-tex">V_2</annotation></semantics></math>).</p></li>
 </ol>
-<hr>
 </section>
 </section>
 </section>
@@ -853,7 +884,6 @@ var JSON_Questionario = "./simulador/vol_complexacao.dat";
 <li><p><strong>Determinação da Soma <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">Ca</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><msup><mtext mathvariant="normal">Mg</mtext><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\text{Ca}^{2+} + \text{Mg}^{2+}</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mrow><mtext mathvariant="normal">pH </mtext><mspace width="0.333em"></mspace></mrow><mn>10</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{pH } 10)</annotation></semantics></math>:</strong> Na segunda alíquota, o uso do tampão amoniacal em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtext mathvariant="normal">pH </mtext><mspace width="0.333em"></mspace></mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">\text{pH } 10</annotation></semantics></math> mantém ambos os íons solúveis na forma de cátions livres. O indicador Negro de Eriocromo T (NET) liga-se aos metais formando o complexo vermelho-vinho <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">MgIn</mtext><mo>−</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{MgIn}^{-})</annotation></semantics></math>. Como a constante de estabilidade dos complexos metal-EDTA é significativamente maior que a dos complexos metal-NET, o EDTA reage primeiramente com os íons livres e, na gota final, desfaz o complexo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">Mg-NET</mtext><annotation encoding="application/x-tex">\text{Mg-NET}</annotation></semantics></math>, desprotonando o indicador para a forma azul livre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">HIn</mtext><mrow><mn>2</mn><mo>−</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{HIn}^{2-})</annotation></semantics></math>. A quantidade de magnésio é posteriormente obtida de forma exata pela diferença de volume consumido <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>V</mi><mn>2</mn></msub><mo>−</mo><msub><mi>V</mi><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(V_2 - V_1)</annotation></semantics></math>.</p></li>
 </ul>
 <p>Para assegurar a exatidão das viragens, a trietanolamina é empregada como agente mascarante alternativo de biossegurança em substituição ao cianeto de potássio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">KCN</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\text{KCN})</annotation></semantics></math>. A trietanolamina forma complexos solúveis e altamente estáveis com íons interferentes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mtext mathvariant="normal">Fe</mtext><mrow><mn>3</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">(\text{Fe}^{3+}</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">Al</mtext><mrow><mn>3</mn><mo>+</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{Al}^{3+})</annotation></semantics></math>, evitando o fenômeno de <em>“bloqueio do indicador”</em> e a formação de hidróxidos ou sais básicos insolúveis que comprometeriam a visualização da mudança de cor.</p>
-<hr>
 </section>
 <section id="bibliografia" class="level2">
 <h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
@@ -864,7 +894,6 @@ var JSON_Questionario = "./simulador/vol_complexacao.dat";
 <li>SKOOG, D. A.; WEST, D. M.; HOLLER, F. J.; CROUCH, S. R. <strong>Fundamentos de Química Analítica</strong>. 9. ed.&nbsp;São Paulo: Cengage Learning, 2014.</li>
 <li>VOGEL, A. I. <strong>Análise Química Quantitativa</strong>. 6. ed.&nbsp;Rio de Janeiro: LTC, 2012.</li>
 </ul>
-<hr>
 </section>
 <section id="guia-do-cálculo" class="level2">
 <h2 class="anchored" data-anchor-id="guia-do-cálculo">Guia do Cálculo</h2>
@@ -1494,7 +1523,6 @@ Fluxograma&nbsp;14.1: Sequência de procedimentos envolvidos para o cálculo de 
 <li><p>Como este calcário é classificado quanto ao teor de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="normal">MgO</mtext><annotation encoding="application/x-tex">\text{MgO}</annotation></semantics></math>?<br>
 <em>(Dados de referência agronômica: Calcítico <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>5</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">&lt; 5\%</annotation></semantics></math>; Magnesiano <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>5</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">= 5\%</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">12\%</annotation></semantics></math>; Dolomítico <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>12</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">&gt; 12\%</annotation></semantics></math>)</em></p></li>
 </ol>
-<hr>
 </section>
 <section id="complemento-com-ia" class="level2">
 <h2 class="anchored" data-anchor-id="complemento-com-ia">Complemento com IA</h2>
@@ -1564,7 +1592,6 @@ Fluxograma&nbsp;14.1: Sequência de procedimentos envolvidos para o cálculo de 
         speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
     });
 </script>
-<hr>
 </section>
 <section id="resumo-visual" class="level2">
 <h2 class="anchored" data-anchor-id="resumo-visual">Resumo Visual</h2>
@@ -1593,7 +1620,6 @@ Fluxograma&nbsp;14.1: Sequência de procedimentos envolvidos para o cálculo de 
 </div>
 </div>
 </div>
-<hr>
 
 
 </section>
