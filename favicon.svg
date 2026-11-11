@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
+  <!-- Fundo redondo escuro que combina com o tema Cyborg -->
+  <circle cx="50" cy="50" r="46" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="4"/>
+  
+  <!-- Brilho/Líquido reagente dentro do Erlenmeyer -->
+  <path d="M 32 72 L 68 72 L 62 58 L 38 58 Z" fill="#00ffcc" opacity="0.8"/>
+  <circle cx="45" cy="64" r="2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="55" cy="67" r="3" fill="#ffffff" opacity="0.6"/>
+  
+  <!-- Corpo do Erlenmeyer -->
+  <path d="M 42 24 L 58 24 M 46 24 L 46 40 L 26 78 A 4 4 0 0 0 30 84 L 70 84 A 4 4 0 0 0 74 78 L 54 40 L 54 24" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+</svg>
