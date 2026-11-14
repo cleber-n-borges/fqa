@@ -1114,13 +1114,49 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <blockquote class="blockquote">
 <p><strong>Obs.:</strong> a absorbância <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> é <strong>sempre adimensional</strong>, qualquer que seja a unidade de concentração, pois é o logaritmo de uma razão entre intensidades (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mn>0</mn></msub><mi>/</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">I_0/I</annotation></semantics></math>), que é um número puro. O que varia com a unidade de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math> é a absortividade <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math>: quando a concentração é expressa em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">mol·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{mol·L}^{-1}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math> recebe o nome de <strong>coeficiente de absortividade molar</strong>, com unidade <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">L·mol</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>⋅</mo><msup><mtext mathvariant="normal">cm</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{L·mol}^{-1}\cdot\text{cm}^{-1}</annotation></semantics></math>; quando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math> é expressa em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mtext mathvariant="normal">g·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\text{g·L}^{-1}</annotation></semantics></math>, fala-se simplesmente em <strong>absortividade (específica)</strong>, com unidade <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="normal">L·g</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>⋅</mo><msup><mtext mathvariant="normal">cm</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{L·g}^{-1}\cdot\text{cm}^{-1}</annotation></semantics></math>. Essa distinção é uma convenção de <strong>nomenclatura</strong> (IUPAC), e as unidades explícitas de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math> são o que garante, por análise dimensional, que o produto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>ε</mi><mo>⋅</mo><mi>ℓ</mi><mo>⋅</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">A = \varepsilon \cdot \ell \cdot c</annotation></semantics></math> resulte em uma grandeza adimensional.</p>
 </blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Exemplo de Espectro de Absorção
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="resources/espectro_Acido_VanadoMolidatoFosforico.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Espectro de absorção UV-Vis do ácido Vanadomolibdofosfórico"><img src="resources/espectro_Acido_VanadoMolidatoFosforico.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Espectro de Absorção"></a></p>
+</figure>
+</div>
+<figcaption>Espectro de absorção UV-Vis do ácido Vanadomolibdofosfórico</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="calibração-e-modelo-linear" class="level3">
 <h3 class="anchored" data-anchor-id="calibração-e-modelo-linear">Calibração e modelo linear</h3>
 <p>Como a Lei de Beer estabelece uma relação de proporcionalidade entre absorbância e concentração, ela pode ser tratada como um caso particular de um <a href="https://pt.wikipedia.org/wiki/Modelo_linear"><strong>modelo linear</strong></a>:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub><mo>=</mo><mi>m</mi><mo>⋅</mo><msub><mi>c</mi><mi>i</mi></msub><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">A_i = m \cdot c_i + n</annotation></semantics></math></p>
 <p>Aqui, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mi>ε</mi><mo>⋅</mo><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">m = \varepsilon \cdot \ell</annotation></semantics></math> é o <strong>coeficiente angular</strong> da equação da reta e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> é o seu <strong>coeficiente linear (o intercepto)</strong>; idealmente, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math>.</p>
-<p>Geometricamente, o modelo é uma reta em um gráfico de absorbância <em>versus</em> concentração. O coeficiente angular <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> mede a inclinação — de quanto a absorbância cresce para cada unidade de concentração — e vale <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo>⋅</mo><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">\varepsilon \cdot \ell</annotation></semantics></math>, o produto da absortividade <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math> pelo caminho óptico <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℓ</mi><annotation encoding="application/x-tex">\ell</annotation></semantics></math>. Já o coeficiente linear <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> marca o ponto onde a reta cruza o eixo vertical. Idealmente, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math>, e a reta então passa pela <strong>origem</strong> do gráfico: o ponto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0, 0)</annotation></semantics></math>, onde os dois eixos se encontram e no qual concentração e absorbância valem zero ao mesmo tempo. Isso faz todo sentido físico: sem soluto na solução (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">c_i = 0</annotation></semantics></math>), não há o que absorva luz — e a absorbância medida também é zero.</p>
+<p>Geometricamente, o modelo é uma reta em um gráfico de absorbância <em>versus</em> concentração.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="resources/Diagrama_Equacao_Linear_PB.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Representação gráfica da relação linear: A_i=m\cdot c_i+n, com destaque para o coeficiente angular: m=\mathrm{tg}(\alpha); e o intercepto: n."><img src="resources/Diagrama_Equacao_Linear_PB.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="Representação gráfica da relação linear."></a></p>
+</figure>
+</div>
+<figcaption>Representação gráfica da relação linear: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub><mo>=</mo><mi>m</mi><mo>⋅</mo><msub><mi>c</mi><mi>i</mi></msub><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">A_i=m\cdot c_i+n</annotation></semantics></math>, com destaque para o coeficiente angular: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">g</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">m=\mathrm{tg}(\alpha)</annotation></semantics></math>; e o intercepto: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>.</figcaption>
+</figure>
+</div>
+<p>O coeficiente angular <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> mede a inclinação — de quanto a absorbância cresce para cada unidade de concentração — e vale <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo>⋅</mo><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">\varepsilon \cdot \ell</annotation></semantics></math>, o produto da absortividade <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math> pelo caminho óptico <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℓ</mi><annotation encoding="application/x-tex">\ell</annotation></semantics></math>. Já o coeficiente linear <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> marca o ponto onde a reta cruza o eixo vertical. Idealmente, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math>, e a reta então passa pela <strong>origem</strong> do gráfico: o ponto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0, 0)</annotation></semantics></math>, onde os dois eixos se encontram e no qual concentração e absorbância valem zero ao mesmo tempo. Isso faz todo sentido físico: sem soluto na solução (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">c_i = 0</annotation></semantics></math>), não há o que absorva luz — e a absorbância medida também é zero.</p>
 <p>Em outras palavras, a Lei de Beer é uma equação de reta. Comparando com a notação mais comumente da matemática e estatística: <span style="white-space: nowrap">“<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝒚</mi><mo mathvariant="bold">=</mo><mi mathvariant="bold-italic">𝒂</mi><mo mathvariant="bold">⋅</mo><mi mathvariant="bold-italic">𝒙</mi><mo mathvariant="bold">+</mo><mi mathvariant="bold-italic">𝒃</mi></mrow><annotation encoding="application/x-tex">\boldsymbol{y = a \cdot x + b}</annotation></semantics></math>”</span>, temos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>≡</mo><msub><mi>A</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">y \equiv A_i</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≡</mo><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x \equiv c_i</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≡</mo><mi>m</mi><mo>=</mo><mi>ε</mi><mo>⋅</mo><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">a \equiv m = \varepsilon \cdot \ell</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>≡</mo><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b \equiv n = 0</annotation></semantics></math>. A absorbância cresce linearmente com a concentração — e a reta passa pela origem.</p>
 <blockquote class="blockquote">
 <p><strong>Nota:</strong> na rotina experimental, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> raramente será exatamente zero. Pequenos desvios — como impurezas no solvente, luz parasita no instrumento, cubetas sujas ou descalibração do espectrofotômetro — fazem com que a reta não passe exatamente pela origem. Por isso, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> costuma assumir um valor residual pequeno, que deve ser interpretado como erro experimental, e não como desvio da Lei de Beer.</p>
@@ -1652,7 +1688,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </ul></li>
 <li><p><strong>Faixa de trabalho</strong></p>
 <ul>
-<li><p>Concentração das soluções padrão de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><msubsup><mi>O</mi><mn>4</mn><mo>−</mo></msubsup></mrow><annotation encoding="application/x-tex">PO_{4}^{-}</annotation></semantics></math>: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">20{,}0 \ \text{mg·L}^{-1}</annotation></semantics></math>;</p></li>
+<li><p>Concentração das soluções padrão de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><msubsup><mi>O</mi><mn>4</mn><mrow><mn>3</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">PO_{4}^{3-}</annotation></semantics></math>: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><msup><mtext mathvariant="normal">mg·L</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">20{,}0 \ \text{mg·L}^{-1}</annotation></semantics></math>;</p></li>
 <li><p>Caminho ótico da cubeta: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">cm</mtext></mrow><annotation encoding="application/x-tex">\ell = 1{,}0 \ \text{cm}</annotation></semantics></math>;</p></li>
 <li><p>Comprimento de onda de leitura: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>≈</mo><mn>430</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nm</mtext></mrow><annotation encoding="application/x-tex">\lambda \approx 430 \ \text{nm}</annotation></semantics></math>.</p></li>
 </ul></li>
@@ -1888,7 +1924,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 <section id="simulação" class="level3">
 <h3 class="anchored" data-anchor-id="simulação">Simulação</h3>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1897,7 +1933,7 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>Visualize a simulação do processo de calibração (<a href="./resources/Sim_Espectrofotometro_curve.html" target="_blank" rel="noopener noreferrer">abrir em nova aba</a>):</p>
 </div>
@@ -2077,12 +2113,62 @@ var JSON_Questionario = "./simulador/espectrofotometria.dat";
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Gráfico
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="resources/espectrofotometria_exercicio.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Absorbância versus Concentração"><img src="resources/espectrofotometria_exercicio.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" alt="Absorbância *versus* Concentração"></a></p>
+</figure>
+</div>
+<figcaption>Absorbância <em>versus</em> Concentração</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <p><strong>Passo 2</strong> — Ajustar a reta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>m</mi><mo>⋅</mo><mi>c</mi><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">A = m \cdot c + n</annotation></semantics></math> pelo Método dos Mínimos Quadrados:</p>
 <p>Para realizar o ajuste linear, considera-se o número de condições de concentração testadas na curva de calibração, indicado por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">p = 5</annotation></semantics></math> (excluindo o branco de reagentes usado no zeramento do equipamento).</p>
 <p>Com base nos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">p = 5</annotation></semantics></math> pontos experimentais <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>c</mi><mi>i</mi></msub><mo>,</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(c_i, A_i)</annotation></semantics></math>, os parâmetros da reta são determinados pelas seguintes equações:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mfrac><mrow><mn>5</mn><mo>∑</mo><mo stretchy="false" form="prefix">(</mo><mi>c</mi><mo>⋅</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mo>∑</mo><mi>c</mi><mo>⋅</mo><mo>∑</mo><mi>A</mi></mrow><mrow><mn>5</mn><mo>∑</mo><msup><mi>c</mi><mn>2</mn></msup><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mo>∑</mo><mi>c</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mspace width="2.0em"></mspace><mi>n</mi><mo>=</mo><mfrac><mrow><mo>∑</mo><mi>A</mi><mo>−</mo><mi>m</mi><mo>∑</mo><mi>c</mi></mrow><mn>5</mn></mfrac></mrow><annotation encoding="application/x-tex">m = \frac{5 \sum (c \cdot A) - \sum c \cdot \sum A}{5 \sum c^2 - (\sum c)^2} \qquad n = \frac{\sum A - m \sum c}{5}</annotation></semantics></math></p>
 <p>Resultado do ajuste (valores verificados computacionalmente):</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>03749</mn><mo>⋅</mo><mi>c</mi><mo>−</mo><mn>0</mn><mo>,</mo><mn>01973</mn><mspace width="2.0em"></mspace><mo stretchy="false" form="prefix">(</mo><msup><mi>R</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>9913</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A = 0{,}03749 \cdot c - 0{,}01973 \qquad (R^2 = 0{,}9913)</annotation></semantics></math></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Gráfico
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="resources/espectrofotometria_exercicio_Reta.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Absorbância versus Concentração"><img src="resources/espectrofotometria_exercicio_Reta.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" alt="Absorbância *versus* Concentração"></a></p>
+</figure>
+</div>
+<figcaption>Absorbância <em>versus</em> Concentração</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <p><strong>Passo 3</strong> — Determinar a absorbância da amostra (transmitância de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>65</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">65\%</annotation></semantics></math>):</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>65</mn><mn>100</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>−</mi><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>65</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0</mn><mo>,</mo><mn>1871</mn></mrow><annotation encoding="application/x-tex">A = -\log_{10}\left(\frac{65}{100}\right) = -\log_{10}(0{,}65) = 0{,}1871</annotation></semantics></math></p>
 <p><strong>Passo 4</strong> — Isolar a concentração na alíquota:</p>
@@ -2401,7 +2487,7 @@ Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação de f
 <section id="resumo-visual" class="level2">
 <h2 class="anchored" data-anchor-id="resumo-visual">Resumo Visual</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2410,13 +2496,13 @@ Fluxograma&nbsp;16.1: Sequência de cálculo e etapas para a determinação de f
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./resources/Prancha Colorida/Espectro_P_Tecido_Foliar.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Espectrofotometria — Determinação de Fósforo por Espectrofotometria"><img src="./resources/Prancha Colorida/Espectro_P_Tecido_Foliar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Espectrofotometria — Determinação de Fósforo por Espectrofotometria"></a></p>
+<p><a href="./resources/Prancha Colorida/Espectro_P_Tecido_Foliar.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Espectrofotometria — Determinação de Fósforo por Espectrofotometria"><img src="./resources/Prancha Colorida/Espectro_P_Tecido_Foliar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Espectrofotometria — Determinação de Fósforo por Espectrofotometria"></a></p>
 </figure>
 </div>
 <figcaption>Espectrofotometria — Determinação de Fósforo por Espectrofotometria</figcaption>
